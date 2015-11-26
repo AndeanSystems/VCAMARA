@@ -198,9 +198,9 @@
     <Content Include="Scripts\jtable\localization\jquery.jtable.ru.js" />
     <Content Include="Scripts\jtable\localization\jquery.jtable.se.js" />
     <Content Include="Scripts\jtable\themes\metro\green\list_metro.png" />
-    <Content Include="WebPage\ModuloDIS\Consultas\frmSegLogAdmin.aspx" />
     <Content Include="WebPage\ModuloDIS\Consultas\frmSegConsulta.aspx" />
     <Content Include="WebPage\ModuloDIS\Consultas\frmSegDescarga.aspx" />
+    <Content Include="WebPage\ModuloDIS\Consultas\frmSegLogAdmin.aspx" />
     <Content Include="WebPage\ModuloDIS\Operaciones\frmCargaAprobacion.aspx" />
     <Content Include="WebPage\ModuloDIS\Operaciones\frmCargaDatos.aspx" />
     <Content Include="WebPage\ModuloDIS\Operaciones\frmInterfaceContableSIS.aspx" />
@@ -316,13 +316,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebPage\ModuloDIS\Consultas\frmSegLogAdmin.aspx.cs">
-      <DependentUpon>frmSegLogAdmin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebPage\ModuloDIS\Consultas\frmSegLogAdmin.aspx.designer.cs">
-      <DependentUpon>frmSegLogAdmin.aspx</DependentUpon>
-    </Compile>
     <Compile Include="WebPage\ModuloDIS\Consultas\frmSegConsulta.aspx.cs">
       <DependentUpon>frmSegConsulta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -336,6 +329,13 @@
     </Compile>
     <Compile Include="WebPage\ModuloDIS\Consultas\frmSegDescarga.aspx.designer.cs">
       <DependentUpon>frmSegDescarga.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPage\ModuloDIS\Consultas\frmSegLogAdmin.aspx.cs">
+      <DependentUpon>frmSegLogAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPage\ModuloDIS\Consultas\frmSegLogAdmin.aspx.designer.cs">
+      <DependentUpon>frmSegLogAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebPage\ModuloDIS\Operaciones\frmCargaAprobacion.aspx.cs">
       <DependentUpon>frmCargaAprobacion.aspx</DependentUpon>
