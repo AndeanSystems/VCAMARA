@@ -33,6 +33,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -197,7 +198,13 @@
     <Content Include="Scripts\jtable\localization\jquery.jtable.ru.js" />
     <Content Include="Scripts\jtable\localization\jquery.jtable.se.js" />
     <Content Include="Scripts\jtable\themes\metro\green\list_metro.png" />
+    <Content Include="WebPage\ModuloDIS\Consultas\frmSegLogAdmin.aspx" />
+    <Content Include="WebPage\ModuloDIS\Consultas\frmSegConsulta.aspx" />
+    <Content Include="WebPage\ModuloDIS\Consultas\frmSegDescarga.aspx" />
+    <Content Include="WebPage\ModuloDIS\Operaciones\frmCargaAprobacion.aspx" />
     <Content Include="WebPage\ModuloDIS\Operaciones\frmCargaDatos.aspx" />
+    <Content Include="WebPage\ModuloDIS\Operaciones\frmInterfaceContableSIS.aspx" />
+    <Content Include="WebPage\ModuloDIS\Operaciones\frmTelebankig.aspx" />
     <Content Include="WebPage\ModuloDIS\Operaciones\js\CargaDatos.js" />
     <Content Include="WebPage\ModuloSBS\Consultas\js\frmInformes.js" />
     <Content Include="WebPage\ModuloSBS\Consultas\js\tblComprobante.js" />
@@ -309,12 +316,54 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebPage\ModuloDIS\Consultas\frmSegLogAdmin.aspx.cs">
+      <DependentUpon>frmSegLogAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPage\ModuloDIS\Consultas\frmSegLogAdmin.aspx.designer.cs">
+      <DependentUpon>frmSegLogAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPage\ModuloDIS\Consultas\frmSegConsulta.aspx.cs">
+      <DependentUpon>frmSegConsulta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPage\ModuloDIS\Consultas\frmSegConsulta.aspx.designer.cs">
+      <DependentUpon>frmSegConsulta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPage\ModuloDIS\Consultas\frmSegDescarga.aspx.cs">
+      <DependentUpon>frmSegDescarga.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPage\ModuloDIS\Consultas\frmSegDescarga.aspx.designer.cs">
+      <DependentUpon>frmSegDescarga.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPage\ModuloDIS\Operaciones\frmCargaAprobacion.aspx.cs">
+      <DependentUpon>frmCargaAprobacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPage\ModuloDIS\Operaciones\frmCargaAprobacion.aspx.designer.cs">
+      <DependentUpon>frmCargaAprobacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebPage\ModuloDIS\Operaciones\frmCargaDatos.aspx.cs">
       <DependentUpon>frmCargaDatos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="WebPage\ModuloDIS\Operaciones\frmCargaDatos.aspx.designer.cs">
       <DependentUpon>frmCargaDatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPage\ModuloDIS\Operaciones\frmInterfaceContableSIS.aspx.cs">
+      <DependentUpon>frmInterfaceContableSIS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPage\ModuloDIS\Operaciones\frmInterfaceContableSIS.aspx.designer.cs">
+      <DependentUpon>frmInterfaceContableSIS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPage\ModuloDIS\Operaciones\frmTelebankig.aspx.cs">
+      <DependentUpon>frmTelebankig.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPage\ModuloDIS\Operaciones\frmTelebankig.aspx.designer.cs">
+      <DependentUpon>frmTelebankig.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebPage\ModuloSBS\Consultas\frmConsultaComprobante.aspx.cs">
       <DependentUpon>frmConsultaComprobante.aspx</DependentUpon>

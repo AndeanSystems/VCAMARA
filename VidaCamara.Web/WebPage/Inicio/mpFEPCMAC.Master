@@ -109,10 +109,31 @@
                         <li><a href="#">Operaciones</a>
                             <ul>
                                 <li>
-                                    <asp:HyperLink NavigateUrl="~/CargaDatosDIS?go=5" runat="server">CargaLogica Datos</asp:HyperLink></li>
+                                    <asp:HyperLink NavigateUrl="~/CargaDatosDIS?go=5" runat="server">CargaLogica Datos</asp:HyperLink>
+                                </li>
+                                <li>
+                                    <asp:HyperLink NavigateUrl="~/ApruebaCarga?go=5" runat="server">Aprueba Carga</asp:HyperLink>
+                                </li>
+                                <li>
+                                    <asp:HyperLink NavigateUrl="~/Telebankig?go=5" runat="server">Genera Telebanking</asp:HyperLink>
+                                </li>
+                                 <li>
+                                    <asp:HyperLink NavigateUrl="~/InterfaceContbleSIS?go=5" runat="server">Interface Contable</asp:HyperLink>
+                                </li>
                             </ul>
                         </li>
                         <li><a href="#">Consultas</a>
+                            <ul>
+                                <li>
+                                    <asp:HyperLink NavigateUrl="~/SegConsulta?go=5" runat="server" Text="Seg Consultas" />
+                                </li>
+                                <li>
+                                    <asp:HyperLink NavigateUrl="~/SegDescarga?go=5" runat="server" Text="Seg Descargas" />
+                                </li>
+                                <li>
+                                    <asp:HyperLink NavigateUrl="~/SegLogAdmin?go=5" runat="server" Text="Seg Log Admin" />
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>

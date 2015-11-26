@@ -9,6 +9,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
 {
     public partial class CargaDatos : System.Web.UI.Page
     {
+        static int total;
         readonly bValidarAcceso _accesso = new bValidarAcceso();
         private int _totalContrato;
 
@@ -150,17 +151,12 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
 
         private void SetLLenadoContrato()
         {
-            var o = new eContratoVC
-            {
-                _inicio = 0,
-                _fin = 10000,
-                _orderby = "IDE_CONTRATO ASC",
-                _nro_Contrato = "NO",
-                _estado = "A"
-            };
-
-            var tb = new bContratoVC();
-            var list = tb.GetSelecionarContrato(o, out _totalContrato);                     
+            var list = new VidaCamara.SBS.Utils.Utility().getContrato(out total);
+            ddl_conrato1.DataSource = list;
+            ddl_conrato1.DataTextField = "_des_Contrato";
+            ddl_conrato1.DataValueField = "_nro_Contrato";
+            ddl_conrato1.DataBind();
+            ddl_conrato1.Items.Insert(0, new ListItem("Seleccione ----", "0"));
         }
 
         private void MessageBox(string text)

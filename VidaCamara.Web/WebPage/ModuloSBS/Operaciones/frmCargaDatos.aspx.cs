@@ -1431,15 +1431,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Operaciones
 
         private void SetLLenadoContrato()
         {
-            eContratoVC o = new eContratoVC();
-            o._inicio = 0;
-            o._fin = 10000;
-            o._orderby = "IDE_CONTRATO ASC";
-            o._nro_Contrato = "NO";
-            o._estado = "A";
-
-            bContratoVC tb = new bContratoVC();
-            List<eContratoVC> list = tb.GetSelecionarContrato(o, out totalContrato);
+            var list = new VidaCamara.SBS.Utils.Utility().getContrato(out total);
             codigoseguro = list[0]._cod_Contratante;
 
             dbl_contrato_d.DataSource = list;

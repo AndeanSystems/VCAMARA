@@ -49,6 +49,15 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones {
         protected global::System.Web.UI.WebControls.View view1;
         
         /// <summary>
+        /// ddl_conrato1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_conrato1;
+        
+        /// <summary>
         /// fileUpload control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload fileUpload;
+        
+        /// <summary>
+        /// ddl_tipo_archivo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_tipo_archivo;
         
         /// <summary>
         /// view2 control.
@@ -74,6 +92,33 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView1;
+        
+        /// <summary>
+        /// GridView2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView2;
+        
+        /// <summary>
+        /// view3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View view3;
+        
+        /// <summary>
+        /// ddl_tipinfo_d control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_tipinfo_d;
         
         /// <summary>
         /// hdf_excel_error control.
