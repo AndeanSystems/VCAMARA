@@ -479,7 +479,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Temp\Archivos\" />
+    <Folder Include="Scripts\Temp\Archivos\" />
     <Folder Include="WebPage\ModuloDIS\Operaciones\Service\" />
   </ItemGroup>
   <ItemGroup>
