@@ -16,7 +16,7 @@
             <asp:View ID="view1" runat="server">
 
                 <label class="label_to" for="ddl_contrato_c">Contrato </label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_contrato_c" runat="server" Height="25px" Width="77%"></asp:DropDownList>
+                <asp:DropDownList CssClass="input_to" ID="ddl_contrato" runat="server" Height="25px" Width="77%"></asp:DropDownList>
 
                 <label class="label_to" for="ddl_tipcom_c">Tipo de Archivo </label>
                 <asp:DropDownList CssClass="input_to" ID="ddl_tipcom_c" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
