@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using VidaCamara.SBS.Negocio;
 
 namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
 {
@@ -14,7 +15,9 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         {
             if (!IsPostBack)
             {
+                var concepto = new bTablaVC();
                 SetLLenadoContrato();
+                concepto.SetEstablecerDataSourceConcepto(ddl_tipo_archivo,"17");
             }
         }
         private void SetLLenadoContrato()

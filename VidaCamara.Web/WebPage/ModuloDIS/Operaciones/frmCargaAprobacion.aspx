@@ -19,7 +19,7 @@
                 <asp:DropDownList CssClass="input_to" ID="ddl_contrato" runat="server" Height="25px" Width="77%"></asp:DropDownList>
 
                 <label class="label_to" for="ddl_tipcom_c">Tipo de Archivo </label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_tipcom_c" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
+                <asp:DropDownList CssClass="input_to" ID="ddl_tipo_archivo" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
 
                 <label class="input_right_L" for="ddl_ramo_c">Fecha </label>
                 <asp:TextBox runat="server"  CssClass="input_right" TextMode="Date"/>

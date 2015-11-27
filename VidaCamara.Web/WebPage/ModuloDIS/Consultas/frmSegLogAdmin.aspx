@@ -19,7 +19,7 @@
                 <asp:DropDownList CssClass="input_to" ID="ddl_contrato" runat="server" Height="25px" Width="77%"></asp:DropDownList>
 
                 <label class="label_to" for="ddl_tipcom_o">Operación </label>
-                <asp:DropDownList CssClass="input_to" ID="list" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
+                <asp:DropDownList CssClass="input_to" ID="ddl_operacion" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
 
                 <label class="input_right_L" for="txt_fec_ini_o">Desde</label>
                 <asp:TextBox CssClass="input_right" ID="txt_fec_ini_o" runat="server" Height="25px" Width="14.7%" TextMode="Date"></asp:TextBox>
@@ -28,10 +28,7 @@
                 <asp:TextBox CssClass="input_right" ID="txt_fec_hasta_o" runat="server" Height="25px" Width="14.7%" TextMode="Date"></asp:TextBox>
 
                 <label class="label_to">Tipo de Evento</label>
-                <asp:DropDownList runat="server" Height="25px" Width="14.7%" CssClass="input_to">
-                    <asp:ListItem Text="Todas" />
-                    <asp:ListItem Text="Registro" />
-                </asp:DropDownList>
+                <asp:DropDownList runat="server"  ID="ddl_tipo_evento" Height="25px" Width="14.7%" CssClass="input_to"></asp:DropDownList>
 
                 <div class="iframe" id="tblConsulta1">
 

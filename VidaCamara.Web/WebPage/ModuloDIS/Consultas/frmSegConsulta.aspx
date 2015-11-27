@@ -18,7 +18,7 @@
                 <asp:DropDownList CssClass="input_to" ID="ddl_contrato" runat="server" Height="25px" Width="77%"></asp:DropDownList>
 
                 <label class="label_to" for="ddl_tipcom_o">Tipo de Tramite </label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_tipcom_o" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
+                <asp:DropDownList CssClass="input_to" ID="ddl_tipo_tramite" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
 
                 <label class="input_right_L" for="txt_fec_ini_o">Desde</label>
                 <asp:TextBox CssClass="input_right" ID="txt_fec_ini_o" runat="server" Height="25px" Width="14.7%" TextMode="Date"></asp:TextBox>
@@ -27,13 +27,10 @@
                 <asp:TextBox CssClass="input_right" ID="txt_fec_hasta_o" runat="server" Height="25px" Width="14.7%" TextMode="Date"></asp:TextBox>
 
                 <label class="label_to" for="ddl_ramo_o">AFP </label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_ramo_o" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
+                <asp:DropDownList CssClass="input_to" ID="ddl_afp" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
 
                 <label class="input_right_L">Moneda </label>
-                <asp:DropDownList runat="server" Height="25px" Width="14.8%" CssClass="input_right">
-                    <asp:ListItem Text="Todas" />
-                    <asp:ListItem Text="Soles" />
-                </asp:DropDownList>
+                <asp:DropDownList runat="server" ID="ddl_moneda" Height="25px" Width="14.8%" CssClass="input_right"></asp:DropDownList>
 
                 <label class="label_to">CUSPP </label>
                 <asp:TextBox runat="server" CssClass="input_to" Height="25px" Width="14.8%"/>

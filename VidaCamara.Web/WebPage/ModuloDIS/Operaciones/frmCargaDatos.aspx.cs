@@ -11,7 +11,6 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
     {
         static int total;
         readonly bValidarAcceso _accesso = new bValidarAcceso();
-        private int _totalContrato;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,7 +26,10 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             }
             if (!IsPostBack)
             {
+                bTablaVC concepto = new bTablaVC();
                 SetLLenadoContrato();
+                concepto.SetEstablecerDataSourceConcepto(ddl_tipo_archivo, "17");
+                concepto.SetEstablecerDataSourceConcepto(ddl_tipo_linea,"18");
             }
         }
         

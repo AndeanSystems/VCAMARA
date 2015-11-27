@@ -60,10 +60,7 @@
                 <asp:FileUpload CssClass="input_to" ID="fileUpload" ToolTip="Selecione el archivo a subir" runat="server" Height="25px" Width="48.4%" />
 
                 <label class="label_to">Tipo del Archivo (*)</label>
-                <asp:DropDownList runat="server" ID="ddl_tipo_archivo" CssClass="input_to" Height="25px" Width="40%">
-                    <asp:ListItem Text="Liquidación Aporte Adicional" />
-                    <asp:ListItem Text="Liquidación Pago Aporte Adicional" />
-                </asp:DropDownList>
+                <asp:DropDownList runat="server" ID="ddl_tipo_archivo" CssClass="input_to" Height="25px" Width="40%"></asp:DropDownList>
 
                 <label class="label_to" for="fileUpload">Moneda</label>
                 <asp:Label runat="server" CssClass="input_to" Text="Soles"></asp:Label>
@@ -106,7 +103,7 @@
                 <asp:Label Text="Liquidaciones de Pago de Sepelio" runat="server"  CssClass="input_to"/>
 
                 <label class="input_right_L" for="ddl_tipinfo_d">Tipo de Linia (*)</label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_tipinfo_d" runat="server" Height="25px" Width="15%">
+                <asp:DropDownList CssClass="input_to" ID="ddl_tipo_linea" runat="server" Height="25px" Width="15%">
                     <asp:ListItem Text="Todos" />
                     <asp:ListItem Text="Cabecera - Título" />
                     <asp:ListItem Text="Detalle - Contenido" />

@@ -19,13 +19,10 @@
                 <asp:DropDownList CssClass="input_to" ID="ddl_contrato" runat="server" Height="25px" Width="77%"></asp:DropDownList>
 
                 <label class="label_to" for="ddl_tipcom_c">Tipo de Archivo </label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_tipcom_c" runat="server" Height="25px" Width="15.8%"></asp:DropDownList>
+                <asp:DropDownList CssClass="input_to" ID="ddl_tipo_archivo" runat="server" Height="25px" Width="15.8%"></asp:DropDownList>
 
                 <label class="input_right_L" for="ddl_ramo_c">Moneda </label>
-                <asp:DropDownList runat="server" CssClass="input_right" Height="25px" Width="15.5%">
-                    <asp:ListItem Text="Todas" />
-                    <asp:ListItem Text="Soles" />
-                </asp:DropDownList>
+                <asp:DropDownList ID="ddl_moneda" runat="server" CssClass="input_right" Height="25px" Width="15.5%"></asp:DropDownList>
 
                 <label class="label_to" for="ddl_ramo_c">Desde </label>
                 <asp:TextBox runat="server"  CssClass="input_to" TextMode="Date" Height="25px" Width="15.5%"/>
@@ -34,10 +31,7 @@
                 <asp:TextBox runat="server"  CssClass="input_right" TextMode="Date" Height="25px" Width="15.5%"/>
 
                 <label class="input_right_L" for="ddl_ramo_c">Estado </label>
-                <asp:DropDownList runat="server" CssClass="input_right" Height="25px" Width="12.5%">
-                    <asp:ListItem Text="Todas" />
-                    <asp:ListItem Text="Pendientes" />
-                </asp:DropDownList>
+                <asp:DropDownList ID="ddl_estado" runat="server" CssClass="input_right" Height="25px" Width="12.5%"></asp:DropDownList>
 
                 <div class="iframe" id="tblInterface">
                     <div id="tblInterfaceContable"></div>

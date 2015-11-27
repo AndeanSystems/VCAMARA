@@ -67,13 +67,13 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas {
         protected global::System.Web.UI.WebControls.DropDownList ddl_contrato;
         
         /// <summary>
-        /// Control ddl_tipcom_o.
+        /// Control ddl_tipo_tramite.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_tipcom_o;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_tipo_tramite;
         
         /// <summary>
         /// Control txt_fec_ini_o.

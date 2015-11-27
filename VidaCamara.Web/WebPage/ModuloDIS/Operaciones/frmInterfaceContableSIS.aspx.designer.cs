@@ -67,12 +67,30 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones {
         protected global::System.Web.UI.WebControls.DropDownList ddl_contrato;
         
         /// <summary>
-        /// Control ddl_tipcom_c.
+        /// Control ddl_tipo_archivo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_tipcom_c;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_tipo_archivo;
+        
+        /// <summary>
+        /// Control ddl_moneda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_moneda;
+        
+        /// <summary>
+        /// Control ddl_estado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_estado;
     }
 }

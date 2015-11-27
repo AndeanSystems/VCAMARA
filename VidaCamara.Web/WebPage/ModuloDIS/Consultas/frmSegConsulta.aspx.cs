@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using VidaCamara.SBS.Negocio;
 
 namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
 {
@@ -14,7 +15,11 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
         {
             if (!IsPostBack)
             {
+                var concepto = new bTablaVC();
                 SetLLenadoContrato();
+                concepto.SetEstablecerDataSourceConcepto(ddl_tipo_tramite,"22");
+                concepto.SetEstablecerDataSourceConcepto(ddl_afp, "23");
+                concepto.SetEstablecerDataSourceConcepto(ddl_moneda, "20");
             }
         }
         private void SetLLenadoContrato()

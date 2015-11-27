@@ -67,13 +67,13 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas {
         protected global::System.Web.UI.WebControls.DropDownList ddl_contrato;
         
         /// <summary>
-        /// Control ddl_tipcom_o.
+        /// Control ddl_tipo_tramite.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_tipcom_o;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_tipo_tramite;
         
         /// <summary>
         /// Control txt_fec_ini_o.
@@ -94,12 +94,21 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas {
         protected global::System.Web.UI.WebControls.TextBox txt_fec_hasta_o;
         
         /// <summary>
-        /// Control ddl_ramo_o.
+        /// Control ddl_afp.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_ramo_o;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_afp;
+        
+        /// <summary>
+        /// Control ddl_moneda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_moneda;
     }
 }
