@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ValidaRegla.cs" />
     <Compile Include="Modelo\AFP.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>

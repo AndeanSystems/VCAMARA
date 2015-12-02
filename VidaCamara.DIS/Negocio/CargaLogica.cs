@@ -210,7 +210,7 @@ namespace VidaCamara.DIS.Negocio
                                             break;
 
                                         case "BOOL_SP":
-                                            exitoLinea = 1;//EvaluarBoolSp(tipoArchivo, r, x, exitoLinea);
+                                            exitoLinea = EvaluarBoolSp(tipoArchivo, r, x, exitoLinea);
                                             break;
 
                                         case "BOOL_IF_SP":
@@ -708,6 +708,7 @@ namespace VidaCamara.DIS.Negocio
             string valor;
             StringCollection resultadoValor;
             valor = r.ReglaValidacion;
+            var validado = new Helpers.ValidaRegla().validacionDeCampos(r, CampoActual);
             valor = valor.Replace("@valor", "'" + CampoActual + "'");
             valor = valor.Replace("@IdArchivo", IdArchivo.ToString());
             valor = valor.Replace("@NumeroLinea", (x + 1).ToString());
