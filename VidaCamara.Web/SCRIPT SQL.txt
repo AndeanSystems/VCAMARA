@@ -1,0 +1,2 @@
+﻿==========ALTER TABLE CONCEPTO==================================
+ALTER TABLE CONCEPTO ADD IS_EDITABLE INT DEFAULT 1

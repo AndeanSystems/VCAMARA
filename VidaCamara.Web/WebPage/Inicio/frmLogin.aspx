@@ -39,7 +39,7 @@
                     <tr>
                         <td colspan="4" align="center" style="padding-left:20px">
                             <asp:Image ID="vida_camara" runat="server" 
-                                ImageUrl="~/Resources/Imagenes/im_titulo.jpg" Height="85px" 
+                                ImageUrl="~/Resources/Imagenes/u21.jpg" Height="85px" 
                                 Width="325px" />
                         </td>
                     </tr>

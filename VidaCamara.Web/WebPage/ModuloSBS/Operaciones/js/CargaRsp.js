@@ -25,7 +25,7 @@
             pageSize: pg,
             defaultSorting: 'NRO_CONTRATO ASC',
             actions: {
-                listAction: '/WebPage/Operaciones/frmCargaDatos.aspx/GetSelectRSP',
+                listAction: '/WebPage/ModuloSBS/Operaciones/frmCargaDatos.aspx/GetSelectRSP',
             },
             recordsLoaded: function (event, data) {
                 var totalFilas = data.serverResponse.TotalRecordCount;

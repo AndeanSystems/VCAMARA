@@ -43,7 +43,7 @@
                 <label class="input_right_T" for="lbl_trimestre">Trimestre :</label>
                 <asp:Label CssClass="input_right" ID="lbl_trimestre" runat="server" Text="_" Height="25px" Width="15%"></asp:Label>
 
-                <label class="label_to" for="ddl_tipinfo">Tipo de Informacion (*)</label>
+                <label class="label_to" for="ddl_tipinfo">Tipo de Operación (*)</label>
                 <asp:DropDownList CssClass="input_to" ID="ddl_tipinfo" runat="server" Height="25px" Width="45%"></asp:DropDownList>
 
                 <label class="label_to" for="lbl_regprocesado">Registros Procesados :</label>

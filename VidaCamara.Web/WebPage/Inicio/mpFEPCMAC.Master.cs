@@ -8,8 +8,8 @@ namespace VidaCamara.Web.WebPage.Inicio
         {
             if (!Session["pagina"].ToString().Equals("USUARIO"))
             {
-                lbl_title.Text = "Generación de Informes  -";
-                lbl_titulo.Text = "SBS";
+                lbl_title.Text = "Sistema de gestión vida Cámara";
+                lbl_titulo.Text = ".";
             }else{
                 lbl_title.Text = "Mantenimiento de -";
                 lbl_titulo.Text = "USUARIOS";

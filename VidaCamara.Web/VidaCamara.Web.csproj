@@ -153,6 +153,7 @@
     <Content Include="Resources\Imagenes\u158_normal.png" />
     <Content Include="Resources\Imagenes\u17_original.png" />
     <Content Include="Resources\Imagenes\u20_original.jpg" />
+    <Content Include="Resources\Imagenes\u21.jpg" />
     <Content Include="Resources\Imagenes\u6_normal.png" />
     <Content Include="Resources\Imagenes\upload.png" />
     <Content Include="Resources\js\bootstrap.min.js" />
@@ -182,6 +183,7 @@
     <Content Include="Resources\Menu\images\downArrow.png" />
     <Content Include="Resources\Menu\menu.js" />
     <Content Include="Resources\Menu\menu.css" />
+    <Content Include="SCRIPT SQL.txt" />
     <Content Include="Scripts\jtable\localization\jquery.jtable.bd.js" />
     <Content Include="Scripts\jtable\localization\jquery.jtable.ca.js" />
     <Content Include="Scripts\jtable\localization\jquery.jtable.cz.js" />
