@@ -229,6 +229,7 @@
     <Content Include="WebPage\ModuloSBS\Operaciones\frmOperacionManual.aspx" />
     <Content Include="WebPage\ModuloSBS\Operaciones\js\CargaDatos.js" />
     <Content Include="WebPage\ModuloDIS\Operaciones\js\CargaRsp.js" />
+    <Content Include="WebPage\ModuloSBS\Operaciones\js\CargaRsp.js" />
     <Content Include="WebPage\ModuloSBS\Operaciones\js\CierreOperacion.js" />
     <Content Include="WebPage\ModuloSBS\Operaciones\js\InterfaceContable.js" />
     <Content Include="WebPage\ModuloSBS\Operaciones\js\ProcesaOperacion.js" />
@@ -303,7 +304,10 @@
     <Content Include="Web.sitemap">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="web.config" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="vcamara_bd_01122015.bak" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

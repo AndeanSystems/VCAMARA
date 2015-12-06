@@ -28,6 +28,10 @@
                 dataQuery = new Array(nro_contrato, tipo_comprob, cod_ramo, nro_comprob, fecha_ini, fecha_fin);
                 visivleColumn = new Array(false, false, false, false, false, false, false, false, true, true, true, true, false, false, false, false);
                 jatbleRequestOperacion(dataQuery, visivleColumn, "2700px", "procesarsp");
+            }else{
+                dataQuery = new Array(nro_contrato, tipo_comprob, cod_ramo, nro_comprob, fecha_ini, fecha_fin);
+                visivleColumn = new Array(true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true);
+                jatbleRequestOperacion(dataQuery, visivleColumn, "4100px", "procesageneral");//solo si no se selecciono el tipo de operacion
             }
         } else {
             dataQuery = new Array(nro_contrato, tipo_comprob, cod_ramo, nro_comprob, fecha_ini, fecha_fin);

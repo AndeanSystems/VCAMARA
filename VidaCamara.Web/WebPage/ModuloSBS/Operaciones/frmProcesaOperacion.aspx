@@ -70,6 +70,7 @@
                     <div id="procesaibnr" style="display:none"></div>
                     <div id="procesaprima" style="display:none"></div>
                     <div id="procesarsp" style="display:none"></div>
+                    <div id="procesageneral" style="display:none"></div>
                 </div>
             </asp:View>
 

@@ -20,6 +20,9 @@ $(document).ready(function () {
             } else if (tipo_info == "RR") {
                 visibleColumn = new Array(false, false, false,false,false, false, false,false, true, true, true, true, false, false, false, false);
                 jatbleRequestOperacionDetalle(dataOperacion, visibleColumn, "2700px", "procesarsp");
+            }else {
+                visibleColumn = new Array(false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
+                jatbleRequestOperacionDetalle(dataOperacion, visibleColumn, "2700px", "procesageneral");
             }
             displayTableWithId(tipo_info);
         } else {
@@ -198,6 +201,13 @@ $(document).ready(function () {
                 $("#procesaprima").css({ "display": "block"});
                 $("#procesarsp").css({ "display": "none" });
                 $("#procesapago").css({ "display": "none" });
+                break;
+            default:
+                $("#procesaibnr").css({ "display": "none" });
+                $("#procesaprima").css({ "display": "none" });
+                $("#procesarsp").css({ "display": "none" });
+                $("#procesapago").css({ "display": "none" });
+                $("#procesageneral").css({ "display": "block" });
                 break;
           }
     }

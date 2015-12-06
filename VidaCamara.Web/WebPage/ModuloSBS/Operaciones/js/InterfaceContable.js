@@ -58,6 +58,7 @@
             //defaultSorting: '_Fec_Operacion ASC',
             actions: {
                 listAction: '/WebPage/ModuloSBS/Operaciones/frmInterfaceContable.aspx/GetSelectContabilidad',
+                //deleteAction: '/WebPage/Operaciones/frmProcesaOperacion.aspx/SetEliminarOperacion',
             },
             recordsLoaded: function (event, data) {
                 if (data.records.length > 0) {

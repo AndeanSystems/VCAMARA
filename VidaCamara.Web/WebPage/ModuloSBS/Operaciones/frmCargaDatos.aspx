@@ -41,7 +41,7 @@
         <asp:Menu id="menuTabs" CssClass="menuTabs" StaticMenuItemStyle-CssClass="tab" StaticSelectedStyle-CssClass="selectedTab"
                     Orientation="Horizontal" OnMenuItemClick="menuTabs_MenuItemClick" Runat="server">
                 <Items >
-                    <asp:MenuItem  Text="CargaLogica de Datos" Value="0" Selected="true" />
+                    <asp:MenuItem  Text="Carga de Datos" Value="0" Selected="true" />
                     <asp:MenuItem  Text="RSP" Value="1"/>
                     <asp:MenuItem  Text="Pagos" Value="2"/>
                 </Items>
