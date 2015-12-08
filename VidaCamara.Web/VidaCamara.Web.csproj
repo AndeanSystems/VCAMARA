@@ -200,6 +200,8 @@
     <Content Include="Scripts\jtable\localization\jquery.jtable.ru.js" />
     <Content Include="Scripts\jtable\localization\jquery.jtable.se.js" />
     <Content Include="Scripts\jtable\themes\metro\green\list_metro.png" />
+    <Content Include="sql\modelo1.sql" />
+    <Content Include="sql\[SP_SEL_MODELO2].sql" />
     <Content Include="WebPage\ModuloDIS\Consultas\frmSegConsulta.aspx" />
     <Content Include="WebPage\ModuloDIS\Consultas\frmSegDescarga.aspx" />
     <Content Include="WebPage\ModuloDIS\Consultas\frmSegLogAdmin.aspx" />
