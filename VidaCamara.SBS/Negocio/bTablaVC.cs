@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Web.UI.WebControls;
 using VidaCamara.SBS.Dao;
 using VidaCamara.SBS.Dao.Interface;
@@ -29,16 +30,7 @@ namespace VidaCamara.SBS.Negocio
             return dg.GetSelectConcepto(o,out total);
         }
         public DropDownList SetEstablecerDataSourceConcepto(DropDownList control,String filtro1,String descripcion = "NULL") {
-                eTabla o = new eTabla();
-                o._id_Empresa = 0;
-                o._tipo_Tabla = filtro1;
-                o._descripcion = descripcion;
-                o._valor = "N";
-                o._estado = "A";
-                o._inicio = 0;
-                o._fin = 1000000;
-                o._order = "DESCRIPCION ASC";
-
+            var o = entity(filtro1,descripcion);
                 dSqlTablaVC dg = new dSqlTablaVC();
                 control.DataSource = dg.GetSelectConcepto(o, out total);
                 control.DataTextField = "_descripcion";
@@ -47,9 +39,27 @@ namespace VidaCamara.SBS.Negocio
                 control.Items.Insert(0, new ListItem("Seleccione ----", "0"));
             return control;
         }
-        public String GetConceptoByCodigo(String codigo) {
-            dSqlTablaVC t = new dSqlTablaVC();
-            return t.GetConceptoByCodigo(codigo);
+        public StringCollection GetConceptoByCodigo(String codigo) {
+            return new dSqlTablaVC().GetConceptoByCodigo(codigo);
+        }
+        public List<eTabla> getConceptoByTipo(string tipo_tabla)
+        {
+            var o = entity(tipo_tabla,"NULL");
+            return new dSqlTablaVC().GetSelectConcepto(o, out total);
+        }
+        private static eTabla entity(string tipo_tabla,string descripcion)
+        {
+            return new eTabla()
+            {
+                _id_Empresa = 0,
+                _tipo_Tabla = tipo_tabla,
+                _descripcion = descripcion,
+                _valor = "N",
+                _estado = "A",
+                _inicio = 0,
+                _fin = 1000000,
+                _order = "DESCRIPCION ASC"
+            };
         }
     }
 }

@@ -22,5 +22,6 @@ namespace VidaCamara.SBS.Entity
         public Int32 _inicio { get; set; }
         public Int32 _fin { get; set; }
         public String _order { get; set; }
+        public int _is_editable { get; set; }
     }
 }

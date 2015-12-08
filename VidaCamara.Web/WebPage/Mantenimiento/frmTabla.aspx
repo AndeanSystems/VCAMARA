@@ -28,7 +28,8 @@
         <asp:TextBox CssClass="input_right" ID="txt_clase_t" runat="server"  Height="25px" Width="17%"></asp:TextBox>
 
         <label class="input_right_F" for="txt_tipo_t">Tipo :</label>
-        <asp:TextBox CssClass="input_right" ID="txt_tipo_t" runat="server"  Height="25px" Width="10%"></asp:TextBox>
+        <select id="select_operacion" class="input_right" style="height:27px;width:10%;display:none;"></select>
+        <asp:TextBox CssClass="input_right" ID="txt_tipo_t" runat="server"  Height="25px" Width="10%" Visible="true"></asp:TextBox>
 
         <label class="input_right_F" for="ddl_estado_t">Estado (*)</label>
         <asp:DropDownList CssClass="input_right" ID="ddl_estado_t" runat="server" Height="25px" Width="10%"></asp:DropDownList>

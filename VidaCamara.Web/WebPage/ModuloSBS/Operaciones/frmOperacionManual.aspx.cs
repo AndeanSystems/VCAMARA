@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using VidaCamara.SBS.Entity;
 using VidaCamara.SBS.Negocio;
 
@@ -7,6 +10,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Operaciones
 {
     public partial class frmOperacionManual : System.Web.UI.Page
     {
+        private static int total = 0;
         bValidarAcceso accesso = new bValidarAcceso();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,7 +35,6 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Operaciones
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipreg_m, "15");
                 concepto.SetEstablecerDataSourceConcepto(ddl_codasegurado_m, "14");
                 concepto.SetEstablecerDataSourceConcepto(ddl_codmoneda_m, "10");
-                concepto.SetEstablecerDataSourceConcepto(ddl_comprobante,"13");
             }
         }
 
@@ -75,6 +78,17 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Operaciones
         private void MessageBox(String text)
         {
             Page.ClientScript.RegisterStartupScript(GetType(), "msgbox", "$('<div style=\"font-size:14px;text-align:center;\">" + text + "</div>').dialog({title:'Confirmación',modal:true,width:400,height:200,buttons: [{id: 'aceptar',text: 'Aceptar',icons: { primary: 'ui-icon-circle-check' },click: function () {$(this).dialog('close');}}]})", true);
+        }
+
+        protected void ddl_tipope_m_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var list = new bTablaVC().getConceptoByTipo("13");
+            var listConcepto = list.FindAll(o => o._tipo.Trim().Equals(ddl_tipope_m.SelectedItem.Value));
+            ddl_comprobante.DataSource = listConcepto;
+            ddl_comprobante.DataTextField = "_descripcion";
+            ddl_comprobante.DataValueField = "_codigo";
+            //ddl_comprobante.DataBind();
+            ddl_comprobante.Items.Insert(0, new ListItem("Seleccione ----", "0"));
         }
     }
 }

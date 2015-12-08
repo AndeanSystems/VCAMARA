@@ -244,6 +244,7 @@
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\camara.pubxml" />
     <None Include="Properties\PublishProfiles\DAVID.pubxml" />
+    <None Include="Properties\PublishProfiles\vcamara.pubxml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.0.js" />
     <Content Include="Scripts\jquery-1.9.0.min.js" />

@@ -365,10 +365,10 @@ namespace VidaCamara.SBS.Dao
         public DataTable GetSelecionarModelo(String contrato, DateTime fecha_inicio, DateTime fecha_hasta, String formato_moneda,Int32 token)
         {
             DataTable dt = new DataTable();
-            String[] column = { "REASEGURADOR","TIPO","NRO","FECHA","ASEGURADO","CONTRATO","RAMO","MONEDA","PRI_XPAG_REA_CED", "PRI_XCOB_REA_ACE", "SIN_XCOB_REA_CED", "SIN_XPAG_REA_ACE", "OTR_CTA_XCOB_REA_CED", "OTR_CTA_XPAG_REA_ACE", "DSCTO_COMIS_REA", "SALDO_DEUDOR", "SALDO_ACREEDOR","COMP_1","COMP_2" };
-            for (int i = 0; i < column.Length; i++)
+            //String[] column = { "FECHA","REASEGURADOR","TIPO","NRO","ASEGURADO","CONTRATO","RAMO","MONEDA","PRI_XPAG_REA_CED", "PRI_XCOB_REA_ACE", "SIN_XCOB_REA_CED", "SIN_XPAG_REA_ACE", "OTR_CTA_XCOB_REA_CED", "OTR_CTA_XPAG_REA_ACE", "DSCTO_COMIS_REA", "SALDO_DEUDOR", "SALDO_ACREEDOR","COMP_1","COMP_2" };
+            for (int i = 0; i < 21; i++)
             {
-                dt.Columns.Add(column[i]);
+                dt.Columns.Add(i.ToString());
             }
             try
             {
@@ -389,26 +389,28 @@ namespace VidaCamara.SBS.Dao
                 SqlDataReader dr = sqlcmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    Object[] obj = new Object[column.Length];
-                    obj[0] = dr[0];
-                    obj[1] = dr[1];
-                    obj[2] = dr[2];
-                    obj[3] = Convert.ToDateTime(dr[3]).ToShortDateString();;
-                    obj[4] = dr[4];
-                    obj[5] = dr[5];
-                    obj[6] = dr[6];
-                    obj[7] = dr[7];
-                    obj[8] = String.Format(formato_moneda, dr.GetDecimal(8)).Substring(3);
-                    obj[9] = String.Format(formato_moneda,dr.GetDecimal(9)).Substring(3);
-                    obj[10] = String.Format(formato_moneda,dr.GetDecimal(10)).Substring(3);
-                    obj[11] = String.Format(formato_moneda,dr.GetDecimal(11)).Substring(3);
-                    obj[12] = String.Format(formato_moneda,dr.GetDecimal(12)).Substring(3);
-                    obj[13] = String.Format(formato_moneda,dr.GetDecimal(13)).Substring(3);
-                    obj[14] = String.Format(formato_moneda,dr.GetDecimal(14)).Substring(3);
-                    obj[15] = String.Format(formato_moneda,dr.GetDecimal(15)).Substring(3);
-                    obj[16] = String.Format(formato_moneda, dr.GetDecimal(16)).Substring(3);
-                    obj[17] = String.Format(formato_moneda, dr.GetDecimal(17)).Substring(3);
-                    obj[18] = String.Format(formato_moneda, dr.GetDecimal(18)).Substring(3);
+                    Object[] obj = new Object[dt.Columns.Count];
+                    obj[0] = Convert.ToDateTime(dr["FEC_OPERACION"]).ToShortDateString();
+                    obj[1] = "";
+                    obj[2] = "CT";
+                    obj[3] = dr["NRO_OPERACION"];
+                    obj[4] = dr["REASEGURADOR"];
+                    obj[5] = dr["ASEGURADOR"];
+                    obj[6] = dr["IDE_CONTRATO"];
+                    obj[7] = dr["TIPO_COMPROBANTE"];
+                    obj[8] = dr["RAMO"];
+                    obj[9] = dr["MONEDA"];
+                    obj[10] = String.Format(formato_moneda, dr["PRI_XPAG_REA_CED"]).Substring(3);
+                    obj[11] = String.Format(formato_moneda, dr["PRI_XCOB_REA_ACE"]).Substring(3);
+                    obj[12] = String.Format(formato_moneda, dr["SIN_XCOB_REA_CED"]).Substring(3);
+                    obj[13] = String.Format(formato_moneda, dr["SIN_XPAG_REA_ACE"]).Substring(3);
+                    obj[14] = String.Format(formato_moneda, dr["OTR_CTA_XCOB_REA_CED"]).Substring(3);
+                    obj[15] = String.Format(formato_moneda, dr["OTR_CTA_XPAG_REA_ACE"]).Substring(3);
+                    obj[16] = String.Format(formato_moneda, dr["DSCTO_COMIS_REA"]).Substring(3);
+                    obj[17] = String.Format(formato_moneda, dr["SALDO_DEUDOR"]).Substring(3);
+                    obj[18] = String.Format(formato_moneda, dr["SALDO_ACREEDOR"]).Substring(3);
+                    obj[19] = String.Format(formato_moneda, dr["SALDO_DEUDOR_COMP"]).Substring(3);
+                    obj[20] = String.Format(formato_moneda, dr["SALDO_ACREEDOR_COMP"]).Substring(3);
 
                     dt.Rows.Add(obj);
                 }

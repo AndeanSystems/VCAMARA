@@ -1506,7 +1506,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
 
             hssfworkbook = new HSSFWorkbook();
 
-            String[] cabecera = { "REASEGURADOR", "TIPO \n COMPROBANTE", "N° COMPROBANTE", "FECHA \n COMPROBANTE", "NOMBRE \n ASEGURADO ", "N° CONTRATO", "RAMO","MONEDA", "PRIMAS POR PAGAR \n REASEGUROS CEDIDOS \n (4)", "PRIMAS  POR COBRAR \n REASEGUROS ACEPTADOS \n (5)",
+            String[] cabecera = { "","FECHA \n COMPROBANTE","TIPO \n COMPROBANTE","COMPROBANTE","N° CT","REASEGURADOR" , "ASEGURADO ", "N° CONTRATO","DESCRIPCIÓN \n COMPROBANTES", "RAMO","MONEDA", "PRIMAS POR PAGAR \n REASEGUROS CEDIDOS \n (4)", "PRIMAS  POR COBRAR \n REASEGUROS ACEPTADOS \n (5)",
                                  "SINIESTROS POR COBRAR \n REASEGUROS CEDIDOS (6)","SINIESTROS POR PAGAR \n REASEGUROS ACEPTADOS (7)","OTRAS CUENTAS POR COBRAR \n REASEGUROS CEDIDOS (8)"," OTRAS CUENTAS POR PAGAR \n REASEGUROS ACEPTADOS (9)",
                                  "DESCUENTOS Y COMISIONES \n DE REASEGUROS (10)","SALDO DEUDOR \n (11)","SALDO ACREEDOR \n (12)","SALDO DEUDOR \n COMPENSADO \n (13)","SALDO ACREEDOR COMPENSADO\n (14)"};
             ISheet hojaTrabajo = hssfworkbook.CreateSheet("Modelo");
@@ -1558,7 +1558,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             CelldataTittle.SetCellValue("TOTALES");
             CelldataTittle.CellStyle = this.SetFontData(this.SetFontDataText());
 
-            for (int cl = 8; cl < tbmodelo.Columns.Count; cl++) {
+            for (int cl = 10; cl < tbmodelo.Columns.Count; cl++) {
                 decimal costtotal = 0;
                 ICell sumadatatotal;
                 for (int rw = 0; rw < tbmodelo.Rows.Count; rw++) {

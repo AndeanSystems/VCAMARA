@@ -19,7 +19,7 @@
                 <asp:DropDownList CssClass="input_right" ID="ddl_reasegurador_m" runat="server" Height="25px" Width="15%"></asp:DropDownList>
 
                 <label class="input_right_T" for="ddl_tipope_m">Tipo Operación (*)</label>
-                <asp:DropDownList CssClass="input_right" ID="ddl_tipope_m" runat="server" Height="25px" Width="15%"></asp:DropDownList>
+                <asp:DropDownList CssClass="input_right" ID="ddl_tipope_m" runat="server" Height="25px" Width="15%" AutoPostBack="True" OnSelectedIndexChanged="ddl_tipope_m_SelectedIndexChanged"></asp:DropDownList>
 
                 <label class="label_to" for="ddl_comprobante">Tipo Comprobante (*)</label>
                 <asp:DropDownList CssClass="input_to" ID="ddl_comprobante" runat="server" Height="25px" Width="15%"></asp:DropDownList>

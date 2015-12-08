@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -181,11 +182,11 @@ namespace VidaCamara.SBS.Dao
             return list;
         }
 
-        public String GetConceptoByCodigo(String codigo) {
-            String resp = "";
+        public StringCollection GetConceptoByCodigo(String codigo) {
+            var resp = new StringCollection();
             try
             {
-                String query = "SELECT TIPO  FROM CONCEPTO WHERE TIPO_TABLA = '9999' AND CODIGO = '"+codigo+"'";
+                String query = "SELECT TIPO,IS_EDITABLE  FROM CONCEPTO WHERE TIPO_TABLA = '9999' AND CODIGO = '"+codigo+"'";
                 SqlCommand sqlcmd = new SqlCommand();
                 sqlcmd.Connection = conexion;
                 sqlcmd.CommandType = CommandType.Text;
@@ -195,7 +196,8 @@ namespace VidaCamara.SBS.Dao
                 SqlDataReader dr = sqlcmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    resp = dr["TIPO"].ToString();
+                    string[] fields = new string[] { dr["TIPO"].ToString(), dr["IS_EDITABLE"].ToString() };
+                    resp.AddRange(fields);
                 }
             }
             catch (Exception ex)

@@ -66,6 +66,11 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             bTablaVC t = new bTablaVC();
             return new { Result = "OK", Records = t.GetConceptoByCodigo(codigo)};
         }
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static object GetConceptoByTipo(string tipo)
+        {
+            return new {Records = new bTablaVC().getConceptoByTipo(tipo)};
+        }
 
         protected void btn_enviar_t_Click(object sender, ImageClickEventArgs e)
         {

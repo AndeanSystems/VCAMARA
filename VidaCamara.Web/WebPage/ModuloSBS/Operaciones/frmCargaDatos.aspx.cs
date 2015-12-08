@@ -1386,21 +1386,8 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Operaciones
         }
         private void SetLLenadoTipoInfo(String e,String f)
         {
-
-            eTabla o = new eTabla();
-            bTablaVC tb = new bTablaVC();
-            o._id_Empresa = 0;
-            o._tipo_Tabla = e;
-            o._descripcion = "NULL";
-            o._valor = "N";
-            o._estado = "A";
-            o._tipo = f;
-            o._inicio = 0;
-            o._fin = 10000000;
-
-            o._order = "DESCRIPCION ASC";
-
-            ddl_tipinfo_d.DataSource = tb.GetSelectConcepto(o, out RowCount); ;
+            var util = new VidaCamara.SBS.Utils.Utility().getConceptoByTipo(e, f, out RowCount);
+            ddl_tipinfo_d.DataSource = util;
             ddl_tipinfo_d.DataTextField = "_descripcion";
             ddl_tipinfo_d.DataValueField = "_codigo";
             ddl_tipinfo_d.DataBind();
@@ -1408,20 +1395,8 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Operaciones
         }
         private void SetLLenadoTipoInfoPago(String e,String a)
         {
-
-            eTabla o = new eTabla();
-            bTablaVC tb = new bTablaVC();
-            o._id_Empresa = 0;
-            o._tipo_Tabla = e;
-            o._descripcion = "NULL";
-            o._valor = a;
-            o._estado = "A";
-            o._inicio = 0;
-            o._fin = 10000000;
-
-            o._order = "DESCRIPCION ASC";
-
-            ddl_tippago_p.DataSource = tb.GetSelectConcepto(o, out RowCount); ;
+            var util = new VidaCamara.SBS.Utils.Utility().getConceptoByTipo(e, a, out RowCount);
+            ddl_tippago_p.DataSource = util;
             ddl_tippago_p.DataTextField = "_descripcion";
             ddl_tippago_p.DataValueField = "_codigo";
             ddl_tippago_p.DataBind();
