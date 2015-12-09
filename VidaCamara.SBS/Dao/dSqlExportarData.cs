@@ -400,17 +400,17 @@ namespace VidaCamara.SBS.Dao
                     obj[7] = dr["TIPO_COMPROBANTE"];
                     obj[8] = dr["RAMO"];
                     obj[9] = dr["MONEDA"];
-                    obj[10] = String.Format(formato_moneda, dr["PRI_XPAG_REA_CED"]).Substring(3);
-                    obj[11] = String.Format(formato_moneda, dr["PRI_XCOB_REA_ACE"]).Substring(3);
-                    obj[12] = String.Format(formato_moneda, dr["SIN_XCOB_REA_CED"]).Substring(3);
-                    obj[13] = String.Format(formato_moneda, dr["SIN_XPAG_REA_ACE"]).Substring(3);
-                    obj[14] = String.Format(formato_moneda, dr["OTR_CTA_XCOB_REA_CED"]).Substring(3);
-                    obj[15] = String.Format(formato_moneda, dr["OTR_CTA_XPAG_REA_ACE"]).Substring(3);
-                    obj[16] = String.Format(formato_moneda, dr["DSCTO_COMIS_REA"]).Substring(3);
-                    obj[17] = String.Format(formato_moneda, dr["SALDO_DEUDOR"]).Substring(3);
-                    obj[18] = String.Format(formato_moneda, dr["SALDO_ACREEDOR"]).Substring(3);
-                    obj[19] = String.Format(formato_moneda, dr["SALDO_DEUDOR_COMP"]).Substring(3);
-                    obj[20] = String.Format(formato_moneda, dr["SALDO_ACREEDOR_COMP"]).Substring(3);
+                    obj[10] = String.Format(formato_moneda, dr["PRI_XPAG_REA_CED"].ToString()).Substring(3);
+                    obj[11] = String.Format(formato_moneda, dr["PRI_XCOB_REA_ACE"].ToString()).Substring(3);
+                    obj[12] = String.Format(formato_moneda, dr["SIN_XCOB_REA_CED"].ToString()).Substring(3);
+                    obj[13] = String.Format(formato_moneda, dr["SIN_XPAG_REA_ACE"].ToString()).Substring(3);
+                    obj[14] = String.Format(formato_moneda, dr["OTR_CTA_XCOB_REA_CED"].ToString()).Substring(3);
+                    obj[15] = String.Format(formato_moneda, dr["OTR_CTA_XPAG_REA_ACE"].ToString()).Substring(3);
+                    obj[16] = String.Format(formato_moneda, dr["DSCTO_COMIS_REA"].ToString()).Substring(3);
+                    obj[17] = String.Format(formato_moneda, dr["SALDO_DEUDOR"].ToString()).Substring(3);
+                    obj[18] = String.Format(formato_moneda, dr["SALDO_ACREEDOR"].ToString()).Substring(3);
+                    obj[19] = String.Format(formato_moneda, dr["SALDO_DEUDOR_COMP"].ToString()).Substring(3);
+                    obj[20] = String.Format(formato_moneda, dr["SALDO_ACREEDOR_COMP"].ToString()).Substring(3);
 
                     dt.Rows.Add(obj);
                 }

@@ -1545,16 +1545,16 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             {
                 IRow dataRow1 = hojaTrabajo.CreateRow(7 + r);
                 ICell dataCell1;
-                for (int c = 1; c < tbmodelo.Columns.Count; c++)
+                for (int c = 1; c < tbmodelo.Columns.Count+1; c++)
                 {
                     dataCell1 = dataRow1.CreateCell(c);
-                    dataCell1.SetCellValue(tbmodelo.Rows[r][c].ToString());
+                    dataCell1.SetCellValue(tbmodelo.Rows[r][c-1].ToString());
                     dataCell1.CellStyle = this.SetFontData(this.SetFontDataText());
                 }
             }
             IRow Filasuma = hojaTrabajo.CreateRow(7+tbmodelo.Rows.Count);
             ICell CelldataTittle;
-            CelldataTittle = Filasuma.CreateCell(7);
+            CelldataTittle = Filasuma.CreateCell(10);
             CelldataTittle.SetCellValue("TOTALES");
             CelldataTittle.CellStyle = this.SetFontData(this.SetFontDataText());
 
@@ -1564,7 +1564,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                 for (int rw = 0; rw < tbmodelo.Rows.Count; rw++) {
                     costtotal += Convert.ToDecimal(tbmodelo.Rows[rw][cl]);
                 }
-                sumadatatotal = Filasuma.CreateCell(cl);
+                sumadatatotal = Filasuma.CreateCell(cl+1);
                 sumadatatotal.SetCellValue(String.Format(formato_moneda, costtotal).Substring(3));
                 sumadatatotal.CellStyle = this.SetFontData(this.SetFontDataText());
             }
