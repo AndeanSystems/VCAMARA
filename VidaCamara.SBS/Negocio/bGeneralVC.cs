@@ -30,7 +30,7 @@ namespace VidaCamara.SBS.Negocio
                 Session["aniovigente"] = list[0]._anoVigente;
                 Session["mesvigente"] = list[0]._mesVigente;
                 Session["rutaexcel"] = list[0]._Ruta_Archivo;
-                Session["formatomoneda"] = "{0:C" + list[0]._Nro_Decimal + "}";
+                Session["formatomoneda"] = "{0:n" + list[0]._Nro_Decimal + "}";
             }
         }
     }

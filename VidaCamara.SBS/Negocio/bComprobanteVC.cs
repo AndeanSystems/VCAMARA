@@ -46,15 +46,15 @@ namespace VidaCamara.SBS.Negocio
                _Saldo_Acreedor += Convert.ToDecimal(dataList[i]._Saldo_Acreedor);
             }
 
-            ec._Otr_Cta_Xcob_Rea_Ced = String.Format(moneda, _Otr_Cta_Xcob_Rea_Ced).Substring(3);
-            ec._Pri_Xpag_Rea_Ced = String.Format(moneda,_Pri_Xpag_Rea_Ced).Substring(3);
-            ec._Pri_Xcob_Rea_Ace = String.Format(moneda,_Pri_Xcob_Rea_Ace).Substring(3);
-            ec._Sin_Xcob_Rea_Ced = String.Format(moneda,_Sin_Xcob_Rea_Ced).Substring(3);
-            ec._Sin_Xpag_Rea_Ace = String.Format(moneda,_Sin_Xpag_Rea_Ace).Substring(3);
-            ec._Otr_Cta_Xpag_Rea_Ace = String.Format(moneda,_Otr_Cta_Xpag_Rea_Ace).Substring(3);
-            ec._Dscto_Comis_Rea = String.Format(moneda,_Dscto_Comis_Rea).Substring(3);
-            ec._Saldo_Deudor = String.Format(moneda,_Saldo_Deudor).Substring(3);
-            ec._Saldo_Acreedor = String.Format(moneda,_Saldo_Acreedor).Substring(3);
+            ec._Otr_Cta_Xcob_Rea_Ced = String.Format(moneda, _Otr_Cta_Xcob_Rea_Ced);
+            ec._Pri_Xpag_Rea_Ced = String.Format(moneda,_Pri_Xpag_Rea_Ced);
+            ec._Pri_Xcob_Rea_Ace = String.Format(moneda,_Pri_Xcob_Rea_Ace);
+            ec._Sin_Xcob_Rea_Ced = String.Format(moneda,_Sin_Xcob_Rea_Ced);
+            ec._Sin_Xpag_Rea_Ace = String.Format(moneda,_Sin_Xpag_Rea_Ace);
+            ec._Otr_Cta_Xpag_Rea_Ace = String.Format(moneda,_Otr_Cta_Xpag_Rea_Ace);
+            ec._Dscto_Comis_Rea = String.Format(moneda,_Dscto_Comis_Rea);
+            ec._Saldo_Deudor = String.Format(moneda,_Saldo_Deudor);
+            ec._Saldo_Acreedor = String.Format(moneda,_Saldo_Acreedor);
 
             list.Add(ec);
           return list;

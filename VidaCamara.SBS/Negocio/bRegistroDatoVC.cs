@@ -55,10 +55,11 @@ namespace VidaCamara.SBS.Negocio
                     Object[] row = new Object[dtedit.Columns.Count];
                     row[0] = SetCalcularMesDevengueString(inicio_contrato.Year, inicio_contrato.Month, r, mes_vigente);
                     for (int cl = 1; cl < dtedit.Columns.Count; cl++) {
-                        if (cl == 1) 
+                        if (cl == 1)
                             row[cl] = dtm.Rows[r][cl - 1];
                         else
-                            row[cl] = String.Format(o._Formato_Moneda, Convert.ToDecimal(dtm.Rows[r][cl-1])).Substring(3);
+                            row[cl] = String.Format(o._Formato_Moneda, Convert.ToDecimal(dtm.Rows[r][cl - 1]));
+
                     }
                     dtedit.Rows.Add(row);
                     mes_vigente++;
@@ -117,7 +118,7 @@ namespace VidaCamara.SBS.Negocio
                 int nregistro = 0;
                 /*for (int o = 1; o < (meses_del_contrat + 2); o++)
                 {
-                    obj[o] = String.Format(ent._Formato_Moneda, 0.00m).Substring(3);
+                    obj[o] = String.Format(ent._Formato_Moneda, 0.00m);
                 }*/
                 int Max_filas = meses_del_contrat;
                 for (int nfila = 0; nfila < Max_filas; nfila++)
@@ -135,13 +136,13 @@ namespace VidaCamara.SBS.Negocio
                             {
                                 if (Convert.ToString(dt.Rows[nregistro][4]) == Convert.ToString(dtHidden.Columns[ncolumna]))
                                 {
-                                    obj[ncolumna] = String.Format(ent._Formato_Moneda, Convert.ToDecimal(dt.Rows[nregistro][5])).Substring(3);
-                                    obj[piramide.Columns.Count - 1] = String.Format(ent._Formato_Moneda, costo_fila += Convert.ToDecimal(dt.Rows[nregistro][5])).Substring(3);
+                                    obj[ncolumna] = String.Format(ent._Formato_Moneda, Convert.ToDecimal(dt.Rows[nregistro][5]));
+                                    obj[piramide.Columns.Count - 1] = String.Format(ent._Formato_Moneda, costo_fila += Convert.ToDecimal(dt.Rows[nregistro][5]));
                                     nregistro++;
                                 }
                                 else
                                 {
-                                    obj[ncolumna] = String.Format(ent._Formato_Moneda, 0.00m).Substring(3);
+                                    obj[ncolumna] = String.Format(ent._Formato_Moneda, 0.00m);
                                 }
                             }
                             else
@@ -168,7 +169,7 @@ namespace VidaCamara.SBS.Negocio
                     {
                         suma += Convert.ToDecimal(piramide.Rows[ct][rt]);
                     }
-                    obj[rt] = String.Format(ent._Formato_Moneda, suma).Substring(3);
+                    obj[rt] = String.Format(ent._Formato_Moneda, suma);
                 }
 
                 piramide.Rows.Add(obj);
@@ -198,8 +199,8 @@ namespace VidaCamara.SBS.Negocio
                     }
                 }
                     //añadiendo valor a las variables de salida
-                totalContable = String.Format(ent._Formato_Moneda, mes_contable).Substring(3);
-                totalDevengue = String.Format(ent._Formato_Moneda, mes_devengue).Substring(3);
+                totalContable = String.Format(ent._Formato_Moneda, mes_contable);
+                totalDevengue = String.Format(ent._Formato_Moneda, mes_devengue);
             }
             else {
                 totalContable = "0";

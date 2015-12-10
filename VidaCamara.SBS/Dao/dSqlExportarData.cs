@@ -39,17 +39,17 @@ namespace VidaCamara.SBS.Dao
                     obj[0] = dr.GetString(0);
                     obj[1] = dr.GetString(1);
                     obj[2] = dr.GetString(2);
-                    obj[3] = String.Format(formato_moneda, dr.GetDecimal(3)).Substring(3);
-                    obj[4] = String.Format(formato_moneda,dr.GetDecimal(4)).Substring(3);
-                    obj[5] = String.Format(formato_moneda,dr.GetDecimal(5)).Substring(3);
-                    obj[6] = String.Format(formato_moneda,dr.GetDecimal(6)).Substring(3);
-                    obj[7] = String.Format(formato_moneda,dr.GetDecimal(7)).Substring(3);
-                    obj[8] = String.Format(formato_moneda,dr.GetDecimal(8)).Substring(3);
-                    obj[9] = String.Format(formato_moneda,dr.GetDecimal(9)).Substring(3);
-                    obj[10] = String.Format(formato_moneda,dr.GetDecimal(10)).Substring(3);
-                    obj[11] = String.Format(formato_moneda, dr.GetDecimal(11)).Substring(3);
-                    obj[12] = String.Format(formato_moneda, dr.GetDecimal(12)).Substring(3);
-                    obj[13] = String.Format(formato_moneda, dr.GetDecimal(13)).Substring(3);
+                    obj[3] = String.Format(formato_moneda, dr.GetDecimal(3));
+                    obj[4] = String.Format(formato_moneda,dr.GetDecimal(4));
+                    obj[5] = String.Format(formato_moneda,dr.GetDecimal(5));
+                    obj[6] = String.Format(formato_moneda,dr.GetDecimal(6));
+                    obj[7] = String.Format(formato_moneda,dr.GetDecimal(7));
+                    obj[8] = String.Format(formato_moneda,dr.GetDecimal(8));
+                    obj[9] = String.Format(formato_moneda,dr.GetDecimal(9));
+                    obj[10] = String.Format(formato_moneda,dr.GetDecimal(10));
+                    obj[11] = String.Format(formato_moneda, dr.GetDecimal(11));
+                    obj[12] = String.Format(formato_moneda, dr.GetDecimal(12));
+                    obj[13] = String.Format(formato_moneda, dr.GetDecimal(13));
 
                     dt.Rows.Add(obj);
                 }
@@ -100,8 +100,8 @@ namespace VidaCamara.SBS.Dao
                     obj[8] = dr.GetString(8);
                     obj[9] = dr.GetString(9);
                     obj[10] = dr.GetDateTime(10).ToShortDateString();
-                    obj[11] = String.Format(formato_moneda, dr.GetDecimal(11)).Substring(3);
-                    obj[12] = String.Format(formato_moneda,dr.GetDecimal(12)).Substring(3);
+                    obj[11] = String.Format(formato_moneda, dr.GetDecimal(11));
+                    obj[12] = String.Format(formato_moneda,dr.GetDecimal(12));
                     obj[13] = dr.GetString(13);
                     dt.Rows.Add(obj);
                 }
@@ -187,15 +187,15 @@ namespace VidaCamara.SBS.Dao
                     obj[1] = dr.GetDateTime(1).ToShortDateString();
                     obj[2] = dr.GetDateTime(2).ToShortDateString();
                     obj[3] = dr.GetDecimal(3);
-                    obj[4] = String.Format(formato_moneda,dr.GetDecimal(4)).Substring(3);
+                    obj[4] = String.Format(formato_moneda,dr.GetDecimal(4));
                     obj[5] = dr.GetDecimal(5);
-                    obj[6] = String.Format(formato_moneda,dr.GetDecimal(6)).Substring(3);
-                    obj[7] = String.Format(formato_moneda,dr.GetDecimal(7)).Substring(3);
+                    obj[6] = String.Format(formato_moneda,dr.GetDecimal(6));
+                    obj[7] = String.Format(formato_moneda,dr.GetDecimal(7));
                     obj[8] = dr.GetInt32(8);
-                    obj[9] = String.Format(formato_moneda,dr.GetDecimal(9)).Substring(3);
-                    obj[10] = String.Format(formato_moneda,dr.GetDecimal(10)).Substring(3);
-                    obj[11] = String.Format(formato_moneda, dr.GetDecimal(11)).Substring(3);
-                    obj[12] = String.Format(formato_moneda, dr.GetDecimal(12)).Substring(3);
+                    obj[9] = String.Format(formato_moneda,dr.GetDecimal(9));
+                    obj[10] = String.Format(formato_moneda,dr.GetDecimal(10));
+                    obj[11] = String.Format(formato_moneda, dr.GetDecimal(11));
+                    obj[12] = String.Format(formato_moneda, dr.GetDecimal(12));
 
                     dt.Rows.Add(obj);
                 }
@@ -238,15 +238,15 @@ namespace VidaCamara.SBS.Dao
                     obj[1] = dr.GetString(1);
                     obj[2] = dr.GetString(2);
                     obj[3] = dr.GetString(3);
-                    obj[4] = String.Format(formato_moneda,dr.GetDecimal(4)).Substring(3);
+                    obj[4] = String.Format(formato_moneda,dr.GetDecimal(4));
                     obj[5] = dr.GetString(5);
                     obj[6] = dr.GetDateTime(6).ToShortDateString();
                     obj[7] = dr.GetDateTime(7).ToShortDateString();
                     obj[8] = dr.GetInt32(8);
-                    obj[9] = String.Format(formato_moneda,dr.GetDecimal(9)).Substring(3);
-                    obj[10] = String.Format(formato_moneda,dr.GetDecimal(10)).Substring(3);
-                    obj[11] = String.Format(formato_moneda,dr.GetDecimal(11)).Substring(3);
-                    obj[12] = String.Format(formato_moneda,dr.GetDecimal(12)).Substring(3);
+                    obj[9] = String.Format(formato_moneda,dr.GetDecimal(9));
+                    obj[10] = String.Format(formato_moneda,dr.GetDecimal(10));
+                    obj[11] = String.Format(formato_moneda,dr.GetDecimal(11));
+                    obj[12] = String.Format(formato_moneda,dr.GetDecimal(12));
 
                     dt.Rows.Add(obj);
                 }
@@ -294,12 +294,12 @@ namespace VidaCamara.SBS.Dao
                     obj[3] = dr[3];
                     obj[4] = dr[4];
                     obj[5] = Convert.ToDateTime(dr[5]).ToShortDateString();
-                    obj[6] = String.Format(formato_menada,dr[6]).Substring(3);
-                    obj[7] = String.Format(formato_menada,dr[7]).Substring(3);
-                    obj[8] = String.Format(formato_menada,dr[8]).Substring(3);
-                    obj[9] = String.Format(formato_menada,dr[9]).Substring(3);
-                    obj[10] = String.Format(formato_menada,dr[10]).Substring(3);
-                    obj[11] = String.Format(formato_menada, dr[11]).Substring(3);
+                    obj[6] = String.Format(formato_menada,dr[6]);
+                    obj[7] = String.Format(formato_menada,dr[7]);
+                    obj[8] = String.Format(formato_menada,dr[8]);
+                    obj[9] = String.Format(formato_menada,dr[9]);
+                    obj[10] = String.Format(formato_menada,dr[10]);
+                    obj[11] = String.Format(formato_menada, dr[11]);
 
                     dt.Rows.Add(obj);
                 }
@@ -341,13 +341,13 @@ namespace VidaCamara.SBS.Dao
                     object[] obj = new object[column.Length];
 
                     obj[0] = dr[0];
-                    obj[1] = String.Format(formato_moneda, dr.GetDecimal(1)).Substring(3);
-                    obj[2] = String.Format(formato_moneda,dr.GetDecimal(2)).Substring(3);
-                    obj[3] = String.Format(formato_moneda,dr.GetDecimal(3)).Substring(3);
-                    obj[4] = String.Format(formato_moneda,dr.GetDecimal(4)).Substring(3);
-                    obj[5] = String.Format(formato_moneda,dr.GetDecimal(5)).Substring(3);
-                    obj[6] = String.Format(formato_moneda,dr.GetDecimal(6)).Substring(3);
-                    obj[7] = String.Format(formato_moneda, dr.GetDecimal(7)).Substring(3);
+                    obj[1] = String.Format(formato_moneda, dr.GetDecimal(1));
+                    obj[2] = String.Format(formato_moneda,dr.GetDecimal(2));
+                    obj[3] = String.Format(formato_moneda,dr.GetDecimal(3));
+                    obj[4] = String.Format(formato_moneda,dr.GetDecimal(4));
+                    obj[5] = String.Format(formato_moneda,dr.GetDecimal(5));
+                    obj[6] = String.Format(formato_moneda,dr.GetDecimal(6));
+                    obj[7] = String.Format(formato_moneda, dr.GetDecimal(7));
 
                     dt.Rows.Add(obj);
                 }
@@ -400,17 +400,17 @@ namespace VidaCamara.SBS.Dao
                     obj[7] = dr["TIPO_COMPROBANTE"];
                     obj[8] = dr["RAMO"];
                     obj[9] = dr["MONEDA"];
-                    obj[10] = String.Format(formato_moneda, Convert.ToDecimal(dr["PRI_XPAG_REA_CED"].ToString())).Substring(3);
-                    obj[11] = String.Format(formato_moneda, Convert.ToDecimal(dr["PRI_XCOB_REA_ACE"].ToString())).Substring(3);
-                    obj[12] = String.Format(formato_moneda, Convert.ToDecimal(dr["SIN_XCOB_REA_CED"].ToString())).Substring(3);
-                    obj[13] = String.Format(formato_moneda, Convert.ToDecimal(dr["SIN_XPAG_REA_ACE"].ToString())).Substring(3);
-                    obj[14] = String.Format(formato_moneda, Convert.ToDecimal(dr["OTR_CTA_XCOB_REA_CED"].ToString())).Substring(3);
-                    obj[15] = String.Format(formato_moneda, Convert.ToDecimal(dr["OTR_CTA_XPAG_REA_ACE"].ToString())).Substring(3);
-                    obj[16] = String.Format(formato_moneda, Convert.ToDecimal(dr["DSCTO_COMIS_REA"].ToString())).Substring(3);
-                    obj[17] = String.Format(formato_moneda, Convert.ToDecimal(dr["SALDO_DEUDOR"].ToString())).Substring(3);
-                    obj[18] = String.Format(formato_moneda, Convert.ToDecimal(dr["SALDO_ACREEDOR"].ToString())).Substring(3);
-                    obj[19] = String.Format(formato_moneda, Convert.ToDecimal(dr["SALDO_DEUDOR_COMP"].ToString())).Substring(3);
-                    obj[20] = String.Format(formato_moneda, Convert.ToDecimal(dr["SALDO_ACREEDOR_COMP"].ToString())).Substring(3);
+                    obj[10] = String.Format(formato_moneda, Convert.ToDecimal(dr["PRI_XPAG_REA_CED"].ToString()));
+                    obj[11] = String.Format(formato_moneda, Convert.ToDecimal(dr["PRI_XCOB_REA_ACE"].ToString()));
+                    obj[12] = String.Format(formato_moneda, Convert.ToDecimal(dr["SIN_XCOB_REA_CED"].ToString()));
+                    obj[13] = String.Format(formato_moneda, Convert.ToDecimal(dr["SIN_XPAG_REA_ACE"].ToString()));
+                    obj[14] = String.Format(formato_moneda, Convert.ToDecimal(dr["OTR_CTA_XCOB_REA_CED"].ToString()));
+                    obj[15] = String.Format(formato_moneda, Convert.ToDecimal(dr["OTR_CTA_XPAG_REA_ACE"].ToString()));
+                    obj[16] = String.Format(formato_moneda, Convert.ToDecimal(dr["DSCTO_COMIS_REA"].ToString()));
+                    obj[17] = String.Format(formato_moneda, Convert.ToDecimal(dr["SALDO_DEUDOR"].ToString()));
+                    obj[18] = String.Format(formato_moneda, Convert.ToDecimal(dr["SALDO_ACREEDOR"].ToString()));
+                    obj[19] = String.Format(formato_moneda, Convert.ToDecimal(dr["SALDO_DEUDOR_COMP"].ToString()));
+                    obj[20] = String.Format(formato_moneda, Convert.ToDecimal(dr["SALDO_ACREEDOR_COMP"].ToString()));
 
                     dt.Rows.Add(obj);
                 }

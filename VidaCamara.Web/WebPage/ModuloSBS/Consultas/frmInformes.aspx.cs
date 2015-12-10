@@ -353,11 +353,11 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                     totales += Convert.ToDecimal(dtanexo.Rows[rw][cl]);
                 }
                 celldatatotal = FilaTotales.CreateCell(cl);
-                celldatatotal.SetCellValue(String.Format(formato_moneda, totales).Substring(3));
+                celldatatotal.SetCellValue(String.Format(formato_moneda, totales));
                 celldatatotal.CellStyle = styleCabecera;
                 if (cl == 3) {
                     celldatatotal2 = FilaTotales2.CreateCell(cl);
-                    celldatatotal2.SetCellValue(String.Format(formato_moneda, totales).Substring(3));
+                    celldatatotal2.SetCellValue(String.Format(formato_moneda, totales));
                     celldatatotal2.CellStyle = styleCabecera;
                 }
             }
@@ -1487,7 +1487,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                     sumatotal += Convert.ToDecimal(tableF.Rows[rw][cl]);
                 }
                 sumadatatotal = FilaTotal.CreateCell(cl+2);
-                sumadatatotal.SetCellValue(String.Format(formato_moneda, sumatotal).Substring(3));
+                sumadatatotal.SetCellValue(String.Format(formato_moneda, sumatotal));
                 sumadatatotal.CellStyle = this.SetFontData(this.SetFontDataText());
             }
             hssfworkbook.Write(output);
@@ -1565,7 +1565,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                     costtotal += Convert.ToDecimal(tbmodelo.Rows[rw][cl]);
                 }
                 sumadatatotal = Filasuma.CreateCell(cl+1);
-                sumadatatotal.SetCellValue(String.Format(formato_moneda, costtotal).Substring(3));
+                sumadatatotal.SetCellValue(String.Format(formato_moneda, costtotal));
                 sumadatatotal.CellStyle = this.SetFontData(this.SetFontDataText());
             }
 

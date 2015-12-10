@@ -82,7 +82,9 @@ namespace VidaCamara.SBS.Dao
                     ec._Mes_Cierre = meses[dr.GetInt32(6)];
                     ec._Nro_Registro = dr.GetInt32(7);
                     ec._Tipo_Cierre = dr.GetString(8);
-                    ec._Total_Monto = String.Format(o._Formato_Moneda,dr.GetDecimal(9)).Substring(3);
+                    ec._Total_Monto = String.Format(o._Formato_Moneda, dr.GetDecimal(9));
+
+
                     ec._Estado = dr.GetString(10);
                     ec._Fec_Reg = dr.GetDateTime(11);
                     ec._Usu_Reg = dr.GetString(12);

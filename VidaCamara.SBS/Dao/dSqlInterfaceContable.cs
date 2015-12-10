@@ -424,14 +424,14 @@ namespace VidaCamara.SBS.Dao
                     ic.Cuenta_Contable = dr.GetString(14);
                     //ic.Consecutivo = dr.GetInt32(9);
                     if (dr.GetDecimal(15) > 0)
-                        ic.debito_Local = String.Format(e.Formato_Moneda, dr.GetDecimal(15)).Substring(3);
+                        ic.debito_Local = String.Format(e.Formato_Moneda, dr.GetDecimal(15));
                     else if(dr.GetDecimal(15) < 0)
-                        ic.credito_Local = String.Format(e.Formato_Moneda, dr.GetDecimal(15)).Substring(3);
+                        ic.credito_Local = String.Format(e.Formato_Moneda, dr.GetDecimal(15));
                     if(dr.GetDecimal(16) > 0)
-                        ic.debito_dolar = String.Format(e.Formato_Moneda, dr.GetDecimal(16)).Substring(3);
+                        ic.debito_dolar = String.Format(e.Formato_Moneda, dr.GetDecimal(16));
                     else if (dr.GetDecimal(16) < 0)
-                        ic.credito_dolar= String.Format(e.Formato_Moneda, dr.GetDecimal(16)).Substring(3);
-                    ic.Monto_Unidades = String.Format(e.Formato_Moneda, dr.GetDecimal(17)).Substring(3);
+                        ic.credito_dolar= String.Format(e.Formato_Moneda, dr.GetDecimal(16));
+                    ic.Monto_Unidades = String.Format(e.Formato_Moneda, dr.GetDecimal(17));
                     ic.Usuario_Registro = dr.GetString(18);
                     ic.Estado_Transferencia = dr.GetString(19);
                     list.Add(ic);
@@ -494,16 +494,16 @@ namespace VidaCamara.SBS.Dao
                         obj[13] = dr.GetString(13);
                         obj[14] = dr.GetString(14);
                         if (dr.GetDecimal(15) > 0)
-                            obj[15] = String.Format(e.Formato_Moneda, dr.GetDecimal(15)).Substring(3);
+                            obj[15] = String.Format(e.Formato_Moneda, dr.GetDecimal(15));
                         else if (dr.GetDecimal(15) < 0)
-                            obj[16] = String.Format(e.Formato_Moneda, dr.GetDecimal(15)).Substring(3);
+                            obj[16] = String.Format(e.Formato_Moneda, dr.GetDecimal(15));
 
                         if (dr.GetDecimal(16) > 0)
-                            obj[17] = String.Format(e.Formato_Moneda, dr.GetDecimal(16)).Substring(3);
+                            obj[17] = String.Format(e.Formato_Moneda, dr.GetDecimal(16));
                         else if (dr.GetDecimal(16) < 0)
-                            obj[18] = String.Format(e.Formato_Moneda, dr.GetDecimal(16)).Substring(3);
+                            obj[18] = String.Format(e.Formato_Moneda, dr.GetDecimal(16));
 
-                        obj[19] = String.Format(e.Formato_Moneda, dr.GetDecimal(17)).Substring(3);
+                        obj[19] = String.Format(e.Formato_Moneda, dr.GetDecimal(17));
                         obj[20] = dr.GetString(18);
 
                         dtlist.Rows.Add(obj);
