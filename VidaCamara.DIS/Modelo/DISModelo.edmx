@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DISModelo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DISModelo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'vcamara.dbo.Consulta' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Consulta">
@@ -803,41 +803,41 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Parameter Name="LargoCampo" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="DISModeloStoreContainer">
-          <EntitySet Name="Exactus" EntityType="Self.Exactus" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="HistorialCargaArchivo" EntityType="Self.HistorialCargaArchivo" Schema="Importacion" store:Type="Tables" />
-          <EntitySet Name="ReglaArchivo" EntityType="Self.ReglaArchivo" Schema="Importacion" store:Type="Tables" />
-          <EntitySet Name="AFPs" EntityType="Self.AFPs" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="Archivo" EntityType="Self.Archivo" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="Bitacora" EntityType="Self.Bitacora" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="Checkeados" EntityType="Self.Checkeados" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="ContratoCSVs" EntityType="Self.ContratoCSVs" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="Contratos" EntityType="Self.Contratos" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="Correlativos" EntityType="Self.Correlativos" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="CSVs" EntityType="Self.CSVs" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="Documentos" EntityType="Self.Documentos" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="DocumentoSolicitados" EntityType="Self.DocumentoSolicitados" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="EstadoArchivo" EntityType="Self.EstadoArchivo" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="EstadoPago" EntityType="Self.EstadoPago" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="Imputacion" EntityType="Self.Imputacion" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="Moneda" EntityType="Self.Moneda" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="MontoAlto" EntityType="Self.MontoAlto" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="Pagos" EntityType="Self.Pagos" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="Parametros" EntityType="Self.Parametros" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="Parentesco" EntityType="Self.Parentesco" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="Personas" EntityType="Self.Personas" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="RegistroMontoAlto" EntityType="Self.RegistroMontoAlto" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="Siniestros" EntityType="Self.Siniestros" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="TipoArchivo" EntityType="Self.TipoArchivo" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="TipoCambio" EntityType="Self.TipoCambio" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="TipoDocumentoIdentificacion" EntityType="Self.TipoDocumentoIdentificacion" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="TipoInforme" EntityType="Self.TipoInforme" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="TipoMoneda" EntityType="Self.TipoMoneda" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="TipoMovimientos" EntityType="Self.TipoMovimientos" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="TipoPension" EntityType="Self.TipoPension" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="TipoRegistro" EntityType="Self.TipoRegistro" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="TipoSolicitudes" EntityType="Self.TipoSolicitudes" Schema="Negocio" store:Type="Tables" />
-          <EntitySet Name="Consulta" EntityType="Self.Consulta" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="Exactus" EntityType="Self.Exactus" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="HistorialCargaArchivo" EntityType="Self.HistorialCargaArchivo" Schema="Importacion" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="ReglaArchivo" EntityType="Self.ReglaArchivo" Schema="Importacion" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="AFPs" EntityType="Self.AFPs" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Archivo" EntityType="Self.Archivo" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Bitacora" EntityType="Self.Bitacora" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Checkeados" EntityType="Self.Checkeados" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="ContratoCSVs" EntityType="Self.ContratoCSVs" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Contratos" EntityType="Self.Contratos" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Correlativos" EntityType="Self.Correlativos" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CSVs" EntityType="Self.CSVs" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Documentos" EntityType="Self.Documentos" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="DocumentoSolicitados" EntityType="Self.DocumentoSolicitados" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="EstadoArchivo" EntityType="Self.EstadoArchivo" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="EstadoPago" EntityType="Self.EstadoPago" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Imputacion" EntityType="Self.Imputacion" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Moneda" EntityType="Self.Moneda" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="MontoAlto" EntityType="Self.MontoAlto" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Pagos" EntityType="Self.Pagos" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Parametros" EntityType="Self.Parametros" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Parentesco" EntityType="Self.Parentesco" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Personas" EntityType="Self.Personas" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="RegistroMontoAlto" EntityType="Self.RegistroMontoAlto" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Siniestros" EntityType="Self.Siniestros" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TipoArchivo" EntityType="Self.TipoArchivo" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TipoCambio" EntityType="Self.TipoCambio" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TipoDocumentoIdentificacion" EntityType="Self.TipoDocumentoIdentificacion" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TipoInforme" EntityType="Self.TipoInforme" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TipoMoneda" EntityType="Self.TipoMoneda" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TipoMovimientos" EntityType="Self.TipoMovimientos" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TipoPension" EntityType="Self.TipoPension" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TipoRegistro" EntityType="Self.TipoRegistro" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TipoSolicitudes" EntityType="Self.TipoSolicitudes" Schema="Negocio" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Consulta" EntityType="Self.Consulta" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
     [Consulta].[IdReglaArchivo] AS [IdReglaArchivo], 
     [Consulta].[Archivo] AS [Archivo], 
@@ -855,7 +855,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
     [Consulta].[CampoNegocio] AS [CampoNegocio]
     FROM [dbo].[Consulta] AS [Consulta]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="CheckLists" EntityType="Self.CheckLists" store:Type="Tables" store:Schema="Negocio">
+          <EntitySet Name="CheckLists" EntityType="Self.CheckLists" store:Type="Tables" store:Schema="Negocio" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
     [CheckLists].[CheckListId] AS [CheckListId], 
     [CheckLists].[CUSPP] AS [CUSPP], 
@@ -933,7 +933,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DISModelo" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DISModelo" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
         <EntityType Name="Exactu">
           <Key>
             <PropertyRef Name="RowNumber" />
@@ -1913,7 +1913,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DISModeloStoreContainer" CdmEntityContainer="DISEntities">
           <EntitySetMapping Name="Exactus">
             <EntityTypeMapping TypeName="DISModelo.Exactu">
@@ -2504,7 +2504,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <Connection>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
@@ -2520,6 +2520,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams></Diagrams>
+    <Diagrams />
   </Designer>
 </edmx:Edmx>
