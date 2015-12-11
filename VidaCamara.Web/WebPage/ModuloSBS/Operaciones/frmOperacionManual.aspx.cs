@@ -87,7 +87,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Operaciones
             ddl_comprobante.DataSource = listConcepto;
             ddl_comprobante.DataTextField = "_descripcion";
             ddl_comprobante.DataValueField = "_codigo";
-            //ddl_comprobante.DataBind();
+            ddl_comprobante.DataBind();
             ddl_comprobante.Items.Insert(0, new ListItem("Seleccione ----", "0"));
         }
     }

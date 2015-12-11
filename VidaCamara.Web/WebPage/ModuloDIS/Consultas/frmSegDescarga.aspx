@@ -22,10 +22,10 @@
                 <asp:DropDownList CssClass="input_to" ID="ddl_tipo_tramite" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
 
                 <label class="input_right_L" for="txt_fec_ini_o">Desde</label>
-                <asp:TextBox CssClass="input_right" ID="txt_fec_ini_o" runat="server" Height="25px" Width="14.7%" TextMode="Date"></asp:TextBox>
+                <asp:TextBox CssClass="input_right datetime" ID="txt_fec_ini_o" runat="server" Height="25px" Width="14.7%" ></asp:TextBox>
 
                 <label class="input_right_T" for="txt_fec_hasta_o">Hasta  </label>
-                <asp:TextBox CssClass="input_right" ID="txt_fec_hasta_o" runat="server" Height="25px" Width="14.7%" TextMode="Date"></asp:TextBox>
+                <asp:TextBox CssClass="input_right datetime" ID="txt_fec_hasta_o" runat="server" Height="25px" Width="14.7%" ></asp:TextBox>
 
                 <div class="iframe" id="tblConsulta1">
 
