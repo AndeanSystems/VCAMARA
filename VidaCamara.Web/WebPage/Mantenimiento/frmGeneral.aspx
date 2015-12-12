@@ -4,6 +4,7 @@
     <script src="/WebPage/Mantenimiento/js/tblGeneral.js"></script>
     <script src="/WebPage/Mantenimiento/js/tblContratoView.js"></script>
     <script src="/WebPage/Mantenimiento/Js/tblReasegurador.js"></script>
+    <script src="/WebPage/Mantenimiento/Js/tblContratoViewSyS.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!--Comienzo de los Tabs-->
@@ -24,7 +25,8 @@
             <Items>
                 <asp:MenuItem Text="Generales" Value="0" Selected="true" />
                 <asp:MenuItem Text="Contratos" Value="1" />
-                <asp:MenuItem Text="Reasegurador" Value="2" />
+                <asp:MenuItem Text="Reasegurador" Value="2" />                
+                <asp:MenuItem Text="Contratos SYS" Value="3" />
             </Items>
             <StaticMenuItemStyle CssClass="tab"></StaticMenuItemStyle>
 
@@ -92,9 +94,6 @@
 
                                 <label class="label_to" for="ddl_clasecontrato_c">Clase de Contrato (*)</label>
                                 <asp:DropDownList CssClass="input_to" ID="ddl_clasecontrato_c" runat="server" Height="25px" Width="14.3%" ToolTip="Selecione este Campo">
-                                    <asp:ListItem Value="0" Selected="true">Seleccione ----</asp:ListItem>
-                                    <asp:ListItem Value="PRP">Proporcional</asp:ListItem>
-                                    <asp:ListItem Value="NPR">No Proporcional</asp:ListItem>
                                 </asp:DropDownList>
 
                                 <label class="input_right_L" for="txt_fecini_c">Fecha Inicio de Vigencia (*)</label>
@@ -275,6 +274,44 @@
                 
                 <div class="iframe">
                   <div id="tblReasegurador"></div>
+                </div>
+            </asp:View>
+
+             <!--seccion de Contrato SYS-->
+            <asp:View ID="View3" runat="server">
+                  <link rel="stylesheet" href="Resources/CSS/bootstrap.css"/>
+                    <div class="panel-group" id="accordion2">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne2">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"> Contrato</span>
+                                </a>
+                            </h4>
+                        </div>
+                         <!--cabecera de contrato-->
+                        <div id="collapseOne2" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <label class="label_to" for="txt_nrocont_sys">Número de Contrato (*)</label>
+                                <asp:TextBox CssClass="input_to" ID="txt_nrocont_sys" runat="server" Height="25px" Width="14%"></asp:TextBox>
+                                <label class="label_to" for="ddl_clase_contrato_sys">Clase de Contrato (*)</label>
+                                <asp:DropDownList CssClass="input_to" ID="ddl_clase_contrato_sys" runat="server" Height="25px" Width="14.3%" ToolTip="Selecione este Campo">                          
+                                </asp:DropDownList>
+                                <label class="input_right_L" for="txtFechaInicio_sys">Fecha Inicio de Vigencia (*)</label>
+                                <asp:TextBox CssClass="input_right" ID="txtFechaInicio_sys" runat="server" Height="25px" Width="13.8%"></asp:TextBox>
+                                <label class="input_right_L" for="txtFechaFin_sys">Fecha Fin de Vigencia (*)</label>
+                                <asp:TextBox CssClass="input_right" ID="txtFechaFin_sys" runat="server" Height="25px" Width="13.8%"></asp:TextBox>
+                                <label class="label_to" for="txtdescripcion_sys">Descripción</label>
+                                <asp:TextBox CssClass="input_to" ID="txtdescripcion_sys" runat="server" Height="25px" Width="46.2%"></asp:TextBox>
+                                <label class="input_right_L" for="ddl_estado_sys" runat="server">Estado :</label>
+                                <asp:DropDownList CssClass="input_right" ID="ddl_estado_sys" runat="server" Height="25px" Width="14.1%"></asp:DropDownList>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <asp:HiddenField ID="txt_idContrato_sys" runat="server" Value="0"/>
+                <div class="iframe">
+                  <div id="tblContratoViewSyS"></div>
                 </div>
             </asp:View>
         </asp:MultiView>    

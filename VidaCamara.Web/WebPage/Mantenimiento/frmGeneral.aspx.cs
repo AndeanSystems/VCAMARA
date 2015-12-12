@@ -33,6 +33,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 concepto.SetEstablecerDataSourceConcepto(ddl_seniestro_c,"04");
                 concepto.SetEstablecerDataSourceConcepto(ddl_moneda_c,"10");
                 concepto.SetEstablecerDataSourceConcepto(ddl_contratante_c,"14");
+                concepto.SetEstablecerDataSourceConcepto(ddl_clasecontrato_c, "69", "SBS");
                 SetLLenadoContrato();
                 concepto.SetEstablecerDataSourceConcepto(ddl_reasegurador_r,"01");
                 concepto.SetEstablecerDataSourceConcepto(ddl_modalidad_c,"06");
@@ -40,6 +41,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipcon_c,"07");
                 concepto.SetEstablecerDataSourceConcepto(ddl_calificadora_r,"02");
                 concepto.SetEstablecerDataSourceConcepto(ddl_crediticia_r,"11");
+                concepto.SetEstablecerDataSourceConcepto(ddl_clase_contrato_sys, "69", "SYS");
                 llenarEstado("09","U");
             }
         }
@@ -127,6 +129,10 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             {
                 SetInsertarActualizarContratoDetalle();
             }
+            else if (tab == 3)
+            {
+                SetInsertarContratoSys();
+            }
         }
         //botton de borrar
         protected void btn_borrar_Click(object sender, ImageClickEventArgs e)
@@ -143,6 +149,10 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             else if (tab == 2)
             {
                 SetEliminarParamentro("CONTRATO_DETALLE", txt_idContratoDetalle_c.Value);
+            }
+            else if (tab == 3)
+            {
+                SetEliminarParamentro("CONTRATO_SYS", txt_idContrato_sys.Value);
             }
         }
         //#region funciones
@@ -414,11 +424,16 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             o._inicio = 0;
             o._fin = 10000000;
             o._order = "DESCRIPCION ASC";
-            ddl_estado_c.DataSource = tb.GetSelectConcepto(o, out total); ;
-            ddl_estado_c.DataTextField = "_descripcion";
-            ddl_estado_c.DataValueField = "_codigo";
-            ddl_estado_c.DataBind();
-            ddl_estado_c.Items.Insert(0, new ListItem("Seleccione ----", "0"));
+
+            DropDownList[] oDropDownList = { ddl_estado_c, ddl_estado_sys };
+            foreach (DropDownList item in oDropDownList)
+            {
+                item.DataSource = tb.GetSelectConcepto(o, out total); ;
+                item.DataTextField = "_descripcion";
+                item.DataValueField = "_codigo";
+                item.DataBind();
+                item.Items.Insert(0, new ListItem("Seleccione ----", "0"));
+            }
         }
         private void MessageBox(String text)
         {
@@ -428,5 +443,84 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
         {
             Page.ClientScript.RegisterStartupScript(GetType(), "msgbox", "$('<div style=\"font-size:14px;text-align:center;\">" + text + "</div>').dialog({title:'Error',modal:true,width:400,height:160,buttons: [{id: 'aceptar',text: 'Aceptar',icons: { primary: 'ui-icon-circle-check' },click: function () {$(this).dialog('close');}}]})", true);
         }
+
+        #region "DRIVERA Ini"
+
+        //LLENADO DE CONTRATO_SYS
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static object ContratoSysList(int jtStartIndex, int jtPageSize, string jtSorting, String WhereBy)
+        {
+            int total;
+            int indexPage;
+            if (jtStartIndex != 0)
+            {
+                indexPage = jtStartIndex / jtPageSize;
+            }
+            else
+            {
+                indexPage = jtStartIndex;
+            }
+            eContratoSys o = new eContratoSys();
+            o._inicio = indexPage;
+            o._fin = jtPageSize;
+            o._orderby = jtSorting.Substring(1).ToUpper();
+            o._nro_Contrato = WhereBy.Trim();
+            o._estado = "R";
+
+            bContratoSys tb = new bContratoSys();
+            List<eContratoSys> list = tb.GetSelecionarContratoSys(o, out total);
+            return new { Result = "OK", Records = list, TotalRecordCount = total };
+        }
+
+        private void SetInsertarContratoSys()
+        {
+            try
+            {
+                Int32 resp = 0;
+                eContratoSys c = new eContratoSys();
+                c._id_Empresa = Convert.ToInt32(Session["idempresa"]);
+                c._ide_Contrato = Convert.ToInt32(txt_idContrato_sys.Value);
+                c._nro_Contrato = txt_nrocont_sys.Text;
+                c._cla_Contrato = ddl_clase_contrato_sys.SelectedItem.Value;
+                c._fec_Ini_Vig = DateTime.Parse(txtFechaInicio_sys.Text);
+                c._fec_Fin_Vig = DateTime.Parse(txtFechaFin_sys.Text);
+                c._des_Contrato = txtdescripcion_sys.Text;
+                c._estado = ddl_estado_c.SelectedItem.Value;
+                c._usu_reg = Session["username"].ToString();
+                c._usu_mod = Session["username"].ToString();
+
+                bContratoSys control = new bContratoSys();
+                if (c._ide_Contrato == 0)
+                {
+                    resp = control.SetInsertarContratoSys(c);
+                    if (resp != 0)
+                    {
+                        MessageBox("Registro Grabado Correctamente");
+                    }
+                    else
+                    {
+                        MessageBox("Ocurrio un Error en el Servidor!");
+                    }
+                }
+                else
+                {
+                    resp = control.SetActualizarContratoSys(c);
+                    if (resp != 0)
+                    {
+                        MessageBox("Registro Actualizado Correctamente");
+                    }
+                    else
+                    {
+                        MessageBox("Ocurrio un Error en el Servidor!");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBoxcCatch("ERROR =>" + e.Message);
+            }
+        }
+
+        #endregion
     }
 }

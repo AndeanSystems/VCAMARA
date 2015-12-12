@@ -48,6 +48,7 @@
     <Compile Include="Dao\dSqlCierreProcesoVC.cs" />
     <Compile Include="Dao\dSqlComprobanteVC.cs" />
     <Compile Include="Dao\dSqlContratoDetalleVC.cs" />
+    <Compile Include="Dao\dSqlContratoSys.cs" />
     <Compile Include="Dao\dSqlContratoVC.cs" />
     <Compile Include="Dao\dSqlDatoAVC.cs" />
     <Compile Include="Dao\dSqlExportarData.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Dao\dSqlUsuarioVC.cs" />
     <Compile Include="Dao\dSqlValidarCierreVC.cs" />
     <Compile Include="Dao\Interface\IContratoDetalleVC.cs" />
+    <Compile Include="Dao\Interface\IContratoSys.cs" />
     <Compile Include="Dao\Interface\IContratoVC.cs" />
     <Compile Include="Dao\Interface\IDatoAVC.cs" />
     <Compile Include="Dao\Interface\IGeneralVC.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Entity\eCierreProceso.cs" />
     <Compile Include="Entity\eComprobanteVC.cs" />
     <Compile Include="Entity\eContratoDetalleVC.cs" />
+    <Compile Include="Entity\eContratoSys.cs" />
     <Compile Include="Entity\eContratoVC.cs" />
     <Compile Include="Entity\eDatoA.cs" />
     <Compile Include="Entity\eDatoM.cs" />
@@ -81,6 +84,7 @@
     <Compile Include="Negocio\bCierreProcesoVC.cs" />
     <Compile Include="Negocio\bComprobanteVC.cs" />
     <Compile Include="Negocio\bContratoDetalleVC.cs" />
+    <Compile Include="Negocio\bContratoSys.cs" />
     <Compile Include="Negocio\bContratoVC.cs" />
     <Compile Include="Negocio\bDatoAVC.cs" />
     <Compile Include="Negocio\bExportarData.cs" />
