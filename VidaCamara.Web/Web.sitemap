@@ -20,6 +20,7 @@
         <siteMapNode url="~/Comprobantes" title="Consulta de Comprobantes"  description="Consulta de Comprobantes" />
         <siteMapNode url="~/Operaciones" title="Consulta de Operaciones"  description="Consulta de Operaciones" />
         <siteMapNode url="~/Informes" title="Informes"  description="Informes" />
+        
       </siteMapNode>
     </siteMapNode>
   </siteMapNode>
