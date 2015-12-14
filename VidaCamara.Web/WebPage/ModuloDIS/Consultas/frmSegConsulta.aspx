@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebPage/Inicio/mpFEPCMAC.Master" AutoEventWireup="true" CodeBehind="frmSegConsulta.aspx.cs" Inherits="VidaCamara.Web.WebPage.ModuloDIS.Consultas.frmSegConsulta" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<script src="/WebPage/ModuloDIS/Consultas/js/tblConsulta.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <!--Comienzo de los Tabs-->

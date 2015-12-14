@@ -19,6 +19,7 @@
             }
         } else {
             return confirm("¿ Está Seguro de Eliminar el Registro ?");
+            //jjhj
         }
     });
 
