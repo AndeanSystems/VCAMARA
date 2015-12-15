@@ -153,7 +153,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
 
         private void SetLLenadoContrato()
         {
-            var list = new VidaCamara.SBS.Utils.Utility().getContrato(out total);
+            var list = new VidaCamara.SBS.Utils.Utility().getContratoSys(out total);
             ddl_conrato1.DataSource = list;
             ddl_conrato1.DataTextField = "_des_Contrato";
             ddl_conrato1.DataValueField = "_nro_Contrato";
@@ -164,6 +164,16 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         private void MessageBox(string text)
         {
             Page.ClientScript.RegisterStartupScript(GetType(), "msgbox", "$('<div style=\"font-size:14px;text-align:center;\">"+ text +"</div>').dialog({title:'Confirmación',modal:true,width:400,height:240,buttons: [{id: 'aceptar',text: 'Aceptar',icons: { primary: 'ui-icon-circle-check' },click: function () {$(this).dialog('close');}}]})", true);
+        }
+
+        protected void ddl_tipo_archivo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddl_conrato1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

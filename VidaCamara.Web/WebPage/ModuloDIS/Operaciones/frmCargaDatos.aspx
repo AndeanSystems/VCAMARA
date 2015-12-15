@@ -54,13 +54,13 @@
             <!--VISTA CARGA DE DATOS-->
             <asp:View ID="view1" runat="server">                
                 <label class="label_to" for="dbl_contrato_d">Contrato (*)</label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_conrato1" runat="server" Height="25px" Width="77%"></asp:DropDownList>
+                <asp:DropDownList CssClass="input_to" ID="ddl_conrato1" runat="server" Height="25px" Width="77%" OnSelectedIndexChanged="ddl_conrato1_SelectedIndexChanged"></asp:DropDownList>
 
                 <label class="label_to" for="fileUpload">Nombre del Archivo (*)</label>
                 <asp:FileUpload CssClass="input_to" ID="fileUpload" ToolTip="Selecione el archivo a subir" runat="server" Height="25px" Width="48.4%" />
 
                 <label class="label_to">Tipo del Archivo (*)</label>
-                <asp:DropDownList runat="server" ID="ddl_tipo_archivo" CssClass="input_to" Height="25px" Width="40%"></asp:DropDownList>
+                <asp:DropDownList runat="server" ID="ddl_tipo_archivo" CssClass="input_to" Height="25px" Width="40%" OnSelectedIndexChanged="ddl_tipo_archivo_SelectedIndexChanged"></asp:DropDownList>
 
                 <label class="label_to" for="fileUpload">Moneda</label>
                 <asp:Label runat="server" CssClass="input_to" Text="Soles"></asp:Label>
