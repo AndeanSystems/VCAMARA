@@ -88,7 +88,7 @@ namespace VidaCamara.SBS.Dao
             Int32 _bool = 0;
             try
             {
-                String DeleteQuery = "DELETE FROM CONTRATO_SYS WHERE IDE_CONTRATO_SYS = " + indice;
+                String DeleteQuery = "DELETE FROM CONTRATO_SYS WHERE IDE_CONTRATO = " + indice;
                 conexion.Open();
                 SqlCommand sqlcmd = new SqlCommand();
                 sqlcmd.Connection = conexion;
