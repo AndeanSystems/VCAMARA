@@ -22,7 +22,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         }
         private void SetLLenadoContrato()
         {
-            var list = new VidaCamara.SBS.Utils.Utility().getContrato(out total);
+            var list = new VidaCamara.SBS.Utils.Utility().getContratoSys(out total);
             ddl_contrato.DataSource = list;
             ddl_contrato.DataTextField = "_des_Contrato";
             ddl_contrato.DataValueField = "_nro_Contrato";
