@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using VidaCamara.DIS.Negocio;
 using VidaCamara.SBS.Entity;
 using VidaCamara.SBS.Negocio;
 
@@ -33,7 +34,6 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 concepto.SetEstablecerDataSourceConcepto(ddl_seniestro_c,"04");
                 concepto.SetEstablecerDataSourceConcepto(ddl_moneda_c,"10");
                 concepto.SetEstablecerDataSourceConcepto(ddl_contratante_c,"14");
-                concepto.SetEstablecerDataSourceConcepto(ddl_clasecontrato_c, "69", "SBS");
                 SetLLenadoContrato();
                 concepto.SetEstablecerDataSourceConcepto(ddl_reasegurador_r,"01");
                 concepto.SetEstablecerDataSourceConcepto(ddl_modalidad_c,"06");
@@ -41,8 +41,27 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipcon_c,"07");
                 concepto.SetEstablecerDataSourceConcepto(ddl_calificadora_r,"02");
                 concepto.SetEstablecerDataSourceConcepto(ddl_crediticia_r,"11");
-                concepto.SetEstablecerDataSourceConcepto(ddl_clase_contrato_sys, "69", "SYS");
+
+                //contrato sys
+                var bContrato = new bContratoSys();
+                bContrato.SetEstablecerDataSourceContratoSys(ddl_contrato_sis);
+
                 llenarEstado("09","U");
+
+
+                var list = new bTablaVC().getConceptoByTipo("69");
+                ddl_clasecontrato_c.DataSource = list.FindAll(o => o._tipo.Trim().Equals("SBS"));
+                ddl_clase_contrato_sys.DataSource = list.FindAll(o => o._tipo.Trim().Equals("SIS"));
+                
+                ddl_clasecontrato_c.DataTextField = "_descripcion";
+                ddl_clasecontrato_c.DataValueField = "_codigo";
+                ddl_clasecontrato_c.DataBind();
+                ddl_clasecontrato_c.Items.Insert(0, new ListItem("Seleccione ----", "0"));
+
+                ddl_clase_contrato_sys.DataTextField = "_descripcion";
+                ddl_clase_contrato_sys.DataValueField = "_codigo";
+                ddl_clase_contrato_sys.DataBind();
+                ddl_clase_contrato_sys.Items.Insert(0, new ListItem("Seleccione ----", "0"));
             }
         }
 
@@ -388,6 +407,19 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                         MessageBox("Ocurrio un Error en el Servidor!");
                     }
                 }
+                else if (tabla.Equals("CONTRATO_SYS") && indice != "0")
+                {
+                    bContratoSys bcd = new bContratoSys();
+                    Int32 resp = bcd.SetEliminarContratoSys(Int32.Parse(indice));
+                    if (resp != 0)
+                    {
+                        MessageBox(resp + "Registro Eliminado Correctamente!");
+                    }
+                    else
+                    {
+                        MessageBox("Ocurrio un Error en el Servidor!");
+                    }
+                }
             }
             catch (Exception) {
                 MessageBoxcCatch("ERROR => Selecione un Registro");
@@ -485,7 +517,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 c._fec_Ini_Vig = DateTime.Parse(txtFechaInicio_sys.Text);
                 c._fec_Fin_Vig = DateTime.Parse(txtFechaFin_sys.Text);
                 c._des_Contrato = txtdescripcion_sys.Text;
-                c._estado = ddl_estado_c.SelectedItem.Value;
+                c._estado = ddl_estado_sys.SelectedItem.Value;
                 c._usu_reg = Session["username"].ToString();
                 c._usu_mod = Session["username"].ToString();
 
