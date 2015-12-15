@@ -63,6 +63,24 @@ namespace VidaCamara.DIS.Modelo
         public virtual DbSet<TipoSolicitude> TipoSolicitudes { get; set; }
         public virtual DbSet<Consulta> Consultas { get; set; }
         public virtual DbSet<CheckList> CheckLists { get; set; }
+        public virtual DbSet<CIERRE_PROCESO> CIERRE_PROCESOs { get; set; }
+        public virtual DbSet<CONCEPTO> CONCEPTOs { get; set; }
+        public virtual DbSet<CONTRATO1> CONTRATO1s { get; set; }
+        public virtual DbSet<CONTRATO_SYS> CONTRATO_SYSs { get; set; }
+        public virtual DbSet<DATO_M> DATO_Ms { get; set; }
+        public virtual DbSet<Evento> Eventos { get; set; }
+        public virtual DbSet<EXACTUS_DETALLE> EXACTUS_DETALLEs { get; set; }
+        public virtual DbSet<GENERAL> GENERALs { get; set; }
+        public virtual DbSet<LogOperacion> LogOperacions { get; set; }
+        public virtual DbSet<OPERACION> OPERACIONs { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<COMPROBANTE> COMPROBANTEs { get; set; }
+        public virtual DbSet<CONTRATO_DETALLE> CONTRATO_DETALLEs { get; set; }
+        public virtual DbSet<DATO_A> DATO_As { get; set; }
+        public virtual DbSet<EXACTUS_CABECERA> EXACTUS_CABECERAs { get; set; }
+        public virtual DbSet<USUARIO> USUARIOs { get; set; }
+        public virtual DbSet<HistorialCargaArchivo_LinCab> HistorialCargaArchivo_LinCabs { get; set; }
+        public virtual DbSet<HistorialCargaArchivo_LinDet> HistorialCargaArchivo_LinDets { get; set; }
     
         public virtual int pa_audit_InsertaBitacora(Nullable<int> param_IdUsuario, string param_Descripcion, string param_Comando, Nullable<int> param_Idarchivo)
         {
@@ -183,45 +201,6 @@ namespace VidaCamara.DIS.Modelo
                 new ObjectParameter("idusuario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_file_Imputa_Nomina", idarchivoParameter, idusuarioParameter);
-        }
-    
-        public virtual int pa_file_InsertaHistorialCarga(Nullable<int> aux_IdArchivo, Nullable<int> aux_IdReglaArchivo, string aux_TipoLinea, Nullable<int> aux_NumeroLinea, Nullable<int> aux_CampoInicial, Nullable<int> aux_LargoCampo, string aux_ValorCampo, Nullable<int> aux_CumpleValidacion)
-        {
-            var aux_IdArchivoParameter = aux_IdArchivo.HasValue ?
-                new ObjectParameter("Aux_IdArchivo", aux_IdArchivo) :
-                new ObjectParameter("Aux_IdArchivo", typeof(int));
-    
-            var aux_IdReglaArchivoParameter = aux_IdReglaArchivo.HasValue ?
-                new ObjectParameter("Aux_IdReglaArchivo", aux_IdReglaArchivo) :
-                new ObjectParameter("Aux_IdReglaArchivo", typeof(int));
-    
-
-
-            var aux_TipoLineaParameter = aux_TipoLinea != null ?
-                new ObjectParameter("Aux_TipoLinea", aux_TipoLinea) :
-                new ObjectParameter("Aux_TipoLinea", typeof(string));
-    
-            var aux_NumeroLineaParameter = aux_NumeroLinea.HasValue ?
-                new ObjectParameter("Aux_NumeroLinea", aux_NumeroLinea) :
-                new ObjectParameter("Aux_NumeroLinea", typeof(int));
-    
-            var aux_CampoInicialParameter = aux_CampoInicial.HasValue ?
-                new ObjectParameter("Aux_CampoInicial", aux_CampoInicial) :
-                new ObjectParameter("Aux_CampoInicial", typeof(int));
-    
-            var aux_LargoCampoParameter = aux_LargoCampo.HasValue ?
-                new ObjectParameter("Aux_LargoCampo", aux_LargoCampo) :
-                new ObjectParameter("Aux_LargoCampo", typeof(int));
-    
-            var aux_ValorCampoParameter = aux_ValorCampo != null ?
-                new ObjectParameter("Aux_ValorCampo", aux_ValorCampo) :
-                new ObjectParameter("Aux_ValorCampo", typeof(string));
-    
-            var aux_CumpleValidacionParameter = aux_CumpleValidacion.HasValue ?
-                new ObjectParameter("Aux_CumpleValidacion", aux_CumpleValidacion) :
-                new ObjectParameter("Aux_CumpleValidacion", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_file_InsertaHistorialCarga", aux_IdArchivoParameter, aux_IdReglaArchivoParameter, aux_TipoLineaParameter, aux_NumeroLineaParameter, aux_CampoInicialParameter, aux_LargoCampoParameter, aux_ValorCampoParameter, aux_CumpleValidacionParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> pa_file_InsertaReferenciaArchivo(string nombreArchivo, string usuarioModificacion)
@@ -470,7 +449,7 @@ namespace VidaCamara.DIS.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("pa_valida_Fecha", valorParameter, inicioParameter);
         }
     
-        public virtual int pa_valida_MontoAlto(Nullable<int> idarchivo, Nullable<int> idusuario)
+        public virtual ObjectResult<Nullable<int>> pa_valida_MontoAlto(Nullable<int> idarchivo, Nullable<int> idusuario)
         {
             var idarchivoParameter = idarchivo.HasValue ?
                 new ObjectParameter("idarchivo", idarchivo) :
@@ -480,7 +459,7 @@ namespace VidaCamara.DIS.Modelo
                 new ObjectParameter("idusuario", idusuario) :
                 new ObjectParameter("idusuario", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_valida_MontoAlto", idarchivoParameter, idusuarioParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("pa_valida_MontoAlto", idarchivoParameter, idusuarioParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> pa_valida_NoEspacios(string valor)

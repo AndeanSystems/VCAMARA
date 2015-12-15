@@ -56,6 +56,24 @@
         <AssociationConnector Association="DISModelo.FK_TipoMovimientoSiniestro" ManuallyRouted="false" />
         <AssociationConnector Association="DISModelo.FK_TipoSolicitudSiniestro" ManuallyRouted="false" />
         <AssociationConnector Association="DISModelo.FK_TipoArchivo_TipoInforme" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DISModelo.CIERRE_PROCESO" Width="1.5" PointX="15.75" PointY="18.75" />
+        <EntityTypeShape EntityType="DISModelo.CONCEPTO" Width="1.5" PointX="17.75" PointY="18.75" />
+        <EntityTypeShape EntityType="DISModelo.CONTRATO1" Width="1.5" PointX="19.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DISModelo.CONTRATO_SYS" Width="1.5" PointX="8.75" PointY="19.75" />
+        <EntityTypeShape EntityType="DISModelo.DATO_M" Width="1.5" PointX="19.75" PointY="10.75" />
+        <EntityTypeShape EntityType="DISModelo.Evento" Width="1.5" PointX="19.75" PointY="15.75" />
+        <EntityTypeShape EntityType="DISModelo.EXACTUS_DETALLE" Width="1.5" PointX="19.75" PointY="18.75" />
+        <EntityTypeShape EntityType="DISModelo.GENERAL" Width="1.5" PointX="0.75" PointY="20.75" />
+        <EntityTypeShape EntityType="DISModelo.LogOperacion" Width="1.5" PointX="2.75" PointY="20.75" />
+        <EntityTypeShape EntityType="DISModelo.OPERACION" Width="1.5" PointX="4.75" PointY="20.75" />
+        <EntityTypeShape EntityType="DISModelo.sysdiagram" Width="1.5" PointX="21.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DISModelo.COMPROBANTE" Width="1.5" PointX="21.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DISModelo.CONTRATO_DETALLE" Width="1.5" PointX="21.75" PointY="11.75" />
+        <EntityTypeShape EntityType="DISModelo.DATO_A" Width="1.5" PointX="21.75" PointY="17.75" />
+        <EntityTypeShape EntityType="DISModelo.EXACTUS_CABECERA" Width="1.5" PointX="10.75" PointY="22.75" />
+        <EntityTypeShape EntityType="DISModelo.USUARIO" Width="1.5" PointX="12.75" PointY="22.75" />
+        <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo_LinCab" Width="1.5" PointX="23.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo_LinDet" Width="1.5" PointX="23.75" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
