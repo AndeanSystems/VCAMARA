@@ -138,6 +138,7 @@ namespace VidaCamara.DIS.Negocio
         public int LeeArchivo(string tipoArchivo, StringCollection tipoLinea)
         {
             //Dim texto As String
+            var historialCargaArchivo = new data.HistorialCargaArchivo();
             string[] text = null;
             var resultadoValor = default(StringCollection);
             var exitoLinea = 0;
@@ -236,9 +237,9 @@ namespace VidaCamara.DIS.Negocio
                                     using (var context = new DISEntities())
                                     {
                                         //aca se debe insertar los valores de campo en archivo de texto
-                                        //context.pa_file_InsertaHistorialCarga(IdArchivo, r.idRegla,
-                                        //    text[x].Trim().Substring(0, 1), x + 1, r.CaracterInicial, r.LargoCampo,
-                                        //    CampoActual, exitoLinea);
+                                        historialCargaArchivo.pa_file_InsertaHistorialCarga(IdArchivo, r.idRegla,
+                                            text[x].Trim().Substring(0, 1), x + 1, r.CaracterInicial, r.LargoCampo,
+                                            CampoActual, exitoLinea);
                                     }
                                 }
                                 catch (Exception ex)
@@ -261,7 +262,7 @@ namespace VidaCamara.DIS.Negocio
                         {
                             using (var context = new DISEntities())
                             {
-                                context.pa_file_InsertaHistorialCarga(IdArchivo, 451, "#", x + 1, 1,
+                                historialCargaArchivo.pa_file_InsertaHistorialCarga(IdArchivo, 451, "#", x + 1, 1,
                                     text[x].Trim().Count(), text[x], 0);
                             }
                             //InsertaAuditoria(Me.UsuarioModificacion, "Inserta Historial de CargaLogica", "pa_file_InsertaHistorialCarga 451" + ", " + "'#'" + ", " + (x + 1).ToString() + ", " + "1" + ", " + text[x].Trim()().Count().ToString() + ", '" + Me.campoActual + "', " + "0", Me.idArchivo)
