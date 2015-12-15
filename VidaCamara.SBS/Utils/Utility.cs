@@ -26,6 +26,27 @@ namespace VidaCamara.SBS.Utils
                 throw;
             }
         }
+
+        public List<eContratoSys> getContratoSys(out int total)
+        {
+            try
+            {
+                var  o = new eContratoSys()
+                {
+                    _inicio = 0,
+                    _fin = 10000,
+                    _orderby = "IDE_CONTRATO ASC",
+                    _nro_Contrato = "NO",
+                    _estado = "A"
+                };
+
+                return new bContratoSys().GetSelecionarContratoSys(o, out total);
+            }
+            catch (System.Exception)
+            {                
+                throw;
+            }
+        }
         public List<eTabla> getConceptoByTipo(string e,string f,out int total)
         {
             var o = new eTabla()
