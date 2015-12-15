@@ -67,7 +67,7 @@ namespace VidaCamara.DIS.data
                 TIP_PAGO = "SEMESTRAL",
                 FEC_PAGO = new DateTime()
 
-            }
+            };
         }
     }
 }
