@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.Data.Entity.Core.Objects;
 using System.IO;
 using System.Linq;
+using System.Text;
 using VidaCamara.DIS.Modelo;
 
 namespace VidaCamara.DIS.Negocio
@@ -56,7 +57,7 @@ namespace VidaCamara.DIS.Negocio
             MensajeExcepcion = "";
         }
 
-        public void CargarArchivo()
+        public void CargarArchivo(HistorialCargaArchivo_LinCab cabecera)
         {
             if (!NombreArchivo.Distinct().Any()) return;
 
@@ -64,7 +65,7 @@ namespace VidaCamara.DIS.Negocio
             {
                 ObtieneTipoLinea(NombreArchivo.Split('_')[0]);
                 var idestado = 0;
-                idestado = LeeArchivo(NombreArchivo.Split('_')[0], TipoLinea);
+                idestado = LeeArchivo(NombreArchivo.Split('_')[0], TipoLinea, cabecera);
                 if (idestado > 2)
                 {
                     Errors = "No se puede procesar archivo por estar aprobado/pagado";
@@ -135,17 +136,13 @@ namespace VidaCamara.DIS.Negocio
             return text;
         }
 
-        public int LeeArchivo(string tipoArchivo, StringCollection tipoLinea)
+        public int LeeArchivo(string tipoArchivo, StringCollection tipoLinea, HistorialCargaArchivo_LinCab cabecera)
         {
             //Dim texto As String
             var historialCargaArchivo = new data.HistorialCargaArchivo();
             string[] text = null;
-            var resultadoValor = default(StringCollection);
             var exitoLinea = 0;
             string caracterInicial = null;
-            var res1 = 0;
-            var res2 = 0;
-
             text = LineaArchivo();
 
             //Consultar en tabla el estado del archivo
@@ -176,6 +173,10 @@ namespace VidaCamara.DIS.Negocio
                 }
                 //InsertaAuditoria(Me.UsuarioModificacion, "Inserta Referencia Archivo", "pa_file_InsertaReferenciaArchivo '" + Me.NombreArchivo + "'", Me.idArchivo)
 
+                //varibale para almacenar filas de txt
+                var file_writer = new StringBuilder();
+                long id_cabecera = 0;
+                var ejecuto_regla = 0;
                 for (var x = 0; x <= text.Length - 1; x++)
                 {
                     caracterInicial = Mid(text[x].Trim(), 0, 1);
@@ -188,12 +189,29 @@ namespace VidaCamara.DIS.Negocio
                     {
                         using (var context = new DISEntities())
                         {
-                            var resultado = context.pa_file_ObtieneReglasArchivoPorLinea(tipoArchivo, caracterInicial);
-                            ReglaLinea = ObtieneReglaLinea(resultado);
+                            if(caracterInicial.Equals("C") && ejecuto_regla == 0)
+                            {
+                                var resultado = context.pa_file_ObtieneReglasArchivoPorLinea(tipoArchivo, caracterInicial);
+                                ReglaLinea = new data.HistorialCargaArchivo().ObtieneReglaLinea(resultado);
+                                ejecuto_regla = 1;
+                            }else if(caracterInicial.Equals("D") && ejecuto_regla == 1)
+                            {
+                                var resultado = context.pa_file_ObtieneReglasArchivoPorLinea(tipoArchivo, caracterInicial);
+                                ReglaLinea = new data.HistorialCargaArchivo().ObtieneReglaLinea(resultado);
+                                ejecuto_regla = 2;
+                            }
                         }
                         //InsertaAuditoria(Me.UsuarioModificacion, "Obtiene Regla de archivo por línea", "pa_file_ObtieneReglasArchivoPorLinea '" + tipoArchivo + "', " + CaracterInicial, Me.idArchivo)
                         try
                         {
+                            //si la tipo de linea es Totales ya no nesecita recorrer
+                            if (caracterInicial.Equals("T"))
+                                break;
+                            //declaracion de varibales para generar txt file
+                            var column = id_cabecera.ToString()+",";
+                            var conteo_columna_detalle = 1;
+                            var conteo_columa_cabecera = 1;
+                            var distionaryCabecera = new Dictionary<string, string>();
                             foreach (var rLoopVariable in ReglaLinea)
                             {
                                 try
@@ -201,9 +219,6 @@ namespace VidaCamara.DIS.Negocio
                                     var r = rLoopVariable;
                                     CampoActual = Mid(text[x].Trim(), r.CaracterInicial - 1, r.LargoCampo);
                                     exitoLinea = 0;
-                                    string valor = null;
-                                    string[] inString = null;
-                                    var j = 0;
                                     switch (r.TipoValidacion)
                                     {
                                         case "EQUAL":
@@ -234,21 +249,36 @@ namespace VidaCamara.DIS.Negocio
                                             exitoLinea = 1;
                                             break;
                                     }
-                                    using (var context = new DISEntities())
+                                    if (caracterInicial.Equals("C"))
                                     {
-                                        //aca se debe insertar los valores de campo en archivo de texto
-                                        historialCargaArchivo.pa_file_InsertaHistorialCarga(IdArchivo, r.idRegla,
-                                            text[x].Trim().Substring(0, 1), x + 1, r.CaracterInicial, r.LargoCampo,
-                                            CampoActual, exitoLinea);
+                                        distionaryCabecera.Add(rLoopVariable.CaracterInicial.ToString(), CampoActual);
+                                        if(conteo_columa_cabecera == ReglaLinea.Count)
+                                        {
+                                            id_cabecera = new data.HistorialCargaArchivo().guardarCabecera(distionaryCabecera, cabecera);
+                                        };
+                                        conteo_columa_cabecera++;
                                     }
+                                    else if (caracterInicial.Equals("D"))
+                                    {
+                                        column += CampoActual + (conteo_columna_detalle < ReglaLinea.Count ? "," : "");
+                                        conteo_columna_detalle++;
+                                    }
+                                    //using (var context = new DISEntities())
+                                    //{
+                                    //    //aca se debe insertar los valores de campo en archivo de texto
+                                    //    /*historialCargaArchivo.pa_file_InsertaHistorialCarga(IdArchivo, r.idRegla,
+                                    //        text[x].Trim().Substring(0, 1), x + 1, r.CaracterInicial, r.LargoCampo,
+                                    //        CampoActual, exitoLinea);*/
+
+                                    //}
                                 }
                                 catch (Exception ex)
                                 {
                                     throw ex;
                                 } 
-                                
-                                
                             }
+                            if(caracterInicial.Equals("D"))
+                                file_writer.AppendLine(column);
                         }
                         catch (Exception ex)
                         {
@@ -270,6 +300,9 @@ namespace VidaCamara.DIS.Negocio
                         }
                     }
                 }
+                //escribir el txt file
+                var confirm = new Helpers.txtWriter().writer(file_writer);
+                #region traspasa
 
                 //aca se debe realizar el bolcado de archivo sin errores
                 try
@@ -357,6 +390,7 @@ namespace VidaCamara.DIS.Negocio
                 {
                     Observacion = ex.Message + "// TraspasaArchivo...!";
                 }
+                #endregion traspasa
             }
             else
             {
@@ -880,27 +914,6 @@ namespace VidaCamara.DIS.Negocio
                 Observacion = ex.Message;
                 return;
             }
-        }
-
-        public List<Regla> ObtieneReglaLinea(ObjectResult<pa_file_ObtieneReglasArchivoPorLinea_Result> dt)
-        {
-            var reglaLinea = new List<Regla>();
-            foreach (var iLoopVariable in dt)
-            {
-                var i = iLoopVariable;
-                var regla = new Regla
-                {
-                    idRegla = i.IdReglaArchivo,
-                    CaracterInicial = i.CaracterInicial.Value,
-                    LargoCampo = i.LargoCampo.Value,
-                    TipoCampo = i.TipoCampo,
-                    TipoValidacion = i.TipoValidacion,
-                    ReglaValidacion = i.ReglaValidacion,
-                    Tabladestino = i.TablaDestino
-                };
-                reglaLinea.Add(regla);
-            }
-            return reglaLinea;
         }
 
         private bool ExecSpBool(string procedure)
