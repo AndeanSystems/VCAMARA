@@ -15,9 +15,7 @@ namespace VidaCamara.DIS.Modelo
     public partial class HistorialCargaArchivo_LinDet
     {
         public long IdHistorialCargaArchivoLinDet { get; set; }
-        public int IdEmpresa { get; set; }
-        public string NumeroContrato { get; set; }
-        public int IdArchivo { get; set; }
+        public long IdHistorialCargaArchivoLinCab { get; set; }
         public Nullable<System.DateTime> FechaInsert { get; set; }
         public string TipoLinea { get; set; }
         public Nullable<int> NumeroLinea { get; set; }

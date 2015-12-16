@@ -519,101 +519,6 @@ warning 6002: The table/view 'vcamara.dbo.EXACTUS_CABECERA' does not have a prim
           <Property Name="ORI_REG" Type="char" MaxLength="1" />
           <Property Name="TIP_COMPROBANTE" Type="char" MaxLength="3" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'vcamara.dbo.ReporteDictamen' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ReporteDictamen">
-          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO PATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO MATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PRIMER NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEGUNDO _NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
-          <Property Name="CONTRATO" Type="float" />
-          <Property Name="ESTADO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="EMISOR DICTAMEN" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE PENSIÓN" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE EVALUACIÓN" Type="float" />
-          <Property Name="PORCENTAJE DE PENSIÓN" Type="float" />
-          <Property Name="FECHA DE OCURRENCIA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE DEVENGUE  INICIAL" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE INICIO DE VIGENCIA DEL DICTAMEN INICIAL#" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA FIN DE VIGENCIA DEL DICTAMEN " Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE AVISO DEL# DICTAMEN " Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'vcamara.dbo.ReporteSECI' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ReporteSECI">
-          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDOPATERNOAFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDOMATERNOAFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PRIMERNOMBREAFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEGUNDONOMBREAFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPODESOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
-          <Property Name="CONTRATO" Type="float" />
-          <Property Name="NUMERODESECI" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADESECI" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADEAVISODESECI" Type="nvarchar" MaxLength="255" />
-          <Property Name="INDICADORDESUBSIDIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="NUMERODE SOLICITUDDEPENSION" Type="nvarchar" MaxLength="255" />
-          <Property Name="ESTADODELASOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADESOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPODESOLICITUD1" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADEAVISODESOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPODEPENSION" Type="nvarchar" MaxLength="255" />
-          <Property Name="PORCENTAJEDEPENSION" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADEOCURRENCIA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE  DEVENGUE INICIAL" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'vcamara.dbo.ReportesSolicitudes' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ReportesSolicitudes">
-          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO PATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO MATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PRIMER NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEGUNDO NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
-          <Property Name="CONTRATO" Type="float" />
-          <Property Name="ESTADO DE LA_SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE INVALIDEZ" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE PENSIÓN" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO PATERNO BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO MATERNO BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PRIMER NOMBRE BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEGUNDO NOMBRE BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PARENTESCO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEXO  DEL BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="EDAD DEL BENEFICIARIO" Type="float" />
-          <Property Name="CONDICIÓN DE INVALIDEZ DEL BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PORCENTAJE DE PENSIÓN" Type="float" />
-          <Property Name="ESTADO DEL BENFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE OCURRENCIA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE DEVENGE INICIAL" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE AVISO  DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA  PRONUNCIAMIENTO  DE COBERTURA" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO  DE COBERTURA " Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE  REACTIVACIÓN  DE COBERTURA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE  NOTIFICACIÓN DEL ANEXO  16" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE DIAS TRANSCURRIDOS DESDE LA FECHA  DEL FALLECIMIENTO" Type="float" />
-          <Property Name="MONEDA" Type="nvarchar" MaxLength="255" />
-          <Property Name="PROMEDIO DE RAM" Type="nvarchar" MaxLength="255" />
-          <Property Name="MONTO DE LA PENSIÓN  QUE LE CORRESPONDE" Type="float" />
-          <Property Name="FECHA DE LIQUIDACIÓN DEL PRIMER PAGO" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE VENCIMIENTO DEL C#S#" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE PAGOS DE PENSIONES PRELIMINARES" Type="float" />
-          <Property Name="FECHA DE CUMPLIMIENTO DE CONDICIONES PARA CALCULO AA " Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE NOTIFICACIÓN DE AA AL DIS" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE PRONUNCIAMIENTO DEL PAGO DEL AA# " Type="nvarchar" MaxLength="255" />
-          <Property Name="ESTADO DE LA SOLICITUD DEL AA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE LIQUIDACIÓN DE AA" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -665,16 +570,9 @@ warning 6002: The table/view 'vcamara.dbo.USUARIO' does not have a primary key d
           <Property Name="CumpleValidacion" Type="int" />
           <Property Name="EsVC" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'vcamara.Importacion.HistorialCargaArchivo_LinCab' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="HistorialCargaArchivo_LinCab">
           <Key>
             <PropertyRef Name="IdHistorialCargaArchivoLinCab" />
-            <PropertyRef Name="IdEmpresa" />
-            <PropertyRef Name="NumeroContrato" />
-            <PropertyRef Name="ESTADO" />
-            <PropertyRef Name="FEC_REG" />
-            <PropertyRef Name="USU_REG" />
           </Key>
           <Property Name="IdHistorialCargaArchivoLinCab" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdEmpresa" Type="int" Nullable="false" />
@@ -692,22 +590,12 @@ warning 6002: The table/view 'vcamara.Importacion.HistorialCargaArchivo_LinCab' 
           <Property Name="FEC_REG" Type="datetime" Nullable="false" />
           <Property Name="USU_REG" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'vcamara.Importacion.HistorialCargaArchivo_LinDet' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="HistorialCargaArchivo_LinDet">
           <Key>
             <PropertyRef Name="IdHistorialCargaArchivoLinDet" />
-            <PropertyRef Name="IdEmpresa" />
-            <PropertyRef Name="NumeroContrato" />
-            <PropertyRef Name="IdArchivo" />
-            <PropertyRef Name="ESTADO" />
-            <PropertyRef Name="FEC_REG" />
-            <PropertyRef Name="USU_REG" />
           </Key>
           <Property Name="IdHistorialCargaArchivoLinDet" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdEmpresa" Type="int" Nullable="false" />
-          <Property Name="NumeroContrato" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="IdArchivo" Type="int" Nullable="false" />
+          <Property Name="IdHistorialCargaArchivoLinCab" Type="bigint" Nullable="false" />
           <Property Name="FechaInsert" Type="datetime" />
           <Property Name="TipoLinea" Type="varchar" MaxLength="10" />
           <Property Name="NumeroLinea" Type="int" />
@@ -1595,6 +1483,8 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <EntitySet Name="OPERACION" EntityType="Self.OPERACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistorialCargaArchivo" EntityType="Self.HistorialCargaArchivo" Schema="Importacion" store:Type="Tables" />
+          <EntitySet Name="HistorialCargaArchivo_LinCab" EntityType="Self.HistorialCargaArchivo_LinCab" Schema="Importacion" store:Type="Tables" />
+          <EntitySet Name="HistorialCargaArchivo_LinDet" EntityType="Self.HistorialCargaArchivo_LinDet" Schema="Importacion" store:Type="Tables" />
           <EntitySet Name="ReglaArchivo" EntityType="Self.ReglaArchivo" Schema="Importacion" store:Type="Tables" />
           <EntitySet Name="AFPs" EntityType="Self.AFPs" Schema="Negocio" store:Type="Tables" />
           <EntitySet Name="Archivo" EntityType="Self.Archivo" Schema="Negocio" store:Type="Tables" />
@@ -1846,170 +1736,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
     [USUARIO].[FEC_MOD] AS [FEC_MOD], 
     [USUARIO].[USU_MOD] AS [USU_MOD]
     FROM [dbo].[USUARIO] AS [USUARIO]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="HistorialCargaArchivo_LinCab" EntityType="Self.HistorialCargaArchivo_LinCab" store:Type="Tables" store:Schema="Importacion">
-            <DefiningQuery>SELECT 
-    [HistorialCargaArchivo_LinCab].[IdHistorialCargaArchivoLinCab] AS [IdHistorialCargaArchivoLinCab], 
-    [HistorialCargaArchivo_LinCab].[IdEmpresa] AS [IdEmpresa], 
-    [HistorialCargaArchivo_LinCab].[NumeroContrato] AS [NumeroContrato], 
-    [HistorialCargaArchivo_LinCab].[TIP_REGI] AS [TIP_REGI], 
-    [HistorialCargaArchivo_LinCab].[FEC_ENVI_ARC] AS [FEC_ENVI_ARC], 
-    [HistorialCargaArchivo_LinCab].[COD_CSV] AS [COD_CSV], 
-    [HistorialCargaArchivo_LinCab].[NUM_CONT_LIC] AS [NUM_CONT_LIC], 
-    [HistorialCargaArchivo_LinCab].[MONEDA] AS [MONEDA], 
-    [HistorialCargaArchivo_LinCab].[PER_CONT] AS [PER_CONT], 
-    [HistorialCargaArchivo_LinCab].[TIP_PAGO] AS [TIP_PAGO], 
-    [HistorialCargaArchivo_LinCab].[FEC_PAGO] AS [FEC_PAGO], 
-    [HistorialCargaArchivo_LinCab].[CumpleValidacion] AS [CumpleValidacion], 
-    [HistorialCargaArchivo_LinCab].[ESTADO] AS [ESTADO], 
-    [HistorialCargaArchivo_LinCab].[FEC_REG] AS [FEC_REG], 
-    [HistorialCargaArchivo_LinCab].[USU_REG] AS [USU_REG]
-    FROM [Importacion].[HistorialCargaArchivo_LinCab] AS [HistorialCargaArchivo_LinCab]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="HistorialCargaArchivo_LinDet" EntityType="Self.HistorialCargaArchivo_LinDet" store:Type="Tables" store:Schema="Importacion">
-            <DefiningQuery>SELECT 
-    [HistorialCargaArchivo_LinDet].[IdHistorialCargaArchivoLinDet] AS [IdHistorialCargaArchivoLinDet], 
-    [HistorialCargaArchivo_LinDet].[IdEmpresa] AS [IdEmpresa], 
-    [HistorialCargaArchivo_LinDet].[NumeroContrato] AS [NumeroContrato], 
-    [HistorialCargaArchivo_LinDet].[IdArchivo] AS [IdArchivo], 
-    [HistorialCargaArchivo_LinDet].[FechaInsert] AS [FechaInsert], 
-    [HistorialCargaArchivo_LinDet].[TipoLinea] AS [TipoLinea], 
-    [HistorialCargaArchivo_LinDet].[NumeroLinea] AS [NumeroLinea], 
-    [HistorialCargaArchivo_LinDet].[FEC_DEVE] AS [FEC_DEVE], 
-    [HistorialCargaArchivo_LinDet].[FEC_FALL] AS [FEC_FALL], 
-    [HistorialCargaArchivo_LinDet].[FEC_OCUR] AS [FEC_OCUR], 
-    [HistorialCargaArchivo_LinDet].[FEC_PAGO_APO_ADI] AS [FEC_PAGO_APO_ADI], 
-    [HistorialCargaArchivo_LinDet].[FEC_INV_DEF] AS [FEC_INV_DEF], 
-    [HistorialCargaArchivo_LinDet].[CAP_GAST_SEP] AS [CAP_GAST_SEP], 
-    [HistorialCargaArchivo_LinDet].[PARE] AS [PARE], 
-    [HistorialCargaArchivo_LinDet].[SAL_CIC_SOL] AS [SAL_CIC_SOL], 
-    [HistorialCargaArchivo_LinDet].[TIP_REGI] AS [TIP_REGI], 
-    [HistorialCargaArchivo_LinDet].[TIP_SOLI] AS [TIP_SOLI], 
-    [HistorialCargaArchivo_LinDet].[NUM_BENE] AS [NUM_BENE], 
-    [HistorialCargaArchivo_LinDet].[NUM_MESE_DEV] AS [NUM_MESE_DEV], 
-    [HistorialCargaArchivo_LinDet].[POR_BENE] AS [POR_BENE], 
-    [HistorialCargaArchivo_LinDet].[TIP_IDEN_SOL] AS [TIP_IDEN_SOL], 
-    [HistorialCargaArchivo_LinDet].[TIP_PENS] AS [TIP_PENS], 
-    [HistorialCargaArchivo_LinDet].[TIP_DOCU_IDE_PEN] AS [TIP_DOCU_IDE_PEN], 
-    [HistorialCargaArchivo_LinDet].[TIP_MOVI] AS [TIP_MOVI], 
-    [HistorialCargaArchivo_LinDet].[COD_CSV_01] AS [COD_CSV_01], 
-    [HistorialCargaArchivo_LinDet].[COD_CSV_02] AS [COD_CSV_02], 
-    [HistorialCargaArchivo_LinDet].[COD_CSV_03] AS [COD_CSV_03], 
-    [HistorialCargaArchivo_LinDet].[COD_CSV_04] AS [COD_CSV_04], 
-    [HistorialCargaArchivo_LinDet].[COD_CSV_05] AS [COD_CSV_05], 
-    [HistorialCargaArchivo_LinDet].[COD_CSV_06] AS [COD_CSV_06], 
-    [HistorialCargaArchivo_LinDet].[COD_CSV_07] AS [COD_CSV_07], 
-    [HistorialCargaArchivo_LinDet].[COD_CSV_08] AS [COD_CSV_08], 
-    [HistorialCargaArchivo_LinDet].[COD_AFP ] AS [COD_AFP ], 
-    [HistorialCargaArchivo_LinDet].[COD_IDE_CSV] AS [COD_IDE_CSV], 
-    [HistorialCargaArchivo_LinDet].[FRA_MESE_DEV] AS [FRA_MESE_DEV], 
-    [HistorialCargaArchivo_LinDet].[IND_PENS_PRE] AS [IND_PENS_PRE], 
-    [HistorialCargaArchivo_LinDet].[MTO_PPRE_ORI] AS [MTO_PPRE_ORI], 
-    [HistorialCargaArchivo_LinDet].[TIP_CAMB_VTA] AS [TIP_CAMB_VTA], 
-    [HistorialCargaArchivo_LinDet].[EXC_PENS_SOL] AS [EXC_PENS_SOL], 
-    [HistorialCargaArchivo_LinDet].[EXC_PENS_NM] AS [EXC_PENS_NM], 
-    [HistorialCargaArchivo_LinDet].[MES_DEVE] AS [MES_DEVE], 
-    [HistorialCargaArchivo_LinDet].[CAP_REQU_PEN] AS [CAP_REQU_PEN], 
-    [HistorialCargaArchivo_LinDet].[CRU_FAMI] AS [CRU_FAMI], 
-    [HistorialCargaArchivo_LinDet].[FEC_NACI] AS [FEC_NACI], 
-    [HistorialCargaArchivo_LinDet].[FEC_NACI_PEN] AS [FEC_NACI_PEN], 
-    [HistorialCargaArchivo_LinDet].[FEC_PAGO] AS [FEC_PAGO], 
-    [HistorialCargaArchivo_LinDet].[FEC_PAGO_TEX] AS [FEC_PAGO_TEX], 
-    [HistorialCargaArchivo_LinDet].[FEC_SECI] AS [FEC_SECI], 
-    [HistorialCargaArchivo_LinDet].[FEC_SINI_OCU] AS [FEC_SINI_OCU], 
-    [HistorialCargaArchivo_LinDet].[FEC_DEVE_ACT] AS [FEC_DEVE_ACT], 
-    [HistorialCargaArchivo_LinDet].[FEC_DEVE_INI] AS [FEC_DEVE_INI], 
-    [HistorialCargaArchivo_LinDet].[FEC_FIN_SUB] AS [FEC_FIN_SUB], 
-    [HistorialCargaArchivo_LinDet].[RAM_PROM_SOL] AS [RAM_PROM_SOL], 
-    [HistorialCargaArchivo_LinDet].[TAS_INTE] AS [TAS_INTE], 
-    [HistorialCargaArchivo_LinDet].[VACIO_10] AS [VACIO_10], 
-    [HistorialCargaArchivo_LinDet].[DES_PENS_MONE] AS [DES_PENS_MONE], 
-    [HistorialCargaArchivo_LinDet].[MTO_APOR_ADI] AS [MTO_APOR_ADI], 
-    [HistorialCargaArchivo_LinDet].[MTO_APOR_ADI_SOL] AS [MTO_APOR_ADI_SOL], 
-    [HistorialCargaArchivo_LinDet].[MTO_APOR_COM] AS [MTO_APOR_COM], 
-    [HistorialCargaArchivo_LinDet].[MTO_PENS_PAG] AS [MTO_PENS_PAG], 
-    [HistorialCargaArchivo_LinDet].[MTO_PPRE_MN] AS [MTO_PPRE_MN], 
-    [HistorialCargaArchivo_LinDet].[MTO_APOR_OBL] AS [MTO_APOR_OBL], 
-    [HistorialCargaArchivo_LinDet].[MTO_MONE_APO_COM1] AS [MTO_MONE_APO_COM1], 
-    [HistorialCargaArchivo_LinDet].[MTO_MONE_APO_COM2] AS [MTO_MONE_APO_COM2], 
-    [HistorialCargaArchivo_LinDet].[MTO_MONE_APO_COM3] AS [MTO_MONE_APO_COM3], 
-    [HistorialCargaArchivo_LinDet].[MTO_MONE_APO_COM4] AS [MTO_MONE_APO_COM4], 
-    [HistorialCargaArchivo_LinDet].[MTO_MONE_APO_COM5] AS [MTO_MONE_APO_COM5], 
-    [HistorialCargaArchivo_LinDet].[MTO_MONE_APO_COM6] AS [MTO_MONE_APO_COM6], 
-    [HistorialCargaArchivo_LinDet].[MTO_MONE_APO_COM7] AS [MTO_MONE_APO_COM7], 
-    [HistorialCargaArchivo_LinDet].[MTO_MONE_APO_COM8] AS [MTO_MONE_APO_COM8], 
-    [HistorialCargaArchivo_LinDet].[MTO_MONE_APO_OBL1] AS [MTO_MONE_APO_OBL1], 
-    [HistorialCargaArchivo_LinDet].[MTO_MONE_APO_OBL2] AS [MTO_MONE_APO_OBL2], 
-    [HistorialCargaArchivo_LinDet].[MTO_MONE_APO_OBL3] AS [MTO_MONE_APO_OBL3], 
-    [HistorialCargaArchivo_LinDet].[MTO_MONE_APO_OBL4] AS [MTO_MONE_APO_OBL4], 
-    [HistorialCargaArchivo_LinDet].[MTO_MONE_APO_OBL5] AS [MTO_MONE_APO_OBL5], 
-    [HistorialCargaArchivo_LinDet].[MTO_MONE_APO_OBL6] AS [MTO_MONE_APO_OBL6], 
-    [HistorialCargaArchivo_LinDet].[MTO_MONE_APO_OBL7] AS [MTO_MONE_APO_OBL7], 
-    [HistorialCargaArchivo_LinDet].[MTO_MONE_APO_OBL8] AS [MTO_MONE_APO_OBL8], 
-    [HistorialCargaArchivo_LinDet].[MTO_PAGO_REE_SOL] AS [MTO_PAGO_REE_SOL], 
-    [HistorialCargaArchivo_LinDet].[MTO_PRIM_PAG_PENS_AFP1] AS [MTO_PRIM_PAG_PENS_AFP1], 
-    [HistorialCargaArchivo_LinDet].[MTO_PRIM_PAG_PENS_AFP2] AS [MTO_PRIM_PAG_PENS_AFP2], 
-    [HistorialCargaArchivo_LinDet].[MTO_PRIM_PAG_PENS_AFP3] AS [MTO_PRIM_PAG_PENS_AFP3], 
-    [HistorialCargaArchivo_LinDet].[MTO_PRIM_PAG_PENS_AFP4] AS [MTO_PRIM_PAG_PENS_AFP4], 
-    [HistorialCargaArchivo_LinDet].[MTO_PRIM_PAG_PENS_AFP5] AS [MTO_PRIM_PAG_PENS_AFP5], 
-    [HistorialCargaArchivo_LinDet].[MTO_PRIM_PAG_PENS_AFP6] AS [MTO_PRIM_PAG_PENS_AFP6], 
-    [HistorialCargaArchivo_LinDet].[MTO_PRIM_PAG_PENS_AFP7] AS [MTO_PRIM_PAG_PENS_AFP7], 
-    [HistorialCargaArchivo_LinDet].[MTO_PRIM_PAG_PENS_AFP8] AS [MTO_PRIM_PAG_PENS_AFP8], 
-    [HistorialCargaArchivo_LinDet].[MTO_DSCT_PENS_PAG_AFP1] AS [MTO_DSCT_PENS_PAG_AFP1], 
-    [HistorialCargaArchivo_LinDet].[MTO_DSCT_PENS_PAG_AFP2] AS [MTO_DSCT_PENS_PAG_AFP2], 
-    [HistorialCargaArchivo_LinDet].[MTO_DSCT_PENS_PAG_AFP3] AS [MTO_DSCT_PENS_PAG_AFP3], 
-    [HistorialCargaArchivo_LinDet].[MTO_DSCT_PENS_PAG_AFP4] AS [MTO_DSCT_PENS_PAG_AFP4], 
-    [HistorialCargaArchivo_LinDet].[MTO_DSCT_PENS_PAG_AFP5] AS [MTO_DSCT_PENS_PAG_AFP5], 
-    [HistorialCargaArchivo_LinDet].[MTO_DSCT_PENS_PAG_AFP6] AS [MTO_DSCT_PENS_PAG_AFP6], 
-    [HistorialCargaArchivo_LinDet].[MTO_DSCT_PENS_PAG_AFP7] AS [MTO_DSCT_PENS_PAG_AFP7], 
-    [HistorialCargaArchivo_LinDet].[MTO_DSCT_PENS_PAG_AFP8] AS [MTO_DSCT_PENS_PAG_AFP8], 
-    [HistorialCargaArchivo_LinDet].[MTO_SOLE_APO_ADI_AFP1] AS [MTO_SOLE_APO_ADI_AFP1], 
-    [HistorialCargaArchivo_LinDet].[MTO_SOLE_APO_ADI_AFP2] AS [MTO_SOLE_APO_ADI_AFP2], 
-    [HistorialCargaArchivo_LinDet].[MTO_SOLE_APO_ADI_AFP3] AS [MTO_SOLE_APO_ADI_AFP3], 
-    [HistorialCargaArchivo_LinDet].[MTO_SOLE_APO_ADI_AFP4] AS [MTO_SOLE_APO_ADI_AFP4], 
-    [HistorialCargaArchivo_LinDet].[MTO_SOLE_APO_ADI_AFP5] AS [MTO_SOLE_APO_ADI_AFP5], 
-    [HistorialCargaArchivo_LinDet].[MTO_SOLE_APO_ADI_AFP6] AS [MTO_SOLE_APO_ADI_AFP6], 
-    [HistorialCargaArchivo_LinDet].[MTO_SOLE_APO_ADI_AFP7] AS [MTO_SOLE_APO_ADI_AFP7], 
-    [HistorialCargaArchivo_LinDet].[MTO_SOLE_APO_ADI_AFP8] AS [MTO_SOLE_APO_ADI_AFP8], 
-    [HistorialCargaArchivo_LinDet].[MTO_SOLE_REE_PAG_AFP1] AS [MTO_SOLE_REE_PAG_AFP1], 
-    [HistorialCargaArchivo_LinDet].[MTO_SOLE_REE_PAG_AFP2] AS [MTO_SOLE_REE_PAG_AFP2], 
-    [HistorialCargaArchivo_LinDet].[MTO_SOLE_REE_PAG_AFP3] AS [MTO_SOLE_REE_PAG_AFP3], 
-    [HistorialCargaArchivo_LinDet].[MTO_SOLE_REE_PAG_AFP4] AS [MTO_SOLE_REE_PAG_AFP4], 
-    [HistorialCargaArchivo_LinDet].[MTO_SOLE_REE_PAG_AFP5] AS [MTO_SOLE_REE_PAG_AFP5], 
-    [HistorialCargaArchivo_LinDet].[MTO_SOLE_REE_PAG_AFP6] AS [MTO_SOLE_REE_PAG_AFP6], 
-    [HistorialCargaArchivo_LinDet].[MTO_SOLE_REE_PAG_AFP7] AS [MTO_SOLE_REE_PAG_AFP7], 
-    [HistorialCargaArchivo_LinDet].[MTO_SOLE_REE_PAG_AFP8] AS [MTO_SOLE_REE_PAG_AFP8], 
-    [HistorialCargaArchivo_LinDet].[NRO_CSV] AS [NRO_CSV], 
-    [HistorialCargaArchivo_LinDet].[NUM_DOCU_SOL] AS [NUM_DOCU_SOL], 
-    [HistorialCargaArchivo_LinDet].[NUM_SINI] AS [NUM_SINI], 
-    [HistorialCargaArchivo_LinDet].[NUM_SOLI] AS [NUM_SOLI], 
-    [HistorialCargaArchivo_LinDet].[NÚM_SOLI_PEN] AS [NÚM_SOLI_PEN], 
-    [HistorialCargaArchivo_LinDet].[NÚM_DOCU_PEN] AS [NÚM_DOCU_PEN], 
-    [HistorialCargaArchivo_LinDet].[PEN_PAGA_MON] AS [PEN_PAGA_MON], 
-    [HistorialCargaArchivo_LinDet].[PEN_BASE_MON] AS [PEN_BASE_MON], 
-    [HistorialCargaArchivo_LinDet].[REM_PROM_ACT] AS [REM_PROM_ACT], 
-    [HistorialCargaArchivo_LinDet].[NUM_APOR_ACT] AS [NUM_APOR_ACT], 
-    [HistorialCargaArchivo_LinDet].[SAL_CIC_MN] AS [SAL_CIC_MN], 
-    [HistorialCargaArchivo_LinDet].[TIP_CAMB_COM] AS [TIP_CAMB_COM], 
-    [HistorialCargaArchivo_LinDet].[TIP_MONE] AS [TIP_MONE], 
-    [HistorialCargaArchivo_LinDet].[TOT_CAPI_REQ_MN] AS [TOT_CAPI_REQ_MN], 
-    [HistorialCargaArchivo_LinDet].[TOT_CAPI_REQ_ORI] AS [TOT_CAPI_REQ_ORI], 
-    [HistorialCargaArchivo_LinDet].[COD_CUSP] AS [COD_CUSP], 
-    [HistorialCargaArchivo_LinDet].[COD_BENE_MN] AS [COD_BENE_MN], 
-    [HistorialCargaArchivo_LinDet].[APE_MATE_PEN] AS [APE_MATE_PEN], 
-    [HistorialCargaArchivo_LinDet].[APE_MATE_SOLI] AS [APE_MATE_SOLI], 
-    [HistorialCargaArchivo_LinDet].[APE_PATE_PEN] AS [APE_PATE_PEN], 
-    [HistorialCargaArchivo_LinDet].[APE_PATE_SOL] AS [APE_PATE_SOL], 
-    [HistorialCargaArchivo_LinDet].[PRI_NOMB_PEN] AS [PRI_NOMB_PEN], 
-    [HistorialCargaArchivo_LinDet].[PRI_NOMB_SOL] AS [PRI_NOMB_SOL], 
-    [HistorialCargaArchivo_LinDet].[SEG_NOMB_PEN] AS [SEG_NOMB_PEN], 
-    [HistorialCargaArchivo_LinDet].[SEG_NOMB_SOL] AS [SEG_NOMB_SOL], 
-    [HistorialCargaArchivo_LinDet].[SUC_INTE] AS [SUC_INTE], 
-    [HistorialCargaArchivo_LinDet].[CumpleValidacion] AS [CumpleValidacion], 
-    [HistorialCargaArchivo_LinDet].[ESTADO] AS [ESTADO], 
-    [HistorialCargaArchivo_LinDet].[FEC_REG] AS [FEC_REG], 
-    [HistorialCargaArchivo_LinDet].[USU_REG] AS [USU_REG]
-    FROM [Importacion].[HistorialCargaArchivo_LinDet] AS [HistorialCargaArchivo_LinDet]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="CheckLists" EntityType="Self.CheckLists" store:Type="Tables" store:Schema="Negocio">
             <DefiningQuery>SELECT 
@@ -3578,11 +3304,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
         <EntityType Name="HistorialCargaArchivo_LinCab">
           <Key>
             <PropertyRef Name="IdHistorialCargaArchivoLinCab" />
-            <PropertyRef Name="IdEmpresa" />
-            <PropertyRef Name="NumeroContrato" />
-            <PropertyRef Name="ESTADO" />
-            <PropertyRef Name="FEC_REG" />
-            <PropertyRef Name="USU_REG" />
           </Key>
           <Property Name="IdHistorialCargaArchivoLinCab" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
@@ -3603,17 +3324,9 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
         <EntityType Name="HistorialCargaArchivo_LinDet">
           <Key>
             <PropertyRef Name="IdHistorialCargaArchivoLinDet" />
-            <PropertyRef Name="IdEmpresa" />
-            <PropertyRef Name="NumeroContrato" />
-            <PropertyRef Name="IdArchivo" />
-            <PropertyRef Name="ESTADO" />
-            <PropertyRef Name="FEC_REG" />
-            <PropertyRef Name="USU_REG" />
           </Key>
           <Property Name="IdHistorialCargaArchivoLinDet" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
-          <Property Name="NumeroContrato" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="IdArchivo" Type="Int32" Nullable="false" />
+          <Property Name="IdHistorialCargaArchivoLinCab" Type="Int64" Nullable="false" />
           <Property Name="FechaInsert" Type="DateTime" Precision="3" />
           <Property Name="TipoLinea" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="NumeroLinea" Type="Int32" />
@@ -4963,9 +4676,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
                 <ScalarProperty Name="NumeroLinea" ColumnName="NumeroLinea" />
                 <ScalarProperty Name="TipoLinea" ColumnName="TipoLinea" />
                 <ScalarProperty Name="FechaInsert" ColumnName="FechaInsert" />
-                <ScalarProperty Name="IdArchivo" ColumnName="IdArchivo" />
-                <ScalarProperty Name="NumeroContrato" ColumnName="NumeroContrato" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IdHistorialCargaArchivoLinCab" ColumnName="IdHistorialCargaArchivoLinCab" />
                 <ScalarProperty Name="IdHistorialCargaArchivoLinDet" ColumnName="IdHistorialCargaArchivoLinDet" />
               </MappingFragment>
             </EntityTypeMapping>
