@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity.Core.Objects;
 using VidaCamara.DIS.Modelo;
+using VidaCamara.DIS.Negocio;
 
 namespace VidaCamara.DIS.data
 {
@@ -68,6 +67,58 @@ namespace VidaCamara.DIS.data
                 FEC_PAGO = new DateTime()
 
             };
+        }
+
+        internal long guardarCabecera(Dictionary<string, string> distionaryCabecera, HistorialCargaArchivo_LinCab cabecera)
+        {
+            long resp = 0;
+            try
+            {
+                cabecera.FEC_ENVI_ARC = DateTime.Now;
+                cabecera.COD_CSV = Convert.ToInt32(distionaryCabecera["10"].ToString());
+                cabecera.NUM_CONT_LIC = Convert.ToInt32(distionaryCabecera["14"].ToString());
+                cabecera.PER_CONT = distionaryCabecera["20"].ToString();
+                cabecera.TIP_PAGO = distionaryCabecera["26"].ToString();
+                cabecera.MONEDA = Convert.ToInt32(distionaryCabecera["29"].ToString());
+                cabecera.FEC_PAGO = DateTime.Now;
+                cabecera.CumpleValidacion = 1;
+                cabecera.ESTADO = "A";
+                cabecera.FEC_REG = DateTime.Now;
+
+                using (var db = new DISEntities())
+                {
+                    db.HistorialCargaArchivo_LinCabs.Add(cabecera);
+                    db.SaveChanges();
+                    resp = cabecera.IdHistorialCargaArchivoLinCab;
+                }
+                return resp;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public List<Regla> ObtieneReglaLinea(ObjectResult<pa_file_ObtieneReglasArchivoPorLinea_Result> dt)
+        {
+            var reglaLinea = new List<Regla>();
+            foreach (var iLoopVariable in dt)
+            {
+                var i = iLoopVariable;
+                var regla = new Regla
+                {
+                    idRegla = i.IdReglaArchivo,
+                    CaracterInicial = i.CaracterInicial.Value,
+                    LargoCampo = i.LargoCampo.Value,
+                    TipoCampo = i.TipoCampo,
+                    TipoValidacion = i.TipoValidacion,
+                    ReglaValidacion = i.ReglaValidacion,
+                    Tabladestino = i.TablaDestino
+                };
+                reglaLinea.Add(regla);
+            }
+            return reglaLinea;
         }
     }
 }
