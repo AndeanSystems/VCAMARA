@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using VidaCamara.DIS.Modelo;
 using VidaCamara.DIS.Negocio;
 using VidaCamara.SBS.Entity;
 using VidaCamara.SBS.Negocio;
@@ -37,12 +38,19 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         {
             try
             {
+                var entityCargaCabecera = new HistorialCargaArchivo_LinCab()
+                {
+                    IdEmpresa = 1,
+                    NumeroContrato = ddl_conrato1.SelectedItem.Value,
+                    TIP_REGI = "C",
+                    USU_REG = "AUTO"
+                };
                 if (!fileUpload.HasFile) return;
 
                 var fileName = Server.MapPath(("~/Temp/Archivos/")) + fileUpload.FileName;
                 fileUpload.SaveAs(fileName);
                 var cargaLogica = new CargaLogica(fileName) { UsuarioModificacion = /*Session["usernameId"].ToString() */   "2"};
-                cargaLogica.CargarArchivo();
+                cargaLogica.CargarArchivo(entityCargaCabecera);
 
                 if ((cargaLogica.MensajeExcepcion != ""))
                 {
