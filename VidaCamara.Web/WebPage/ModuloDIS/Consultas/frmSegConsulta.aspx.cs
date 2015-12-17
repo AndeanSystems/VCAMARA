@@ -30,16 +30,25 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             {
                 var concepto = new bTablaVC();
                 SetLLenadoContrato();
-                concepto.SetEstablecerDataSourceConcepto(ddl_tipo_tramite,"22");
-                //concepto.SetEstablecerDataSourceConcepto(ddl_afp, "23");
-                concepto.SetEstablecerDataSourceConcepto(ddl_afp, "14");
-                //concepto.SetEstablecerDataSourceConcepto(ddl_moneda, "20");
+                //concepto.SetEstablecerDataSourceConcepto(ddl_tipo_tramite,"22");
+                concepto.SetEstablecerDataSourceConcepto(ddl_afp, "23");
+                //concepto.SetEstablecerDataSourceConcepto(ddl_afp, "14");
+                concepto.SetEstablecerDataSourceConcepto(ddl_moneda, "20");
                 concepto.SetEstablecerDataSourceConcepto(ddl_moneda, "10");
             }
         }
         private void SetLLenadoContrato()
         {
-            var list = new VidaCamara.SBS.Utils.Utility().getContrato(out total);
+            var list = new VidaCamara.SBS.Utils.Utility().getContratoSys(out total);
+            ddl_contrato.DataSource = list;
+            ddl_contrato.DataTextField = "_des_Contrato";
+            ddl_contrato.DataValueField = "_nro_Contrato";
+            ddl_contrato.DataBind();
+            ddl_contrato.Items.Insert(0, new ListItem("Seleccione ----", "0"));
+        }
+        private void SetLLenadoContratoSIS()
+        {
+            var list = new VidaCamara.SBS.Utils.Utility().getContratoSys(out total);
             ddl_contrato.DataSource = list;
             ddl_contrato.DataTextField = "_des_Contrato";
             ddl_contrato.DataValueField = "_nro_Contrato";
