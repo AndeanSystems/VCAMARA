@@ -63,16 +63,16 @@
                 <asp:DropDownList runat="server" ID="ddl_tipo_archivo" CssClass="input_to" Height="25px" Width="40%" OnSelectedIndexChanged="ddl_tipo_archivo_SelectedIndexChanged"></asp:DropDownList>
 
                 <label class="label_to" for="fileUpload">Moneda</label>
-                <asp:Label runat="server" CssClass="input_to" Text="Soles"></asp:Label>
+                <asp:Label runat="server" CssClass="input_to" Text="."></asp:Label>
 
                 <label class="label_to" for="fileUpload">Tipo del importe</label>
-                <asp:Label runat="server" CssClass="input_to" Text="20,000"></asp:Label>
+                <asp:Label runat="server" CssClass="input_to" Text="0"></asp:Label>
 
                 <label class="label_to" for="fileUpload">Registros Procesados</label>
-                <asp:Label runat="server" CssClass="input_to" Text="300"></asp:Label>
+                <asp:Label runat="server" CssClass="input_to" Text="0"></asp:Label>
 
                 <label class="label_to" for="fileUpload">Registros Observadas</label>
-                <asp:Label runat="server" CssClass="input_to" Text="40"></asp:Label>
+                <asp:Label runat="server" CssClass="input_to" Text="0"></asp:Label>
             </asp:View>
             <!--seccion de RSP-->
             <asp:View ID="view2" runat="server">               
