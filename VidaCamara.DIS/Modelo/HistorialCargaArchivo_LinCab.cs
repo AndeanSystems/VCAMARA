@@ -14,9 +14,14 @@ namespace VidaCamara.DIS.Modelo
     
     public partial class HistorialCargaArchivo_LinCab
     {
+        public HistorialCargaArchivo_LinCab()
+        {
+            this.HistorialCargaArchivo_LinDet = new HashSet<HistorialCargaArchivo_LinDet>();
+        }
+    
         public long IdHistorialCargaArchivoLinCab { get; set; }
-        public int IdEmpresa { get; set; }
-        public string NumeroContrato { get; set; }
+        public Nullable<int> ArchivoId { get; set; }
+        public int IDE_CONTRATO { get; set; }
         public string TIP_REGI { get; set; }
         public Nullable<System.DateTime> FEC_ENVI_ARC { get; set; }
         public Nullable<int> COD_CSV { get; set; }
@@ -29,5 +34,9 @@ namespace VidaCamara.DIS.Modelo
         public string ESTADO { get; set; }
         public System.DateTime FEC_REG { get; set; }
         public string USU_REG { get; set; }
+    
+        public virtual CONTRATO_SYS CONTRATO_SYS { get; set; }
+        public virtual Archivo Archivo { get; set; }
+        public virtual ICollection<HistorialCargaArchivo_LinDet> HistorialCargaArchivo_LinDet { get; set; }
     }
 }

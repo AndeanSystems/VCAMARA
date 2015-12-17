@@ -188,12 +188,27 @@ warning 6002: The table/view 'vcamara.dbo.CONTRATO_DETALLE' does not have a prim
           <Property Name="FEC_MOD" Type="datetime" />
           <Property Name="USU_MOD" Type="varchar" MaxLength="30" />
         </EntityType>
+        <EntityType Name="CONTRATO_SIS_DET">
+          <Key>
+            <PropertyRef Name="IDE_CONTRATO_DET" />
+          </Key>
+          <Property Name="IDE_CONTRATO_DET" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDE_CONTRATO" Type="int" />
+          <Property Name="COD_CSV" Type="int" />
+          <Property Name="PRC_PARTICIACION" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="NRO_ORDEN" Type="int" />
+          <Property Name="ESTADO" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="USU_REG" Type="varchar" MaxLength="30" />
+          <Property Name="FEC_REG" Type="datetime" Nullable="false" />
+          <Property Name="FEC_MOD" Type="datetime" />
+          <Property Name="USU_MOD" Type="varchar" MaxLength="30" />
+        </EntityType>
         <EntityType Name="CONTRATO_SYS">
           <Key>
             <PropertyRef Name="IDE_CONTRATO" />
           </Key>
-          <Property Name="ID_EMPRESA" Type="int" />
           <Property Name="IDE_CONTRATO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_EMPRESA" Type="int" />
           <Property Name="NRO_CONTRATO" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="CLA_CONTRATO" Type="char" MaxLength="4" Nullable="false" />
           <Property Name="FEC_INI_VIG" Type="date" Nullable="false" />
@@ -204,6 +219,7 @@ warning 6002: The table/view 'vcamara.dbo.CONTRATO_DETALLE' does not have a prim
           <Property Name="USU_REG" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="FEC_MOD" Type="datetime" />
           <Property Name="USU_MOD" Type="varchar" MaxLength="30" />
+          <Property Name="NRO_EMPRESAS" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'vcamara.dbo.DATO_A' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -519,6 +535,101 @@ warning 6002: The table/view 'vcamara.dbo.EXACTUS_CABECERA' does not have a prim
           <Property Name="ORI_REG" Type="char" MaxLength="1" />
           <Property Name="TIP_COMPROBANTE" Type="char" MaxLength="3" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'vcamara.dbo.ReporteDictamen' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ReporteDictamen">
+          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO PATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO MATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PRIMER NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SEGUNDO _NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
+          <Property Name="CONTRATO" Type="float" />
+          <Property Name="ESTADO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="NÚMERO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="EMISOR DICTAMEN" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO DE PENSIÓN" Type="nvarchar" MaxLength="255" />
+          <Property Name="NÚMERO DE EVALUACIÓN" Type="float" />
+          <Property Name="PORCENTAJE DE PENSIÓN" Type="float" />
+          <Property Name="FECHA DE OCURRENCIA" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE DEVENGUE  INICIAL" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE INICIO DE VIGENCIA DEL DICTAMEN INICIAL#" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA FIN DE VIGENCIA DEL DICTAMEN " Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE AVISO DEL# DICTAMEN " Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'vcamara.dbo.ReporteSECI' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ReporteSECI">
+          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDOPATERNOAFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDOMATERNOAFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PRIMERNOMBREAFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SEGUNDONOMBREAFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPODESOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
+          <Property Name="CONTRATO" Type="float" />
+          <Property Name="NUMERODESECI" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHADESECI" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHADEAVISODESECI" Type="nvarchar" MaxLength="255" />
+          <Property Name="INDICADORDESUBSIDIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="NUMERODE SOLICITUDDEPENSION" Type="nvarchar" MaxLength="255" />
+          <Property Name="ESTADODELASOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHADESOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPODESOLICITUD1" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHADEAVISODESOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPODEPENSION" Type="nvarchar" MaxLength="255" />
+          <Property Name="PORCENTAJEDEPENSION" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHADEOCURRENCIA" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE  DEVENGUE INICIAL" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'vcamara.dbo.ReportesSolicitudes' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ReportesSolicitudes">
+          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO PATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO MATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PRIMER NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SEGUNDO NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
+          <Property Name="CONTRATO" Type="float" />
+          <Property Name="ESTADO DE LA_SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="NÚMERO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO DE INVALIDEZ" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO DE PENSIÓN" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO PATERNO BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO MATERNO BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PRIMER NOMBRE BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SEGUNDO NOMBRE BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PARENTESCO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SEXO  DEL BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="EDAD DEL BENEFICIARIO" Type="float" />
+          <Property Name="CONDICIÓN DE INVALIDEZ DEL BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PORCENTAJE DE PENSIÓN" Type="float" />
+          <Property Name="ESTADO DEL BENFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE OCURRENCIA" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE DEVENGE INICIAL" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE AVISO  DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA  PRONUNCIAMIENTO  DE COBERTURA" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO  DE COBERTURA " Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE  REACTIVACIÓN  DE COBERTURA" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE  NOTIFICACIÓN DEL ANEXO  16" Type="nvarchar" MaxLength="255" />
+          <Property Name="NÚMERO DE DIAS TRANSCURRIDOS DESDE LA FECHA  DEL FALLECIMIENTO" Type="float" />
+          <Property Name="MONEDA" Type="nvarchar" MaxLength="255" />
+          <Property Name="PROMEDIO DE RAM" Type="nvarchar" MaxLength="255" />
+          <Property Name="MONTO DE LA PENSIÓN  QUE LE CORRESPONDE" Type="float" />
+          <Property Name="FECHA DE LIQUIDACIÓN DEL PRIMER PAGO" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE VENCIMIENTO DEL C#S#" Type="nvarchar" MaxLength="255" />
+          <Property Name="NÚMERO DE PAGOS DE PENSIONES PRELIMINARES" Type="float" />
+          <Property Name="FECHA DE CUMPLIMIENTO DE CONDICIONES PARA CALCULO AA " Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE NOTIFICACIÓN DE AA AL DIS" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE PRONUNCIAMIENTO DEL PAGO DEL AA# " Type="nvarchar" MaxLength="255" />
+          <Property Name="ESTADO DE LA SOLICITUD DEL AA" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE LIQUIDACIÓN DE AA" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -575,8 +686,8 @@ warning 6002: The table/view 'vcamara.dbo.USUARIO' does not have a primary key d
             <PropertyRef Name="IdHistorialCargaArchivoLinCab" />
           </Key>
           <Property Name="IdHistorialCargaArchivoLinCab" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdEmpresa" Type="int" Nullable="false" />
-          <Property Name="NumeroContrato" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ArchivoId" Type="int" />
+          <Property Name="IDE_CONTRATO" Type="int" Nullable="false" />
           <Property Name="TIP_REGI" Type="varchar" MaxLength="1" />
           <Property Name="FEC_ENVI_ARC" Type="datetime" />
           <Property Name="COD_CSV" Type="int" />
@@ -595,7 +706,7 @@ warning 6002: The table/view 'vcamara.dbo.USUARIO' does not have a primary key d
             <PropertyRef Name="IdHistorialCargaArchivoLinDet" />
           </Key>
           <Property Name="IdHistorialCargaArchivoLinDet" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdHistorialCargaArchivoLinCab" Type="bigint" Nullable="false" />
+          <Property Name="IdHistorialCargaArchivoLinCab" Type="bigint" />
           <Property Name="FechaInsert" Type="datetime" />
           <Property Name="TipoLinea" Type="varchar" MaxLength="10" />
           <Property Name="NumeroLinea" Type="int" />
@@ -730,9 +841,6 @@ warning 6002: The table/view 'vcamara.dbo.USUARIO' does not have a primary key d
           <Property Name="SEG_NOMB_SOL" Type="varchar" MaxLength="20" />
           <Property Name="SUC_INTE" Type="varchar" MaxLength="25" />
           <Property Name="CumpleValidacion" Type="int" />
-          <Property Name="ESTADO" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="FEC_REG" Type="datetime" Nullable="false" />
-          <Property Name="USU_REG" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="ReglaArchivo">
           <Key>
@@ -754,6 +862,7 @@ warning 6002: The table/view 'vcamara.dbo.USUARIO' does not have a primary key d
           <Property Name="CampoNegocio" Type="varchar" MaxLength="30" />
           <Property Name="VigenciaReglaDesde" Type="datetime" />
           <Property Name="VigenciaReglaHasta" Type="datetime" />
+          <Property Name="NombreCampo" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="AFPs">
           <Key>
@@ -1104,6 +1213,18 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CONTRATO_SIS_DET_CONTRATO_SYS">
+          <End Role="CONTRATO_SYS" Type="Self.CONTRATO_SYS" Multiplicity="0..1" />
+          <End Role="CONTRATO_SIS_DET" Type="Self.CONTRATO_SIS_DET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTRATO_SYS">
+              <PropertyRef Name="IDE_CONTRATO" />
+            </Principal>
+            <Dependent Role="CONTRATO_SIS_DET">
+              <PropertyRef Name="IDE_CONTRATO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DocumentoCheckeado">
           <End Role="Documentos" Type="Self.Documentos" Multiplicity="1" />
           <End Role="Checkeados" Type="Self.Checkeados" Multiplicity="*" />
@@ -1149,6 +1270,42 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             </Principal>
             <Dependent Role="HistorialCargaArchivo">
               <PropertyRef Name="IdArchivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistorialCargaArchivo_LinCab_Archivo">
+          <End Role="Archivo" Type="Self.Archivo" Multiplicity="0..1" />
+          <End Role="HistorialCargaArchivo_LinCab" Type="Self.HistorialCargaArchivo_LinCab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Archivo">
+              <PropertyRef Name="ArchivoId" />
+            </Principal>
+            <Dependent Role="HistorialCargaArchivo_LinCab">
+              <PropertyRef Name="ArchivoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistorialCargaArchivo_LinCab_CONTRATO_SYS">
+          <End Role="CONTRATO_SYS" Type="Self.CONTRATO_SYS" Multiplicity="1" />
+          <End Role="HistorialCargaArchivo_LinCab" Type="Self.HistorialCargaArchivo_LinCab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTRATO_SYS">
+              <PropertyRef Name="IDE_CONTRATO" />
+            </Principal>
+            <Dependent Role="HistorialCargaArchivo_LinCab">
+              <PropertyRef Name="IDE_CONTRATO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab">
+          <End Role="HistorialCargaArchivo_LinCab" Type="Self.HistorialCargaArchivo_LinCab" Multiplicity="0..1" />
+          <End Role="HistorialCargaArchivo_LinDet" Type="Self.HistorialCargaArchivo_LinDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HistorialCargaArchivo_LinCab">
+              <PropertyRef Name="IdHistorialCargaArchivoLinCab" />
+            </Principal>
+            <Dependent Role="HistorialCargaArchivo_LinDet">
+              <PropertyRef Name="IdHistorialCargaArchivoLinCab" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1473,6 +1630,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <EntitySet Name="CIERRE_PROCESO" EntityType="Self.CIERRE_PROCESO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONCEPTO" EntityType="Self.CONCEPTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONTRATO" EntityType="Self.CONTRATO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONTRATO_SIS_DET" EntityType="Self.CONTRATO_SIS_DET" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONTRATO_SYS" EntityType="Self.CONTRATO_SYS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DATO_M" EntityType="Self.DATO_M" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
@@ -1754,6 +1912,10 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             <End Role="AFPs" EntitySet="AFPs" />
             <End Role="Siniestros" EntitySet="Siniestros" />
           </AssociationSet>
+          <AssociationSet Name="FK_CONTRATO_SIS_DET_CONTRATO_SYS" Association="Self.FK_CONTRATO_SIS_DET_CONTRATO_SYS">
+            <End Role="CONTRATO_SYS" EntitySet="CONTRATO_SYS" />
+            <End Role="CONTRATO_SIS_DET" EntitySet="CONTRATO_SIS_DET" />
+          </AssociationSet>
           <AssociationSet Name="FK_DocumentoCheckeado" Association="Self.FK_DocumentoCheckeado">
             <End Role="Documentos" EntitySet="Documentos" />
             <End Role="Checkeados" EntitySet="Checkeados" />
@@ -1769,6 +1931,18 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <AssociationSet Name="FK_HistorialCargaArchivo_Archivo" Association="Self.FK_HistorialCargaArchivo_Archivo">
             <End Role="Archivo" EntitySet="Archivo" />
             <End Role="HistorialCargaArchivo" EntitySet="HistorialCargaArchivo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistorialCargaArchivo_LinCab_Archivo" Association="Self.FK_HistorialCargaArchivo_LinCab_Archivo">
+            <End Role="Archivo" EntitySet="Archivo" />
+            <End Role="HistorialCargaArchivo_LinCab" EntitySet="HistorialCargaArchivo_LinCab" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistorialCargaArchivo_LinCab_CONTRATO_SYS" Association="Self.FK_HistorialCargaArchivo_LinCab_CONTRATO_SYS">
+            <End Role="CONTRATO_SYS" EntitySet="CONTRATO_SYS" />
+            <End Role="HistorialCargaArchivo_LinCab" EntitySet="HistorialCargaArchivo_LinCab" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab" Association="Self.FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab">
+            <End Role="HistorialCargaArchivo_LinCab" EntitySet="HistorialCargaArchivo_LinCab" />
+            <End Role="HistorialCargaArchivo_LinDet" EntitySet="HistorialCargaArchivo_LinDet" />
           </AssociationSet>
           <AssociationSet Name="FK_HistorialCargaArchivo_ReglaArchivo" Association="Self.FK_HistorialCargaArchivo_ReglaArchivo">
             <End Role="ReglaArchivo" EntitySet="ReglaArchivo" />
@@ -1854,8 +2028,8 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="ValorCampo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="CumpleValidacion" Type="Int32" />
           <Property Name="EsVC" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Archivo" Relationship="Self.FK_HistorialCargaArchivo_Archivo" FromRole="HistorialCargaArchivo" ToRole="Archivo" />
           <NavigationProperty Name="ReglaArchivo" Relationship="Self.FK_HistorialCargaArchivo_ReglaArchivo" FromRole="HistorialCargaArchivo" ToRole="ReglaArchivo" />
+          <NavigationProperty Name="Archivo" Relationship="DISModelo.FK_HistorialCargaArchivo_Archivo" FromRole="HistorialCargaArchivo" ToRole="Archivo" />
         </EntityType>
         <EntityType Name="ReglaArchivo">
           <Key>
@@ -1878,6 +2052,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="VigenciaReglaDesde" Type="DateTime" Precision="3" />
           <Property Name="VigenciaReglaHasta" Type="DateTime" Precision="3" />
           <NavigationProperty Name="HistorialCargaArchivoes" Relationship="Self.FK_HistorialCargaArchivo_ReglaArchivo" FromRole="ReglaArchivo" ToRole="HistorialCargaArchivo" />
+          <Property Name="NombreCampo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="AFP">
           <Key>
@@ -1888,21 +2063,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Nit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Siniestros" Relationship="Self.FK_AFPSiniestro" FromRole="AFPs" ToRole="Siniestros" />
-        </EntityType>
-        <EntityType Name="Archivo">
-          <Key>
-            <PropertyRef Name="ArchivoId" />
-          </Key>
-          <Property Name="ArchivoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EstadoArchivoId" Type="Int32" Nullable="false" />
-          <Property Name="TipoArchivoId" Type="Int32" Nullable="false" />
-          <Property Name="NombreArchivo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
-          <Property Name="UsuarioModificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Vigente" Type="Boolean" />
-          <NavigationProperty Name="HistorialCargaArchivoes" Relationship="Self.FK_HistorialCargaArchivo_Archivo" FromRole="Archivo" ToRole="HistorialCargaArchivo" />
-          <NavigationProperty Name="EstadoArchivo" Relationship="Self.FK_EstadoArchivoArchivo" FromRole="Archivo" ToRole="EstadoArchivo" />
-          <NavigationProperty Name="TipoArchivo" Relationship="Self.FK_TipoArchivoArchivo" FromRole="Archivo" ToRole="TipoArchivo" />
         </EntityType>
         <EntityType Name="Bitacora">
           <Key>
@@ -1991,7 +2151,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           </Key>
           <Property Name="EstadoArchivoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NombreEstado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Archivoes" Relationship="Self.FK_EstadoArchivoArchivo" FromRole="EstadoArchivo" ToRole="Archivo" />
+          <NavigationProperty Name="Archivoes" Relationship="DISModelo.FK_EstadoArchivoArchivo" FromRole="EstadoArchivo" ToRole="Archivo" />
         </EntityType>
         <EntityType Name="EstadoPago">
           <Key>
@@ -2156,8 +2316,8 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="FechaModificacion" Type="DateTime" Precision="0" />
           <Property Name="UsuarioModificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Vigente" Type="Boolean" />
-          <NavigationProperty Name="Archivoes" Relationship="Self.FK_TipoArchivoArchivo" FromRole="TipoArchivo" ToRole="Archivo" />
           <NavigationProperty Name="TipoInforme" Relationship="Self.FK_TipoArchivo_TipoInforme" FromRole="TipoArchivo" ToRole="TipoInforme" />
+          <NavigationProperty Name="Archivoes" Relationship="DISModelo.FK_TipoArchivoArchivo" FromRole="TipoArchivo" ToRole="Archivo" />
         </EntityType>
         <EntityType Name="TipoCambio">
           <Key>
@@ -2261,18 +2421,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="Estado" Type="Int32" />
           <Property Name="Observaciones" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="FK_HistorialCargaArchivo_Archivo">
-          <End Role="Archivo" Type="Self.Archivo" Multiplicity="1" />
-          <End Role="HistorialCargaArchivo" Type="Self.HistorialCargaArchivo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Archivo">
-              <PropertyRef Name="ArchivoId" />
-            </Principal>
-            <Dependent Role="HistorialCargaArchivo">
-              <PropertyRef Name="IdArchivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_HistorialCargaArchivo_ReglaArchivo">
           <End Role="ReglaArchivo" Type="Self.ReglaArchivo" Multiplicity="0..1" />
           <End Role="HistorialCargaArchivo" Type="Self.HistorialCargaArchivo" Multiplicity="*" />
@@ -2294,30 +2442,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             </Principal>
             <Dependent Role="Siniestros">
               <PropertyRef Name="AFPId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EstadoArchivoArchivo">
-          <End Role="EstadoArchivo" Type="Self.EstadoArchivo" Multiplicity="1" />
-          <End Role="Archivo" Type="Self.Archivo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EstadoArchivo">
-              <PropertyRef Name="EstadoArchivoId" />
-            </Principal>
-            <Dependent Role="Archivo">
-              <PropertyRef Name="EstadoArchivoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TipoArchivoArchivo">
-          <End Role="TipoArchivo" Type="Self.TipoArchivo" Multiplicity="1" />
-          <End Role="Archivo" Type="Self.Archivo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoArchivo">
-              <PropertyRef Name="TipoArchivoId" />
-            </Principal>
-            <Dependent Role="Archivo">
-              <PropertyRef Name="TipoArchivoId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2446,7 +2570,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <EntitySet Name="HistorialCargaArchivoes" EntityType="Self.HistorialCargaArchivo" />
           <EntitySet Name="ReglaArchivoes" EntityType="Self.ReglaArchivo" />
           <EntitySet Name="AFPs" EntityType="Self.AFP" />
-          <EntitySet Name="Archivoes" EntityType="Self.Archivo" />
           <EntitySet Name="Bitacoras" EntityType="Self.Bitacora" />
           <EntitySet Name="Checkeados" EntityType="Self.Checkeado" />
           <EntitySet Name="ContratoCSVs" EntityType="Self.ContratoCSV" />
@@ -2478,10 +2601,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <EntitySet Name="TipoSolicitudes" EntityType="Self.TipoSolicitude" />
           <EntitySet Name="Consultas" EntityType="Self.Consulta" />
           <EntitySet Name="CheckLists" EntityType="Self.CheckList" />
-          <AssociationSet Name="FK_HistorialCargaArchivo_Archivo" Association="Self.FK_HistorialCargaArchivo_Archivo">
-            <End Role="Archivo" EntitySet="Archivoes" />
-            <End Role="HistorialCargaArchivo" EntitySet="HistorialCargaArchivoes" />
-          </AssociationSet>
           <AssociationSet Name="FK_HistorialCargaArchivo_ReglaArchivo" Association="Self.FK_HistorialCargaArchivo_ReglaArchivo">
             <End Role="ReglaArchivo" EntitySet="ReglaArchivoes" />
             <End Role="HistorialCargaArchivo" EntitySet="HistorialCargaArchivoes" />
@@ -2489,14 +2608,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <AssociationSet Name="FK_AFPSiniestro" Association="Self.FK_AFPSiniestro">
             <End Role="AFPs" EntitySet="AFPs" />
             <End Role="Siniestros" EntitySet="Siniestros" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EstadoArchivoArchivo" Association="Self.FK_EstadoArchivoArchivo">
-            <End Role="EstadoArchivo" EntitySet="EstadoArchivoes" />
-            <End Role="Archivo" EntitySet="Archivoes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TipoArchivoArchivo" Association="Self.FK_TipoArchivoArchivo">
-            <End Role="TipoArchivo" EntitySet="TipoArchivoes" />
-            <End Role="Archivo" EntitySet="Archivoes" />
           </AssociationSet>
           <AssociationSet Name="FK_DocumentoCheckeado" Association="Self.FK_DocumentoCheckeado">
             <End Role="Documentos" EntitySet="Documentos" />
@@ -2725,7 +2836,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <EntitySet Name="CIERRE_PROCESO" EntityType="DISModelo.CIERRE_PROCESO" />
           <EntitySet Name="CONCEPTOes" EntityType="DISModelo.CONCEPTO" />
           <EntitySet Name="CONTRATO1" EntityType="DISModelo.CONTRATO1" />
-          <EntitySet Name="CONTRATO_SYS" EntityType="DISModelo.CONTRATO_SYS" />
           <EntitySet Name="DATO_M" EntityType="DISModelo.DATO_M" />
           <EntitySet Name="Eventoes" EntityType="DISModelo.Evento" />
           <EntitySet Name="EXACTUS_DETALLE" EntityType="DISModelo.EXACTUS_DETALLE" />
@@ -2738,9 +2848,40 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <EntitySet Name="DATO_A" EntityType="DISModelo.DATO_A" />
           <EntitySet Name="EXACTUS_CABECERA" EntityType="DISModelo.EXACTUS_CABECERA" />
           <EntitySet Name="USUARIOs" EntityType="DISModelo.USUARIO" />
+          <EntitySet Name="CONTRATO_SIS_DET" EntityType="DISModelo.CONTRATO_SIS_DET" />
+          <EntitySet Name="CONTRATO_SYS" EntityType="DISModelo.CONTRATO_SYS" />
           <EntitySet Name="HistorialCargaArchivo_LinCab" EntityType="DISModelo.HistorialCargaArchivo_LinCab" />
           <EntitySet Name="HistorialCargaArchivo_LinDet" EntityType="DISModelo.HistorialCargaArchivo_LinDet" />
-        </EntityContainer>
+          <EntitySet Name="Archivoes" EntityType="DISModelo.Archivo" />
+          <AssociationSet Name="FK_CONTRATO_SIS_DET_CONTRATO_SYS" Association="DISModelo.FK_CONTRATO_SIS_DET_CONTRATO_SYS">
+            <End Role="CONTRATO_SYS" EntitySet="CONTRATO_SYS" />
+            <End Role="CONTRATO_SIS_DET" EntitySet="CONTRATO_SIS_DET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistorialCargaArchivo_LinCab_CONTRATO_SYS" Association="DISModelo.FK_HistorialCargaArchivo_LinCab_CONTRATO_SYS">
+            <End Role="CONTRATO_SYS" EntitySet="CONTRATO_SYS" />
+            <End Role="HistorialCargaArchivo_LinCab" EntitySet="HistorialCargaArchivo_LinCab" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistorialCargaArchivo_Archivo" Association="DISModelo.FK_HistorialCargaArchivo_Archivo">
+            <End Role="Archivo" EntitySet="Archivoes" />
+            <End Role="HistorialCargaArchivo" EntitySet="HistorialCargaArchivoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistorialCargaArchivo_LinCab_Archivo" Association="DISModelo.FK_HistorialCargaArchivo_LinCab_Archivo">
+            <End Role="Archivo" EntitySet="Archivoes" />
+            <End Role="HistorialCargaArchivo_LinCab" EntitySet="HistorialCargaArchivo_LinCab" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab" Association="DISModelo.FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab">
+            <End Role="HistorialCargaArchivo_LinCab" EntitySet="HistorialCargaArchivo_LinCab" />
+            <End Role="HistorialCargaArchivo_LinDet" EntitySet="HistorialCargaArchivo_LinDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EstadoArchivoArchivo" Association="DISModelo.FK_EstadoArchivoArchivo">
+            <End Role="EstadoArchivo" EntitySet="EstadoArchivoes" />
+            <End Role="Archivo" EntitySet="Archivoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipoArchivoArchivo" Association="DISModelo.FK_TipoArchivoArchivo">
+            <End Role="TipoArchivo" EntitySet="TipoArchivoes" />
+            <End Role="Archivo" EntitySet="Archivoes" />
+          </AssociationSet>
+          </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
           <Property Type="Int32" Name="IdRegistroMontoAlto" Nullable="false" />
           <Property Type="String" Name="Resultado" Nullable="true" MaxLength="1" />
@@ -2883,23 +3024,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="CESION_EXC_PRIORIDAD2" Type="Decimal" Precision="16" Scale="6" />
           <Property Name="MTO_MAX_CAP_LIM_SUP2" Type="Decimal" Precision="16" Scale="6" />
           <Property Name="PRIMA_MIN_DEPOSITO2" Type="Decimal" Precision="16" Scale="6" />
-          <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="FEC_REG" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="USU_REG" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="FEC_MOD" Type="DateTime" Precision="3" />
-          <Property Name="USU_MOD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="CONTRATO_SYS">
-          <Key>
-            <PropertyRef Name="IDE_CONTRATO" />
-          </Key>
-          <Property Name="ID_EMPRESA" Type="Int32" />
-          <Property Name="IDE_CONTRATO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NRO_CONTRATO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="CLA_CONTRATO" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
-          <Property Name="FEC_INI_VIG" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="FEC_FIN_VIG" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DES_CONTRATO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FEC_REG" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="USU_REG" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -3301,13 +3425,49 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="FEC_MOD" Type="DateTime" Precision="3" />
           <Property Name="USU_MOD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="CONTRATO_SIS_DET">
+          <Key>
+            <PropertyRef Name="IDE_CONTRATO_DET" />
+          </Key>
+          <Property Name="IDE_CONTRATO_DET" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDE_CONTRATO" Type="Int32" />
+          <Property Name="COD_CSV" Type="Int32" />
+          <Property Name="PRC_PARTICIACION" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="NRO_ORDEN" Type="Int32" />
+          <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="USU_REG" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_REG" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FEC_MOD" Type="DateTime" Precision="3" />
+          <Property Name="USU_MOD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CONTRATO_SYS" Relationship="DISModelo.FK_CONTRATO_SIS_DET_CONTRATO_SYS" FromRole="CONTRATO_SIS_DET" ToRole="CONTRATO_SYS" />
+        </EntityType>
+        <EntityType Name="CONTRATO_SYS">
+          <Key>
+            <PropertyRef Name="IDE_CONTRATO" />
+          </Key>
+          <Property Name="IDE_CONTRATO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_EMPRESA" Type="Int32" />
+          <Property Name="NRO_CONTRATO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CLA_CONTRATO" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="FEC_INI_VIG" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FEC_FIN_VIG" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DES_CONTRATO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FEC_REG" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="USU_REG" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_MOD" Type="DateTime" Precision="3" />
+          <Property Name="USU_MOD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NRO_EMPRESAS" Type="Int32" />
+          <NavigationProperty Name="CONTRATO_SIS_DET" Relationship="DISModelo.FK_CONTRATO_SIS_DET_CONTRATO_SYS" FromRole="CONTRATO_SYS" ToRole="CONTRATO_SIS_DET" />
+          <NavigationProperty Name="HistorialCargaArchivo_LinCab" Relationship="DISModelo.FK_HistorialCargaArchivo_LinCab_CONTRATO_SYS" FromRole="CONTRATO_SYS" ToRole="HistorialCargaArchivo_LinCab" />
+        </EntityType>
         <EntityType Name="HistorialCargaArchivo_LinCab">
           <Key>
             <PropertyRef Name="IdHistorialCargaArchivoLinCab" />
           </Key>
           <Property Name="IdHistorialCargaArchivoLinCab" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
-          <Property Name="NumeroContrato" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ArchivoId" Type="Int32" />
+          <Property Name="IDE_CONTRATO" Type="Int32" Nullable="false" />
           <Property Name="TIP_REGI" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="FEC_ENVI_ARC" Type="DateTime" Precision="3" />
           <Property Name="COD_CSV" Type="Int32" />
@@ -3320,13 +3480,16 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FEC_REG" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="USU_REG" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CONTRATO_SYS" Relationship="DISModelo.FK_HistorialCargaArchivo_LinCab_CONTRATO_SYS" FromRole="HistorialCargaArchivo_LinCab" ToRole="CONTRATO_SYS" />
+          <NavigationProperty Name="Archivo" Relationship="DISModelo.FK_HistorialCargaArchivo_LinCab_Archivo" FromRole="HistorialCargaArchivo_LinCab" ToRole="Archivo" />
+          <NavigationProperty Name="HistorialCargaArchivo_LinDet" Relationship="DISModelo.FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab" FromRole="HistorialCargaArchivo_LinCab" ToRole="HistorialCargaArchivo_LinDet" />
         </EntityType>
         <EntityType Name="HistorialCargaArchivo_LinDet">
           <Key>
             <PropertyRef Name="IdHistorialCargaArchivoLinDet" />
           </Key>
           <Property Name="IdHistorialCargaArchivoLinDet" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdHistorialCargaArchivoLinCab" Type="Int64" Nullable="false" />
+          <Property Name="IdHistorialCargaArchivoLinCab" Type="Int64" />
           <Property Name="FechaInsert" Type="DateTime" Precision="3" />
           <Property Name="TipoLinea" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="NumeroLinea" Type="Int32" />
@@ -3461,11 +3624,109 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="SEG_NOMB_SOL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="SUC_INTE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="CumpleValidacion" Type="Int32" />
-          <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="FEC_REG" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="USU_REG" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HistorialCargaArchivo_LinCab" Relationship="DISModelo.FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab" FromRole="HistorialCargaArchivo_LinDet" ToRole="HistorialCargaArchivo_LinCab" />
         </EntityType>
-      </Schema>
+        <EntityType Name="Archivo">
+          <Key>
+            <PropertyRef Name="ArchivoId" />
+          </Key>
+          <Property Name="ArchivoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EstadoArchivoId" Type="Int32" Nullable="false" />
+          <Property Name="TipoArchivoId" Type="Int32" Nullable="false" />
+          <Property Name="NombreArchivo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="UsuarioModificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Vigente" Type="Boolean" />
+          <NavigationProperty Name="HistorialCargaArchivoes" Relationship="DISModelo.FK_HistorialCargaArchivo_Archivo" FromRole="Archivo" ToRole="HistorialCargaArchivo" />
+          <NavigationProperty Name="HistorialCargaArchivo_LinCab" Relationship="DISModelo.FK_HistorialCargaArchivo_LinCab_Archivo" FromRole="Archivo" ToRole="HistorialCargaArchivo_LinCab" />
+          <NavigationProperty Name="EstadoArchivo" Relationship="DISModelo.FK_EstadoArchivoArchivo" FromRole="Archivo" ToRole="EstadoArchivo" />
+          <NavigationProperty Name="TipoArchivo" Relationship="DISModelo.FK_TipoArchivoArchivo" FromRole="Archivo" ToRole="TipoArchivo" />
+        </EntityType>
+        <Association Name="FK_CONTRATO_SIS_DET_CONTRATO_SYS">
+          <End Type="DISModelo.CONTRATO_SYS" Role="CONTRATO_SYS" Multiplicity="0..1" />
+          <End Type="DISModelo.CONTRATO_SIS_DET" Role="CONTRATO_SIS_DET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTRATO_SYS">
+              <PropertyRef Name="IDE_CONTRATO" />
+            </Principal>
+            <Dependent Role="CONTRATO_SIS_DET">
+              <PropertyRef Name="IDE_CONTRATO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistorialCargaArchivo_LinCab_CONTRATO_SYS">
+          <End Type="DISModelo.CONTRATO_SYS" Role="CONTRATO_SYS" Multiplicity="1" />
+          <End Type="DISModelo.HistorialCargaArchivo_LinCab" Role="HistorialCargaArchivo_LinCab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTRATO_SYS">
+              <PropertyRef Name="IDE_CONTRATO" />
+            </Principal>
+            <Dependent Role="HistorialCargaArchivo_LinCab">
+              <PropertyRef Name="IDE_CONTRATO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistorialCargaArchivo_Archivo">
+          <End Type="DISModelo.Archivo" Role="Archivo" Multiplicity="1" />
+          <End Type="DISModelo.HistorialCargaArchivo" Role="HistorialCargaArchivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Archivo">
+              <PropertyRef Name="ArchivoId" />
+            </Principal>
+            <Dependent Role="HistorialCargaArchivo">
+              <PropertyRef Name="IdArchivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistorialCargaArchivo_LinCab_Archivo">
+          <End Type="DISModelo.Archivo" Role="Archivo" Multiplicity="0..1" />
+          <End Type="DISModelo.HistorialCargaArchivo_LinCab" Role="HistorialCargaArchivo_LinCab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Archivo">
+              <PropertyRef Name="ArchivoId" />
+            </Principal>
+            <Dependent Role="HistorialCargaArchivo_LinCab">
+              <PropertyRef Name="ArchivoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab">
+          <End Type="DISModelo.HistorialCargaArchivo_LinCab" Role="HistorialCargaArchivo_LinCab" Multiplicity="0..1" />
+          <End Type="DISModelo.HistorialCargaArchivo_LinDet" Role="HistorialCargaArchivo_LinDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HistorialCargaArchivo_LinCab">
+              <PropertyRef Name="IdHistorialCargaArchivoLinCab" />
+            </Principal>
+            <Dependent Role="HistorialCargaArchivo_LinDet">
+              <PropertyRef Name="IdHistorialCargaArchivoLinCab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EstadoArchivoArchivo">
+          <End Type="DISModelo.EstadoArchivo" Role="EstadoArchivo" Multiplicity="1" />
+          <End Type="DISModelo.Archivo" Role="Archivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoArchivo">
+              <PropertyRef Name="EstadoArchivoId" />
+            </Principal>
+            <Dependent Role="Archivo">
+              <PropertyRef Name="EstadoArchivoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipoArchivoArchivo">
+          <End Type="DISModelo.TipoArchivo" Role="TipoArchivo" Multiplicity="1" />
+          <End Type="DISModelo.Archivo" Role="Archivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoArchivo">
+              <PropertyRef Name="TipoArchivoId" />
+            </Principal>
+            <Dependent Role="Archivo">
+              <PropertyRef Name="TipoArchivoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -3516,6 +3777,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <EntitySetMapping Name="ReglaArchivoes">
             <EntityTypeMapping TypeName="DISModelo.ReglaArchivo">
               <MappingFragment StoreEntitySet="ReglaArchivo">
+                <ScalarProperty Name="NombreCampo" ColumnName="NombreCampo" />
                 <ScalarProperty Name="IdReglaArchivo" ColumnName="IdReglaArchivo" />
                 <ScalarProperty Name="Archivo" ColumnName="Archivo" />
                 <ScalarProperty Name="TipoLinea" ColumnName="TipoLinea" />
@@ -3542,19 +3804,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
                 <ScalarProperty Name="Abreviatura" ColumnName="Abreviatura" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Nit" ColumnName="Nit" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Archivoes">
-            <EntityTypeMapping TypeName="DISModelo.Archivo">
-              <MappingFragment StoreEntitySet="Archivo">
-                <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
-                <ScalarProperty Name="EstadoArchivoId" ColumnName="EstadoArchivoId" />
-                <ScalarProperty Name="TipoArchivoId" ColumnName="TipoArchivoId" />
-                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
-                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
-                <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
-                <ScalarProperty Name="Vigente" ColumnName="Vigente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4139,24 +4388,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CONTRATO_SYS">
-            <EntityTypeMapping TypeName="DISModelo.CONTRATO_SYS">
-              <MappingFragment StoreEntitySet="CONTRATO_SYS">
-                <ScalarProperty Name="USU_MOD" ColumnName="USU_MOD" />
-                <ScalarProperty Name="FEC_MOD" ColumnName="FEC_MOD" />
-                <ScalarProperty Name="USU_REG" ColumnName="USU_REG" />
-                <ScalarProperty Name="FEC_REG" ColumnName="FEC_REG" />
-                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
-                <ScalarProperty Name="DES_CONTRATO" ColumnName="DES_CONTRATO" />
-                <ScalarProperty Name="FEC_FIN_VIG" ColumnName="FEC_FIN_VIG" />
-                <ScalarProperty Name="FEC_INI_VIG" ColumnName="FEC_INI_VIG" />
-                <ScalarProperty Name="CLA_CONTRATO" ColumnName="CLA_CONTRATO" />
-                <ScalarProperty Name="NRO_CONTRATO" ColumnName="NRO_CONTRATO" />
-                <ScalarProperty Name="IDE_CONTRATO" ColumnName="IDE_CONTRATO" />
-                <ScalarProperty Name="ID_EMPRESA" ColumnName="ID_EMPRESA" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="DATO_M">
             <EntityTypeMapping TypeName="DISModelo.DATO_M">
               <MappingFragment StoreEntitySet="DATO_M">
@@ -4515,6 +4746,41 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CONTRATO_SIS_DET">
+            <EntityTypeMapping TypeName="DISModelo.CONTRATO_SIS_DET">
+              <MappingFragment StoreEntitySet="CONTRATO_SIS_DET">
+                <ScalarProperty Name="USU_MOD" ColumnName="USU_MOD" />
+                <ScalarProperty Name="FEC_MOD" ColumnName="FEC_MOD" />
+                <ScalarProperty Name="FEC_REG" ColumnName="FEC_REG" />
+                <ScalarProperty Name="USU_REG" ColumnName="USU_REG" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="NRO_ORDEN" ColumnName="NRO_ORDEN" />
+                <ScalarProperty Name="PRC_PARTICIACION" ColumnName="PRC_PARTICIACION" />
+                <ScalarProperty Name="COD_CSV" ColumnName="COD_CSV" />
+                <ScalarProperty Name="IDE_CONTRATO" ColumnName="IDE_CONTRATO" />
+                <ScalarProperty Name="IDE_CONTRATO_DET" ColumnName="IDE_CONTRATO_DET" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTRATO_SYS">
+            <EntityTypeMapping TypeName="DISModelo.CONTRATO_SYS">
+              <MappingFragment StoreEntitySet="CONTRATO_SYS">
+                <ScalarProperty Name="NRO_EMPRESAS" ColumnName="NRO_EMPRESAS" />
+                <ScalarProperty Name="USU_MOD" ColumnName="USU_MOD" />
+                <ScalarProperty Name="FEC_MOD" ColumnName="FEC_MOD" />
+                <ScalarProperty Name="USU_REG" ColumnName="USU_REG" />
+                <ScalarProperty Name="FEC_REG" ColumnName="FEC_REG" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="DES_CONTRATO" ColumnName="DES_CONTRATO" />
+                <ScalarProperty Name="FEC_FIN_VIG" ColumnName="FEC_FIN_VIG" />
+                <ScalarProperty Name="FEC_INI_VIG" ColumnName="FEC_INI_VIG" />
+                <ScalarProperty Name="CLA_CONTRATO" ColumnName="CLA_CONTRATO" />
+                <ScalarProperty Name="NRO_CONTRATO" ColumnName="NRO_CONTRATO" />
+                <ScalarProperty Name="ID_EMPRESA" ColumnName="ID_EMPRESA" />
+                <ScalarProperty Name="IDE_CONTRATO" ColumnName="IDE_CONTRATO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="HistorialCargaArchivo_LinCab">
             <EntityTypeMapping TypeName="DISModelo.HistorialCargaArchivo_LinCab">
               <MappingFragment StoreEntitySet="HistorialCargaArchivo_LinCab">
@@ -4530,8 +4796,8 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
                 <ScalarProperty Name="COD_CSV" ColumnName="COD_CSV" />
                 <ScalarProperty Name="FEC_ENVI_ARC" ColumnName="FEC_ENVI_ARC" />
                 <ScalarProperty Name="TIP_REGI" ColumnName="TIP_REGI" />
-                <ScalarProperty Name="NumeroContrato" ColumnName="NumeroContrato" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IDE_CONTRATO" ColumnName="IDE_CONTRATO" />
+                <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
                 <ScalarProperty Name="IdHistorialCargaArchivoLinCab" ColumnName="IdHistorialCargaArchivoLinCab" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -4539,9 +4805,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <EntitySetMapping Name="HistorialCargaArchivo_LinDet">
             <EntityTypeMapping TypeName="DISModelo.HistorialCargaArchivo_LinDet">
               <MappingFragment StoreEntitySet="HistorialCargaArchivo_LinDet">
-                <ScalarProperty Name="USU_REG" ColumnName="USU_REG" />
-                <ScalarProperty Name="FEC_REG" ColumnName="FEC_REG" />
-                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="CumpleValidacion" ColumnName="CumpleValidacion" />
                 <ScalarProperty Name="SUC_INTE" ColumnName="SUC_INTE" />
                 <ScalarProperty Name="SEG_NOMB_SOL" ColumnName="SEG_NOMB_SOL" />
@@ -4678,6 +4941,19 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
                 <ScalarProperty Name="FechaInsert" ColumnName="FechaInsert" />
                 <ScalarProperty Name="IdHistorialCargaArchivoLinCab" ColumnName="IdHistorialCargaArchivoLinCab" />
                 <ScalarProperty Name="IdHistorialCargaArchivoLinDet" ColumnName="IdHistorialCargaArchivoLinDet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Archivoes">
+            <EntityTypeMapping TypeName="DISModelo.Archivo">
+              <MappingFragment StoreEntitySet="Archivo">
+                <ScalarProperty Name="Vigente" ColumnName="Vigente" />
+                <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+                <ScalarProperty Name="TipoArchivoId" ColumnName="TipoArchivoId" />
+                <ScalarProperty Name="EstadoArchivoId" ColumnName="EstadoArchivoId" />
+                <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

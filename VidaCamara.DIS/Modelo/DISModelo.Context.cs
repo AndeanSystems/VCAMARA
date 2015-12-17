@@ -31,7 +31,6 @@ namespace VidaCamara.DIS.Modelo
         public virtual DbSet<HistorialCargaArchivo> HistorialCargaArchivos { get; set; }
         public virtual DbSet<ReglaArchivo> ReglaArchivos { get; set; }
         public virtual DbSet<AFP> AFPs { get; set; }
-        public virtual DbSet<Archivo> Archivos { get; set; }
         public virtual DbSet<Bitacora> Bitacoras { get; set; }
         public virtual DbSet<Checkeado> Checkeados { get; set; }
         public virtual DbSet<ContratoCSV> ContratoCSVs { get; set; }
@@ -66,7 +65,6 @@ namespace VidaCamara.DIS.Modelo
         public virtual DbSet<CIERRE_PROCESO> CIERRE_PROCESOs { get; set; }
         public virtual DbSet<CONCEPTO> CONCEPTOs { get; set; }
         public virtual DbSet<CONTRATO1> CONTRATO1s { get; set; }
-        public virtual DbSet<CONTRATO_SYS> CONTRATO_SYSs { get; set; }
         public virtual DbSet<DATO_M> DATO_Ms { get; set; }
         public virtual DbSet<Evento> Eventos { get; set; }
         public virtual DbSet<EXACTUS_DETALLE> EXACTUS_DETALLEs { get; set; }
@@ -79,8 +77,11 @@ namespace VidaCamara.DIS.Modelo
         public virtual DbSet<DATO_A> DATO_As { get; set; }
         public virtual DbSet<EXACTUS_CABECERA> EXACTUS_CABECERAs { get; set; }
         public virtual DbSet<USUARIO> USUARIOs { get; set; }
+        public virtual DbSet<CONTRATO_SIS_DET> CONTRATO_SIS_DETs { get; set; }
+        public virtual DbSet<CONTRATO_SYS> CONTRATO_SYSs { get; set; }
         public virtual DbSet<HistorialCargaArchivo_LinCab> HistorialCargaArchivo_LinCabs { get; set; }
         public virtual DbSet<HistorialCargaArchivo_LinDet> HistorialCargaArchivo_LinDets { get; set; }
+        public virtual DbSet<Archivo> Archivos { get; set; }
     
         public virtual int pa_audit_InsertaBitacora(Nullable<int> param_IdUsuario, string param_Descripcion, string param_Comando, Nullable<int> param_Idarchivo)
         {

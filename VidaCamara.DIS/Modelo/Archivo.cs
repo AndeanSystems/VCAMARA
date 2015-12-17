@@ -17,6 +17,7 @@ namespace VidaCamara.DIS.Modelo
         public Archivo()
         {
             this.HistorialCargaArchivoes = new HashSet<HistorialCargaArchivo>();
+            this.HistorialCargaArchivo_LinCab = new HashSet<HistorialCargaArchivo_LinCab>();
         }
     
         public int ArchivoId { get; set; }
@@ -28,6 +29,7 @@ namespace VidaCamara.DIS.Modelo
         public Nullable<bool> Vigente { get; set; }
     
         public virtual ICollection<HistorialCargaArchivo> HistorialCargaArchivoes { get; set; }
+        public virtual ICollection<HistorialCargaArchivo_LinCab> HistorialCargaArchivo_LinCab { get; set; }
         public virtual EstadoArchivo EstadoArchivo { get; set; }
         public virtual TipoArchivo TipoArchivo { get; set; }
     }

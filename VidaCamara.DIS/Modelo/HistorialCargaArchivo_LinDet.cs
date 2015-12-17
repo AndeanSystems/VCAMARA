@@ -15,7 +15,7 @@ namespace VidaCamara.DIS.Modelo
     public partial class HistorialCargaArchivo_LinDet
     {
         public long IdHistorialCargaArchivoLinDet { get; set; }
-        public long IdHistorialCargaArchivoLinCab { get; set; }
+        public Nullable<long> IdHistorialCargaArchivoLinCab { get; set; }
         public Nullable<System.DateTime> FechaInsert { get; set; }
         public string TipoLinea { get; set; }
         public Nullable<int> NumeroLinea { get; set; }
@@ -150,8 +150,7 @@ namespace VidaCamara.DIS.Modelo
         public string SEG_NOMB_SOL { get; set; }
         public string SUC_INTE { get; set; }
         public Nullable<int> CumpleValidacion { get; set; }
-        public string ESTADO { get; set; }
-        public System.DateTime FEC_REG { get; set; }
-        public string USU_REG { get; set; }
+    
+        public virtual HistorialCargaArchivo_LinCab HistorialCargaArchivo_LinCab { get; set; }
     }
 }

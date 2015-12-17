@@ -4,12 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0565ad74d7e3449abb6dbeb897cf9a5e" Name="Diagram1">
+      <Diagram DiagramId="0565ad74d7e3449abb6dbeb897cf9a5e" Name="Diagram1" ZoomLevel="52">
         <EntityTypeShape EntityType="DISModelo.Exactu" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo" Width="1.5" PointX="12.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo" Width="2.25" PointX="12.5" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DISModelo.ReglaArchivo" Width="1.5" PointX="10.25" PointY="14.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DISModelo.AFP" Width="1.5" PointX="3.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DISModelo.Archivo" Width="1.5" PointX="10.25" PointY="10" IsExpanded="true" />
         <EntityTypeShape EntityType="DISModelo.Bitacora" Width="1.5" PointX="10.75" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DISModelo.Checkeado" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DISModelo.ContratoCSV" Width="1.5" PointX="10.75" PointY="5.25" IsExpanded="true" />
@@ -41,11 +40,8 @@
         <EntityTypeShape EntityType="DISModelo.TipoSolicitude" Width="1.5" PointX="3.75" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DISModelo.Consulta" Width="1.5" PointX="12.75" PointY="18.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DISModelo.CheckList" Width="1.5" PointX="16.75" PointY="15.25" IsExpanded="true" />
-        <AssociationConnector Association="DISModelo.FK_HistorialCargaArchivo_Archivo" ManuallyRouted="false" />
         <AssociationConnector Association="DISModelo.FK_HistorialCargaArchivo_ReglaArchivo" ManuallyRouted="false" />
         <AssociationConnector Association="DISModelo.FK_AFPSiniestro" ManuallyRouted="false" />
-        <AssociationConnector Association="DISModelo.FK_EstadoArchivoArchivo" ManuallyRouted="false" />
-        <AssociationConnector Association="DISModelo.FK_TipoArchivoArchivo" ManuallyRouted="false" />
         <AssociationConnector Association="DISModelo.FK_DocumentoCheckeado" ManuallyRouted="false" />
         <AssociationConnector Association="DISModelo.FK_SiniestroContrato" ManuallyRouted="false" />
         <AssociationConnector Association="DISModelo.FK_DocumentoDocumentoSolicitado" ManuallyRouted="false" />
@@ -59,22 +55,31 @@
         <EntityTypeShape EntityType="DISModelo.CIERRE_PROCESO" Width="1.5" PointX="15.75" PointY="18.75" />
         <EntityTypeShape EntityType="DISModelo.CONCEPTO" Width="1.5" PointX="17.75" PointY="18.75" />
         <EntityTypeShape EntityType="DISModelo.CONTRATO1" Width="1.5" PointX="19.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DISModelo.CONTRATO_SYS" Width="1.5" PointX="8.75" PointY="19.75" />
         <EntityTypeShape EntityType="DISModelo.DATO_M" Width="1.5" PointX="19.75" PointY="10.75" />
         <EntityTypeShape EntityType="DISModelo.Evento" Width="1.5" PointX="19.75" PointY="15.75" />
         <EntityTypeShape EntityType="DISModelo.EXACTUS_DETALLE" Width="1.5" PointX="19.75" PointY="18.75" />
         <EntityTypeShape EntityType="DISModelo.GENERAL" Width="1.5" PointX="0.75" PointY="20.75" />
         <EntityTypeShape EntityType="DISModelo.LogOperacion" Width="1.5" PointX="2.75" PointY="20.75" />
-        <EntityTypeShape EntityType="DISModelo.OPERACION" Width="1.5" PointX="4.75" PointY="20.75" />
+        <EntityTypeShape EntityType="DISModelo.OPERACION" Width="4.125" PointX="4.75" PointY="20.625" />
         <EntityTypeShape EntityType="DISModelo.sysdiagram" Width="1.5" PointX="21.75" PointY="0.75" />
         <EntityTypeShape EntityType="DISModelo.COMPROBANTE" Width="1.5" PointX="21.75" PointY="3.75" />
-        <EntityTypeShape EntityType="DISModelo.CONTRATO_DETALLE" Width="1.5" PointX="21.75" PointY="11.75" />
-        <EntityTypeShape EntityType="DISModelo.DATO_A" Width="1.5" PointX="21.75" PointY="17.75" />
+        <EntityTypeShape EntityType="DISModelo.CONTRATO_DETALLE" Width="2.5" PointX="21.75" PointY="11.75" />
+        <EntityTypeShape EntityType="DISModelo.DATO_A" Width="3.25" PointX="21.75" PointY="17.75" />
         <EntityTypeShape EntityType="DISModelo.EXACTUS_CABECERA" Width="1.5" PointX="10.75" PointY="22.75" />
         <EntityTypeShape EntityType="DISModelo.USUARIO" Width="1.5" PointX="12.75" PointY="22.75" />
-        <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo_LinCab" Width="1.5" PointX="15.375" PointY="23.75" />
-        <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo_LinDet" Width="1.5" PointX="24.375" PointY="0.75" />
-      </Diagram>
+        <EntityTypeShape EntityType="DISModelo.CONTRATO_SIS_DET" Width="1.5" PointX="24.5" PointY="40.375" />
+        <EntityTypeShape EntityType="DISModelo.CONTRATO_SYS" Width="1.5" PointX="22.25" PointY="40" />
+        <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo_LinCab" Width="1.5" PointX="24.5" PointY="5.625" />
+        <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo_LinDet" Width="1.5" PointX="26.75" PointY="36" />
+        <EntityTypeShape EntityType="DISModelo.Archivo" Width="1.5" PointX="10.25" PointY="10.375" />
+        <AssociationConnector Association="DISModelo.FK_CONTRATO_SIS_DET_CONTRATO_SYS" />
+        <AssociationConnector Association="DISModelo.FK_HistorialCargaArchivo_LinCab_CONTRATO_SYS" />
+        <AssociationConnector Association="DISModelo.FK_HistorialCargaArchivo_Archivo" />
+        <AssociationConnector Association="DISModelo.FK_HistorialCargaArchivo_LinCab_Archivo" />
+        <AssociationConnector Association="DISModelo.FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab" />
+        <AssociationConnector Association="DISModelo.FK_EstadoArchivoArchivo" />
+        <AssociationConnector Association="DISModelo.FK_TipoArchivoArchivo" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

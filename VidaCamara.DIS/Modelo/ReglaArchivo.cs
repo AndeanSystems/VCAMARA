@@ -35,6 +35,7 @@ namespace VidaCamara.DIS.Modelo
         public string CampoNegocio { get; set; }
         public Nullable<System.DateTime> VigenciaReglaDesde { get; set; }
         public Nullable<System.DateTime> VigenciaReglaHasta { get; set; }
+        public string NombreCampo { get; set; }
     
         public virtual ICollection<HistorialCargaArchivo> HistorialCargaArchivoes { get; set; }
     }

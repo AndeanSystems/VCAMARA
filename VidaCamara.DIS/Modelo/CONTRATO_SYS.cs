@@ -14,8 +14,14 @@ namespace VidaCamara.DIS.Modelo
     
     public partial class CONTRATO_SYS
     {
-        public Nullable<int> ID_EMPRESA { get; set; }
+        public CONTRATO_SYS()
+        {
+            this.CONTRATO_SIS_DET = new HashSet<CONTRATO_SIS_DET>();
+            this.HistorialCargaArchivo_LinCab = new HashSet<HistorialCargaArchivo_LinCab>();
+        }
+    
         public int IDE_CONTRATO { get; set; }
+        public Nullable<int> ID_EMPRESA { get; set; }
         public string NRO_CONTRATO { get; set; }
         public string CLA_CONTRATO { get; set; }
         public System.DateTime FEC_INI_VIG { get; set; }
@@ -26,5 +32,9 @@ namespace VidaCamara.DIS.Modelo
         public string USU_REG { get; set; }
         public Nullable<System.DateTime> FEC_MOD { get; set; }
         public string USU_MOD { get; set; }
+        public Nullable<int> NRO_EMPRESAS { get; set; }
+    
+        public virtual ICollection<CONTRATO_SIS_DET> CONTRATO_SIS_DET { get; set; }
+        public virtual ICollection<HistorialCargaArchivo_LinCab> HistorialCargaArchivo_LinCab { get; set; }
     }
 }
