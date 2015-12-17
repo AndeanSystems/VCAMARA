@@ -108,6 +108,11 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             List<eContratoDetalleVC> list = tb.GetSelecionarContratoDetalle(o,out total);
             return new { Result = "OK", Records = list, TotalRecordCount = total };
         }
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static object ContratoSisDetalle(){
+            var listDetalle = new VidaCamara.DIS.data.contrato_sis_detalle().getlistContratoDetalle();
+            return new { Result = "OK", Records = listDetalle };
+        }
         //LLENADO DE CONTRATOO
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static object ContratoList(int jtStartIndex, int jtPageSize, string jtSorting, String WhereBy)
@@ -521,6 +526,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 c._estado = ddl_estado_sys.SelectedItem.Value;
                 c._usu_reg = Session["username"].ToString();
                 c._usu_mod = Session["username"].ToString();
+                c._nro_empresa = int.Parse(txt_numero_empresa.Text);
 
                 bContratoSys control = new bContratoSys();
                 if (c._ide_Contrato == 0)
@@ -528,6 +534,9 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                     resp = control.SetInsertarContratoSys(c);
                     if (resp != 0)
                     {
+                        //contrato sys
+                        var bContrato = new bContratoSys();
+                        bContrato.SetEstablecerDataSourceContratoSys(ddl_contrato_sis);
                         MessageBox("Registro Grabado Correctamente");
                     }
                     else
@@ -540,6 +549,9 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                     resp = control.SetActualizarContratoSys(c);
                     if (resp != 0)
                     {
+                        //contrato sys
+                        var bContrato = new bContratoSys();
+                        bContrato.SetEstablecerDataSourceContratoSys(ddl_contrato_sis);
                         MessageBox("Registro Actualizado Correctamente");
                     }
                     else

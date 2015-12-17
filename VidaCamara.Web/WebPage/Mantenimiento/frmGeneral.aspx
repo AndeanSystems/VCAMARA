@@ -5,6 +5,7 @@
     <script src="/WebPage/Mantenimiento/js/tblContratoView.js"></script>
     <script src="/WebPage/Mantenimiento/Js/tblReasegurador.js"></script>
     <script src="/WebPage/Mantenimiento/Js/tblContratoViewSyS.js"></script>
+    <script src="/WebPage/Mantenimiento/js/tblContratoSisDetalle.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!--Comienzo de los Tabs-->
@@ -335,6 +336,9 @@
                 <label class="input_right_L" for="txt_ruc">Orden (*)</label>
                <asp:TextBox CssClass="input_right" ID="txt_orden_empresa" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
 
+                <div class="iframe">
+                  <div id="tblContratoViewSySDetalle"></div>
+                </div>
             </asp:View>
         </asp:MultiView>    
     </div>
