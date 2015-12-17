@@ -42,7 +42,7 @@ namespace VidaCamara.SBS.Negocio
             bContratoSys tb = new bContratoSys();
             control.DataSource = tb.GetSelecionarContratoSys(o, out totalContrato);
             control.DataTextField = "_des_Contrato";
-            control.DataValueField = "_nro_Contrato";
+            control.DataValueField = "_ide_Contrato";
             control.DataBind();
             control.Items.Insert(0, new ListItem("Seleccione ----", "0"));
             return control;
