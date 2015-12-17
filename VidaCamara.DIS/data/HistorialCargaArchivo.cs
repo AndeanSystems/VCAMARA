@@ -55,8 +55,6 @@ namespace VidaCamara.DIS.data
         {
             var cargaArchivoCab = new HistorialCargaArchivo_LinCab()
             {
-                IdEmpresa = 1,
-                NumeroContrato = "201401",
                 TIP_REGI = "PRE",
                 FEC_ENVI_ARC = new DateTime(),
                 COD_CSV = 2,
