@@ -164,7 +164,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             var list = new VidaCamara.SBS.Utils.Utility().getContratoSys(out total);
             ddl_conrato1.DataSource = list;
             ddl_conrato1.DataTextField = "_des_Contrato";
-            ddl_conrato1.DataValueField = "_nro_Contrato";
+            ddl_conrato1.DataValueField = "_ide_Contrato";
             ddl_conrato1.DataBind();
             ddl_conrato1.Items.Insert(0, new ListItem("Seleccione ----", "0"));
         }
