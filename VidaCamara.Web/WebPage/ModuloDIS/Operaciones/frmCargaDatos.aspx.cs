@@ -40,8 +40,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             {
                 var entityCargaCabecera = new HistorialCargaArchivo_LinCab()
                 {
-                    IdEmpresa = 1,
-                    NumeroContrato = ddl_conrato1.SelectedItem.Value,
+                    IDE_CONTRATO = Convert.ToInt32(ddl_conrato1.SelectedItem.Value),
                     TIP_REGI = "C",
                     USU_REG = "AUTO"
                 };
