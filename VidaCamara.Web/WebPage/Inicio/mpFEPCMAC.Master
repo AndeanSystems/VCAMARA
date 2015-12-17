@@ -62,16 +62,16 @@
         <nav>
             <ul class="nav">
                 <li>
-                    <asp:HyperLink NavigateUrl="~/Inicio" runat="server">Inicio</asp:HyperLink></li>
+                    <asp:HyperLink ID="HyperLink1" NavigateUrl="~/Inicio" runat="server">Inicio</asp:HyperLink></li>
 
                 <li><a href="#">Mantenimiento</a>
                     <ul>
                         <li>
-                            <asp:HyperLink NavigateUrl="~/Parametros?go=1" runat="server">Parámetros</asp:HyperLink></li>
+                            <asp:HyperLink ID="HyperLink2" NavigateUrl="~/Parametros?go=1" runat="server">Parámetros</asp:HyperLink></li>
                         <li>
-                            <asp:HyperLink NavigateUrl="~/Usuarios?go=2" runat="server">Usuarios</asp:HyperLink></li>
+                            <asp:HyperLink ID="HyperLink3" NavigateUrl="~/Usuarios?go=2" runat="server">Usuarios</asp:HyperLink></li>
                         <li>
-                            <asp:HyperLink NavigateUrl="~/Tablas?go=3" runat="server">Tablas</asp:HyperLink></li>
+                            <asp:HyperLink ID="HyperLink4" NavigateUrl="~/Tablas?go=3" runat="server">Tablas</asp:HyperLink></li>
                     </ul>
                 </li>
                 <li><a href="#">Modulo SBS</a>
@@ -79,27 +79,27 @@
                         <li><a href="#">Operaciones</a>
                             <ul>
                                 <li>
-                                    <asp:HyperLink NavigateUrl="~/RegistroDatos?go=4" runat="server">Registro Datos</asp:HyperLink></li>
+                                    <asp:HyperLink ID="HyperLink5" NavigateUrl="~/RegistroDatos?go=4" runat="server">Registro Datos</asp:HyperLink></li>
                                 <li>
-                                    <asp:HyperLink NavigateUrl="~/CargaDatos?go=5" runat="server">CargaLogica Datos</asp:HyperLink></li>
+                                    <asp:HyperLink ID="HyperLink6" NavigateUrl="~/CargaDatos?go=5" runat="server">Carga Archivos</asp:HyperLink></li>
                                 <li>
-                                    <asp:HyperLink NavigateUrl="~/OperacionManual?go=6" runat="server">Operación Manual</asp:HyperLink></li>
+                                    <asp:HyperLink ID="HyperLink7" NavigateUrl="~/OperacionManual?go=6" runat="server">Operación Manual</asp:HyperLink></li>
                                 <li>
-                                    <asp:HyperLink NavigateUrl="~/ProcesoOperacion?go=7" runat="server">Procesar Información</asp:HyperLink></li>
+                                    <asp:HyperLink ID="HyperLink8" NavigateUrl="~/ProcesoOperacion?go=7" runat="server">Procesar Información</asp:HyperLink></li>
                                 <li>
-                                    <asp:HyperLink NavigateUrl="~/CierreOperacion?go=8" runat="server">Cierre de Operaciones</asp:HyperLink></li>
+                                    <asp:HyperLink ID="HyperLink9" NavigateUrl="~/CierreOperacion?go=8" runat="server">Cierre de Operaciones</asp:HyperLink></li>
                                 <li>
-                                    <asp:HyperLink NavigateUrl="~/InterfaceContable?go=10" runat="server">Interface Contable</asp:HyperLink></li>
+                                    <asp:HyperLink ID="HyperLink10" NavigateUrl="~/InterfaceContable?go=10" runat="server">Interface Contable</asp:HyperLink></li>
                             </ul>
                         </li>
                         <li><a href="#">Consultas</a>
                             <ul>
                                 <li>
-                                    <asp:HyperLink NavigateUrl="~/Operaciones?go=9" runat="server">Operaciones</asp:HyperLink></li>
+                                    <asp:HyperLink ID="HyperLink11" NavigateUrl="~/Operaciones?go=9" runat="server">Operaciones</asp:HyperLink></li>
                                 <li>
-                                    <asp:HyperLink NavigateUrl="~/Comprobantes?go=11" runat="server">Comprobantes</asp:HyperLink></li>
+                                    <asp:HyperLink ID="HyperLink12" NavigateUrl="~/Comprobantes?go=11" runat="server">Comprobantes</asp:HyperLink></li>
                                 <li>
-                                    <asp:HyperLink NavigateUrl="~/Informes?go=12" runat="server">Informes SBS</asp:HyperLink></li>
+                                    <asp:HyperLink ID="HyperLink13" NavigateUrl="~/Informes?go=12" runat="server">Informes SBS</asp:HyperLink></li>
                             </ul>
                         </li>
                     </ul>
@@ -109,36 +109,36 @@
                         <li><a href="#">Operaciones</a>
                             <ul>
                                 <li>
-                                    <asp:HyperLink NavigateUrl="~/CargaDatosDIS?go=5" runat="server">CargaLogica Datos</asp:HyperLink>
+                                    <asp:HyperLink ID="HyperLink14" NavigateUrl="~/CargaDatosDIS?go=5" runat="server">Carga Archivos de Pagos</asp:HyperLink>
                                 </li>
                                 <li>
-                                    <asp:HyperLink NavigateUrl="~/ApruebaCarga?go=5" runat="server">Aprueba Carga</asp:HyperLink>
+                                    <asp:HyperLink ID="HyperLink15" NavigateUrl="~/ApruebaCarga?go=5" runat="server">Aprueba Carga</asp:HyperLink>
                                 </li>
                                 <li>
-                                    <asp:HyperLink NavigateUrl="~/Telebankig?go=5" runat="server">Genera Telebanking</asp:HyperLink>
+                                    <asp:HyperLink ID="HyperLink16" NavigateUrl="~/Telebankig?go=5" runat="server">Genera Telebanking</asp:HyperLink>
                                 </li>
                                  <li>
-                                    <asp:HyperLink NavigateUrl="~/InterfaceContbleSIS?go=5" runat="server">Interface Contable</asp:HyperLink>
+                                    <asp:HyperLink ID="HyperLink17" NavigateUrl="~/InterfaceContbleSIS?go=5" runat="server">Interface Contable</asp:HyperLink>
                                 </li>
                             </ul>
                         </li>
                         <li><a href="#">Consultas</a>
                             <ul>
                                 <li>
-                                    <asp:HyperLink NavigateUrl="~/SegConsulta?go=5" runat="server" Text="Seg Consultas" />
+                                    <asp:HyperLink ID="HyperLink18" NavigateUrl="~/SegConsulta?go=5" runat="server" Text="Pagos Cargados" />
                                 </li>
                                 <li>
-                                    <asp:HyperLink NavigateUrl="~/SegDescarga?go=5" runat="server" Text="Seg Descargas" />
+                                    <asp:HyperLink ID="HyperLink19" NavigateUrl="~/SegDescarga?go=5" runat="server" Text="Descargas" />
                                 </li>
                                 <li>
-                                    <asp:HyperLink NavigateUrl="~/SegLogAdmin?go=5" runat="server" Text="Seg Log Admin" />
+                                    <asp:HyperLink ID="HyperLink20" NavigateUrl="~/SegLogAdmin?go=5" runat="server" Text="Log Administrativo" />
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <asp:HyperLink NavigateUrl="~/Login?go=13" runat="server">Cerrar Sesión</asp:HyperLink></li>
+                    <asp:HyperLink ID="HyperLink21" NavigateUrl="~/Login?go=13" runat="server">Cerrar Sesión</asp:HyperLink></li>
             </ul>
         </nav>
         <section>
