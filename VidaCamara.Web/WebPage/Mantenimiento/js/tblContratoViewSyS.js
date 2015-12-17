@@ -60,6 +60,7 @@ $(document).ready(function () {
                 _ide_Contrato: { key: true, list: false },
                 _nro_Contrato: { title: 'N°_Contrato' },
                 _cla_Contrato: { title: 'Clase_de_Contrato ' },
+                _nro_empresa: { title: 'Nro_empresas ' },
                 _fec_Ini_Vig: { title: 'Inicio_Vigencia', displayFormat: 'dd/mm/yy', type: 'date'},
                 _fec_Fin_Vig: { title: 'Fin_Vigencia', displayFormat: 'dd/mm/yy', type: 'date' },
                 _des_Contrato: { title: 'Descripción_Contrato' },
@@ -84,6 +85,7 @@ $(document).ready(function () {
                         $('#ctl00_ContentPlaceHolder1_txtFechaFin_sys').val(ConvertNumberToDate(record._fec_Fin_Vig));
                         $("#ctl00_ContentPlaceHolder1_txtdescripcion_sys").val(record._des_Contrato);
                         $("#ctl00_ContentPlaceHolder1_ddlEstado_sys").val(record._estado);
+                        $("#ctl00_ContentPlaceHolder1_txt_numero_empresa").val(record._nro_empresa);
                         $('#ctl00_hdf_control').val(999);
 
                     });
