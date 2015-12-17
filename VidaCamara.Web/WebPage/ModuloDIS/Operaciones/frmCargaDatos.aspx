@@ -52,7 +52,8 @@
     <div class="tabBody">
         <asp:MultiView id="multiTabs" ActiveViewIndex="0" Runat="server">
             <!--VISTA CARGA DE DATOS-->
-            <asp:View ID="view1" runat="server">                
+            <asp:View ID="view1" runat="server">      
+                          
                 <label class="label_to" for="dbl_contrato_d">Contrato (*)</label>
                 <asp:DropDownList CssClass="input_to" ID="ddl_conrato1" runat="server" Height="25px" Width="77%" OnSelectedIndexChanged="ddl_conrato1_SelectedIndexChanged"></asp:DropDownList>
 
@@ -73,6 +74,7 @@
 
                 <label class="label_to" for="fileUpload">Registros Observadas</label>
                 <asp:Label runat="server" CssClass="input_to" Text="0"></asp:Label>
+
             </asp:View>
             <!--seccion de RSP-->
             <asp:View ID="view2" runat="server">               
