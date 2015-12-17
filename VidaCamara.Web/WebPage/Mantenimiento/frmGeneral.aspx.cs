@@ -41,6 +41,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipcon_c,"07");
                 concepto.SetEstablecerDataSourceConcepto(ddl_calificadora_r,"02");
                 concepto.SetEstablecerDataSourceConcepto(ddl_crediticia_r,"11");
+                concepto.SetEstablecerDataSourceConcepto(ddl_compania_seg_vida,"29");
 
                 //contrato sys
                 var bContrato = new bContratoSys();

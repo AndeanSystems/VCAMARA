@@ -616,6 +616,15 @@ namespace VidaCamara.Web.WebPage.Mantenimiento {
         protected global::System.Web.UI.WebControls.TextBox txt_nrocont_sys;
         
         /// <summary>
+        /// Control txt_numero_empresa.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_numero_empresa;
+        
+        /// <summary>
         /// Control ddl_clase_contrato_sys.
         /// </summary>
         /// <remarks>
@@ -686,15 +695,6 @@ namespace VidaCamara.Web.WebPage.Mantenimiento {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_contrato_sis;
-        
-        /// <summary>
-        /// Control txt_numero_empresa.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_numero_empresa;
         
         /// <summary>
         /// Control ddl_compania_seg_vida.

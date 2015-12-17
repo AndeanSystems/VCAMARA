@@ -295,11 +295,16 @@
                             <div class="panel-body">
                                 <label class="label_to" for="txt_nrocont_sys">Número de Contrato (*)</label>
                                 <asp:TextBox CssClass="input_to" ID="txt_nrocont_sys" runat="server" Height="25px" Width="14%"></asp:TextBox>
+
+                                <label class="input_right_L" for="txt_ruc">Nº  Empresas (*)</label>
+                                <asp:TextBox CssClass="input_right" ID="txt_numero_empresa" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
+
                                 <label class="label_to" for="ddl_clase_contrato_sys">Clase de Contrato (*)</label>
                                 <asp:DropDownList CssClass="input_to" ID="ddl_clase_contrato_sys" runat="server" Height="25px" Width="14.3%" ToolTip="Selecione este Campo">                          
                                 </asp:DropDownList>
                                 <label class="input_right_L" for="txtFechaInicio_sys">Fecha Inicio de Vigencia (*)</label>
                                 <asp:TextBox CssClass="input_right datetime" ID="txtFechaInicio_sys" runat="server" Height="25px" Width="13.8%"></asp:TextBox>
+
                                 <label class="input_right_L" for="txtFechaFin_sys">Fecha Fin de Vigencia (*)</label>
                                 <asp:TextBox CssClass="input_right datetime" ID="txtFechaFin_sys" runat="server" Height="25px" Width="13.8%"></asp:TextBox>
                                 <label class="label_to" for="txtdescripcion_sys">Descripción</label>
@@ -320,9 +325,6 @@
 
                <label class="label_to" for="ddl_contrato_r" >Contrato (*)</label>
                <asp:DropDownList ID="ddl_contrato_sis" CssClass="input_to" runat="server" Height="25px" Width="78.2%"></asp:DropDownList>
-
-               <label class="label_to" for="txt_ruc">Nº  Empresas (*)</label>
-               <asp:TextBox CssClass="input_to" ID="txt_numero_empresa" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
 
                <label class="label_to" for="ddl_contrato_r" >Cia. Seguros Vida (*)</label>
                <asp:DropDownList ID="ddl_compania_seg_vida" CssClass="input_to" runat="server" Height="25px" Width="78.2%"></asp:DropDownList>
