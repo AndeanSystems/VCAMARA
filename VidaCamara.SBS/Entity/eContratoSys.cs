@@ -22,5 +22,6 @@ namespace VidaCamara.SBS.Entity
         public Int32 _fin { get; set; }
         public String _orderby { get; set; }
         public Int32 _total { get; set; }
+        public Int32 _nro_empresa { get; set; }
     }
 }
