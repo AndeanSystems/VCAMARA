@@ -10,8 +10,7 @@
 namespace VidaCamara.DIS.Modelo
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class CONTRATO_SIS_DET
     {
         public int IDE_CONTRATO_DET { get; set; }
