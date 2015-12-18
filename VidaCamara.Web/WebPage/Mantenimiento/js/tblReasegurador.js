@@ -1,25 +1,9 @@
 ﻿$(document).ready(function () {
-    $('#ctl00_ContentPlaceHolder1_txt_cesion_r').numeric();
-    $('#ctl00_ContentPlaceHolder1_txt_tasariesgo_r').numeric();
-    $('#ctl00_ContentPlaceHolder1_txt_tasareaseguro_r').numeric();
-    $('#ctl00_ContentPlaceHolder1_txt_impuesto_r').numeric();
-    $('#ctl00_ContentPlaceHolder1_txt_nroxl_r').numeric();
-    $('#ctl00_ContentPlaceHolder1_txt_montomax_r').numeric();
-    $('#ctl00_ContentPlaceHolder1_txt_montocesion_r').numeric();
-    $('#ctl00_ContentPlaceHolder1_txt_montoprima_r').numeric();
-    $('#ctl00_ContentPlaceHolder1_txt_excesoprio_r').numeric();
-    $('#ctl00_ContentPlaceHolder1_txt_primaminima_r').numeric();
-    $('#ctl00_ContentPlaceHolder1_txt_supcapa_r').numeric();
-    $('#ctl00_ContentPlaceHolder1_txt_excesoprio_r').numeric();
-    $('#ctl00_ContentPlaceHolder1_txt_montopleno_r').numeric();
-    $('#ctl00_ContentPlaceHolder1_txt_multiplo_r').numeric();
-    $('#ctl00_ContentPlaceHolder1_txt_prioridad_r').numeric();
-
+    $(".numeric").numeric();
     $('#aspnetForm').delegate('#ctl00_ContentPlaceHolder1_ddl_reasegurador_r', 'change', function (e) {
         $('#ctl00_ContentPlaceHolder1_txt_codreasegurador_r').val($(this).val());
     });
     $('.tabBody').delegate('#ctl00_ContentPlaceHolder1_ddl_contrato_r', 'change', function (e) {
-
         var idcontdet = $("#ctl00_ContentPlaceHolder1_txt_idContratoDetalle_c").val();
         if (idcontdet == 0) {
             jTableRequestDetalle($(this).val(), 5);
@@ -92,7 +76,7 @@
             }
         });
 
-        $('#tblReasegurador .jtable-main-container').css({ "width": "2200px" });
+        $('#tblReasegurador.jtable-main-container').css({ "width": "2200px" });
         $('#tblReasegurador').jtable('load', { WhereBy: nro_contrato });
     }
 });

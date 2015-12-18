@@ -1,16 +1,20 @@
 ﻿$(document).ready(function (e) {
     //EVENTOS
     $("section").delegate("#ctl00_ContentPlaceHolder1_btn_borrar", "click", function () {
-        var tablaidcont = $("#tblContratoView").length;
-        var tablaidDet = $("#tblReasegurador").length;
-        if (tablaidcont == 1 && tablaidDet == 0) {
+
+        const tablaidContratoSbs = $("#tblContratoView").length;
+        const tablaidContratoSbsDet = $("#tblReasegurador").length;
+        const tablaidContratoSis = $("#tblContratoViewSyS").length;
+        const tableidContratoSisDet = $("#tblContratoViewSySDetalle").length;
+
+        if (tablaidContratoSbs == 1 && tablaidContratoSbsDet == 0 && tablaidContratoSis == 0 && tableidContratoSisDet == 0) {
             var idcontrat = $("#ctl00_ContentPlaceHolder1_txt_idContrato_c").val();
             if (idcontrat == 0) {
                 MessageBox("Selecione un Registro"); return false;
             } else {
                 return confirm("¿ Está Seguro de Eliminar el Registro ?");
             }
-        } else if (tablaidcont == 0 && tablaidDet == 1) {
+        } else if (tablaidcont == 0 && tablaidDet == 1 && tablaidContratoSis == 0 && tableidContratoSisDet == 0) {
             var idcontdet = $("#ctl00_ContentPlaceHolder1_txt_idContratoDetalle_c").val();
             if (idcontdet == 0) {
                 MessageBox("Selecione un Registro"); return false;

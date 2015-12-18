@@ -607,6 +607,15 @@ namespace VidaCamara.Web.WebPage.Mantenimiento {
         protected global::System.Web.UI.WebControls.View View3;
         
         /// <summary>
+        /// txt_ide_contrato_sis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField txt_ide_contrato_sis;
+        
+        /// <summary>
         /// txt_nrocont_sys control.
         /// </summary>
         /// <remarks>
@@ -670,15 +679,6 @@ namespace VidaCamara.Web.WebPage.Mantenimiento {
         protected global::System.Web.UI.WebControls.DropDownList ddl_estado_sys;
         
         /// <summary>
-        /// txt_idContrato_sys control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField txt_idContrato_sys;
-        
-        /// <summary>
         /// view5 control.
         /// </summary>
         /// <remarks>
@@ -688,13 +688,13 @@ namespace VidaCamara.Web.WebPage.Mantenimiento {
         protected global::System.Web.UI.WebControls.View view5;
         
         /// <summary>
-        /// txt_ide_contrato_det control.
+        /// txt_ide_contrato_sis_det control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField txt_ide_contrato_det;
+        protected global::System.Web.UI.WebControls.HiddenField txt_ide_contrato_sis_det;
         
         /// <summary>
         /// ddl_contrato_sis control.

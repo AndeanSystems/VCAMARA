@@ -202,6 +202,8 @@
     <Content Include="Scripts\jtable\themes\metro\green\list_metro.png" />
     <Content Include="sql\modelo1.sql" />
     <Content Include="sql\[SP_SEL_MODELO2].sql" />
+    <Content Include="WebPage\Mantenimiento\js\parametro-validacion.js" />
+    <Content Include="WebPage\Mantenimiento\js\tblContratoSisDetalle.js" />
     <Content Include="WebPage\Mantenimiento\js\tblContratoViewSyS.js" />
     <Content Include="WebPage\ModuloDIS\Consultas\frmSegConsulta.aspx" />
     <Content Include="WebPage\ModuloDIS\Consultas\frmSegDescarga.aspx" />
@@ -490,7 +492,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\Temp\Archivos\" />
-    <Folder Include="sql\" />
+    <Folder Include="Temp\Archivos\" />
     <Folder Include="WebPage\ModuloDIS\Operaciones\Service\" />
   </ItemGroup>
   <ItemGroup>

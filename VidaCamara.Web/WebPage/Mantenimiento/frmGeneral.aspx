@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebPage/Inicio/mpFEPCMAC.Master" AutoEventWireup="true" CodeBehind="frmGeneral.aspx.cs" Inherits="VidaCamara.Web.WebPage.Mantenimiento.General" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
+    <script src="/WebPage/Mantenimiento/js/parametro-validacion.js"></script>
     <script src="/WebPage/Mantenimiento/js/tblGeneral.js"></script>
     <script src="/WebPage/Mantenimiento/js/tblContratoView.js"></script>
     <script src="/WebPage/Mantenimiento/Js/tblReasegurador.js"></script>
@@ -34,7 +35,6 @@
 
             <StaticSelectedStyle CssClass="selectedTab" BackColor="#006666" BorderStyle="None"></StaticSelectedStyle>
     </asp:Menu>  
-    <!--Cuerpo de los tabs-->
     <div class="tabBody">
         <asp:HiddenField ID="hdf_form" Value="0" runat="server" />
         <asp:MultiView id="multiTabs" ActiveViewIndex="0" Runat="server">
@@ -236,7 +236,6 @@
 
             <!--seccion de reasegurador-->
             <asp:View ID="View4" runat="server">
-
                 <label class="label_to" for="ddl_contrato_r" >Contrato (*)</label>
                 <asp:DropDownList ID="ddl_contrato_r" CssClass="input_to" runat="server" Height="25px" Width="78.2%"></asp:DropDownList>
 
@@ -259,7 +258,7 @@
                 <asp:TextBox CssClass="input_to" ID="txt_retencion_r" runat="server" Height="25px" Width="13.8%"></asp:TextBox>
 
                 <label class="input_right_L" for="txt_cesion_r">% De Cesión :</label>
-                <asp:TextBox CssClass="input_right" ID="txt_cesion_r" runat="server" Height="25px" Width="13.8%"></asp:TextBox>
+                <asp:TextBox CssClass="input_right numeric" ID="txt_cesion_r" runat="server" Height="25px" Width="13.8%"></asp:TextBox>
 
                 <label class="input_right_L" for="txt_participacion_cesion" >Part. del Rea. Sobre la Cesion (%)</label>
                 <asp:TextBox ID="txt_participacion_cesion" CssClass="input_right" runat="server" Height="25px" Width="14%"></asp:TextBox>
@@ -281,49 +280,35 @@
 
              <!--seccion de Contrato SYS-->
             <asp:View ID="View3" runat="server">
-                  <link rel="stylesheet" href="Resources/CSS/bootstrap.css"/>
-                    <div class="panel-group" id="accordion2">
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne2">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"> Contrato</span>
-                                </a>
-                            </h4>
-                        </div>
-                         <!--cabecera de contrato-->
-                        <div id="collapseOne2" class="panel-collapse collapse in">
-                            <div class="panel-body">
-                                <label class="label_to" for="txt_nrocont_sys">Número de Contrato (*)</label>
-                                <asp:TextBox CssClass="input_to" ID="txt_nrocont_sys" runat="server" Height="25px" Width="14%"></asp:TextBox>
+                <asp:HiddenField runat="server" ID="txt_ide_contrato_sis" Value="0"/>
 
-                                <label class="input_right_L" for="txt_ruc">Nº  Empresas (*)</label>
-                                <asp:TextBox CssClass="input_right" ID="txt_numero_empresa" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
+                <label class="label_to" for="txt_nrocont_sys">Número de Contrato (*)</label>
+                <asp:TextBox CssClass="input_to" ID="txt_nrocont_sys" runat="server" Height="25px" Width="14%"></asp:TextBox>
 
-                                <label class="label_to" for="ddl_clase_contrato_sys">Clase de Contrato (*)</label>
-                                <asp:DropDownList CssClass="input_to" ID="ddl_clase_contrato_sys" runat="server" Height="25px" Width="14.3%" ToolTip="Selecione este Campo">                          
-                                </asp:DropDownList>
-                                <label class="input_right_L" for="txtFechaInicio_sys">Fecha Inicio de Vigencia (*)</label>
-                                <asp:TextBox CssClass="input_right datetime" ID="txtFechaInicio_sys" runat="server" Height="25px" Width="13.8%"></asp:TextBox>
+                <label class="input_right_L" for="txt_ruc">Nº  Empresas (*)</label>
+                <asp:TextBox CssClass="input_right" ID="txt_numero_empresa" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
 
-                                <label class="input_right_L" for="txtFechaFin_sys">Fecha Fin de Vigencia (*)</label>
-                                <asp:TextBox CssClass="input_right datetime" ID="txtFechaFin_sys" runat="server" Height="25px" Width="13.8%"></asp:TextBox>
-                                <label class="label_to" for="txtdescripcion_sys">Descripción</label>
-                                <asp:TextBox CssClass="input_to" ID="txtdescripcion_sys" runat="server" Height="25px" Width="46.2%"></asp:TextBox>
-                                <label class="input_right_L" for="ddl_estado_sys" runat="server">Estado :</label>
-                                <asp:DropDownList CssClass="input_right" ID="ddl_estado_sys" runat="server" Height="25px" Width="14.1%"></asp:DropDownList>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <asp:HiddenField ID="txt_idContrato_sys" runat="server" Value="0"/>
+                <label class="label_to" for="ddl_clase_contrato_sys">Clase de Contrato (*)</label>
+                <asp:DropDownList CssClass="input_to" ID="ddl_clase_contrato_sys" runat="server" Height="25px" Width="14.3%" ToolTip="Selecione este Campo">                          
+                </asp:DropDownList>
+                <label class="input_right_L" for="txtFechaInicio_sys">Fecha Inicio de Vigencia (*)</label>
+                <asp:TextBox CssClass="input_right datetime" ID="txtFechaInicio_sys" runat="server" Height="25px" Width="13.8%"></asp:TextBox>
+
+                <label class="input_right_L" for="txtFechaFin_sys">Fecha Fin de Vigencia (*)</label>
+                <asp:TextBox CssClass="input_right datetime" ID="txtFechaFin_sys" runat="server" Height="25px" Width="13.8%"></asp:TextBox>
+                <label class="label_to" for="txtdescripcion_sys">Descripción</label>
+                <asp:TextBox CssClass="input_to" ID="txtdescripcion_sys" runat="server" Height="25px" Width="46.2%"></asp:TextBox>
+                <label class="input_right_L" for="ddl_estado_sys" runat="server">Estado :</label>
+                <asp:DropDownList CssClass="input_right" ID="ddl_estado_sys" runat="server" Height="25px" Width="14.1%"></asp:DropDownList>
+
                 <div class="iframe">
                   <div id="tblContratoViewSyS"></div>
                 </div>
             </asp:View>
 
             <asp:View ID="view5" runat="server">
-               <asp:HiddenField ID="txt_ide_contrato_det" Value="0" runat="server"/>
+
+               <asp:HiddenField ID="txt_ide_contrato_sis_det" Value="0" runat="server"/>
                <label class="label_to" for="ddl_contrato_r" >Contrato (*)</label>
                <asp:DropDownList ID="ddl_contrato_sis" CssClass="input_to" runat="server" Height="25px" Width="78.2%"></asp:DropDownList>
 

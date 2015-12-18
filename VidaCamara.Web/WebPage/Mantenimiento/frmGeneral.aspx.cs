@@ -110,9 +110,12 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             return new { Result = "OK", Records = list, TotalRecordCount = total };
         }
         [System.Web.Services.WebMethod(EnableSession = true)]
-        public static object ContratoSisDetalle(){
-            var listDetalle = new VidaCamara.DIS.data.dContrato_sis_detalle().getlistContratoDetalle();
-            return new { Result = "OK", Records = listDetalle };
+        public static object ContratoSisDetalleList(int jtStartIndex, int jtPageSize, string jtSorting, String WhereBy)
+        {
+            var contratoDetalle = new CONTRATO_SIS_DET() { IDE_CONTRATO = Convert.ToInt32(WhereBy.Trim()) };
+            var filterOptions = new Object[3] { (jtStartIndex != 0) ? jtStartIndex / jtPageSize : jtStartIndex, jtPageSize, jtSorting };
+            var listDetalle = new nContratoSisDetalle().getlistContratoDetalle(contratoDetalle, filterOptions,out total);
+            return new { Result = "OK", Records = listDetalle, TotalRecordCount = 10 };
         }
         //LLENADO DE CONTRATOO
         [System.Web.Services.WebMethod(EnableSession = true)]
@@ -150,28 +153,31 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             else if (tab == 2)
                 SetInsertarActualizarContratoDetalle();
             else if (tab == 3)
-                SetInsertarContratoSys();
+                SetInsertarActualizarContratoSys();
             else if (tab == 4)
                 setInsertarActualizarContratoSisDetalle();
         }
-
-
         private void setInsertarActualizarContratoSisDetalle()
         {
             try
             {
                 var ContratoSisDetalle = new CONTRATO_SIS_DET()
                 {
-                    IDE_CONTRATO_DET = Convert.ToInt32(txt_ide_contrato_det.Value),
+                    IDE_CONTRATO_DET = Convert.ToInt32(txt_ide_contrato_sis_det.Value),
                     IDE_CONTRATO = Convert.ToInt32(ddl_contrato_sis.SelectedItem.Value),
                     COD_CSV = Convert.ToInt32(ddl_compania_seg_vida.SelectedItem.Value),
                     PRC_PARTICIACION = Convert.ToDecimal(txt_participacion_sis.Text),
-                    NRO_ORDEN = Convert.ToInt32(txt_orden_empresa_sis.Text)
+                    NRO_ORDEN = Convert.ToInt32(txt_orden_empresa_sis.Text),
+                    ESTADO = "A",
+                    FEC_REG = DateTime.Now,
+                    FEC_MOD = DateTime.Now,
+                    USU_REG = Session["username"].ToString(),
+                    USU_MOD = Session["username"].ToString()
                 };
                 if (ContratoSisDetalle.IDE_CONTRATO_DET == 0)
                 {
                     var resp = new nContratoSisDetalle().setGuardarContratoDetalle(ContratoSisDetalle);
-                    MessageBox(resp + " Registro  grabado corretamente");
+                    MessageBox("Registro  grabado corretamente");
                 }
                 else
                 {
@@ -190,21 +196,16 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
         {
             int tab = Convert.ToInt16(menuTabs.SelectedValue);
             if (tab == 0)
-            {
                 MessageBox("Formulario no Borrable");
-            }
             else if (tab == 1)
-            {
                 SetEliminarParamentro("CONTRATO", txt_idContrato_c.Value);
-            }
             else if (tab == 2)
-            {
                 SetEliminarParamentro("CONTRATO_DETALLE", txt_idContratoDetalle_c.Value);
-            }
             else if (tab == 3)
-            {
-                SetEliminarParamentro("CONTRATO_SYS", txt_idContrato_sys.Value);
-            }
+                SetEliminarParamentro("CONTRATO_SYS", txt_ide_contrato_sis.Value);
+            else if (tab == 4)
+                SetEliminarParamentro("CONTRATO_SIS_DETALLE", txt_ide_contrato_sis_det.Value);
+
         }
         //#region funciones
         private void SetInsertarGeneral() {
@@ -443,18 +444,17 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 {
                     bContratoSys bcd = new bContratoSys();
                     Int32 resp = bcd.SetEliminarContratoSys(Int32.Parse(indice));
-                    if (resp != 0)
-                    {
-                        MessageBox(resp + "Registro Eliminado Correctamente!");
-                    }
-                    else
-                    {
-                        MessageBox("Ocurrio un Error en el Servidor!");
-                    }
+                    MessageBox(resp + "Registro Eliminado Correctamente!");
+  
+                }
+                else if(tabla.Equals("CONTRATO_SIS_DETALLE") && indice != "0")
+                {
+                    var resp = new nContratoSisDetalle().setEliminarContratoDetalle(Int32.Parse(indice));
+                    MessageBox(resp + " Registros (s) eliminado (s) correctamente");
                 }
             }
-            catch (Exception) {
-                MessageBoxcCatch("ERROR => Selecione un Registro");
+            catch (Exception ex) {
+                MessageBoxcCatch("Ocurrio el siguiente error "+ex.Message.ToString());
             }
         }
 
@@ -505,7 +505,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
         }
         private void MessageBoxcCatch(String text)
         {
-            Page.ClientScript.RegisterStartupScript(GetType(), "msgbox", "$('<div style=\"font-size:14px;text-align:center;\">" + text + "</div>').dialog({title:'Error',modal:true,width:400,height:160,buttons: [{id: 'aceptar',text: 'Aceptar',icons: { primary: 'ui-icon-circle-check' },click: function () {$(this).dialog('close');}}]})", true);
+            Page.ClientScript.RegisterStartupScript(GetType(), "msgbox", "$('<div style=\"font-size:14px;text-align:center;\">" + text.Replace("'","").Replace(Environment.NewLine,"") + "</div>').dialog({title:'Error',modal:true,width:400,height:160,buttons: [{id: 'aceptar',text: 'Aceptar',icons: { primary: 'ui-icon-circle-check' },click: function () {$(this).dialog('close');}}]})", true);
         }
 
         #region "DRIVERA Ini"
@@ -536,14 +536,14 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             return new { Result = "OK", Records = list, TotalRecordCount = total };
         }
 
-        private void SetInsertarContratoSys()
+        private void SetInsertarActualizarContratoSys()
         {
             try
             {
                 Int32 resp = 0;
                 eContratoSys c = new eContratoSys();
                 c._id_Empresa = Convert.ToInt32(Session["idempresa"]);
-                c._ide_Contrato = Convert.ToInt32(txt_idContrato_sys.Value);
+                c._ide_Contrato = Convert.ToInt32(txt_ide_contrato_sis.Value);
                 c._nro_Contrato = txt_nrocont_sys.Text;
                 c._cla_Contrato = ddl_clase_contrato_sys.SelectedItem.Value;
                 c._fec_Ini_Vig = DateTime.Parse(txtFechaInicio_sys.Text);

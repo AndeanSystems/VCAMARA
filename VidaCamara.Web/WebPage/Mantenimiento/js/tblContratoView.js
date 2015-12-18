@@ -89,69 +89,6 @@ $(document).ready(function () {
 
         $("#ctl00_ContentPlaceHolder1_txt_descrip_contrato").val(descripcion_contrato +" "+ tipo_contrato +" Del "+ meses[parseInt(fecha_inicio[0][1])] + " "+fecha_inicio[0][2]+" Hasta " + meses[parseInt(fecha_fin[0][1])]+" "+fecha_fin[0][2]);
     });
-    //validacion de contrato
-    $("section").delegate("#ctl00_ContentPlaceHolder1_btnGuardar", "click", function (ev) {
-        var tablaidcont = $("#tblContratoView").length;
-        var tablaidDet = $("#tblReasegurador").length;
-        if (tablaidcont == 0 && tablaidDet == 0) {
-            var idgeneral = $("ctl00_ContentPlaceHolder1_txt_idempresa").val();
-            if (idgeneral == 0) {
-                return confirm("¿Esta seguro de Grabar?");
-            } else {
-                return confirm("¿ Está Seguro de Actualizar el Registro ?");
-            }
-        }else if (tablaidcont == 1 && tablaidDet == 0) {
-            var idcontrato = $("#ctl00_ContentPlaceHolder1_txt_idContrato_c").val();
-            if (idcontrato == 0) {
-                var clacont = $("#ctl00_ContentPlaceHolder1_ddl_clasecontrato_c").val();
-                var nrocont = $("#ctl00_ContentPlaceHolder1_txt_nrocont_c").val();
-                var tipcont = $("#ctl00_ContentPlaceHolder1_ddl_tipcon_c").val();
-                var ramo = $("#ctl00_ContentPlaceHolder1_ddl_ramo_c").val();
-                var ramsin = $("#ctl00_ContentPlaceHolder1_ddl_seniestro_c").val();
-                var tipcontdet = $("#ctl00_ContentPlaceHolder1_ddl_tipcont_det_c").val();
-                var fecini = $("#ctl00_ContentPlaceHolder1_txt_fecini_c").val();
-                var fecfin = $("#ctl00_ContentPlaceHolder1_txt_fecfin_c").val();
-                var asegur = $("#ctl00_ContentPlaceHolder1_ddl_asegurado_c").val();
-                var moneda = $("#ctl00_ContentPlaceHolder1_ddl_moneda_c").val();
-                var porret = $("#ctl00_ContentPlaceHolder1_txt_retencion_c").val();
-                var porcec = $("#ctl00_ContentPlaceHolder1_txt_cesion_c").val();
-                var porcia = $("#ctl00_ContentPlaceHolder1_txt_cia_c").val();
-                if (clacont == 0 || nrocont == "" || tipcont == 0 || ramo == 0 || ramsin == 0 || tipcontdet == 0 || fecini == "" || fecfin == "" || asegur == 0 || moneda == 0) {
-                    MessageBox("Ingrese y Selecione los Campos Requiridos"); return false;
-                } else if (porret == 0 || porcec == 0 || porcia == 0) {
-                    return confirm("Hay Algunos Campos con valor cero. ¿Esta seguro de Grabar?");
-                } else {
-                    return confirm("¿Esta seguro de Grabar?");
-                }
-            } else {
-                return confirm("¿ Está Seguro de Actualizar el Registro ?");
-            }
-        } else if (tablaidcont == 0 && tablaidDet == 1) {
-            var idcontdet = $("#ctl00_ContentPlaceHolder1_txt_idContratoDetalle_c").val();
-            if (idcontdet == 0) {
-                var calcula = 0;
-                $(".tabBody input[type='text']").each(function (index, element) {
-                    valor = $(this).val();
-                    if (valor == 0) {
-                        calcula++;
-                    }
-                });
-                var contdet = $("#ctl00_ContentPlaceHolder1_ddl_contrato_r").val();
-                var reasegu = $("#ctl00_ContentPlaceHolder1_ddl_reasegurador_r").val();
-                var califica = $("#ctl00_ContentPlaceHolder1_ddl_calificadora_r").val();
-                var crediti = $("#ctl00_ContentPlaceHolder1_ddl_crediticia_r").val();
-                if (contdet == 0 || reasegu == 0 || califica == 0 || crediti == 0) {
-                    MessageBox("Ingrese y Selecione los Campos Requiridos"); return false;
-                } else if (calcula > 0) {
-                    return confirm("Hay Algunos Campos con valor cero. ¿Esta seguro de Grabar?");
-                } else {
-                    return confirm("¿Esta seguro de Grabar?");
-                }
-            } else {
-                return confirm("¿ Está Seguro de Actualizar el Registro ?");
-            }
-        }
-    });
     //jtable grid
     $('#ctl00_ContentPlaceHolder1_txt_cia_c').numeric();
     $('#ctl00_ContentPlaceHolder1_txt_retencion_c').numeric();
