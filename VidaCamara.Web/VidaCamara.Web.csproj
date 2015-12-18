@@ -247,6 +247,7 @@
     <Content Include="Resources\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Resources\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="packages.config" />
+    <Content Include="Db\bd_vcamara_18122015_223.bak" />
     <None Include="Properties\PublishProfiles\camara.pubxml" />
     <None Include="Properties\PublishProfiles\DAVID.pubxml" />
     <None Include="Properties\PublishProfiles\vcamara.pubxml" />
@@ -315,7 +316,6 @@
     <Content Include="web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="vcamara_bd_01122015.bak" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
