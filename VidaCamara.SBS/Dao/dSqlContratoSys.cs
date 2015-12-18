@@ -34,6 +34,7 @@ namespace VidaCamara.SBS.Dao
                 sqlcmd.Parameters.Add("@DES_CONTRATO", SqlDbType.VarChar).Value = o._des_Contrato;
                 sqlcmd.Parameters.Add("@ESTADO", SqlDbType.Char).Value = o._estado;
                 sqlcmd.Parameters.Add("@USU_REG", SqlDbType.VarChar).Value = o._usu_reg;
+                sqlcmd.Parameters.Add("@NRO_EMPRESA", SqlDbType.Int).Value = o._nro_empresa;
 
                 _bool = sqlcmd.ExecuteNonQuery();
             }
@@ -70,6 +71,7 @@ namespace VidaCamara.SBS.Dao
                 sqlcmd.Parameters.Add("@DES_CONTRATO", SqlDbType.VarChar).Value = o._des_Contrato;
                 sqlcmd.Parameters.Add("@ESTADO", SqlDbType.Char).Value = o._estado;
                 sqlcmd.Parameters.Add("@USU_MOD", SqlDbType.VarChar).Value = o._usu_reg;
+                sqlcmd.Parameters.Add("@NRO_EMPRESA", SqlDbType.Int).Value = o._nro_empresa;
 
                 _bool = sqlcmd.ExecuteNonQuery();
             }
@@ -100,7 +102,7 @@ namespace VidaCamara.SBS.Dao
 
             catch (Exception ex)
             {
-
+                throw (new Exception(ex.Message));
             }
             finally
             {
@@ -142,6 +144,7 @@ namespace VidaCamara.SBS.Dao
                     e._estado = dr.GetString(7);
                     e._fec_reg = dr.GetDateTime(8);
                     e._usu_reg = dr.GetString(9);
+                    e._nro_empresa = dr.GetInt32(10);
 
                     list.Add(e);
                 }
