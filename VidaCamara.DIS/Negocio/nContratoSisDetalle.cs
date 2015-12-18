@@ -7,10 +7,6 @@ namespace VidaCamara.DIS.Negocio
 {
     public class nContratoSisDetalle
     {
-        public List<CONTRATO_SIS_DET> getlistContratoDetalle()
-        {
-            return new dContrato_sis_detalle().getlistContratoDetalle();
-        }
         public Int32 setGuardarContratoDetalle(CONTRATO_SIS_DET det)
         {
             return new dContrato_sis_detalle().setGuardarContratoDetalle(det);
@@ -18,6 +14,16 @@ namespace VidaCamara.DIS.Negocio
         public Int32 setActualizarContratoDetalle(CONTRATO_SIS_DET det)
         {
             return new dContrato_sis_detalle().setActualizarContratoDetalle(det);
+        }
+
+        public List<CONTRATO_SIS_DET> getlistContratoDetalle(CONTRATO_SIS_DET contratoDetalle, object[] filterOptions, out int total)
+        {
+            return new dContrato_sis_detalle().getlistContratoDetalle(contratoDetalle, filterOptions,out total);
+        }
+
+        public Int32 setEliminarContratoDetalle(int primary_key)
+        {
+            return new dContrato_sis_detalle().setEliminarContratoDetalle(primary_key);
         }
     }
 }
