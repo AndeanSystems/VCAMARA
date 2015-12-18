@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using VidaCamara.DIS.Negocio;
+using VidaCamara.DIS.Modelo;
 using VidaCamara.SBS.Entity;
 using VidaCamara.SBS.Negocio;
 
@@ -110,7 +111,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
         }
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static object ContratoSisDetalle(){
-            var listDetalle = new VidaCamara.DIS.data.contrato_sis_detalle().getlistContratoDetalle();
+            var listDetalle = new VidaCamara.DIS.data.dContrato_sis_detalle().getlistContratoDetalle();
             return new { Result = "OK", Records = listDetalle };
         }
         //LLENADO DE CONTRATOO
@@ -143,22 +144,47 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
         {
             int tab = Convert.ToInt16(menuTabs.SelectedValue);
             if (tab == 0)
-            {
-                   SetInsertarGeneral();
-            }
+                SetInsertarGeneral();
             else if (tab == 1)
-            {
                 SetInsertarActualizarContrato();
-            }
             else if (tab == 2)
-            {
                 SetInsertarActualizarContratoDetalle();
-            }
             else if (tab == 3)
-            {
                 SetInsertarContratoSys();
+            else if (tab == 4)
+                setInsertarActualizarContratoSisDetalle();
+        }
+
+
+        private void setInsertarActualizarContratoSisDetalle()
+        {
+            try
+            {
+                var ContratoSisDetalle = new CONTRATO_SIS_DET()
+                {
+                    IDE_CONTRATO_DET = Convert.ToInt32(txt_ide_contrato_det.Value),
+                    IDE_CONTRATO = Convert.ToInt32(ddl_contrato_sis.SelectedItem.Value),
+                    COD_CSV = Convert.ToInt32(ddl_compania_seg_vida.SelectedItem.Value),
+                    PRC_PARTICIACION = Convert.ToDecimal(txt_participacion_sis.Text),
+                    NRO_ORDEN = Convert.ToInt32(txt_orden_empresa_sis.Text)
+                };
+                if (ContratoSisDetalle.IDE_CONTRATO_DET == 0)
+                {
+                    var resp = new nContratoSisDetalle().setGuardarContratoDetalle(ContratoSisDetalle);
+                    MessageBox(resp + " Registro  grabado corretamente");
+                }
+                else
+                {
+                    var resp = new nContratoSisDetalle().setActualizarContratoDetalle(ContratoSisDetalle);
+                    MessageBox(resp + " Registro actualizado corretamente");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox("Ocurrio el siguiente error : "+ex.Message.ToString());
             }
         }
+
         //botton de borrar
         protected void btn_borrar_Click(object sender, ImageClickEventArgs e)
         {

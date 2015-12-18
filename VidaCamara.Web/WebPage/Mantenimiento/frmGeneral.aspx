@@ -323,7 +323,7 @@
             </asp:View>
 
             <asp:View ID="view5" runat="server">
-
+               <asp:HiddenField ID="txt_ide_contrato_det" Value="0" runat="server"/>
                <label class="label_to" for="ddl_contrato_r" >Contrato (*)</label>
                <asp:DropDownList ID="ddl_contrato_sis" CssClass="input_to" runat="server" Height="25px" Width="78.2%"></asp:DropDownList>
 
@@ -331,10 +331,10 @@
                <asp:DropDownList ID="ddl_compania_seg_vida" CssClass="input_to" runat="server" Height="25px" Width="78.2%"></asp:DropDownList>
                 
                <label class="label_to" for="txt_ruc">% Participación (*)</label>
-               <asp:TextBox CssClass="input_to" ID="txt_participacion" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
+               <asp:TextBox CssClass="input_to" ID="txt_participacion_sis" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
 
                 <label class="input_right_L" for="txt_ruc">Orden (*)</label>
-               <asp:TextBox CssClass="input_right" ID="txt_orden_empresa" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
+               <asp:TextBox CssClass="input_right" ID="txt_orden_empresa_sis" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
 
                 <div class="iframe">
                   <div id="tblContratoViewSySDetalle"></div>
