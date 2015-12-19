@@ -14,7 +14,7 @@ $(document).ready(function () {
     $("section").delegate("#ctl00_ContentPlaceHolder1_ddl_contrato_sis", "change", function (ev) {
         getlistContratoSisDetalle($(this).val());
     });
-    //CARGAR FRILLA POR SI EL CONTRATO TIENE ITEM SELECCIONADO
+    //CARGAR GRILLA POR SI EL CONTRATO TIENE ITEM SELECCIONADO
     if (parseInt($("#ctl00_ContentPlaceHolder1_ddl_contrato_sis").val()) != 0) {
         getlistContratoSisDetalle($("#ctl00_ContentPlaceHolder1_ddl_contrato_sis").val());
     };
@@ -33,7 +33,11 @@ $(document).ready(function () {
             },
             fields: {
                 IDE_CONTRATO_DET: { key: true, list: false },
-                IDE_CONTRATO: { title: 'N° Contrato' },
+                IDE_CONTRATO: {
+                    title: 'N° Contrato', display: function (data) {
+                        return data.record.CONTRATO_SYS.NRO_CONTRATO
+                    }
+                },
                 COD_CSV: { title: 'Cia. Seguros Vida' },
                 PRC_PARTICIACION: { title: '% Participación' },
                 NRO_ORDEN: { title: 'Orden (*)' },

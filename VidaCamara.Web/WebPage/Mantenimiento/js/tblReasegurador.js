@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    $(".numeric").numeric();
     $('#aspnetForm').delegate('#ctl00_ContentPlaceHolder1_ddl_reasegurador_r', 'change', function (e) {
         $('#ctl00_ContentPlaceHolder1_txt_codreasegurador_r').val($(this).val());
     });
