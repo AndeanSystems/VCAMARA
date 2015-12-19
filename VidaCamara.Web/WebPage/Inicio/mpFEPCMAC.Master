@@ -28,8 +28,8 @@
     <script src="Scripts/jtable/jquery.jtable.min.js"></script>
     <script src="Scripts/jtable/extensions/jquery.jtable.aspnetpagemethods.js"></script>
     <script src="Scripts/jtable/localization/jquery.jtable.es.js"></script>
-    <script src="Resources/js/ConfirmWindow.js"></script>
     <script src="Resources/js/jquery.numeric.js"></script>
+    <script src="Resources/js/ConfirmWindow.js"></script>
 
     <title>Vida Cámara</title>
     <style type="text/css">
