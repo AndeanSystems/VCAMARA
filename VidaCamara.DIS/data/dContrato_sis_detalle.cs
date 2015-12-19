@@ -12,10 +12,12 @@ namespace VidaCamara.DIS.data
             var listDetalle = new List<CONTRATO_SIS_DET>();
             try
             {
+                var rowIndex = Int32.Parse(filterOptions[0].ToString());
+                var rowEnd = Int32.Parse(filterOptions[1].ToString());
                 using (var db = new DISEntities())
                 {
-                   total = db.CONTRATO_SIS_DETs.Count();
-                   var query = db.CONTRATO_SIS_DETs.Include("CONTRATO_SYS").Where(a => a.IDE_CONTRATO == contratoDetalle.IDE_CONTRATO).ToList();
+                   total = db.CONTRATO_SIS_DETs.Where(a=>a.IDE_CONTRATO == contratoDetalle.IDE_CONTRATO).Count();
+                   var query = db.CONTRATO_SIS_DETs.Include("CONTRATO_SYS").Where(a => a.IDE_CONTRATO == contratoDetalle.IDE_CONTRATO).OrderBy(a => a.IDE_CONTRATO_DET).Skip(rowIndex).Take(rowEnd).ToList();
                     foreach (var item in query)
                     {
                         var entity = new CONTRATO_SIS_DET()
