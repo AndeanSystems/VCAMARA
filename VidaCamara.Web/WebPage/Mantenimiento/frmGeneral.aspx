@@ -40,7 +40,7 @@
         <asp:MultiView id="multiTabs" ActiveViewIndex="0" Runat="server">
             <!--lista general-->
             <asp:View ID="view1" runat="server">
-
+                
                 <label class="label_to" for="txt_empresa">Empresa (*)</label>
                 <asp:TextBox CssClass="input_to" ID="txt_empresa" runat="server" Height="25px" Width="44%" ToolTip="Ingrese este Campo"></asp:TextBox>
 
@@ -48,22 +48,22 @@
                 <asp:TextBox CssClass="input_to" ID="txt_ruc" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
 
                 <label class="label_to" for="txt_vigente">Año Vigente (*)</label>
-                <asp:TextBox CssClass="input_to" ID="txt_vigente" runat="server" Height="25px" Width="14%"  ToolTip="Ingrese este Campo"></asp:TextBox>
+                <asp:TextBox CssClass="input_to numeric" ID="txt_vigente" runat="server" Height="25px" Width="14%"  ToolTip="Ingrese este Campo"></asp:TextBox>
 
                 <label class="label_to" for="txt_mes_vig">Mes Vigente (*)</label>
-                <asp:TextBox CssClass="input_to" ID="txt_mes_vig" runat="server" Height="25px" Width="14%" ToolTip="Ingrese este Campo"></asp:TextBox>
+                <asp:TextBox CssClass="input_to numeric" ID="txt_mes_vig" runat="server" Height="25px" Width="14%" ToolTip="Ingrese este Campo"></asp:TextBox>
 
                 <label class="label_to" for="txt_ruta_archivo">Ruta Archivo Excel (*)</label>
                 <asp:TextBox CssClass="input_to" ID="txt_ruta_archivo" runat="server" Height="25px" Width="14%" ToolTip="Ingrese este Campo"></asp:TextBox>
 
                 <label class="label_to" for="txt_cantidad_decimal">N° De Decimales  (*)</label>
-                <asp:TextBox CssClass="input_to" ID="txt_cantidad_decimal" runat="server" Height="25px" Width="14%" ToolTip="Ingrese este Campo"></asp:TextBox>
+                <asp:TextBox CssClass="input_to numeric" ID="txt_cantidad_decimal" runat="server" Height="25px" Width="14%" ToolTip="Ingrese este Campo"></asp:TextBox>
 
                 <label class="label_to" for="txt_tcamesCont">T.Cambio Mes Contable (*)</label>
-                <asp:TextBox CssClass="input_to" ID="txt_tcamesCont" runat="server" Height="25px" Width="14%" ToolTip="Ingrese este Campo"></asp:TextBox>
+                <asp:TextBox CssClass="input_to numeric" ID="txt_tcamesCont" runat="server" Height="25px" Width="14%" ToolTip="Ingrese este Campo"></asp:TextBox>
 
                 <label class="label_to"for="txt_tcaCierre">T.Cambio Mes de Cierre (*)</label>
-                <asp:TextBox CssClass="input_to" ID="txt_tcaCierre" runat="server" Height="25px" Width="14%"  ToolTip="Ingrese este Campo"></asp:TextBox>
+                <asp:TextBox CssClass="input_to numeric" ID="txt_tcaCierre" runat="server" Height="25px" Width="14%"  ToolTip="Ingrese este Campo"></asp:TextBox>
 
                 <asp:HiddenField ID="txt_idempresa" Value="0" runat="server" />
 
@@ -286,7 +286,7 @@
                 <asp:TextBox CssClass="input_to" ID="txt_nrocont_sys" runat="server" Height="25px" Width="14%"></asp:TextBox>
 
                 <label class="input_right_L" for="txt_ruc">Nº  Empresas (*)</label>
-                <asp:TextBox CssClass="input_right" ID="txt_numero_empresa" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
+                <asp:TextBox CssClass="input_right numeric" ID="txt_numero_empresa" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
 
                 <label class="label_to" for="ddl_clase_contrato_sys">Clase de Contrato (*)</label>
                 <asp:DropDownList CssClass="input_to" ID="ddl_clase_contrato_sys" runat="server" Height="25px" Width="14.3%" ToolTip="Selecione este Campo">                          
@@ -316,10 +316,10 @@
                <asp:DropDownList ID="ddl_compania_seg_vida" CssClass="input_to" runat="server" Height="25px" Width="78.2%"></asp:DropDownList>
                 
                <label class="label_to" for="txt_ruc">% Participación (*)</label>
-               <asp:TextBox CssClass="input_to" ID="txt_participacion_sis" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
+               <asp:TextBox CssClass="input_to numeric" ID="txt_participacion_sis" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
 
                 <label class="input_right_L" for="txt_ruc">Orden (*)</label>
-               <asp:TextBox CssClass="input_right" ID="txt_orden_empresa_sis" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
+               <asp:TextBox CssClass="input_right numeric" ID="txt_orden_empresa_sis" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
 
                 <div class="iframe">
                   <div id="tblContratoViewSySDetalle"></div>

@@ -113,9 +113,9 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
         public static object ContratoSisDetalleList(int jtStartIndex, int jtPageSize, string jtSorting, String WhereBy)
         {
             var contratoDetalle = new CONTRATO_SIS_DET() { IDE_CONTRATO = Convert.ToInt32(WhereBy.Trim()) };
-            var filterOptions = new Object[3] { (jtStartIndex != 0) ? jtStartIndex / jtPageSize : jtStartIndex, jtPageSize, jtSorting };
+            var filterOptions = new Object[3] { jtStartIndex, jtPageSize, jtSorting };
             var listDetalle = new nContratoSisDetalle().getlistContratoDetalle(contratoDetalle, filterOptions,out total);
-            return new { Result = "OK", Records = listDetalle, TotalRecordCount = 10 };
+            return new { Result = "OK", Records = listDetalle, TotalRecordCount = total };
         }
         //LLENADO DE CONTRATOO
         [System.Web.Services.WebMethod(EnableSession = true)]
