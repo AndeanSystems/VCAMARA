@@ -46,6 +46,7 @@ $(document).ready(function () {
     //funcion datepicker
     $.datepicker.setDefaults($.datepicker.regional['es']);
     $(".datetime").datepicker();
+    (".numeric").numeric();
     $('#ctl00_ContentPlaceHolder1_txt_fecini_c').datepicker();
     $('#ctl00_ContentPlaceHolder1_txt_fecfin_c').datepicker();
     $('#ctl00_ContentPlaceHolder1_txt_fecha_creacion').datepicker();
