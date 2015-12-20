@@ -247,7 +247,8 @@
     <Content Include="Resources\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Resources\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="packages.config" />
-    <Content Include="Db\bd_vcamara_18122015_223.bak" />
+    <Content Include="Db\bd_vcamara_18122015_223.rar" />
+    <Content Include="Db\bd_vcamara_19122015_230.rar" />
     <None Include="Properties\PublishProfiles\camara.pubxml" />
     <None Include="Properties\PublishProfiles\DAVID.pubxml" />
     <None Include="Properties\PublishProfiles\vcamara.pubxml" />
