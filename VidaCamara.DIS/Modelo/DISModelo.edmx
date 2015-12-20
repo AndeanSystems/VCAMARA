@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DISModelo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DISModelo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CIERRE_PROCESO">
           <Key>
             <PropertyRef Name="ID_CIERRE" />
@@ -535,101 +535,6 @@ warning 6002: The table/view 'vcamara.dbo.EXACTUS_CABECERA' does not have a prim
           <Property Name="ORI_REG" Type="char" MaxLength="1" />
           <Property Name="TIP_COMPROBANTE" Type="char" MaxLength="3" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'vcamara.dbo.ReporteDictamen' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ReporteDictamen">
-          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO PATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO MATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PRIMER NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEGUNDO _NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
-          <Property Name="CONTRATO" Type="float" />
-          <Property Name="ESTADO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="EMISOR DICTAMEN" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE PENSIÓN" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE EVALUACIÓN" Type="float" />
-          <Property Name="PORCENTAJE DE PENSIÓN" Type="float" />
-          <Property Name="FECHA DE OCURRENCIA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE DEVENGUE  INICIAL" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE INICIO DE VIGENCIA DEL DICTAMEN INICIAL#" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA FIN DE VIGENCIA DEL DICTAMEN " Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE AVISO DEL# DICTAMEN " Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'vcamara.dbo.ReporteSECI' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ReporteSECI">
-          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDOPATERNOAFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDOMATERNOAFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PRIMERNOMBREAFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEGUNDONOMBREAFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPODESOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
-          <Property Name="CONTRATO" Type="float" />
-          <Property Name="NUMERODESECI" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADESECI" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADEAVISODESECI" Type="nvarchar" MaxLength="255" />
-          <Property Name="INDICADORDESUBSIDIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="NUMERODE SOLICITUDDEPENSION" Type="nvarchar" MaxLength="255" />
-          <Property Name="ESTADODELASOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADESOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPODESOLICITUD1" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADEAVISODESOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPODEPENSION" Type="nvarchar" MaxLength="255" />
-          <Property Name="PORCENTAJEDEPENSION" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADEOCURRENCIA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE  DEVENGUE INICIAL" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'vcamara.dbo.ReportesSolicitudes' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ReportesSolicitudes">
-          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO PATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO MATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PRIMER NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEGUNDO NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
-          <Property Name="CONTRATO" Type="float" />
-          <Property Name="ESTADO DE LA_SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE INVALIDEZ" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE PENSIÓN" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO PATERNO BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO MATERNO BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PRIMER NOMBRE BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEGUNDO NOMBRE BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PARENTESCO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEXO  DEL BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="EDAD DEL BENEFICIARIO" Type="float" />
-          <Property Name="CONDICIÓN DE INVALIDEZ DEL BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PORCENTAJE DE PENSIÓN" Type="float" />
-          <Property Name="ESTADO DEL BENFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE OCURRENCIA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE DEVENGE INICIAL" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE AVISO  DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA  PRONUNCIAMIENTO  DE COBERTURA" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO  DE COBERTURA " Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE  REACTIVACIÓN  DE COBERTURA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE  NOTIFICACIÓN DEL ANEXO  16" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE DIAS TRANSCURRIDOS DESDE LA FECHA  DEL FALLECIMIENTO" Type="float" />
-          <Property Name="MONEDA" Type="nvarchar" MaxLength="255" />
-          <Property Name="PROMEDIO DE RAM" Type="nvarchar" MaxLength="255" />
-          <Property Name="MONTO DE LA PENSIÓN  QUE LE CORRESPONDE" Type="float" />
-          <Property Name="FECHA DE LIQUIDACIÓN DEL PRIMER PAGO" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE VENCIMIENTO DEL C#S#" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE PAGOS DE PENSIONES PRELIMINARES" Type="float" />
-          <Property Name="FECHA DE CUMPLIMIENTO DE CONDICIONES PARA CALCULO AA " Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE NOTIFICACIÓN DE AA AL DIS" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE PRONUNCIAMIENTO DEL PAGO DEL AA# " Type="nvarchar" MaxLength="255" />
-          <Property Name="ESTADO DE LA SOLICITUD DEL AA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE LIQUIDACIÓN DE AA" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -715,9 +620,9 @@ warning 6002: The table/view 'vcamara.dbo.USUARIO' does not have a primary key d
           <Property Name="FEC_OCUR" Type="datetime" />
           <Property Name="FEC_PAGO_APO_ADI" Type="datetime" />
           <Property Name="FEC_INV_DEF" Type="datetime" />
-          <Property Name="CAP_GAST_SEP" Type="varchar" MaxLength="1" />
+          <Property Name="CAP_GAST_SEP" Type="varchar" MaxLength="10" />
           <Property Name="PARE" Type="varchar" MaxLength="1" />
-          <Property Name="SAL_CIC_SOL" Type="varchar" MaxLength="1" />
+          <Property Name="SAL_CIC_SOL" Type="varchar" MaxLength="11" />
           <Property Name="TIP_REGI" Type="varchar" MaxLength="1" />
           <Property Name="TIP_SOLI" Type="varchar" MaxLength="1" />
           <Property Name="NUM_BENE" Type="varchar" MaxLength="2" />
@@ -727,25 +632,25 @@ warning 6002: The table/view 'vcamara.dbo.USUARIO' does not have a primary key d
           <Property Name="TIP_PENS" Type="varchar" MaxLength="2" />
           <Property Name="TIP_DOCU_IDE_PEN" Type="varchar" MaxLength="2" />
           <Property Name="TIP_MOVI" Type="varchar" MaxLength="3" />
-          <Property Name="COD_CSV_01" Type="varchar" MaxLength="10" />
-          <Property Name="COD_CSV_02" Type="varchar" MaxLength="10" />
-          <Property Name="COD_CSV_03" Type="varchar" MaxLength="10" />
-          <Property Name="COD_CSV_04" Type="varchar" MaxLength="10" />
-          <Property Name="COD_CSV_05" Type="varchar" MaxLength="10" />
-          <Property Name="COD_CSV_06" Type="varchar" MaxLength="10" />
-          <Property Name="COD_CSV_07" Type="varchar" MaxLength="10" />
-          <Property Name="COD_CSV_08" Type="varchar" MaxLength="10" />
+          <Property Name="COD_CSV_01" Type="varchar" MaxLength="4" />
+          <Property Name="COD_CSV_02" Type="varchar" MaxLength="4" />
+          <Property Name="COD_CSV_03" Type="varchar" MaxLength="4" />
+          <Property Name="COD_CSV_04" Type="varchar" MaxLength="4" />
+          <Property Name="COD_CSV_05" Type="varchar" MaxLength="4" />
+          <Property Name="COD_CSV_06" Type="varchar" MaxLength="4" />
+          <Property Name="COD_CSV_07" Type="varchar" MaxLength="4" />
+          <Property Name="COD_CSV_08" Type="varchar" MaxLength="4" />
           <Property Name="COD_AFP " Type="varchar" MaxLength="4" />
           <Property Name="COD_IDE_CSV" Type="varchar" MaxLength="4" />
           <Property Name="FRA_MESE_DEV" Type="varchar" MaxLength="4" />
-          <Property Name="IND_PENS_PRE" Type="varchar" MaxLength="4" />
-          <Property Name="MTO_PPRE_ORI" Type="varchar" MaxLength="4" />
-          <Property Name="TIP_CAMB_VTA" Type="varchar" MaxLength="4" />
-          <Property Name="EXC_PENS_SOL" Type="varchar" MaxLength="5" />
-          <Property Name="EXC_PENS_NM" Type="varchar" MaxLength="5" />
+          <Property Name="IND_PENS_PRE" Type="varchar" MaxLength="1" />
+          <Property Name="MTO_PPRE_ORI" Type="varchar" MaxLength="10" />
+          <Property Name="TIP_CAMB_VTA" Type="varchar" MaxLength="5" />
+          <Property Name="EXC_PENS_SOL" Type="varchar" MaxLength="10" />
+          <Property Name="EXC_PENS_NM" Type="varchar" MaxLength="10" />
           <Property Name="MES_DEVE" Type="varchar" MaxLength="6" />
-          <Property Name="CAP_REQU_PEN" Type="varchar" MaxLength="8" />
-          <Property Name="CRU_FAMI" Type="varchar" MaxLength="8" />
+          <Property Name="CAP_REQU_PEN" Type="varchar" MaxLength="10" />
+          <Property Name="CRU_FAMI" Type="varchar" MaxLength="12" />
           <Property Name="FEC_NACI" Type="varchar" MaxLength="8" />
           <Property Name="FEC_NACI_PEN" Type="varchar" MaxLength="8" />
           <Property Name="FEC_PAGO" Type="varchar" MaxLength="8" />
@@ -755,8 +660,8 @@ warning 6002: The table/view 'vcamara.dbo.USUARIO' does not have a primary key d
           <Property Name="FEC_DEVE_ACT" Type="varchar" MaxLength="8" />
           <Property Name="FEC_DEVE_INI" Type="varchar" MaxLength="8" />
           <Property Name="FEC_FIN_SUB" Type="varchar" MaxLength="8" />
-          <Property Name="RAM_PROM_SOL" Type="varchar" MaxLength="8" />
-          <Property Name="TAS_INTE" Type="varchar" MaxLength="8" />
+          <Property Name="RAM_PROM_SOL" Type="varchar" MaxLength="10" />
+          <Property Name="TAS_INTE" Type="varchar" MaxLength="10" />
           <Property Name="VACIO_10" Type="varchar" MaxLength="10" />
           <Property Name="DES_PENS_MONE" Type="varchar" MaxLength="10" />
           <Property Name="MTO_APOR_ADI" Type="varchar" MaxLength="10" />
@@ -814,7 +719,7 @@ warning 6002: The table/view 'vcamara.dbo.USUARIO' does not have a primary key d
           <Property Name="MTO_SOLE_REE_PAG_AFP6" Type="varchar" MaxLength="10" />
           <Property Name="MTO_SOLE_REE_PAG_AFP7" Type="varchar" MaxLength="10" />
           <Property Name="MTO_SOLE_REE_PAG_AFP8" Type="varchar" MaxLength="10" />
-          <Property Name="NRO_CSV" Type="varchar" MaxLength="10" />
+          <Property Name="NRO_CSV" Type="varchar" MaxLength="2" />
           <Property Name="NUM_DOCU_SOL" Type="varchar" MaxLength="10" />
           <Property Name="NUM_SINI" Type="varchar" MaxLength="10" />
           <Property Name="NUM_SOLI" Type="varchar" MaxLength="10" />
@@ -824,9 +729,9 @@ warning 6002: The table/view 'vcamara.dbo.USUARIO' does not have a primary key d
           <Property Name="PEN_BASE_MON" Type="varchar" MaxLength="10" />
           <Property Name="REM_PROM_ACT" Type="varchar" MaxLength="10" />
           <Property Name="NUM_APOR_ACT" Type="varchar" MaxLength="10" />
-          <Property Name="SAL_CIC_MN" Type="varchar" MaxLength="10" />
-          <Property Name="TIP_CAMB_COM" Type="varchar" MaxLength="10" />
-          <Property Name="TIP_MONE" Type="varchar" MaxLength="10" />
+          <Property Name="SAL_CIC_MN" Type="varchar" MaxLength="11" />
+          <Property Name="TIP_CAMB_COM" Type="varchar" MaxLength="5" />
+          <Property Name="TIP_MONE" Type="varchar" MaxLength="1" />
           <Property Name="TOT_CAPI_REQ_MN" Type="varchar" MaxLength="10" />
           <Property Name="TOT_CAPI_REQ_ORI" Type="varchar" MaxLength="10" />
           <Property Name="COD_CUSP" Type="varchar" MaxLength="12" />
@@ -2911,6 +2816,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Type="String" Name="TipoValidacion" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="ReglaValidacion" Nullable="true" MaxLength="3000" />
           <Property Type="String" Name="TablaDestino" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="NombreCampo" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="pa_impactanegocio_Result">
           <Property Type="Int32" Name="Linea" Nullable="true" />
@@ -3498,9 +3404,9 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="FEC_OCUR" Type="DateTime" Precision="3" />
           <Property Name="FEC_PAGO_APO_ADI" Type="DateTime" Precision="3" />
           <Property Name="FEC_INV_DEF" Type="DateTime" Precision="3" />
-          <Property Name="CAP_GAST_SEP" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CAP_GAST_SEP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="PARE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="SAL_CIC_SOL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="SAL_CIC_SOL" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="TIP_REGI" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="TIP_SOLI" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="NUM_BENE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
@@ -3510,25 +3416,25 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="TIP_PENS" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="TIP_DOCU_IDE_PEN" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="TIP_MOVI" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="COD_CSV_01" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="COD_CSV_02" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="COD_CSV_03" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="COD_CSV_04" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="COD_CSV_05" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="COD_CSV_06" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="COD_CSV_07" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="COD_CSV_08" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CSV_01" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CSV_02" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CSV_03" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CSV_04" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CSV_05" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CSV_06" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CSV_07" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CSV_08" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="COD_AFP_" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="COD_IDE_CSV" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="FRA_MESE_DEV" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="IND_PENS_PRE" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_PPRE_ORI" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="TIP_CAMB_VTA" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="EXC_PENS_SOL" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="EXC_PENS_NM" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="IND_PENS_PRE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_PPRE_ORI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TIP_CAMB_VTA" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="EXC_PENS_SOL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EXC_PENS_NM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MES_DEVE" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="CAP_REQU_PEN" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="CRU_FAMI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CAP_REQU_PEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CRU_FAMI" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="FEC_NACI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="FEC_NACI_PEN" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="FEC_PAGO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
@@ -3538,8 +3444,8 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="FEC_DEVE_ACT" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="FEC_DEVE_INI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="FEC_FIN_SUB" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="RAM_PROM_SOL" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="TAS_INTE" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="RAM_PROM_SOL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TAS_INTE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="VACIO_10" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="DES_PENS_MONE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MTO_APOR_ADI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -3597,7 +3503,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="MTO_SOLE_REE_PAG_AFP6" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MTO_SOLE_REE_PAG_AFP7" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MTO_SOLE_REE_PAG_AFP8" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="NRO_CSV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NRO_CSV" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="NUM_DOCU_SOL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="NUM_SINI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="NUM_SOLI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -3607,9 +3513,9 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="PEN_BASE_MON" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="REM_PROM_ACT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="NUM_APOR_ACT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="SAL_CIC_MN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="TIP_CAMB_COM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="TIP_MONE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SAL_CIC_MN" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="TIP_CAMB_COM" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="TIP_MONE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="TOT_CAPI_REQ_MN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="TOT_CAPI_REQ_ORI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="COD_CUSP" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
@@ -4219,6 +4125,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
                 <ScalarProperty Name="TipoValidacion" ColumnName="TipoValidacion" />
                 <ScalarProperty Name="ReglaValidacion" ColumnName="ReglaValidacion" />
                 <ScalarProperty Name="TablaDestino" ColumnName="TablaDestino" />
+                <ScalarProperty Name="NombreCampo" ColumnName="NombreCampo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

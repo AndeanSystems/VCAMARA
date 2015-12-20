@@ -9,5 +9,6 @@ namespace VidaCamara.DIS.Negocio
         public string TipoValidacion { get; set; }
         public string ReglaValidacion { get; set; }
         public string Tabladestino { get; set; }
+        public string NombreCampo { get; set; }
     }
 }

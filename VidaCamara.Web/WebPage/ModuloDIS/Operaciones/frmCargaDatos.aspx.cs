@@ -38,30 +38,24 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         {
             try
             {
-                var entityCargaCabecera = new HistorialCargaArchivo_LinCab()
-                {
-                    IDE_CONTRATO = Convert.ToInt32(ddl_conrato1.SelectedItem.Value),
-                    TIP_REGI = "C",
-                    USU_REG = "AUTO"
-                };
                 if (!fileUpload.HasFile) return;
 
                 var fileName = Server.MapPath(("~/Temp/Archivos/")) + fileUpload.FileName;
                 fileUpload.SaveAs(fileName);
                 var cargaLogica = new CargaLogica(fileName) { UsuarioModificacion = /*Session["usernameId"].ToString() */   "2"};
-                cargaLogica.CargarArchivo(entityCargaCabecera);
+                cargaLogica.CargarArchivo(Convert.ToInt32(ddl_conrato1.SelectedValue));
 
                 if ((cargaLogica.MensajeExcepcion != ""))
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "myScript", ("<script>javascript: alert(\'" + ("Se produjo un error al cargar el archivo. Se termin� la carga. "
                                     + (cargaLogica.MensajeExcepcion + "\');</script>"))));
                 }
-                else if ((cargaLogica.Errores > 0))
+                else if ((cargaLogica.ContadorErrores > 0))
                 {
-                    if ((cargaLogica.Errors != String.Empty))
+                    if ((cargaLogica.MensageError != String.Empty))
                     {
                         ClientScript.RegisterStartupScript(this.GetType(), "myScript", ("<script>javascript: alert(\'"
-                                        + (cargaLogica.Errors + "\');</script>")));
+                                        + (cargaLogica.MensageError + "\');</script>")));
                     }
                     else if ((cargaLogica.Observacion != String.Empty))
                     {
@@ -80,9 +74,9 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                     if ((cargaLogica.NombreArchivo.Split('_')[0] == "NOMINA"))
                     {
                         nombre = "Nomina procesada Ok.";
-                        if ((cargaLogica.Errors != String.Empty))
+                        if ((cargaLogica.MensageError != String.Empty))
                         {
-                            nombre = (nombre + (", " + cargaLogica.Errors));
+                            nombre = (nombre + (", " + cargaLogica.MensageError));
                             ClientScript.RegisterStartupScript(this.GetType(), "myScript", ("<script>javascript: alert(\'"
                                             + (nombre + "\');</script>")));
                         }
@@ -95,9 +89,9 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                     else if ((cargaLogica.NombreArchivo.Split('_')[0] == "INOMINA"))
                     {
                         nombre = "Nomina procesada Ok.";
-                        if ((cargaLogica.Errors != String.Empty))
+                        if ((cargaLogica.MensageError != String.Empty))
                         {
-                            nombre = (nombre + (", " + cargaLogica.Errors));
+                            nombre = (nombre + (", " + cargaLogica.MensageError));
                             ClientScript.RegisterStartupScript(this.GetType(), "myScript", ("<script>javascript: alert(\'"
                                             + (nombre + "\');</script>")));
                         }
@@ -132,9 +126,9 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                                 
                             }
                         }
-                        else if ((cargaLogica.Errors != String.Empty))
+                        else if ((cargaLogica.MensageError != String.Empty))
                         {
-                            nombre = (nombre + (", " + cargaLogica.Errors));
+                            nombre = (nombre + (", " + cargaLogica.MensageError));
                             ClientScript.RegisterStartupScript(this.GetType(), "myScript", ("<script>javascript: alert(\'"
                                             + (nombre + "\');</script>")));
                         }

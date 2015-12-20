@@ -3,14 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using VidaCamara.DIS.Modelo;
 
 namespace VidaCamara.DIS.Negocio
 {
-    public class CargaLogica
+    public partial class CargaLogica
     {
         public string FullNombreArchivo { get; set; }
         public string NombreArchivo { get; set; }
@@ -18,19 +20,23 @@ namespace VidaCamara.DIS.Negocio
         public bool ValidaNombre { get; set; }
         public StringCollection TipoLinea { get; set; }
         public int IdArchivo { get; set; }
-        public int Errores { get; set; }
+        public int ContadorErrores { get; set; }
         public DateTime FechaModificacion { get; set; }
         public string UsuarioModificacion { get; set; }
         public bool Vigente { get; set; }
         public string ExtensionArchivo { get; set; }
-        public List<Regla> ReglaLinea { get; set; }
         public List<int> LargoLinea { get; set; }
-        public string Errors { get; set; }
+        public string MensageError { get; set; }
         public string MensajeExcepcion { get; set; }
         public string Observacion { get; set; }
         public int Estado { get; set; }
         public string Correo { get; set; }
-        protected string CampoActual { get; set; }
+        private string CampoActual { get; set; }
+        private long CodigoCabecera { get; set; }
+
+        private HistorialCargaArchivo_LinCab _lineaCabecera = new HistorialCargaArchivo_LinCab();
+        private List<HistorialCargaArchivo_LinDet> _lineaDetalles = new List<HistorialCargaArchivo_LinDet>();
+        private Dictionary<string, List<Regla>> _reglasLineaPorTipo = new Dictionary<string, List<Regla>>();
 
         public CargaLogica(string archivo)
         {
@@ -57,7 +63,7 @@ namespace VidaCamara.DIS.Negocio
             MensajeExcepcion = "";
         }
 
-        public void CargarArchivo(HistorialCargaArchivo_LinCab cabecera)
+        public void CargarArchivo(int contratoId)
         {
             if (!NombreArchivo.Distinct().Any()) return;
 
@@ -65,25 +71,25 @@ namespace VidaCamara.DIS.Negocio
             {
                 ObtieneTipoLinea(NombreArchivo.Split('_')[0]);
                 var idestado = 0;
-                idestado = LeeArchivo(NombreArchivo.Split('_')[0], TipoLinea, cabecera);
+                idestado = LeeArchivo(NombreArchivo.Split('_')[0], TipoLinea, contratoId);
                 if (idestado > 2)
                 {
-                    Errors = "No se puede procesar archivo por estar aprobado/pagado";
-                    Errores = Errores + 1;
+                    MensageError = "No se puede procesar archivo por estar aprobado/pagado";
+                    ContadorErrores = ContadorErrores + 1;
                 }
                 else
                 {
                     if (idestado == 2)
                     {
-                        Errors = "No se puede procesar archivo por tener Checklists";
-                        Errores = Errores + 1;
+                        MensageError = "No se puede procesar archivo por tener Checklists";
+                        ContadorErrores = ContadorErrores + 1;
                     }
                 }
             }
             else
             {
-                Errors = "Nombre de archivo no cumple formato";
-                Errores = Errores + 1;
+                MensageError = "Nombre de archivo no cumple formato";
+                ContadorErrores = ContadorErrores + 1;
 
                 NombreArchivo = string.Empty;
             }
@@ -95,7 +101,7 @@ namespace VidaCamara.DIS.Negocio
             string tipoArchivo = null;
             using (var context = new DISEntities())
             {
-                var resultado = (object) context.pa_file_ObtieneTipoArchivos();
+                var resultado = (object)context.pa_file_ObtieneTipoArchivos();
                 archivo = ObtieneColeccion(resultado);
             }
             tipoArchivo = nombreArchivo.Split('_')[0];
@@ -103,30 +109,18 @@ namespace VidaCamara.DIS.Negocio
             return archivo.Contains(tipoArchivo);
         }
 
-        private StringCollection ObtieneColeccion(object dt)
-        {
-            var coleccion = new StringCollection();
-
-            foreach (var iLoopVariable in (IEnumerable) dt)
-            {
-                var i = iLoopVariable;
-                coleccion.Add(i == null ? "" : i.ToString());
-            }
-            return coleccion;
-        }
-
         public void ObtieneTipoLinea(string tipoArchivo)
         {
             using (var context = new DISEntities())
             {
-                var resultado = (object) context.pa_file_ObtienePrimerCaracterLineaPorTipoArchivo(tipoArchivo);
+                var resultado = (object)context.pa_file_ObtienePrimerCaracterLineaPorTipoArchivo(tipoArchivo);
                 TipoLinea = ObtieneColeccion(resultado);
             }
         }
 
         public string[] LineaArchivo()
         {
-            Errores = 0;
+            ContadorErrores = 0;
             var sr = new StreamReader(FullNombreArchivo,
                 System.Text.Encoding.GetEncoding(437));
 
@@ -136,21 +130,16 @@ namespace VidaCamara.DIS.Negocio
             return text;
         }
 
-        public int LeeArchivo(string tipoArchivo, StringCollection tipoLinea, HistorialCargaArchivo_LinCab cabecera)
+        public int LeeArchivo(string tipoArchivo, StringCollection tipoLinea, int contratoId)
         {
-            //Dim texto As String
-            var historialCargaArchivo = new data.HistorialCargaArchivo();
-            string[] text = null;
-            var exitoLinea = 0;
-            string caracterInicial = null;
-            text = LineaArchivo();
+            var text = LineaArchivo();
 
             //Consultar en tabla el estado del archivo
             //entregara 0 si no existe
             using (var context = new DISEntities())
             {
-                var m = context.pa_file_ConsultaEstadoArchivo(NombreArchivo);
-                Estado = m.FirstOrDefault() == null ? 0 : m.FirstOrDefault().Value;
+                var estadoArchivo = context.pa_file_ConsultaEstadoArchivo(NombreArchivo).FirstOrDefault();
+                if (estadoArchivo != null) Estado = estadoArchivo.Value;
             }
             InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), "Consulta estado archivo",
                 "pa_file_ConsultaEstadoArchivo '" + NombreArchivo + "'", 0);
@@ -164,22 +153,18 @@ namespace VidaCamara.DIS.Negocio
                 //Insertar en tabla
                 if (Estado == 1)
                 {
-                    Errors = "Archivo ya cargado previamente";
+                    MensageError = "Archivo ya cargado previamente";
                 }
                 using (var context = new DISEntities())
                 {
-                    var m = context.pa_file_InsertaReferenciaArchivo(NombreArchivo, UsuarioModificacion);
-                    IdArchivo = m.FirstOrDefault().Value;
+                    var archivo = context.pa_file_InsertaReferenciaArchivo(NombreArchivo, UsuarioModificacion).FirstOrDefault();
+                    if (archivo != null) IdArchivo = archivo.Value;
                 }
                 //InsertaAuditoria(Me.UsuarioModificacion, "Inserta Referencia Archivo", "pa_file_InsertaReferenciaArchivo '" + Me.NombreArchivo + "'", Me.idArchivo)
 
-                //varibale para almacenar filas de txt
-                var file_writer = new StringBuilder();
-                long id_cabecera = 0;
-                var ejecuto_regla = 0;
-                for (var x = 0; x <= text.Length - 1; x++)
+                for (var indexLinea = 0; indexLinea <= text.Length - 1; indexLinea++)
                 {
-                    caracterInicial = Mid(text[x].Trim(), 0, 1);
+                    var caracterInicial = Mid(text[indexLinea].Trim(), 0, 1);
                     var carterInicialNumer = 0;
                     if (int.TryParse(caracterInicial, out carterInicialNumer))
                     {
@@ -189,96 +174,31 @@ namespace VidaCamara.DIS.Negocio
                     {
                         using (var context = new DISEntities())
                         {
-                            if(caracterInicial.Equals("C") && ejecuto_regla == 0)
+                            if (!_reglasLineaPorTipo.ContainsKey(caracterInicial))
                             {
-                                var resultado = context.pa_file_ObtieneReglasArchivoPorLinea(tipoArchivo, caracterInicial);
-                                ReglaLinea = new data.HistorialCargaArchivo().ObtieneReglaLinea(resultado);
-                                ejecuto_regla = 1;
-                            }else if(caracterInicial.Equals("D") && ejecuto_regla == 1)
-                            {
-                                var resultado = context.pa_file_ObtieneReglasArchivoPorLinea(tipoArchivo, caracterInicial);
-                                ReglaLinea = new data.HistorialCargaArchivo().ObtieneReglaLinea(resultado);
-                                ejecuto_regla = 2;
+                                _reglasLineaPorTipo.Add(caracterInicial,
+                                    ObtieneReglaLinea(context.pa_file_ObtieneReglasArchivoPorLinea(tipoArchivo,
+                                        caracterInicial)));
                             }
                         }
-                        //InsertaAuditoria(Me.UsuarioModificacion, "Obtiene Regla de archivo por línea", "pa_file_ObtieneReglasArchivoPorLinea '" + tipoArchivo + "', " + CaracterInicial, Me.idArchivo)
+                        //InsertaAuditoria(Me.UsuarioModificacion, "Obtiene Regla de archivo por línea", "pa_file_ObtieneReglasArchivoPorLinea '" + tipoLinea + "', " + CaracterInicial, Me.idArchivo)
                         try
                         {
-                            //si la tipo de linea es Totales ya no nesecita recorrer
-                            if (caracterInicial.Equals("T"))
-                                break;
-                            //declaracion de varibales para generar txt file
-                            var column = id_cabecera.ToString()+",";
-                            var conteo_columna_detalle = 1;
-                            var conteo_columa_cabecera = 1;
-                            var distionaryCabecera = new Dictionary<string, string>();
-                            foreach (var rLoopVariable in ReglaLinea)
+                            var propertyValues = new Dictionary<string, object>();
+                            var exitoLinea = 1;
+                            foreach (var regla in _reglasLineaPorTipo[caracterInicial])
                             {
                                 try
                                 {
-                                    var r = rLoopVariable;
-                                    CampoActual = Mid(text[x].Trim(), r.CaracterInicial - 1, r.LargoCampo);
-                                    exitoLinea = 0;
-                                    switch (r.TipoValidacion)
-                                    {
-                                        case "EQUAL":
-                                            exitoLinea = EvaluarEqual(r, exitoLinea);
-                                            break;
-
-                                        case "BOOL_SP":
-                                            exitoLinea = EvaluarBoolSp(tipoArchivo, r, x, exitoLinea);
-                                            break;
-
-                                        case "BOOL_IF_SP":
-                                            exitoLinea = EvaluarBoolIfSp(r, x, exitoLinea);
-                                            break;
-
-                                        case "IN_QUERY":
-                                            exitoLinea = EvaluarInQuery(r, exitoLinea);
-                                            break;
-
-                                        case "IN":
-                                            exitoLinea = EvaluarIn(r, text, x, exitoLinea);
-                                            break;
-
-                                        case "FILLER":
-                                            exitoLinea = EvaluarFiller(r, exitoLinea);
-                                            break;
-
-                                        case "":
-                                            exitoLinea = 1;
-                                            break;
-                                    }
-                                    if (caracterInicial.Equals("C"))
-                                    {
-                                        distionaryCabecera.Add(rLoopVariable.CaracterInicial.ToString(), CampoActual);
-                                        if(conteo_columa_cabecera == ReglaLinea.Count)
-                                        {
-                                            id_cabecera = new data.HistorialCargaArchivo().guardarCabecera(distionaryCabecera, cabecera);
-                                        };
-                                        conteo_columa_cabecera++;
-                                    }
-                                    else if (caracterInicial.Equals("D"))
-                                    {
-                                        column += CampoActual + (conteo_columna_detalle < ReglaLinea.Count ? "," : "");
-                                        conteo_columna_detalle++;
-                                    }
-                                    //using (var context = new DISEntities())
-                                    //{
-                                    //    //aca se debe insertar los valores de campo en archivo de texto
-                                    //    /*historialCargaArchivo.pa_file_InsertaHistorialCarga(IdArchivo, r.idRegla,
-                                    //        text[x].Trim().Substring(0, 1), x + 1, r.CaracterInicial, r.LargoCampo,
-                                    //        CampoActual, exitoLinea);*/
-
-                                    //}
+                                    exitoLinea &= EvaluarRegla(tipoArchivo, regla, text, indexLinea, propertyValues);
                                 }
                                 catch (Exception ex)
                                 {
                                     throw ex;
-                                } 
+                                }
                             }
-                            if(caracterInicial.Equals("D"))
-                                file_writer.AppendLine(column);
+
+                            GrabarFilaArchivo(caracterInicial, IdArchivo, indexLinea + 1, propertyValues, contratoId, exitoLinea);
                         }
                         catch (Exception ex)
                         {
@@ -288,109 +208,30 @@ namespace VidaCamara.DIS.Negocio
                     }
                     else
                     {
-                        if (text[x].Trim().Any())
+                        if (text[indexLinea].Trim().Any())
                         {
                             using (var context = new DISEntities())
                             {
-                                historialCargaArchivo.pa_file_InsertaHistorialCarga(IdArchivo, 451, "#", x + 1, 1,
-                                    text[x].Trim().Count(), text[x], 0);
+                                context.pa_file_InsertaHistorialCarga(IdArchivo, 451, "#", indexLinea + 1, 1,
+                                    text[indexLinea].Trim().Count(), text[indexLinea], 0);
                             }
                             //InsertaAuditoria(Me.UsuarioModificacion, "Inserta Historial de CargaLogica", "pa_file_InsertaHistorialCarga 451" + ", " + "'#'" + ", " + (x + 1).ToString() + ", " + "1" + ", " + text[x].Trim()().Count().ToString() + ", '" + Me.campoActual + "', " + "0", Me.idArchivo)
-                            Errores = Errores + 1;
+                            ContadorErrores = ContadorErrores + 1;
                         }
                     }
                 }
-                //escribir el txt file
-                var confirm = new Helpers.txtWriter().writer(file_writer);
-                #region traspasa
 
                 //aca se debe realizar el bolcado de archivo sin errores
                 try
                 {
                     TraspasaArchivo(tipoArchivo);
 
-                    if (ValidacionesArchivo(tipoArchivo, 2) == false)
-                    {
-                        using (var context = new DISEntities())
-                        {
-                            Resultado = context.pa_file_ObtieneErrorArchivo(IdArchivo);
-                            var result = context.pa_file_ObtieneErrorArchivo(IdArchivo);
-
-                            var nombre = "";
-                            var largo = 0;
-                            foreach (var datoLoopVariable in result)
-                            {
-                                var dato = datoLoopVariable;
-                                if (dato.NumeroLinea.Value > 0)
-                                {
-                                    nombre = dato.NombreArchivo;
-                                    largo = dato.LargoCampo.Value;
-                                }
-                            }
-                            if (nombre != string.Empty & largo != null)
-                            {
-                                //If largo = 25 Then
-                                var valor1 = context.pa_valida_CodigoTransferenciaNomina(nombre, IdArchivo, largo);
-                                var resultado = 0;
-                                resultado = valor1.FirstOrDefault().Value;
-                                if (resultado == 0)
-                                {
-                                    Resultado = null;
-                                    Observacion =
-                                        "No existe liquidación, debe cargar liquidación y despúes la nómina";
-                                    //End If
-                                }
-                            }
-                        }
-                    }
-
-                    if (Errores == 0)
-                    {
-                        using (var context = new DISEntities())
-                        {
-                            var cantidad = context.pa_file_CantidadRegistroArchivo(IdArchivo);
-                            var cant = 0;
-                            cant = cantidad.FirstOrDefault().Value;
-                            Observacion = "cantidad de registros cargados: " + cant;
-                            InsertaAuditoria(Convert.ToInt32(UsuarioModificacion),
-                                "Archivo cargado correctamente, cantidad de registros cargados: " + cant,
-                                NombreArchivo, IdArchivo);
-                        }
-                    }
-
-                    //esto válida que los montos por cuspp no sean mayor a lo establecido
-                    //en la entidad: negocio.MontoAlto
-                    if (NombreArchivo.Substring(0, 3).ToLower() == "liq")
-                    {
-                        using (var context = new DISEntities())
-                        {
-                            var monto = context.pa_valida_MontoAlto(IdArchivo,
-                                Convert.ToInt32(UsuarioModificacion));
-                            string montoAlto = null;
-                            montoAlto = monto.ToString();
-                            if (montoAlto == "1")
-                            {
-                                dynamic monto1 = context.pa_devuelveresultado(IdArchivo);
-                                var correo = "";
-                                foreach (var registroLoopVariable in monto1)
-                                {
-                                    var registro = registroLoopVariable;
-                                    correo = registro.correo;
-                                    Observacion = Observacion + "\\n Monto alto cargado al CUSPP: " +
-                                                  registro.Cuspp + ", por valor = " + registro.Valor.ToString;
-                                    InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), Observacion,
-                                        NombreArchivo, IdArchivo);
-                                }
-                                Correo = correo;
-                            }
-                        }
-                    }
+                    ProcesarErrores(tipoArchivo);
                 }
                 catch (Exception ex)
                 {
                     Observacion = ex.Message + "// TraspasaArchivo...!";
                 }
-                #endregion traspasa
             }
             else
             {
@@ -400,11 +241,182 @@ namespace VidaCamara.DIS.Negocio
             return 0;
         }
 
-        public string EnviarCorreo(string Para, string CC, string CCO, string Asunto, string Cuerpo, string FormatoCuerpo, string Archivos)
+        private void GrabarFilaArchivo(string tipoLinea, int archivoId, int nroLinea, Dictionary<string, object> propertyValues, int contratoId, int exitoLinea)
+        {
+            if (tipoLinea == "C")
+            {
+                PopulateType(_lineaCabecera, propertyValues);
+                _lineaCabecera.ArchivoId = archivoId;
+                _lineaCabecera.USU_REG = System.Web.HttpContext.Current.Session["username"].ToString();
+                _lineaCabecera.FEC_REG = DateTime.Now;
+                _lineaCabecera.ESTADO = "A";
+                _lineaCabecera.CumpleValidacion = exitoLinea;
+                _lineaCabecera.IDE_CONTRATO = contratoId;
+
+                GrabarLineaCabecera();
+            }
+
+            if (tipoLinea == "D")
+            {
+                var detalle = new HistorialCargaArchivo_LinDet();
+                PopulateType(detalle, propertyValues);
+                detalle.IdHistorialCargaArchivoLinCab = CodigoCabecera;
+                detalle.FechaInsert = DateTime.Now;
+                detalle.CumpleValidacion = exitoLinea;
+                detalle.TipoLinea = tipoLinea;
+                detalle.NumeroLinea = nroLinea;
+                
+                PopulateType(detalle, propertyValues);
+                _lineaDetalles.Add(detalle);
+            }
+
+            if (tipoLinea == "T")
+            {
+                GrabarLineaDetalles();
+                _lineaDetalles = new List<HistorialCargaArchivo_LinDet>();
+            }
+        }
+
+        private void GrabarLineaCabecera()
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    db.HistorialCargaArchivo_LinCabs.Add(_lineaCabecera);
+                    db.SaveChanges();
+                    CodigoCabecera = _lineaCabecera.IdHistorialCargaArchivoLinCab;
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine(
+                        "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+        }
+
+        private void GrabarLineaDetalles()
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    db.HistorialCargaArchivo_LinDets.AddRange(_lineaDetalles);
+                    db.SaveChanges();
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine(
+                        "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+        }
+
+        private void ProcesarErrores(string tipoArchivo)
+        {
+            if (ValidacionesArchivo(tipoArchivo, 2) == false)
+            {
+                using (var context = new DISEntities())
+                {
+                    Resultado = context.pa_file_ObtieneErrorArchivo(IdArchivo);
+                    var result = context.pa_file_ObtieneErrorArchivo(IdArchivo);
+
+                    var nombre = "";
+                    var largo = 0;
+                    foreach (var datoLoopVariable in result)
+                    {
+                        var dato = datoLoopVariable;
+                        if (dato.NumeroLinea.Value > 0)
+                        {
+                            nombre = dato.NombreArchivo;
+                            largo = dato.LargoCampo.Value;
+                        }
+                    }
+                    if (nombre != string.Empty & largo != null)
+                    {
+                        //If largo = 25 Then
+                        var valor1 = context.pa_valida_CodigoTransferenciaNomina(nombre, IdArchivo, largo);
+                        var resultado = 0;
+                        resultado = valor1.FirstOrDefault().Value;
+                        if (resultado == 0)
+                        {
+                            Resultado = null;
+                            Observacion =
+                                "No existe liquidación, debe cargar liquidación y despúes la nómina";
+                            //End If
+                        }
+                    }
+                }
+            }
+
+            if (ContadorErrores == 0)
+            {
+                using (var context = new DISEntities())
+                {
+                    var cantidad = context.pa_file_CantidadRegistroArchivo(IdArchivo);
+                    var cant = 0;
+                    cant = cantidad.FirstOrDefault().Value;
+                    Observacion = "cantidad de registros cargados: " + cant;
+                    InsertaAuditoria(Convert.ToInt32(UsuarioModificacion),
+                        "Archivo cargado correctamente, cantidad de registros cargados: " + cant,
+                        NombreArchivo, IdArchivo);
+                }
+            }
+
+            //esto válida que los montos por cuspp no sean mayor a lo establecido
+            //en la entidad: negocio.MontoAlto
+            if (NombreArchivo.Substring(0, 3).ToLower() == "liq")
+            {
+                using (var context = new DISEntities())
+                {
+                    var monto = context.pa_valida_MontoAlto(IdArchivo,
+                        Convert.ToInt32(UsuarioModificacion));
+                    string montoAlto = null;
+                    montoAlto = monto.ToString();
+                    if (montoAlto == "1")
+                    {
+                        dynamic monto1 = context.pa_devuelveresultado(IdArchivo);
+                        var correo = "";
+                        foreach (var registroLoopVariable in monto1)
+                        {
+                            var registro = registroLoopVariable;
+                            correo = registro.correo;
+                            Observacion = Observacion + "\\n Monto alto cargado al CUSPP: " +
+                                          registro.Cuspp + ", por valor = " + registro.Valor.ToString;
+                            InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), Observacion,
+                                NombreArchivo, IdArchivo);
+                        }
+                        Correo = correo;
+                    }
+                }
+            }
+        }
+
+        public string EnviarCorreo(string para, string cc, string cco, string asunto, string cuerpo, string formatoCuerpo, string archivos)
         {
             using (var repositorio = new DISEntities())
             {
-                return repositorio.pa_envioCorreo_Procesos(Para, CC, CCO, Asunto, Cuerpo, FormatoCuerpo, Archivos).ToString();
+                return repositorio.pa_envioCorreo_Procesos(para, cc, cco, asunto, cuerpo, formatoCuerpo, archivos).ToString();
             }
         }
 
@@ -412,401 +424,6 @@ namespace VidaCamara.DIS.Negocio
         {
             return text.Substring(startIndex, Math.Min(text.Length - startIndex, length));
         }
-
-        private int EvaluarFiller(Regla r, int exitoLinea)
-        {
-            if (CampoActual == "".PadLeft(r.LargoCampo))
-            {
-                exitoLinea = 1;
-            }
-            else
-            {
-                Errores = Errores + 1;
-            }
-            return exitoLinea;
-        }
-
-        private int EvaluarIn(Regla r, string[] text, int x, int exitoLinea)
-        {
-            string[] inString;
-            int j;
-            inString = r.ReglaValidacion.Split(',');
-            var existe = 0;
-            for (j = 0; j <= inString.Count() - 1; j++)
-            {
-                if (text[x].Trim().Substring(r.CaracterInicial - 1, r.LargoCampo) == inString[j])
-                {
-                    existe = 1;
-                }
-            }
-
-            if (existe == 1)
-            {
-                exitoLinea = 1;
-            }
-            else
-            {
-                Errores = Errores + 1;
-            }
-            return exitoLinea;
-        }
-
-        private int EvaluarInQuery(Regla r, int exitoLinea)
-        {
-            StringCollection resultadoValor;
-            resultadoValor = ExecQuery(r.ReglaValidacion);
-
-            if (resultadoValor.Contains(CampoActual))
-            {
-                exitoLinea = 1;
-            }
-            else
-            {
-                Errors = "No existe: " + CampoActual;
-                Errores = Errores + 1;
-            }
-            return exitoLinea;
-        }
-
-        private int EvaluarBoolIfSp(Regla r, int x, int exitoLinea)
-        {
-            string valor;
-            int res1;
-            int res2;
-            StringCollection resultadoValor;
-            string[] inString;
-            int j;
-            string[] conditionString = null;
-            valor = r.ReglaValidacion;
-            valor = valor.Replace("@valor", "'" + CampoActual + "'");
-            valor = valor.Replace("@IdArchivo", IdArchivo.ToString());
-            valor = valor.Replace("@NumeroLinea", (x + 1).ToString());
-            valor = valor.Replace("@CampoInicial", r.CaracterInicial.ToString());
-            valor = valor.Replace("@LargoCampo", r.LargoCampo.ToString());
-            conditionString = valor.Split(';');
-
-            //InsertaAuditoria(Me.UsuarioModificacion, "Validación BOOL_IF_SP", valor, Me.idArchivo)
-
-            switch (conditionString[0])
-            {
-                case "AND":
-                case "OR":
-                    res1 = 0;
-                    res2 = 0;
-                    switch (conditionString[1].Substring(0, 3))
-                    {
-                        case "SP#":
-                            if (ExecSpBool(conditionString[1].Substring(3)))
-                            {
-                                res1 = 1;
-                            }
-                            break;
-                        //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP SP#", ConditionString[1].Substring(3), Me.idArchivo)
-                        case "EQ#":
-                            if (CampoActual == conditionString[1].Substring(3))
-                            {
-                                res1 = 1;
-                            }
-                            break;
-                        //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP EQ#", Me.campoActual + "=" + ConditionString[1].Substring(3), Me.idArchivo)
-                        case "IQ#":
-                            resultadoValor = ExecQuery(conditionString[1].Substring(3));
-                            if (resultadoValor.Contains(CampoActual))
-                            {
-                                res1 = 1;
-                            }
-                            break;
-                        //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IQ#", Me.campoActual + "IN(" + ConditionString[1].Substring(3) + ")", Me.idArchivo)
-                        case "IN#":
-                            inString = conditionString[1].Substring(3).Split(',');
-                            for (j = 0; j <= inString.Count() - 1; j++)
-                            {
-                                if (CampoActual == inString[j])
-                                {
-                                    res1 = 1;
-                                    break; // TODO: might not be correct. Was : Exit For
-                                }
-                            }
-
-                            break;
-                        //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IN#", Me.campoActual + "IN(" + ConditionString[1].Substring(3) + ")", Me.idArchivo)
-                    }
-                    switch (conditionString[2].Substring(0, 3))
-                    {
-                        case "SP#":
-                            if (ExecSpBool(conditionString[2].Substring(3)))
-                            {
-                                res2 = 1;
-                            }
-                            break;
-                        //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP SP#", ConditionString[2].Substring(3), Me.idArchivo)
-                        case "EQ#":
-                            if (CampoActual == conditionString[2].Substring(3))
-                            {
-                                res2 = 1;
-                            }
-                            break;
-                        //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP EQ#", Me.campoActual + "=" + ConditionString[2].Substring(3), Me.idArchivo)
-                        case "IQ#":
-                            resultadoValor = ExecQuery(conditionString[2].Substring(3));
-                            if (resultadoValor.Contains(CampoActual))
-                            {
-                                res2 = 1;
-                            }
-                            break;
-                        //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IQ#", Me.campoActual + "IN(" + ConditionString[2].Substring(3) + ")", Me.idArchivo)
-                        case "IN#":
-                            inString = conditionString[1].Substring(3).Split(',');
-                            for (j = 0; j <= inString.Count() - 1; j++)
-                            {
-                                if (CampoActual == inString[j])
-                                {
-                                    res2 = 1;
-                                    break; // TODO: might not be correct. Was : Exit For
-                                }
-                            }
-
-                            break;
-                        //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IN#", Me.campoActual + "IN(" + ConditionString[2].Substring(3) + ")", Me.idArchivo)
-                    }
-
-                    if (conditionString[0] == "AND")
-                    {
-                        if (res1 == 1 & res2 == 1)
-                        {
-                            exitoLinea = 1;
-                        }
-                        else
-                        {
-                            Errores = Errores + 1;
-                        }
-                    }
-                    else
-                    {
-                        if (res1 == 1 | res2 == 1)
-                        {
-                            exitoLinea = 1;
-                        }
-                        else
-                        {
-                            Errores = Errores + 1;
-                        }
-                    }
-                    break;
-                case "IF":
-                    switch (conditionString[1].Substring(0, 3))
-                    {
-                        case "SP#":
-                            if (ExecSpBool(conditionString[1].Substring(3)))
-                            {
-                                switch (conditionString[2].Substring(0, 3))
-                                {
-                                    case "SP#":
-                                        if (ExecSpBool(conditionString[2].Substring(3)))
-                                        {
-                                            exitoLinea = 1;
-                                        }
-                                        else
-                                        {
-                                            Errores = Errores + 1;
-                                        }
-                                        break;
-                                    //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP SP#", ConditionString[2].Substring(3), Me.idArchivo)
-                                    case "EQ#":
-                                        if (
-                                            CampoActual.Equals(
-                                                conditionString[2].Substring(3)))
-                                        {
-                                            exitoLinea = 1;
-                                        }
-                                        else
-                                        {
-                                            Errores = Errores + 1;
-                                        }
-                                        break;
-                                    //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP EQ#", Me.campoActual + "=" + ConditionString[2].Substring(3), Me.idArchivo)
-                                    case "IQ#":
-                                        resultadoValor =
-                                            ExecQuery(conditionString[2].Substring(3));
-                                        if (resultadoValor.Contains(CampoActual))
-                                        {
-                                            exitoLinea = 1;
-                                        }
-                                        else
-                                        {
-                                            Errores = Errores + 1;
-                                        }
-                                        break;
-                                    //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IQ#", Me.campoActual + "IN(" + ConditionString[2].Substring(3) + ")", Me.idArchivo)
-                                    case "IN#":
-                                        inString = conditionString[2].Substring(3)
-                                            .Split(',');
-                                        for (j = 0; j <= inString.Count() - 1; j++)
-                                        {
-                                            if (CampoActual == inString[j])
-                                            {
-                                                exitoLinea = 1;
-                                                break;
-                                                // TODO: might not be correct. Was : Exit For
-                                            }
-                                        }
-
-                                        if (exitoLinea == 0)
-                                        {
-                                            Errores = Errores + 1;
-                                        }
-                                        break;
-                                    //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IN#", Me.campoActual + "IN(" + ConditionString[2].Substring(3) + ")", Me.idArchivo)
-                                }
-                            }
-                            else
-                            {
-                                switch (conditionString[3].Substring(0, 3))
-                                {
-                                    case "SP#":
-                                        if (ExecSpBool(conditionString[3].Substring(3)))
-                                        {
-                                            exitoLinea = 1;
-                                        }
-                                        else
-                                        {
-                                            Errores = Errores + 1;
-                                        }
-                                        break;
-                                    //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP SP#", ConditionString[2].Substring(3), Me.idArchivo)
-                                    case "EQ#":
-                                        if (CampoActual ==
-                                            conditionString[3].Substring(3))
-                                        {
-                                            exitoLinea = 1;
-                                        }
-                                        else
-                                        {
-                                            Errores = Errores + 1;
-                                        }
-                                        break;
-                                    //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP EQ#", Me.campoActual + "=" + ConditionString[2].Substring(3), Me.idArchivo)
-                                    case "IQ#":
-                                        resultadoValor =
-                                            ExecQuery(conditionString[3].Substring(3));
-                                        if (resultadoValor.Contains(CampoActual))
-                                        {
-                                            exitoLinea = 1;
-                                        }
-                                        else
-                                        {
-                                            Errores = Errores + 1;
-                                        }
-                                        break;
-                                    //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IQ#", Me.campoActual + "IN(" + ConditionString[2].Substring(3) + ")", Me.idArchivo)
-                                    case "IN#":
-                                        inString = conditionString[3].Substring(3)
-                                            .Split(',');
-                                        for (j = 0; j <= inString.Count() - 1; j++)
-                                        {
-                                            if (CampoActual == inString[j])
-                                            {
-                                                exitoLinea = 1;
-                                                break;
-                                                // TODO: might not be correct. Was : Exit For
-                                            }
-                                        }
-
-                                        if (exitoLinea == 0)
-                                        {
-                                            Errores = Errores + 1;
-                                        }
-                                        break;
-                                    //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IN#", Me.campoActual + "IN(" + ConditionString[2].Substring(3) + ")", Me.idArchivo)
-                                }
-                            }
-                            break;
-                        case "EQ#":
-                            if (CampoActual.Equals(conditionString[2].Substring(3)))
-                            {
-                                exitoLinea = 1;
-                            }
-                            else
-                            {
-                                Errores = Errores + 1;
-                            }
-                            break;
-                        //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP EQ#", Me.campoActual + "=" + ConditionString[2].Substring(3), Me.idArchivo)
-                    }
-                    break;
-            }
-            return exitoLinea;
-        }
-
-        private int EvaluarBoolSp(string tipoArchivo, Regla r, int x, int exitoLinea)
-        {
-            string valor;
-            StringCollection resultadoValor;
-            valor = r.ReglaValidacion;
-            var validado = new Helpers.ValidaRegla().validacionDeCampos(r, CampoActual);
-            valor = valor.Replace("@valor", "'" + CampoActual + "'");
-            valor = valor.Replace("@IdArchivo", IdArchivo.ToString());
-            valor = valor.Replace("@NumeroLinea", (x + 1).ToString());
-            valor = valor.Replace("@CampoInicial", r.CaracterInicial.ToString());
-            valor = valor.Replace("@LargoCampo", r.LargoCampo.ToString());
-            using (var context = new DISEntities())
-            {
-                var resultado = context.pa_valida_EjecutaProcedimientoAlmacenado(valor);
-                resultadoValor = ObtieneColeccion(resultado);
-            }
-
-            if (resultadoValor[0] == "1")
-            {
-                exitoLinea = 1;
-                //start:
-                //1.- valida que exista una PRIMAPAG
-                if (tipoArchivo == "PRIMDCUA")
-                {
-                    if (r.Tabladestino != string.Empty)
-                    {
-                        valor = r.Tabladestino;
-                        valor = valor.Replace("@valor", "'" + CampoActual + "'");
-                        using (var context = new DISEntities())
-                        {
-                            ObjectResult resultado =
-                                context.pa_valida_EjecutaProcedimientoAlmacenado(valor);
-                            resultadoValor = ObtieneColeccion(resultado);
-                        }
-                        if (resultadoValor[0] == "1")
-                        {
-                            exitoLinea = 1;
-                            //
-                        }
-                        else
-                        {
-                            Errores = Errores + 1;
-                            exitoLinea = 0;
-                        }
-                    }
-                }
-                //end
-            }
-            else
-            {
-                Errores = Errores + 1;
-                exitoLinea = 0;
-            }
-            return exitoLinea;
-        }
-
-        private int EvaluarEqual(Regla r, int exitoLinea)
-        {
-            if (CampoActual == r.ReglaValidacion)
-            {
-                exitoLinea = 1;
-            }
-            else
-            {
-                Errores = Errores + 1;
-            }
-            return exitoLinea;
-        }
-
 
         private void InsertaAuditoria(int idUsuario, string descripcion, string comando, int idarchivo)
         {
@@ -866,7 +483,7 @@ namespace VidaCamara.DIS.Negocio
                         File.Delete(rutaArchivos);
                     }
 
-                    Errores = 0;
+                    ContadorErrores = 0;
 
                     using (var writer = new StreamWriter(rutaArchivos))
                     {
@@ -916,135 +533,82 @@ namespace VidaCamara.DIS.Negocio
             }
         }
 
-        private bool ExecSpBool(string procedure)
+        public List<Regla> ObtieneReglaLinea(ObjectResult<pa_file_ObtieneReglasArchivoPorLinea_Result> dt)
         {
-            var resultadovalor = default(StringCollection);
-            using (var context = new DISEntities())
+            var reglaLinea = new List<Regla>();
+            foreach (var iLoopVariable in dt)
             {
-                ObjectResult resultado = context.pa_valida_EjecutaProcedimientoAlmacenado(procedure);
-                resultadovalor = ObtieneColeccion(resultado);
-            }
-            return resultadovalor[0] == "1";
-        }
-
-        private StringCollection ExecQuery(string query)
-        {
-            var resultadovalor = default(StringCollection);
-            using (var context = new DISEntities())
-            {
-                var resultado = context.pa_valida_EjecutaQuery(query);
-                resultadovalor = ObtieneColeccion(resultado);
-            }
-            return resultadovalor;
-        }
-
-        private StringCollection ExecSpCollection(string procedure)
-        {
-            var resultadovalor = default(StringCollection);
-            using (var context = new DISEntities())
-            {
-                ObjectResult resultado = context.pa_valida_EjecutaProcedimientoAlmacenado(procedure);
-                resultadovalor = ObtieneColeccion(resultado);
-            }
-            return resultadovalor;
-        }
-
-        private bool ValidacionesArchivo(string tipoArchivo, int tipoRegla)
-        {
-            var exitoValidacion = 0;
-
-            try
-            {
-                string regla = null;
-                using (var context = new DISEntities())
+                var i = iLoopVariable;
+                var regla = new Regla
                 {
-                    if (tipoRegla == 2 & Errores == 0)
-                    {
-                        var valorRetorno = context.pa_file_ArchivoValido(IdArchivo);
-                        InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), "Se valida archivo",
-                            "pa_file_ArchivoValido", IdArchivo);
-                        exitoValidacion = int.Parse(valorRetorno.ToString());
-                        if (exitoValidacion == 0)
-                        {
-                            Errores = Errores + 1;
-                            Errors = "Error en Cuadratura de primas";
-                            InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), Errors, NombreArchivo,
-                                IdArchivo);
-                            return false;
-                        }
-                    }
-                    var resultado = context.pa_file_ObtieneReglavalidacionArchivo(tipoArchivo, tipoRegla);
-                    regla = resultado.FirstOrDefault();
-                }
+                    idRegla = i.IdReglaArchivo,
+                    CaracterInicial = i.CaracterInicial.Value,
+                    LargoCampo = i.LargoCampo.Value,
+                    TipoCampo = i.TipoCampo,
+                    TipoValidacion = i.TipoValidacion,
+                    ReglaValidacion = i.ReglaValidacion,
+                    Tabladestino = i.TablaDestino,
+                    NombreCampo = i.NombreCampo
+                };
+                reglaLinea.Add(regla);
+            }
+            return reglaLinea;
+        }
 
-                if (!string.IsNullOrEmpty(regla))
+        private StringCollection ObtieneColeccion(object dt)
+        {
+            var coleccion = new StringCollection();
+
+            foreach (var iLoopVariable in (IEnumerable)dt)
+            {
+                var i = iLoopVariable;
+                coleccion.Add(i == null ? "" : i.ToString());
+            }
+            return coleccion;
+        }
+        
+        private void PopulateType(Object obj, Dictionary<String, Object> defaultValues)
+        {
+            foreach (var defaultValue in defaultValues)
+            {
+                var prop = obj.GetType().GetProperty(defaultValue.Key, BindingFlags.Public | BindingFlags.Instance);
+                if(null != prop && prop.CanWrite)
                 {
-                    string[] conditionString = null;
-                    regla = regla.Replace("@NombreArchivo", NombreArchivo);
-                    regla = regla.Replace("@IdArchivo", IdArchivo.ToString());
-                    conditionString = regla.Split(';');
+                    var type = prop.PropertyType;
+                    var underlyingType = Nullable.GetUnderlyingType(type);
+                    var returnType = underlyingType ?? type;
+                    var typeCode = Type.GetTypeCode(returnType);
 
-                    switch (conditionString[0].Substring(0, 3))
-                    {
-                        case "SP#":
-                            if (ExecSpBool(conditionString[0].Substring(3)))
-                            {
-                                exitoValidacion = 1;
-                            }
-                            else
-                            {
-                                exitoValidacion = 0;
-                            }
-                            InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), conditionString[0].Substring(3),
-                                conditionString[0].Substring(3), IdArchivo);
-                            break;
-                    }
+                    var value = defaultValue.Value;
 
-                    if (exitoValidacion == 1)
+                    try
                     {
-                        switch (conditionString[1].Substring(0, 3))
+                        switch (typeCode)
                         {
-                            case "SP#":
-                                if (ExecSpBool(conditionString[1].Substring(3)))
+                            case TypeCode.Int32:
+                                prop.SetValue(obj, Convert.ToInt32(value), null);
+                                break;
+                            case TypeCode.DateTime:
+                                if ((string) value == "00000000")
                                 {
-                                    exitoValidacion = 1;
+                                    prop.SetValue(obj, null, null);
+                                    break;
                                 }
-                                else
-                                {
-                                    exitoValidacion = 0;
-                                }
-                                InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), conditionString[1].Substring(3),
-                                    conditionString[1].Substring(3), IdArchivo);
+
+                                var dateTimeValue = DateTime.ParseExact(value.ToString(), "yyyyMMdd",
+                                    System.Globalization.CultureInfo.InvariantCulture);
+                                prop.SetValue(obj, dateTimeValue, null);
+                                break;
+                            default:
+                                prop.SetValue(obj, value, null);
                                 break;
                         }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        switch (conditionString[2].Substring(0, 3))
-                        {
-                            case "SP#":
-                                if (ExecSpBool(conditionString[2].Substring(3)))
-                                {
-                                    exitoValidacion = 1;
-                                }
-                                else
-                                {
-                                    exitoValidacion = 0;
-                                }
-                                InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), conditionString[2].Substring(3),
-                                    conditionString[2].Substring(3), IdArchivo);
-                                break;
-                        }
+                        throw;
                     }
-
-                    return exitoValidacion == 1;
                 }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Observacion = ex.Message;
-                return false;
             }
         }
     }

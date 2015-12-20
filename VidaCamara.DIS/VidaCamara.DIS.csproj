@@ -47,6 +47,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -260,6 +261,7 @@
     <Compile Include="Modelo\USUARIO.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Negocio\CargaLogica.Evaluador.cs" />
     <Compile Include="Negocio\CargaLogica.cs" />
     <Compile Include="Negocio\CheckListLogica.cs" />
     <Compile Include="Negocio\nContratoSisDetalle.cs" />

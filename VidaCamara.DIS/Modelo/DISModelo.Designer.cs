@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\David Choque\Documents\Visual Studio 2015\Projects\vidacamara\VidaCamara.DIS\Modelo\DISModelo.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\yurmo\Source\Repos\VCAMARA2\VidaCamara.DIS\Modelo\DISModelo.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

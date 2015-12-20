@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <doc>
     <assembly>
         <name>NPOI</name>
@@ -26984,7 +26984,7 @@
             Formula cells return the formula string,
             rather than the formula result.
             Dates are Displayed in dd-MMM-yyyy format
-            Errors are Displayed as #ERR&lt;errIdx&gt;
+            MensageError are Displayed as #ERR&lt;errIdx&gt;
             </summary>
         </member>
         <member name="M:NPOI.HSSF.UserModel.HSSFCell.RemoveCellComment">
