@@ -20,6 +20,13 @@ $(document).ready(function () {
             $(this).val("");
         }
     });
+    //VALIDAR QUE EL PORCENTAJE DE PARTICIPACION NO SUPERE LOS 100%
+    $("section").delegate("#ctl00_ContentPlaceHolder1_txt_participacion_sis", "keyup", function (ev) {
+        if (parseFloat($(this).val()) > 100) {
+            MessageBox("El porcentaje ingresado supera el limite permitido");
+            $(this).val("");
+        }
+    });
     //CARGAR GRILLA POR SI EL CONTRATO TIENE ITEM SELECCIONADO
     if (parseInt($("#ctl00_ContentPlaceHolder1_ddl_contrato_sis").val()) != 0) {
         getlistContratoSisDetalle($("#ctl00_ContentPlaceHolder1_ddl_contrato_sis").val());

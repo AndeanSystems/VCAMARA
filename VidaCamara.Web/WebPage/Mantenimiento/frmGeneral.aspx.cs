@@ -175,14 +175,21 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                     USU_REG = Session["username"].ToString(),
                     USU_MOD = Session["username"].ToString()
                 };
-                if (ContratoSisDetalle.IDE_CONTRATO_DET == 0)
-                {
+                    
+                if (ContratoSisDetalle.IDE_CONTRATO_DET == 0) {
                     if (verificarSiExisteNroOrden(ContratoSisDetalle) == 1)
+                    {
                         MessageBox("El numero de orden ya existe.");
-                    else {
-                        var resp = new nContratoSisDetalle().setGuardarContratoDetalle(ContratoSisDetalle);
-                        MessageBox("Registro  grabado corretamente");
+                        return;
                     }
+
+                    if (verificarSumaTotalPorcentaje(ContratoSisDetalle) > 100.00m)
+                    {
+                        MessageBox("La suma de los porcentajes ingresados supera el limite maximo de 100");
+                        return;
+                    };
+                    var resp = new nContratoSisDetalle().setGuardarContratoDetalle(ContratoSisDetalle);
+                        MessageBox("Registro  grabado corretamente");
                 }
                 else
                 {
@@ -194,6 +201,18 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             {
                 MessageBox("Ocurrio el siguiente error : "+ex.Message.ToString());
             }
+        }
+
+        private decimal verificarSumaTotalPorcentaje(CONTRATO_SIS_DET contratoSisDetalle)
+        {
+            var filterOptions = new Object[3] { 0, 10000, "IDE_CONTRATO ASC" };
+            var listEmpresa = new nContratoSisDetalle().getlistContratoDetalle(contratoSisDetalle, filterOptions, out total);
+            var sumaPorcentaje = 0.00m;
+            foreach (var item in listEmpresa)
+            {
+                sumaPorcentaje += Convert.ToDecimal(item.PRC_PARTICIACION);
+            }
+            return sumaPorcentaje + Convert.ToDecimal(contratoSisDetalle.PRC_PARTICIACION);
         }
 
         private int verificarSiExisteNroOrden(CONTRATO_SIS_DET contratoSisDetalle)
