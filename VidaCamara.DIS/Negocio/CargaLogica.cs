@@ -186,6 +186,7 @@ namespace VidaCamara.DIS.Negocio
                         {
                             var propertyValues = new Dictionary<string, object>();
                             var exitoLinea = 1;
+
                             foreach (var regla in _reglasLineaPorTipo[caracterInicial])
                             {
                                 try

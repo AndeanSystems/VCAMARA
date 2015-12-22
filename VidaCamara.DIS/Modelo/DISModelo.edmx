@@ -731,7 +731,7 @@ warning 6002: The table/view 'vcamara.dbo.USUARIO' does not have a primary key d
           <Property Name="NUM_APOR_ACT" Type="varchar" MaxLength="10" />
           <Property Name="SAL_CIC_MN" Type="varchar" MaxLength="11" />
           <Property Name="TIP_CAMB_COM" Type="varchar" MaxLength="5" />
-          <Property Name="TIP_MONE" Type="varchar" MaxLength="1" />
+          <Property Name="TIP_MONE" Type="varchar" MaxLength="2" />
           <Property Name="TOT_CAPI_REQ_MN" Type="varchar" MaxLength="10" />
           <Property Name="TOT_CAPI_REQ_ORI" Type="varchar" MaxLength="10" />
           <Property Name="COD_CUSP" Type="varchar" MaxLength="12" />
@@ -3515,7 +3515,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="NUM_APOR_ACT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="SAL_CIC_MN" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="TIP_CAMB_COM" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="TIP_MONE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="TIP_MONE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="TOT_CAPI_REQ_MN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="TOT_CAPI_REQ_ORI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="COD_CUSP" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
