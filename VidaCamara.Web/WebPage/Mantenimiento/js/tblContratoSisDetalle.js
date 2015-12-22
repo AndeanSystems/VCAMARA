@@ -1,18 +1,31 @@
 ﻿var descripcion_contrato = "Contrato SYS ";
 var meses = new Array("-", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 $(document).ready(function () {
+    limpiarFormularioDetalle();
     //LIMPIAR DATOS DEL FORMULARIO
     $("section").delegate("#ctl00_ContentPlaceHolder1_btnNuevo", "click", function (ev) {
         ev.preventDefault();
         $("#ctl00_ContentPlaceHolder1_ddl_contrato_sis").val("0");
-        $("#ctl00_ContentPlaceHolder1_ddl_compania_seg_vida").val("0");
-        $("#ctl00_ContentPlaceHolder1_txt_participacion_sis").val("");
-        $("#ctl00_ContentPlaceHolder1_txt_orden_empresa_sis").val("");
-        $("#ctl00_ContentPlaceHolder1_txt_ide_contrato_sis_det").val("0");
+        limpiarFormularioDetalle();
     });
     //CARGAR GRILLA POR CONTRATO SELECIONADO
     $("section").delegate("#ctl00_ContentPlaceHolder1_ddl_contrato_sis", "change", function (ev) {
         getlistContratoSisDetalle($(this).val());
+        limpiarFormularioDetalle();
+    });
+    //VALIDAR QUE EL NUMERO DE ORDEN NO SE A MAYOR QUE 7
+    $("section").delegate("#ctl00_ContentPlaceHolder1_txt_orden_empresa_sis", "keyup", function (ev) {
+        if (parseInt($(this).val()) > 7) {
+            MessageBox("El numero ingresado supera el limite permitido");
+            $(this).val("");
+        }
+    });
+    //VALIDAR QUE EL PORCENTAJE DE PARTICIPACION NO SUPERE LOS 100%
+    $("section").delegate("#ctl00_ContentPlaceHolder1_txt_participacion_sis", "keyup", function (ev) {
+        if (parseFloat($(this).val()) > 100) {
+            MessageBox("El porcentaje ingresado supera el limite permitido");
+            $(this).val("");
+        }
     });
     //CARGAR GRILLA POR SI EL CONTRATO TIENE ITEM SELECCIONADO
     if (parseInt($("#ctl00_ContentPlaceHolder1_ddl_contrato_sis").val()) != 0) {
@@ -70,7 +83,13 @@ $(document).ready(function () {
         $('#tblContratoViewSySDetalle.jtable-main-container').css({ "width": "4800px" });
         $('#tblContratoViewSySDetalle').jtable('load', { WhereBy: ide_contrato });
     }
-
+    //LIMPIAR FORMULARIO
+    function limpiarFormularioDetalle() {
+        $("#ctl00_ContentPlaceHolder1_ddl_compania_seg_vida").val("0");
+        $("#ctl00_ContentPlaceHolder1_txt_participacion_sis").val("");
+        $("#ctl00_ContentPlaceHolder1_txt_orden_empresa_sis").val("");
+        $("#ctl00_ContentPlaceHolder1_txt_ide_contrato_sis_det").val("0");
+    }
     //funcion muestra alertas mesagw box
     function MessageBox(texto) {
         $("<div style='font-size:14px;text-align:center;'>" + texto + "</div>").dialog({ title: 'Alerta', modal: true, width: 400, height: 160, buttons: [{ id: 'aceptar', text: 'Aceptar', icons: { primary: 'ui-icon-circle-check' }, click: function () { $(this).dialog('close'); } }] })

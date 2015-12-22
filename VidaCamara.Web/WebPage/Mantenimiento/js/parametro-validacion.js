@@ -34,7 +34,12 @@
         } else if (tablaidContratoSbs == 0 && tablaidContratoSbsDet == 0 && tablaidContratoSis == 1 && tableidContratoSisDet == 0) {
             var ide_contrato_sis = $("#ctl00_ContentPlaceHolder1_txt_ide_contrato_sis").val();
             if (parseInt(ide_contrato_sis) == 0) {
+                var fecha_inicio = $("#ctl00_ContentPlaceHolder1_txtFechaInicio_sys").val();
+                var fecha_fin = $("#ctl00_ContentPlaceHolder1_txtFechaFin_sys").val();
+                
+
                 return confirm("Está seguro de crear el registro?");
+                //return false;
             } else {
                 return confirm("Está seguro de actualizar el registro?");
             }

@@ -14,7 +14,7 @@ namespace VidaCamara.Web
         {
             coleccion.MapPageRoute("login", "Login", "~/WebPage/Inicio/frmLogin.aspx");
             coleccion.MapPageRoute("Inicio", "Inicio", "~/WebPage/Inicio/frmInicio.aspx");
-            coleccion.MapPageRoute("hahah", "Parametros", "~/WebPage/Mantenimiento/frmGeneral.aspx");
+            coleccion.MapPageRoute("Parametros", "Parametros", "~/WebPage/Mantenimiento/frmGeneral.aspx");
             coleccion.MapPageRoute("Error", "Error", "~/WebPage/Inicio/frmError.aspx");
             coleccion.MapPageRoute("CargaDatos", "CargaDatos", "~/WebPage/ModuloSBS/Operaciones/frmCargaDatos.aspx");
             coleccion.MapPageRoute("OperacionManual", "OperacionManual", "~/WebPage/ModuloSBS/Operaciones/frmOperacionManual.aspx");

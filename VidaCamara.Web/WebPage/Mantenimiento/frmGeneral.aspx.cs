@@ -43,6 +43,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 concepto.SetEstablecerDataSourceConcepto(ddl_calificadora_r,"02");
                 concepto.SetEstablecerDataSourceConcepto(ddl_crediticia_r,"11");
                 concepto.SetEstablecerDataSourceConcepto(ddl_compania_seg_vida,"29");
+                concepto.SetEstablecerDataSourceConcepto(ddl_estado_sys,"21");
 
                 //contrato sys
                 var bContrato = new bContratoSys();
@@ -174,10 +175,21 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                     USU_REG = Session["username"].ToString(),
                     USU_MOD = Session["username"].ToString()
                 };
-                if (ContratoSisDetalle.IDE_CONTRATO_DET == 0)
-                {
+                    
+                if (ContratoSisDetalle.IDE_CONTRATO_DET == 0) {
+                    if (verificarSiExisteNroOrden(ContratoSisDetalle) == 1)
+                    {
+                        MessageBox("El numero de orden ya existe.");
+                        return;
+                    }
+
+                    if (verificarSumaTotalPorcentaje(ContratoSisDetalle) > 100.00m)
+                    {
+                        MessageBox("La suma de los porcentajes ingresados supera el limite maximo de 100");
+                        return;
+                    };
                     var resp = new nContratoSisDetalle().setGuardarContratoDetalle(ContratoSisDetalle);
-                    MessageBox("Registro  grabado corretamente");
+                        MessageBox("Registro  grabado corretamente");
                 }
                 else
                 {
@@ -189,6 +201,29 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             {
                 MessageBox("Ocurrio el siguiente error : "+ex.Message.ToString());
             }
+        }
+
+        private decimal verificarSumaTotalPorcentaje(CONTRATO_SIS_DET contratoSisDetalle)
+        {
+            var filterOptions = new Object[3] { 0, 10000, "IDE_CONTRATO ASC" };
+            var listEmpresa = new nContratoSisDetalle().getlistContratoDetalle(contratoSisDetalle, filterOptions, out total);
+            var sumaPorcentaje = 0.00m;
+            foreach (var item in listEmpresa)
+            {
+                sumaPorcentaje += Convert.ToDecimal(item.PRC_PARTICIACION);
+            }
+            return sumaPorcentaje + Convert.ToDecimal(contratoSisDetalle.PRC_PARTICIACION);
+        }
+
+        private int verificarSiExisteNroOrden(CONTRATO_SIS_DET contratoSisDetalle)
+        {
+            var filterOptions = new Object[3] { 0, 10000, "IDE_CONTRATO ASC" };
+            var listEmpresa = new nContratoSisDetalle().getlistContratoDetalle(contratoSisDetalle, filterOptions, out total);
+            var listOrdenExiste = listEmpresa.FindAll(a => a.NRO_ORDEN == contratoSisDetalle.NRO_ORDEN);
+            if (listOrdenExiste.Count > 0)
+                return 1;
+            else
+                return 0;
         }
 
         //botton de borrar
@@ -489,7 +524,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             o._fin = 10000000;
             o._order = "DESCRIPCION ASC";
 
-            DropDownList[] oDropDownList = { ddl_estado_c, ddl_estado_sys };
+            DropDownList[] oDropDownList = { ddl_estado_c };
             foreach (DropDownList item in oDropDownList)
             {
                 item.DataSource = tb.GetSelectConcepto(o, out total); ;
@@ -515,15 +550,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
         public static object ContratoSysList(int jtStartIndex, int jtPageSize, string jtSorting, String WhereBy)
         {
             int total;
-            int indexPage;
-            if (jtStartIndex != 0)
-            {
-                indexPage = jtStartIndex / jtPageSize;
-            }
-            else
-            {
-                indexPage = jtStartIndex;
-            }
+            int indexPage = jtStartIndex != 0? jtStartIndex / jtPageSize: jtStartIndex;
             eContratoSys o = new eContratoSys();
             o._inicio = indexPage;
             o._fin = jtPageSize;
@@ -553,6 +580,12 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 c._usu_reg = Session["username"].ToString();
                 c._usu_mod = Session["username"].ToString();
                 c._nro_empresa = int.Parse(txt_numero_empresa.Text);
+
+                if(c._fec_Ini_Vig >= c._fec_Fin_Vig)
+                {
+                    MessageBox("La fecha de inicio no debe ser mayor al de fin");
+                    return;
+                }
 
                 bContratoSys control = new bContratoSys();
                 if (c._ide_Contrato == 0)
