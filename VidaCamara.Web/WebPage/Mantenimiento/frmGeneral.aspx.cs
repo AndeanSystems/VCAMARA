@@ -550,15 +550,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
         public static object ContratoSysList(int jtStartIndex, int jtPageSize, string jtSorting, String WhereBy)
         {
             int total;
-            int indexPage;
-            if (jtStartIndex != 0)
-            {
-                indexPage = jtStartIndex / jtPageSize;
-            }
-            else
-            {
-                indexPage = jtStartIndex;
-            }
+            int indexPage = jtStartIndex != 0? jtStartIndex / jtPageSize: jtStartIndex;
             eContratoSys o = new eContratoSys();
             o._inicio = indexPage;
             o._fin = jtPageSize;
