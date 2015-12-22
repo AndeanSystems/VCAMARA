@@ -69,7 +69,7 @@ $(document).ready(function () {
         $("#ctl00_ContentPlaceHolder1_txtFechaInicio_sys").val("");
         $("#ctl00_ContentPlaceHolder1_txt_nrocont_sys").val("");
         $("#ctl00_ContentPlaceHolder1_txtFechaFin_sys").val("");
-        $("#ctl00_ContentPlaceHolder1_txt_idContrato_sys").val("0");
+        $("#ctl00_ContentPlaceHolder1_txt_ide_contrato_sis").val("0");
         $("#ctl00_ContentPlaceHolder1_ddl_estado_sys").val("0");
         $("#ctl00_ContentPlaceHolder1_ddl_clase_contrato_sys").val("0");
     }
