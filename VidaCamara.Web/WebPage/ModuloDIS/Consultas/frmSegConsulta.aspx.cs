@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using VidaCamara.DIS.Modelo;
+using VidaCamara.DIS.Negocio;
 using VidaCamara.SBS.Negocio;
 
 namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
@@ -29,31 +31,38 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             if (!IsPostBack)
             {
                 var concepto = new bTablaVC();
-                SetLLenadoContrato();
-                //concepto.SetEstablecerDataSourceConcepto(ddl_tipo_tramite,"22");
+                SetLLenadoContratoSIS();
+                concepto.SetEstablecerDataSourceConcepto(ddl_tipo_archivo, "17");
                 concepto.SetEstablecerDataSourceConcepto(ddl_afp, "23");
                 //concepto.SetEstablecerDataSourceConcepto(ddl_afp, "14");
                 concepto.SetEstablecerDataSourceConcepto(ddl_moneda, "20");
                 concepto.SetEstablecerDataSourceConcepto(ddl_moneda, "10");
             }
         }
-        private void SetLLenadoContrato()
-        {
-            var list = new VidaCamara.SBS.Utils.Utility().getContratoSys(out total);
-            ddl_contrato.DataSource = list;
-            ddl_contrato.DataTextField = "_des_Contrato";
-            ddl_contrato.DataValueField = "_nro_Contrato";
-            ddl_contrato.DataBind();
-            ddl_contrato.Items.Insert(0, new ListItem("Seleccione ----", "0"));
-        }
         private void SetLLenadoContratoSIS()
         {
             var list = new VidaCamara.SBS.Utils.Utility().getContratoSys(out total);
             ddl_contrato.DataSource = list;
             ddl_contrato.DataTextField = "_des_Contrato";
-            ddl_contrato.DataValueField = "_nro_Contrato";
+            ddl_contrato.DataValueField = "_ide_Contrato";
             ddl_contrato.DataBind();
             ddl_contrato.Items.Insert(0, new ListItem("Seleccione ----", "0"));
+        }
+        private void getLlistarArchivoCargada()
+        {
+            var filterParam = new object[1] { ddl_tipo_archivo.SelectedItem.Value};
+            var historiaLinCab = new HistorialCargaArchivo_LinCab()
+            {
+                IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value),
+            };
+            var listCargaDetalle = new nArchivoCargado().listArchivoCargado(historiaLinCab, filterParam);
+            gv_archivo_cargado.DataSource = listCargaDetalle;
+            gv_archivo_cargado.DataBind();
+        }
+
+        protected void btn_consultar_Click(object sender, ImageClickEventArgs e)
+        {
+            getLlistarArchivoCargada();
         }
     }
 }

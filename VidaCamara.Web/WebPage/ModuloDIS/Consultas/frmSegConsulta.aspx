@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebPage/Inicio/mpFEPCMAC.Master" AutoEventWireup="true" CodeBehind="frmSegConsulta.aspx.cs" Inherits="VidaCamara.Web.WebPage.ModuloDIS.Consultas.frmSegConsulta" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<link rel="stylesheet" href="../../../Resources/CSS/bootstrap.css" />
 <script src="/WebPage/ModuloDIS/Consultas/js/tblConsulta.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -8,7 +9,7 @@
         <div class="btn_crud">
             <asp:HyperLink ID="HyperLink1" CssClass="btn_crud_button"  ToolTip="Inicio" runat="server" ImageUrl="~/Resources/Imagenes/u158_normal.png" NavigateUrl="~/Inicio"></asp:HyperLink>
             <asp:ImageButton  CssClass="btn_crud_button" ID="btn_exportar" runat="server" ToolTip="Exportar" ImageUrl="~/Resources/Imagenes/u123_normal.png"/>
-            <asp:ImageButton  CssClass="btn_crud_button" ID="btn_buscar" runat="server" ToolTip="Buscar" ImageUrl="~/Resources/Imagenes/u154_normal.png" />
+            <asp:ImageButton  CssClass="btn_crud_button" ID="btn_consultar" runat="server" ToolTip="Buscar" ImageUrl="~/Resources/Imagenes/u154_normal.png" OnClick="btn_consultar_Click" />
         </div>
     <!--Cuerpo de los tabs-->
     <div class="tabBody" id="frmOperacion">
@@ -18,8 +19,8 @@
                 <label class="label_to" for="ddl_contrato_o">Contrato (*)</label>
                 <asp:DropDownList CssClass="input_to" ID="ddl_contrato" runat="server" Height="25px" Width="77%"></asp:DropDownList>
 
-                <label class="label_to" for="ddl_tipcom_o">Tipo de Tramite </label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_tipo_tramite" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
+                <label class="label_to" for="ddl_tipo_archivo">Tipo de Tramite </label>
+                <asp:DropDownList CssClass="input_to" ID="ddl_tipo_archivo" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
 
                 <label class="input_right_L" for="txt_fec_ini_o">Desde</label>
                 <asp:TextBox CssClass="input_right datetime" ID="txt_fec_ini_o" runat="server" Height="25px" Width="14.7%" ></asp:TextBox>
@@ -49,7 +50,7 @@
                 <asp:TextBox runat="server" CssClass="input_right" Height="25px" Width="14.8%"/>
 
                 <div class="iframe" id="tblConsulta1">
-
+                    <asp:GridView ID="gv_archivo_cargado" runat="server" CssClass="table" Font-Size="10px"></asp:GridView>
                 </div>  
 
             </asp:View>
