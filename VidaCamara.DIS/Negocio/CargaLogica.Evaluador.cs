@@ -202,14 +202,15 @@ namespace VidaCamara.DIS.Negocio
         {
             StringCollection resultadoValor;
             resultadoValor = ExecQuery(r.ReglaValidacion);
-
+            var index = (r.ReglaValidacion.IndexOf("FROM ")+5);
+            var tableValidacion = r.ReglaValidacion.Substring(index,(r.ReglaValidacion.Length-index)).ToString();
             if (resultadoValor.Contains(CampoActual))
             {
                 exitoLinea = 1;
             }
             else
             {
-                MensageError = "No existe: " + CampoActual;
+                MensageError = "No se encontró el valor: " + CampoActual + " en tabla " + tableValidacion;
                 ContadorErrores = ContadorErrores + 1;
             }
             return exitoLinea;
