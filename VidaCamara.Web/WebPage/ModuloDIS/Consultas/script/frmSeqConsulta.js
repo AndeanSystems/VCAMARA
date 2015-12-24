@@ -7,7 +7,11 @@
     var historiaLinDet = function () {
         this.COD_AFP_ = $("#ctl00_ContentPlaceHolder1_ddl_afp").val(),
         this.TIP_MONE = $("#ctl00_ContentPlaceHolder1_ddl_moneda").val(),
-        this.COD_CUSP = $("#ctl00_ContentPlaceHolder1_txt_cod_cusp").val()
+        this.COD_CUSP = $("#ctl00_ContentPlaceHolder1_txt_cod_cusp").val(),
+        this.APE_MATE_PEN = $("#ctl00_ContentPlaceHolder1_txt_apellido").val(),
+        this.PRI_NOMB_PEN = $("#ctl00_ContentPlaceHolder1_txt_nombre").val(),
+        this.NUM_DOCU_PEN = $("#ctl00_ContentPlaceHolder1_txt_dni").val(),
+        this.NUM_SOLI_PEN = $("#ctl00_ContentPlaceHolder1_txt_nro_solicitud").val()
     };
     //boton de consultar
     $("section").delegate("#ctl00_ContentPlaceHolder1_btn_consultar", "click", function (ev) {
