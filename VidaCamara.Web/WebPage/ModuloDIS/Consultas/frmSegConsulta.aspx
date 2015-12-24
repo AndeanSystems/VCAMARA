@@ -50,7 +50,7 @@
                 <asp:TextBox runat="server" CssClass="input_right" Height="25px" Width="14.8%"/>
 
                 <div class="iframe" id="tblConsulta1">
-                    <asp:GridView ID="gv_archivo_cargado" runat="server" CssClass="table" Font-Size="10px"></asp:GridView>
+                    <asp:GridView ID="gv_archivo_cargado" runat="server" CssClass="table table-hover" Font-Size="9px"></asp:GridView>
                 </div>  
 
             </asp:View>

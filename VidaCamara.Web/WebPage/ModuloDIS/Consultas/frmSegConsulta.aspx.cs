@@ -56,13 +56,26 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
                 IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value),
             };
             var listCargaDetalle = new nArchivoCargado().listArchivoCargado(historiaLinCab, filterParam);
-            gv_archivo_cargado.DataSource = listCargaDetalle;
-            gv_archivo_cargado.DataBind();
+
+            if (listCargaDetalle == null)
+            {
+                MessageBox("No existen registros para la consulta seleccionada");
+            }
+            else
+            {
+                gv_archivo_cargado.DataSource = listCargaDetalle;
+                gv_archivo_cargado.DataBind();
+            }
         }
 
         protected void btn_consultar_Click(object sender, ImageClickEventArgs e)
         {
             getLlistarArchivoCargada();
+        }
+
+        private void MessageBox(String text)
+        {
+            Page.ClientScript.RegisterStartupScript(GetType(), "msgbox", "$('<div style=\"font-size:14px;text-align:center;\">" + text + "</div>').dialog({title:'Confirmación',modal:true,width:400,height:240,buttons: [{id: 'aceptar',text: 'Aceptar',icons: { primary: 'ui-icon-circle-check' },click: function () {$(this).dialog('close');}}]})", true);
         }
     }
 }
