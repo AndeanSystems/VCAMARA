@@ -17,11 +17,16 @@ namespace VidaCamara.DIS.data
                 {
                     var nombreTipoArchivo = filterParam[0].ToString();
                     var tipoArchivo = db.TipoArchivos.Where(t => t.NombreTipoArchivo.Equals(nombreTipoArchivo)).FirstOrDefault();
-                    var archivoId = tipoArchivo.Archivoes.Where(a=>a.TipoArchivoId == tipoArchivo.TipoArchivoId).FirstOrDefault();
-                    return db.HistorialCargaArchivo_LinDets.Where(a=>a.HistorialCargaArchivo_LinCab.IDE_CONTRATO == historiaLinCab.IDE_CONTRATO && a.HistorialCargaArchivo_LinCab.ArchivoId == archivoId.ArchivoId).ToList();
+                    if (tipoArchivo.Archivoes.Count == 0)
+                        return null;
+                    else
+                    {
+                        var archivoId = tipoArchivo.Archivoes.Where(a => a.TipoArchivoId == tipoArchivo.TipoArchivoId).FirstOrDefault();
+                        return db.HistorialCargaArchivo_LinDets.Where(a => a.HistorialCargaArchivo_LinCab.IDE_CONTRATO == historiaLinCab.IDE_CONTRATO && a.HistorialCargaArchivo_LinCab.ArchivoId == archivoId.ArchivoId).ToList();
+                    }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;
