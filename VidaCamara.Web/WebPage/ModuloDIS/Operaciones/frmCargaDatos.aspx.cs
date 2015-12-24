@@ -38,6 +38,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         {
             try
             {
+                System.Threading.Thread.Sleep(5000);
                 if (!fileUpload.HasFile) return;
 
                 var fileName = Server.MapPath(("~/Temp/Archivos/")) + fileUpload.FileName;

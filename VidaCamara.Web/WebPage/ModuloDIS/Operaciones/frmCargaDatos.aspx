@@ -72,7 +72,7 @@
                 <label class="label_to" for="fileUpload">Registros Procesados</label>
                 <asp:Label runat="server" CssClass="input_to" Text="0"></asp:Label>
 
-                <label class="label_to" for="fileUpload">Registros Observadas</label>
+                <label class="label_to" for="fileUpload">Registros Cargados</label>
                 <asp:Label runat="server" CssClass="input_to" Text="0"></asp:Label>
 
             </asp:View>
@@ -104,12 +104,9 @@
                 <label class="label_to" for="dbl_contrato_d">Tipo del Archivo (*)</label>
                 <asp:Label Text="Liquidaciones de Pago de Sepelio" runat="server"  CssClass="input_to"/>
 
-                <label class="input_right_L" for="ddl_tipinfo_d">Tipo de Linia (*)</label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_tipo_linea" runat="server" Height="25px" Width="15%">
-                    <asp:ListItem Text="Todos" />
-                    <asp:ListItem Text="Cabecera - Título" />
-                    <asp:ListItem Text="Detalle - Contenido" />
-                </asp:DropDownList>
+                <label class="input_right_L" for="ddl_tipinfo_d">Tipo de Línea (*)</label>
+                <asp:DropDownList runat="server" ID="ddl_tipo_linea" CssClass="input_to" Height="25px" Width="40%" OnSelectedIndexChanged="ddl_tipo_archivo_SelectedIndexChanged"></asp:DropDownList>
+                
                 <div class="iframe" id="informacion">
                     <asp:GridView runat="server"></asp:GridView>
                 </div>
