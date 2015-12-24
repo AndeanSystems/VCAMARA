@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebPage/Inicio/mpFEPCMAC.Master" AutoEventWireup="true" CodeBehind="frmSegConsulta.aspx.cs" Inherits="VidaCamara.Web.WebPage.ModuloDIS.Consultas.frmSegConsulta" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <link rel="stylesheet" href="../../../Resources/CSS/bootstrap.css" />
-<script src="/WebPage/ModuloDIS/Consultas/js/tblConsulta.js"></script>
+<script src="/WebPage/ModuloDIS/Consultas/script/frmSeqConsulta.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <!--Comienzo de los Tabs-->
@@ -9,7 +9,7 @@
         <div class="btn_crud">
             <asp:HyperLink ID="HyperLink1" CssClass="btn_crud_button"  ToolTip="Inicio" runat="server" ImageUrl="~/Resources/Imagenes/u158_normal.png" NavigateUrl="~/Inicio"></asp:HyperLink>
             <asp:ImageButton  CssClass="btn_crud_button" ID="btn_exportar" runat="server" ToolTip="Exportar" ImageUrl="~/Resources/Imagenes/u123_normal.png"/>
-            <asp:ImageButton  CssClass="btn_crud_button" ID="btn_consultar" runat="server" ToolTip="Buscar" ImageUrl="~/Resources/Imagenes/u154_normal.png" OnClick="btn_consultar_Click" />
+            <asp:ImageButton  CssClass="btn_crud_button" ID="btn_consultar" runat="server" ToolTip="Buscar" ImageUrl="~/Resources/Imagenes/u154_normal.png" />
         </div>
     <!--Cuerpo de los tabs-->
     <div class="tabBody" id="frmOperacion">
@@ -35,22 +35,23 @@
                 <asp:DropDownList runat="server" ID="ddl_moneda" Height="25px" Width="14.8%" CssClass="input_right"></asp:DropDownList>
 
                 <label class="label_to">CUSPP </label>
-                <asp:TextBox runat="server" CssClass="input_to" Height="25px" Width="14.8%"/>
+                <asp:TextBox runat="server" ID="txt_cod_cusp" CssClass="input_to" Height="25px" Width="14.8%"/>
 
                 <label class="input_right_L">Nombres</label>
-                <asp:TextBox runat="server" CssClass="input_right" Height="25px" Width="14.8%"/>
+                <asp:TextBox runat="server" ID="txt_nombre" CssClass="input_right" Height="25px" Width="14.8%"/>
 
                 <label class="input_right_T">Apellidos</label>
-                <asp:TextBox runat="server" CssClass="input_right" Height="25px" Width="14.8%"/>
+                <asp:TextBox runat="server" ID="txt_apellido" CssClass="input_right" Height="25px" Width="14.8%"/>
 
                 <label class="label_to">DNI</label>
-                <asp:TextBox runat="server" CssClass="input_to" Height="25px" Width="14.8%"/>
+                <asp:TextBox runat="server" ID="txt_dni" CssClass="input_to" Height="25px" Width="14.8%"/>
 
                 <label class="input_right_L">Nº solicitud</label>
-                <asp:TextBox runat="server" CssClass="input_right" Height="25px" Width="14.8%"/>
+                <asp:TextBox runat="server" ID="txt_nro_solicitud" CssClass="input_right" Height="25px" Width="14.8%"/>
 
                 <div class="iframe" id="tblConsulta1">
                     <asp:GridView ID="gv_archivo_cargado" runat="server" CssClass="table table-hover" Font-Size="9px"></asp:GridView>
+                    <div id="frmSeqConsulta"></div>
                 </div>  
 
             </asp:View>

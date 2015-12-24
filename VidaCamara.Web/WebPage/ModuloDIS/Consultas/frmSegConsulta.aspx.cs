@@ -39,6 +39,14 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
                 concepto.SetEstablecerDataSourceConcepto(ddl_moneda, "10");
             }
         }
+
+        //LISTAR HISTORIA CARGA DETALLE
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static object listHistoriaDetalle(int jtStartIndex, int jtPageSize, string jtSorting, HistorialCargaArchivo_LinCab cabecera, HistorialCargaArchivo_LinDet historiaLinDet, object[] filterParam)
+        {
+            var listCargaDetalle = new nArchivoCargado().listArchivoCargado(cabecera,historiaLinDet, filterParam, jtStartIndex, jtPageSize, out total);
+            return new { Result = "OK", Records = listCargaDetalle, TotalRecordCount = total };
+        }
         private void SetLLenadoContratoSIS()
         {
             var list = new VidaCamara.SBS.Utils.Utility().getContratoSys(out total);
@@ -48,29 +56,25 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             ddl_contrato.DataBind();
             ddl_contrato.Items.Insert(0, new ListItem("Seleccione ----", "0"));
         }
-        private void getLlistarArchivoCargada()
-        {
-            var filterParam = new object[1] { ddl_tipo_archivo.SelectedItem.Value};
-            var historiaLinCab = new HistorialCargaArchivo_LinCab()
-            {
-                IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value),
-            };
-            var listCargaDetalle = new nArchivoCargado().listArchivoCargado(historiaLinCab, filterParam);
+        //private void getLlistarArchivoCargada()
+        ////{
+        ////    var filterParam = new object[1] { ddl_tipo_archivo.SelectedItem.Value};
+            
 
-            if (listCargaDetalle == null)
-            {
-                MessageBox("No existen registros para la consulta seleccionada");
-            }
-            else
-            {
-                gv_archivo_cargado.DataSource = listCargaDetalle;
-                gv_archivo_cargado.DataBind();
-            }
-        }
+        ////    if (listCargaDetalle == null)
+        ////    {
+        ////        MessageBox("No existen registros para la consulta seleccionada");
+        ////    }
+        ////    else
+        ////    {
+        ////        gv_archivo_cargado.DataSource = listCargaDetalle;
+        ////        gv_archivo_cargado.DataBind();
+        ////    }
+        //}
 
         protected void btn_consultar_Click(object sender, ImageClickEventArgs e)
         {
-            getLlistarArchivoCargada();
+            //getLlistarArchivoCargada();
         }
 
         private void MessageBox(String text)
