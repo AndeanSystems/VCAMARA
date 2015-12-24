@@ -19,7 +19,7 @@
                 <label class="label_to" for="ddl_contrato_o">Contrato (*)</label>
                 <asp:DropDownList CssClass="input_to" ID="ddl_contrato" runat="server" Height="25px" Width="77%"></asp:DropDownList>
 
-                <label class="label_to" for="ddl_tipo_archivo">Tipo de Tramite </label>
+                <label class="label_to" for="ddl_tipo_archivo">Tipo de Archivo </label>
                 <asp:DropDownList CssClass="input_to" ID="ddl_tipo_archivo" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
 
                 <label class="input_right_L" for="txt_fec_ini_o">Desde</label>
