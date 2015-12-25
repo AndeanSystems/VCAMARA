@@ -27,14 +27,29 @@ namespace VidaCamara.DIS.Modelo
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<CIERRE_PROCESO> CIERRE_PROCESOs { get; set; }
+        public virtual DbSet<CONCEPTO> CONCEPTOs { get; set; }
+        public virtual DbSet<CONTRATO> CONTRATOs { get; set; }
+        public virtual DbSet<CONTRATO_SIS_DET> CONTRATO_SIS_DETs { get; set; }
+        public virtual DbSet<CONTRATO_SYS> CONTRATO_SYSs { get; set; }
+        public virtual DbSet<DATO_M> DATO_Ms { get; set; }
+        public virtual DbSet<Evento> Eventos { get; set; }
         public virtual DbSet<Exactu> Exactus { get; set; }
+        public virtual DbSet<EXACTUS_DETALLE> EXACTUS_DETALLEs { get; set; }
+        public virtual DbSet<GENERAL> GENERALs { get; set; }
+        public virtual DbSet<LogOperacion> LogOperacions { get; set; }
+        public virtual DbSet<OPERACION> OPERACIONs { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<HistorialCargaArchivo> HistorialCargaArchivos { get; set; }
+        public virtual DbSet<HistorialCargaArchivo_LinCab> HistorialCargaArchivo_LinCabs { get; set; }
+        public virtual DbSet<HistorialCargaArchivo_LinDet> HistorialCargaArchivo_LinDets { get; set; }
         public virtual DbSet<ReglaArchivo> ReglaArchivos { get; set; }
         public virtual DbSet<AFP> AFPs { get; set; }
+        public virtual DbSet<Archivo> Archivos { get; set; }
         public virtual DbSet<Bitacora> Bitacoras { get; set; }
         public virtual DbSet<Checkeado> Checkeados { get; set; }
         public virtual DbSet<ContratoCSV> ContratoCSVs { get; set; }
-        public virtual DbSet<Contrato> Contratos { get; set; }
+        public virtual DbSet<Contrato1> Contrato1s { get; set; }
         public virtual DbSet<Correlativo> Correlativos { get; set; }
         public virtual DbSet<CSV> CSVs { get; set; }
         public virtual DbSet<Documento> Documentos { get; set; }
@@ -60,28 +75,13 @@ namespace VidaCamara.DIS.Modelo
         public virtual DbSet<TipoPension> TipoPensions { get; set; }
         public virtual DbSet<TipoRegistro> TipoRegistros { get; set; }
         public virtual DbSet<TipoSolicitude> TipoSolicitudes { get; set; }
-        public virtual DbSet<Consulta> Consultas { get; set; }
-        public virtual DbSet<CheckList> CheckLists { get; set; }
-        public virtual DbSet<CIERRE_PROCESO> CIERRE_PROCESOs { get; set; }
-        public virtual DbSet<CONCEPTO> CONCEPTOs { get; set; }
-        public virtual DbSet<CONTRATO1> CONTRATO1s { get; set; }
-        public virtual DbSet<DATO_M> DATO_Ms { get; set; }
-        public virtual DbSet<Evento> Eventos { get; set; }
-        public virtual DbSet<EXACTUS_DETALLE> EXACTUS_DETALLEs { get; set; }
-        public virtual DbSet<GENERAL> GENERALs { get; set; }
-        public virtual DbSet<LogOperacion> LogOperacions { get; set; }
-        public virtual DbSet<OPERACION> OPERACIONs { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<COMPROBANTE> COMPROBANTEs { get; set; }
+        public virtual DbSet<Consulta> Consultas { get; set; }
         public virtual DbSet<CONTRATO_DETALLE> CONTRATO_DETALLEs { get; set; }
         public virtual DbSet<DATO_A> DATO_As { get; set; }
         public virtual DbSet<EXACTUS_CABECERA> EXACTUS_CABECERAs { get; set; }
         public virtual DbSet<USUARIO> USUARIOs { get; set; }
-        public virtual DbSet<CONTRATO_SIS_DET> CONTRATO_SIS_DETs { get; set; }
-        public virtual DbSet<CONTRATO_SYS> CONTRATO_SYSs { get; set; }
-        public virtual DbSet<HistorialCargaArchivo_LinCab> HistorialCargaArchivo_LinCabs { get; set; }
-        public virtual DbSet<HistorialCargaArchivo_LinDet> HistorialCargaArchivo_LinDets { get; set; }
-        public virtual DbSet<Archivo> Archivos { get; set; }
+        public virtual DbSet<CheckList> CheckLists { get; set; }
     
         public virtual int pa_audit_InsertaBitacora(Nullable<int> param_IdUsuario, string param_Descripcion, string param_Comando, Nullable<int> param_Idarchivo)
         {

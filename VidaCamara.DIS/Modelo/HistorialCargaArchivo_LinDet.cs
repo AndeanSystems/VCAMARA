@@ -44,7 +44,7 @@ namespace VidaCamara.DIS.Modelo
         public string COD_CSV_06 { get; set; }
         public string COD_CSV_07 { get; set; }
         public string COD_CSV_08 { get; set; }
-        public string COD_AFP_ { get; set; }
+        public string COD_AFP { get; set; }
         public string COD_IDE_CSV { get; set; }
         public string FRA_MESE_DEV { get; set; }
         public string IND_PENS_PRE { get; set; }

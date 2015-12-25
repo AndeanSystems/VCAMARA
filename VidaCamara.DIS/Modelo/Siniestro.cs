@@ -31,7 +31,7 @@ namespace VidaCamara.DIS.Modelo
         public Nullable<bool> Vigente { get; set; }
     
         public virtual AFP AFP { get; set; }
-        public virtual Contrato Contrato { get; set; }
+        public virtual Contrato1 Contrato { get; set; }
         public virtual ICollection<Pago> Pagos { get; set; }
         public virtual TipoMovimiento TipoMovimiento { get; set; }
         public virtual TipoSolicitude TipoSolicitude { get; set; }

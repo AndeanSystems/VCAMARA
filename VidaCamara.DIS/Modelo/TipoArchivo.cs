@@ -33,7 +33,7 @@ namespace VidaCamara.DIS.Modelo
         public string UsuarioModificacion { get; set; }
         public Nullable<bool> Vigente { get; set; }
     
-        public virtual TipoInforme TipoInforme { get; set; }
         public virtual ICollection<Archivo> Archivoes { get; set; }
+        public virtual TipoInforme TipoInforme { get; set; }
     }
 }

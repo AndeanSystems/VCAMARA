@@ -26,7 +26,7 @@ namespace VidaCamara.DIS.Modelo
         public Nullable<int> CumpleValidacion { get; set; }
         public bool EsVC { get; set; }
     
-        public virtual ReglaArchivo ReglaArchivo { get; set; }
         public virtual Archivo Archivo { get; set; }
+        public virtual ReglaArchivo ReglaArchivo { get; set; }
     }
 }
