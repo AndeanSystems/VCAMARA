@@ -568,11 +568,11 @@ namespace VidaCamara.DIS.Negocio
             return coleccion;
         }
         
-        private void PopulateType(Object obj, Dictionary<String, Object> defaultValues)
+        private void PopulateType(object obj, Dictionary<String, Object> defaultValues)
         {
             foreach (var defaultValue in defaultValues)
             {
-                var prop = obj.GetType().GetProperty(defaultValue.Key, BindingFlags.Public | BindingFlags.Instance);
+                var prop = obj.GetType().GetProperty(defaultValue.Key.ToString().Trim(), BindingFlags.Public | BindingFlags.Instance);
                 if(null != prop && prop.CanWrite)
                 {
                     var type = prop.PropertyType;
