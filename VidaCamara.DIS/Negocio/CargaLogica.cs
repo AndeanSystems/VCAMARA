@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Data;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Validation;
 using System.IO;
@@ -37,6 +38,9 @@ namespace VidaCamara.DIS.Negocio
         private HistorialCargaArchivo_LinCab _lineaCabecera = new HistorialCargaArchivo_LinCab();
         private List<HistorialCargaArchivo_LinDet> _lineaDetalles = new List<HistorialCargaArchivo_LinDet>();
         private Dictionary<string, List<Regla>> _reglasLineaPorTipo = new Dictionary<string, List<Regla>>();
+        //david choque 27 12 2015
+        public int ContadorExito { get; set; }
+        private DataTable dtCarga = new DataTable();
 
         public CargaLogica(string archivo)
         {
@@ -261,6 +265,9 @@ namespace VidaCamara.DIS.Negocio
             {
                 var detalle = new HistorialCargaArchivo_LinDet();
                 PopulateType(detalle, propertyValues);
+                //david choque 27 12 2015
+                setLlenarCargaTemporal(propertyValues);
+                //fin david choque
                 detalle.IdHistorialCargaArchivoLinCab = CodigoCabecera;
                 detalle.FechaInsert = DateTime.Now;
                 detalle.CumpleValidacion = exitoLinea;
@@ -276,6 +283,27 @@ namespace VidaCamara.DIS.Negocio
                 GrabarLineaDetalles();
                 _lineaDetalles = new List<HistorialCargaArchivo_LinDet>();
             }
+        }
+
+        private void setLlenarCargaTemporal(Dictionary<string, object> propertyValues)
+        {
+            if (dtCarga.Columns.Count == 0)
+            {
+                foreach (var item in propertyValues)
+                {
+                    dtCarga.Columns.Add(item.Key);
+                }
+            }
+            var dataRow = dtCarga.NewRow();
+            foreach (var item in propertyValues)
+            {
+                dataRow[item.Key] = item.Value;
+            };
+            dtCarga.Rows.Add(dataRow);
+        }
+        public DataTable getInformacionCargada()
+        {
+            return this.dtCarga;
         }
 
         private void GrabarLineaCabecera()
@@ -375,12 +403,10 @@ namespace VidaCamara.DIS.Negocio
                 using (var context = new DISEntities())
                 {
                     var cantidad = context.pa_file_CantidadRegistroArchivo(IdArchivo);
-                    var cant = 0;
-                    cant = cantidad.FirstOrDefault().Value;
-                    Observacion = "cantidad de registros cargados: " + cant;
+                    ContadorExito = cantidad.FirstOrDefault().Value;
+                    Observacion = "cantidad de registros cargados: " + ContadorExito;
                     InsertaAuditoria(Convert.ToInt32(UsuarioModificacion),
-                        "Archivo cargado correctamente, cantidad de registros cargados: " + cant,
-                        NombreArchivo, IdArchivo);
+                        "Archivo cargado correctamente, cantidad de registros cargados: " + ContadorExito,NombreArchivo, IdArchivo);
                 }
             }
 
@@ -390,8 +416,7 @@ namespace VidaCamara.DIS.Negocio
             {
                 using (var context = new DISEntities())
                 {
-                    var monto = context.pa_valida_MontoAlto(IdArchivo,
-                        Convert.ToInt32(UsuarioModificacion));
+                    var monto = context.pa_valida_MontoAlto(IdArchivo,Convert.ToInt32(UsuarioModificacion));
                     string montoAlto = null;
                     montoAlto = monto.ToString();
                     if (montoAlto == "1")
@@ -412,12 +437,11 @@ namespace VidaCamara.DIS.Negocio
                 }
             }
         }
-
-        public string EnviarCorreo(string para, string cc, string cco, string asunto, string cuerpo, string formatoCuerpo, string archivos)
+        public string EnviarCorreo(Correo mail, string formatoCuerpo)
         {
             using (var repositorio = new DISEntities())
             {
-                return repositorio.pa_envioCorreo_Procesos(para, cc, cco, asunto, cuerpo, formatoCuerpo, archivos).ToString();
+                return repositorio.pa_envioCorreo_Procesos(mail.Para, mail.CC, mail.CCO, mail.Asunto, mail.Cuerpo, formatoCuerpo, mail.Archivo).ToString();
             }
         }
 
