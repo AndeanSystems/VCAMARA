@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0565ad74d7e3449abb6dbeb897cf9a5e" Name="Diagram1" ZoomLevel="17">
+      <Diagram DiagramId="0565ad74d7e3449abb6dbeb897cf9a5e" Name="Diagram1" ZoomLevel="11">
         <EntityTypeShape EntityType="DISModelo.CIERRE_PROCESO" Width="1.5" PointX="0.75" PointY="8.25" />
         <EntityTypeShape EntityType="DISModelo.CONCEPTO" Width="1.5" PointX="5.75" PointY="9.25" />
         <EntityTypeShape EntityType="DISModelo.CONTRATO" Width="1.5" PointX="7.75" PointY="9.25" />
@@ -20,7 +20,6 @@
         <EntityTypeShape EntityType="DISModelo.sysdiagram" Width="1.5" PointX="13.75" PointY="11.25" />
         <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo" Width="1.5" PointX="12.5" PointY="25" />
         <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo_LinCab" Width="1.5" PointX="15.5" PointY="24.5" />
-        <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo_LinDet" Width="1.5" PointX="17.75" PointY="13.125" />
         <EntityTypeShape EntityType="DISModelo.ReglaArchivo" Width="1.5" PointX="10.25" PointY="19.5" />
         <EntityTypeShape EntityType="DISModelo.AFP" Width="1.5" PointX="3.75" PointY="11" />
         <EntityTypeShape EntityType="DISModelo.Archivo" Width="1.5" PointX="10.25" PointY="25.125" />
@@ -65,7 +64,6 @@
         <AssociationConnector Association="DISModelo.FK_HistorialCargaArchivo_Archivo" />
         <AssociationConnector Association="DISModelo.FK_HistorialCargaArchivo_ReglaArchivo" />
         <AssociationConnector Association="DISModelo.FK_HistorialCargaArchivo_LinCab_Archivo" />
-        <AssociationConnector Association="DISModelo.FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab" />
         <AssociationConnector Association="DISModelo.FK_AFPSiniestro" />
         <AssociationConnector Association="DISModelo.FK_EstadoArchivoArchivo" />
         <AssociationConnector Association="DISModelo.FK_TipoArchivoArchivo" />
@@ -79,6 +77,8 @@
         <AssociationConnector Association="DISModelo.FK_TipoMovimientoSiniestro" />
         <AssociationConnector Association="DISModelo.FK_TipoSolicitudSiniestro" />
         <AssociationConnector Association="DISModelo.FK_TipoArchivo_TipoInforme" />
+        <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo_LinDet" Width="1.5" PointX="17.75" PointY="23" />
+        <AssociationConnector Association="DISModelo.FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

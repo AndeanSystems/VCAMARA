@@ -127,8 +127,8 @@ namespace VidaCamara.DIS.Modelo
         public string NUM_DOCU_SOL { get; set; }
         public string NUM_SINI { get; set; }
         public string NUM_SOLI { get; set; }
-        public string NÚM_SOLI_PEN { get; set; }
-        public string NÚM_DOCU_PEN { get; set; }
+        public string NUM_SOLI_PEN { get; set; }
+        public string NUM_DOCU_PEN { get; set; }
         public string PEN_PAGA_MON { get; set; }
         public string PEN_BASE_MON { get; set; }
         public string REM_PROM_ACT { get; set; }

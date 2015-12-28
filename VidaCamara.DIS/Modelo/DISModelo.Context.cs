@@ -42,7 +42,6 @@ namespace VidaCamara.DIS.Modelo
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<HistorialCargaArchivo> HistorialCargaArchivos { get; set; }
         public virtual DbSet<HistorialCargaArchivo_LinCab> HistorialCargaArchivo_LinCabs { get; set; }
-        public virtual DbSet<HistorialCargaArchivo_LinDet> HistorialCargaArchivo_LinDets { get; set; }
         public virtual DbSet<ReglaArchivo> ReglaArchivos { get; set; }
         public virtual DbSet<AFP> AFPs { get; set; }
         public virtual DbSet<Archivo> Archivos { get; set; }
@@ -82,6 +81,7 @@ namespace VidaCamara.DIS.Modelo
         public virtual DbSet<EXACTUS_CABECERA> EXACTUS_CABECERAs { get; set; }
         public virtual DbSet<USUARIO> USUARIOs { get; set; }
         public virtual DbSet<CheckList> CheckLists { get; set; }
+        public virtual DbSet<HistorialCargaArchivo_LinDet> HistorialCargaArchivo_LinDets { get; set; }
     
         public virtual int pa_audit_InsertaBitacora(Nullable<int> param_IdUsuario, string param_Descripcion, string param_Comando, Nullable<int> param_Idarchivo)
         {
