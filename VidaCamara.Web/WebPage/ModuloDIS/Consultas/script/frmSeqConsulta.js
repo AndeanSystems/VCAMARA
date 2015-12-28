@@ -5,7 +5,7 @@
     };
     //llenado de la entidad historia detalle
     var historiaLinDet = function () {
-        this.COD_AFP_ = $("#ctl00_ContentPlaceHolder1_ddl_afp").val(),
+        this.COD_AFP = $("#ctl00_ContentPlaceHolder1_ddl_afp").val(),
         this.TIP_MONE = $("#ctl00_ContentPlaceHolder1_ddl_moneda").val(),
         this.COD_CUSP = $("#ctl00_ContentPlaceHolder1_txt_cod_cusp").val(),
         this.APE_MATE_PEN = $("#ctl00_ContentPlaceHolder1_txt_apellido").val(),
@@ -146,8 +146,8 @@
                 NUM_DOCU_SOL: { title: 'NUM_DOCU_SOL' },
                 NUM_SINI: { title: 'NUM_SINI' },
                 NUM_SOLI: { title: 'NUM_SOLI' },
-                NÚM_SOLI_PEN: { title: 'NÚM_SOLI_PEN' },
-                NÚM_DOCU_PEN: { title: 'NÚM_DOCU_PEN' },
+                NUM_SOLI_PEN: { title: 'NÚM_SOLI_PEN' },
+                NUM_DOCU_PEN: { title: 'NÚM_DOCU_PEN' },
                 PEN_PAGA_MON: { title: 'PEN_PAGA_MON' },
                 PEN_BASE_MON: { title: 'PEN_BASE_MON' },
                 REM_PROM_ACT: { title: 'REM_PROM_ACT' },
