@@ -30,8 +30,8 @@ namespace VidaCamara.DIS.data
                                    (a.COD_AFP.Equals(historiaLinDetParam.COD_AFP) || historiaLinDetParam.COD_AFP.Equals("0")) &&
                                    (a.COD_CUSP.Equals(historiaLinDetParam.COD_CUSP) || string.IsNullOrEmpty(historiaLinDetParam.COD_CUSP)) &&
                                    (a.PRI_NOMB_PEN.Contains(historiaLinDetParam.PRI_NOMB_PEN) || string.IsNullOrEmpty(historiaLinDetParam.PRI_NOMB_PEN)) &&
-                                   (a.SEG_NOMB_PEN.Contains(historiaLinDetParam.PRI_NOMB_PEN) || string.IsNullOrEmpty(historiaLinDetParam.PRI_NOMB_PEN)) &&
-                                   (a.APE_MATE_PEN.Contains(historiaLinDetParam.APE_MATE_PEN) || string.IsNullOrEmpty(historiaLinDetParam.APE_MATE_PEN)) &&
+                                   //(a.SEG_NOMB_PEN.Contains(historiaLinDetParam.PRI_NOMB_PEN) || string.IsNullOrEmpty(historiaLinDetParam.PRI_NOMB_PEN)) &&
+                                   //(a.APE_MATE_PEN.Contains(historiaLinDetParam.APE_MATE_PEN) || string.IsNullOrEmpty(historiaLinDetParam.APE_MATE_PEN)) &&
                                    (a.APE_PATE_PEN.Contains(historiaLinDetParam.APE_MATE_PEN) || string.IsNullOrEmpty(historiaLinDetParam.APE_MATE_PEN)) &&
                                    (a.NUM_DOCU_PEN.Equals(historiaLinDetParam.NUM_DOCU_PEN) || string.IsNullOrEmpty(historiaLinDetParam.NUM_DOCU_PEN)) &&
                                    (a.NUM_SOLI_PEN.Equals(historiaLinDetParam.NUM_SOLI_PEN) || string.IsNullOrEmpty(historiaLinDetParam.NUM_SOLI_PEN))
