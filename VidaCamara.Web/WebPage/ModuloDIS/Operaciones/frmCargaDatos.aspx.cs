@@ -1,18 +1,22 @@
 ﻿using System;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using VidaCamara.DIS.Modelo;
 using VidaCamara.DIS.Negocio;
-using VidaCamara.SBS.Entity;
 using VidaCamara.SBS.Negocio;
 
 namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
 {
     public partial class CargaDatos : System.Web.UI.Page
     {
+        #region variables
         static int total;
         readonly bValidarAcceso _accesso = new bValidarAcceso();
+        static string nombreArchivo = string.Empty;
+        #endregion variables
 
+        #region metodos control
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["pagina"] = "OTROS";
@@ -33,7 +37,6 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipo_linea,"18");
             }
         }
-        
         protected void btnGuardar_Click(object sender, ImageClickEventArgs e)
         {
             try
@@ -41,32 +44,44 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 System.Threading.Thread.Sleep(5000);
                 if (!fileUpload.HasFile) return;
 
+
+                //david choque 27 12 2015
+                //aki se verificara si el archivo ya fue cargado con el mismo nombre
+                var archivo = new Archivo() {NombreArchivo = fileUpload.FileName.ToString()};
+                var existe = new nArchivo().listExisteArchivo(archivo);
+                //if (existe.Count > 0)
+                //    MessageBox("Este archivo "+archivo.NombreArchivo +" ya fue cargado anteriormente, ");
+                //else
+                //fin david choque 27 12 2015
                 var fileName = Server.MapPath(("~/Temp/Archivos/")) + fileUpload.FileName;
                 fileUpload.SaveAs(fileName);
                 var cargaLogica = new CargaLogica(fileName) { UsuarioModificacion = /*Session["usernameId"].ToString() */   "2"};
                 cargaLogica.CargarArchivo(Convert.ToInt32(ddl_conrato1.SelectedValue));
+                //david choque 27 12 2015
+                nombreArchivo = fileUpload.FileName.ToString().ToUpper();
+                setCargarReglaArchivo();
+                //fin david choque 27 12 2015
 
                 if ((cargaLogica.MensajeExcepcion != ""))
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", ("<script>javascript: alert(\'" + ("Se produjo un error al cargar el archivo. Se termin� la carga. "
-                                    + (cargaLogica.MensajeExcepcion + "\');</script>"))));
+                    var mensaje = "Se produjo un error al cargar el archivo. Se terminó la carga. " + cargaLogica.MensajeExcepcion;
+                    MessageBox(mensaje.Replace(Environment.NewLine,""));
                 }
                 else if ((cargaLogica.ContadorErrores > 0))
                 {
+                    txt_registro_observado.Text = cargaLogica.ContadorErrores.ToString();
                     if ((cargaLogica.MensageError != String.Empty))
                     {
-                        ClientScript.RegisterStartupScript(this.GetType(), "myScript", ("<script>javascript: alert(\'"
-                                        + (cargaLogica.MensageError + "\');</script>")));
+                        MessageBox(cargaLogica.MensageError.Replace(Environment.NewLine,""));
                     }
                     else if ((cargaLogica.Observacion != String.Empty))
                     {
-                        ClientScript.RegisterStartupScript(this.GetType(), "myScript", ("<script>javascript: alert(\'"
-                                        + (cargaLogica.Observacion + "\');</script>")));
+                        MessageBox(cargaLogica.Observacion.Replace(Environment.NewLine, ""));
                     }
                     else
                     {
-                        this.GridView1.DataSource = cargaLogica.Resultado;
-                        this.GridView1.DataBind();
+                        this.gvCargaExito.DataSource = cargaLogica.Resultado;
+                        this.gvCargaExito.DataBind();
                     }
                 }
                 else
@@ -78,13 +93,11 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                         if ((cargaLogica.MensageError != String.Empty))
                         {
                             nombre = (nombre + (", " + cargaLogica.MensageError));
-                            ClientScript.RegisterStartupScript(this.GetType(), "myScript", ("<script>javascript: alert(\'"
-                                            + (nombre + "\');</script>")));
+                            MessageBox(nombre.Replace(Environment.NewLine,""));
                         }
                         else
                         {
-                            ClientScript.RegisterStartupScript(this.GetType(), "myScript", ("<script>javascript: alert(\'"
-                                            + (nombre + "\');</script>")));
+                            MessageBox(nombre.Replace(Environment.NewLine,""));
                         }
                     }
                     else if ((cargaLogica.NombreArchivo.Split('_')[0] == "INOMINA"))
@@ -93,64 +106,89 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                         if ((cargaLogica.MensageError != String.Empty))
                         {
                             nombre = (nombre + (", " + cargaLogica.MensageError));
-                            ClientScript.RegisterStartupScript(this.GetType(), "myScript", ("<script>javascript: alert(\'"
-                                            + (nombre + "\');</script>")));
+                            MessageBox(nombre.Replace(Environment.NewLine, ""));
                         }
                         else
                         {
-                            ClientScript.RegisterStartupScript(this.GetType(), "myScript", ("<script>javascript: alert(\'"
-                                            + (nombre + "\');</script>")));
+                            MessageBox(nombre.Replace(Environment.NewLine, ""));
                         }
                     }
                     else
                     {
+                        txt_registro_procesado.Text = cargaLogica.ContadorExito.ToString();
                         nombre = "Archivo procesado Ok.";
                         if ((cargaLogica.Observacion != String.Empty))
                         {
+                            //david choque 27 12 2015
+                            setMostrarRegistroCargados(cargaLogica.getInformacionCargada());
+                            //fin david choque
                             nombre = (nombre + (", " + cargaLogica.Observacion));
-                            ClientScript.RegisterStartupScript(this.GetType(), "myScript", ("<script>javascript: alert(\'"
-                                            + (nombre + "\');</script>")));
+                            MessageBox(nombre.ToString().Replace(Environment.NewLine,""));
                             if (cargaLogica.Observacion.Contains("alto"))
                             {
-                                Correo c = new Correo();                              
-                                string Para = cargaLogica.Correo;
-                                string CC = "";
-                                string CCO = "";
-                                string Asunto = ("Monto alto a reembolsar: " + cargaLogica.NombreArchivo);
-                                string Cuerpo = ("Estimado Usuario (a),</BR> liquidacion cargada contiene monto superior al establecido, el dia " + DateTime.Now);
-                                Cuerpo = ((Cuerpo + "</BR> ")
-                                            + cargaLogica.Observacion);
-                                string FormatoCuerpo = "";
-                                string Archivos = "";
-
-                                string respuesta = cargaLogica.EnviarCorreo(Para, CC, CCO, Asunto, Cuerpo, FormatoCuerpo, Archivos);
-                                
+                                string respuesta = setEnviarCorreo(cargaLogica);
                             }
                         }
                         else if ((cargaLogica.MensageError != String.Empty))
                         {
                             nombre = (nombre + (", " + cargaLogica.MensageError));
-                            ClientScript.RegisterStartupScript(this.GetType(), "myScript", ("<script>javascript: alert(\'"
-                                            + (nombre + "\');</script>")));
+                            MessageBox(nombre.Replace(Environment.NewLine, ""));
                         }
                         else
                         {
-                            ClientScript.RegisterStartupScript(this.GetType(), "myScript", ("<script>javascript: alert(\'"
-                                            + (nombre + "\');</script>")));
+                            MessageBox(nombre.Replace(Environment.NewLine, ""));
                         }
                     }
                 }
-
             }
             catch (Exception s)
             {
                 MessageBox("ERROR =>" + s.Message.Replace("'", "-"));
             }
         }
-        
-        protected void btnExportError_Click(object sender, ImageClickEventArgs e)
+        protected void ddl_tipo_linea_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+            setCargarReglaArchivo();
+        }
+        #endregion metodos control
+
+        #region metodos usuario
+        private string setEnviarCorreo(CargaLogica cargaLogica)
+        {
+            string FormatoCuerpo = "";
+            Correo mail = new Correo()
+            {
+                Para = cargaLogica.Correo,
+                CC = "",
+                CCO = "",
+                Asunto = ("Monto alto a reembolsar: " + cargaLogica.NombreArchivo),
+                Cuerpo = ("Estimado Usuario (a),</BR> liquidacion cargada contiene monto superior al establecido, el dia " + DateTime.Now) + "</BR> " + cargaLogica.Observacion,
+                Archivo = ""
+            };
+            return cargaLogica.EnviarCorreo(mail, FormatoCuerpo);
+        }
+
+        private void setCargarReglaArchivo()
+        {
+            txt_nombre_archivo_inf.Text = nombreArchivo;
+            txt_tipo_archivo_inf.Text = ddl_tipo_archivo.SelectedItem.Text;
+            var regla = new ReglaArchivo()
+            {
+                Archivo = ddl_tipo_archivo.SelectedItem.Value,
+                TipoLinea = ddl_tipo_linea.SelectedItem.Value,
+            };
+            var negocio = new nReglaArchivo();
+            gvReglaArchivo.DataSource = negocio.getListReglaArchivo(regla);
+            gvReglaArchivo.DataBind();
+        }
+
+        private void setMostrarRegistroCargados(DataTable dataTable)
+        {
+            txt_nombre_archivo_det.Text = nombreArchivo;
+            txt_tipo_informacion_det.Text = ddl_tipo_archivo.SelectedItem.Text;
+            gvCargaExito.DataSource = dataTable;
+            gvCargaExito.DataBind();
+            multiTabs.ActiveViewIndex = 1;
         }
 
         private void SetLLenadoContrato()
@@ -167,15 +205,6 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         {
             Page.ClientScript.RegisterStartupScript(GetType(), "msgbox", "$('<div style=\"font-size:14px;text-align:center;\">"+ text +"</div>').dialog({title:'Confirmación',modal:true,width:400,height:240,buttons: [{id: 'aceptar',text: 'Aceptar',icons: { primary: 'ui-icon-circle-check' },click: function () {$(this).dialog('close');}}]})", true);
         }
-
-        protected void ddl_tipo_archivo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ddl_conrato1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        #endregion metodos usuario
     }
 }
