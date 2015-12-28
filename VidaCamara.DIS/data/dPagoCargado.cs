@@ -23,10 +23,20 @@ namespace VidaCamara.DIS.data
                     }
                     else
                     {
-                        
                         var archivoId = tipoArchivo.Archivoes.Where(a => a.TipoArchivoId == tipoArchivo.TipoArchivoId).FirstOrDefault();
                         total = db.HistorialCargaArchivo_LinDets.Where(a => a.HistorialCargaArchivo_LinCab.IDE_CONTRATO == historiaLinCab.IDE_CONTRATO && a.HistorialCargaArchivo_LinCab.ArchivoId == archivoId.ArchivoId).Count();
-                        var query = db.HistorialCargaArchivo_LinDets.OrderBy(a=>a.IdHistorialCargaArchivoLinDet).Where(a => a.HistorialCargaArchivo_LinCab.IDE_CONTRATO == historiaLinCab.IDE_CONTRATO && a.HistorialCargaArchivo_LinCab.ArchivoId == archivoId.ArchivoId).Skip(jtStartIndex).Take(jtPageSize).ToList();
+                        var query = db.HistorialCargaArchivo_LinDets.OrderBy(a=>a.IdHistorialCargaArchivoLinDet)
+                            .Where(a => a.HistorialCargaArchivo_LinCab.IDE_CONTRATO == historiaLinCab.IDE_CONTRATO && a.HistorialCargaArchivo_LinCab.ArchivoId == archivoId.ArchivoId &&
+                                   (a.COD_AFP.Equals(historiaLinDetParam.COD_AFP) || historiaLinDetParam.COD_AFP.Equals("0")) &&
+                                   (a.COD_CUSP.Equals(historiaLinDetParam.COD_CUSP) || string.IsNullOrEmpty(historiaLinDetParam.COD_CUSP)) &&
+                                   (a.PRI_NOMB_PEN.Contains(historiaLinDetParam.PRI_NOMB_PEN) || string.IsNullOrEmpty(historiaLinDetParam.PRI_NOMB_PEN)) &&
+                                   (a.SEG_NOMB_PEN.Contains(historiaLinDetParam.SEG_NOMB_PEN) || string.IsNullOrEmpty(historiaLinDetParam.PRI_NOMB_PEN)) &&
+                                   (a.APE_MATE_PEN.Contains(historiaLinDetParam.APE_MATE_PEN) || string.IsNullOrEmpty(historiaLinDetParam.APE_MATE_PEN)) &&
+                                   (a.APE_PATE_PEN.Contains(historiaLinDetParam.APE_PATE_PEN) || string.IsNullOrEmpty(historiaLinDetParam.APE_MATE_PEN)) &&
+                                   (a.NUM_DOCU_PEN.Equals(historiaLinDetParam.NUM_DOCU_PEN) || string.IsNullOrEmpty(historiaLinDetParam.NUM_DOCU_PEN)) &&
+                                   (a.NUM_SOLI_PEN.Equals(historiaLinDetParam.NUM_SOLI_PEN) || string.IsNullOrEmpty(historiaLinDetParam.NUM_SOLI_PEN))
+                             )
+                            .Skip(jtStartIndex).Take(jtPageSize).ToList();
 
                         foreach (var item in query)
                         {
@@ -146,8 +156,8 @@ namespace VidaCamara.DIS.data
                                 NUM_DOCU_SOL = item.NUM_DOCU_SOL,
                                 NUM_SINI = item.NUM_SINI,
                                 NUM_SOLI = item.NUM_SOLI,
-                                NÚM_SOLI_PEN = item.NÚM_SOLI_PEN,
-                                NÚM_DOCU_PEN = item.NÚM_DOCU_PEN,
+                                NUM_SOLI_PEN = item.NUM_SOLI_PEN,
+                                NUM_DOCU_PEN = item.NUM_DOCU_PEN,
                                 PEN_PAGA_MON = item.PEN_PAGA_MON,
                                 PEN_BASE_MON = item.PEN_BASE_MON,
                                 REM_PROM_ACT = item.REM_PROM_ACT,
