@@ -38,10 +38,12 @@ namespace VidaCamara.DIS.Modelo
         public virtual DbSet<EXACTUS_DETALLE> EXACTUS_DETALLEs { get; set; }
         public virtual DbSet<GENERAL> GENERALs { get; set; }
         public virtual DbSet<LogOperacion> LogOperacions { get; set; }
+        public virtual DbSet<NOMINA> NOMINAs { get; set; }
         public virtual DbSet<OPERACION> OPERACIONs { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<HistorialCargaArchivo> HistorialCargaArchivos { get; set; }
         public virtual DbSet<HistorialCargaArchivo_LinCab> HistorialCargaArchivo_LinCabs { get; set; }
+        public virtual DbSet<HistorialCargaArchivo_LinDet> HistorialCargaArchivo_LinDets { get; set; }
         public virtual DbSet<ReglaArchivo> ReglaArchivos { get; set; }
         public virtual DbSet<AFP> AFPs { get; set; }
         public virtual DbSet<Archivo> Archivos { get; set; }
@@ -81,7 +83,6 @@ namespace VidaCamara.DIS.Modelo
         public virtual DbSet<EXACTUS_CABECERA> EXACTUS_CABECERAs { get; set; }
         public virtual DbSet<USUARIO> USUARIOs { get; set; }
         public virtual DbSet<CheckList> CheckLists { get; set; }
-        public virtual DbSet<HistorialCargaArchivo_LinDet> HistorialCargaArchivo_LinDets { get; set; }
     
         public virtual int pa_audit_InsertaBitacora(Nullable<int> param_IdUsuario, string param_Descripcion, string param_Comando, Nullable<int> param_Idarchivo)
         {
@@ -688,6 +689,19 @@ namespace VidaCamara.DIS.Modelo
                 new ObjectParameter("LargoCampo", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("pa_valida_TotalNominaEnLiquidacion", valorParameter, idArchivoParameter, numeroLineaParameter, campoInicialParameter, largoCampoParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> pa_Valida_RangoFechaXContrato(Nullable<System.DateTime> date1, Nullable<System.DateTime> date2)
+        {
+            var date1Parameter = date1.HasValue ?
+                new ObjectParameter("date1", date1) :
+                new ObjectParameter("date1", typeof(System.DateTime));
+    
+            var date2Parameter = date2.HasValue ?
+                new ObjectParameter("date2", date2) :
+                new ObjectParameter("date2", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("pa_Valida_RangoFechaXContrato", date1Parameter, date2Parameter);
         }
     }
 }

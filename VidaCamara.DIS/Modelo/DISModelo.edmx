@@ -195,7 +195,7 @@ warning 6002: The table/view 'vcamara.dbo.CONTRATO_DETALLE' does not have a prim
           <Property Name="IDE_CONTRATO_DET" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDE_CONTRATO" Type="int" />
           <Property Name="COD_CSV" Type="int" />
-          <Property Name="PRC_PARTICIACION" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="PRC_PARTICIACION" Type="decimal" Precision="9" Scale="6" />
           <Property Name="NRO_ORDEN" Type="int" />
           <Property Name="ESTADO" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="USU_REG" Type="varchar" MaxLength="30" />
@@ -493,6 +493,25 @@ warning 6002: The table/view 'vcamara.dbo.EXACTUS_CABECERA' does not have a prim
           <Property Name="CodiUsu" Type="bigint" />
           <Property Name="CodiCnx" Type="char" MaxLength="15" />
         </EntityType>
+        <EntityType Name="NOMINA">
+          <Key>
+            <PropertyRef Name="Id_Nomina" />
+          </Key>
+          <Property Name="Id_Nomina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Empresa" Type="int" />
+          <Property Name="ArchivoId" Type="int" />
+          <Property Name="RUC_ORDE" Type="varchar" MaxLength="11" />
+          <Property Name="CTA_ORDE" Type="varchar" MaxLength="20" />
+          <Property Name="COD_TRAN" Type="varchar" MaxLength="25" />
+          <Property Name="TIP_MONE" Type="int" />
+          <Property Name="MON_TRAN" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="FEC_TRAN" Type="datetime" />
+          <Property Name="RUC_BENE" Type="varchar" MaxLength="11" />
+          <Property Name="NOM_BENE" Type="varchar" MaxLength="40" />
+          <Property Name="TIP_CTA" Type="int" />
+          <Property Name="CTA_BENE" Type="varchar" MaxLength="20" />
+          <Property Name="DET_TRAN" Type="varchar" MaxLength="40" />
+        </EntityType>
         <EntityType Name="OPERACION">
           <Key>
             <PropertyRef Name="NRO_OPERACION" />
@@ -535,6 +554,101 @@ warning 6002: The table/view 'vcamara.dbo.EXACTUS_CABECERA' does not have a prim
           <Property Name="ORI_REG" Type="char" MaxLength="1" />
           <Property Name="TIP_COMPROBANTE" Type="char" MaxLength="3" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'vcamara.dbo.ReporteDictamen' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ReporteDictamen">
+          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO PATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO MATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PRIMER NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SEGUNDO _NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
+          <Property Name="CONTRATO" Type="float" />
+          <Property Name="ESTADO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="NÚMERO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="EMISOR DICTAMEN" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO DE PENSIÓN" Type="nvarchar" MaxLength="255" />
+          <Property Name="NÚMERO DE EVALUACIÓN" Type="float" />
+          <Property Name="PORCENTAJE DE PENSIÓN" Type="float" />
+          <Property Name="FECHA DE OCURRENCIA" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE DEVENGUE  INICIAL" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE INICIO DE VIGENCIA DEL DICTAMEN INICIAL#" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA FIN DE VIGENCIA DEL DICTAMEN " Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE AVISO DEL# DICTAMEN " Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'vcamara.dbo.ReporteSECI' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ReporteSECI">
+          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDOPATERNOAFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDOMATERNOAFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PRIMERNOMBREAFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SEGUNDONOMBREAFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPODESOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
+          <Property Name="CONTRATO" Type="float" />
+          <Property Name="NUMERODESECI" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHADESECI" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHADEAVISODESECI" Type="nvarchar" MaxLength="255" />
+          <Property Name="INDICADORDESUBSIDIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="NUMERODE SOLICITUDDEPENSION" Type="nvarchar" MaxLength="255" />
+          <Property Name="ESTADODELASOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHADESOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPODESOLICITUD1" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHADEAVISODESOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPODEPENSION" Type="nvarchar" MaxLength="255" />
+          <Property Name="PORCENTAJEDEPENSION" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHADEOCURRENCIA" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE  DEVENGUE INICIAL" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'vcamara.dbo.ReportesSolicitudes' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ReportesSolicitudes">
+          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO PATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO MATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PRIMER NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SEGUNDO NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
+          <Property Name="CONTRATO" Type="float" />
+          <Property Name="ESTADO DE LA_SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="NÚMERO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO DE INVALIDEZ" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO DE PENSIÓN" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO PATERNO BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO MATERNO BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PRIMER NOMBRE BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SEGUNDO NOMBRE BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PARENTESCO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SEXO  DEL BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="EDAD DEL BENEFICIARIO" Type="float" />
+          <Property Name="CONDICIÓN DE INVALIDEZ DEL BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PORCENTAJE DE PENSIÓN" Type="float" />
+          <Property Name="ESTADO DEL BENFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE OCURRENCIA" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE DEVENGE INICIAL" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE AVISO  DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA  PRONUNCIAMIENTO  DE COBERTURA" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO  DE COBERTURA " Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE  REACTIVACIÓN  DE COBERTURA" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE  NOTIFICACIÓN DEL ANEXO  16" Type="nvarchar" MaxLength="255" />
+          <Property Name="NÚMERO DE DIAS TRANSCURRIDOS DESDE LA FECHA  DEL FALLECIMIENTO" Type="float" />
+          <Property Name="MONEDA" Type="nvarchar" MaxLength="255" />
+          <Property Name="PROMEDIO DE RAM" Type="nvarchar" MaxLength="255" />
+          <Property Name="MONTO DE LA PENSIÓN  QUE LE CORRESPONDE" Type="float" />
+          <Property Name="FECHA DE LIQUIDACIÓN DEL PRIMER PAGO" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE VENCIMIENTO DEL C#S#" Type="nvarchar" MaxLength="255" />
+          <Property Name="NÚMERO DE PAGOS DE PENSIONES PRELIMINARES" Type="float" />
+          <Property Name="FECHA DE CUMPLIMIENTO DE CONDICIONES PARA CALCULO AA " Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE NOTIFICACIÓN DE AA AL DIS" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE PRONUNCIAMIENTO DEL PAGO DEL AA# " Type="nvarchar" MaxLength="255" />
+          <Property Name="ESTADO DE LA SOLICITUD DEL AA" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE LIQUIDACIÓN DE AA" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -768,6 +882,7 @@ warning 6002: The table/view 'vcamara.dbo.USUARIO' does not have a primary key d
           <Property Name="VigenciaReglaDesde" Type="datetime" />
           <Property Name="VigenciaReglaHasta" Type="datetime" />
           <Property Name="NombreCampo" Type="varchar" MaxLength="50" />
+          <Property Name="TituloColumna" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="AFPs">
           <Key>
@@ -1513,6 +1628,10 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Parameter Name="FechaNacimiento" Type="datetime" Mode="In" />
           <Parameter Name="CUSPP" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="pa_Valida_RangoFechaXContrato" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="date1" Type="date" Mode="In" />
+          <Parameter Name="date2" Type="date" Mode="In" />
+        </Function>
         <Function Name="pa_valida_RetornaTrue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_valida_SoloNumeros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="valor" Type="varchar" Mode="In" />
@@ -1543,6 +1662,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <EntitySet Name="EXACTUS_DETALLE" EntityType="Self.EXACTUS_DETALLE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GENERAL" EntityType="Self.GENERAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LogOperacion" EntityType="Self.LogOperacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NOMINA" EntityType="Self.NOMINA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OPERACION" EntityType="Self.OPERACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistorialCargaArchivo" EntityType="Self.HistorialCargaArchivo" Schema="Importacion" store:Type="Tables" />
@@ -2090,10 +2210,12 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <EntitySet Name="EXACTUS_DETALLE" EntityType="DISModelo.EXACTUS_DETALLE" />
           <EntitySet Name="GENERALs" EntityType="DISModelo.GENERAL" />
           <EntitySet Name="LogOperacions" EntityType="DISModelo.LogOperacion" />
+          <EntitySet Name="NOMINAs" EntityType="DISModelo.NOMINA" />
           <EntitySet Name="OPERACIONs" EntityType="DISModelo.OPERACION" />
           <EntitySet Name="sysdiagrams" EntityType="DISModelo.sysdiagram" />
           <EntitySet Name="HistorialCargaArchivoes" EntityType="DISModelo.HistorialCargaArchivo" />
           <EntitySet Name="HistorialCargaArchivo_LinCab" EntityType="DISModelo.HistorialCargaArchivo_LinCab" />
+          <EntitySet Name="HistorialCargaArchivo_LinDet" EntityType="DISModelo.HistorialCargaArchivo_LinDet" />
           <EntitySet Name="ReglaArchivoes" EntityType="DISModelo.ReglaArchivo" />
           <EntitySet Name="AFPs" EntityType="DISModelo.AFP" />
           <EntitySet Name="Archivoes" EntityType="DISModelo.Archivo" />
@@ -2153,6 +2275,10 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             <End Role="Archivo" EntitySet="Archivoes" />
             <End Role="HistorialCargaArchivo_LinCab" EntitySet="HistorialCargaArchivo_LinCab" />
           </AssociationSet>
+          <AssociationSet Name="FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab" Association="DISModelo.FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab">
+            <End Role="HistorialCargaArchivo_LinCab" EntitySet="HistorialCargaArchivo_LinCab" />
+            <End Role="HistorialCargaArchivo_LinDet" EntitySet="HistorialCargaArchivo_LinDet" />
+          </AssociationSet>
           <AssociationSet Name="FK_AFPSiniestro" Association="DISModelo.FK_AFPSiniestro">
             <End Role="AFP" EntitySet="AFPs" />
             <End Role="Siniestro" EntitySet="Siniestros" />
@@ -2205,11 +2331,10 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             <End Role="TipoInforme" EntitySet="TipoInformes" />
             <End Role="TipoArchivo" EntitySet="TipoArchivoes" />
           </AssociationSet>
-          <EntitySet Name="HistorialCargaArchivo_LinDet" EntityType="DISModelo.HistorialCargaArchivo_LinDet" />
-          <AssociationSet Name="FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab" Association="DISModelo.FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab">
-            <End Role="HistorialCargaArchivo_LinCab" EntitySet="HistorialCargaArchivo_LinCab" />
-            <End Role="HistorialCargaArchivo_LinDet" EntitySet="HistorialCargaArchivo_LinDet" />
-          </AssociationSet>
+          <FunctionImport Name="pa_Valida_RangoFechaXContrato" ReturnType="Collection(Int32)">
+            <Parameter Name="date1" Mode="In" Type="DateTime" />
+            <Parameter Name="date2" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
           <Property Type="Int32" Name="IdRegistroMontoAlto" Nullable="false" />
@@ -2367,7 +2492,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="IDE_CONTRATO_DET" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDE_CONTRATO" Type="Int32" />
           <Property Name="COD_CSV" Type="Int32" />
-          <Property Name="PRC_PARTICIACION" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="PRC_PARTICIACION" Type="Decimal" Precision="9" Scale="6" />
           <Property Name="NRO_ORDEN" Type="Int32" />
           <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="USU_REG" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -2507,6 +2632,25 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="CodiUsu" Type="Int64" />
           <Property Name="CodiCnx" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
         </EntityType>
+        <EntityType Name="NOMINA">
+          <Key>
+            <PropertyRef Name="Id_Nomina" />
+          </Key>
+          <Property Name="Id_Nomina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Empresa" Type="Int32" />
+          <Property Name="ArchivoId" Type="Int32" />
+          <Property Name="RUC_ORDE" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="CTA_ORDE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="COD_TRAN" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="TIP_MONE" Type="Int32" />
+          <Property Name="MON_TRAN" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FEC_TRAN" Type="DateTime" Precision="3" />
+          <Property Name="RUC_BENE" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="NOM_BENE" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="TIP_CTA" Type="Int32" />
+          <Property Name="CTA_BENE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DET_TRAN" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="OPERACION">
           <Key>
             <PropertyRef Name="NRO_OPERACION" />
@@ -2600,6 +2744,148 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <NavigationProperty Name="Archivo" Relationship="DISModelo.FK_HistorialCargaArchivo_LinCab_Archivo" FromRole="HistorialCargaArchivo_LinCab" ToRole="Archivo" />
           <NavigationProperty Name="HistorialCargaArchivo_LinDet" Relationship="DISModelo.FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab" FromRole="HistorialCargaArchivo_LinCab" ToRole="HistorialCargaArchivo_LinDet" />
         </EntityType>
+        <EntityType Name="HistorialCargaArchivo_LinDet">
+          <Key>
+            <PropertyRef Name="IdHistorialCargaArchivoLinDet" />
+          </Key>
+          <Property Name="IdHistorialCargaArchivoLinDet" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdHistorialCargaArchivoLinCab" Type="Int64" />
+          <Property Name="FechaInsert" Type="DateTime" Precision="3" />
+          <Property Name="TipoLinea" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroLinea" Type="Int32" />
+          <Property Name="FEC_DEVE" Type="DateTime" Precision="3" />
+          <Property Name="FEC_FALL" Type="DateTime" Precision="3" />
+          <Property Name="FEC_OCUR" Type="DateTime" Precision="3" />
+          <Property Name="FEC_PAGO_APO_ADI" Type="DateTime" Precision="3" />
+          <Property Name="FEC_INV_DEF" Type="DateTime" Precision="3" />
+          <Property Name="CAP_GAST_SEP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PARE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="SAL_CIC_SOL" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="TIP_REGI" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="TIP_SOLI" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="NUM_BENE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="NUM_MESE_DEV" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="POR_BENE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="TIP_IDEN_SOL" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="TIP_PENS" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="TIP_DOCU_IDE_PEN" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="TIP_MOVI" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CSV_01" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CSV_02" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CSV_03" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CSV_04" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CSV_05" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CSV_06" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CSV_07" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CSV_08" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="COD_AFP" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="COD_IDE_CSV" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="FRA_MESE_DEV" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="IND_PENS_PRE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_PPRE_ORI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TIP_CAMB_VTA" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="EXC_PENS_SOL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EXC_PENS_NM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MES_DEVE" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="CAP_REQU_PEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CRU_FAMI" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_NACI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_NACI_PEN" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_PAGO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_PAGO_TEX" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_SECI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_SINI_OCU" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_DEVE_ACT" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_DEVE_INI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_FIN_SUB" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="RAM_PROM_SOL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TAS_INTE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="VACIO_10" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DES_PENS_MONE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_APOR_ADI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_APOR_ADI_SOL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_APOR_COM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_PENS_PAG" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_PPRE_MN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_APOR_OBL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_MONE_APO_COM1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_MONE_APO_COM2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_MONE_APO_COM3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_MONE_APO_COM4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_MONE_APO_COM5" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_MONE_APO_COM6" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_MONE_APO_COM7" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_MONE_APO_COM8" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_MONE_APO_OBL1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_MONE_APO_OBL2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_MONE_APO_OBL3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_MONE_APO_OBL4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_MONE_APO_OBL5" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_MONE_APO_OBL6" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_MONE_APO_OBL7" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_MONE_APO_OBL8" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_PAGO_REE_SOL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_PRIM_PAG_PENS_AFP1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_PRIM_PAG_PENS_AFP2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_PRIM_PAG_PENS_AFP3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_PRIM_PAG_PENS_AFP4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_PRIM_PAG_PENS_AFP5" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_PRIM_PAG_PENS_AFP6" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_PRIM_PAG_PENS_AFP7" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_PRIM_PAG_PENS_AFP8" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_DSCT_PENS_PAG_AFP1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_DSCT_PENS_PAG_AFP2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_DSCT_PENS_PAG_AFP3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_DSCT_PENS_PAG_AFP4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_DSCT_PENS_PAG_AFP5" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_DSCT_PENS_PAG_AFP6" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_DSCT_PENS_PAG_AFP7" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_DSCT_PENS_PAG_AFP8" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_SOLE_APO_ADI_AFP1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_SOLE_APO_ADI_AFP2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_SOLE_APO_ADI_AFP3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_SOLE_APO_ADI_AFP4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_SOLE_APO_ADI_AFP5" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_SOLE_APO_ADI_AFP6" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_SOLE_APO_ADI_AFP7" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_SOLE_APO_ADI_AFP8" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_SOLE_REE_PAG_AFP1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_SOLE_REE_PAG_AFP2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_SOLE_REE_PAG_AFP3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_SOLE_REE_PAG_AFP4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_SOLE_REE_PAG_AFP5" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_SOLE_REE_PAG_AFP6" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_SOLE_REE_PAG_AFP7" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTO_SOLE_REE_PAG_AFP8" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NRO_CSV" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="NUM_DOCU_SOL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NUM_SINI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NUM_SOLI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NUM_SOLI_PEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NUM_DOCU_PEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PEN_PAGA_MON" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PEN_BASE_MON" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="REM_PROM_ACT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NUM_APOR_ACT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SAL_CIC_MN" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="TIP_CAMB_COM" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="TIP_MONE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="TOT_CAPI_REQ_MN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TOT_CAPI_REQ_ORI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CUSP" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="COD_BENE_MN" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="APE_MATE_PEN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="APE_MATE_SOLI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="APE_PATE_PEN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="APE_PATE_SOL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PRI_NOMB_PEN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PRI_NOMB_SOL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SEG_NOMB_PEN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SEG_NOMB_SOL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SUC_INTE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="CumpleValidacion" Type="Int32" />
+          <NavigationProperty Name="HistorialCargaArchivo_LinCab" Relationship="DISModelo.FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab" FromRole="HistorialCargaArchivo_LinDet" ToRole="HistorialCargaArchivo_LinCab" />
+        </EntityType>
         <EntityType Name="ReglaArchivo">
           <Key>
             <PropertyRef Name="IdReglaArchivo" />
@@ -2621,6 +2907,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="VigenciaReglaDesde" Type="DateTime" Precision="3" />
           <Property Name="VigenciaReglaHasta" Type="DateTime" Precision="3" />
           <Property Name="NombreCampo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TituloColumna" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="HistorialCargaArchivoes" Relationship="DISModelo.FK_HistorialCargaArchivo_ReglaArchivo" FromRole="ReglaArchivo" ToRole="HistorialCargaArchivo" />
         </EntityType>
         <EntityType Name="AFP">
@@ -3322,6 +3609,18 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab">
+          <End Type="DISModelo.HistorialCargaArchivo_LinCab" Role="HistorialCargaArchivo_LinCab" Multiplicity="0..1" />
+          <End Type="DISModelo.HistorialCargaArchivo_LinDet" Role="HistorialCargaArchivo_LinDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HistorialCargaArchivo_LinCab">
+              <PropertyRef Name="IdHistorialCargaArchivoLinCab" />
+            </Principal>
+            <Dependent Role="HistorialCargaArchivo_LinDet">
+              <PropertyRef Name="IdHistorialCargaArchivoLinCab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AFPSiniestro">
           <End Type="DISModelo.AFP" Role="AFP" Multiplicity="1" />
           <End Type="DISModelo.Siniestro" Role="Siniestro" Multiplicity="*" />
@@ -3475,160 +3774,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             </Principal>
             <Dependent Role="TipoArchivo">
               <PropertyRef Name="TipoInformeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="HistorialCargaArchivo_LinDet">
-          <Key>
-            <PropertyRef Name="IdHistorialCargaArchivoLinDet" />
-          </Key>
-          <Property Name="IdHistorialCargaArchivoLinDet" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdHistorialCargaArchivoLinCab" Type="Int64" />
-          <Property Name="FechaInsert" Type="DateTime" Precision="3" />
-          <Property Name="TipoLinea" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="NumeroLinea" Type="Int32" />
-          <Property Name="FEC_DEVE" Type="DateTime" Precision="3" />
-          <Property Name="FEC_FALL" Type="DateTime" Precision="3" />
-          <Property Name="FEC_OCUR" Type="DateTime" Precision="3" />
-          <Property Name="FEC_PAGO_APO_ADI" Type="DateTime" Precision="3" />
-          <Property Name="FEC_INV_DEF" Type="DateTime" Precision="3" />
-          <Property Name="CAP_GAST_SEP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="PARE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="SAL_CIC_SOL" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
-          <Property Name="TIP_REGI" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="TIP_SOLI" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="NUM_BENE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="NUM_MESE_DEV" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="POR_BENE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="TIP_IDEN_SOL" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="TIP_PENS" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="TIP_DOCU_IDE_PEN" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="TIP_MOVI" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="COD_CSV_01" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="COD_CSV_02" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="COD_CSV_03" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="COD_CSV_04" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="COD_CSV_05" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="COD_CSV_06" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="COD_CSV_07" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="COD_CSV_08" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="COD_AFP" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="COD_IDE_CSV" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="FRA_MESE_DEV" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="IND_PENS_PRE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_PPRE_ORI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="TIP_CAMB_VTA" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="EXC_PENS_SOL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="EXC_PENS_NM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MES_DEVE" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="CAP_REQU_PEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="CRU_FAMI" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="FEC_NACI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="FEC_NACI_PEN" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="FEC_PAGO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="FEC_PAGO_TEX" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="FEC_SECI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="FEC_SINI_OCU" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="FEC_DEVE_ACT" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="FEC_DEVE_INI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="FEC_FIN_SUB" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="RAM_PROM_SOL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="TAS_INTE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="VACIO_10" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="DES_PENS_MONE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_APOR_ADI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_APOR_ADI_SOL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_APOR_COM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_PENS_PAG" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_PPRE_MN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_APOR_OBL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_MONE_APO_COM1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_MONE_APO_COM2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_MONE_APO_COM3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_MONE_APO_COM4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_MONE_APO_COM5" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_MONE_APO_COM6" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_MONE_APO_COM7" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_MONE_APO_COM8" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_MONE_APO_OBL1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_MONE_APO_OBL2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_MONE_APO_OBL3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_MONE_APO_OBL4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_MONE_APO_OBL5" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_MONE_APO_OBL6" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_MONE_APO_OBL7" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_MONE_APO_OBL8" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_PAGO_REE_SOL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_PRIM_PAG_PENS_AFP1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_PRIM_PAG_PENS_AFP2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_PRIM_PAG_PENS_AFP3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_PRIM_PAG_PENS_AFP4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_PRIM_PAG_PENS_AFP5" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_PRIM_PAG_PENS_AFP6" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_PRIM_PAG_PENS_AFP7" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_PRIM_PAG_PENS_AFP8" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_DSCT_PENS_PAG_AFP1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_DSCT_PENS_PAG_AFP2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_DSCT_PENS_PAG_AFP3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_DSCT_PENS_PAG_AFP4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_DSCT_PENS_PAG_AFP5" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_DSCT_PENS_PAG_AFP6" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_DSCT_PENS_PAG_AFP7" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_DSCT_PENS_PAG_AFP8" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_SOLE_APO_ADI_AFP1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_SOLE_APO_ADI_AFP2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_SOLE_APO_ADI_AFP3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_SOLE_APO_ADI_AFP4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_SOLE_APO_ADI_AFP5" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_SOLE_APO_ADI_AFP6" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_SOLE_APO_ADI_AFP7" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_SOLE_APO_ADI_AFP8" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_SOLE_REE_PAG_AFP1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_SOLE_REE_PAG_AFP2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_SOLE_REE_PAG_AFP3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_SOLE_REE_PAG_AFP4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_SOLE_REE_PAG_AFP5" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_SOLE_REE_PAG_AFP6" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_SOLE_REE_PAG_AFP7" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MTO_SOLE_REE_PAG_AFP8" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="NRO_CSV" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="NUM_DOCU_SOL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="NUM_SINI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="NUM_SOLI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="NUM_SOLI_PEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="NUM_DOCU_PEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="PEN_PAGA_MON" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="PEN_BASE_MON" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="REM_PROM_ACT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="NUM_APOR_ACT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="SAL_CIC_MN" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
-          <Property Name="TIP_CAMB_COM" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="TIP_MONE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="TOT_CAPI_REQ_MN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="TOT_CAPI_REQ_ORI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="COD_CUSP" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="COD_BENE_MN" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Name="APE_MATE_PEN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="APE_MATE_SOLI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="APE_PATE_PEN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="APE_PATE_SOL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="PRI_NOMB_PEN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="PRI_NOMB_SOL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="SEG_NOMB_PEN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="SEG_NOMB_SOL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="SUC_INTE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="CumpleValidacion" Type="Int32" />
-          <NavigationProperty Name="HistorialCargaArchivo_LinCab" Relationship="DISModelo.FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab" FromRole="HistorialCargaArchivo_LinDet" ToRole="HistorialCargaArchivo_LinCab" />
-        </EntityType>
-        <Association Name="FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab">
-          <End Type="DISModelo.HistorialCargaArchivo_LinCab" Role="HistorialCargaArchivo_LinCab" Multiplicity="0..1" />
-          <End Type="DISModelo.HistorialCargaArchivo_LinDet" Role="HistorialCargaArchivo_LinDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HistorialCargaArchivo_LinCab">
-              <PropertyRef Name="IdHistorialCargaArchivoLinCab" />
-            </Principal>
-            <Dependent Role="HistorialCargaArchivo_LinDet">
-              <PropertyRef Name="IdHistorialCargaArchivoLinCab" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4010,6 +4155,26 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="NOMINAs">
+            <EntityTypeMapping TypeName="DISModelo.NOMINA">
+              <MappingFragment StoreEntitySet="NOMINA">
+                <ScalarProperty Name="DET_TRAN" ColumnName="DET_TRAN" />
+                <ScalarProperty Name="CTA_BENE" ColumnName="CTA_BENE" />
+                <ScalarProperty Name="TIP_CTA" ColumnName="TIP_CTA" />
+                <ScalarProperty Name="NOM_BENE" ColumnName="NOM_BENE" />
+                <ScalarProperty Name="RUC_BENE" ColumnName="RUC_BENE" />
+                <ScalarProperty Name="FEC_TRAN" ColumnName="FEC_TRAN" />
+                <ScalarProperty Name="MON_TRAN" ColumnName="MON_TRAN" />
+                <ScalarProperty Name="TIP_MONE" ColumnName="TIP_MONE" />
+                <ScalarProperty Name="COD_TRAN" ColumnName="COD_TRAN" />
+                <ScalarProperty Name="CTA_ORDE" ColumnName="CTA_ORDE" />
+                <ScalarProperty Name="RUC_ORDE" ColumnName="RUC_ORDE" />
+                <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="Id_Nomina" ColumnName="Id_Nomina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="OPERACIONs">
             <EntityTypeMapping TypeName="DISModelo.OPERACION">
               <MappingFragment StoreEntitySet="OPERACION">
@@ -4102,9 +4267,152 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="HistorialCargaArchivo_LinDet">
+            <EntityTypeMapping TypeName="DISModelo.HistorialCargaArchivo_LinDet">
+              <MappingFragment StoreEntitySet="HistorialCargaArchivo_LinDet">
+                <ScalarProperty Name="CumpleValidacion" ColumnName="CumpleValidacion" />
+                <ScalarProperty Name="SUC_INTE" ColumnName="SUC_INTE" />
+                <ScalarProperty Name="SEG_NOMB_SOL" ColumnName="SEG_NOMB_SOL" />
+                <ScalarProperty Name="SEG_NOMB_PEN" ColumnName="SEG_NOMB_PEN" />
+                <ScalarProperty Name="PRI_NOMB_SOL" ColumnName="PRI_NOMB_SOL" />
+                <ScalarProperty Name="PRI_NOMB_PEN" ColumnName="PRI_NOMB_PEN" />
+                <ScalarProperty Name="APE_PATE_SOL" ColumnName="APE_PATE_SOL" />
+                <ScalarProperty Name="APE_PATE_PEN" ColumnName="APE_PATE_PEN" />
+                <ScalarProperty Name="APE_MATE_SOLI" ColumnName="APE_MATE_SOLI" />
+                <ScalarProperty Name="APE_MATE_PEN" ColumnName="APE_MATE_PEN" />
+                <ScalarProperty Name="COD_BENE_MN" ColumnName="COD_BENE_MN" />
+                <ScalarProperty Name="COD_CUSP" ColumnName="COD_CUSP" />
+                <ScalarProperty Name="TOT_CAPI_REQ_ORI" ColumnName="TOT_CAPI_REQ_ORI" />
+                <ScalarProperty Name="TOT_CAPI_REQ_MN" ColumnName="TOT_CAPI_REQ_MN" />
+                <ScalarProperty Name="TIP_MONE" ColumnName="TIP_MONE" />
+                <ScalarProperty Name="TIP_CAMB_COM" ColumnName="TIP_CAMB_COM" />
+                <ScalarProperty Name="SAL_CIC_MN" ColumnName="SAL_CIC_MN" />
+                <ScalarProperty Name="NUM_APOR_ACT" ColumnName="NUM_APOR_ACT" />
+                <ScalarProperty Name="REM_PROM_ACT" ColumnName="REM_PROM_ACT" />
+                <ScalarProperty Name="PEN_BASE_MON" ColumnName="PEN_BASE_MON" />
+                <ScalarProperty Name="PEN_PAGA_MON" ColumnName="PEN_PAGA_MON" />
+                <ScalarProperty Name="NUM_DOCU_PEN" ColumnName="NUM_DOCU_PEN" />
+                <ScalarProperty Name="NUM_SOLI_PEN" ColumnName="NUM_SOLI_PEN" />
+                <ScalarProperty Name="NUM_SOLI" ColumnName="NUM_SOLI" />
+                <ScalarProperty Name="NUM_SINI" ColumnName="NUM_SINI" />
+                <ScalarProperty Name="NUM_DOCU_SOL" ColumnName="NUM_DOCU_SOL" />
+                <ScalarProperty Name="NRO_CSV" ColumnName="NRO_CSV" />
+                <ScalarProperty Name="MTO_SOLE_REE_PAG_AFP8" ColumnName="MTO_SOLE_REE_PAG_AFP8" />
+                <ScalarProperty Name="MTO_SOLE_REE_PAG_AFP7" ColumnName="MTO_SOLE_REE_PAG_AFP7" />
+                <ScalarProperty Name="MTO_SOLE_REE_PAG_AFP6" ColumnName="MTO_SOLE_REE_PAG_AFP6" />
+                <ScalarProperty Name="MTO_SOLE_REE_PAG_AFP5" ColumnName="MTO_SOLE_REE_PAG_AFP5" />
+                <ScalarProperty Name="MTO_SOLE_REE_PAG_AFP4" ColumnName="MTO_SOLE_REE_PAG_AFP4" />
+                <ScalarProperty Name="MTO_SOLE_REE_PAG_AFP3" ColumnName="MTO_SOLE_REE_PAG_AFP3" />
+                <ScalarProperty Name="MTO_SOLE_REE_PAG_AFP2" ColumnName="MTO_SOLE_REE_PAG_AFP2" />
+                <ScalarProperty Name="MTO_SOLE_REE_PAG_AFP1" ColumnName="MTO_SOLE_REE_PAG_AFP1" />
+                <ScalarProperty Name="MTO_SOLE_APO_ADI_AFP8" ColumnName="MTO_SOLE_APO_ADI_AFP8" />
+                <ScalarProperty Name="MTO_SOLE_APO_ADI_AFP7" ColumnName="MTO_SOLE_APO_ADI_AFP7" />
+                <ScalarProperty Name="MTO_SOLE_APO_ADI_AFP6" ColumnName="MTO_SOLE_APO_ADI_AFP6" />
+                <ScalarProperty Name="MTO_SOLE_APO_ADI_AFP5" ColumnName="MTO_SOLE_APO_ADI_AFP5" />
+                <ScalarProperty Name="MTO_SOLE_APO_ADI_AFP4" ColumnName="MTO_SOLE_APO_ADI_AFP4" />
+                <ScalarProperty Name="MTO_SOLE_APO_ADI_AFP3" ColumnName="MTO_SOLE_APO_ADI_AFP3" />
+                <ScalarProperty Name="MTO_SOLE_APO_ADI_AFP2" ColumnName="MTO_SOLE_APO_ADI_AFP2" />
+                <ScalarProperty Name="MTO_SOLE_APO_ADI_AFP1" ColumnName="MTO_SOLE_APO_ADI_AFP1" />
+                <ScalarProperty Name="MTO_DSCT_PENS_PAG_AFP8" ColumnName="MTO_DSCT_PENS_PAG_AFP8" />
+                <ScalarProperty Name="MTO_DSCT_PENS_PAG_AFP7" ColumnName="MTO_DSCT_PENS_PAG_AFP7" />
+                <ScalarProperty Name="MTO_DSCT_PENS_PAG_AFP6" ColumnName="MTO_DSCT_PENS_PAG_AFP6" />
+                <ScalarProperty Name="MTO_DSCT_PENS_PAG_AFP5" ColumnName="MTO_DSCT_PENS_PAG_AFP5" />
+                <ScalarProperty Name="MTO_DSCT_PENS_PAG_AFP4" ColumnName="MTO_DSCT_PENS_PAG_AFP4" />
+                <ScalarProperty Name="MTO_DSCT_PENS_PAG_AFP3" ColumnName="MTO_DSCT_PENS_PAG_AFP3" />
+                <ScalarProperty Name="MTO_DSCT_PENS_PAG_AFP2" ColumnName="MTO_DSCT_PENS_PAG_AFP2" />
+                <ScalarProperty Name="MTO_DSCT_PENS_PAG_AFP1" ColumnName="MTO_DSCT_PENS_PAG_AFP1" />
+                <ScalarProperty Name="MTO_PRIM_PAG_PENS_AFP8" ColumnName="MTO_PRIM_PAG_PENS_AFP8" />
+                <ScalarProperty Name="MTO_PRIM_PAG_PENS_AFP7" ColumnName="MTO_PRIM_PAG_PENS_AFP7" />
+                <ScalarProperty Name="MTO_PRIM_PAG_PENS_AFP6" ColumnName="MTO_PRIM_PAG_PENS_AFP6" />
+                <ScalarProperty Name="MTO_PRIM_PAG_PENS_AFP5" ColumnName="MTO_PRIM_PAG_PENS_AFP5" />
+                <ScalarProperty Name="MTO_PRIM_PAG_PENS_AFP4" ColumnName="MTO_PRIM_PAG_PENS_AFP4" />
+                <ScalarProperty Name="MTO_PRIM_PAG_PENS_AFP3" ColumnName="MTO_PRIM_PAG_PENS_AFP3" />
+                <ScalarProperty Name="MTO_PRIM_PAG_PENS_AFP2" ColumnName="MTO_PRIM_PAG_PENS_AFP2" />
+                <ScalarProperty Name="MTO_PRIM_PAG_PENS_AFP1" ColumnName="MTO_PRIM_PAG_PENS_AFP1" />
+                <ScalarProperty Name="MTO_PAGO_REE_SOL" ColumnName="MTO_PAGO_REE_SOL" />
+                <ScalarProperty Name="MTO_MONE_APO_OBL8" ColumnName="MTO_MONE_APO_OBL8" />
+                <ScalarProperty Name="MTO_MONE_APO_OBL7" ColumnName="MTO_MONE_APO_OBL7" />
+                <ScalarProperty Name="MTO_MONE_APO_OBL6" ColumnName="MTO_MONE_APO_OBL6" />
+                <ScalarProperty Name="MTO_MONE_APO_OBL5" ColumnName="MTO_MONE_APO_OBL5" />
+                <ScalarProperty Name="MTO_MONE_APO_OBL4" ColumnName="MTO_MONE_APO_OBL4" />
+                <ScalarProperty Name="MTO_MONE_APO_OBL3" ColumnName="MTO_MONE_APO_OBL3" />
+                <ScalarProperty Name="MTO_MONE_APO_OBL2" ColumnName="MTO_MONE_APO_OBL2" />
+                <ScalarProperty Name="MTO_MONE_APO_OBL1" ColumnName="MTO_MONE_APO_OBL1" />
+                <ScalarProperty Name="MTO_MONE_APO_COM8" ColumnName="MTO_MONE_APO_COM8" />
+                <ScalarProperty Name="MTO_MONE_APO_COM7" ColumnName="MTO_MONE_APO_COM7" />
+                <ScalarProperty Name="MTO_MONE_APO_COM6" ColumnName="MTO_MONE_APO_COM6" />
+                <ScalarProperty Name="MTO_MONE_APO_COM5" ColumnName="MTO_MONE_APO_COM5" />
+                <ScalarProperty Name="MTO_MONE_APO_COM4" ColumnName="MTO_MONE_APO_COM4" />
+                <ScalarProperty Name="MTO_MONE_APO_COM3" ColumnName="MTO_MONE_APO_COM3" />
+                <ScalarProperty Name="MTO_MONE_APO_COM2" ColumnName="MTO_MONE_APO_COM2" />
+                <ScalarProperty Name="MTO_MONE_APO_COM1" ColumnName="MTO_MONE_APO_COM1" />
+                <ScalarProperty Name="MTO_APOR_OBL" ColumnName="MTO_APOR_OBL" />
+                <ScalarProperty Name="MTO_PPRE_MN" ColumnName="MTO_PPRE_MN" />
+                <ScalarProperty Name="MTO_PENS_PAG" ColumnName="MTO_PENS_PAG" />
+                <ScalarProperty Name="MTO_APOR_COM" ColumnName="MTO_APOR_COM" />
+                <ScalarProperty Name="MTO_APOR_ADI_SOL" ColumnName="MTO_APOR_ADI_SOL" />
+                <ScalarProperty Name="MTO_APOR_ADI" ColumnName="MTO_APOR_ADI" />
+                <ScalarProperty Name="DES_PENS_MONE" ColumnName="DES_PENS_MONE" />
+                <ScalarProperty Name="VACIO_10" ColumnName="VACIO_10" />
+                <ScalarProperty Name="TAS_INTE" ColumnName="TAS_INTE" />
+                <ScalarProperty Name="RAM_PROM_SOL" ColumnName="RAM_PROM_SOL" />
+                <ScalarProperty Name="FEC_FIN_SUB" ColumnName="FEC_FIN_SUB" />
+                <ScalarProperty Name="FEC_DEVE_INI" ColumnName="FEC_DEVE_INI" />
+                <ScalarProperty Name="FEC_DEVE_ACT" ColumnName="FEC_DEVE_ACT" />
+                <ScalarProperty Name="FEC_SINI_OCU" ColumnName="FEC_SINI_OCU" />
+                <ScalarProperty Name="FEC_SECI" ColumnName="FEC_SECI" />
+                <ScalarProperty Name="FEC_PAGO_TEX" ColumnName="FEC_PAGO_TEX" />
+                <ScalarProperty Name="FEC_PAGO" ColumnName="FEC_PAGO" />
+                <ScalarProperty Name="FEC_NACI_PEN" ColumnName="FEC_NACI_PEN" />
+                <ScalarProperty Name="FEC_NACI" ColumnName="FEC_NACI" />
+                <ScalarProperty Name="CRU_FAMI" ColumnName="CRU_FAMI" />
+                <ScalarProperty Name="CAP_REQU_PEN" ColumnName="CAP_REQU_PEN" />
+                <ScalarProperty Name="MES_DEVE" ColumnName="MES_DEVE" />
+                <ScalarProperty Name="EXC_PENS_NM" ColumnName="EXC_PENS_NM" />
+                <ScalarProperty Name="EXC_PENS_SOL" ColumnName="EXC_PENS_SOL" />
+                <ScalarProperty Name="TIP_CAMB_VTA" ColumnName="TIP_CAMB_VTA" />
+                <ScalarProperty Name="MTO_PPRE_ORI" ColumnName="MTO_PPRE_ORI" />
+                <ScalarProperty Name="IND_PENS_PRE" ColumnName="IND_PENS_PRE" />
+                <ScalarProperty Name="FRA_MESE_DEV" ColumnName="FRA_MESE_DEV" />
+                <ScalarProperty Name="COD_IDE_CSV" ColumnName="COD_IDE_CSV" />
+                <ScalarProperty Name="COD_AFP" ColumnName="COD_AFP" />
+                <ScalarProperty Name="COD_CSV_08" ColumnName="COD_CSV_08" />
+                <ScalarProperty Name="COD_CSV_07" ColumnName="COD_CSV_07" />
+                <ScalarProperty Name="COD_CSV_06" ColumnName="COD_CSV_06" />
+                <ScalarProperty Name="COD_CSV_05" ColumnName="COD_CSV_05" />
+                <ScalarProperty Name="COD_CSV_04" ColumnName="COD_CSV_04" />
+                <ScalarProperty Name="COD_CSV_03" ColumnName="COD_CSV_03" />
+                <ScalarProperty Name="COD_CSV_02" ColumnName="COD_CSV_02" />
+                <ScalarProperty Name="COD_CSV_01" ColumnName="COD_CSV_01" />
+                <ScalarProperty Name="TIP_MOVI" ColumnName="TIP_MOVI" />
+                <ScalarProperty Name="TIP_DOCU_IDE_PEN" ColumnName="TIP_DOCU_IDE_PEN" />
+                <ScalarProperty Name="TIP_PENS" ColumnName="TIP_PENS" />
+                <ScalarProperty Name="TIP_IDEN_SOL" ColumnName="TIP_IDEN_SOL" />
+                <ScalarProperty Name="POR_BENE" ColumnName="POR_BENE" />
+                <ScalarProperty Name="NUM_MESE_DEV" ColumnName="NUM_MESE_DEV" />
+                <ScalarProperty Name="NUM_BENE" ColumnName="NUM_BENE" />
+                <ScalarProperty Name="TIP_SOLI" ColumnName="TIP_SOLI" />
+                <ScalarProperty Name="TIP_REGI" ColumnName="TIP_REGI" />
+                <ScalarProperty Name="SAL_CIC_SOL" ColumnName="SAL_CIC_SOL" />
+                <ScalarProperty Name="PARE" ColumnName="PARE" />
+                <ScalarProperty Name="CAP_GAST_SEP" ColumnName="CAP_GAST_SEP" />
+                <ScalarProperty Name="FEC_INV_DEF" ColumnName="FEC_INV_DEF" />
+                <ScalarProperty Name="FEC_PAGO_APO_ADI" ColumnName="FEC_PAGO_APO_ADI" />
+                <ScalarProperty Name="FEC_OCUR" ColumnName="FEC_OCUR" />
+                <ScalarProperty Name="FEC_FALL" ColumnName="FEC_FALL" />
+                <ScalarProperty Name="FEC_DEVE" ColumnName="FEC_DEVE" />
+                <ScalarProperty Name="NumeroLinea" ColumnName="NumeroLinea" />
+                <ScalarProperty Name="TipoLinea" ColumnName="TipoLinea" />
+                <ScalarProperty Name="FechaInsert" ColumnName="FechaInsert" />
+                <ScalarProperty Name="IdHistorialCargaArchivoLinCab" ColumnName="IdHistorialCargaArchivoLinCab" />
+                <ScalarProperty Name="IdHistorialCargaArchivoLinDet" ColumnName="IdHistorialCargaArchivoLinDet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ReglaArchivoes">
             <EntityTypeMapping TypeName="DISModelo.ReglaArchivo">
               <MappingFragment StoreEntitySet="ReglaArchivo">
+                <ScalarProperty Name="TituloColumna" ColumnName="TituloColumna" />
                 <ScalarProperty Name="NombreCampo" ColumnName="NombreCampo" />
                 <ScalarProperty Name="VigenciaReglaHasta" ColumnName="VigenciaReglaHasta" />
                 <ScalarProperty Name="VigenciaReglaDesde" ColumnName="VigenciaReglaDesde" />
@@ -4722,149 +5030,8 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HistorialCargaArchivo_LinDet">
-            <EntityTypeMapping TypeName="DISModelo.HistorialCargaArchivo_LinDet">
-              <MappingFragment StoreEntitySet="HistorialCargaArchivo_LinDet">
-                <ScalarProperty Name="CumpleValidacion" ColumnName="CumpleValidacion" />
-                <ScalarProperty Name="SUC_INTE" ColumnName="SUC_INTE" />
-                <ScalarProperty Name="SEG_NOMB_SOL" ColumnName="SEG_NOMB_SOL" />
-                <ScalarProperty Name="SEG_NOMB_PEN" ColumnName="SEG_NOMB_PEN" />
-                <ScalarProperty Name="PRI_NOMB_SOL" ColumnName="PRI_NOMB_SOL" />
-                <ScalarProperty Name="PRI_NOMB_PEN" ColumnName="PRI_NOMB_PEN" />
-                <ScalarProperty Name="APE_PATE_SOL" ColumnName="APE_PATE_SOL" />
-                <ScalarProperty Name="APE_PATE_PEN" ColumnName="APE_PATE_PEN" />
-                <ScalarProperty Name="APE_MATE_SOLI" ColumnName="APE_MATE_SOLI" />
-                <ScalarProperty Name="APE_MATE_PEN" ColumnName="APE_MATE_PEN" />
-                <ScalarProperty Name="COD_BENE_MN" ColumnName="COD_BENE_MN" />
-                <ScalarProperty Name="COD_CUSP" ColumnName="COD_CUSP" />
-                <ScalarProperty Name="TOT_CAPI_REQ_ORI" ColumnName="TOT_CAPI_REQ_ORI" />
-                <ScalarProperty Name="TOT_CAPI_REQ_MN" ColumnName="TOT_CAPI_REQ_MN" />
-                <ScalarProperty Name="TIP_MONE" ColumnName="TIP_MONE" />
-                <ScalarProperty Name="TIP_CAMB_COM" ColumnName="TIP_CAMB_COM" />
-                <ScalarProperty Name="SAL_CIC_MN" ColumnName="SAL_CIC_MN" />
-                <ScalarProperty Name="NUM_APOR_ACT" ColumnName="NUM_APOR_ACT" />
-                <ScalarProperty Name="REM_PROM_ACT" ColumnName="REM_PROM_ACT" />
-                <ScalarProperty Name="PEN_BASE_MON" ColumnName="PEN_BASE_MON" />
-                <ScalarProperty Name="PEN_PAGA_MON" ColumnName="PEN_PAGA_MON" />
-                <ScalarProperty Name="NUM_DOCU_PEN" ColumnName="NUM_DOCU_PEN" />
-                <ScalarProperty Name="NUM_SOLI_PEN" ColumnName="NUM_SOLI_PEN" />
-                <ScalarProperty Name="NUM_SOLI" ColumnName="NUM_SOLI" />
-                <ScalarProperty Name="NUM_SINI" ColumnName="NUM_SINI" />
-                <ScalarProperty Name="NUM_DOCU_SOL" ColumnName="NUM_DOCU_SOL" />
-                <ScalarProperty Name="NRO_CSV" ColumnName="NRO_CSV" />
-                <ScalarProperty Name="MTO_SOLE_REE_PAG_AFP8" ColumnName="MTO_SOLE_REE_PAG_AFP8" />
-                <ScalarProperty Name="MTO_SOLE_REE_PAG_AFP7" ColumnName="MTO_SOLE_REE_PAG_AFP7" />
-                <ScalarProperty Name="MTO_SOLE_REE_PAG_AFP6" ColumnName="MTO_SOLE_REE_PAG_AFP6" />
-                <ScalarProperty Name="MTO_SOLE_REE_PAG_AFP5" ColumnName="MTO_SOLE_REE_PAG_AFP5" />
-                <ScalarProperty Name="MTO_SOLE_REE_PAG_AFP4" ColumnName="MTO_SOLE_REE_PAG_AFP4" />
-                <ScalarProperty Name="MTO_SOLE_REE_PAG_AFP3" ColumnName="MTO_SOLE_REE_PAG_AFP3" />
-                <ScalarProperty Name="MTO_SOLE_REE_PAG_AFP2" ColumnName="MTO_SOLE_REE_PAG_AFP2" />
-                <ScalarProperty Name="MTO_SOLE_REE_PAG_AFP1" ColumnName="MTO_SOLE_REE_PAG_AFP1" />
-                <ScalarProperty Name="MTO_SOLE_APO_ADI_AFP8" ColumnName="MTO_SOLE_APO_ADI_AFP8" />
-                <ScalarProperty Name="MTO_SOLE_APO_ADI_AFP7" ColumnName="MTO_SOLE_APO_ADI_AFP7" />
-                <ScalarProperty Name="MTO_SOLE_APO_ADI_AFP6" ColumnName="MTO_SOLE_APO_ADI_AFP6" />
-                <ScalarProperty Name="MTO_SOLE_APO_ADI_AFP5" ColumnName="MTO_SOLE_APO_ADI_AFP5" />
-                <ScalarProperty Name="MTO_SOLE_APO_ADI_AFP4" ColumnName="MTO_SOLE_APO_ADI_AFP4" />
-                <ScalarProperty Name="MTO_SOLE_APO_ADI_AFP3" ColumnName="MTO_SOLE_APO_ADI_AFP3" />
-                <ScalarProperty Name="MTO_SOLE_APO_ADI_AFP2" ColumnName="MTO_SOLE_APO_ADI_AFP2" />
-                <ScalarProperty Name="MTO_SOLE_APO_ADI_AFP1" ColumnName="MTO_SOLE_APO_ADI_AFP1" />
-                <ScalarProperty Name="MTO_DSCT_PENS_PAG_AFP8" ColumnName="MTO_DSCT_PENS_PAG_AFP8" />
-                <ScalarProperty Name="MTO_DSCT_PENS_PAG_AFP7" ColumnName="MTO_DSCT_PENS_PAG_AFP7" />
-                <ScalarProperty Name="MTO_DSCT_PENS_PAG_AFP6" ColumnName="MTO_DSCT_PENS_PAG_AFP6" />
-                <ScalarProperty Name="MTO_DSCT_PENS_PAG_AFP5" ColumnName="MTO_DSCT_PENS_PAG_AFP5" />
-                <ScalarProperty Name="MTO_DSCT_PENS_PAG_AFP4" ColumnName="MTO_DSCT_PENS_PAG_AFP4" />
-                <ScalarProperty Name="MTO_DSCT_PENS_PAG_AFP3" ColumnName="MTO_DSCT_PENS_PAG_AFP3" />
-                <ScalarProperty Name="MTO_DSCT_PENS_PAG_AFP2" ColumnName="MTO_DSCT_PENS_PAG_AFP2" />
-                <ScalarProperty Name="MTO_DSCT_PENS_PAG_AFP1" ColumnName="MTO_DSCT_PENS_PAG_AFP1" />
-                <ScalarProperty Name="MTO_PRIM_PAG_PENS_AFP8" ColumnName="MTO_PRIM_PAG_PENS_AFP8" />
-                <ScalarProperty Name="MTO_PRIM_PAG_PENS_AFP7" ColumnName="MTO_PRIM_PAG_PENS_AFP7" />
-                <ScalarProperty Name="MTO_PRIM_PAG_PENS_AFP6" ColumnName="MTO_PRIM_PAG_PENS_AFP6" />
-                <ScalarProperty Name="MTO_PRIM_PAG_PENS_AFP5" ColumnName="MTO_PRIM_PAG_PENS_AFP5" />
-                <ScalarProperty Name="MTO_PRIM_PAG_PENS_AFP4" ColumnName="MTO_PRIM_PAG_PENS_AFP4" />
-                <ScalarProperty Name="MTO_PRIM_PAG_PENS_AFP3" ColumnName="MTO_PRIM_PAG_PENS_AFP3" />
-                <ScalarProperty Name="MTO_PRIM_PAG_PENS_AFP2" ColumnName="MTO_PRIM_PAG_PENS_AFP2" />
-                <ScalarProperty Name="MTO_PRIM_PAG_PENS_AFP1" ColumnName="MTO_PRIM_PAG_PENS_AFP1" />
-                <ScalarProperty Name="MTO_PAGO_REE_SOL" ColumnName="MTO_PAGO_REE_SOL" />
-                <ScalarProperty Name="MTO_MONE_APO_OBL8" ColumnName="MTO_MONE_APO_OBL8" />
-                <ScalarProperty Name="MTO_MONE_APO_OBL7" ColumnName="MTO_MONE_APO_OBL7" />
-                <ScalarProperty Name="MTO_MONE_APO_OBL6" ColumnName="MTO_MONE_APO_OBL6" />
-                <ScalarProperty Name="MTO_MONE_APO_OBL5" ColumnName="MTO_MONE_APO_OBL5" />
-                <ScalarProperty Name="MTO_MONE_APO_OBL4" ColumnName="MTO_MONE_APO_OBL4" />
-                <ScalarProperty Name="MTO_MONE_APO_OBL3" ColumnName="MTO_MONE_APO_OBL3" />
-                <ScalarProperty Name="MTO_MONE_APO_OBL2" ColumnName="MTO_MONE_APO_OBL2" />
-                <ScalarProperty Name="MTO_MONE_APO_OBL1" ColumnName="MTO_MONE_APO_OBL1" />
-                <ScalarProperty Name="MTO_MONE_APO_COM8" ColumnName="MTO_MONE_APO_COM8" />
-                <ScalarProperty Name="MTO_MONE_APO_COM7" ColumnName="MTO_MONE_APO_COM7" />
-                <ScalarProperty Name="MTO_MONE_APO_COM6" ColumnName="MTO_MONE_APO_COM6" />
-                <ScalarProperty Name="MTO_MONE_APO_COM5" ColumnName="MTO_MONE_APO_COM5" />
-                <ScalarProperty Name="MTO_MONE_APO_COM4" ColumnName="MTO_MONE_APO_COM4" />
-                <ScalarProperty Name="MTO_MONE_APO_COM3" ColumnName="MTO_MONE_APO_COM3" />
-                <ScalarProperty Name="MTO_MONE_APO_COM2" ColumnName="MTO_MONE_APO_COM2" />
-                <ScalarProperty Name="MTO_MONE_APO_COM1" ColumnName="MTO_MONE_APO_COM1" />
-                <ScalarProperty Name="MTO_APOR_OBL" ColumnName="MTO_APOR_OBL" />
-                <ScalarProperty Name="MTO_PPRE_MN" ColumnName="MTO_PPRE_MN" />
-                <ScalarProperty Name="MTO_PENS_PAG" ColumnName="MTO_PENS_PAG" />
-                <ScalarProperty Name="MTO_APOR_COM" ColumnName="MTO_APOR_COM" />
-                <ScalarProperty Name="MTO_APOR_ADI_SOL" ColumnName="MTO_APOR_ADI_SOL" />
-                <ScalarProperty Name="MTO_APOR_ADI" ColumnName="MTO_APOR_ADI" />
-                <ScalarProperty Name="DES_PENS_MONE" ColumnName="DES_PENS_MONE" />
-                <ScalarProperty Name="VACIO_10" ColumnName="VACIO_10" />
-                <ScalarProperty Name="TAS_INTE" ColumnName="TAS_INTE" />
-                <ScalarProperty Name="RAM_PROM_SOL" ColumnName="RAM_PROM_SOL" />
-                <ScalarProperty Name="FEC_FIN_SUB" ColumnName="FEC_FIN_SUB" />
-                <ScalarProperty Name="FEC_DEVE_INI" ColumnName="FEC_DEVE_INI" />
-                <ScalarProperty Name="FEC_DEVE_ACT" ColumnName="FEC_DEVE_ACT" />
-                <ScalarProperty Name="FEC_SINI_OCU" ColumnName="FEC_SINI_OCU" />
-                <ScalarProperty Name="FEC_SECI" ColumnName="FEC_SECI" />
-                <ScalarProperty Name="FEC_PAGO_TEX" ColumnName="FEC_PAGO_TEX" />
-                <ScalarProperty Name="FEC_PAGO" ColumnName="FEC_PAGO" />
-                <ScalarProperty Name="FEC_NACI_PEN" ColumnName="FEC_NACI_PEN" />
-                <ScalarProperty Name="FEC_NACI" ColumnName="FEC_NACI" />
-                <ScalarProperty Name="CRU_FAMI" ColumnName="CRU_FAMI" />
-                <ScalarProperty Name="CAP_REQU_PEN" ColumnName="CAP_REQU_PEN" />
-                <ScalarProperty Name="MES_DEVE" ColumnName="MES_DEVE" />
-                <ScalarProperty Name="EXC_PENS_NM" ColumnName="EXC_PENS_NM" />
-                <ScalarProperty Name="EXC_PENS_SOL" ColumnName="EXC_PENS_SOL" />
-                <ScalarProperty Name="TIP_CAMB_VTA" ColumnName="TIP_CAMB_VTA" />
-                <ScalarProperty Name="MTO_PPRE_ORI" ColumnName="MTO_PPRE_ORI" />
-                <ScalarProperty Name="IND_PENS_PRE" ColumnName="IND_PENS_PRE" />
-                <ScalarProperty Name="FRA_MESE_DEV" ColumnName="FRA_MESE_DEV" />
-                <ScalarProperty Name="COD_IDE_CSV" ColumnName="COD_IDE_CSV" />
-                <ScalarProperty Name="COD_AFP" ColumnName="COD_AFP" />
-                <ScalarProperty Name="COD_CSV_08" ColumnName="COD_CSV_08" />
-                <ScalarProperty Name="COD_CSV_07" ColumnName="COD_CSV_07" />
-                <ScalarProperty Name="COD_CSV_06" ColumnName="COD_CSV_06" />
-                <ScalarProperty Name="COD_CSV_05" ColumnName="COD_CSV_05" />
-                <ScalarProperty Name="COD_CSV_04" ColumnName="COD_CSV_04" />
-                <ScalarProperty Name="COD_CSV_03" ColumnName="COD_CSV_03" />
-                <ScalarProperty Name="COD_CSV_02" ColumnName="COD_CSV_02" />
-                <ScalarProperty Name="COD_CSV_01" ColumnName="COD_CSV_01" />
-                <ScalarProperty Name="TIP_MOVI" ColumnName="TIP_MOVI" />
-                <ScalarProperty Name="TIP_DOCU_IDE_PEN" ColumnName="TIP_DOCU_IDE_PEN" />
-                <ScalarProperty Name="TIP_PENS" ColumnName="TIP_PENS" />
-                <ScalarProperty Name="TIP_IDEN_SOL" ColumnName="TIP_IDEN_SOL" />
-                <ScalarProperty Name="POR_BENE" ColumnName="POR_BENE" />
-                <ScalarProperty Name="NUM_MESE_DEV" ColumnName="NUM_MESE_DEV" />
-                <ScalarProperty Name="NUM_BENE" ColumnName="NUM_BENE" />
-                <ScalarProperty Name="TIP_SOLI" ColumnName="TIP_SOLI" />
-                <ScalarProperty Name="TIP_REGI" ColumnName="TIP_REGI" />
-                <ScalarProperty Name="SAL_CIC_SOL" ColumnName="SAL_CIC_SOL" />
-                <ScalarProperty Name="PARE" ColumnName="PARE" />
-                <ScalarProperty Name="CAP_GAST_SEP" ColumnName="CAP_GAST_SEP" />
-                <ScalarProperty Name="FEC_INV_DEF" ColumnName="FEC_INV_DEF" />
-                <ScalarProperty Name="FEC_PAGO_APO_ADI" ColumnName="FEC_PAGO_APO_ADI" />
-                <ScalarProperty Name="FEC_OCUR" ColumnName="FEC_OCUR" />
-                <ScalarProperty Name="FEC_FALL" ColumnName="FEC_FALL" />
-                <ScalarProperty Name="FEC_DEVE" ColumnName="FEC_DEVE" />
-                <ScalarProperty Name="NumeroLinea" ColumnName="NumeroLinea" />
-                <ScalarProperty Name="TipoLinea" ColumnName="TipoLinea" />
-                <ScalarProperty Name="FechaInsert" ColumnName="FechaInsert" />
-                <ScalarProperty Name="IdHistorialCargaArchivoLinCab" ColumnName="IdHistorialCargaArchivoLinCab" />
-                <ScalarProperty Name="IdHistorialCargaArchivoLinDet" ColumnName="IdHistorialCargaArchivoLinDet" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="pa_Valida_RangoFechaXContrato" FunctionName="DISModelo.Store.pa_Valida_RangoFechaXContrato" />
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
