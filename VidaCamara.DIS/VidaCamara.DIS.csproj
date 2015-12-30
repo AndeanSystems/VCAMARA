@@ -55,7 +55,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="data\dArchivo.cs" />
+    <Compile Include="data\dContratoSis.cs" />
     <Compile Include="data\dContrato_sis_detalle.cs" />
+    <Compile Include="data\dLogOperacion.cs" />
+    <Compile Include="data\dPagoCargado.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="data\dReglaArchivo.cs" />
     <Compile Include="data\HistorialCargaArchivo.cs" />
     <Compile Include="Helpers\txtWriter.cs" />
     <Compile Include="Helpers\ValidaRegla.cs" />
@@ -171,6 +178,9 @@
     <Compile Include="Modelo\Imputacion.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
+	<Compile Include="Modelo\NOMINA.cs">
+      <DependentUpon>DISModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\LogOperacion.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
@@ -264,11 +274,17 @@
     <Compile Include="Negocio\CargaLogica.Evaluador.cs" />
     <Compile Include="Negocio\CargaLogica.cs" />
     <Compile Include="Negocio\CheckListLogica.cs" />
+    <Compile Include="Negocio\nArchivo.cs" />
+    <Compile Include="Negocio\nArchivoCargado.cs" />
+    <Compile Include="Negocio\nContratoSis.cs" />
     <Compile Include="Negocio\nContratoSisDetalle.cs" />
     <Compile Include="Negocio\Correo.cs" />
+    <Compile Include="Negocio\nLogOperacion.cs" />
+    <Compile Include="Negocio\nReglaArchivo.cs" />
     <Compile Include="Negocio\Regla.cs" />
     <Compile Include="Negocio\SiniestroLogica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -289,7 +305,7 @@
       <DependentUpon>DISModelo.edmx</DependentUpon>
       <LastGenOutput>DISModelo.cs</LastGenOutput>
     </None>
-    <None Include="packages.config" />
+    <None Include="Helpers\packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
