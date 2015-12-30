@@ -2199,6 +2199,10 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             <Parameter Name="CampoInicial" Mode="In" Type="Int32" />
             <Parameter Name="LargoCampo" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="pa_Valida_RangoFechaXContrato" ReturnType="Collection(Int32)">
+            <Parameter Name="date1" Mode="In" Type="DateTime" />
+            <Parameter Name="date2" Mode="In" Type="DateTime" />
+          </FunctionImport>
           <EntitySet Name="CIERRE_PROCESO" EntityType="DISModelo.CIERRE_PROCESO" />
           <EntitySet Name="CONCEPTOes" EntityType="DISModelo.CONCEPTO" />
           <EntitySet Name="CONTRATOes" EntityType="DISModelo.CONTRATO" />
@@ -2331,10 +2335,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             <End Role="TipoInforme" EntitySet="TipoInformes" />
             <End Role="TipoArchivo" EntitySet="TipoArchivoes" />
           </AssociationSet>
-          <FunctionImport Name="pa_Valida_RangoFechaXContrato" ReturnType="Collection(Int32)">
-            <Parameter Name="date1" Mode="In" Type="DateTime" />
-            <Parameter Name="date2" Mode="In" Type="DateTime" />
-          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
           <Property Type="Int32" Name="IdRegistroMontoAlto" Nullable="false" />
@@ -3919,6 +3919,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <FunctionImportMapping FunctionImportName="pa_valida_SoloNumeros" FunctionName="DISModelo.Store.pa_valida_SoloNumeros" />
           <FunctionImportMapping FunctionImportName="pa_valida_SumaDetalleEnTotal" FunctionName="DISModelo.Store.pa_valida_SumaDetalleEnTotal" />
           <FunctionImportMapping FunctionImportName="pa_valida_TotalNominaEnLiquidacion" FunctionName="DISModelo.Store.pa_valida_TotalNominaEnLiquidacion" />
+          <FunctionImportMapping FunctionImportName="pa_Valida_RangoFechaXContrato" FunctionName="DISModelo.Store.pa_Valida_RangoFechaXContrato" />
           <EntitySetMapping Name="CIERRE_PROCESO">
             <EntityTypeMapping TypeName="DISModelo.CIERRE_PROCESO">
               <MappingFragment StoreEntitySet="CIERRE_PROCESO">
@@ -5030,7 +5031,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="pa_Valida_RangoFechaXContrato" FunctionName="DISModelo.Store.pa_Valida_RangoFechaXContrato" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

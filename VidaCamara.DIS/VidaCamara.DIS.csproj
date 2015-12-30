@@ -93,10 +93,10 @@
     <Compile Include="Modelo\Consulta.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelo\Contrato.cs">
+    <Compile Include="Modelo\CONTRATO.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelo\CONTRATO1.cs">
+    <Compile Include="Modelo\Contrato1.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\ContratoCSV.cs">
@@ -178,9 +178,6 @@
     <Compile Include="Modelo\Imputacion.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
-	<Compile Include="Modelo\NOMINA.cs">
-      <DependentUpon>DISModelo.tt</DependentUpon>
-    </Compile>
     <Compile Include="Modelo\LogOperacion.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
@@ -188,6 +185,9 @@
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\MontoAlto.cs">
+      <DependentUpon>DISModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\NOMINA.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\OPERACION.cs">
@@ -284,7 +284,6 @@
     <Compile Include="Negocio\Regla.cs" />
     <Compile Include="Negocio\SiniestroLogica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
