@@ -34,6 +34,7 @@ namespace VidaCamara.DIS.data
                                        (a.APE_PATE_PEN.Contains(historiaLinDetParam.APE_MATE_PEN) || string.IsNullOrEmpty(historiaLinDetParam.APE_MATE_PEN)) &&
                                        (a.NUM_DOCU_PEN.Equals(historiaLinDetParam.NUM_DOCU_PEN) || string.IsNullOrEmpty(historiaLinDetParam.NUM_DOCU_PEN)) &&
                                        (a.NUM_SOLI_PEN.Equals(historiaLinDetParam.NUM_SOLI_PEN) || string.IsNullOrEmpty(historiaLinDetParam.NUM_SOLI_PEN))
+                                       //(Convert.ToDateTime(a.fe))
                                    )
                                 .Count();
                         var query = db.HistorialCargaArchivo_LinDets.OrderBy(a=>a.IdHistorialCargaArchivoLinDet)
