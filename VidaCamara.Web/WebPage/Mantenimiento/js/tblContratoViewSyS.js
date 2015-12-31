@@ -3,7 +3,6 @@ var meses = new Array("-", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"
 
 $(document).ready(function () {
     var tablacontrato = $("#tblContratoViewSyS").length;
-    $("#ctl00_ContentPlaceHolder1_ddl_estado_sys").val("R");
     limpiarContrato();
     $("section").delegate("#ctl00_ContentPlaceHolder1_btnNuevo", "click", function (ev) {
         ev.preventDefault();
@@ -25,7 +24,7 @@ $(document).ready(function () {
             fields: {
                 _ide_Contrato: { key: true, list: false },
                 _nro_Contrato: { title: 'N°_Contrato' },
-                _cla_Contrato: { title: 'Clase_de_Contrato ' },
+                _cla_Contrato: { title: 'Clase_de_Contrato', list: false },
                 _nro_empresa: { title: 'Nro_empresas ' },
                 _fec_Ini_Vig: { title: 'Inicio_Vigencia', displayFormat: 'dd/mm/yy', type: 'date'},
                 _fec_Fin_Vig: { title: 'Fin_Vigencia', displayFormat: 'dd/mm/yy', type: 'date' },
@@ -70,7 +69,7 @@ $(document).ready(function () {
         $("#ctl00_ContentPlaceHolder1_txt_nrocont_sys").val("");
         $("#ctl00_ContentPlaceHolder1_txtFechaFin_sys").val("");
         $("#ctl00_ContentPlaceHolder1_txt_ide_contrato_sis").val("0");
-        $("#ctl00_ContentPlaceHolder1_ddl_estado_sys").val("0");
+        $("#ctl00_ContentPlaceHolder1_ddl_estado_sys").val("A");
         $("#ctl00_ContentPlaceHolder1_ddl_clase_contrato_sys").val("0");
     }
     //funcion mesagw box

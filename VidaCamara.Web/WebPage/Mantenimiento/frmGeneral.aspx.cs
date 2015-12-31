@@ -11,10 +11,14 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
 {
     public partial class General : System.Web.UI.Page
     {
+        #region VARIABLES
         static int total;
         static String[] mes = { "-", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
         static int totalContrato;
         bValidarAcceso accesso = new bValidarAcceso();
+        static int numero_empresa = 0;
+        #endregion VARIABLES
+        #region EVENTOS
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["pagina"] = "OTROS";
@@ -54,17 +58,16 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
 
                 var list = new bTablaVC().getConceptoByTipo("69");
                 ddl_clasecontrato_c.DataSource = list.FindAll(o => o._tipo.Trim().Equals("SBS"));
-                ddl_clase_contrato_sys.DataSource = list.FindAll(o => o._tipo.Trim().Equals("SIS"));
-                
                 ddl_clasecontrato_c.DataTextField = "_descripcion";
                 ddl_clasecontrato_c.DataValueField = "_codigo";
                 ddl_clasecontrato_c.DataBind();
                 ddl_clasecontrato_c.Items.Insert(0, new ListItem("Seleccione ----", "0"));
 
-                ddl_clase_contrato_sys.DataTextField = "_descripcion";
-                ddl_clase_contrato_sys.DataValueField = "_codigo";
-                ddl_clase_contrato_sys.DataBind();
-                ddl_clase_contrato_sys.Items.Insert(0, new ListItem("Seleccione ----", "0"));
+                //ddl_clase_contrato_sys.DataSource = list.FindAll(o => o._tipo.Trim().Equals("SIS"));
+                //ddl_clase_contrato_sys.DataTextField = "_descripcion";
+                //ddl_clase_contrato_sys.DataValueField = "_codigo";
+                //ddl_clase_contrato_sys.DataBind();
+                //ddl_clase_contrato_sys.Items.Insert(0, new ListItem("Seleccione ----", "0"));
             }
         }
 
@@ -158,6 +161,25 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             else if (tab == 4)
                 setInsertarActualizarContratoSisDetalle();
         }
+
+        //botton de borrar
+        protected void btn_borrar_Click(object sender, ImageClickEventArgs e)
+        {
+            int tab = Convert.ToInt16(menuTabs.SelectedValue);
+            if (tab == 0)
+                MessageBox("Formulario no Borrable");
+            else if (tab == 1)
+                SetEliminarParamentro("CONTRATO", txt_idContrato_c.Value);
+            else if (tab == 2)
+                SetEliminarParamentro("CONTRATO_DETALLE", txt_idContratoDetalle_c.Value);
+            else if (tab == 3)
+                SetEliminarParamentro("CONTRATO_SYS", txt_ide_contrato_sis.Value);
+            else if (tab == 4)
+                SetEliminarParamentro("CONTRATO_SIS_DETALLE", txt_ide_contrato_sis_det.Value);
+
+        }
+        #endregion EVENTOS
+        #region METODOS
         private void setInsertarActualizarContratoSisDetalle()
         {
             try
@@ -177,6 +199,21 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 };
                     
                 if (ContratoSisDetalle.IDE_CONTRATO_DET == 0) {
+                    //validar el numero maximo de empresas permitido
+                    
+                    if (validaNumeroMaximoEmpresa(ContratoSisDetalle) == 1) {
+                        MessageBox("El número de máximo empresas CSV es de "+numero_empresa.ToString());
+                        return;
+                    }
+                    //CREAR UN METODOD  RECIBE COMO PARAMETRO LA ENTIDAD DE CONTRATOSISDETALLE
+                    //navegar al metodo con f12
+                    //aki lo evaluasa si viene mayor a 0 , quere decir que si encontrato si no pasa.
+                    if (verificarExisteCompaniaSeguro(ContratoSisDetalle) > 0)
+                    {
+                        MessageBox("La CSV " + ddl_compania_seg_vida.SelectedItem.Text + " ya esta en la lista : ");
+                        return;
+                    }
+                    //listo termina la valadacion
                     if (verificarSiExisteNroOrden(ContratoSisDetalle) == 1)
                     {
                         MessageBox("El numero de orden ya existe.");
@@ -203,6 +240,37 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             }
         }
 
+        private int validaNumeroMaximoEmpresa(CONTRATO_SIS_DET ContratoSisDetalle)
+        {
+            var filterOptions = new Object[3] { 0, 10000, "IDE_CONTRATO ASC" };
+            var contratosis = new CONTRATO_SYS()
+            {
+                IDE_CONTRATO = Convert.ToInt32(ContratoSisDetalle.IDE_CONTRATO)
+            };
+            var nContratoSis = new nContratoSis().listContratoByID(contratosis);
+            var nContratoDetalle = new nContratoSisDetalle().getlistContratoDetalle(ContratoSisDetalle, filterOptions, out total);
+            numero_empresa = Convert.ToInt32(nContratoSis.NRO_EMPRESAS);
+            if (nContratoDetalle.Count == nContratoSis.NRO_EMPRESAS)
+                return 1;
+            else
+                return 0;
+        }
+
+        private int verificarExisteCompaniaSeguro(CONTRATO_SIS_DET ContratoSisDetalle)
+        {
+            //seteas los filtros del procedure
+            var filterOptions = new Object[3] { 0, 10000, "IDE_CONTRATO ASC" };
+            //llamas la clase de negocio contrato sisdetalle donde se encuentra el metodo de listar
+            var listCompania = new nContratoSisDetalle().getlistContratoDetalle(ContratoSisDetalle, filterOptions, out total);
+            // el metodo de listar trae todas los registros de contrato sis detalle de un  contrato seleccionado
+            //declaras tu variable para buscar si el codigo de compania ya existe
+            var existeCompania = listCompania.FindAll(a=>a.COD_CSV == ContratoSisDetalle.COD_CSV);
+            //esta variable va filtrar en esa lista atodos los registros cuyo COD_CSV coniceda con la que se selecciono en la panatalla
+            //finalmente evaluas 
+            return existeCompania.Count;
+
+        }
+
         private decimal verificarSumaTotalPorcentaje(CONTRATO_SIS_DET contratoSisDetalle)
         {
             var filterOptions = new Object[3] { 0, 10000, "IDE_CONTRATO ASC" };
@@ -226,22 +294,6 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 return 0;
         }
 
-        //botton de borrar
-        protected void btn_borrar_Click(object sender, ImageClickEventArgs e)
-        {
-            int tab = Convert.ToInt16(menuTabs.SelectedValue);
-            if (tab == 0)
-                MessageBox("Formulario no Borrable");
-            else if (tab == 1)
-                SetEliminarParamentro("CONTRATO", txt_idContrato_c.Value);
-            else if (tab == 2)
-                SetEliminarParamentro("CONTRATO_DETALLE", txt_idContratoDetalle_c.Value);
-            else if (tab == 3)
-                SetEliminarParamentro("CONTRATO_SYS", txt_ide_contrato_sis.Value);
-            else if (tab == 4)
-                SetEliminarParamentro("CONTRATO_SIS_DETALLE", txt_ide_contrato_sis_det.Value);
-
-        }
         //#region funciones
         private void SetInsertarGeneral() {
             try
@@ -542,9 +594,6 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
         {
             Page.ClientScript.RegisterStartupScript(GetType(), "msgbox", "$('<div style=\"font-size:14px;text-align:center;\">" + text.Replace("'","").Replace(Environment.NewLine,"") + "</div>').dialog({title:'Error',modal:true,width:400,height:160,buttons: [{id: 'aceptar',text: 'Aceptar',icons: { primary: 'ui-icon-circle-check' },click: function () {$(this).dialog('close');}}]})", true);
         }
-
-        #region "DRIVERA Ini"
-
         //LLENADO DE CONTRATO_SYS
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static object ContratoSysList(int jtStartIndex, int jtPageSize, string jtSorting, String WhereBy)
@@ -572,7 +621,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 c._id_Empresa = Convert.ToInt32(Session["idempresa"]);
                 c._ide_Contrato = Convert.ToInt32(txt_ide_contrato_sis.Value);
                 c._nro_Contrato = txt_nrocont_sys.Text;
-                c._cla_Contrato = ddl_clase_contrato_sys.SelectedItem.Value;
+                c._cla_Contrato = string.Empty;
                 c._fec_Ini_Vig = DateTime.Parse(txtFechaInicio_sys.Text);
                 c._fec_Fin_Vig = DateTime.Parse(txtFechaFin_sys.Text);
                 c._des_Contrato = txtdescripcion_sys.Text;
@@ -586,6 +635,26 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                     MessageBox("La fecha de inicio no debe ser mayor al de fin");
                     return;
                 }
+
+                if (c._nro_empresa < 4 || c._nro_empresa > 7)
+                {
+                    MessageBox("El rango de N° de empresas por contrato puede ser entre 4 y 7");
+                    return;
+                }
+
+                //valida rango de fecha para un contrato 
+                var contratoSis = new CONTRATO_SYS() {
+                    FEC_INI_VIG = DateTime.Parse(txtFechaInicio_sys.Text),
+                    FEC_FIN_VIG = DateTime.Parse(txtFechaFin_sys.Text)
+                };
+                var siExisteFecha = new nContratoSis().existeFecha(contratoSis);
+
+                if (siExisteFecha > 0)
+                {
+                    MessageBox("La fecha ingresada se sobrepone al rango de fechas de otro contrato.");
+                    return;
+                }
+
 
                 bContratoSys control = new bContratoSys();
                 if (c._ide_Contrato == 0)
@@ -625,6 +694,6 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             }
         }
 
-        #endregion
+        #endregion "METODOS"
     }
 }

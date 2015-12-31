@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="../../../Resources/CSS/Progressbar.css" />
 <script src="/WebPage/ModuloDIS/Operaciones/js/CargaDatos.js"></script>
 <script src="/WebPage/ModuloDIS/Operaciones/js/CargaRsp.js"></script>
+<script src="/WebPage/ModuloDIS/Operaciones/js/frmReglaArchivo.js"></script>
 
 <script type="text/javascript">
 
@@ -102,18 +103,23 @@
                 <label class="input_right_L" for="ddl_tipinfo_d">Tipo de Línea (*)</label>
                 <asp:DropDownList runat="server" ID="ddl_tipo_linea" CssClass="input_to" Height="25px" Width="40%" AutoPostBack="true" OnSelectedIndexChanged="ddl_tipo_linea_SelectedIndexChanged"></asp:DropDownList>
                 
+
                 <div class="iframe" id="informacion">
-                    <asp:GridView runat="server" ID="gvReglaArchivo" CssClass="table table-hover" Width="100%" HorizontalAlign="center" AutoGenerateColumns="false" Font-Size="11px">
+                    <div id="tblReglaArchivo">
+
+                    </div>
+
+                    <!--<asp:GridView runat="server" ID="gvReglaArchivo" CssClass="table table-hover" Width="100%" HorizontalAlign="center" AutoGenerateColumns="false" Font-Size="11px">
                         <Columns>
+                            <asp:BoundField DataField="NombreCampo" HeaderText="Nombre del campo"/>
                             <asp:BoundField DataField="InformacionCampo" HeaderText="Información Campo"/>
                             <asp:BoundField DataField="TipoLinea" HeaderText="Tipo de linea"/>
                             <asp:BoundField DataField="CaracterInicial" HeaderText="Posición inicial"/>
                             <asp:BoundField DataField="LargoCampo" HeaderText="Largo del Campo"/>
                             <asp:BoundField DataField="TipoCampo" HeaderText="Formato"/>
                             <asp:BoundField DataField="FormatoContenido" HeaderText="Formato de Contenido"/>
-                            <asp:BoundField DataField="ReglaValidacion" HeaderText="Validaciones del contenido"/>
                         </Columns>
-                    </asp:GridView>
+                    </asp:GridView>-->
                 </div>
             </asp:View>
         </asp:MultiView>

@@ -200,19 +200,19 @@
     <Content Include="Scripts\jtable\localization\jquery.jtable.ru.js" />
     <Content Include="Scripts\jtable\localization\jquery.jtable.se.js" />
     <Content Include="Scripts\jtable\themes\metro\green\list_metro.png" />
-    <Content Include="sql\modelo1.sql" />
-    <Content Include="sql\[SP_SEL_MODELO2].sql" />
     <Content Include="WebPage\Mantenimiento\js\parametro-validacion.js" />
     <Content Include="WebPage\Mantenimiento\js\tblContratoSisDetalle.js" />
     <Content Include="WebPage\Mantenimiento\js\tblContratoViewSyS.js" />
     <Content Include="WebPage\ModuloDIS\Consultas\frmSegConsulta.aspx" />
     <Content Include="WebPage\ModuloDIS\Consultas\frmSegDescarga.aspx" />
     <Content Include="WebPage\ModuloDIS\Consultas\frmSegLogAdmin.aspx" />
+    <Content Include="WebPage\ModuloDIS\Consultas\script\frmSeqConsulta.js" />
     <Content Include="WebPage\ModuloDIS\Operaciones\frmCargaAprobacion.aspx" />
     <Content Include="WebPage\ModuloDIS\Operaciones\frmCargaDatos.aspx" />
     <Content Include="WebPage\ModuloDIS\Operaciones\frmInterfaceContableSIS.aspx" />
     <Content Include="WebPage\ModuloDIS\Operaciones\frmTelebankig.aspx" />
     <Content Include="WebPage\ModuloDIS\Operaciones\js\CargaDatos.js" />
+    <Content Include="WebPage\ModuloDIS\Operaciones\js\frmReglaArchivo.js" />
     <Content Include="WebPage\ModuloSBS\Consultas\js\frmInformes.js" />
     <Content Include="WebPage\ModuloSBS\Consultas\js\tblComprobante.js" />
     <Content Include="WebPage\ModuloSBS\Consultas\js\tblOperacion.js" />
@@ -247,8 +247,6 @@
     <Content Include="Resources\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Resources\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="packages.config" />
-    <Content Include="Db\bd_vcamara_18122015_223.rar" />
-    <Content Include="Db\bd_vcamara_19122015_230.rar" />
     <None Include="Properties\PublishProfiles\camara.pubxml" />
     <None Include="Properties\PublishProfiles\DAVID.pubxml" />
     <None Include="Properties\PublishProfiles\vcamara.pubxml" />
@@ -492,7 +490,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Db\" />
     <Folder Include="Scripts\Temp\Archivos\" />
+    <Folder Include="sql\" />
     <Folder Include="Temp\Archivos\" />
     <Folder Include="WebPage\ModuloDIS\Operaciones\Service\" />
   </ItemGroup>

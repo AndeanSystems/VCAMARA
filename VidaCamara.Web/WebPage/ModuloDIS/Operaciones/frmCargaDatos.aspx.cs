@@ -150,6 +150,12 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         {
             setCargarReglaArchivo();
         }
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static object listReglaArchivo(int jtStartIndex, int jtPageSize, string jtSorting, ReglaArchivo regla)
+        {
+            var negocio = new nReglaArchivo();
+            return new { Result = "OK", Records = negocio.getListReglaArchivo(regla, jtStartIndex, jtPageSize,out total), TotalRecordCount = 100 };
+        }
         #endregion metodos control
 
         #region metodos usuario
@@ -172,14 +178,14 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         {
             txt_nombre_archivo_inf.Text = nombreArchivo;
             txt_tipo_archivo_inf.Text = ddl_tipo_archivo.SelectedItem.Text;
-            var regla = new ReglaArchivo()
-            {
-                Archivo = ddl_tipo_archivo.SelectedItem.Value,
-                TipoLinea = ddl_tipo_linea.SelectedItem.Value,
-            };
-            var negocio = new nReglaArchivo();
-            gvReglaArchivo.DataSource = negocio.getListReglaArchivo(regla);
-            gvReglaArchivo.DataBind();
+            //var regla = new ReglaArchivo()
+            //{
+            //    Archivo = ddl_tipo_archivo.SelectedItem.Value,
+            //    TipoLinea = ddl_tipo_linea.SelectedItem.Value,
+            //};
+            //var negocio = new nReglaArchivo();
+            //gvReglaArchivo.DataSource = negocio.getListReglaArchivo(regla);
+            //gvReglaArchivo.DataBind();
         }
 
         private void setMostrarRegistroCargados(DataTable dataTable)

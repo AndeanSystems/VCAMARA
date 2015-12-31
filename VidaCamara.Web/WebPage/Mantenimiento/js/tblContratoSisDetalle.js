@@ -27,6 +27,13 @@ $(document).ready(function () {
             $(this).val("");
         }
     });
+    //VALIDAR QUE EL NUMERO DE EMPRESAS ESTE ENTRE 4 Y 7
+    $("section").delegate("#ctl00_ContentPlaceHolder1_txt_numero_empresa", "keyup", function (ev) {
+        if (parseInt($(this).val()) < 4 || parseInt($(this).val()) > 7) {
+            MessageBox("El rango de N° de empresas por contrato puede ser entre 4 y 7");
+            $(this).val("");
+        }
+    });
     //CARGAR GRILLA POR SI EL CONTRATO TIENE ITEM SELECCIONADO
     if (parseInt($("#ctl00_ContentPlaceHolder1_ddl_contrato_sis").val()) != 0) {
         getlistContratoSisDetalle($("#ctl00_ContentPlaceHolder1_ddl_contrato_sis").val());
@@ -54,7 +61,7 @@ $(document).ready(function () {
                 COD_CSV: { title: 'Cia. Seguros Vida' },
                 PRC_PARTICIACION: { title: '% Participación' },
                 NRO_ORDEN: { title: 'Orden (*)' },
-                ESTADO: { title: 'Estado' },
+                ESTADO: { title: 'Estado', list: false },
                 USU_REG: { title: 'Usu. Registro' },
                 FEC_REG: { title: 'Fec. Registro', displayFormat: 'dd/mm/yy', type: 'date' },
             },

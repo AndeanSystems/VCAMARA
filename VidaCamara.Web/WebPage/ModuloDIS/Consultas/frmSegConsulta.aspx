@@ -16,7 +16,7 @@
         <asp:MultiView id="multiTabs" ActiveViewIndex="0" Runat="server">
             <!--VISTA OPERACIONES-->
             <asp:View ID="view1" runat="server">
-                <label class="label_to" for="ddl_contrato_o">Contrato (*)</label>
+                <label class="label_to" for="ddl_contrato_o">Contrato SIS(*)</label>
                 <asp:DropDownList CssClass="input_to" ID="ddl_contrato" runat="server" Height="25px" Width="77%"></asp:DropDownList>
 
                 <label class="label_to" for="ddl_tipo_archivo">Tipo de Archivo </label>
