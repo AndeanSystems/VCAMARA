@@ -14,5 +14,10 @@ namespace VidaCamara.DIS.Negocio
         public CONTRATO_SYS listContratoByID(CONTRATO_SYS contrato) {
             return new dContratoSis().listContratoByID(contrato);
         }
+
+        public int existeFecha(CONTRATO_SYS contratoSis)
+        {
+            return new dContratoSis().existeFecha(contratoSis);
+        }
     }
 }

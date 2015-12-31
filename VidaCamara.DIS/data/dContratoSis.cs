@@ -1,6 +1,5 @@
-﻿using VidaCamara.DIS.Modelo;
-using System.Linq;
-
+﻿using System.Linq;
+using VidaCamara.DIS.Modelo;
 namespace VidaCamara.DIS.data
 {
     public class dContratoSis
@@ -8,13 +7,30 @@ namespace VidaCamara.DIS.data
         //INVOCAR STORE PROCEDURE
         //var date1 = DateTime.Now;
         //var date2 = DateTime.Now;
-        //db.pa_Valida_RangoFechaXContrato(date1, date2);
-        public CONTRATO_SYS listContratoByID(CONTRATO_SYS contrato) {
+        //
+        public CONTRATO_SYS listContratoByID(CONTRATO_SYS contrato)
+        {
             try
             {
                 using (var db = new DISEntities())
                 {
                     return db.CONTRATO_SYSs.OrderBy(a => a.IDE_CONTRATO).Where(a => a.IDE_CONTRATO == contrato.IDE_CONTRATO).FirstOrDefault();
+                }
+            }
+            catch (System.Exception ex)
+            {
+                
+                throw;
+            }
+        }
+
+        public int existeFecha(CONTRATO_SYS contratoSis)
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    return int.Parse(db.pa_Valida_RangoFechaXContrato(contratoSis.FEC_INI_VIG, contratoSis.FEC_FIN_VIG).FirstOrDefault().Value.ToString());
                 }
             }
             catch (System.Exception ex)
