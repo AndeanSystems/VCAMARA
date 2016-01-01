@@ -14,9 +14,10 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         static int total;
         readonly bValidarAcceso _accesso = new bValidarAcceso();
         static string nombreArchivo = string.Empty;
+        static string tipoArchivo = string.Empty;
         #endregion variables
 
-        #region metodos control
+        #region eventos control
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["pagina"] = "OTROS";
@@ -59,6 +60,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 cargaLogica.CargarArchivo(Convert.ToInt32(ddl_conrato1.SelectedValue));
                 //david choque 27 12 2015
                 nombreArchivo = fileUpload.FileName.ToString().ToUpper();
+                tipoArchivo = ddl_tipo_archivo.SelectedItem.Value;
                 setCargarReglaArchivo();
                 //fin david choque 27 12 2015
 
@@ -146,17 +148,13 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 MessageBox("ERROR =>" + s.Message.Replace("'", "-"));
             }
         }
-        protected void ddl_tipo_linea_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            setCargarReglaArchivo();
-        }
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static object listReglaArchivo(int jtStartIndex, int jtPageSize, string jtSorting, ReglaArchivo regla)
         {
             var negocio = new nReglaArchivo();
-            return new { Result = "OK", Records = negocio.getListReglaArchivo(regla, jtStartIndex, jtPageSize,out total), TotalRecordCount = 100 };
+            return new { Result = "OK", Records = negocio.getListReglaArchivo(regla, jtStartIndex, jtPageSize,out total), TotalRecordCount = total };
         }
-        #endregion metodos control
+        #endregion eventos control
 
         #region metodos usuario
         private string setEnviarCorreo(CargaLogica cargaLogica)
@@ -178,14 +176,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         {
             txt_nombre_archivo_inf.Text = nombreArchivo;
             txt_tipo_archivo_inf.Text = ddl_tipo_archivo.SelectedItem.Text;
-            //var regla = new ReglaArchivo()
-            //{
-            //    Archivo = ddl_tipo_archivo.SelectedItem.Value,
-            //    TipoLinea = ddl_tipo_linea.SelectedItem.Value,
-            //};
-            //var negocio = new nReglaArchivo();
-            //gvReglaArchivo.DataSource = negocio.getListReglaArchivo(regla);
-            //gvReglaArchivo.DataBind();
+            hdf_tipo_archivo.Value = tipoArchivo;
         }
 
         private void setMostrarRegistroCargados(DataTable dataTable)

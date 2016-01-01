@@ -101,25 +101,11 @@
                 <asp:Label ID="txt_tipo_archivo_inf" Text="_" runat="server"  CssClass="input_to"/>
 
                 <label class="input_right_L" for="ddl_tipinfo_d">Tipo de Línea (*)</label>
-                <asp:DropDownList runat="server" ID="ddl_tipo_linea" CssClass="input_to" Height="25px" Width="40%" AutoPostBack="true" OnSelectedIndexChanged="ddl_tipo_linea_SelectedIndexChanged"></asp:DropDownList>
+                <asp:DropDownList runat="server" ID="ddl_tipo_linea" CssClass="input_to" Height="25px" Width="40%"></asp:DropDownList>
                 
-
+                <asp:HiddenField ID="hdf_tipo_archivo" runat="server" Value="0"/>
                 <div class="iframe" id="informacion">
-                    <div id="tblReglaArchivo">
-
-                    </div>
-
-                    <!--<asp:GridView runat="server" ID="gvReglaArchivo" CssClass="table table-hover" Width="100%" HorizontalAlign="center" AutoGenerateColumns="false" Font-Size="11px">
-                        <Columns>
-                            <asp:BoundField DataField="NombreCampo" HeaderText="Nombre del campo"/>
-                            <asp:BoundField DataField="InformacionCampo" HeaderText="Información Campo"/>
-                            <asp:BoundField DataField="TipoLinea" HeaderText="Tipo de linea"/>
-                            <asp:BoundField DataField="CaracterInicial" HeaderText="Posición inicial"/>
-                            <asp:BoundField DataField="LargoCampo" HeaderText="Largo del Campo"/>
-                            <asp:BoundField DataField="TipoCampo" HeaderText="Formato"/>
-                            <asp:BoundField DataField="FormatoContenido" HeaderText="Formato de Contenido"/>
-                        </Columns>
-                    </asp:GridView>-->
+                    <div id="tblReglaArchivo"></div>
                 </div>
             </asp:View>
         </asp:MultiView>
