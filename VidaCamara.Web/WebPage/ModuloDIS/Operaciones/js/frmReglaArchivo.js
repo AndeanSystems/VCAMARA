@@ -10,11 +10,19 @@
         FormatoContenido: { title: 'FormatoContenido' }
     }
     var reglaArchivo = function () {
-        this.TipoLinea = "0",
-        this.Archivo = "LIQPPP"
+        this.TipoLinea = $("#ctl00_ContentPlaceHolder1_ddl_tipo_linea").val(),
+        this.Archivo = $("#ctl00_ContentPlaceHolder1_hdf_tipo_archivo").val()
     };
-    console.log(fields);
-    listReglaArchivo(new reglaArchivo());
+    //verificar si nos encontramos en la pestaña de información
+    const existePestanaRegla = $("#tblReglaArchivo").length;
+    const tipoArchivo = $("#ctl00_ContentPlaceHolder1_hdf_tipo_archivo").val();
+    if (existePestanaRegla == 1 && parseInt(tipoArchivo) != 0)
+        listReglaArchivo(new reglaArchivo());
+    //ejecutar recarga de la grilla por tipo de archivo
+    $(".tabBody").delegate("#ctl00_ContentPlaceHolder1_ddl_tipo_linea", "change", function () {
+        if (existePestanaRegla == 1 && parseInt(tipoArchivo) != 0)
+            listReglaArchivo(new reglaArchivo());
+    });
     function listReglaArchivo(regla) {
         $('#tblReglaArchivo').jtable({
             tableId: 'reglaArchivoID',
