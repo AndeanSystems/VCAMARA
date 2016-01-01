@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VidaCamara.DIS.Modelo;
 
 namespace VidaCamara.DIS.data
@@ -18,8 +16,8 @@ namespace VidaCamara.DIS.data
                 {
                     //asignar valor al parametro total
                     //doc eso es todod - que tan t
-                    total = db.ReglaArchivos.Where(a => a.Archivo.Equals(regla.Archivo) && (a.TipoLinea.Equals(regla.TipoLinea) || regla.TipoLinea.Equals("0"))).Count();
-                    var query = db.ReglaArchivos.OrderBy(a=>a.CaracterInicial).Where(a=>a.Archivo.Equals(regla.Archivo) && (a.TipoLinea.Equals(regla.TipoLinea) || regla.TipoLinea.Equals("0"))).Skip(jtStartIndex).Take(jtPageSize).ToList();
+                    total = db.ReglaArchivos.Where(a => a.Archivo.Equals(regla.Archivo) && (a.TipoLinea.Equals(regla.TipoLinea) || regla.TipoLinea.Equals("0")) && a.vigente == 1).Count();
+                    var query = db.ReglaArchivos.OrderBy(a=>a.CaracterInicial).Where(a=>a.Archivo.Equals(regla.Archivo) && (a.TipoLinea.Equals(regla.TipoLinea) || regla.TipoLinea.Equals("0")) && a.vigente == 1).Skip(jtStartIndex).Take(jtPageSize).ToList();
                     foreach (var item in query)
                     {
                         var reglaArchivo = new ReglaArchivo()
@@ -32,7 +30,7 @@ namespace VidaCamara.DIS.data
                             LargoCampo = item.LargoCampo,
                             TipoCampo = item.TipoCampo,
                             FormatoContenido = item.FormatoContenido,
-
+                            TituloColumna = item.TituloColumna
                         };
                         listReglaArchivo.Add(reglaArchivo);
                     }
