@@ -9,7 +9,7 @@
         <div class="btn_crud">
             <asp:HyperLink ID="HyperLink1" CssClass="btn_crud_button"  ToolTip="Inicio" runat="server" ImageUrl="~/Resources/Imagenes/u158_normal.png" NavigateUrl="~/Inicio"></asp:HyperLink>
             <asp:ImageButton  CssClass="btn_crud_button" ID="btn_exportar" runat="server" ToolTip="Exportar" ImageUrl="~/Resources/Imagenes/u123_normal.png"/>
-            <asp:ImageButton  CssClass="btn_crud_button" ID="btn_consultar" runat="server" ToolTip="Buscar" ImageUrl="~/Resources/Imagenes/u154_normal.png" />
+            <asp:ImageButton  CssClass="btn_crud_button" ID="btn_consultar" runat="server" ToolTip="Buscar" ImageUrl="~/Resources/Imagenes/u154_normal.png" OnClick="btn_consultar_Click1" />
         </div>
     <!--Cuerpo de los tabs-->
     <div class="tabBody" id="frmOperacion">
