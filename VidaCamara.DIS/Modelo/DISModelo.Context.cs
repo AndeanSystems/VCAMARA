@@ -703,5 +703,54 @@ namespace VidaCamara.DIS.Modelo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("pa_Valida_RangoFechaXContrato", date1Parameter, date2Parameter);
         }
+    
+        public virtual ObjectResult<pa_sel_historiaCargaArchivoLinDet_Result> pa_sel_historiaCargaArchivoLinDet(string nombreTipoArchivo, Nullable<int> iDE_CONTRATO, string cOD_AFP, string cOD_CUSP, string pRI_NOMB_PEN, string aPE_MATE_PEN, string nUM_DOCU_PEN, string nUM_SOLI_PEN, string tIP_MONE, Nullable<System.DateTime> fEC_PAGO_INI, Nullable<System.DateTime> fEC_PAGO_FIN)
+        {
+            var nombreTipoArchivoParameter = nombreTipoArchivo != null ?
+                new ObjectParameter("NombreTipoArchivo", nombreTipoArchivo) :
+                new ObjectParameter("NombreTipoArchivo", typeof(string));
+    
+            var iDE_CONTRATOParameter = iDE_CONTRATO.HasValue ?
+                new ObjectParameter("IDE_CONTRATO", iDE_CONTRATO) :
+                new ObjectParameter("IDE_CONTRATO", typeof(int));
+    
+            var cOD_AFPParameter = cOD_AFP != null ?
+                new ObjectParameter("COD_AFP", cOD_AFP) :
+                new ObjectParameter("COD_AFP", typeof(string));
+    
+            var cOD_CUSPParameter = cOD_CUSP != null ?
+                new ObjectParameter("COD_CUSP", cOD_CUSP) :
+                new ObjectParameter("COD_CUSP", typeof(string));
+    
+            var pRI_NOMB_PENParameter = pRI_NOMB_PEN != null ?
+                new ObjectParameter("PRI_NOMB_PEN", pRI_NOMB_PEN) :
+                new ObjectParameter("PRI_NOMB_PEN", typeof(string));
+    
+            var aPE_MATE_PENParameter = aPE_MATE_PEN != null ?
+                new ObjectParameter("APE_MATE_PEN", aPE_MATE_PEN) :
+                new ObjectParameter("APE_MATE_PEN", typeof(string));
+    
+            var nUM_DOCU_PENParameter = nUM_DOCU_PEN != null ?
+                new ObjectParameter("NUM_DOCU_PEN", nUM_DOCU_PEN) :
+                new ObjectParameter("NUM_DOCU_PEN", typeof(string));
+    
+            var nUM_SOLI_PENParameter = nUM_SOLI_PEN != null ?
+                new ObjectParameter("NUM_SOLI_PEN", nUM_SOLI_PEN) :
+                new ObjectParameter("NUM_SOLI_PEN", typeof(string));
+    
+            var tIP_MONEParameter = tIP_MONE != null ?
+                new ObjectParameter("TIP_MONE", tIP_MONE) :
+                new ObjectParameter("TIP_MONE", typeof(string));
+    
+            var fEC_PAGO_INIParameter = fEC_PAGO_INI.HasValue ?
+                new ObjectParameter("FEC_PAGO_INI", fEC_PAGO_INI) :
+                new ObjectParameter("FEC_PAGO_INI", typeof(System.DateTime));
+    
+            var fEC_PAGO_FINParameter = fEC_PAGO_FIN.HasValue ?
+                new ObjectParameter("FEC_PAGO_FIN", fEC_PAGO_FIN) :
+                new ObjectParameter("FEC_PAGO_FIN", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_historiaCargaArchivoLinDet_Result>("pa_sel_historiaCargaArchivoLinDet", nombreTipoArchivoParameter, iDE_CONTRATOParameter, cOD_AFPParameter, cOD_CUSPParameter, pRI_NOMB_PENParameter, aPE_MATE_PENParameter, nUM_DOCU_PENParameter, nUM_SOLI_PENParameter, tIP_MONEParameter, fEC_PAGO_INIParameter, fEC_PAGO_FINParameter);
+        }
     }
 }
