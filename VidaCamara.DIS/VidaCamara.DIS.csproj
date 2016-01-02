@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="data\dReglaArchivo.cs" />
     <Compile Include="data\HistorialCargaArchivo.cs" />
+    <Compile Include="Helpers\gridCreator.cs" />
     <Compile Include="Helpers\txtWriter.cs" />
     <Compile Include="Helpers\ValidaRegla.cs" />
     <Compile Include="Modelo\AFP.cs">
@@ -221,6 +222,9 @@
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\pa_rpt_archivocarga_fecha_Result.cs">
+      <DependentUpon>DISModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\pa_sel_historiaCargaArchivoLinDet_Result.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\Persona.cs">
