@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using VidaCamara.DIS.Modelo;
@@ -19,8 +20,8 @@ namespace VidaCamara.DIS.data
                     var nombreTipoArchivo = filterParam[0].ToString();
 
                     var result = db.pa_sel_historiaCargaArchivoLinDet(nombreTipoArchivo, cab.IDE_CONTRATO, det.COD_AFP, det.COD_CUSP,
-                                det.PRI_NOMB_PEN, det.APE_MATE_PEN, det.NUM_DOCU_PEN, det.NUM_SOLI_PEN, det.TIP_MONE, fecha_ini, fecha_ini);
-                    total = 100;
+                                det.PRI_NOMB_PEN, det.APE_MATE_PEN, det.NUM_DOCU_PEN, det.NUM_SOLI_PEN, det.TIP_MONE, fecha_ini, fecha_ini).ToList();
+                    total = result.Count;
                     //var tipoArchivo = db.TipoArchivos.Where(t => t.NombreTipoArchivo.Equals(nombreTipoArchivo)).FirstOrDefault();
                     ////contear total paginacion
                     //total = (from a in db.HistorialCargaArchivo_LinDets
@@ -64,7 +65,7 @@ namespace VidaCamara.DIS.data
                     //              //&& SqlFunctions.StringConvert((DateTime)a.FEC_PAGO) >= 20150916
                     //              //&& int.Parse(a.FEC_PAGO) <= 20151123
                     //              select a).OrderBy(a=>a.IdHistorialCargaArchivoLinDet).Skip(jtStartIndex).Take(jtPageSize).ToList();
-                    foreach (var item in result)
+                    foreach (var item in result.Skip(jtStartIndex).Take(jtPageSize).ToList())
                     {
                         var historiadet = new HistorialCargaArchivo_LinDet()
                         {
@@ -222,16 +223,6 @@ namespace VidaCamara.DIS.data
 
                 throw;
             }
-        }
-        public DateTime parseDateExact(string date)
-        {
-            DateTime parsedDate;
-            DateTime.TryParseExact(date,
-                  "yyyy-dd-MM",
-                  System.Globalization.CultureInfo.InvariantCulture,
-                  System.Globalization.DateTimeStyles.None,
-                  out parsedDate);
-            return parsedDate;
         }
     }
 }
