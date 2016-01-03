@@ -13,7 +13,7 @@ namespace VidaCamara.DIS.data
             {
                 using (var db = new DISEntities())
                 {
-                    return db.Archivos.Where(a => a.NombreArchivo.Substring(0,tamanoNombre).Equals(archivo.NombreArchivo) && a.Vigente == true).ToList();
+                    return db.Archivos.Where(a => a.NombreArchivo.Equals(archivo.NombreArchivo) && a.Vigente == true).ToList();
                 }
             }
             catch (Exception ex)

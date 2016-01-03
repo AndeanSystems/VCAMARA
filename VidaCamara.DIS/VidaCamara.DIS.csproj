@@ -42,19 +42,19 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\VidaCamara.Web\bin\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\VidaCamara.Web\Librerias\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
-      <HintPath>..\VidaCamara.Web\bin\NPOI.dll</HintPath>
+      <HintPath>..\VidaCamara.Web\Librerias\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OOXML">
-      <HintPath>..\VidaCamara.Web\bin\NPOI.OOXML.dll</HintPath>
+      <HintPath>..\VidaCamara.Web\Librerias\NPOI.OOXML.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>..\VidaCamara.Web\bin\NPOI.OpenXml4Net.dll</HintPath>
+      <HintPath>..\VidaCamara.Web\Librerias\NPOI.OpenXml4Net.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>..\VidaCamara.Web\bin\NPOI.OpenXmlFormats.dll</HintPath>
+      <HintPath>..\VidaCamara.Web\Librerias\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -74,6 +74,7 @@
     <Compile Include="data\dContratoSis.cs" />
     <Compile Include="data\dContrato_sis_detalle.cs" />
     <Compile Include="data\dLogOperacion.cs" />
+    <Compile Include="data\dNomina.cs" />
     <Compile Include="data\dPagoCargado.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -300,6 +301,7 @@
     <Compile Include="Negocio\nContratoSisDetalle.cs" />
     <Compile Include="Negocio\Correo.cs" />
     <Compile Include="Negocio\nLogOperacion.cs" />
+    <Compile Include="Negocio\nNomina.cs" />
     <Compile Include="Negocio\nReglaArchivo.cs" />
     <Compile Include="Negocio\Regla.cs" />
     <Compile Include="Negocio\SiniestroLogica.cs" />

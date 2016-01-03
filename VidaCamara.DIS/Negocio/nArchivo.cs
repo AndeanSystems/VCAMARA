@@ -14,7 +14,7 @@ namespace VidaCamara.DIS.Negocio
         public List<Archivo> listExisteArchivo(Archivo archivo)
         {
             string[] collectionArchivo = archivo.NombreArchivo.Split('_');
-            archivo.NombreArchivo = collectionArchivo[0] +"_"+ collectionArchivo[1] +"_"+ collectionArchivo[2]+"_" +collectionArchivo[3];
+            //archivo.NombreArchivo = collectionArchivo[0] + "_" + collectionArchivo[1] + "_" + collectionArchivo[2] + "_" + collectionArchivo[3];
             var tamanoNombre = archivo.NombreArchivo.Length;
             return new dArchivo().listExisteArchivo(archivo, tamanoNombre);
         }

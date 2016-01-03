@@ -240,7 +240,7 @@ namespace VidaCamara.DIS.Negocio
             }
             else
             {
-                Observacion = "ya está aprobado";
+                Observacion = "Ya está aprobado";
                 return Estado;
             }
             return 0;
@@ -254,7 +254,7 @@ namespace VidaCamara.DIS.Negocio
                 _lineaCabecera.ArchivoId = archivoId;
                 _lineaCabecera.USU_REG = System.Web.HttpContext.Current.Session["username"].ToString();
                 _lineaCabecera.FEC_REG = DateTime.Now;
-                _lineaCabecera.ESTADO = "A";
+                _lineaCabecera.ESTADO = "C";
                 _lineaCabecera.CumpleValidacion = exitoLinea;
                 _lineaCabecera.IDE_CONTRATO = contratoId;
 
