@@ -289,7 +289,9 @@ namespace VidaCamara.DIS.Negocio
                 PopulateType(nomina, propertyValues);
                 nomina.ArchivoId = archivoId;
                 nomina.Id_Empresa = 1;//observado
+                nomina.IDE_CONTRATO = contratoId;
 
+                //EVALUAR RETORNO
                 var resp = new nNomina().setGrabarNomina(nomina);
 
             }
