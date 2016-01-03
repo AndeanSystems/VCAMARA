@@ -50,12 +50,22 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
         protected void btn_consultar_Click1(object sender, ImageClickEventArgs e)
         {
             setLlenarEntiddes();
-            var action = "/WebPage/ModuloDIS/Consultas/frmSegConsulta.aspx/listHistoriaDetalle";
+            const string action = "/WebPage/ModuloDIS/Consultas/frmSegConsulta.aspx/listHistoriaDetalle";
             var regla = new ReglaArchivo() { Archivo = ddl_tipo_archivo.SelectedItem.Value, TipoLinea = "D" };
             var fields = new nReglaArchivo().getColumnGridByArchivo(regla).ToString();
             Page.ClientScript.RegisterStartupScript(GetType(), "Fields", fields, true);
             var grid = new gridCreator().getGrid("frmSeqConsulta", "4800", action, "TIP_REGI ASC").ToString();
             Page.ClientScript.RegisterStartupScript(GetType(), "Grid", grid, true);
+        }
+        protected void btn_exportar_Click(object sender, ImageClickEventArgs e)
+        {
+            setLlenarEntiddes();
+            var nombreArchivo = new nArchivoCargado().getDescargarHistoriaLinCab(cabecera, historiaLinDet, filterParam);
+            Response.Clear();
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment;filename="+ nombreArchivo);
+            Response.TransmitFile(nombreArchivo);
+            Response.End();
         }
         #endregion EVENTOS
         #region METODOS
@@ -70,9 +80,9 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
         }
         private void setLlenarEntiddes()
         {
-            //HISTORIALINQCAB
+            //HISTORIALINCAB
             cabecera.IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value);
-            //HISTORIALINQDET
+            //HISTORIALINDET
             historiaLinDet.COD_AFP = ddl_afp.SelectedItem.Value;
             historiaLinDet.TIP_MONE = ddl_moneda.SelectedItem.Value;
             historiaLinDet.COD_CUSP = txt_cod_cusp.Text;
