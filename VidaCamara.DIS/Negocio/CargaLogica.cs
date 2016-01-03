@@ -203,7 +203,7 @@ namespace VidaCamara.DIS.Negocio
                                 }
                             }
 
-                            GrabarFilaArchivo(caracterInicial, IdArchivo, indexLinea + 1, propertyValues, contratoId, exitoLinea);
+                            GrabarFilaArchivo(caracterInicial, IdArchivo, indexLinea + 1, propertyValues, contratoId, exitoLinea, tipoArchivo);
                         }
                         catch (Exception ex)
                         {
@@ -246,7 +246,7 @@ namespace VidaCamara.DIS.Negocio
             return 0;
         }
 
-        private void GrabarFilaArchivo(string tipoLinea, int archivoId, int nroLinea, Dictionary<string, object> propertyValues, int contratoId, int exitoLinea)
+        private void GrabarFilaArchivo(string tipoLinea, int archivoId, int nroLinea, Dictionary<string, object> propertyValues, int contratoId, int exitoLinea,string tipoArchivo)
         {
             if (tipoLinea == "C")
             {
@@ -282,6 +282,16 @@ namespace VidaCamara.DIS.Negocio
             {
                 GrabarLineaDetalles();
                 _lineaDetalles = new List<HistorialCargaArchivo_LinDet>();
+            }
+
+            if (tipoLinea == "*") {
+                var nomina = new NOMINA();
+                PopulateType(nomina, propertyValues);
+                nomina.ArchivoId = archivoId;
+                nomina.Id_Empresa = 1;//observado
+
+                var resp = new nNomina().setGrabarNomina(nomina);
+
             }
         }
 
@@ -624,6 +634,11 @@ namespace VidaCamara.DIS.Negocio
                                     System.Globalization.CultureInfo.InvariantCulture);
                                 prop.SetValue(obj, dateTimeValue, null);
                                 break;
+                            //ini 03 01 2016 david choque
+                            case TypeCode.Decimal:
+                                prop.SetValue(obj, Convert.ToDecimal(value), null);
+                                break;
+                            //fin 03 01 2016 david choque
                             default:
                                 prop.SetValue(obj, value, null);
                                 break;
