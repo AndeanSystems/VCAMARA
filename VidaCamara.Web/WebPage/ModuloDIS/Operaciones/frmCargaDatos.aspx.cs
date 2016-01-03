@@ -44,7 +44,14 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             {
                 System.Threading.Thread.Sleep(5000);
                 if (!fileUpload.HasFile) return;
-
+                //validar que el archivo seleccionado corresponde al mismo tipo de combo
+                nombreArchivo = fileUpload.FileName.ToString().ToUpper();
+                string[] nombreArchivoValido = nombreArchivo.Split('_');
+                if (!nombreArchivoValido[0].ToString().ToUpper().Equals(ddl_tipo_archivo.SelectedItem.Value.ToUpper()))
+                {
+                    MessageBox("El archivo seleccionado no corresponde al tipo eligido");
+                    return;
+                }
 
                 //david choque 27 12 2015
                 //aki se verificara si el archivo ya fue cargado con el mismo nombre
@@ -52,7 +59,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 var existe = new nArchivo().listExisteArchivo(archivo);
                 if (existe.Count > 0)
                 {
-                    MessageBox("Este archivo " + archivo.NombreArchivo + " ya fue cargado anteriormente. ");
+                    MessageBox("El archivo: " + archivo.NombreArchivo + " ya fue cargado. ");
                     return;
                 }
                 //fin david choque 27 12 2015
@@ -61,7 +68,6 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 var cargaLogica = new CargaLogica(fileName) { UsuarioModificacion = /*Session["usernameId"].ToString() */   "2"};
                 cargaLogica.CargarArchivo(Convert.ToInt32(ddl_conrato1.SelectedValue));
                 //david choque 27 12 2015
-                nombreArchivo = fileUpload.FileName.ToString().ToUpper();
                 tipoArchivo = ddl_tipo_archivo.SelectedItem.Value;
                 setCargarReglaArchivo();
                 //fin david choque 27 12 2015
@@ -76,7 +82,8 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                     txt_registro_observado.Text = cargaLogica.ContadorErrores.ToString();
                     if ((cargaLogica.MensageError != String.Empty))
                     {
-                        MessageBox(cargaLogica.MensageError.Replace(Environment.NewLine,""));
+                        //por revisar
+                        MessageBox(cargaLogica.MensageError==null?"La nómina se carga correctamente.":cargaLogica.MensageError.Replace(Environment.NewLine, ""));
                     }
                     else if ((cargaLogica.Observacion != String.Empty))
                     {
