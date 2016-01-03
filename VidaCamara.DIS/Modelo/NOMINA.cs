@@ -28,5 +28,8 @@ namespace VidaCamara.DIS.Modelo
         public Nullable<int> TIP_CTA { get; set; }
         public string CTA_BENE { get; set; }
         public string DET_TRAN { get; set; }
+        public int IDE_CONTRATO { get; set; }
+    
+        public virtual CONTRATO_SYS CONTRATO_SYS { get; set; }
     }
 }

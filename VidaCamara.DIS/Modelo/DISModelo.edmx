@@ -500,6 +500,7 @@ warning 6002: The table/view 'vcamara.dbo.EXACTUS_CABECERA' does not have a prim
           <Property Name="Id_Nomina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Empresa" Type="int" />
           <Property Name="ArchivoId" Type="int" />
+          <Property Name="IDE_CONTRATO" Type="int" Nullable="false" />
           <Property Name="RUC_ORDE" Type="varchar" MaxLength="11" />
           <Property Name="CTA_ORDE" Type="varchar" MaxLength="20" />
           <Property Name="COD_TRAN" Type="varchar" MaxLength="25" />
@@ -788,6 +789,7 @@ warning 6002: The table/view 'vcamara.dbo.USUARIO' does not have a primary key d
           <Property Name="VigenciaReglaHasta" Type="datetime" />
           <Property Name="NombreCampo" Type="varchar" MaxLength="50" />
           <Property Name="TituloColumna" Type="varchar" MaxLength="50" />
+          <Property Name="FormaValidacion" Type="smallint" />
         </EntityType>
         <EntityType Name="AFPs">
           <Key>
@@ -1255,6 +1257,18 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             </Principal>
             <Dependent Role="TipoMoneda">
               <PropertyRef Name="MonedaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOMINA_CONTRATO_SYS">
+          <End Role="CONTRATO_SYS" Type="Self.CONTRATO_SYS" Multiplicity="1" />
+          <End Role="NOMINA" Type="Self.NOMINA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTRATO_SYS">
+              <PropertyRef Name="IDE_CONTRATO" />
+            </Principal>
+            <Dependent Role="NOMINA">
+              <PropertyRef Name="IDE_CONTRATO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1895,6 +1909,10 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             <End Role="Moneda" EntitySet="Moneda" />
             <End Role="TipoMoneda" EntitySet="TipoMoneda" />
           </AssociationSet>
+          <AssociationSet Name="FK_NOMINA_CONTRATO_SYS" Association="Self.FK_NOMINA_CONTRATO_SYS">
+            <End Role="CONTRATO_SYS" EntitySet="CONTRATO_SYS" />
+            <End Role="NOMINA" EntitySet="NOMINA" />
+          </AssociationSet>
           <AssociationSet Name="FK_Pagos_Moneda" Association="Self.FK_Pagos_Moneda">
             <End Role="Moneda" EntitySet="Moneda" />
             <End Role="Pagos" EntitySet="Pagos" />
@@ -2266,6 +2284,10 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             <Parameter Name="FEC_PAGO_INI" Mode="In" Type="DateTime" />
             <Parameter Name="FEC_PAGO_FIN" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <AssociationSet Name="FK_NOMINA_CONTRATO_SYS" Association="DISModelo.FK_NOMINA_CONTRATO_SYS">
+            <End Role="CONTRATO_SYS" EntitySet="CONTRATO_SYS" />
+            <End Role="NOMINA" EntitySet="NOMINAs" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
           <Property Type="Int32" Name="IdRegistroMontoAlto" Nullable="false" />
@@ -2451,6 +2473,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="NRO_EMPRESAS" Type="Int32" />
           <NavigationProperty Name="CONTRATO_SIS_DET" Relationship="DISModelo.FK_CONTRATO_SIS_DET_CONTRATO_SYS" FromRole="CONTRATO_SYS" ToRole="CONTRATO_SIS_DET" />
           <NavigationProperty Name="HistorialCargaArchivo_LinCab" Relationship="DISModelo.FK_HistorialCargaArchivo_LinCab_CONTRATO_SYS" FromRole="CONTRATO_SYS" ToRole="HistorialCargaArchivo_LinCab" />
+          <NavigationProperty Name="NOMINAs" Relationship="DISModelo.FK_NOMINA_CONTRATO_SYS" FromRole="CONTRATO_SYS" ToRole="NOMINA" />
         </EntityType>
         <EntityType Name="DATO_M">
           <Key>
@@ -2581,6 +2604,8 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="TIP_CTA" Type="Int32" />
           <Property Name="CTA_BENE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="DET_TRAN" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="IDE_CONTRATO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CONTRATO_SYS" Relationship="DISModelo.FK_NOMINA_CONTRATO_SYS" FromRole="NOMINA" ToRole="CONTRATO_SYS" />
         </EntityType>
         <EntityType Name="OPERACION">
           <Key>
@@ -2840,6 +2865,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="NombreCampo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TituloColumna" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="HistorialCargaArchivoes" Relationship="DISModelo.FK_HistorialCargaArchivo_ReglaArchivo" FromRole="ReglaArchivo" ToRole="HistorialCargaArchivo" />
+          <Property Name="FormaValidacion" Type="Int16" />
         </EntityType>
         <EntityType Name="AFP">
           <Key>
@@ -3846,6 +3872,18 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Type="String" Name="SUC_INTE" Nullable="true" MaxLength="25" />
           <Property Type="Int32" Name="CumpleValidacion" Nullable="true" />
         </ComplexType>
+        <Association Name="FK_NOMINA_CONTRATO_SYS">
+          <End Type="DISModelo.CONTRATO_SYS" Role="CONTRATO_SYS" Multiplicity="1" />
+          <End Type="DISModelo.NOMINA" Role="NOMINA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTRATO_SYS">
+              <PropertyRef Name="IDE_CONTRATO" />
+            </Principal>
+            <Dependent Role="NOMINA">
+              <PropertyRef Name="IDE_CONTRATO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4228,6 +4266,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <EntitySetMapping Name="NOMINAs">
             <EntityTypeMapping TypeName="DISModelo.NOMINA">
               <MappingFragment StoreEntitySet="NOMINA">
+                <ScalarProperty Name="IDE_CONTRATO" ColumnName="IDE_CONTRATO" />
                 <ScalarProperty Name="DET_TRAN" ColumnName="DET_TRAN" />
                 <ScalarProperty Name="CTA_BENE" ColumnName="CTA_BENE" />
                 <ScalarProperty Name="TIP_CTA" ColumnName="TIP_CTA" />
@@ -4482,6 +4521,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <EntitySetMapping Name="ReglaArchivoes">
             <EntityTypeMapping TypeName="DISModelo.ReglaArchivo">
               <MappingFragment StoreEntitySet="ReglaArchivo">
+                <ScalarProperty Name="FormaValidacion" ColumnName="FormaValidacion" />
                 <ScalarProperty Name="TituloColumna" ColumnName="TituloColumna" />
                 <ScalarProperty Name="NombreCampo" ColumnName="NombreCampo" />
                 <ScalarProperty Name="VigenciaReglaHasta" ColumnName="VigenciaReglaHasta" />
