@@ -50,9 +50,11 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 //aki se verificara si el archivo ya fue cargado con el mismo nombre
                 var archivo = new Archivo() {NombreArchivo = fileUpload.FileName.ToString()};
                 var existe = new nArchivo().listExisteArchivo(archivo);
-                //if (existe.Count > 0)
-                //    MessageBox("Este archivo "+archivo.NombreArchivo +" ya fue cargado anteriormente, ");
-                //else
+                if (existe.Count > 0)
+                {
+                    MessageBox("Este archivo " + archivo.NombreArchivo + " ya fue cargado anteriormente. ");
+                    return;
+                }
                 //fin david choque 27 12 2015
                 var fileName = Server.MapPath(("~/Temp/Archivos/")) + fileUpload.FileName;
                 fileUpload.SaveAs(fileName);
