@@ -4,6 +4,14 @@ namespace VidaCamara.DIS.Helpers
 {
     public class gridCreator
     {
+        /// <summary>
+        /// Develvuelve la estructura de la grilla jtable
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="size"></param>
+        /// <param name="action"></param>
+        /// <param name="sorting"></param>
+        /// <returns></returns>
         public StringBuilder getGrid(string id,string size,string action,string sorting)
         {
             var sb = new StringBuilder();

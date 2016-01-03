@@ -14,11 +14,9 @@ namespace VidaCamara.DIS.data
             {
                 using (var db = new DISEntities())
                 {
-                    //asignar valor al parametro total
-                    //doc eso es todod - que tan t
-                    total = db.ReglaArchivos.Where(a => a.Archivo.Equals(regla.Archivo) && (a.TipoLinea.Equals(regla.TipoLinea) || regla.TipoLinea.Equals("0")) && a.vigente == 1).Count();
-                    var query = db.ReglaArchivos.OrderBy(a=>a.CaracterInicial).Where(a=>a.Archivo.Equals(regla.Archivo) && (a.TipoLinea.Equals(regla.TipoLinea) || regla.TipoLinea.Equals("0")) && a.vigente == 1).Skip(jtStartIndex).Take(jtPageSize).ToList();
-                    foreach (var item in query)
+                    var query = db.ReglaArchivos.OrderBy(a=>a.CaracterInicial).Where(a=>a.Archivo.Equals(regla.Archivo) && (a.TipoLinea.Equals(regla.TipoLinea) || regla.TipoLinea.Equals("0")) && a.vigente == 1).ToList();
+                    total = query.Count();
+                    foreach (var item in query.Skip(jtStartIndex).Take(jtPageSize))
                     {
                         var reglaArchivo = new ReglaArchivo()
                         {

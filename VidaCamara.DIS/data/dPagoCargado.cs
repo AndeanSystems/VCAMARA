@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
 using VidaCamara.DIS.Modelo;
 namespace VidaCamara.DIS.data
 {
@@ -22,50 +21,7 @@ namespace VidaCamara.DIS.data
                     var result = db.pa_sel_historiaCargaArchivoLinDet(nombreTipoArchivo, cab.IDE_CONTRATO, det.COD_AFP, det.COD_CUSP,
                                 det.PRI_NOMB_PEN, det.APE_MATE_PEN, det.NUM_DOCU_PEN, det.NUM_SOLI_PEN, det.TIP_MONE, fecha_ini, fecha_ini).ToList();
                     total = result.Count;
-                    //var tipoArchivo = db.TipoArchivos.Where(t => t.NombreTipoArchivo.Equals(nombreTipoArchivo)).FirstOrDefault();
-                    ////contear total paginacion
-                    //total = (from a in db.HistorialCargaArchivo_LinDets
-                    //         join b in db.HistorialCargaArchivo_LinCabs on
-                    //         a.IdHistorialCargaArchivoLinCab equals b.IdHistorialCargaArchivoLinCab
-                    //         join c in db.Archivos on
-                    //         b.ArchivoId equals c.ArchivoId
-                    //         join d in db.TipoArchivos on
-                    //         c.TipoArchivoId equals d.TipoArchivoId
-                    //         where d.NombreTipoArchivo.Equals(nombreTipoArchivo)
-                    //         && d.Vigente == true
-                    //         && a.HistorialCargaArchivo_LinCab.IDE_CONTRATO == historiaLinCab.IDE_CONTRATO
-                    //         && (a.COD_AFP.Equals(historiaLinDetParam.COD_AFP) || historiaLinDetParam.COD_AFP.Equals("0"))
-                    //         && (a.COD_CUSP.Equals(historiaLinDetParam.COD_CUSP) || string.IsNullOrEmpty(historiaLinDetParam.COD_CUSP))
-                    //         && ((a.PRI_NOMB_PEN + " " + a.SEG_NOMB_PEN).Contains(historiaLinDetParam.PRI_NOMB_PEN) || string.IsNullOrEmpty(historiaLinDetParam.PRI_NOMB_PEN))
-                    //         && ((a.APE_PATE_PEN + " " + a.APE_MATE_PEN).Contains(historiaLinDetParam.APE_MATE_PEN) || string.IsNullOrEmpty(historiaLinDetParam.APE_MATE_PEN))
-                    //         && (a.NUM_DOCU_PEN.Equals(historiaLinDetParam.NUM_DOCU_PEN) || string.IsNullOrEmpty(historiaLinDetParam.NUM_DOCU_PEN))
-                    //         && (a.NUM_SOLI_PEN.Equals(historiaLinDetParam.NUM_SOLI_PEN) || string.IsNullOrEmpty(historiaLinDetParam.NUM_SOLI_PEN))
-                    //         && (a.TIP_MONE.Equals(historiaLinDetParam.TIP_MONE) || historiaLinDetParam.TIP_MONE.Equals("0"))
-                    //         //&& DateTime.Parse(a.FEC_SINI_OCU) >= DateTime.Parse("20150916")
-                    //         //&& DateTime.Parse(a.FEC_SINI_OCU) <= DateTime.Parse("20151123")
-                    //         select a).Count();
-                    ////segunda query para extrar acuerdo a la paginacion
-                    //var query1 = (from a in db.HistorialCargaArchivo_LinDets
-                    //              join b in db.HistorialCargaArchivo_LinCabs on
-                    //              a.IdHistorialCargaArchivoLinCab equals b.IdHistorialCargaArchivoLinCab
-                    //              join c in db.Archivos on
-                    //              b.ArchivoId equals c.ArchivoId
-                    //              join d in db.TipoArchivos on
-                    //              c.TipoArchivoId equals d.TipoArchivoId
-                    //              where d.NombreTipoArchivo.Equals(nombreTipoArchivo)
-                    //              && d.Vigente == true
-                    //              && a.HistorialCargaArchivo_LinCab.IDE_CONTRATO == historiaLinCab.IDE_CONTRATO
-                    //              && (a.COD_AFP.Equals(historiaLinDetParam.COD_AFP) || historiaLinDetParam.COD_AFP.Equals("0"))
-                    //              && (a.COD_CUSP.Equals(historiaLinDetParam.COD_CUSP) || string.IsNullOrEmpty(historiaLinDetParam.COD_CUSP))
-                    //              && ((a.PRI_NOMB_PEN + " " + a.SEG_NOMB_PEN).Contains(historiaLinDetParam.PRI_NOMB_PEN) || string.IsNullOrEmpty(historiaLinDetParam.PRI_NOMB_PEN))
-                    //              && ((a.APE_PATE_PEN + " " + a.APE_MATE_PEN).Contains(historiaLinDetParam.APE_MATE_PEN) || string.IsNullOrEmpty(historiaLinDetParam.APE_MATE_PEN))
-                    //              && (a.NUM_DOCU_PEN.Equals(historiaLinDetParam.NUM_DOCU_PEN) || string.IsNullOrEmpty(historiaLinDetParam.NUM_DOCU_PEN))
-                    //              && (a.NUM_SOLI_PEN.Equals(historiaLinDetParam.NUM_SOLI_PEN) || string.IsNullOrEmpty(historiaLinDetParam.NUM_SOLI_PEN))
-                    //              && (a.TIP_MONE.Equals(historiaLinDetParam.TIP_MONE) || historiaLinDetParam.TIP_MONE.Equals("0"))
-                    //              //&& SqlFunctions.StringConvert((DateTime)a.FEC_PAGO) >= 20150916
-                    //              //&& int.Parse(a.FEC_PAGO) <= 20151123
-                    //              select a).OrderBy(a=>a.IdHistorialCargaArchivoLinDet).Skip(jtStartIndex).Take(jtPageSize).ToList();
-                    foreach (var item in result.Skip(jtStartIndex).Take(jtPageSize).ToList())
+                    foreach (var item in result.Skip(jtStartIndex).Take(jtPageSize))
                     {
                         var historiadet = new HistorialCargaArchivo_LinDet()
                         {
@@ -218,7 +174,7 @@ namespace VidaCamara.DIS.data
                 }
                 return listDetalle;
             }
-            catch (DbEntityValidationException ex)
+            catch (Exception ex)
             {
 
                 throw;

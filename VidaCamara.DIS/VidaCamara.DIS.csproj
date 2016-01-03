@@ -41,6 +41,21 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\VidaCamara.Web\bin\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\VidaCamara.Web\bin\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\VidaCamara.Web\bin\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\VidaCamara.Web\bin\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\VidaCamara.Web\bin\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -64,6 +79,7 @@
     </Compile>
     <Compile Include="data\dReglaArchivo.cs" />
     <Compile Include="data\HistorialCargaArchivo.cs" />
+    <Compile Include="Helpers\excelStyle.cs" />
     <Compile Include="Helpers\gridCreator.cs" />
     <Compile Include="Helpers\txtWriter.cs" />
     <Compile Include="Helpers\ValidaRegla.cs" />

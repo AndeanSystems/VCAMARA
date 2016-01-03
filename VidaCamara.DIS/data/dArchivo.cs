@@ -7,13 +7,13 @@ namespace VidaCamara.DIS.data
 {
     public class dArchivo
     {
-        public List<Archivo> listExisteArchivo(Archivo archivo)
+        public List<Archivo> listExisteArchivo(Archivo archivo,int tamanoNombre)
         {
             try
             {
                 using (var db = new DISEntities())
                 {
-                    return db.Archivos.Where(a => a.NombreArchivo.Equals(archivo.NombreArchivo)).ToList();
+                    return db.Archivos.Where(a => a.NombreArchivo.Substring(0,tamanoNombre).Equals(archivo.NombreArchivo) && a.Vigente == true).ToList();
                 }
             }
             catch (Exception ex)
