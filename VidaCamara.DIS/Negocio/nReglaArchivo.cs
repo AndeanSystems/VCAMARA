@@ -32,8 +32,9 @@ namespace VidaCamara.DIS.Negocio
             sb.Append("var fields = {");
             for (int i = 1; i <= listRegla.Count; i++)
             {
+                var type = listRegla[i - 1].TipoCampo.Trim() == "DATETIME" ? ",type: 'date', displayFormat: 'dd/mm/yy'" : "";
                 sb.Append(listRegla[i - 1].NombreCampo + ":{");
-                sb.Append("title:" + "'" + listRegla[i - 1].TituloColumna + "'}" + (i == listRegla.Count ? "" : ","));
+                sb.Append("title:" + "'" + listRegla[i - 1].TituloColumna +"'"+type+ "}" + (i == listRegla.Count ? "" : ","));
             }
             sb.Append("};");
             return sb;
