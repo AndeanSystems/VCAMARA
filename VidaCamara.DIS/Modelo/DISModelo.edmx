@@ -1260,6 +1260,18 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_NOMINA_Archivo">
+          <End Role="Archivo" Type="Self.Archivo" Multiplicity="0..1" />
+          <End Role="NOMINA" Type="Self.NOMINA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Archivo">
+              <PropertyRef Name="ArchivoId" />
+            </Principal>
+            <Dependent Role="NOMINA">
+              <PropertyRef Name="ArchivoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_NOMINA_CONTRATO_SYS">
           <End Role="CONTRATO_SYS" Type="Self.CONTRATO_SYS" Multiplicity="1" />
           <End Role="NOMINA" Type="Self.NOMINA" Multiplicity="*" />
@@ -1909,6 +1921,10 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             <End Role="Moneda" EntitySet="Moneda" />
             <End Role="TipoMoneda" EntitySet="TipoMoneda" />
           </AssociationSet>
+          <AssociationSet Name="FK_NOMINA_Archivo" Association="Self.FK_NOMINA_Archivo">
+            <End Role="Archivo" EntitySet="Archivo" />
+            <End Role="NOMINA" EntitySet="NOMINA" />
+          </AssociationSet>
           <AssociationSet Name="FK_NOMINA_CONTRATO_SYS" Association="Self.FK_NOMINA_CONTRATO_SYS">
             <End Role="CONTRATO_SYS" EntitySet="CONTRATO_SYS" />
             <End Role="NOMINA" EntitySet="NOMINA" />
@@ -2288,6 +2304,10 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             <End Role="CONTRATO_SYS" EntitySet="CONTRATO_SYS" />
             <End Role="NOMINA" EntitySet="NOMINAs" />
           </AssociationSet>
+          <AssociationSet Name="FK_NOMINA_Archivo" Association="DISModelo.FK_NOMINA_Archivo">
+            <End Role="Archivo" EntitySet="Archivoes" />
+            <End Role="NOMINA" EntitySet="NOMINAs" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
           <Property Type="Int32" Name="IdRegistroMontoAlto" Nullable="false" />
@@ -2606,6 +2626,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Name="DET_TRAN" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="IDE_CONTRATO" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CONTRATO_SYS" Relationship="DISModelo.FK_NOMINA_CONTRATO_SYS" FromRole="NOMINA" ToRole="CONTRATO_SYS" />
+          <NavigationProperty Name="Archivo" Relationship="DISModelo.FK_NOMINA_Archivo" FromRole="NOMINA" ToRole="Archivo" />
         </EntityType>
         <EntityType Name="OPERACION">
           <Key>
@@ -2892,6 +2913,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <NavigationProperty Name="HistorialCargaArchivo_LinCab" Relationship="DISModelo.FK_HistorialCargaArchivo_LinCab_Archivo" FromRole="Archivo" ToRole="HistorialCargaArchivo_LinCab" />
           <NavigationProperty Name="EstadoArchivo" Relationship="DISModelo.FK_EstadoArchivoArchivo" FromRole="Archivo" ToRole="EstadoArchivo" />
           <NavigationProperty Name="TipoArchivo" Relationship="DISModelo.FK_TipoArchivoArchivo" FromRole="Archivo" ToRole="TipoArchivo" />
+          <NavigationProperty Name="NOMINAs" Relationship="DISModelo.FK_NOMINA_Archivo" FromRole="Archivo" ToRole="NOMINA" />
         </EntityType>
         <EntityType Name="Bitacora">
           <Key>
@@ -3881,6 +3903,18 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             </Principal>
             <Dependent Role="NOMINA">
               <PropertyRef Name="IDE_CONTRATO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOMINA_Archivo">
+          <End Type="DISModelo.Archivo" Role="Archivo" Multiplicity="0..1" />
+          <End Type="DISModelo.NOMINA" Role="NOMINA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Archivo">
+              <PropertyRef Name="ArchivoId" />
+            </Principal>
+            <Dependent Role="NOMINA">
+              <PropertyRef Name="ArchivoId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

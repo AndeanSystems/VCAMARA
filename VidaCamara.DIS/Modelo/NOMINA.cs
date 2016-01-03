@@ -31,5 +31,6 @@ namespace VidaCamara.DIS.Modelo
         public int IDE_CONTRATO { get; set; }
     
         public virtual CONTRATO_SYS CONTRATO_SYS { get; set; }
+        public virtual Archivo Archivo { get; set; }
     }
 }

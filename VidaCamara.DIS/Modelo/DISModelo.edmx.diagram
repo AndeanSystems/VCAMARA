@@ -81,6 +81,7 @@
         <AssociationConnector Association="DISModelo.FK_TipoSolicitudSiniestro" />
         <AssociationConnector Association="DISModelo.FK_TipoArchivo_TipoInforme" />
         <AssociationConnector Association="DISModelo.FK_NOMINA_CONTRATO_SYS" />
+        <AssociationConnector Association="DISModelo.FK_NOMINA_Archivo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
