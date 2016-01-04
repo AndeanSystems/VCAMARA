@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <link rel="stylesheet" href="../../../Resources/CSS/bootstrap.css" />
 <link rel="stylesheet" href="../../../Resources/CSS/Progressbar.css" />
+<script src="../../../Resources/js/bootstrap.min.js"></script>
 <script src="/WebPage/ModuloDIS/Operaciones/js/CargaDatos.js"></script>
 <script src="/WebPage/ModuloDIS/Operaciones/js/CargaRsp.js"></script>
 <script src="/WebPage/ModuloDIS/Operaciones/js/frmReglaArchivo.js"></script>
@@ -77,22 +78,52 @@
             </asp:View>
             <!--seccion de RSP-->
             <asp:View ID="view2" runat="server">               
-                <label class="label_to" for="ddl_nombre_archivo_det">Nombre del Archivo (*)</label>
-                <asp:Label ID="txt_nombre_archivo_det" Text="_.CAM" runat="server"  CssClass="input_to"/>
+               <label class="label_to" for="ddl_nombre_archivo_det">Nombre del Archivo (*)</label>
+               <asp:Label ID="txt_nombre_archivo_det" Text="_.CAM" runat="server"  CssClass="input_to"/>
 
-                <label class="label_to" for="dbl_contrato_d">Tipo del Archivo (*)</label>
-                <asp:Label  ID="txt_tipo_informacion_det" Text="_" runat="server"  CssClass="input_to"/>
-
-                <div class="iframe" id="Cargada">
-                    <h6>Información cargada</h6>
-                    <div id="frmCargaExito"></div>
-                </div>
-                
-                <div class="iframe" id="Observada">
-                    <h6>Información observda</h6>
-                    <div id="frmCargaObservado"></div>
-                </div>               
-               
+               <label class="label_to" for="dbl_contrato_d">Tipo del Archivo (*)</label>
+               <asp:Label  ID="txt_tipo_informacion_det" Text="_" runat="server"  CssClass="input_to"/>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+               <div class="panel-group" id="accordion">
+                   <div class="panel">
+                       <div class="panel-heading">
+                           <h6 class="panel-title">
+                               <a data-toggle="collapse" data-parent="#accordion" data-target="#screen1" aria-expanded="true" class="collapsed" href="javascript:void(0)">
+                                   <span class="glyphicon glyphicon-plus-sign"></span> Información cargada
+                               </a>
+                           </h6>
+                       </div>
+                       <div id="screen1" class="panel-collapse collapse fade" aria-expanded="false">
+                           <div class="panel-body">
+                               <div class="iframe" id="Cargada">
+                                   <div id="frmCargaExito"></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+           
+                   <div class="panel">
+                       <div class="panel-heading">
+                           <h6 class="panel-title">
+                               <a data-toggle="collapse" data-parent="#accordion" data-target="#screen2" aria-expanded="false" class="collapsed" href="javascript:void(0)">
+                                   <span class="glyphicon glyphicon-plus-sign"></span> Información Observada
+                               </a>
+                           </h6>
+                       </div>
+                       <div id="screen2" class="panel-collapse collapse fade" aria-expanded="false">
+                           <div class="panel-body">
+                               <div class="iframe" id="Observada">
+                                   <div id="frmCargaObservado"></div>
+                               </div> 
+                           </div>
+                       </div>
+                   </div>
+               </div>              
             </asp:View>
             <asp:View ID="view3" runat="server">
 
