@@ -15,7 +15,9 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
         static bValidarAcceso accesso = new bValidarAcceso();
         static HistorialCargaArchivo_LinCab cabecera = new HistorialCargaArchivo_LinCab();
         static HistorialCargaArchivo_LinDet historiaLinDet = new HistorialCargaArchivo_LinDet();
-        static object[] filterParam = new object[3];
+        static object[] filterParam = new object[4];//[0]Tipo de archivo [1] fecha inicio [2] fecha fin [3] fomato meneda 
+
+        static string formatoMoneda = string.Empty;
         #endregion VARIABLES
         #region EVENTOS
         protected void Page_Load(object sender, EventArgs e)
@@ -38,12 +40,14 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipo_archivo, "17");
                 concepto.SetEstablecerDataSourceConcepto(ddl_afp, "23");
                 concepto.SetEstablecerDataSourceConcepto(ddl_moneda, "20");
+                formatoMoneda = Session["formatomoneda"].ToString();
             }
         }
         //LISTAR HISTORIA CARGA DETALLE
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static object listHistoriaDetalle(int jtStartIndex, int jtPageSize,string jtSorting)
         {
+            filterParam[3] = formatoMoneda;
             var listCargaDetalle = new nArchivoCargado().listArchivoCargado(cabecera,historiaLinDet, filterParam, jtStartIndex, jtPageSize, out total);
             return new { Result = "OK", Records = listCargaDetalle, TotalRecordCount = total };
         }
