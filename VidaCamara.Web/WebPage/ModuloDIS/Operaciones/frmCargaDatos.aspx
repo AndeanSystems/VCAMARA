@@ -84,11 +84,13 @@
                 <asp:Label  ID="txt_tipo_informacion_det" Text="_" runat="server"  CssClass="input_to"/>
 
                 <div class="iframe" id="Cargada">
-                      <asp:GridView CssClass="table table-hover" ID="gvCargaExito" runat="server" Width="100%" HorizontalAlign="center" Font-Size="11px"></asp:GridView>
+                    <h6>Información cargada</h6>
+                    <div id="frmCargaExito"></div>
                 </div>
                 
                 <div class="iframe" id="Observada">
-                    <asp:GridView CssClass="table table-hover" ID="gvCargaObservada" runat="server" Width="100%" HorizontalAlign="center" Font-Size="11px"></asp:GridView>
+                    <h6>Información observda</h6>
+                    <div id="frmCargaObservado"></div>
                 </div>               
                
             </asp:View>
@@ -98,10 +100,10 @@
                 <asp:Label ID="txt_nombre_archivo_inf" Text="_.CAM" runat="server"  CssClass="input_to"/>
 
                 <label class="label_to" for="txt_tipo_archivo">Tipo del Archivo (*)</label>
-                <asp:Label ID="txt_tipo_archivo_inf" Text="_" runat="server"  CssClass="input_to"/>
+                <asp:Label ID="txt_tipo_archivo_inf" Text="_" runat="server"  CssClass="input_to" Width="35%"/>
 
                 <label class="input_right_L" for="ddl_tipinfo_d">Tipo de Línea (*)</label>
-                <asp:DropDownList runat="server" ID="ddl_tipo_linea" CssClass="input_to" Height="25px" Width="40%"></asp:DropDownList>
+                <asp:DropDownList runat="server" ID="ddl_tipo_linea" CssClass="input_to" Height="25px" Width="20%"></asp:DropDownList>
                 
                 <asp:HiddenField ID="hdf_tipo_archivo" runat="server" Value="0"/>
                 <div class="iframe" id="informacion">
