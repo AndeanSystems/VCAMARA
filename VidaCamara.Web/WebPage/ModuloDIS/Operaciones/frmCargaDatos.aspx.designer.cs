@@ -139,24 +139,6 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones {
         protected global::System.Web.UI.WebControls.Label txt_tipo_informacion_det;
         
         /// <summary>
-        /// gvCargaExito control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCargaExito;
-        
-        /// <summary>
-        /// gvCargaObservada control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCargaObservada;
-        
-        /// <summary>
         /// view3 control.
         /// </summary>
         /// <remarks>

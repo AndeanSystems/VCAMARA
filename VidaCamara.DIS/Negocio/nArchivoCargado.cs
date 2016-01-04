@@ -88,5 +88,9 @@ namespace VidaCamara.DIS.Negocio
                 throw;
             }
         }
+        public List<HistorialCargaArchivo_LinDet> listArchivoCargadoByArchivo(HistorialCargaArchivo_LinCab cab, object[] filterParam, int jtStartIndex, int jtPageSize, out int total)
+        {
+            return new dPagoCargado().listArchivoCargadoByArchivo(cab,filterParam,jtStartIndex,jtPageSize,out total);
+        }
     }
 }
