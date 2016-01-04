@@ -40,7 +40,6 @@ namespace VidaCamara.DIS.Negocio
         private Dictionary<string, List<Regla>> _reglasLineaPorTipo = new Dictionary<string, List<Regla>>();
         //david choque 27 12 2015
         public int ContadorExito { get; set; }
-        private DataTable dtCarga = new DataTable();
 
         public CargaLogica(string archivo)
         {
@@ -265,9 +264,6 @@ namespace VidaCamara.DIS.Negocio
             {
                 var detalle = new HistorialCargaArchivo_LinDet();
                 PopulateType(detalle, propertyValues);
-                //david choque 27 12 2015
-                setLlenarCargaTemporal(propertyValues);
-                //fin david choque
                 detalle.IdHistorialCargaArchivoLinCab = CodigoCabecera;
                 detalle.FechaInsert = DateTime.Now;
                 detalle.CumpleValidacion = exitoLinea;
@@ -296,28 +292,6 @@ namespace VidaCamara.DIS.Negocio
 
             }
         }
-
-        private void setLlenarCargaTemporal(Dictionary<string, object> propertyValues)
-        {
-            if (dtCarga.Columns.Count == 0)
-            {
-                foreach (var item in propertyValues)
-                {
-                    dtCarga.Columns.Add(item.Key);
-                }
-            }
-            var dataRow = dtCarga.NewRow();
-            foreach (var item in propertyValues)
-            {
-                dataRow[item.Key] = item.Value;
-            };
-            dtCarga.Rows.Add(dataRow);
-        }
-        public DataTable getInformacionCargada()
-        {
-            return this.dtCarga;
-        }
-
         private void GrabarLineaCabecera()
         {
             try
