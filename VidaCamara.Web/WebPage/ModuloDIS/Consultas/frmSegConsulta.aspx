@@ -46,7 +46,7 @@
                 <label class="label_to">DNI</label>
                 <asp:TextBox runat="server" ID="txt_dni" CssClass="input_to" Height="25px" Width="14.8%"/>
 
-                <label class="input_right_L">Nº solicitud</label>
+                <label class="input_right_L">Nº Solicitud</label>
                 <asp:TextBox runat="server" ID="txt_nro_solicitud" CssClass="input_right" Height="25px" Width="14.8%"/>
 
                 <div class="iframe" id="tblConsulta1">
