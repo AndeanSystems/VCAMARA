@@ -72,7 +72,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 var existeArchivo = new nArchivo().listExisteArchivo(archivo);
                 if (existeArchivo.Count > 0)
                 {
-                    MessageBox("El archivo: " + archivo.NombreArchivo + " ya fue cargado. ");
+                    MessageBox("El archivo: " + nombreArchivo + " ya fue cargado. ");
                     return;
                 }
                 //fin david choque 27 12 2015
