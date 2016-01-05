@@ -98,7 +98,7 @@
                                </a>
                            </h6>
                        </div>
-                       <div id="screen1" class="panel-collapse collapse fade" aria-expanded="false">
+                       <div id="screen1" class="panel-collapse collapse fade in" aria-expanded="false">
                            <div class="panel-body">
                                <div class="iframe" id="Cargada">
                                    <div id="frmCargaExito"></div>

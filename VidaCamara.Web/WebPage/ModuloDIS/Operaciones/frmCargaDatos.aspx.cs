@@ -17,6 +17,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         static string nombreArchivo = string.Empty;
         static string tipoArchivo = string.Empty;
         static HistorialCargaArchivo_LinCab historiaCab = new HistorialCargaArchivo_LinCab();
+        static NOMINA nomina = new NOMINA();
         static object[] filters = new object[3];//[0]NombreArchivo,[1]tipo moneda [2]cumpleValidacion
         #endregion variables
 
@@ -46,22 +47,30 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         {
             try
             {
-                System.Threading.Thread.Sleep(5000);
                 if (!fileUpload.HasFile) return;
-                //validar que el archivo seleccionado corresponde al mismo tipo de combo
+                //david choque 27 12 2015
                 nombreArchivo = fileUpload.FileName.ToString().ToUpper();
+                //validar que el archivo seleccionado corresponde al mismo tipo de combo
                 string[] nombreArchivoValido = nombreArchivo.Split('_');
                 if (!nombreArchivoValido[0].ToString().ToUpper().Equals(ddl_tipo_archivo.SelectedItem.Value.ToUpper()))
                 {
                     MessageBox("El archivo seleccionado no corresponde al tipo eligido");
                     return;
                 }
-
-                //david choque 27 12 2015
-                //aki se verificara si el archivo ya fue cargado con el mismo nombre
-                var archivo = new Archivo() {NombreArchivo = nombreArchivo };
-                var existe = new nArchivo().listExisteArchivo(archivo);
-                if (existe.Count > 0)
+                var archivo = new Archivo() { NombreArchivo = nombreArchivo };
+                //si el tipo de archivo es nomina validar  que se haya cargado un equivalente de  pago y que se haya cargado correctamente.
+                if (ddl_tipo_archivo.SelectedItem.Value.Equals("NOMINA"))
+                {
+                    var existePagoNomina = new nArchivo().listExistePagoNomina(archivo);
+                    if (existePagoNomina == 0)
+                    {
+                        MessageBox("Para cargar el archivo de nóminas debe cargar previamente los archivos de liquidaciones en forma correcta y sin errores");
+                        return;
+                    }
+                }
+                //aqui se verifica si el archivo que va cargar ya fue cargado con el mismo nombre.
+                var existeArchivo = new nArchivo().listExisteArchivo(archivo);
+                if (existeArchivo.Count > 0)
                 {
                     MessageBox("El archivo: " + archivo.NombreArchivo + " ya fue cargado. ");
                     return;
@@ -153,8 +162,8 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                     }
                 }
                 //david choque 27 12 2015
-                setMostrarRegistroCargadosOK();
-                setMostrarRegistroCargadosObservado();
+                setMostrarRegistroCargadosOK(tipoArchivo);
+                setMostrarRegistroCargadosObservado(tipoArchivo);
                 //fin david choque
             }
             catch (Exception s)
@@ -182,6 +191,13 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             var negocio = new nArchivoCargado();
             return new { Result = "OK", Records = negocio.listArchivoCargadoByArchivo(historiaCab, filters, jtStartIndex, jtPageSize, out total), TotalRecordCount = total };
         }
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static object listNominaByArchivoOK(int jtStartIndex, int jtPageSize, string jtSorting)
+        {
+            var negocio = new nNomina();
+            return new { Result = "OK", Records = negocio.listNominaByArchivo(nomina, filters, jtStartIndex, jtPageSize, out total), TotalRecordCount = total };
+        }
+
         #endregion eventos control
 
         #region metodos usuario
@@ -207,30 +223,39 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             hdf_tipo_archivo.Value = tipoArchivo;
         }
 
-        private void setMostrarRegistroCargadosOK()
+        private void setMostrarRegistroCargadosOK(string tipoArchivo)
         {
-            historiaCab.IDE_CONTRATO = Convert.ToInt32(ddl_conrato1.SelectedItem.Value);
             filters[0] = nombreArchivo;
             txt_nombre_archivo_det.Text = nombreArchivo;
             txt_tipo_informacion_det.Text = ddl_tipo_archivo.SelectedItem.Text;
 
-            const string action = "/WebPage/ModuloDIS/Operaciones/frmCargaDatos.aspx/listHistoriaDetalleByArchivoOK";
-            var regla = new ReglaArchivo() { Archivo = ddl_tipo_archivo.SelectedItem.Value, TipoLinea = "D" };
+            if(tipoArchivo == "NOMINA")
+                nomina.IDE_CONTRATO = Convert.ToInt32(ddl_conrato1.SelectedItem.Value);
+            else
+                historiaCab.IDE_CONTRATO = Convert.ToInt32(ddl_conrato1.SelectedItem.Value);
+
+            var action = tipoArchivo == "NOMINA"? "/WebPage/ModuloDIS/Operaciones/frmCargaDatos.aspx/listNominaByArchivoOK" : "/WebPage/ModuloDIS/Operaciones/frmCargaDatos.aspx/listHistoriaDetalleByArchivoOK";
+            var tipoLinea = tipoArchivo == "NOMINA" ? "*" : "D";
+            var sorter = tipoArchivo == "NOMINA" ? "RUC_ORDE ASC" : "TIP_REGI ASC";
+            var regla = new ReglaArchivo() { Archivo = ddl_tipo_archivo.SelectedItem.Value, TipoLinea = tipoLinea };
             var fields = new nReglaArchivo().getColumnGridByArchivo(regla).ToString();
             Page.ClientScript.RegisterStartupScript(GetType(), "Fields", fields, true);
-            var grid = new gridCreator().getGrid("frmCargaExito", "5000", action, "TIP_REGI ASC").ToString();
+            var grid = new gridCreator().getGrid("frmCargaExito", "5000", action, sorter).ToString();
             Page.ClientScript.RegisterStartupScript(GetType(), "Grid", grid, true);
             multiTabs.ActiveViewIndex = 1;
             menuTabs.Items[1].Selected = true;
         }
-        private void setMostrarRegistroCargadosObservado()
+        private void setMostrarRegistroCargadosObservado(string tipoArchivo)
         {
-            const string action = "/WebPage/ModuloDIS/Operaciones/frmCargaDatos.aspx/listHistoriaDetalleByArchivoObservado";
-            //var regla = new ReglaArchivo() { Archivo = ddl_tipo_archivo.SelectedItem.Value, TipoLinea = "D" };
-            //var fields = new nReglaArchivo().getColumnGridByArchivo(regla).ToString();
-            //Page.ClientScript.RegisterStartupScript(GetType(), "Fields", fields, true);
-            var grid = new gridCreator().getGrid("frmCargaObservado", "5000", action, "TIP_REGI ASC").ToString();
-            Page.ClientScript.RegisterStartupScript(GetType(), "Grid1", grid, true);
+            if (!tipoArchivo.Equals("NOMINA"))
+            {
+                const string action = "/WebPage/ModuloDIS/Operaciones/frmCargaDatos.aspx/listHistoriaDetalleByArchivoObservado";
+                //var regla = new ReglaArchivo() { Archivo = ddl_tipo_archivo.SelectedItem.Value, TipoLinea = "D" };
+                //var fields = new nReglaArchivo().getColumnGridByArchivo(regla).ToString();
+                //Page.ClientScript.RegisterStartupScript(GetType(), "Fields", fields, true);
+                var grid = new gridCreator().getGrid("frmCargaObservado", "5000", action, "TIP_REGI ASC").ToString();
+                Page.ClientScript.RegisterStartupScript(GetType(), "Grid1", grid, true);
+            }
         }
 
         private void SetLLenadoContrato()
