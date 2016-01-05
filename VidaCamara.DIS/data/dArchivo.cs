@@ -22,5 +22,26 @@ namespace VidaCamara.DIS.data
                 throw;
             }
         }
+
+        public Int32 listExistePagoNomina(Archivo archivo)
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    return (from a in db.Archivos join b in db.HistorialCargaArchivo_LinCabs on
+                                 a.ArchivoId equals b.ArchivoId
+                                 where
+                                    a.NombreArchivo == archivo.NombreArchivo
+                                 && b.ESTADO == "C"
+                                 select a).Count();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }

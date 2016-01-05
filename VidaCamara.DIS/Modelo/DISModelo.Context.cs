@@ -769,5 +769,18 @@ namespace VidaCamara.DIS.Modelo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_historiaLinDetXArchivo_Result>("pa_sel_historiaLinDetXArchivo", nombreArchivoParameter, ideContratoParameter, cumpleValidacionParameter);
         }
+    
+        public virtual ObjectResult<pa_sel_nominaXArchivo_Result> pa_sel_nominaXArchivo(Nullable<int> ideContrato, string nombreArchivo)
+        {
+            var ideContratoParameter = ideContrato.HasValue ?
+                new ObjectParameter("IdeContrato", ideContrato) :
+                new ObjectParameter("IdeContrato", typeof(int));
+    
+            var nombreArchivoParameter = nombreArchivo != null ?
+                new ObjectParameter("NombreArchivo", nombreArchivo) :
+                new ObjectParameter("NombreArchivo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_nominaXArchivo_Result>("pa_sel_nominaXArchivo", ideContratoParameter, nombreArchivoParameter);
+        }
     }
 }

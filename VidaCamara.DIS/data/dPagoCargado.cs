@@ -180,6 +180,25 @@ namespace VidaCamara.DIS.data
                 throw;
             }
         }
+
+        public void setAatualizarEstadoArchivo(long codigoCabecera)
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    var query = db.HistorialCargaArchivo_LinCabs.Find(codigoCabecera);
+                    query.ESTADO = "E";
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
         public List<HistorialCargaArchivo_LinDet> listArchivoCargadoByArchivo(HistorialCargaArchivo_LinCab cab, object[] filterParam, int jtStartIndex, int jtPageSize, out int total)
         {
             var listHistoriaLinDet = new List<HistorialCargaArchivo_LinDet>();

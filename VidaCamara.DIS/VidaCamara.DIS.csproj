@@ -247,6 +247,9 @@
     <Compile Include="Modelo\pa_sel_historiaLinDetXArchivo_Result.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\pa_sel_nominaXArchivo_Result.cs">
+      <DependentUpon>DISModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\Persona.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>

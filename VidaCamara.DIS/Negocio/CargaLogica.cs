@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using VidaCamara.DIS.data;
 using VidaCamara.DIS.Modelo;
 
 namespace VidaCamara.DIS.Negocio
@@ -75,6 +76,7 @@ namespace VidaCamara.DIS.Negocio
                 ObtieneTipoLinea(NombreArchivo.Split('_')[0]);
                 var idestado = 0;
                 idestado = LeeArchivo(NombreArchivo.Split('_')[0], TipoLinea, contratoId);
+                //
                 if (idestado > 2)
                 {
                     MensageError = "No se puede procesar archivo por estar aprobado/pagado";
@@ -228,6 +230,11 @@ namespace VidaCamara.DIS.Negocio
                 //aca se debe realizar el bolcado de archivo sin errores
                 try
                 {
+                    //Antes de traspasar el archivo si verifica que  todas las filas se hayan cargado ccorrectamente
+                    if(ContadorErrores > 0)
+                    {
+                        new dPagoCargado().setAatualizarEstadoArchivo(CodigoCabecera);
+                    };
                     TraspasaArchivo(tipoArchivo);
 
                     ProcesarErrores(tipoArchivo);

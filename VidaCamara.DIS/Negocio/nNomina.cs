@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,12 @@ namespace VidaCamara.DIS.Negocio
         public Int32 setGrabarNomina(NOMINA nomina) 
         {
             return new dNomina().setGrabarNomina(nomina);
+        }
+
+        public List<NOMINA> listNominaByArchivo(NOMINA nomina, object[] filters, int jtStartIndex, int jtPageSize, out int total)
+        {
+            filters[0] = Path.GetFileNameWithoutExtension(filters[0].ToString())+".CSV";
+            return new dNomina().listNominaByArchivo(nomina,filters,jtStartIndex,jtPageSize,out total);
         }
     }
 }

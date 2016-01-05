@@ -1516,6 +1516,10 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Parameter Name="IdeContrato" Type="int" Mode="In" />
           <Parameter Name="CumpleValidacion" Type="int" Mode="In" />
         </Function>
+        <Function Name="pa_sel_nominaXArchivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdeContrato" Type="int" Mode="In" />
+          <Parameter Name="NombreArchivo" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="pa_valida_CodigoTransferenciaNomina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="valor" Type="varchar" Mode="In" />
           <Parameter Name="IdArchivo" Type="int" Mode="In" />
@@ -2317,6 +2321,10 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             <Parameter Name="NombreArchivo" Mode="In" Type="String" />
             <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
             <Parameter Name="CumpleValidacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_sel_nominaXArchivo" ReturnType="Collection(DISModelo.pa_sel_nominaXArchivo_Result)">
+            <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
+            <Parameter Name="NombreArchivo" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
@@ -4066,6 +4074,23 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Type="String" Name="SUC_INTE" Nullable="true" MaxLength="25" />
           <Property Type="Int32" Name="CumpleValidacion" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="pa_sel_nominaXArchivo_Result">
+          <Property Type="Int32" Name="Id_Nomina" Nullable="false" />
+          <Property Type="Int32" Name="Id_Empresa" Nullable="true" />
+          <Property Type="Int32" Name="ArchivoId" Nullable="true" />
+          <Property Type="Int32" Name="IDE_CONTRATO" Nullable="false" />
+          <Property Type="String" Name="RUC_ORDE" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="CTA_ORDE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="COD_TRAN" Nullable="true" MaxLength="25" />
+          <Property Type="Int32" Name="TIP_MONE" Nullable="true" />
+          <Property Type="Decimal" Name="MON_TRAN" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="FEC_TRAN" Nullable="true" Precision="23" />
+          <Property Type="String" Name="RUC_BENE" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="NOM_BENE" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="TIP_CTA" Nullable="true" />
+          <Property Type="String" Name="CTA_BENE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DET_TRAN" Nullable="true" MaxLength="40" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5603,6 +5628,27 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
                 <ScalarProperty Name="SEG_NOMB_SOL" ColumnName="SEG_NOMB_SOL" />
                 <ScalarProperty Name="SUC_INTE" ColumnName="SUC_INTE" />
                 <ScalarProperty Name="CumpleValidacion" ColumnName="CumpleValidacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_sel_nominaXArchivo" FunctionName="DISModelo.Store.pa_sel_nominaXArchivo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DISModelo.pa_sel_nominaXArchivo_Result">
+                <ScalarProperty Name="Id_Nomina" ColumnName="Id_Nomina" />
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
+                <ScalarProperty Name="IDE_CONTRATO" ColumnName="IDE_CONTRATO" />
+                <ScalarProperty Name="RUC_ORDE" ColumnName="RUC_ORDE" />
+                <ScalarProperty Name="CTA_ORDE" ColumnName="CTA_ORDE" />
+                <ScalarProperty Name="COD_TRAN" ColumnName="COD_TRAN" />
+                <ScalarProperty Name="TIP_MONE" ColumnName="TIP_MONE" />
+                <ScalarProperty Name="MON_TRAN" ColumnName="MON_TRAN" />
+                <ScalarProperty Name="FEC_TRAN" ColumnName="FEC_TRAN" />
+                <ScalarProperty Name="RUC_BENE" ColumnName="RUC_BENE" />
+                <ScalarProperty Name="NOM_BENE" ColumnName="NOM_BENE" />
+                <ScalarProperty Name="TIP_CTA" ColumnName="TIP_CTA" />
+                <ScalarProperty Name="CTA_BENE" ColumnName="CTA_BENE" />
+                <ScalarProperty Name="DET_TRAN" ColumnName="DET_TRAN" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
