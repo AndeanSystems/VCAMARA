@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using VidaCamara.DIS.Modelo;
+using VidaCamara.DIS.Negocio;
 using VidaCamara.SBS.Negocio;
 
 namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
@@ -17,7 +19,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             {
                 var concepto = new bTablaVC();
                 SetLLenadoContrato();
-                concepto.SetEstablecerDataSourceConcepto(ddl_operacion, "24");
+                //concepto.SetEstablecerDataSourceConcepto(ddl_operacion, "26");
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipo_evento,"25");
             }
         }
@@ -30,5 +32,13 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             ddl_contrato.DataBind();
             ddl_contrato.Items.Insert(0, new ListItem("Seleccione ----", "0"));
         }
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static object listLogOperacion(int jtStartIndex, int jtPageSize,string jtSorting,LogOperacion log)
+        {
+            var listLogOperacion = new nLogOperacion().getListLogOperacion(log, jtStartIndex, jtPageSize, out total);
+            return new { Result = "OK", Records = listLogOperacion, TotalRecordCount = total };
+        }
+
     }
 }
