@@ -18,6 +18,8 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
         static object[] filterParam = new object[4];//[0]Tipo de archivo [1] fecha inicio [2] fecha fin [3] fomato meneda 
 
         static string formatoMoneda = string.Empty;
+        static string tipoArchivo = string.Empty;
+
         #endregion VARIABLES
         #region EVENTOS
         protected void Page_Load(object sender, EventArgs e)
@@ -51,6 +53,11 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             var listCargaDetalle = new nArchivoCargado().listArchivoCargado(cabecera,historiaLinDet, filterParam, jtStartIndex, jtPageSize, out total);
             return new { Result = "OK", Records = listCargaDetalle, TotalRecordCount = total };
         }
+        //[System.Web.Services.WebMethod(EnableSession = true)]
+        //public static object listConsultaNomina(int jtStartIndex, int jtPageSize, string jtSorting) {
+        //    var negocio = new nNomina();
+        //    return new { Result = "OK", Records = negocio.listNominaByArchivo(nomina, filters, jtStartIndex, jtPageSize, out total), TotalRecordCount = total };
+        //}
         protected void btn_consultar_Click1(object sender, ImageClickEventArgs e)
         {
             setLlenarEntiddes();
@@ -98,6 +105,9 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             filterParam[0] = ddl_tipo_archivo.SelectedItem.Value;
             filterParam[1] = txt_fec_ini_o.Text;
             filterParam[2] = txt_fec_hasta_o.Text;
+
+            //TIPO DE ARCHIVO
+            tipoArchivo = ddl_tipo_archivo.SelectedItem.Value;
         }
         private void MessageBox(String text)
         {
