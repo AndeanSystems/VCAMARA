@@ -71,6 +71,7 @@ $(document).ready(function () {
         $("#ctl00_ContentPlaceHolder1_txt_ide_contrato_sis").val("0");
         $("#ctl00_ContentPlaceHolder1_ddl_estado_sys").val("A");
         $("#ctl00_ContentPlaceHolder1_ddl_clase_contrato_sys").val("0");
+        $("#ctl00_ContentPlaceHolder1_txt_numero_empresa").val("");
     }
     //funcion mesagw box
     function MessageBox(texto) {
