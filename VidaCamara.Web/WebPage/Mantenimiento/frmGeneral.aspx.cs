@@ -94,15 +94,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
         public static object ContratoDetalleList(int jtStartIndex, int jtPageSize, string jtSorting, String WhereBy)
         {
             int total;
-            int indexPage;
-            if (jtStartIndex != 0)
-            {
-                indexPage = jtStartIndex / jtPageSize;
-            }
-            else
-            {
-                indexPage = jtStartIndex;
-            }
+            int indexPage = jtStartIndex != 0 ? jtStartIndex / jtPageSize : jtStartIndex;
             eContratoDetalleVC o = new eContratoDetalleVC();
             o._inicio = indexPage;
             o._fin = jtPageSize;
@@ -126,15 +118,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
         public static object ContratoList(int jtStartIndex, int jtPageSize, string jtSorting, String WhereBy)
         {
             int total;
-            int indexPage;
-            if (jtStartIndex != 0)
-            {
-                indexPage = jtStartIndex / jtPageSize;
-            }
-            else
-            {
-                indexPage = jtStartIndex;
-            }
+            int indexPage = jtStartIndex != 0 ? jtStartIndex / jtPageSize : jtStartIndex;
             eContratoVC o = new eContratoVC();
             o._inicio = indexPage;
             o._fin = jtPageSize;
