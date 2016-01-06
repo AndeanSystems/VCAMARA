@@ -13,13 +13,15 @@ namespace VidaCamara.DIS.data
             {
                 using (var db = new DISEntities())
                 {
-                    DateTime fecha_ini,fecha_fin;
-                    DateTime.TryParse(filterParam[1].ToString(), out fecha_ini);
-                    DateTime.TryParse(filterParam[2].ToString(), out fecha_fin);
+                    DateTime fecha_ini = string.IsNullOrEmpty(filterParam[1].ToString()) ? new DateTime(1900, 01, 01) : Convert.ToDateTime(filterParam[1].ToString());
+                    DateTime fecha_fin = string.IsNullOrEmpty(filterParam[2].ToString()) ? DateTime.Now : Convert.ToDateTime(filterParam[2].ToString());
+
+                    //DateTime.TryParse(filterParam[1].ToString(), out fecha_ini);
+                    //DateTime.TryParse(filterParam[2].ToString(), out fecha_fin);
                     var nombreTipoArchivo = filterParam[0].ToString();
 
                     var result = db.pa_sel_historiaCargaArchivoLinDet(nombreTipoArchivo, cab.IDE_CONTRATO, det.COD_AFP, det.COD_CUSP,
-                                det.PRI_NOMB_PEN, det.APE_MATE_PEN, det.NUM_DOCU_PEN, det.NUM_SOLI_PEN, det.TIP_MONE, fecha_ini, fecha_ini).ToList();
+                                det.PRI_NOMB_PEN, det.APE_MATE_PEN, det.NUM_DOCU_PEN, det.NUM_SOLI_PEN, det.TIP_MONE.Trim(), fecha_ini, fecha_fin).ToList();
                     total = result.Count;
                     foreach (var item in result.Skip(jtStartIndex).Take(jtPageSize))
                     {

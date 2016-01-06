@@ -162,6 +162,7 @@
     <Compile Include="Modelo\DocumentoSolicitado.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\EEntidad\HLogOperacion.cs" />
     <Compile Include="Modelo\Enumerado\EstadoPago.cs" />
     <Compile Include="Modelo\EstadoArchivo.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>

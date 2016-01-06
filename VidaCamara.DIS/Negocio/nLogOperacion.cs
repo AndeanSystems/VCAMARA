@@ -23,5 +23,10 @@ namespace VidaCamara.DIS.Negocio
             log.CodiCnx = CodiCnx;
             return new dLogOperacion().setGuardarLogOperacion(log);
         }
+
+        public List<LogOperacion> getListLogOperacion(LogOperacion log, int jtStartIndex, int jtPageSize, out int total) 
+        {
+            return new dLogOperacion().getListLogOperacion(log, jtStartIndex, jtPageSize, out total);
+        }
     }
 }
