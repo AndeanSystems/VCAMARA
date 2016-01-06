@@ -58,6 +58,14 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                     return;
                 }
                 var archivo = new Archivo() { NombreArchivo = nombreArchivo };
+
+                //aqui se verifica si el archivo que va cargar ya fue cargado con el mismo nombre.
+                var existeArchivo = new nArchivo().listExisteArchivo(archivo);
+                if (existeArchivo.Count > 0)
+                {
+                    MessageBox("El archivo: " + nombreArchivo + " ya fue cargado. ");
+                    return;
+                }
                 //si el tipo de archivo es nomina validar  que se haya cargado un equivalente de  pago y que se haya cargado correctamente.
                 if (ddl_tipo_archivo.SelectedItem.Value.Equals("NOMINA"))
                 {
@@ -68,13 +76,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                         return;
                     }
                 }
-                //aqui se verifica si el archivo que va cargar ya fue cargado con el mismo nombre.
-                var existeArchivo = new nArchivo().listExisteArchivo(archivo);
-                if (existeArchivo.Count > 0)
-                {
-                    MessageBox("El archivo: " + nombreArchivo + " ya fue cargado. ");
-                    return;
-                }
+                
                 //fin david choque 27 12 2015
                 var fileName = Server.MapPath(("~/Temp/Archivos/")) + fileUpload.FileName;
                 fileUpload.SaveAs(fileName);
