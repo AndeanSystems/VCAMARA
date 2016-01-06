@@ -35,6 +35,7 @@ namespace VidaCamara.DIS.data
 	        {	        
 		        using (var db = new DISEntities())
                 {
+                    //db.pa_sel_LogOperacion();
                     var query = (from a in db.LogOperacions
                                  where a.TipoOper.Equals(log.TipoOper) || log.TipoOper == "0"
                                  select a).ToList();

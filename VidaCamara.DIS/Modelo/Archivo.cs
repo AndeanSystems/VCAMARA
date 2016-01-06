@@ -16,9 +16,9 @@ namespace VidaCamara.DIS.Modelo
     {
         public Archivo()
         {
+            this.NOMINAs = new HashSet<NOMINA>();
             this.HistorialCargaArchivoes = new HashSet<HistorialCargaArchivo>();
             this.HistorialCargaArchivo_LinCab = new HashSet<HistorialCargaArchivo_LinCab>();
-            this.NOMINAs = new HashSet<NOMINA>();
         }
     
         public int ArchivoId { get; set; }
@@ -29,10 +29,10 @@ namespace VidaCamara.DIS.Modelo
         public string UsuarioModificacion { get; set; }
         public Nullable<bool> Vigente { get; set; }
     
+        public virtual ICollection<NOMINA> NOMINAs { get; set; }
         public virtual ICollection<HistorialCargaArchivo> HistorialCargaArchivoes { get; set; }
         public virtual ICollection<HistorialCargaArchivo_LinCab> HistorialCargaArchivo_LinCab { get; set; }
         public virtual EstadoArchivo EstadoArchivo { get; set; }
         public virtual TipoArchivo TipoArchivo { get; set; }
-        public virtual ICollection<NOMINA> NOMINAs { get; set; }
     }
 }

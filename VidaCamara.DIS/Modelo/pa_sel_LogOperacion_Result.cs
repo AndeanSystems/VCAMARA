@@ -10,9 +10,8 @@
 namespace VidaCamara.DIS.Modelo
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class LogOperacion
+    public partial class pa_sel_LogOperacion_Result
     {
         public long CodiLogOper { get; set; }
         public Nullable<int> IDE_CONTRATO { get; set; }
@@ -22,7 +21,7 @@ namespace VidaCamara.DIS.Modelo
         public string CodiEven { get; set; }
         public string CodiUsu { get; set; }
         public string CodiCnx { get; set; }
-    
-        public virtual CONTRATO_SYS CONTRATO_SYS { get; set; }
+        public string TipoEvento { get; set; }
+        public string Evento { get; set; }
     }
 }

@@ -782,5 +782,30 @@ namespace VidaCamara.DIS.Modelo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_nominaXArchivo_Result>("pa_sel_nominaXArchivo", ideContratoParameter, nombreArchivoParameter);
         }
+    
+        public virtual ObjectResult<pa_sel_LogOperacion_Result> pa_sel_LogOperacion(Nullable<int> ideContrato, string tipoEvento, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string descripcion)
+        {
+            var ideContratoParameter = ideContrato.HasValue ?
+                new ObjectParameter("IdeContrato", ideContrato) :
+                new ObjectParameter("IdeContrato", typeof(int));
+    
+            var tipoEventoParameter = tipoEvento != null ?
+                new ObjectParameter("TipoEvento", tipoEvento) :
+                new ObjectParameter("TipoEvento", typeof(string));
+    
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_LogOperacion_Result>("pa_sel_LogOperacion", ideContratoParameter, tipoEventoParameter, fechaInicioParameter, fechaFinParameter, descripcionParameter);
+        }
     }
 }

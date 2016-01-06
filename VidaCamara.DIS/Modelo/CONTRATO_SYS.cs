@@ -18,6 +18,7 @@ namespace VidaCamara.DIS.Modelo
         {
             this.CONTRATO_SIS_DET = new HashSet<CONTRATO_SIS_DET>();
             this.HistorialCargaArchivo_LinCab = new HashSet<HistorialCargaArchivo_LinCab>();
+            this.LogOperacions = new HashSet<LogOperacion>();
             this.NOMINAs = new HashSet<NOMINA>();
         }
     
@@ -37,6 +38,7 @@ namespace VidaCamara.DIS.Modelo
     
         public virtual ICollection<CONTRATO_SIS_DET> CONTRATO_SIS_DET { get; set; }
         public virtual ICollection<HistorialCargaArchivo_LinCab> HistorialCargaArchivo_LinCab { get; set; }
+        public virtual ICollection<LogOperacion> LogOperacions { get; set; }
         public virtual ICollection<NOMINA> NOMINAs { get; set; }
     }
 }

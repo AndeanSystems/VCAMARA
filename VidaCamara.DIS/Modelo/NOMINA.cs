@@ -17,6 +17,7 @@ namespace VidaCamara.DIS.Modelo
         public int Id_Nomina { get; set; }
         public Nullable<int> Id_Empresa { get; set; }
         public Nullable<int> ArchivoId { get; set; }
+        public int IDE_CONTRATO { get; set; }
         public string RUC_ORDE { get; set; }
         public string CTA_ORDE { get; set; }
         public string COD_TRAN { get; set; }
@@ -28,7 +29,6 @@ namespace VidaCamara.DIS.Modelo
         public Nullable<int> TIP_CTA { get; set; }
         public string CTA_BENE { get; set; }
         public string DET_TRAN { get; set; }
-        public int IDE_CONTRATO { get; set; }
     
         public virtual CONTRATO_SYS CONTRATO_SYS { get; set; }
         public virtual Archivo Archivo { get; set; }
