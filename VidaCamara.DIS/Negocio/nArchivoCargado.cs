@@ -34,7 +34,7 @@ namespace VidaCamara.DIS.Negocio
         /// <param name="det"></param>
         /// <param name="filterParam"></param>
         /// <returns></returns>
-        public string getDescargarHistoriaLinCab(HistorialCargaArchivo_LinCab cab, HistorialCargaArchivo_LinDet det, object[] filterParam)
+        public string getDescargarConsulta(HistorialCargaArchivo_LinCab cab,NOMINA nomina, HistorialCargaArchivo_LinDet det, object[] filterParam)
         {
             try
             {
@@ -42,9 +42,10 @@ namespace VidaCamara.DIS.Negocio
                 var nombreArchivo = "Archivo " + filterParam[0].ToString()+" "+DateTime.Now.ToString("yyyyMMdd");
                 var rutaTemporal = @HttpContext.Current.Server.MapPath("~/Temp/Descargas/" + nombreArchivo + ".xlsx");
                 int total;
+                var tipoLinea = filterParam[0].ToString() == "NOMINA" ? "*" : "D";
                 //new Utils.DeleteFile().deleteFile(HttpContext.Current.Server.MapPath(@"~/Utils/xlsxs/"));
                 XSSFWorkbook book = new XSSFWorkbook();
-                var reglaArchivo = new ReglaArchivo() { Archivo = filterParam[0].ToString(), TipoLinea = "D" };
+                var reglaArchivo = new ReglaArchivo() { Archivo = filterParam[0].ToString(), TipoLinea = tipoLinea };
                 var listReglaArchivo = new nReglaArchivo().getListReglaArchivo(reglaArchivo, 0, 200, out total);
 
                 //crear el libro
@@ -59,18 +60,35 @@ namespace VidaCamara.DIS.Negocio
                     //cellCabecera.CellStyle = excelStyle.setFontText(12, true, book);
                 }
                 //consultar datos segun los filtros especificados
-                var listHistoriaLinDet = new dPagoCargado().listArchivoCargado(cab, det, filterParam, 0, 100000, out total);
-                
-                for (int i = 0; i < listHistoriaLinDet.Count; i++)
+                if (filterParam[0].ToString() == "NOMINA")
                 {
-                    IRow rowBody = sheet.CreateRow(i+2);
-                    ICell cellBody;
-                    for (int c = 0; c < listReglaArchivo.Count; c++)
+                    var listNomina = new nNomina().listNominaConsulta(nomina, filterParam, 0, 100000, out total);
+                    for (int i = 0; i < listNomina.Count; i++)
                     {
-                        cellBody = rowBody.CreateCell(c+1);
-                        var property = listHistoriaLinDet[i].GetType().GetProperty(listReglaArchivo[c].NombreCampo.ToString().Trim(), BindingFlags.Public | BindingFlags.Instance);
-                        cellBody.SetCellValue(property.GetValue(listHistoriaLinDet[i]) == null?"": property.GetValue(listHistoriaLinDet[i]).ToString());
-                        //cellBody.CellStyle = excelStyle.setFontText(11, false, book);
+                        IRow rowBody = sheet.CreateRow(i + 2);
+                        ICell cellBody;
+                        for (int c = 0; c < listReglaArchivo.Count; c++)
+                        {
+                            cellBody = rowBody.CreateCell(c + 1);
+                            var property = listNomina[i].GetType().GetProperty(listReglaArchivo[c].NombreCampo.ToString().Trim(), BindingFlags.Public | BindingFlags.Instance);
+                            cellBody.SetCellValue(property.GetValue(listNomina[i]) == null ? "" : property.GetValue(listNomina[i]).ToString());
+                            //cellBody.CellStyle = excelStyle.setFontText(11, false, book);
+                        }
+                    }
+                }
+                else {
+                    var listHistoriaLinDet = new dPagoCargado().listArchivoCargado(cab, det, filterParam, 0, 100000, out total);
+                    for (int i = 0; i < listHistoriaLinDet.Count; i++)
+                    {
+                        IRow rowBody = sheet.CreateRow(i + 2);
+                        ICell cellBody;
+                        for (int c = 0; c < listReglaArchivo.Count; c++)
+                        {
+                            cellBody = rowBody.CreateCell(c + 1);
+                            var property = listHistoriaLinDet[i].GetType().GetProperty(listReglaArchivo[c].NombreCampo.ToString().Trim(), BindingFlags.Public | BindingFlags.Instance);
+                            cellBody.SetCellValue(property.GetValue(listHistoriaLinDet[i]) == null ? "" : property.GetValue(listHistoriaLinDet[i]).ToString());
+                            //cellBody.CellStyle = excelStyle.setFontText(11, false, book);
+                        }
                     }
                 }
 
