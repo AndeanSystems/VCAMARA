@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using VidaCamara.DIS.Modelo;
+using VidaCamara.DIS.Modelo.EEntidad;
 using VidaCamara.DIS.Negocio;
 using VidaCamara.SBS.Negocio;
 
@@ -34,8 +35,10 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
         }
 
         [System.Web.Services.WebMethod(EnableSession = true)]
-        public static object listLogOperacion(int jtStartIndex, int jtPageSize,string jtSorting,LogOperacion log)
+        public static object listLogOperacion(int jtStartIndex, int jtPageSize,string jtSorting,HLogOperacion log)
         {
+            //var listLogOperacion = new nLogOperacion().getListLogOperacion(log, jtStartIndex, jtPageSize, out total);
+            //return new { Result = "OK", Records = listLogOperacion, TotalRecordCount = total };
             var listLogOperacion = new nLogOperacion().getListLogOperacion(log, jtStartIndex, jtPageSize, out total);
             return new { Result = "OK", Records = listLogOperacion, TotalRecordCount = total };
         }
