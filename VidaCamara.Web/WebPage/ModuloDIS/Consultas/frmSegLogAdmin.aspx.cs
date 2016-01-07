@@ -29,17 +29,17 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             var list = new VidaCamara.SBS.Utils.Utility().getContratoSys(out total);
             ddl_contrato.DataSource = list;
             ddl_contrato.DataTextField = "_des_Contrato";
-            ddl_contrato.DataValueField = "_nro_Contrato";
+            ddl_contrato.DataValueField = "_ide_Contrato";
             ddl_contrato.DataBind();
             ddl_contrato.Items.Insert(0, new ListItem("Seleccione ----", "0"));
         }
 
         [System.Web.Services.WebMethod(EnableSession = true)]
-        public static object listLogOperacion(int jtStartIndex, int jtPageSize,string jtSorting,HLogOperacion log)
+        public static object listLogOperacion(int jtStartIndex, int jtPageSize,string jtSorting,HLogOperacion log,object[] filters)
         {
             //var listLogOperacion = new nLogOperacion().getListLogOperacion(log, jtStartIndex, jtPageSize, out total);
             //return new { Result = "OK", Records = listLogOperacion, TotalRecordCount = total };
-            var listLogOperacion = new nLogOperacion().getListLogOperacion(log, jtStartIndex, jtPageSize, out total);
+            var listLogOperacion = new nLogOperacion().getListLogOperacion(log, jtStartIndex, jtPageSize, filters, out total);
             return new { Result = "OK", Records = listLogOperacion, TotalRecordCount = total };
         }
 
