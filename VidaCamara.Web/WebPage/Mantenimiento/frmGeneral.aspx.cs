@@ -17,6 +17,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
         static int totalContrato;
         bValidarAcceso accesso = new bValidarAcceso();
         static int numero_empresa = 0;
+        static nLogOperacion nlog = new nLogOperacion();
         #endregion VARIABLES
         #region EVENTOS
         protected void Page_Load(object sender, EventArgs e)
@@ -101,8 +102,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             o._orderby = jtSorting.Substring(1).ToUpper();
             o._nro_Contrato = WhereBy.Trim();
 
-            bContratoDetalleVC tb = new bContratoDetalleVC();
-            List<eContratoDetalleVC> list = tb.GetSelecionarContratoDetalle(o,out total);
+            var list = new bContratoDetalleVC().GetSelecionarContratoDetalle(o, out total);
             return new { Result = "OK", Records = list, TotalRecordCount = total };
         }
         [System.Web.Services.WebMethod(EnableSession = true)]
@@ -126,8 +126,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             o._nro_Contrato = WhereBy.Trim();
             o._estado = "R";
 
-            bContratoVC tb = new bContratoVC();
-            List<eContratoVC> list = tb.GetSelecionarContrato(o, out total);
+            var list = new bContratoVC().GetSelecionarContrato(o, out total);
             return new { Result = "OK", Records = list, TotalRecordCount = total };
         }
 
@@ -513,8 +512,9 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 }
                 else if (tabla.Equals("CONTRATO_SYS") && indice != "0")
                 {
-                    bContratoSys bcd = new bContratoSys();
-                    Int32 resp = bcd.SetEliminarContratoSys(Int32.Parse(indice));
+                    var  resp = new bContratoSys().SetEliminarContratoSys(Int32.Parse(indice));
+                    var elog = nlog.setLLenarEntidad(Convert.ToInt32(txt_ide_contrato_sis.Value), "E001", "CONSIS_E", resp.ToString(), Session["username"].ToString());
+                    nlog.setGuardarLogOperacion(elog);
                     MessageBox(resp + "Registro Eliminado Correctamente!");
   
                 }
@@ -633,17 +633,17 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 };
                 var siExisteFecha = new nContratoSis().existeFecha(contratoSis);
 
-                if (siExisteFecha > 0)
-                {
-                    MessageBox("La fecha ingresada se sobrepone al rango de fechas de otro contrato.");
-                    return;
-                }
-
-
                 bContratoSys control = new bContratoSys();
                 if (c._ide_Contrato == 0)
                 {
+                    if (siExisteFecha > 0)
+                    {
+                        MessageBox("La fecha ingresada se sobrepone al rango de fechas de otro contrato.");
+                        return;
+                    }
                     resp = control.SetInsertarContratoSys(c);
+                    //var elog = nlog.setLLenarEntidad(resp, "C001", "CONSIS_C", resp.ToString(), Session["username"].ToString());
+                    //nlog.setGuardarLogOperacion(elog);
                     if (resp != 0)
                     {
                         //contrato sys
@@ -652,13 +652,13 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                         MessageBox("Registro Grabado Correctamente");
                     }
                     else
-                    {
                         MessageBox("Ocurrio un Error en el Servidor!");
-                    }
                 }
                 else
                 {
                     resp = control.SetActualizarContratoSys(c);
+                    var elog = nlog.setLLenarEntidad(Convert.ToInt32(txt_ide_contrato_sis.Value), "A001", "CONSIS_A", resp.ToString(), Session["username"].ToString());
+                    nlog.setGuardarLogOperacion(elog);
                     if (resp != 0)
                     {
                         //contrato sys
@@ -667,9 +667,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                         MessageBox("Registro Actualizado Correctamente");
                     }
                     else
-                    {
                         MessageBox("Ocurrio un Error en el Servidor!");
-                    }
                 }
             }
             catch (Exception e)
