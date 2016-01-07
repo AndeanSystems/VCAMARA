@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VidaCamara.DIS.data;
 using VidaCamara.DIS.Modelo;
+using VidaCamara.DIS.Modelo.EEntidad;
 
 namespace VidaCamara.DIS.Negocio
 {
@@ -18,13 +19,14 @@ namespace VidaCamara.DIS.Negocio
         //var operacion = LogOperacion(){agregar sus propiedades menos (FechEven,CodiCnx)}
         //luego instacia la clase nLogOperacion
         //var negocio = nLogOperacion().setGuardarLogOperacion(operacion);
-        public long setGuardarLogOperacion(LogOperacion log) { 
+        public long setGuardarLogOperacion(HLogOperacion log)
+        { 
             log.FechEven = FechEven;
             log.CodiCnx = CodiCnx;
             return new dLogOperacion().setGuardarLogOperacion(log);
         }
 
-        public List<LogOperacion> getListLogOperacion(LogOperacion log, int jtStartIndex, int jtPageSize, out int total) 
+        public List<HLogOperacion> getListLogOperacion(HLogOperacion log, int jtStartIndex, int jtPageSize, out int total) 
         {
             return new dLogOperacion().getListLogOperacion(log, jtStartIndex, jtPageSize, out total);
         }
