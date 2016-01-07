@@ -1,18 +1,15 @@
 ﻿$(document).ready(function () {
-    var mifuncion = function () {
+    /*var mifuncion = function () {
         alert("funciona mi prueba");
-    }
+    }*/
     //variables
     //$("tblLogOperacion").listLogOperacion(log);
     var action = "/WebPage/ModuloDIS/Consultas/frmSegLogAdmin.aspx/listLogOperacion";
     var fields = {
-        CodiLogOper: { title: 'CodiLogOper'},
-        FechEven: { title: 'FechEven', type: 'date', displayFormat: 'dd/mm/yy' },
+        IDE_CONTRATO: { title: 'IDE_CONTRATO'},
         TipoOper: { title: 'TipoOper' },
-        CodiOper: { title: 'CodiOper' },
-        CodiEven: { title: 'CodiEven' },
-        CodiUsu: { title: 'CodiUsu' },
-        CodiCnx: { title: 'CodiCnx' }
+        FechEven: { title: 'FechEven', type: 'date', displayFormat: 'dd/mm/yy' },
+        Evento: { title: 'Evento' }
     }
     var logOperacion = function () {
         this.TipoOper = $("#ctl00_ContentPlaceHolder1_ddl_operacion").val(),
@@ -28,11 +25,11 @@
     //});
     function listLogOperacion(log) {
         $('#tblLogOperacion').jtable({
-            tableId: 'CodiLogOper',
+            tableId: 'IDE_CONTRATO',
             paging: true,
             sorting: true,
             pageSize: 12,
-            defaultSorting: 'CodiLogOper ASC',
+            defaultSorting: 'IDE_CONTRATO ASC',
             selecting: true,
             actions: {
                 listAction: action,
