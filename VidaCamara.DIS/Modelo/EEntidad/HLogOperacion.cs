@@ -8,7 +8,7 @@ namespace VidaCamara.DIS.Modelo.EEntidad
 {
     public class HLogOperacion:LogOperacion
     {
-        public string Descripcion { get; set; }
-
+        public string TipoEvento { get; set; }
+        public string Evento { get; set; }
     }
 }
