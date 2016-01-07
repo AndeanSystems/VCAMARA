@@ -16,9 +16,8 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
         static HistorialCargaArchivo_LinCab cabecera = new HistorialCargaArchivo_LinCab();
         static HistorialCargaArchivo_LinDet historiaLinDet = new HistorialCargaArchivo_LinDet();
         static object[] filterParam = new object[4];//[0]Tipo de archivo [1] fecha inicio [2] fecha fin [3] fomato meneda 
-
+        static NOMINA nomina = new NOMINA();
         static string formatoMoneda = string.Empty;
-        static string tipoArchivo = string.Empty;
 
         #endregion VARIABLES
         #region EVENTOS
@@ -53,19 +52,23 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             var listCargaDetalle = new nArchivoCargado().listArchivoCargado(cabecera,historiaLinDet, filterParam, jtStartIndex, jtPageSize, out total);
             return new { Result = "OK", Records = listCargaDetalle, TotalRecordCount = total };
         }
-        //[System.Web.Services.WebMethod(EnableSession = true)]
-        //public static object listConsultaNomina(int jtStartIndex, int jtPageSize, string jtSorting) {
-        //    var negocio = new nNomina();
-        //    return new { Result = "OK", Records = negocio.listNominaByArchivo(nomina, filters, jtStartIndex, jtPageSize, out total), TotalRecordCount = total };
-        //}
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static object listNominaConsulta(int jtStartIndex, int jtPageSize, string jtSorting)
+        {
+            var negocio = new nNomina();
+            return new { Result = "OK", Records = negocio.listNominaConsulta(nomina, filterParam, jtStartIndex, jtPageSize, out total), TotalRecordCount = total };
+        }
         protected void btn_consultar_Click1(object sender, ImageClickEventArgs e)
         {
+            var nombreTipoArchivo = ddl_tipo_archivo.SelectedItem.Value;
             setLlenarEntiddes();
-            const string action = "/WebPage/ModuloDIS/Consultas/frmSegConsulta.aspx/listHistoriaDetalle";
-            var regla = new ReglaArchivo() { Archivo = ddl_tipo_archivo.SelectedItem.Value, TipoLinea = "D" };
+            var action = nombreTipoArchivo == "NOMINA"? "/WebPage/ModuloDIS/Consultas/frmSegConsulta.aspx/listNominaConsulta" : "/WebPage/ModuloDIS/Consultas/frmSegConsulta.aspx/listHistoriaDetalle";
+            var tipoLinea = nombreTipoArchivo == "NOMINA"?"*":"D";
+            var sorter = nombreTipoArchivo == "NOMINA" ? "RUC_ORDE ASC" : "TIP_REGI ASC";
+            var regla = new ReglaArchivo() { Archivo = ddl_tipo_archivo.SelectedItem.Value, TipoLinea = tipoLinea };
             var fields = new nReglaArchivo().getColumnGridByArchivo(regla).ToString();
             Page.ClientScript.RegisterStartupScript(GetType(), "Fields", fields, true);
-            var grid = new gridCreator().getGrid("frmSeqConsulta", "4800", action, "TIP_REGI ASC").ToString();
+            var grid = new gridCreator().getGrid("frmSeqConsulta", "4800", action, sorter).ToString();
             Page.ClientScript.RegisterStartupScript(GetType(), "Grid", grid, true);
         }
         protected void btn_exportar_Click(object sender, ImageClickEventArgs e)
@@ -106,8 +109,8 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             filterParam[1] = txt_fec_ini_o.Text;
             filterParam[2] = txt_fec_hasta_o.Text;
 
-            //TIPO DE ARCHIVO
-            tipoArchivo = ddl_tipo_archivo.SelectedItem.Value;
+            if(ddl_tipo_archivo.SelectedItem.Value.Equals("NOMINA"))
+                nomina.IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value);
         }
         private void MessageBox(String text)
         {
