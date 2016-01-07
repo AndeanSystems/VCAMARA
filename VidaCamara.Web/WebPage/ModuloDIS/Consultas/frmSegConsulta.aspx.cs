@@ -74,7 +74,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
         protected void btn_exportar_Click(object sender, ImageClickEventArgs e)
         {
             setLlenarEntiddes();
-            var nombreArchivo = new nArchivoCargado().getDescargarHistoriaLinCab(cabecera, historiaLinDet, filterParam);
+            var nombreArchivo = new nArchivoCargado().getDescargarConsulta(cabecera,nomina, historiaLinDet, filterParam);
             Response.Clear();
             Response.ContentType = "application/vnd.ms-excel";
             Response.AddHeader("Content-Disposition", "attachment;filename="+ nombreArchivo);
