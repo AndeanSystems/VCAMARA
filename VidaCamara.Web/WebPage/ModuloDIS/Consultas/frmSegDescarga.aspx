@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebPage/Inicio/mpFEPCMAC.Master" AutoEventWireup="true" CodeBehind="frmSegDescarga.aspx.cs" Inherits="VidaCamara.Web.WebPage.ModuloDIS.Consultas.frmSegDescarga" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="/WebPage/ModuloDIS/Consultas/script/frmSegDescarga.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
          <!--Comienzo de los Tabs-->
@@ -28,7 +29,7 @@
                 <asp:TextBox CssClass="input_right datetime" ID="txt_fec_hasta_o" runat="server" Height="25px" Width="14.7%" ></asp:TextBox>
 
                 <div class="iframe" id="tblConsulta1">
-
+                    <div id="tblApruebaCarga"></div>
                 </div>  
             </asp:View>
         </asp:MultiView>    
