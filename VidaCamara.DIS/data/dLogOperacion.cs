@@ -28,41 +28,28 @@ namespace VidaCamara.DIS.data
             }
         }
 
-        public List<LogOperacion> getListLogOperacion(LogOperacion log, int jtStartIndex, int jtPageSize, out int total)
+        public List<HLogOperacion> getListLogOperacion(HLogOperacion log, int jtStartIndex, int jtPageSize, out int total)
         {
-            var listLogOperacion = new List<LogOperacion>();
+            var listLogOperacion = new List<HLogOperacion>();
             try 
 	        {	        
 		        using (var db = new DISEntities())
                 {
-                    //db.pa_sel_LogOperacion();
-                    var query = (from a in db.LogOperacions
-                                 where a.TipoOper.Equals(log.TipoOper) || log.TipoOper == "0"
-                                 select a).ToList();
-                    total = query.Count;
-                    //var query = db.LogOperacions.OrderBy(a => a.CodiLogOper)
-                    //    .Where(a=>a.TipoOper.Equals(log.TipoOper) || log.TipoOper == "0")
-                    //    .ToList();
-                    //total = query.Count();
+                    var query = db.pa_sel_LogOperacion(log.IDE_CONTRATO, log.TipoOper, log.FechEven, log.FechEven, log.Evento).ToList();
+                    total = query.Count();
 
                     foreach (var item in query.Skip(jtStartIndex).Take(jtPageSize))
                     {
 
-                        //var log1 = new HLogOperacion()
-                        //{
-
-                        //};
-                        var logOperacion = new LogOperacion()
+                        var log1 = new HLogOperacion()
                         {
-                            CodiLogOper = item.CodiLogOper,
-                            FechEven   = item.FechEven,
-                            TipoOper   = item.TipoOper,
-                            CodiOper   = item.CodiOper,
-                            CodiEven   = item.CodiEven,
-                            CodiUsu    = item.CodiUsu,
-                            CodiCnx    = item.CodiCnx
+                            IDE_CONTRATO = item.IDE_CONTRATO,
+                            TipoOper     = item.TipoOper,
+                            FechEven     = item.FechEven,
+                            Evento       = item.Evento
                         };
-                        listLogOperacion.Add(logOperacion);
+
+                        listLogOperacion.Add(log1);
                     }
 
                 }
