@@ -21,5 +21,9 @@ namespace VidaCamara.DIS.Negocio
             filters[0] = Path.GetFileNameWithoutExtension(filters[0].ToString())+".CSV";
             return new dNomina().listNominaByArchivo(nomina,filters,jtStartIndex,jtPageSize,out total);
         }
+        public List<NOMINA> listNominaConsulta(NOMINA nomina, object[] filters, int jtStartIndex, int jtPageSize, out int total)
+        {
+            return new dNomina().listNominaConsulta(nomina,filters,jtStartIndex,jtPageSize,out total);
+        }
     }
 }
