@@ -26,9 +26,9 @@ namespace VidaCamara.DIS.Negocio
             return new dLogOperacion().setGuardarLogOperacion(log);
         }
 
-        public List<HLogOperacion> getListLogOperacion(HLogOperacion log, int jtStartIndex, int jtPageSize, out int total) 
+        public List<HLogOperacion> getListLogOperacion(HLogOperacion log, int jtStartIndex, int jtPageSize,object[] filters, out int total) 
         {
-            return new dLogOperacion().getListLogOperacion(log, jtStartIndex, jtPageSize, out total);
+            return new dLogOperacion().getListLogOperacion(log, jtStartIndex, jtPageSize, filters, out total);
         }
     }
 }
