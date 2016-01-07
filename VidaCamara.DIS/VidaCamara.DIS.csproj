@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="data\dAprobacionCarga.cs" />
     <Compile Include="data\dArchivo.cs" />
     <Compile Include="data\dContratoSis.cs" />
     <Compile Include="data\dContrato_sis_detalle.cs" />
@@ -162,6 +163,7 @@
     <Compile Include="Modelo\DocumentoSolicitado.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\EEntidad\EAprobacionCarga.cs" />
     <Compile Include="Modelo\EEntidad\HLogOperacion.cs" />
     <Compile Include="Modelo\Enumerado\EstadoPago.cs" />
     <Compile Include="Modelo\EstadoArchivo.cs">
@@ -254,6 +256,9 @@
     <Compile Include="Modelo\pa_sel_nominaXArchivo_Result.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\pa_sel_pagoAprueba_Result.cs">
+      <DependentUpon>DISModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\Persona.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
@@ -305,6 +310,7 @@
     <Compile Include="Negocio\CargaLogica.Evaluador.cs" />
     <Compile Include="Negocio\CargaLogica.cs" />
     <Compile Include="Negocio\CheckListLogica.cs" />
+    <Compile Include="Negocio\nAprobacionCarga.cs" />
     <Compile Include="Negocio\nArchivo.cs" />
     <Compile Include="Negocio\nArchivoCargado.cs" />
     <Compile Include="Negocio\nContratoSis.cs" />
