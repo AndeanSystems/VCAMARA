@@ -19,11 +19,23 @@ namespace VidaCamara.DIS.Negocio
         //var operacion = LogOperacion(){agregar sus propiedades menos (FechEven,CodiCnx)}
         //luego instacia la clase nLogOperacion
         //var negocio = nLogOperacion().setGuardarLogOperacion(operacion);
-        public long setGuardarLogOperacion(HLogOperacion log)
+        public long setGuardarLogOperacion(LogOperacion log)
         { 
             log.FechEven = FechEven;
             log.CodiCnx = CodiCnx;
             return new dLogOperacion().setGuardarLogOperacion(log);
+        }
+
+        public LogOperacion setLLenarEntidad(int IdeContrato,string TipoOper,string CodiEven, string CodiOper,string CodiUsu)
+        {
+            return new LogOperacion()
+            {
+                IDE_CONTRATO = IdeContrato,
+                TipoOper = TipoOper,
+                CodiEven = CodiEven,
+                CodiOper = CodiOper,
+                CodiUsu = CodiUsu
+            };
         }
 
         public List<HLogOperacion> getListLogOperacion(HLogOperacion log, int jtStartIndex, int jtPageSize,object[] filters, out int total) 

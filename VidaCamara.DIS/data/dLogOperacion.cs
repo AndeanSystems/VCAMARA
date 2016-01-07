@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VidaCamara.DIS.Modelo;
 using VidaCamara.DIS.Modelo.EEntidad;
 
 namespace VidaCamara.DIS.data
 {
-    
+
     public class dLogOperacion
     {
         public long setGuardarLogOperacion(LogOperacion log)
@@ -45,9 +43,9 @@ namespace VidaCamara.DIS.data
 
                         var logOperacion = new HLogOperacion()
                         {
-                            IDE_CONTRATO = item.IDE_CONTRATO,
+                            IDE_CONTRATO = Convert.ToInt32(item.IDE_CONTRATO),
                             TipoOper     = item.TipoOper,
-                            FechEven     = item.FechEven,
+                            FechEven     = Convert.ToDateTime(item.FechEven),
                             Evento       = item.Evento,
                             TipoEvento   = item.TipoEvento,
                             CodiEven     = item.CodiEven,

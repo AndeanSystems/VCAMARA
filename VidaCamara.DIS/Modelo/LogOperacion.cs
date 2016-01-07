@@ -15,8 +15,8 @@ namespace VidaCamara.DIS.Modelo
     public partial class LogOperacion
     {
         public long CodiLogOper { get; set; }
-        public Nullable<int> IDE_CONTRATO { get; set; }
-        public Nullable<System.DateTime> FechEven { get; set; }
+        public int IDE_CONTRATO { get; set; }
+        public System.DateTime FechEven { get; set; }
         public string TipoOper { get; set; }
         public string CodiOper { get; set; }
         public string CodiEven { get; set; }
