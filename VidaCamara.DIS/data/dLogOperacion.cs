@@ -28,28 +28,32 @@ namespace VidaCamara.DIS.data
             }
         }
 
-        public List<HLogOperacion> getListLogOperacion(HLogOperacion log, int jtStartIndex, int jtPageSize, out int total)
+        public List<HLogOperacion> getListLogOperacion(HLogOperacion log, int jtStartIndex, int jtPageSize,object[] filters, out int total)
         {
             var listLogOperacion = new List<HLogOperacion>();
             try 
-	        {	        
-		        using (var db = new DISEntities())
+	        {
+                DateTime fecha_ini = string.IsNullOrEmpty(filters[0].ToString())?new DateTime(1900,01,01):Convert.ToDateTime(filters[0].ToString());
+                DateTime fecha_fin = string.IsNullOrEmpty(filters[1].ToString()) ? DateTime.Now : Convert.ToDateTime(filters[1].ToString());
+                using (var db = new DISEntities())
                 {
-                    var query = db.pa_sel_LogOperacion(log.IDE_CONTRATO, log.TipoOper, log.FechEven, log.FechEven, log.Evento).ToList();
+                    var query = db.pa_sel_LogOperacion(log.IDE_CONTRATO, log.TipoOper, fecha_ini, fecha_fin, log.Evento).ToList();
                     total = query.Count();
 
                     foreach (var item in query.Skip(jtStartIndex).Take(jtPageSize))
                     {
 
-                        var log1 = new HLogOperacion()
+                        var logOperacion = new HLogOperacion()
                         {
                             IDE_CONTRATO = item.IDE_CONTRATO,
                             TipoOper     = item.TipoOper,
                             FechEven     = item.FechEven,
-                            Evento       = item.Evento
+                            Evento       = item.Evento,
+                            TipoEvento   = item.TipoEvento,
+                            CodiEven     = item.CodiEven,
                         };
 
-                        listLogOperacion.Add(log1);
+                        listLogOperacion.Add(logOperacion);
                     }
 
                 }
