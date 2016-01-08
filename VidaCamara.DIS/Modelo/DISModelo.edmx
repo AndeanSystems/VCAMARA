@@ -627,6 +627,7 @@ warning 6002: The table/view 'vcamara.dbo.USUARIO' does not have a primary key d
           <Property Name="ESTADO" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="FEC_REG" Type="datetime" Nullable="false" />
           <Property Name="USU_REG" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ArchivoIdNomina" Type="int" />
         </EntityType>
         <EntityType Name="HistorialCargaArchivo_LinDet">
           <Key>
@@ -1541,10 +1542,14 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Parameter Name="IdeContrato" Type="int" Mode="In" />
           <Parameter Name="NombreArchivo" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="pa_sel_pagoAprueba" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="pa_sel_pagoNominaAprueba" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdeContrato" Type="int" Mode="In" />
           <Parameter Name="NombreTipoArchivo" Type="varchar" Mode="In" />
           <Parameter Name="Fecha" Type="date" Mode="In" />
+        </Function>
+        <Function Name="pa_upd_ApruebaLinCabNomina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdContrato" Type="int" Mode="In" />
+          <Parameter Name="IdHistoriaLinCab" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_valida_CodigoTransferenciaNomina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="valor" Type="varchar" Mode="In" />
@@ -2372,6 +2377,15 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
             <Parameter Name="Fecha" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="pa_upd_ApruebaLinCabNomina">
+            <Parameter Name="IdContrato" Mode="In" Type="Int32" />
+            <Parameter Name="IdHistoriaLinCab" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_sel_pagoNominaAprueba" ReturnType="Collection(DISModelo.pa_sel_pagoNominaAprueba_Result)">
+            <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
+            <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
           <Property Type="Int32" Name="IdRegistroMontoAlto" Nullable="false" />
@@ -3093,6 +3107,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <NavigationProperty Name="CONTRATO_SYS" Relationship="DISModelo.FK_HistorialCargaArchivo_LinCab_CONTRATO_SYS" FromRole="HistorialCargaArchivo_LinCab" ToRole="CONTRATO_SYS" />
           <NavigationProperty Name="Archivo" Relationship="DISModelo.FK_HistorialCargaArchivo_LinCab_Archivo" FromRole="HistorialCargaArchivo_LinCab" ToRole="Archivo" />
           <NavigationProperty Name="HistorialCargaArchivo_LinDet" Relationship="DISModelo.FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab" FromRole="HistorialCargaArchivo_LinCab" ToRole="HistorialCargaArchivo_LinDet" />
+          <Property Name="ArchivoIdNomina" Type="Int32" />
         </EntityType>
         <EntityType Name="HistorialCargaArchivo_LinDet">
           <Key>
@@ -4177,6 +4192,19 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Type="String" Name="Aprobar" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="Eliminar" Nullable="false" MaxLength="1" />
         </ComplexType>
+        <ComplexType Name="pa_sel_pagoNominaAprueba_Result">
+          <Property Type="Int64" Name="IdLinCab" Nullable="false" />
+          <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="FechaCarga" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Moneda" Nullable="false" MaxLength="7" />
+          <Property Type="Int32" Name="TotalRegistros" Nullable="true" />
+          <Property Type="Decimal" Name="ImporteTotal" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="PagoVC" Nullable="true" Precision="9" Scale="6" />
+          <Property Type="DateTime" Name="FechaInfo" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuReg" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Aprobar" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="Eliminar" Nullable="false" MaxLength="1" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4974,6 +5002,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <EntitySetMapping Name="HistorialCargaArchivo_LinCab">
             <EntityTypeMapping TypeName="DISModelo.HistorialCargaArchivo_LinCab">
               <MappingFragment StoreEntitySet="HistorialCargaArchivo_LinCab">
+                <ScalarProperty Name="ArchivoIdNomina" ColumnName="ArchivoIdNomina" />
                 <ScalarProperty Name="USU_REG" ColumnName="USU_REG" />
                 <ScalarProperty Name="FEC_REG" ColumnName="FEC_REG" />
                 <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
@@ -5756,9 +5785,11 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="pa_sel_pagoAprueba" FunctionName="DISModelo.Store.pa_sel_pagoAprueba">
+          <FunctionImportMapping FunctionImportName="pa_upd_ApruebaLinCabNomina" FunctionName="DISModelo.Store.pa_upd_ApruebaLinCabNomina" />
+          <FunctionImportMapping FunctionImportName="pa_sel_pagoNominaAprueba" FunctionName="DISModelo.Store.pa_sel_pagoNominaAprueba">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="DISModelo.pa_sel_pagoAprueba_Result">
+              <ComplexTypeMapping TypeName="DISModelo.pa_sel_pagoNominaAprueba_Result">
+                <ScalarProperty Name="IdLinCab" ColumnName="IdLinCab" />
                 <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
                 <ScalarProperty Name="FechaCarga" ColumnName="FechaCarga" />
                 <ScalarProperty Name="Moneda" ColumnName="Moneda" />

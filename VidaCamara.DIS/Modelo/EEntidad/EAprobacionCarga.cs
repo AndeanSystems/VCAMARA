@@ -4,6 +4,7 @@ namespace VidaCamara.DIS.Modelo.EEntidad
 {
     public partial class EAprobacionCarga
     {
+        public long IdLinCab { get; set; }
         public string NombreArchivo { get; set; }
         public DateTime FechaCarga { get; set; }
         public string moneda { get; set; }

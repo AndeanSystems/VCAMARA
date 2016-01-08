@@ -259,6 +259,9 @@
     <Compile Include="Modelo\pa_sel_pagoAprueba_Result.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\pa_sel_pagoNominaAprueba_Result.cs">
+      <DependentUpon>DISModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\Persona.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>

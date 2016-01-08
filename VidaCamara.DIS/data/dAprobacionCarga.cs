@@ -15,11 +15,12 @@ namespace VidaCamara.DIS.data
             {
                 using (var db = new DISEntities())
                 {
-                    var query = db.pa_sel_pagoAprueba(contrato.IDE_CONTRATO, "", DateTime.Now).ToList();
+                    var query = db.pa_sel_pagoNominaAprueba(contrato.IDE_CONTRATO, "", DateTime.Now).ToList();
                     foreach (var item in query)
                     {
                         var eApruebaCarga = new EAprobacionCarga()
                         {
+                            IdLinCab = item.IdLinCab,
                             NombreArchivo = item.NombreArchivo,
                             FechaCarga = item.FechaCarga,
                             moneda = item.Moneda,

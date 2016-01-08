@@ -34,6 +34,7 @@ namespace VidaCamara.DIS.Modelo
         public string ESTADO { get; set; }
         public System.DateTime FEC_REG { get; set; }
         public string USU_REG { get; set; }
+        public Nullable<int> ArchivoIdNomina { get; set; }
     
         public virtual CONTRATO_SYS CONTRATO_SYS { get; set; }
         public virtual Archivo Archivo { get; set; }

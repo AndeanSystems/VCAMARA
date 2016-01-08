@@ -824,5 +824,35 @@ namespace VidaCamara.DIS.Modelo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_pagoAprueba_Result>("pa_sel_pagoAprueba", ideContratoParameter, nombreTipoArchivoParameter, fechaParameter);
         }
+    
+        public virtual int pa_upd_ApruebaLinCabNomina(Nullable<int> idContrato, Nullable<int> idHistoriaLinCab)
+        {
+            var idContratoParameter = idContrato.HasValue ?
+                new ObjectParameter("IdContrato", idContrato) :
+                new ObjectParameter("IdContrato", typeof(int));
+    
+            var idHistoriaLinCabParameter = idHistoriaLinCab.HasValue ?
+                new ObjectParameter("IdHistoriaLinCab", idHistoriaLinCab) :
+                new ObjectParameter("IdHistoriaLinCab", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_upd_ApruebaLinCabNomina", idContratoParameter, idHistoriaLinCabParameter);
+        }
+    
+        public virtual ObjectResult<pa_sel_pagoNominaAprueba_Result> pa_sel_pagoNominaAprueba(Nullable<int> ideContrato, string nombreTipoArchivo, Nullable<System.DateTime> fecha)
+        {
+            var ideContratoParameter = ideContrato.HasValue ?
+                new ObjectParameter("IdeContrato", ideContrato) :
+                new ObjectParameter("IdeContrato", typeof(int));
+    
+            var nombreTipoArchivoParameter = nombreTipoArchivo != null ?
+                new ObjectParameter("NombreTipoArchivo", nombreTipoArchivo) :
+                new ObjectParameter("NombreTipoArchivo", typeof(string));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("Fecha", fecha) :
+                new ObjectParameter("Fecha", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_pagoNominaAprueba_Result>("pa_sel_pagoNominaAprueba", ideContratoParameter, nombreTipoArchivoParameter, fechaParameter);
+        }
     }
 }
