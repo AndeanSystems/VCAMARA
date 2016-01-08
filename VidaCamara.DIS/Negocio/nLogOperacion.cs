@@ -26,9 +26,9 @@ namespace VidaCamara.DIS.Negocio
             return new dLogOperacion().setGuardarLogOperacion(log);
         }
 
-        public LogOperacion setLLenarEntidad(int IdeContrato,string TipoOper,string CodiEven, string CodiOper,string CodiUsu)
+        public void setLLenarEntidad(int IdeContrato,string TipoOper,string CodiEven, string CodiOper,string CodiUsu)
         {
-            return new LogOperacion()
+            var entity = new LogOperacion()
             {
                 IDE_CONTRATO = IdeContrato,
                 TipoOper = TipoOper,
@@ -36,6 +36,7 @@ namespace VidaCamara.DIS.Negocio
                 CodiOper = CodiOper,
                 CodiUsu = CodiUsu
             };
+            this.setGuardarLogOperacion(entity);
         }
 
         public List<HLogOperacion> getListLogOperacion(HLogOperacion log, int jtStartIndex, int jtPageSize,object[] filters, out int total) 
