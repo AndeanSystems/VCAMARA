@@ -56,6 +56,7 @@ namespace VidaCamara.DIS.Negocio
                 if (NombreArchivo.Split('_')[0] == "NOMINA" | NombreArchivo.Split('_')[0] == "INOMINA")
                 {
                     extensionArchivo = ".CSV";
+                    // SE COMENTA ESTA LINEA PARA EVITAR QUE SE RENOMBRE EL ARCHIVO NOMINA
                     NombreArchivo = nombreArchivo + extensionArchivo;
                 }
                 ValidaNombre = ValidaNombreArchivo(NombreArchivo);
@@ -293,6 +294,7 @@ namespace VidaCamara.DIS.Negocio
                 nomina.ArchivoId = archivoId;
                 nomina.Id_Empresa = 1;//observado
                 nomina.IDE_CONTRATO = contratoId;
+                nomina.Estado = "C";
 
                 //EVALUAR RETORNO
                 var resp = new nNomina().setGrabarNomina(nomina);
