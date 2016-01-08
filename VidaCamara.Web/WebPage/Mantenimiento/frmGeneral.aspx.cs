@@ -209,11 +209,13 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                         return;
                     };
                     var resp = new nContratoSisDetalle().setGuardarContratoDetalle(ContratoSisDetalle);
+                    nlog.setLLenarEntidad(Convert.ToInt32(ContratoSisDetalle.IDE_CONTRATO), "I", "I02", resp.ToString(), Session["username"].ToString());
                         MessageBox("Registro  grabado corretamente");
                 }
                 else
                 {
                     var resp = new nContratoSisDetalle().setActualizarContratoDetalle(ContratoSisDetalle);
+                    nlog.setLLenarEntidad(Convert.ToInt32(ContratoSisDetalle.IDE_CONTRATO), "A", "A05", resp.ToString(), Session["username"].ToString());
                     MessageBox(resp + " Registro actualizado corretamente");
                 }
             }
@@ -513,8 +515,6 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 else if (tabla.Equals("CONTRATO_SYS") && indice != "0")
                 {
                     var  resp = new bContratoSys().SetEliminarContratoSys(Int32.Parse(indice));
-                    var elog = nlog.setLLenarEntidad(Convert.ToInt32(txt_ide_contrato_sis.Value), "E001", "CONSIS_E", resp.ToString(), Session["username"].ToString());
-                    nlog.setGuardarLogOperacion(elog);
                     MessageBox(resp + "Registro Eliminado Correctamente!");
   
                 }
@@ -657,10 +657,9 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 else
                 {
                     resp = control.SetActualizarContratoSys(c);
-                    var elog = nlog.setLLenarEntidad(Convert.ToInt32(txt_ide_contrato_sis.Value), "A001", "CONSIS_A", resp.ToString(), Session["username"].ToString());
-                    nlog.setGuardarLogOperacion(elog);
                     if (resp != 0)
                     {
+                        nlog.setLLenarEntidad(Convert.ToInt32(txt_ide_contrato_sis.Value), "A", "A01", resp.ToString(), Session["username"].ToString());
                         //contrato sys
                         var bContrato = new bContratoSys();
                         bContrato.SetEstablecerDataSourceContratoSys(ddl_contrato_sis);
