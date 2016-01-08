@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using VidaCamara.DIS.data;
 using VidaCamara.DIS.Modelo;
 
@@ -15,6 +16,8 @@ namespace VidaCamara.DIS.Negocio
         public List<Archivo> listExisteArchivo(Archivo archivo)
         {
             string[] collectionArchivo = archivo.NombreArchivo.Split('_');
+            if (collectionArchivo[0].ToString().Equals("NOMINA"))
+                archivo.NombreArchivo = Path.GetFileNameWithoutExtension(archivo.NombreArchivo) + ".CSV";
             //archivo.NombreArchivo = collectionArchivo[0] + "_" + collectionArchivo[1] + "_" + collectionArchivo[2] + "_" + collectionArchivo[3];
             var tamanoNombre = archivo.NombreArchivo.Length;
             return new dArchivo().listExisteArchivo(archivo, tamanoNombre);
@@ -23,7 +26,13 @@ namespace VidaCamara.DIS.Negocio
         public Int32 listExistePagoNomina(Archivo archivo)
         {
             var nombreNomina = archivo.NombreArchivo.Split('_');
-            archivo.NombreArchivo = "LIQ" + nombreNomina[1] + archivo.NombreArchivo.Substring(nombreNomina[0].Length+nombreNomina[1].Length+1);
+            if (nombreNomina[1].Equals("AAD"))
+            {
+                archivo.NombreArchivo = Path.GetFileNameWithoutExtension("LIQ" + "AADIC" + archivo.NombreArchivo.Substring(nombreNomina[0].Length + nombreNomina[1].Length + 1)) + ".CAM";
+            }else{
+                archivo.NombreArchivo = Path.GetFileNameWithoutExtension("LIQ" + nombreNomina[1] + archivo.NombreArchivo.Substring(nombreNomina[0].Length + nombreNomina[1].Length + 1)) + ".CAM";
+            }
+            //archivo.NombreArchivo = Path.GetFileNameWithoutExtension("LIQ" + nombreNomina[1] + archivo.NombreArchivo.Substring(nombreNomina[0].Length + nombreNomina[1].Length + 1))+".CAM";
             return new dArchivo().listExistePagoNomina(archivo);
         }
     }
