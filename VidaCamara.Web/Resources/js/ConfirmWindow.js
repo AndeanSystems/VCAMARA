@@ -20,8 +20,11 @@ function DeleteMethod() {
     return message;
 
 }
+function mostrarMensajeAlert() {
+    $("<div style='font-size:14px;text-align:center;'>" + texto + "</div>").dialog({ title: 'Alerta', modal: true, width: 400, height: 160, buttons: [{ id: 'aceptar', text: 'Aceptar', icons: { primary: 'ui-icon-circle-check' }, click: function () { $(this).dialog('close'); } }] });
+}
+window.mostrarMensajeAlert = mostrarMensajeAlert;
 $(document).ready(function () {
-
     $('.tabBody').delegate('#ctl00_ContentPlaceHolder1_btn_nuevo', 'click', function () {
         $('#ctl00_hdf_control').val("210");
     });
@@ -58,6 +61,7 @@ $(document).ready(function () {
     $(".numeric").numeric();
     //funcion para convertir numeros a fechas
     window.ConvertNumberToDate = ConvertNumberToDate;
+    window.ConvertNumberToDateTime = ConvertNumberToDateTime;
 
     function ConvertNumberToDate(numberdate) {
         var milli = numberdate.replace(/\/Date\((-?\d+)\)\//, '$1');
@@ -67,6 +71,17 @@ $(document).ready(function () {
         if (mes < 10) { mes = "0" + mes }
         if (dia < 10) { dia = "0" + dia }
         return f = dia + "/" + mes + "/" + d.getFullYear();
+    }
+    function ConvertNumberToDateTime(numberdatetime) {
+        var milli = numberdatetime.replace(/\/Date\((-?\d+)\)\//, '$1');
+        var d = new Date(parseInt(milli));
+        var mes = d.getMonth() < 10 ? "0" + parseInt(d.getMonth() + 1) : parseInt(d.getMonth() + 1);
+        var dia = d.getDate() < 10?"0"+d.getDate():d.getDate();
+        var hora = d.getHours() < 10?"0"+ d.getHours():d.getHours();
+        var minuto = d.getMinutes() < 10?"0"+d.getMinutes():d.getMinutes();
+        var segundo = d.getSeconds() < 10 ? "0" + d.getSeconds() : d.getSeconds();
+        console.log(mes);
+        return dia + "/" + mes + "/" + d.getFullYear() + " " + hora + ":" + minuto + ":" + segundo;
     }
 
     function dar_formato(num) {
