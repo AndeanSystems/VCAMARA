@@ -14,9 +14,14 @@
     var action = "/WebPage/ModuloDIS/Consultas/frmSegLogAdmin.aspx/listLogOperacion";
     var fields = {
         IDE_CONTRATO: { title: 'IDE_CONTRATO'},
-        TipoOper: { title: 'TipoOper' },
-        FechEven: { title: 'FechEven', type: 'date', displayFormat: 'dd/mm/yy' },
-        Evento: { title: 'Evento' }
+        TipoEvento: { title: 'Tipo de Evento' },
+        FechEven: {
+            title: 'FechEven', type: 'datetime', displayFormat: 'dd/mm/yy', display: function (data) {
+                return ConvertNumberToDateTime(data.record.FechEven);
+            }
+        },
+        Evento: { title: 'Evento' },
+        CodiUsu:{title:'Usuario'}
     }
     //
     //ejecutar recarga de la grilla por tipo de archivo
