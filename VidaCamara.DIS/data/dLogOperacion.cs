@@ -49,6 +49,7 @@ namespace VidaCamara.DIS.data
                             Evento       = item.Evento,
                             TipoEvento   = item.TipoEvento,
                             CodiEven     = item.CodiEven,
+                            CodiUsu = item.CodiUsu
                         };
 
                         listLogOperacion.Add(logOperacion);
