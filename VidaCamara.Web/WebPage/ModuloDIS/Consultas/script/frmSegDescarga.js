@@ -1,7 +1,8 @@
 ﻿$(document).ready(function () {
     //eventos
     $("body #tblApruebaCarga").delegate("#link_aprobar", "click", function () {
-        console.log($(this));
+        console.log($(this).attr('class'));
+        //programar llamada ajax
     });
     var contrato_sis = function () {
         this.IDE_CONTRATO = $("#ctl00_ContentPlaceHolder1_ddl_contrato").val()
@@ -24,7 +25,7 @@
         UsuReg: { title: 'UsuReg' },
         Aprobar: {
             title: 'Aprobar', display: function (data) {
-                return "<a id='link_aprobar' class='3265' href='#'>Aprobar</a>";
+                return "<a id='link_aprobar' class='"+data.record.IdLinCab+"' href='#'>Aprobar</a>";
             }
         },
         Eliminar: {
