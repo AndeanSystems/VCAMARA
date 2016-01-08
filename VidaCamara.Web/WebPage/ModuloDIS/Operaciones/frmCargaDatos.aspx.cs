@@ -19,6 +19,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         static HistorialCargaArchivo_LinCab historiaCab = new HistorialCargaArchivo_LinCab();
         static NOMINA nomina = new NOMINA();
         static object[] filters = new object[3];//[0]NombreArchivo,[1]tipo moneda [2]cumpleValidacion
+        static nContratoSis contratoSis = new nContratoSis();
         #endregion variables
 
         #region eventos control
@@ -50,6 +51,12 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 if (!fileUpload.HasFile) return;
                 //david choque 27 12 2015
                 nombreArchivo = fileUpload.FileName.ToString().ToUpper();
+                //VALIDA SI EL NUMERO CONTRATO SELECCIONADO COICEDE CON EL ARCHIVO A CARGAR
+                if (validarNumeroContratoXArchivo(nombreArchivo, ddl_conrato1.SelectedItem.Value) == 0)
+                {
+                    MessageBox("El archivo selecionado no corresponde al numero de contrato");
+                    return;
+                }
                 //validar que el archivo seleccionado corresponde al mismo tipo de combo
                 string[] nombreArchivoValido = nombreArchivo.Split('_');
                 if (!nombreArchivoValido[0].ToString().ToUpper().Equals(ddl_tipo_archivo.SelectedItem.Value.ToUpper()))
@@ -172,6 +179,18 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             {
                 MessageBox("ERROR =>" + s.Message.Replace("'", "-"));
             }
+        }
+
+        private int validarNumeroContratoXArchivo(string nombreArchivo, string contratoId)
+        {
+
+            var nameCollection = nombreArchivo.Split('_');
+            var eContratoSis = contratoSis.listContratoByID(new CONTRATO_SYS() { IDE_CONTRATO = Convert.ToInt32(contratoId)});
+            var numeroContrato = nameCollection[0] == "NOMINA" ? nameCollection[3] : nameCollection[2];
+            if (Convert.ToInt32(numeroContrato) == Convert.ToInt32(eContratoSis.NRO_CONTRATO))
+                return 1;
+            else
+                return 0;
         }
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static object listReglaArchivo(int jtStartIndex, int jtPageSize, string jtSorting, ReglaArchivo regla)
