@@ -200,7 +200,7 @@ namespace VidaCamara.DIS.Negocio
             }
             else
             {
-                MensageError = "No se encontró el valor: " + CampoActual + " en tabla " + tableValidacion;
+                MensageError = "No se encontró el valor: " + CampoActual + " en tabla " + tableValidacion + ", Verifique la información en la etiqueta Regla de Validación";
                 ContadorErrores = ContadorErrores + 1;
             }
             return exitoLinea;
