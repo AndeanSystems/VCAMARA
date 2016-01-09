@@ -43,5 +43,40 @@ namespace VidaCamara.DIS.data
                 throw;
             }
         }
+
+        public void actualizarEstado(HistorialCargaArchivo_LinCab historialCargaArchivo_LinCab)
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    db.pa_upd_ApruebaLinCabNomina(historialCargaArchivo_LinCab.IDE_CONTRATO, Convert.ToInt32(historialCargaArchivo_LinCab.IdHistorialCargaArchivoLinCab));
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                throw;
+            }
+        }
+
+        public void actualizarArchivoIdNomina(Archivo archivo)
+        {
+            try
+            {
+                var historiaLinCab  = archivo.HistorialCargaArchivo_LinCab.FirstOrDefault();
+                using (var db = new DISEntities())
+                {
+                    var query = db.HistorialCargaArchivo_LinCabs.Find(historiaLinCab.IdHistorialCargaArchivoLinCab);
+                    query.ArchivoIdNomina = archivo.ArchivoId;
+                    db.SaveChanges();
+                }
+            }
+            catch (System.Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }

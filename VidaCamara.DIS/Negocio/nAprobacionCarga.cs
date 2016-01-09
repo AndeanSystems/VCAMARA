@@ -11,5 +11,15 @@ namespace VidaCamara.DIS.Negocio
         {
             return new dAprobacionCarga().listApruebaCarga(contrato);
         }
+
+        public void actualizarEstado(HistorialCargaArchivo_LinCab historialCargaArchivo_LinCab)
+        {
+            new dAprobacionCarga().actualizarEstado(historialCargaArchivo_LinCab);
+        }
+
+        public void actulaizarArchivoIdNomina(Archivo archivo)
+        {
+            new dAprobacionCarga().actualizarArchivoIdNomina(archivo);
+        }
     }
 }

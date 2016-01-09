@@ -43,5 +43,21 @@ namespace VidaCamara.DIS.data
                 throw;
             }
         }
+
+        public Archivo getArchivoByNombre(Archivo archivo)
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    return db.Archivos.Include("HistorialCargaArchivo_LinCab").Where(a => a.NombreArchivo == archivo.NombreArchivo).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                throw;
+            }
+        }
     }
 }

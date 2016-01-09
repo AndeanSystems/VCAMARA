@@ -232,10 +232,18 @@ namespace VidaCamara.DIS.Negocio
                 try
                 {
                     //Antes de traspasar el archivo si verifica que  todas las filas se hayan cargado ccorrectamente
-                    if(ContadorErrores > 0)
+                    if(ContadorErrores > 0 && tipoArchivo != "NOMINA")
                     {
                         new dPagoCargado().setAatualizarEstadoArchivo(CodigoCabecera);
                     };
+                    //actualizar la cabecera con el archivo id de la  nomina (NOMINA)
+                    if (tipoArchivo == "NOMINA") {
+                        var archivo = new nArchivo().getArchivoByNombre(new Archivo() {NombreArchivo = NombreArchivo });
+                        //new dAprobacionCa
+                        archivo.ArchivoId = IdArchivo;
+                        new nAprobacionCarga().actulaizarArchivoIdNomina(archivo);
+                    }
+
                     TraspasaArchivo(tipoArchivo);
 
                     ProcesarErrores(tipoArchivo);
@@ -298,8 +306,8 @@ namespace VidaCamara.DIS.Negocio
 
                 //EVALUAR RETORNO
                 var resp = new nNomina().setGrabarNomina(nomina);
-
             }
+
         }
         private void GrabarLineaCabecera()
         {

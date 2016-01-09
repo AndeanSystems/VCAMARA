@@ -35,5 +35,11 @@ namespace VidaCamara.DIS.Negocio
             //archivo.NombreArchivo = Path.GetFileNameWithoutExtension("LIQ" + nombreNomina[1] + archivo.NombreArchivo.Substring(nombreNomina[0].Length + nombreNomina[1].Length + 1))+".CAM";
             return new dArchivo().listExistePagoNomina(archivo);
         }
+
+        public Archivo getArchivoByNombre(Archivo archivo) {
+            var nombreNomina = archivo.NombreArchivo.Split('_');
+            archivo.NombreArchivo = Path.GetFileNameWithoutExtension("LIQ" + nombreNomina[1] + archivo.NombreArchivo.Substring(nombreNomina[0].Length + nombreNomina[1].Length + 1))+".CAM";
+            return new dArchivo().getArchivoByNombre(archivo);
+        }
     }
 }
