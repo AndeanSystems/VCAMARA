@@ -242,6 +242,10 @@ namespace VidaCamara.DIS.Negocio
                         //new dAprobacionCa
                         archivo.ArchivoId = IdArchivo;
                         new nAprobacionCarga().actulaizarArchivoIdNomina(archivo);
+                        if (ContadorErrores > 0)
+                        {
+                            new nNomina().actualizarEstadoFallido(IdArchivo,contratoId);
+                        }
                     }
 
                     TraspasaArchivo(tipoArchivo);

@@ -854,5 +854,18 @@ namespace VidaCamara.DIS.Modelo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_pagoNominaAprueba_Result>("pa_sel_pagoNominaAprueba", ideContratoParameter, nombreTipoArchivoParameter, fechaParameter);
         }
+    
+        public virtual int pa_upd_cambiaEstadoNomina(Nullable<int> idArchivoNomina, Nullable<int> idContrato)
+        {
+            var idArchivoNominaParameter = idArchivoNomina.HasValue ?
+                new ObjectParameter("IdArchivoNomina", idArchivoNomina) :
+                new ObjectParameter("IdArchivoNomina", typeof(int));
+    
+            var idContratoParameter = idContrato.HasValue ?
+                new ObjectParameter("IdContrato", idContrato) :
+                new ObjectParameter("IdContrato", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_upd_cambiaEstadoNomina", idArchivoNominaParameter, idContratoParameter);
+        }
     }
 }

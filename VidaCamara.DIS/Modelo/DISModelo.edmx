@@ -1551,6 +1551,10 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Parameter Name="IdContrato" Type="int" Mode="In" />
           <Parameter Name="IdHistoriaLinCab" Type="int" Mode="In" />
         </Function>
+        <Function Name="pa_upd_cambiaEstadoNomina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdArchivoNomina" Type="int" Mode="In" />
+          <Parameter Name="IdContrato" Type="int" Mode="In" />
+        </Function>
         <Function Name="pa_valida_CodigoTransferenciaNomina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="valor" Type="varchar" Mode="In" />
           <Parameter Name="IdArchivo" Type="int" Mode="In" />
@@ -2385,6 +2389,10 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
             <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
             <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="pa_upd_cambiaEstadoNomina">
+            <Parameter Name="IdArchivoNomina" Mode="In" Type="Int32" />
+            <Parameter Name="IdContrato" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
@@ -5803,6 +5811,7 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_upd_cambiaEstadoNomina" FunctionName="DISModelo.Store.pa_upd_cambiaEstadoNomina" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

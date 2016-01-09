@@ -25,5 +25,10 @@ namespace VidaCamara.DIS.Negocio
         {
             return new dNomina().listNominaConsulta(nomina,filters,jtStartIndex,jtPageSize,out total);
         }
+
+        public void actualizarEstadoFallido(int idArchivo, int contratoId)
+        {
+            new dNomina().actualizarEstadoFallido(idArchivo, contratoId);
+        }
     }
 }

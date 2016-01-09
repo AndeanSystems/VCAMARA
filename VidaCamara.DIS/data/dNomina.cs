@@ -68,6 +68,22 @@ namespace VidaCamara.DIS.data
             }
         }
 
+        public void actualizarEstadoFallido(int idArchivo, int contratoId)
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    db.pa_upd_cambiaEstadoNomina(idArchivo, contratoId);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
         public List<NOMINA> listNominaConsulta(NOMINA nomina, object[] filters, int jtStartIndex, int jtPageSize, out int total)
         {
             var listNomina = new List<NOMINA>();
