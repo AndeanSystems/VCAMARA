@@ -16,6 +16,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 var concepto = new bTablaVC();
                 SetLLenadoContrato();
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipo_archivo, "17");
+                txt_fecha_inicio.Text = DateTime.Now.ToShortDateString();
             }
         }
         [System.Web.Services.WebMethod(EnableSession = true)]
