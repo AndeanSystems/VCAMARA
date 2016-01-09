@@ -296,9 +296,9 @@
 
                 <label class="input_right_L" for="txtFechaFin_sys">Fecha de Fin (*)</label>
                 <asp:TextBox CssClass="input_right datetime" ID="txtFechaFin_sys" runat="server" Height="25px" Width="15%"></asp:TextBox>
-                <label class="label_to" for="txtdescripcion_sys">Descripción</label>
+                <label class="label_to" for="txtdescripcion_sys">Descripción (*)</label>
                 <asp:TextBox CssClass="input_to" ID="txtdescripcion_sys" runat="server" Height="25px" Width="47.2%"></asp:TextBox>
-                <label class="input_right_L" for="ddl_estado_sys" runat="server">Estado :</label>
+                <label class="input_right_L" for="ddl_estado_sys" runat="server">Estado (*)</label>
                 <asp:DropDownList CssClass="input_right" ID="ddl_estado_sys" runat="server" Height="25px" Width="12.1%"></asp:DropDownList>
 
                 <div class="iframe">
@@ -315,7 +315,7 @@
                <label class="label_to" for="ddl_contrato_r" >Cia. Seguros Vida (*)</label>
                <asp:DropDownList ID="ddl_compania_seg_vida" CssClass="input_to" runat="server" Height="25px" Width="78.2%"></asp:DropDownList>
                 
-               <label class="label_to" for="txt_ruc">% Participación (*)</label>
+               <label class="label_to" for="txt_ruc" title="Ingrese el valor expresado en porcentajes">% Participación (*)</label>
                <asp:TextBox CssClass="input_to numeric" ID="txt_participacion_sis" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
 
                 <label class="input_right_L" for="txt_ruc">Orden (*)</label>

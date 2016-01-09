@@ -36,9 +36,23 @@
             if (parseInt(ide_contrato_sis) == 0) {
                 var fecha_inicio = $("#ctl00_ContentPlaceHolder1_txtFechaInicio_sys").val();
                 var fecha_fin = $("#ctl00_ContentPlaceHolder1_txtFechaFin_sys").val();
+                var codContrato = $("#ctl00_ContentPlaceHolder1_txt_nrocont_sys").val();
+                var numEmpresas = $("#ctl00_ContentPlaceHolder1_txt_numero_empresa").val();
+                if (codContrato == "") {
+                    mostrarMensajeAlert("El campo Codigo de Contrato esta vacio");
+                    return false;
+                }else if(numEmpresas == "") {
+                    mostrarMensajeAlert("El campo Numero de Empresas esta vacio");
+                    return false;
+                }else if(fecha_inicio == "") {
+                    mostrarMensajeAlert("El campo Fecha de Inicio esta vacio");
+                    return false;
+                }else if(fecha_fin == "") {
+                    mostrarMensajeAlert("El campo Fecha de Fin esta vacio");
+                    return false;
+                }else 
+                    return confirm("Está seguro de crear el registro?");
                 
-
-                return confirm("Está seguro de crear el registro?");
                 //return false;
             } else {
                 return confirm("Está seguro de actualizar el registro?");

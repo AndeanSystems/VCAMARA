@@ -23,7 +23,7 @@ $(document).ready(function () {
     //VALIDAR QUE EL CAMPO ESTADO NO GUARDE EN 0
     $("section").delegate("#ctl00_ContentPlaceHolder1_ddl_estado_sys", "change", function (ev) {
         if ($(this).val() == "0") {
-            MessageBox("Seleccione el campo estado");
+            mostrarMensajeAlert("Seleccione el campo estado");
             $(this).val("A");
         }
     });
@@ -33,6 +33,15 @@ $(document).ready(function () {
             mostrarMensajeAlert("El porcentaje ingresado supera el limite permitido");
             $(this).val("");
         }
+
+        var n = (parseFloat($(this).val()) + "").split(".");
+        if (n.length > 1) {
+            if (n[1].length > 6) {
+                mostrarMensajeAlert("La cantidad maxima de decimales del porcentaje de participación es 6");
+                $(this).val("");
+            }
+        }
+
     });
     //VALIDAR QUE EL NUMERO DE EMPRESAS ESTE ENTRE 4 Y 7
     $("section").delegate("#ctl00_ContentPlaceHolder1_txt_numero_empresa", "keyup", function (ev) {
