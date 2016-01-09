@@ -115,7 +115,7 @@ $(document).ready(function () {
         for (var i in contratoSisDet) {
             porcentejeTotal += parseFloat(contratoSisDet[i].PRC_PARTICIACION);
         };
-        $("#totalPorcentaje").html(porcentejeTotal.toString()+"%");
+        $("#totalPorcentaje").html("Total participación: "+porcentejeTotal.toString() + "% / " + (100 - porcentejeTotal)+"%");
     }
     //LIMPIAR FORMULARIO
     function limpiarFormularioDetalle() {

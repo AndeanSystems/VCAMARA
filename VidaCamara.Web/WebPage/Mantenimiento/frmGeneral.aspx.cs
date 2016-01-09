@@ -597,47 +597,54 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             try
             {
                 Int32 resp = 0;
-                eContratoSys c = new eContratoSys();
-                c._id_Empresa = Convert.ToInt32(Session["idempresa"]);
-                c._ide_Contrato = Convert.ToInt32(txt_ide_contrato_sis.Value);
-                c._nro_Contrato = txt_nrocont_sys.Text;
-                c._cla_Contrato = string.Empty;
-                c._fec_Ini_Vig = DateTime.Parse(txtFechaInicio_sys.Text);
-                c._fec_Fin_Vig = DateTime.Parse(txtFechaFin_sys.Text);
-                c._des_Contrato = txtdescripcion_sys.Text;
-                c._estado = ddl_estado_sys.SelectedItem.Value;
-                c._usu_reg = Session["username"].ToString();
-                c._usu_mod = Session["username"].ToString();
-                c._nro_empresa = int.Parse(txt_numero_empresa.Text);
+                var contratoSis = new eContratoSys()
+                {
+                    _id_Empresa = Convert.ToInt32(Session["idempresa"]),
+                    _ide_Contrato = Convert.ToInt32(txt_ide_contrato_sis.Value),
+                    _nro_Contrato = txt_nrocont_sys.Text,
+                    _cla_Contrato = string.Empty,
+                    _fec_Ini_Vig = DateTime.Parse(txtFechaInicio_sys.Text),
+                    _fec_Fin_Vig = DateTime.Parse(txtFechaFin_sys.Text),
+                    _des_Contrato = txtdescripcion_sys.Text,
+                    _estado = ddl_estado_sys.SelectedItem.Value,
+                    _usu_reg = Session["username"].ToString(),
+                    _usu_mod = Session["username"].ToString(),
+                    _nro_empresa = int.Parse(txt_numero_empresa.Text)
+                };
 
-                if(c._fec_Ini_Vig >= c._fec_Fin_Vig)
+                if(contratoSis._fec_Ini_Vig >= contratoSis._fec_Fin_Vig)
                 {
                     MessageBox("La fecha de inicio no debe ser mayor al de fin");
                     return;
                 }
 
-                if (c._nro_empresa < 4 || c._nro_empresa > 7)
+                if (contratoSis._nro_empresa < 4 || contratoSis._nro_empresa > 7)
                 {
                     MessageBox("El rango de N° de empresas por contrato puede ser entre 4 y 7");
                     return;
                 }
 
                 //valida rango de fecha para un contrato 
-                var contratoSis = new CONTRATO_SYS() {
+                var contratoSisEF = new CONTRATO_SYS() {
                     FEC_INI_VIG = DateTime.Parse(txtFechaInicio_sys.Text),
                     FEC_FIN_VIG = DateTime.Parse(txtFechaFin_sys.Text)
                 };
-                var siExisteFecha = new nContratoSis().existeFecha(contratoSis);
+                var siExisteFecha = new nContratoSis().existeFecha(contratoSisEF);
 
                 bContratoSys control = new bContratoSys();
-                if (c._ide_Contrato == 0)
+                if (contratoSis._ide_Contrato == 0)
                 {
+                    if (contratoSis._estado.Equals("A"))
+                    {
+                        MessageBox("Para crear la empresa como activa, debe completar la infomación de las CSV SIS.");
+                        return;
+                    }
                     if (siExisteFecha > 0)
                     {
                         MessageBox("La fecha ingresada se sobrepone al rango de fechas de otro contrato.");
                         return;
                     }
-                    resp = control.SetInsertarContratoSys(c);
+                    resp = control.SetInsertarContratoSys(contratoSis);
                     //var elog = nlog.setLLenarEntidad(resp, "C001", "CONSIS_C", resp.ToString(), Session["username"].ToString());
                     //nlog.setGuardarLogOperacion(elog);
                     if (resp != 0)
@@ -652,23 +659,48 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 }
                 else
                 {
-                    resp = control.SetActualizarContratoSys(c);
-                    if (resp != 0)
+                    if (!validaContratoSisDetalle(contratoSis) && contratoSis._estado.Equals("A"))
                     {
-                        nlog.setLLenarEntidad(Convert.ToInt32(txt_ide_contrato_sis.Value), "A", "A01", resp.ToString(), Session["username"].ToString());
-                        //contrato sys
-                        var bContrato = new bContratoSys();
-                        bContrato.SetEstablecerDataSourceContratoSys(ddl_contrato_sis);
-                        MessageBox("Registro Actualizado Correctamente");
+                        MessageBox("Para pasar la empresa como activa, debe completar la infomación de las CSV SIS.");
                     }
-                    else
-                        MessageBox("Ocurrio un Error en el Servidor!");
+                    else {
+                        resp = control.SetActualizarContratoSys(contratoSis);
+                        if (resp != 0)
+                        {
+                            nlog.setLLenarEntidad(Convert.ToInt32(txt_ide_contrato_sis.Value), "A", "A01", resp.ToString(), Session["username"].ToString());
+                            //contrato sys
+                            var bContrato = new bContratoSys();
+                            bContrato.SetEstablecerDataSourceContratoSys(ddl_contrato_sis);
+                            MessageBox("Registro Actualizado Correctamente");
+                        }
+                        else
+                            MessageBox("Ocurrio un Error en el Servidor!");
+                    }
                 }
             }
             catch (Exception e)
             {
                 MessageBoxcCatch("ERROR =>" + e.Message);
             }
+        }
+
+        private bool validaContratoSisDetalle(eContratoSys contratoSis)
+        {
+            var filters = new Object[3] { 0, 10000, "IDE_CONTRATO ASC" };
+            var contratoDetSis = new CONTRATO_SIS_DET()
+            {
+                IDE_CONTRATO = Convert.ToInt32(contratoSis._ide_Contrato)
+            };
+            var listContratoSisDet = new nContratoSisDetalle().getlistContratoDetalle(contratoDetSis, filters,out total);
+            var totalPorcenteje = 0.00m;
+            foreach (var item in listContratoSisDet)
+            {
+                totalPorcenteje += Convert.ToDecimal(item.PRC_PARTICIACION);
+            }
+            if (contratoSis._nro_empresa == listContratoSisDet.Count && totalPorcenteje == 100)
+                return true;
+            else
+                return false;
         }
 
         #endregion "METODOS"
