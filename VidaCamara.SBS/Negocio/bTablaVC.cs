@@ -29,14 +29,14 @@ namespace VidaCamara.SBS.Negocio
             dSqlTablaVC dg = new dSqlTablaVC();
             return dg.GetSelectConcepto(o,out total);
         }
-        public DropDownList SetEstablecerDataSourceConcepto(DropDownList control,String filtro1,String descripcion = "NULL") {
-            var o = entity(filtro1,descripcion);
+        public DropDownList SetEstablecerDataSourceConcepto(DropDownList control,String codigo_tabla,String descripcion = "NULL") {
                 dSqlTablaVC dg = new dSqlTablaVC();
-                control.DataSource = dg.GetSelectConcepto(o, out total);
+                control.DataSource = dg.GetSelectConcepto(entity(codigo_tabla, descripcion), out total);
                 control.DataTextField = "_descripcion";
                 control.DataValueField = "_codigo";
                 control.DataBind();
-                control.Items.Insert(0, new ListItem("Seleccione ----", "0"));
+                if(codigo_tabla != "21" && codigo_tabla != "09")
+                    control.Items.Insert(0, new ListItem("Seleccione ----", "0"));
             return control;
         }
         public StringCollection GetConceptoByCodigo(String codigo) {
