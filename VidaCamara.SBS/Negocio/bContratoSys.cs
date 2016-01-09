@@ -37,7 +37,7 @@ namespace VidaCamara.SBS.Negocio
             o._fin = 10000;
             o._orderby = "IDE_CONTRATO ASC";
             o._nro_Contrato = "NO";
-            o._estado = "A";
+            o._estado = "C";
 
             bContratoSys tb = new bContratoSys();
             control.DataSource = tb.GetSelecionarContratoSys(o, out totalContrato);
