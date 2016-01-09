@@ -15,7 +15,8 @@ namespace VidaCamara.DIS.data
             {
                 using (var db = new DISEntities())
                 {
-                    var query = db.pa_sel_pagoNominaAprueba(contrato.IDE_CONTRATO,filters[0].ToString(), DateTime.Now).ToList();
+                    var fecha_inicio = Convert.ToDateTime(filters[1]);
+                    var query = db.pa_sel_pagoNominaAprueba(contrato.IDE_CONTRATO,filters[0].ToString(), fecha_inicio).ToList();
                     total = query.Count();
                     foreach (var item in query.Skip(jtStartIndex).Take(jtPageSize))
                     {
