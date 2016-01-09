@@ -4,12 +4,12 @@
         var tipoarchivo = $("#ctl00_ContentPlaceHolder1_ddl_tipo_archivo").val();
 
         if (parseInt(contrato) == 0) {
-            alert("Seleccione Contrato"); return false;
+            mostrarMensajeAlert("Seleccione Contrato"); return false;
         }
 
         if (parseInt(tipoarchivo) == 0) {
 
-            alert("Seleccione tipo de archivo"); return false;
+            mostrarMensajeAlert("Seleccione tipo de archivo"); return false;
         }
     });
 })

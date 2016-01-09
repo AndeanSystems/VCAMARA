@@ -24,6 +24,20 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             var negocio = new nAprobacionCarga();
             return new { Result = "OK", Records = negocio.listApruebaCarga(contrato), TotalRecordCount = 50 };
         }
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static object setAprobar(int linCabId,int IdeContrato)
+        {
+            try
+            {
+                new nAprobacionCarga().actualizarEstado(new HistorialCargaArchivo_LinCab(){IDE_CONTRATO = IdeContrato,IdHistorialCargaArchivoLinCab = linCabId });
+                return new { Result = true };
+            }
+            catch (Exception ex)
+            {
+                return new {Result = ex.Message };
+            }
+        }
+        
         private void SetLLenadoContrato()
         {
             var list = new VidaCamara.SBS.Utils.Utility().getContratoSys(out total);

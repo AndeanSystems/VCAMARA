@@ -1,8 +1,18 @@
 ﻿$(document).ready(function () {
+    const url = "/WebPage/ModuloDIS/Consultas/frmSegDescarga.aspx/setAprobar";
     //eventos
     $("body #tblApruebaCarga").delegate("#link_aprobar", "click", function () {
-        console.log($(this).attr('class'));
-        //programar llamada ajax
+        if(confirm("Esta seguro de aprobar este registro")){
+            var linCab = {linCabId:parseInt($(this).attr('class')),IdeContrato:parseInt($("#ctl00_ContentPlaceHolder1_ddl_contrato").val())};
+            //programar llamada ajax
+            llamarAjax(linCab,url).success(function(res){
+                console.log(res);
+                if(res.d.Result == true)
+                    mostrarMensajeAlert("Transacción existosa.");
+                else
+                    mostrarMensajeAlert(res.d.Result);   
+            });
+        }
     });
     var contrato_sis = function () {
         this.IDE_CONTRATO = $("#ctl00_ContentPlaceHolder1_ddl_contrato").val()

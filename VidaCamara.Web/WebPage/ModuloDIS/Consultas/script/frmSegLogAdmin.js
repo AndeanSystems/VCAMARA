@@ -16,7 +16,7 @@
         IDE_CONTRATO: { title: 'IDE_CONTRATO'},
         TipoEvento: { title: 'Tipo de Evento' },
         FechEven: {
-            title: 'FechEven', type: 'datetime', displayFormat: 'dd/mm/yy', display: function (data) {
+            title: 'FechEven', display: function (data) {
                 return ConvertNumberToDateTime(data.record.FechEven);
             }
         },
