@@ -545,30 +545,26 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             ddl_contrato_r.DataBind();
             ddl_contrato_r.Items.Insert(0, new ListItem("Selecione ----", "0"));
         }
-        private void llenarEstado(String est,String tip)
+        private void llenarEstado(String tipo_tabla,String tipo)
         {
 
-            eTabla o = new eTabla();
-            bTablaVC tb = new bTablaVC();
-            o._id_Empresa = 0;
-            o._tipo_Tabla = est;
-            o._descripcion = "NULL";
-            o._valor = "N";
-            o._estado = "A";
-            o._tipo = tip;
-            o._inicio = 0;
-            o._fin = 10000000;
-            o._order = "DESCRIPCION ASC";
-
-            DropDownList[] oDropDownList = { ddl_estado_c };
-            foreach (DropDownList item in oDropDownList)
+            var concepto = new eTabla()
             {
-                item.DataSource = tb.GetSelectConcepto(o, out total); ;
-                item.DataTextField = "_descripcion";
-                item.DataValueField = "_codigo";
-                item.DataBind();
-                item.Items.Insert(0, new ListItem("Seleccione ----", "0"));
-            }
+                _id_Empresa = 0,
+                _tipo_Tabla = tipo_tabla,
+                _descripcion = "NULL",
+                _valor = "N",
+                _estado = "A",
+                _tipo = tipo,
+                _inicio = 0,
+                _fin = 10000000,
+                _order = "DESCRIPCION ASC"
+            };
+            var listConcepto = new bTablaVC();
+            ddl_estado_c.DataSource = listConcepto.GetSelectConcepto(concepto, out total);
+            ddl_estado_c.DataTextField = "_descripcion";
+            ddl_estado_c.DataValueField = "_codigo";
+            ddl_estado_c.DataBind();
         }
         private void MessageBox(String text)
         {
