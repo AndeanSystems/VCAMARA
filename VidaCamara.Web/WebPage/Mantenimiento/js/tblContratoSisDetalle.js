@@ -37,7 +37,7 @@ $(document).ready(function () {
         var n = (parseFloat($(this).val()) + "").split(".");
         if (n.length > 1) {
             if (n[1].length > 6) {
-                mostrarMensajeAlert("El cantidad de número decimal invalido");
+                mostrarMensajeAlert("La cantidad maxima de decimales del porcentaje de participación es 6");
                 $(this).val("");
             }
         }
