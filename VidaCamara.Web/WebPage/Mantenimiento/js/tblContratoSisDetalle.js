@@ -67,6 +67,9 @@ $(document).ready(function () {
             actions: {
                 listAction: '/WebPage/Mantenimiento/frmGeneral.aspx/ContratoSisDetalleList',
             },
+            recordsLoaded: function (event, data) {
+                mostrarTotalPorcentaje(data.records);
+            },
             fields: {
                 IDE_CONTRATO_DET: { key: true, list: false },
                 IDE_CONTRATO: {
@@ -105,6 +108,14 @@ $(document).ready(function () {
         });
         $('#tblContratoViewSySDetalle.jtable-main-container').css({ "width": "4800px" });
         $('#tblContratoViewSySDetalle').jtable('load', { WhereBy: ide_contrato });
+    }
+    //TOTAlLIZADOR DE SUMA DE PORCENTAJES
+    function mostrarTotalPorcentaje(contratoSisDet) {
+        var porcentejeTotal = 0;
+        for (var i in contratoSisDet) {
+            porcentejeTotal += parseFloat(contratoSisDet[i].PRC_PARTICIACION);
+        };
+        $("#totalPorcentaje").html(porcentejeTotal.toString()+"%");
     }
     //LIMPIAR FORMULARIO
     function limpiarFormularioDetalle() {
