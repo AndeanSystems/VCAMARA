@@ -54,14 +54,14 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 //VALIDA SI EL NUMERO CONTRATO SELECCIONADO COICEDE CON EL ARCHIVO A CARGAR
                 if (validarNumeroContratoXArchivo(nombreArchivo, ddl_conrato1.SelectedItem.Value) == 0)
                 {
-                    MessageBox("El archivo selecionado no corresponde al numero de contrato");
+                    MessageBox("El archivo contiene un numero de contrato diferente.");
                     return;
                 }
                 //validar que el archivo seleccionado corresponde al mismo tipo de combo
                 string[] nombreArchivoValido = nombreArchivo.Split('_');
                 if (!nombreArchivoValido[0].ToString().ToUpper().Equals(ddl_tipo_archivo.SelectedItem.Value.ToUpper()))
                 {
-                    MessageBox("El archivo seleccionado no corresponde al tipo eligido");
+                    MessageBox("El archivo seleccionado no corresponde al Tipo de Archivo eligido");
                     return;
                 }
                 var archivo = new Archivo() { NombreArchivo = nombreArchivo };

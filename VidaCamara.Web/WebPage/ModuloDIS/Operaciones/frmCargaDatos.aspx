@@ -41,7 +41,7 @@
                 <Items >
                     <asp:MenuItem  Text="Carga" Value="0" Selected="true" />
                     <asp:MenuItem  Text="Detalle" Value="1"/>
-                    <asp:MenuItem  Text="Información Arhivo" Value="2"/>
+                    <asp:MenuItem  Text="Regla de Validación" Value="2"/>
                 </Items>
             <StaticMenuItemStyle CssClass="tab"></StaticMenuItemStyle>
             <StaticSelectedStyle CssClass="selectedTab" BackColor="#006666"></StaticSelectedStyle>
@@ -93,7 +93,7 @@
                        <div class="panel-heading">
                            <h6 class="panel-title">
                                <a data-toggle="collapse" data-parent="#accordion" data-target="#screen1" aria-expanded="true" class="collapsed" href="javascript:void(0)">
-                                   <span class="glyphicon glyphicon-plus-sign"></span> Información cargada
+                                   <span class="glyphicon glyphicon-plus-sign"></span> Información Cargada
                                </a>
                            </h6>
                        </div>
