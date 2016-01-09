@@ -12,7 +12,6 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
 {
     public partial class frmConsultaOperaciones : System.Web.UI.Page
     {
-        static int total,totalContrato;
         static String formato_moneda;
         bValidarAcceso accesso = new bValidarAcceso();
         protected void Page_Load(object sender, EventArgs e)

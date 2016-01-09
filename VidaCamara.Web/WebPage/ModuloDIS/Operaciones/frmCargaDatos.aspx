@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="../../../Resources/CSS/Progressbar.css" />
 <script src="../../../Resources/js/bootstrap.min.js"></script>
 <script src="/WebPage/ModuloDIS/Operaciones/js/CargaDatos.js"></script>
-<script src="/WebPage/ModuloDIS/Operaciones/js/CargaRsp.js"></script>
 <script src="/WebPage/ModuloDIS/Operaciones/js/frmReglaArchivo.js"></script>
 
 <script type="text/javascript">

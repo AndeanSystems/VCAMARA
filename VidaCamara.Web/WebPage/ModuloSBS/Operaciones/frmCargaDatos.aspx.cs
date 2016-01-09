@@ -18,7 +18,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Operaciones
         static XSSFWorkbook xssfworkbook;
         static HSSFWorkbook hssfworkbook;
         static ISheet sheet;
-        static int typeRow,totalContrato,RowCount,total,totalRSP,rowCountExcel;
+        static int typeRow,RowCount,total,totalRSP,rowCountExcel;
         static int RowError = 0;
         static DataTable dtExcel = new DataTable();
         static DataTable dtExcelError = new DataTable();

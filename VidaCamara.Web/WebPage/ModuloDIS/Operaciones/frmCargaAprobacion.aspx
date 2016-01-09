@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebPage/Inicio/mpFEPCMAC.Master" AutoEventWireup="true" CodeBehind="frmCargaAprobacion.aspx.cs" Inherits="VidaCamara.Web.WebPage.ModuloDIS.Operaciones.CargaAprobacion" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="/WebPage/ModuloDIS/operaciones/js/ApruebaCarga.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="content_header">
@@ -22,10 +23,10 @@
                 <asp:DropDownList CssClass="input_to" ID="ddl_tipo_archivo" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
 
                 <label class="input_right_L" for="ddl_ramo_c">Fecha </label>
-                <asp:TextBox runat="server"  CssClass="input_right datetime" runat="server" Height="25px" Width="14.8%"/>
+                <asp:TextBox runat="server"  CssClass="input_right datetime" ID="txt_fecha_inicio" Height="25px" Width="14.8%"/>
 
-                <div class="iframe" id="tbl_comprobante">
-                    <div id="tblAprobar"></div>
+                <div class="iframe">
+                    <div id="tblApruebaCarga"></div>
                 </div>  
 
             </asp:View>

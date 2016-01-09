@@ -10,7 +10,6 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Operaciones
 {
     public partial class frmOperacionManual : System.Web.UI.Page
     {
-        private static int total = 0;
         bValidarAcceso accesso = new bValidarAcceso();
         protected void Page_Load(object sender, EventArgs e)
         {

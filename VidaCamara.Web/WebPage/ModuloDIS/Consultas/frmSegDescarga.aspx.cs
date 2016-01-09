@@ -18,12 +18,12 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipo_tramite, "22");
             }
         }
-        [System.Web.Services.WebMethod(EnableSession = true)]
-        public static object listApruebaCarga(int jtStartIndex, int jtPageSize, string jtSorting,CONTRATO_SYS contrato)
-        {
-            var negocio = new nAprobacionCarga();
-            return new { Result = "OK", Records = negocio.listApruebaCarga(contrato), TotalRecordCount = 50 };
-        }
+        //[System.Web.Services.WebMethod(EnableSession = true)]
+        //public static object listApruebaCarga(int jtStartIndex, int jtPageSize, string jtSorting,CONTRATO_SYS contrato)
+        //{
+        //    var negocio = new nAprobacionCarga();
+        //    return new { Result = "OK", Records = negocio.listApruebaCarga(contrato,jtStartIndex,jtPageSize,out total), TotalRecordCount = total };
+        //}
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static object setAprobar(int linCabId,int IdeContrato)
         {
@@ -35,6 +35,20 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             catch (Exception ex)
             {
                 return new {Result = ex.Message };
+            }
+        }
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static object setEliminar(int linCabId, int IdeContrato)
+        {
+            try
+            {
+                new nAprobacionCarga().eliminarPagoYNomina(new HistorialCargaArchivo_LinCab() { IDE_CONTRATO = IdeContrato, IdHistorialCargaArchivoLinCab = linCabId });
+                return new { Result = true };
+            }
+            catch (Exception ex)
+            {
+                return new { Result = ex.Message };
             }
         }
         

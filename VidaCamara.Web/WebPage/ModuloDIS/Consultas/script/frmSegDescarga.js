@@ -1,11 +1,15 @@
 ﻿$(document).ready(function () {
-    const url = "/WebPage/ModuloDIS/Consultas/frmSegDescarga.aspx/setAprobar";
+    const urlAprobar = "/WebPage/ModuloDIS/Consultas/frmSegDescarga.aspx/setAprobar";
+    const urlEliminar = "/WebPage/ModuloDIS/Consultas/frmSegDescarga.aspx/setEliminar";
+    var linCab = function (linCabId) {
+        this.linCabId = linCabId,
+        this.IdeContrato = parseInt($("#ctl00_ContentPlaceHolder1_ddl_contrato").val())
+    }
     //eventos
     $("body #tblApruebaCarga").delegate("#link_aprobar", "click", function () {
         if(confirm("Esta seguro de aprobar este registro")){
-            var linCab = {linCabId:parseInt($(this).attr('class')),IdeContrato:parseInt($("#ctl00_ContentPlaceHolder1_ddl_contrato").val())};
             //programar llamada ajax
-            llamarAjax(linCab,url).success(function(res){
+            llamarAjax(new linCab(parseInt($(this).attr('class'))), urlAprobar).success(function (res) {
                 console.log(res);
                 if(res.d.Result == true)
                     mostrarMensajeAlert("Transacción existosa.");
@@ -14,6 +18,20 @@
             });
         }
     });
+
+    $("body #tblApruebaCarga").delegate("#link_eliminar", "click", function () {
+        if (confirm("Esta seguro de eliminar este registro")) {
+            //programar llamada ajax
+            llamarAjax(new linCab(parseInt($(this).attr('class'))), urlEliminar).success(function (res) {
+                console.log(res);
+                if (res.d.Result == true)
+                    mostrarMensajeAlert("Transacción existosa.");
+                else
+                    mostrarMensajeAlert(res.d.Result);
+            });
+        }
+    });
+
     var contrato_sis = function () {
         this.IDE_CONTRATO = $("#ctl00_ContentPlaceHolder1_ddl_contrato").val()
     };
@@ -27,20 +45,20 @@
     var fields = {
         NombreArchivo: { title: 'NombreArchivo' },
         FechaCarga: { title: 'FechaCarga', type: 'date', displayFormat: 'dd/mm/yy' },
-        moneda: { title: 'moneda' },
+        moneda: { title: '  Moneda' },
         TotalRegistros: { title: 'TotalRegistros' },
         TotalImporte: { title: 'TotalImporte' },
         PagoVc: { title: 'PagoVc' },
         FechaInfo: { title: 'FechaInfo', type: 'date', displayFormat: 'dd/mm/yy' },
-        UsuReg: { title: 'UsuReg' },
+        UsuReg: { title: 'Usuario' },
         Aprobar: {
-            title: 'Aprobar', display: function (data) {
+            title: 'Aprobar',align:'center', display: function (data) {
                 return "<a id='link_aprobar' class='"+data.record.IdLinCab+"' href='#'>Aprobar</a>";
             }
         },
         Eliminar: {
             title: 'Eliminar', display: function (data) {
-                return "<a id='link_aprobar' href='#'>Eliminar</a>";
+                return "<a id='link_eliminar' class='" + data.record.IdLinCab + "' href='#'>Eliminar</a>";
             }
         }
     }
@@ -61,6 +79,7 @@
             fields: fields
         });
 
+        $("#ApruebaCarga").css({"text-align":"center"});
         $('#tblApruebaCarga.jtable-main-container').css({ "width": "1500px" });
         $('#tblApruebaCarga').jtable('load', { contrato: contrato, filters: filters });
     }

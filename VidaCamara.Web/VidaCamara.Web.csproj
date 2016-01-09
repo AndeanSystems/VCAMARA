@@ -206,6 +206,8 @@
     <Content Include="WebPage\ModuloDIS\Consultas\frmSegConsulta.aspx" />
     <Content Include="WebPage\ModuloDIS\Consultas\frmSegDescarga.aspx" />
     <Content Include="WebPage\ModuloDIS\Consultas\frmSegLogAdmin.aspx" />
+    <Content Include="WebPage\ModuloDIS\Consultas\script\frmSegDescarga.js" />
+    <Content Include="WebPage\ModuloDIS\Consultas\script\frmSegLogAdmin.js" />
     <Content Include="WebPage\ModuloDIS\Consultas\script\frmSeqConsulta.js" />
     <Content Include="WebPage\ModuloDIS\Operaciones\frmCargaAprobacion.aspx" />
     <Content Include="WebPage\ModuloDIS\Operaciones\frmCargaDatos.aspx" />
@@ -235,7 +237,7 @@
     <Content Include="Resources\CSS\Mater.css" />
     <Content Include="WebPage\ModuloSBS\Operaciones\frmOperacionManual.aspx" />
     <Content Include="WebPage\ModuloSBS\Operaciones\js\CargaDatos.js" />
-    <Content Include="WebPage\ModuloDIS\Operaciones\js\CargaRsp.js" />
+    <Content Include="WebPage\ModuloDIS\Operaciones\js\ApruebaCarga.js" />
     <Content Include="WebPage\ModuloSBS\Operaciones\js\CargaRsp.js" />
     <Content Include="WebPage\ModuloSBS\Operaciones\js\CierreOperacion.js" />
     <Content Include="WebPage\ModuloSBS\Operaciones\js\InterfaceContable.js" />
@@ -494,7 +496,6 @@
     <Folder Include="Scripts\Temp\Archivos\" />
     <Folder Include="sql\" />
     <Folder Include="Temp\Archivos\" />
-    <Folder Include="WebPage\ModuloDIS\Operaciones\Service\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="WebPage\Inicio\mpFEPCMAC.Master" />
