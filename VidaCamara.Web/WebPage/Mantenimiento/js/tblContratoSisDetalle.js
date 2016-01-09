@@ -15,22 +15,29 @@ $(document).ready(function () {
     });
     //VALIDAR QUE EL NUMERO DE ORDEN NO SE A MAYOR QUE 7
     $("section").delegate("#ctl00_ContentPlaceHolder1_txt_orden_empresa_sis", "keyup", function (ev) {
-        if (parseInt($(this).val()) > 7) {
-            MessageBox("El numero ingresado supera el limite permitido");
+        if (parseInt($(this).val()) > 7 || parseInt($(this).val()) < 1) {
+            mostrarMensajeAlert("El numero ingresado supera el limite permitido");
             $(this).val("");
+        }
+    });
+    //VALIDAR QUE EL CAMPO ESTADO NO GUARDE EN 0
+    $("section").delegate("#ctl00_ContentPlaceHolder1_ddl_estado_sys", "change", function (ev) {
+        if ($(this).val() == "0") {
+            MessageBox("Seleccione el campo estado");
+            $(this).val("A");
         }
     });
     //VALIDAR QUE EL PORCENTAJE DE PARTICIPACION NO SUPERE LOS 100%
     $("section").delegate("#ctl00_ContentPlaceHolder1_txt_participacion_sis", "keyup", function (ev) {
         if (parseFloat($(this).val()) > 100) {
-            MessageBox("El porcentaje ingresado supera el limite permitido");
+            mostrarMensajeAlert("El porcentaje ingresado supera el limite permitido");
             $(this).val("");
         }
     });
     //VALIDAR QUE EL NUMERO DE EMPRESAS ESTE ENTRE 4 Y 7
     $("section").delegate("#ctl00_ContentPlaceHolder1_txt_numero_empresa", "keyup", function (ev) {
         if (parseInt($(this).val()) < 4 || parseInt($(this).val()) > 7) {
-            MessageBox("El rango de N° de empresas por contrato puede ser entre 4 y 7");
+            mostrarMensajeAlert("El rango de N° de empresas por contrato puede ser entre 4 y 7");
             $(this).val("");
         }
     });
@@ -96,9 +103,5 @@ $(document).ready(function () {
         $("#ctl00_ContentPlaceHolder1_txt_participacion_sis").val("");
         $("#ctl00_ContentPlaceHolder1_txt_orden_empresa_sis").val("");
         $("#ctl00_ContentPlaceHolder1_txt_ide_contrato_sis_det").val("0");
-    }
-    //funcion muestra alertas mesagw box
-    function MessageBox(texto) {
-        $("<div style='font-size:14px;text-align:center;'>" + texto + "</div>").dialog({ title: 'Alerta', modal: true, width: 400, height: 160, buttons: [{ id: 'aceptar', text: 'Aceptar', icons: { primary: 'ui-icon-circle-check' }, click: function () { $(this).dialog('close'); } }] })
     }
 });
