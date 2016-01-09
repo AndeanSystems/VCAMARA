@@ -114,10 +114,6 @@ namespace VidaCamara.DIS.Negocio
         {
             CampoActual = Mid(text[indexLinea].Trim(), regla.CaracterInicial - 1, regla.LargoCampo);
             var exitoLinea = 0;
-            string valor = null;
-            string[] inString = null;
-            var j = 0;
-
             if (regla.NombreCampo != null) propertyValues.Add(regla.NombreCampo, CampoActual);
 
             switch (regla.TipoValidacion)
@@ -150,12 +146,6 @@ namespace VidaCamara.DIS.Negocio
                     exitoLinea = 1;
                     break;
             }
-
-            if (exitoLinea == 0)
-            {
-                var fail = true;
-            }
-
             return exitoLinea;
         }
 

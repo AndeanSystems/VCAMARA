@@ -8,15 +8,16 @@ namespace VidaCamara.DIS.data
 {
     public class dAprobacionCarga
     {
-        public List<EAprobacionCarga> listApruebaCarga(CONTRATO_SYS contrato)
+        public List<EAprobacionCarga> listApruebaCarga(CONTRATO_SYS contrato, int jtStartIndex, int jtPageSize,object[] filters, out int total)
         {
             var listAprueba = new List<EAprobacionCarga>();
             try
             {
                 using (var db = new DISEntities())
                 {
-                    var query = db.pa_sel_pagoNominaAprueba(contrato.IDE_CONTRATO, "", DateTime.Now).ToList();
-                    foreach (var item in query)
+                    var query = db.pa_sel_pagoNominaAprueba(contrato.IDE_CONTRATO,filters[0].ToString(), DateTime.Now).ToList();
+                    total = query.Count();
+                    foreach (var item in query.Skip(jtStartIndex).Take(jtPageSize))
                     {
                         var eApruebaCarga = new EAprobacionCarga()
                         {
@@ -38,6 +39,22 @@ namespace VidaCamara.DIS.data
                 return listAprueba;
             }
             catch (System.Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public void eliminarPagoYNomina(HistorialCargaArchivo_LinCab historialCargaArchivo_LinCab)
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                   
+                }
+            }
+            catch (Exception ex)
             {
 
                 throw;

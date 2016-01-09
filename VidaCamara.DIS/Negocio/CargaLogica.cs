@@ -142,25 +142,25 @@ namespace VidaCamara.DIS.Negocio
 
             //Consultar en tabla el estado del archivo
             //entregara 0 si no existe
-            using (var context = new DISEntities())
-            {
-                var estadoArchivo = context.pa_file_ConsultaEstadoArchivo(NombreArchivo).FirstOrDefault();
-                if (estadoArchivo != null) Estado = estadoArchivo.Value;
-            }
-            InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), "Consulta estado archivo",
-                "pa_file_ConsultaEstadoArchivo '" + NombreArchivo + "'", 0);
+            //using (var context = new DISEntities())
+            //{
+            //    var estadoArchivo = context.pa_file_ConsultaEstadoArchivo(NombreArchivo).FirstOrDefault();
+            //    if (estadoArchivo != null) Estado = estadoArchivo.Value;
+            //}
+            //InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), "Consulta estado archivo",
+            //    "pa_file_ConsultaEstadoArchivo '" + NombreArchivo + "'", 0);
 
             //valor anterior = 3
             //Si el valor es menor que 2, significa 2 cosas:
             //1.- que la nomina no esta aprobada y puede ser cargado nuevos archivos.
             //2.- que no hay checklist sobre el o los cuspp de la liquidacion
-            if (Estado < 2)
-            {
+            //if (Estado < 2)
+            //{
                 //Insertar en tabla
-                if (Estado == 1)
-                {
-                    MensageError = "Archivo ya cargado previamente";
-                }
+                //if (Estado == 1)
+                //{
+                //    MensageError = "Archivo ya cargado previamente";
+                //}
                 using (var context = new DISEntities())
                 {
                     var archivo = context.pa_file_InsertaReferenciaArchivo(NombreArchivo, UsuarioModificacion).FirstOrDefault();
@@ -252,12 +252,12 @@ namespace VidaCamara.DIS.Negocio
                 {
                     Observacion = ex.Message + "// TraspasaArchivo...!";
                 }
-            }
-            else
-            {
-                Observacion = "Ya está aprobado";
-                return Estado;
-            }
+            //}
+            //else
+            //{
+            //    Observacion = "Ya está aprobado";
+            //    return Estado;
+            //}
             return 0;
         }
 
@@ -286,7 +286,7 @@ namespace VidaCamara.DIS.Negocio
                 detalle.TipoLinea = tipoLinea;
                 detalle.NumeroLinea = nroLinea;
                 
-                PopulateType(detalle, propertyValues);
+                //PopulateType(detalle, propertyValues);
                 _lineaDetalles.Add(detalle);
             }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using VidaCamara.DIS.data;
 using VidaCamara.DIS.Modelo;
 using VidaCamara.DIS.Modelo.EEntidad;
@@ -7,9 +8,9 @@ namespace VidaCamara.DIS.Negocio
 {
     public class nAprobacionCarga
     {
-        public List<EAprobacionCarga> listApruebaCarga(CONTRATO_SYS contrato)
+        public List<EAprobacionCarga> listApruebaCarga(CONTRATO_SYS contrato, int jtStartIndex, int jtPageSize,object[] filters, out int total)
         {
-            return new dAprobacionCarga().listApruebaCarga(contrato);
+            return new dAprobacionCarga().listApruebaCarga(contrato,jtStartIndex,jtPageSize, filters, out total);
         }
 
         public void actualizarEstado(HistorialCargaArchivo_LinCab historialCargaArchivo_LinCab)
@@ -20,6 +21,11 @@ namespace VidaCamara.DIS.Negocio
         public void actulaizarArchivoIdNomina(Archivo archivo)
         {
             new dAprobacionCarga().actualizarArchivoIdNomina(archivo);
+        }
+
+        public void eliminarPagoYNomina(HistorialCargaArchivo_LinCab historialCargaArchivo_LinCab)
+        {
+            new dAprobacionCarga().eliminarPagoYNomina(historialCargaArchivo_LinCab);
         }
     }
 }
