@@ -318,9 +318,10 @@
                <label class="label_to" for="txt_ruc" title="Ingrese el valor expresado en porcentajes">% Participación (*)</label>
                <asp:TextBox CssClass="input_to numeric" ID="txt_participacion_sis" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
 
-                <label class="input_right_L" for="txt_ruc">Orden (*)</label>
+               <label class="input_right_L" for="txt_ruc">Orden (*)</label>
                <asp:TextBox CssClass="input_right numeric" ID="txt_orden_empresa_sis" runat="server" Height="25px" Width="20%" ToolTip="Ingrese este Campo"></asp:TextBox>
 
+                <span id="totalPorcentaje" style="float:left;margin:5px 50px;font-size:11px;">0%</span>
                 <div class="iframe">
                   <div id="tblContratoViewSySDetalle"></div>
                 </div>
