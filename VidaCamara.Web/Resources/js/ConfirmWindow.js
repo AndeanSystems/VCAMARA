@@ -20,7 +20,7 @@ function DeleteMethod() {
     return message;
 
 }
-function mostrarMensajeAlert() {
+function mostrarMensajeAlert(texto) {
     $("<div style='font-size:14px;text-align:center;'>" + texto + "</div>").dialog({ title: 'Alerta', modal: true, width: 400, height: 160, buttons: [{ id: 'aceptar', text: 'Aceptar', icons: { primary: 'ui-icon-circle-check' }, click: function () { $(this).dialog('close'); } }] });
 }
 window.mostrarMensajeAlert = mostrarMensajeAlert;
@@ -62,6 +62,7 @@ $(document).ready(function () {
     //funcion para convertir numeros a fechas
     window.ConvertNumberToDate = ConvertNumberToDate;
     window.ConvertNumberToDateTime = ConvertNumberToDateTime;
+    window.llamarAjax = llamarAjax;
 
     function ConvertNumberToDate(numberdate) {
         var milli = numberdate.replace(/\/Date\((-?\d+)\)\//, '$1');
@@ -83,7 +84,16 @@ $(document).ready(function () {
         console.log(mes);
         return dia + "/" + mes + "/" + d.getFullYear() + " " + hora + ":" + minuto + ":" + segundo;
     }
-
+    //funcion ajax
+    function llamarAjax(data, url) {
+        return $.ajax({
+            url:url,
+            method: 'POST',
+            contentType: "application/json;",
+            dataType: 'JSON',
+            data: JSON.stringify(data),
+        });
+    }
     function dar_formato(num) {
 
         var cadena = ""; var aux;
