@@ -52,7 +52,7 @@ namespace VidaCamara.DIS.data
             {
                 using (var db = new DISEntities())
                 {
-                   
+                    db.pa_upd_InactivaLinCabNomina(historialCargaArchivo_LinCab.IDE_CONTRATO, Convert.ToInt32(historialCargaArchivo_LinCab.IdHistorialCargaArchivoLinCab));
                 }
             }
             catch (Exception ex)
