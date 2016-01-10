@@ -80,6 +80,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="data\dReglaArchivo.cs" />
+    <Compile Include="data\dSegDescarga.cs" />
     <Compile Include="data\HistorialCargaArchivo.cs" />
     <Compile Include="Helpers\excelStyle.cs" />
     <Compile Include="Helpers\gridCreator.cs" />
@@ -164,6 +165,7 @@
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\EEntidad\EAprobacionCarga.cs" />
+    <Compile Include="Modelo\EEntidad\ESegDescarga.cs" />
     <Compile Include="Modelo\EEntidad\HLogOperacion.cs" />
     <Compile Include="Modelo\Enumerado\EstadoPago.cs" />
     <Compile Include="Modelo\EstadoArchivo.cs">
@@ -322,6 +324,7 @@
     <Compile Include="Negocio\nLogOperacion.cs" />
     <Compile Include="Negocio\nNomina.cs" />
     <Compile Include="Negocio\nReglaArchivo.cs" />
+    <Compile Include="Negocio\nSegDescarga.cs" />
     <Compile Include="Negocio\Regla.cs" />
     <Compile Include="Negocio\SiniestroLogica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
