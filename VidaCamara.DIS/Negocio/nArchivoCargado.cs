@@ -8,6 +8,7 @@ using System.Web;
 using System;
 using System.Reflection;
 using VidaCamara.DIS.Helpers;
+using NPOI.HSSF.Util;
 
 namespace VidaCamara.DIS.Negocio
 {
@@ -38,7 +39,6 @@ namespace VidaCamara.DIS.Negocio
         {
             try
             {
-                var excelStyle = new excelStyle();
                 var nombreArchivo = "Archivo " + filterParam[0].ToString()+" "+DateTime.Now.ToString("yyyyMMdd");
                 var rutaTemporal = @HttpContext.Current.Server.MapPath("~/Temp/Descargas/" + nombreArchivo + ".xlsx");
                 int total;
@@ -57,7 +57,7 @@ namespace VidaCamara.DIS.Negocio
                 {
                     cellCabecera = rowCabecera.CreateCell(i+1);
                     cellCabecera.SetCellValue(listReglaArchivo[i].TituloColumna);
-                    //cellCabecera.CellStyle = excelStyle.setFontText(12, true, book);
+                    cellCabecera.CellStyle = setFontText(12, true, book);
                 }
                 //consultar datos segun los filtros especificados
                 if (filterParam[0].ToString() == "NOMINA")
@@ -72,7 +72,7 @@ namespace VidaCamara.DIS.Negocio
                             cellBody = rowBody.CreateCell(c + 1);
                             var property = listNomina[i].GetType().GetProperty(listReglaArchivo[c].NombreCampo.ToString().Trim(), BindingFlags.Public | BindingFlags.Instance);
                             cellBody.SetCellValue(property.GetValue(listNomina[i]) == null ? "" : property.GetValue(listNomina[i]).ToString());
-                            //cellBody.CellStyle = excelStyle.setFontText(11, false, book);
+                            cellBody.CellStyle = setFontText(11, false, book);
                         }
                     }
                 }
@@ -87,7 +87,7 @@ namespace VidaCamara.DIS.Negocio
                             cellBody = rowBody.CreateCell(c + 1);
                             var property = listHistoriaLinDet[i].GetType().GetProperty(listReglaArchivo[c].NombreCampo.ToString().Trim(), BindingFlags.Public | BindingFlags.Instance);
                             cellBody.SetCellValue(property.GetValue(listHistoriaLinDet[i]) == null ? "" : property.GetValue(listHistoriaLinDet[i]).ToString());
-                            //cellBody.CellStyle = excelStyle.setFontText(11, false, book);
+                            cellBody.CellStyle = setFontText(11, false, book);
                         }
                     }
                 }
@@ -109,6 +109,28 @@ namespace VidaCamara.DIS.Negocio
         public List<HistorialCargaArchivo_LinDet> listArchivoCargadoByArchivo(HistorialCargaArchivo_LinCab cab, object[] filterParam, int jtStartIndex, int jtPageSize, out int total)
         {
             return new dPagoCargado().listArchivoCargadoByArchivo(cab,filterParam,jtStartIndex,jtPageSize,out total);
+        }
+        private ICellStyle setFontText(short point, bool color, XSSFWorkbook book)
+        {
+            var font = book.CreateFont();
+            font.FontName = "Calibri";
+            font.Color = (IndexedColors.Black.Index);
+            font.FontHeightInPoints = point;
+
+            var style = book.CreateCellStyle();
+            style.SetFont(font);
+            style.Alignment = HorizontalAlignment.Center;
+            style.VerticalAlignment = VerticalAlignment.Center;
+            if (color)
+            {
+                style.FillForegroundColor = HSSFColor.Grey25Percent.Index;
+                style.FillPattern = FillPattern.SolidForeground;
+            }
+            style.BorderBottom = BorderStyle.Thin;
+            style.BorderTop = BorderStyle.Thin;
+            style.BorderLeft = BorderStyle.Thin;
+            style.BorderRight = BorderStyle.Thin;
+            return style;
         }
     }
 }

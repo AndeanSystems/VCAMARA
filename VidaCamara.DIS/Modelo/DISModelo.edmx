@@ -1547,6 +1547,12 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Parameter Name="NombreTipoArchivo" Type="varchar" Mode="In" />
           <Parameter Name="Fecha" Type="date" Mode="In" />
         </Function>
+        <Function Name="pa_sel_SegDescarga" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdeContrato" Type="int" Mode="In" />
+          <Parameter Name="NombreTipoArchivo" Type="varchar" Mode="In" />
+          <Parameter Name="FechaInicio" Type="date" Mode="In" />
+          <Parameter Name="FechaFin" Type="date" Mode="In" />
+        </Function>
         <Function Name="pa_upd_ApruebaLinCabNomina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdContrato" Type="int" Mode="In" />
           <Parameter Name="IdHistoriaLinCab" Type="int" Mode="In" />
@@ -2401,6 +2407,12 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <FunctionImport Name="pa_upd_InactivaLinCabNomina">
             <Parameter Name="IdContrato" Mode="In" Type="Int32" />
             <Parameter Name="IdHistoriaLinCab" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_sel_SegDescarga" ReturnType="Collection(DISModelo.pa_sel_SegDescarga_Result)">
+            <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
+            <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
@@ -4221,6 +4233,15 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Type="String" Name="Aprobar" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="Eliminar" Nullable="false" MaxLength="1" />
         </ComplexType>
+        <ComplexType Name="pa_sel_SegDescarga_Result">
+          <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="FecReg" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuReg" Nullable="false" MaxLength="30" />
+          <Property Type="Int32" Name="TotalRegistros" Nullable="true" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="Moneda" Nullable="false" MaxLength="7" />
+          <Property Type="Decimal" Name="ImporteTotalSoles" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5821,6 +5842,19 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_upd_cambiaEstadoNomina" FunctionName="DISModelo.Store.pa_upd_cambiaEstadoNomina" />
           <FunctionImportMapping FunctionImportName="pa_upd_InactivaLinCabNomina" FunctionName="DISModelo.Store.pa_upd_InactivaLinCabNomina" />
+          <FunctionImportMapping FunctionImportName="pa_sel_SegDescarga" FunctionName="DISModelo.Store.pa_sel_SegDescarga">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DISModelo.pa_sel_SegDescarga_Result">
+                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+                <ScalarProperty Name="FecReg" ColumnName="FecReg" />
+                <ScalarProperty Name="UsuReg" ColumnName="UsuReg" />
+                <ScalarProperty Name="TotalRegistros" ColumnName="TotalRegistros" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="ImporteTotalSoles" ColumnName="ImporteTotalSoles" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
