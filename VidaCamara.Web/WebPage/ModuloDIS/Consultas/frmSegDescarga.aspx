@@ -7,7 +7,7 @@
          <!--Botones de CRUD-->
         <div class="btn_crud">
             <asp:HyperLink ID="HyperLink1" CssClass="btn_crud_button"  ToolTip="Inicio" runat="server" ImageUrl="~/Resources/Imagenes/u158_normal.png" NavigateUrl="~/Inicio"></asp:HyperLink>
-            <asp:ImageButton  CssClass="btn_crud_button" ID="btn_exportar" runat="server" ToolTip="Exportar" ImageUrl="~/Resources/Imagenes/u123_normal.png"/>
+            <asp:ImageButton  CssClass="btn_crud_button" ID="btn_exportar" runat="server" ToolTip="Exportar" ImageUrl="~/Resources/Imagenes/u123_normal.png" OnClick="btn_exportar_Click"/>
             <asp:ImageButton  CssClass="btn_crud_button" ID="btn_buscar" runat="server" ToolTip="Buscar" ImageUrl="~/Resources/Imagenes/u154_normal.png" />
         </div>
     <!--Cuerpo de los tabs-->
@@ -19,8 +19,8 @@
                 <label class="label_to" for="ddl_contrato_o">Contrato (*)</label>
                 <asp:DropDownList CssClass="input_to" ID="ddl_contrato" runat="server" Height="25px" Width="77%"></asp:DropDownList>
 
-                <label class="label_to" for="ddl_tipcom_o">Tipo de Tramite </label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_tipo_tramite" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
+                <label class="label_to" for="ddl_tipcom_o">Tipo de Archivo </label>
+                <asp:DropDownList CssClass="input_to" ID="ddl_tipo_archivo" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
 
                 <label class="input_right_L" for="txt_fec_ini_o">Desde</label>
                 <asp:TextBox CssClass="input_right datetime" ID="txt_fec_ini_o" runat="server" Height="25px" Width="14.7%" ></asp:TextBox>

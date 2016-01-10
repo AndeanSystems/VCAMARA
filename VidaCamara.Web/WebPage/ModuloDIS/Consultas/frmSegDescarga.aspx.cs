@@ -15,43 +15,31 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             {
                 var concepto = new bTablaVC();
                 SetLLenadoContrato();
-                concepto.SetEstablecerDataSourceConcepto(ddl_tipo_tramite, "22");
+                concepto.SetEstablecerDataSourceConcepto(ddl_tipo_archivo, "17");
             }
         }
-        //[System.Web.Services.WebMethod(EnableSession = true)]
-        //public static object listApruebaCarga(int jtStartIndex, int jtPageSize, string jtSorting,CONTRATO_SYS contrato)
-        //{
-        //    var negocio = new nAprobacionCarga();
-        //    return new { Result = "OK", Records = negocio.listApruebaCarga(contrato,jtStartIndex,jtPageSize,out total), TotalRecordCount = total };
-        //}
-        [System.Web.Services.WebMethod(EnableSession = true)]
-        public static object setAprobar(int linCabId,int IdeContrato)
+        protected void btn_exportar_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
-            try
-            {
-                new nAprobacionCarga().actualizarEstado(new HistorialCargaArchivo_LinCab(){IDE_CONTRATO = IdeContrato,IdHistorialCargaArchivoLinCab = linCabId });
-                return new { Result = true };
-            }
-            catch (Exception ex)
-            {
-                return new {Result = ex.Message };
-            }
+            var ruta =  descargarConsultaExcel();
+            Response.Clear();
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + ruta);
+            Response.TransmitFile(ruta);
+            Response.End();
+        }
+
+        private string descargarConsultaExcel()
+        {
+            var filters = new Object[3] {ddl_tipo_archivo.SelectedItem.Value,txt_fec_ini_o.Text,txt_fec_hasta_o.Text };
+            return new nSegDescarga().descargarConsultaExcel(new CONTRATO_SYS() { IDE_CONTRATO =Convert.ToInt32(ddl_contrato.SelectedItem.Value)}, filters);
         }
 
         [System.Web.Services.WebMethod(EnableSession = true)]
-        public static object setEliminar(int linCabId, int IdeContrato)
+        public static object listSegDescarga(int jtStartIndex, int jtPageSize, string jtSorting, CONTRATO_SYS contrato,object[] filters)
         {
-            try
-            {
-                new nAprobacionCarga().eliminarPagoYNomina(new HistorialCargaArchivo_LinCab() { IDE_CONTRATO = IdeContrato, IdHistorialCargaArchivoLinCab = linCabId });
-                return new { Result = true };
-            }
-            catch (Exception ex)
-            {
-                return new { Result = ex.Message };
-            }
+            var negocio = new nSegDescarga();
+            return new { Result = "OK", Records = negocio.listSegDescarga(contrato, filters,jtStartIndex, jtPageSize, out total), TotalRecordCount = total };
         }
-        
         private void SetLLenadoContrato()
         {
             var list = new VidaCamara.SBS.Utils.Utility().getContratoSys(out total);

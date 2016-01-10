@@ -496,6 +496,7 @@
     <Folder Include="Scripts\Temp\Archivos\" />
     <Folder Include="sql\" />
     <Folder Include="Temp\Archivos\" />
+    <Folder Include="Temp\Descargas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="WebPage\Inicio\mpFEPCMAC.Master" />

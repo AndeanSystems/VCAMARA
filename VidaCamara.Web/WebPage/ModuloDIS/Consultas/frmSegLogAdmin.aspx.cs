@@ -43,5 +43,20 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             return new { Result = "OK", Records = listLogOperacion, TotalRecordCount = total };
         }
 
+        protected void btn_exportar_Click(object sender, ImageClickEventArgs e)
+        {
+            var filters = new object[2] {txt_fec_ini_o.Text,txt_fec_hasta_o.Text };
+            var eLog = new HLogOperacion() {
+                IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value),
+                TipoOper = ddl_tipo_evento.SelectedItem.Value,
+                Evento = txt_evento_descripcion.Text
+            };
+            var ruta = new nLogOperacion().descargarConsultaExcel(eLog, filters);
+            Response.Clear();
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + ruta);
+            Response.TransmitFile(ruta);
+            Response.End();
+        }
     }
 }
