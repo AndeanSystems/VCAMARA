@@ -11,7 +11,7 @@
     const action = "/WebPage/ModuloDIS/Consultas/frmSegDescarga.aspx/listSegDescarga";
     var fields = {
         nombreArchivo :{title:'NombreArchivo'},
-        FechaCarga: {title:'FechaCarga' },
+        FechaCarga: {title:'FechaCarga', type: 'date', displayFormat: 'dd/mm/yy'},
         Usuario: {title:'Usuario'},
         NroLineas: {title:'NroLineas'},
         Estado: { title:'Estado' },

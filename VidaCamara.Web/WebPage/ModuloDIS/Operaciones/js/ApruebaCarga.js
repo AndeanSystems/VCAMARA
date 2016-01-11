@@ -12,7 +12,7 @@
             llamarAjax(new linCab(parseInt($(this).attr('class'))), urlAprobar).success(function (res) {
                 console.log(res);
                 if (res.d.Result == true) {
-                    mostrarMensajeAlert("Transacción existosa.");
+                    mostrarMensajeAlert("La información de pagos fue confirmada.");
                     consultarRegistros();
                 }else
                     mostrarMensajeAlert(res.d.Result);
@@ -26,7 +26,7 @@
             llamarAjax(new linCab(parseInt($(this).attr('class'))), urlEliminar).success(function (res) {
                 console.log(res);
                 if (res.d.Result == true) {
-                    mostrarMensajeAlert("Transacción existosa.");
+                    mostrarMensajeAlert("La información de pagos ha descartada, debera ser cargada nuevamente.");
                     consultarRegistros();
                 } else
                     mostrarMensajeAlert(res.d.Result);
