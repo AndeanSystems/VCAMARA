@@ -230,9 +230,17 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 }
                 else
                 {
-                    var resp = new nContratoSisDetalle().setActualizarContratoDetalle(ContratoSisDetalle);
-                    nlog.setLLenarEntidad(Convert.ToInt32(ContratoSisDetalle.IDE_CONTRATO), "A", "A05", resp.ToString(), Session["username"].ToString());
-                    MessageBox(resp + " Registro actualizado corretamente");
+                    if (verificarSumaTotalPorcentaje(ContratoSisDetalle) > 100.00m)
+                    {
+                        MessageBox("La suma de los porcentajes ingresados supera el limite maximo de 100");
+                        return;
+                    }
+                    else
+                    {
+                        var resp = new nContratoSisDetalle().setActualizarContratoDetalle(ContratoSisDetalle);
+                        nlog.setLLenarEntidad(Convert.ToInt32(ContratoSisDetalle.IDE_CONTRATO), "A", "A05", resp.ToString(), Session["username"].ToString());
+                        MessageBox(resp + " Registro actualizado corretamente");
+                    }
                 }
             }
             catch (Exception ex)
