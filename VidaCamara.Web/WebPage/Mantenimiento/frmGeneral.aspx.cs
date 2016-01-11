@@ -203,14 +203,30 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                         return;
                     }
 
+
                     if (verificarSumaTotalPorcentaje(ContratoSisDetalle) > 100.00m)
                     {
                         MessageBox("La suma de los porcentajes ingresados supera el limite maximo de 100");
                         return;
                     };
-                    var resp = new nContratoSisDetalle().setGuardarContratoDetalle(ContratoSisDetalle);
-                    nlog.setLLenarEntidad(Convert.ToInt32(ContratoSisDetalle.IDE_CONTRATO), "I", "I02", resp.ToString(), Session["username"].ToString());
+
+
+                    // Validar que la suma de los % de participacion esten correctos
+                    var valorPorc = sumPorcentaje(ContratoSisDetalle);
+                    var restaRes = 100 - valorPorc;
+
+                    if (Math.Abs(restaRes) > 0.001m)
+                    {
+                        var resp = new nContratoSisDetalle().setGuardarContratoDetalle(ContratoSisDetalle);
+                        nlog.setLLenarEntidad(Convert.ToInt32(ContratoSisDetalle.IDE_CONTRATO), "I", "I02", resp.ToString(), Session["username"].ToString());
                         MessageBox("Registro  grabado corretamente");
+                    }
+                    else
+                    {
+                        MessageBox("La suma de los porcentajes parciales no es equivalente al 100%");
+                        return;
+                    }
+
                 }
                 else
                 {
@@ -266,6 +282,20 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 sumaPorcentaje += Convert.ToDecimal(item.PRC_PARTICIACION);
             }
             return sumaPorcentaje + Convert.ToDecimal(contratoSisDetalle.PRC_PARTICIACION);
+        }
+
+
+        //Solo la suma de porcentajes
+        private decimal sumPorcentaje(CONTRATO_SIS_DET contratoSisDetalle)
+        {
+            var filterOptions = new Object[3] { 0, 10000, "IDE_CONTRATO ASC" };
+            var listEmpresa = new nContratoSisDetalle().getlistContratoDetalle(contratoSisDetalle, filterOptions, out total);
+            var sumaPorcentaje = 0.00m;
+            foreach (var item in listEmpresa)
+            {
+                sumaPorcentaje += Convert.ToDecimal(item.PRC_PARTICIACION);
+            }
+            return sumaPorcentaje;
         }
 
         private int verificarSiExisteNroOrden(CONTRATO_SIS_DET contratoSisDetalle)
