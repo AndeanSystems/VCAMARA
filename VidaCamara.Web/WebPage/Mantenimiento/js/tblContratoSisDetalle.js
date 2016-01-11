@@ -34,13 +34,13 @@ $(document).ready(function () {
             $(this).val("");
         }
 
-        var n = (parseFloat($(this).val()) + "").split(".");
-        if (n.length > 1) {
-            if (n[1].length > 6) {
-                mostrarMensajeAlert("La cantidad maxima de decimales del porcentaje de participación es 6");
-                $(this).val("");
-            }
-        }
+        //var n = (parseFloat($(this).val()) + "").split(".");
+        //if (n.length > 1) {
+        //    if (n[1].length > 6) {
+        //        mostrarMensajeAlert("La cantidad maxima de decimales del porcentaje de participación es 6");
+        //        $(this).val("");
+        //    }
+        //}
 
     });
     //VALIDAR QUE EL NUMERO DE EMPRESAS ESTE ENTRE 4 Y 7
@@ -60,7 +60,7 @@ $(document).ready(function () {
             tableId: 'Contratos_SYS',
             paging: true,
             sorting: true,
-            pageSize: 5,
+            pageSize: 7,
             defaultSorting: 'IDE_CONTRATO ASC',
             selecting: true,
             saveUserPreferences: true,
