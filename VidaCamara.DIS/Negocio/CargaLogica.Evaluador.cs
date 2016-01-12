@@ -478,22 +478,44 @@ namespace VidaCamara.DIS.Negocio
 
         private int EvaluarBoolSp(string tipoArchivo, Regla regla, int x,int exitoLinea)
         {
-            StringCollection resultadoValor;
-            var valor = regla.ReglaValidacion;
-
-            if (valor.Contains("pa_valida_SumaDetalleEnTotal"))
-                return EvaluarBoolSumaDetalleEnTotal(regla);
-            
-            valor = valor.Replace("@valor", "'" + CampoActual + "'");
-            valor = valor.Replace("@IdArchivo", IdArchivo.ToString());
-            valor = valor.Replace("@NumeroLinea", (x + 1).ToString());
-            valor = valor.Replace("@CampoInicial", regla.CaracterInicial.ToString());
-            valor = valor.Replace("@LargoCampo", regla.LargoCampo.ToString());
-
-            using (var context = new DISEntities())
+            //en la tabla regla de archivos se agrego una columna forma de validacion los cuales son:
+            //1 = Valida el dato en la aplicacion
+            //0 = Consulta los stores respectivos 
+            StringCollection resultadoValor = new StringCollection();
+            if (regla.FormaValidacion == 1)
             {
-                var resultado = context.pa_valida_EjecutaProcedimientoAlmacenado(valor);
-                resultadoValor = ObtieneColeccion(resultado);
+                string resultado = string.Empty;
+                switch (regla.ReglaValidacion.Trim())
+                {
+                    case "pa_valida_Fecha @valor":
+                        resultado = paValidaFecha(CampoActual).ToString();
+                        break;
+                    case "pa_valida_Numero7x2 @valor":
+                        resultado = paValidaNumero7x2(CampoActual).ToString();
+                        break;
+                    case "pa_valida_SoloNumeros @valor":
+                        resultado = paValidaSoloNumero(CampoActual).ToString();
+                        break;
+                }
+                resultadoValor.Add(resultado);
+            }
+            else {
+                var valor = regla.ReglaValidacion;
+
+                if (valor.Contains("pa_valida_SumaDetalleEnTotal"))
+                    return EvaluarBoolSumaDetalleEnTotal(regla);
+
+                valor = valor.Replace("@valor", "'" + CampoActual + "'");
+                valor = valor.Replace("@IdArchivo", IdArchivo.ToString());
+                valor = valor.Replace("@NumeroLinea", (x + 1).ToString());
+                valor = valor.Replace("@CampoInicial", regla.CaracterInicial.ToString());
+                valor = valor.Replace("@LargoCampo", regla.LargoCampo.ToString());
+
+                using (var context = new DISEntities())
+                {
+                    var resultado = context.pa_valida_EjecutaProcedimientoAlmacenado(valor);
+                    resultadoValor = ObtieneColeccion(resultado);
+                }
             }
 
             if (resultadoValor[0] == "1")
@@ -514,6 +536,45 @@ namespace VidaCamara.DIS.Negocio
                 exitoLinea = 0;
             }
             return exitoLinea;
+        }
+
+        private static int paValidaSoloNumero(string campoActual)
+        {
+            try
+            {
+                Convert.ToInt64(campoActual);
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+        private  static int paValidaNumero7x2(string campoActual)
+        {
+            try
+            {
+                Convert.ToDecimal(campoActual);
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+        private static int paValidaFecha(string campoActual)
+        {
+            try
+            {
+                new DateTime(int.Parse(campoActual.Substring(0,4)),int.Parse(campoActual.Substring(4,2)),int.Parse(campoActual.Substring(6,2)));
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
         }
 
         private int EvaluarBoolSumaDetalleEnTotal(Regla regla)

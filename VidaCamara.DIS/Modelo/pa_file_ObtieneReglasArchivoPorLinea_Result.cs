@@ -22,5 +22,6 @@ namespace VidaCamara.DIS.Modelo
         public string ReglaValidacion { get; set; }
         public string TablaDestino { get; set; }
         public string NombreCampo { get; set; }
+        public Nullable<short> FormaValidacion { get; set; }
     }
 }

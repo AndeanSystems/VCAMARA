@@ -2082,10 +2082,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <FunctionImport Name="pa_file_ObtienePrimerCaracterLineaPorTipoArchivo" ReturnType="Collection(String)">
           <Parameter Name="Param_TipoArchivo" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="pa_file_ObtieneReglasArchivoPorLinea" ReturnType="Collection(DISModelo.pa_file_ObtieneReglasArchivoPorLinea_Result)">
-            <Parameter Name="Param_TipoArchivo" Mode="In" Type="String" />
-            <Parameter Name="Param_TipoLinea" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="pa_file_ObtieneReglavalidacionArchivo" ReturnType="Collection(String)">
             <Parameter Name="Archivo" Mode="In" Type="String" />
             <Parameter Name="Tipo" Mode="In" Type="Int32" />
@@ -2414,6 +2410,10 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
             <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="pa_file_ObtieneReglasArchivoPorLinea" ReturnType="Collection(DISModelo.pa_file_ObtieneReglasArchivoPorLinea_Result)">
+            <Parameter Name="Param_TipoArchivo" Mode="In" Type="String" />
+            <Parameter Name="Param_TipoLinea" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
           <Property Type="Int32" Name="IdRegistroMontoAlto" Nullable="false" />
@@ -2434,17 +2434,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Type="String" Name="ValorCampo" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="InformacionCampo" Nullable="true" MaxLength="3000" />
           <Property Type="String" Name="FormatoContenido" Nullable="true" MaxLength="3000" />
-        </ComplexType>
-        <ComplexType Name="pa_file_ObtieneReglasArchivoPorLinea_Result">
-          <Property Type="Int32" Name="IdReglaArchivo" Nullable="false" />
-          <Property Type="String" Name="InformacionCampo" Nullable="true" MaxLength="3000" />
-          <Property Type="Int32" Name="CaracterInicial" Nullable="true" />
-          <Property Type="Int32" Name="LargoCampo" Nullable="true" />
-          <Property Type="String" Name="TipoCampo" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="TipoValidacion" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="ReglaValidacion" Nullable="true" MaxLength="3000" />
-          <Property Type="String" Name="TablaDestino" Nullable="true" MaxLength="1000" />
-          <Property Type="String" Name="NombreCampo" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="pa_impactanegocio_Result">
           <Property Type="Int32" Name="Linea" Nullable="true" />
@@ -4242,6 +4231,18 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Type="String" Name="Moneda" Nullable="false" MaxLength="7" />
           <Property Type="Decimal" Name="ImporteTotalSoles" Nullable="true" Precision="38" Scale="6" />
         </ComplexType>
+        <ComplexType Name="pa_file_ObtieneReglasArchivoPorLinea_Result">
+          <Property Type="Int32" Name="IdReglaArchivo" Nullable="false" />
+          <Property Type="String" Name="InformacionCampo" Nullable="true" MaxLength="3000" />
+          <Property Type="Int32" Name="CaracterInicial" Nullable="true" />
+          <Property Type="Int32" Name="LargoCampo" Nullable="true" />
+          <Property Type="String" Name="TipoCampo" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="TipoValidacion" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ReglaValidacion" Nullable="true" MaxLength="3000" />
+          <Property Type="String" Name="TablaDestino" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="NombreCampo" Nullable="true" MaxLength="50" />
+          <Property Type="Int16" Name="FormaValidacion" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4287,21 +4288,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_file_ObtienePrimerCaracterLineaPorTipoArchivo" FunctionName="DISModelo.Store.pa_file_ObtienePrimerCaracterLineaPorTipoArchivo" />
-          <FunctionImportMapping FunctionImportName="pa_file_ObtieneReglasArchivoPorLinea" FunctionName="DISModelo.Store.pa_file_ObtieneReglasArchivoPorLinea">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DISModelo.pa_file_ObtieneReglasArchivoPorLinea_Result">
-                <ScalarProperty Name="IdReglaArchivo" ColumnName="IdReglaArchivo" />
-                <ScalarProperty Name="InformacionCampo" ColumnName="InformacionCampo" />
-                <ScalarProperty Name="CaracterInicial" ColumnName="CaracterInicial" />
-                <ScalarProperty Name="LargoCampo" ColumnName="LargoCampo" />
-                <ScalarProperty Name="TipoCampo" ColumnName="TipoCampo" />
-                <ScalarProperty Name="TipoValidacion" ColumnName="TipoValidacion" />
-                <ScalarProperty Name="ReglaValidacion" ColumnName="ReglaValidacion" />
-                <ScalarProperty Name="TablaDestino" ColumnName="TablaDestino" />
-                <ScalarProperty Name="NombreCampo" ColumnName="NombreCampo" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_file_ObtieneReglavalidacionArchivo" FunctionName="DISModelo.Store.pa_file_ObtieneReglavalidacionArchivo" />
           <FunctionImportMapping FunctionImportName="pa_file_ObtieneTipoArchivos" FunctionName="DISModelo.Store.pa_file_ObtieneTipoArchivos" />
           <FunctionImportMapping FunctionImportName="pa_impactanegocio" FunctionName="DISModelo.Store.pa_impactanegocio">
@@ -5852,6 +5838,22 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Moneda" ColumnName="Moneda" />
                 <ScalarProperty Name="ImporteTotalSoles" ColumnName="ImporteTotalSoles" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_file_ObtieneReglasArchivoPorLinea" FunctionName="DISModelo.Store.pa_file_ObtieneReglasArchivoPorLinea">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DISModelo.pa_file_ObtieneReglasArchivoPorLinea_Result">
+                <ScalarProperty Name="IdReglaArchivo" ColumnName="IdReglaArchivo" />
+                <ScalarProperty Name="InformacionCampo" ColumnName="InformacionCampo" />
+                <ScalarProperty Name="CaracterInicial" ColumnName="CaracterInicial" />
+                <ScalarProperty Name="LargoCampo" ColumnName="LargoCampo" />
+                <ScalarProperty Name="TipoCampo" ColumnName="TipoCampo" />
+                <ScalarProperty Name="TipoValidacion" ColumnName="TipoValidacion" />
+                <ScalarProperty Name="ReglaValidacion" ColumnName="ReglaValidacion" />
+                <ScalarProperty Name="TablaDestino" ColumnName="TablaDestino" />
+                <ScalarProperty Name="NombreCampo" ColumnName="NombreCampo" />
+                <ScalarProperty Name="FormaValidacion" ColumnName="FormaValidacion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

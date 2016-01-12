@@ -273,19 +273,6 @@ namespace VidaCamara.DIS.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("pa_file_ObtienePrimerCaracterLineaPorTipoArchivo", param_TipoArchivoParameter);
         }
     
-        public virtual ObjectResult<pa_file_ObtieneReglasArchivoPorLinea_Result> pa_file_ObtieneReglasArchivoPorLinea(string param_TipoArchivo, string param_TipoLinea)
-        {
-            var param_TipoArchivoParameter = param_TipoArchivo != null ?
-                new ObjectParameter("Param_TipoArchivo", param_TipoArchivo) :
-                new ObjectParameter("Param_TipoArchivo", typeof(string));
-    
-            var param_TipoLineaParameter = param_TipoLinea != null ?
-                new ObjectParameter("Param_TipoLinea", param_TipoLinea) :
-                new ObjectParameter("Param_TipoLinea", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_file_ObtieneReglasArchivoPorLinea_Result>("pa_file_ObtieneReglasArchivoPorLinea", param_TipoArchivoParameter, param_TipoLineaParameter);
-        }
-    
         public virtual ObjectResult<string> pa_file_ObtieneReglavalidacionArchivo(string archivo, Nullable<int> tipo)
         {
             var archivoParameter = archivo != null ?
@@ -900,6 +887,19 @@ namespace VidaCamara.DIS.Modelo
                 new ObjectParameter("FechaFin", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_SegDescarga_Result>("pa_sel_SegDescarga", ideContratoParameter, nombreTipoArchivoParameter, fechaInicioParameter, fechaFinParameter);
+        }
+    
+        public virtual ObjectResult<pa_file_ObtieneReglasArchivoPorLinea_Result> pa_file_ObtieneReglasArchivoPorLinea(string param_TipoArchivo, string param_TipoLinea)
+        {
+            var param_TipoArchivoParameter = param_TipoArchivo != null ?
+                new ObjectParameter("Param_TipoArchivo", param_TipoArchivo) :
+                new ObjectParameter("Param_TipoArchivo", typeof(string));
+    
+            var param_TipoLineaParameter = param_TipoLinea != null ?
+                new ObjectParameter("Param_TipoLinea", param_TipoLinea) :
+                new ObjectParameter("Param_TipoLinea", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_file_ObtieneReglasArchivoPorLinea_Result>("pa_file_ObtieneReglasArchivoPorLinea", param_TipoArchivoParameter, param_TipoLineaParameter);
         }
     }
 }

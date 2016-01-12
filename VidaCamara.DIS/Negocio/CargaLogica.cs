@@ -580,7 +580,8 @@ namespace VidaCamara.DIS.Negocio
                     TipoValidacion = i.TipoValidacion,
                     ReglaValidacion = i.ReglaValidacion,
                     Tabladestino = i.TablaDestino,
-                    NombreCampo = i.NombreCampo
+                    NombreCampo = i.NombreCampo,
+                    FormaValidacion = i.FormaValidacion
                 };
                 reglaLinea.Add(regla);
             }
