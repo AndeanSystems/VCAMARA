@@ -26,10 +26,10 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             return new { Result = "OK", Records = negocio.listApruebaCarga(contrato, jtStartIndex, jtPageSize, filters, out total), TotalRecordCount = total };
         }
         [System.Web.Services.WebMethod(EnableSession = true)]
-        public static object listApruebaCargaDetalle(CONTRATO_SYS contrato)
+        public static object listApruebaCargaDetalle(int IdeContrato)
         {
             var negocio = new nAprobacionCarga();
-            return new { Result = "OK", Records = negocio.listApruebaCargaDetalle(contrato)};
+            return new { Result = "OK", Records = negocio.listApruebaCargaDetalle(new HistorialCargaArchivo_LinCab() { IDE_CONTRATO = IdeContrato }) };
         }
          
         [System.Web.Services.WebMethod(EnableSession = true)]

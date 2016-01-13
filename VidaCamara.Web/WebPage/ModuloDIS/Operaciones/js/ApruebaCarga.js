@@ -55,7 +55,7 @@
         IdHistoriaLinCab:{title:'Detalle',sorting:false,display:function(data){
             var $icon = $("<a href='#'>Detalle</a>");
             $icon.click(function(){
-                console.log($icon);
+                console.log($icon,data);
                 $("#tblApruebaCarga").jtable('openChildTable',
                     $icon.closest('tr'),
                     {
@@ -67,7 +67,7 @@
                             PagoVcNomina: { title: 'Monto Pago_Vc' },
                         }
                     },function(dataDetail){
-                        dataDetail.childTable.jtable('load');
+                        dataDetail.childTable.jtable('load',{IdeContrato:data.record.IdLinCab});
                     });
             });
             return $icon;
