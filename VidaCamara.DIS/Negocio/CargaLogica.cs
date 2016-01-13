@@ -371,40 +371,40 @@ namespace VidaCamara.DIS.Negocio
 
         private void ProcesarErrores(string tipoArchivo)
         {
-            //if (ValidacionesArchivo(tipoArchivo, 2) == false)
-            //{
-            //    using (var context = new DISEntities())
-            //    {
-            //        Resultado = context.pa_file_ObtieneErrorArchivo(IdArchivo);
-            //        var result = context.pa_file_ObtieneErrorArchivo(IdArchivo);
+            if (ValidacionesArchivo(tipoArchivo, 2) == false)
+            {
+                using (var context = new DISEntities())
+                {
+                    Resultado = context.pa_file_ObtieneErrorArchivo(IdArchivo);
+                    var result = context.pa_file_ObtieneErrorArchivo(IdArchivo);
 
-            //        var nombre = "";
-            //        var largo = 0;
-            //        foreach (var datoLoopVariable in result)
-            //        {
-            //            var dato = datoLoopVariable;
-            //            if (dato.NumeroLinea.Value > 0)
-            //            {
-            //                nombre = dato.NombreArchivo;
-            //                largo = dato.LargoCampo.Value;
-            //            }
-            //        }
-            //        if (nombre != string.Empty & largo != null)
-            //        {
-            //            //If largo = 25 Then
-            //            var valor1 = context.pa_valida_CodigoTransferenciaNomina(nombre, IdArchivo, largo);
-            //            var resultado = 0;
-            //            resultado = valor1.FirstOrDefault().Value;
-            //            if (resultado == 0)
-            //            {
-            //                Resultado = null;
-            //                Observacion =
-            //                    "No existe liquidación, debe cargar liquidación y despúes la nómina";
-            //                //End If
-            //            }
-            //        }
-            //    }
-            //}
+                    var nombre = "";
+                    var largo = 0;
+                    foreach (var datoLoopVariable in result)
+                    {
+                        var dato = datoLoopVariable;
+                        if (dato.NumeroLinea.Value > 0)
+                        {
+                            nombre = dato.NombreArchivo;
+                            largo = dato.LargoCampo.Value;
+                        }
+                    }
+                    if (nombre != string.Empty & largo != null)
+                    {
+                        //If largo = 25 Then
+                        var valor1 = context.pa_valida_CodigoTransferenciaNomina(nombre, IdArchivo, largo);
+                        var resultado = 0;
+                        resultado = valor1.FirstOrDefault().Value;
+                        if (resultado == 0)
+                        {
+                            Resultado = null;
+                            Observacion =
+                                "No existe liquidación, debe cargar liquidación y despúes la nómina";
+                            //End If
+                        }
+                    }
+                }
+            }
 
             if (ContadorErrores == 0)
             {
@@ -420,30 +420,30 @@ namespace VidaCamara.DIS.Negocio
 
             //esto válida que los montos por cuspp no sean mayor a lo establecido
             //en la entidad: negocio.MontoAlto
-            //if (NombreArchivo.Substring(0, 3).ToLower() == "liq")
-            //{
-            //    using (var context = new DISEntities())
-            //    {
-            //        var monto = context.pa_valida_MontoAlto(IdArchivo,Convert.ToInt32(UsuarioModificacion));
-            //        string montoAlto = null;
-            //        montoAlto = monto.ToString();
-            //        if (montoAlto == "1")
-            //        {
-            //            dynamic monto1 = context.pa_devuelveresultado(IdArchivo);
-            //            var correo = "";
-            //            foreach (var registroLoopVariable in monto1)
-            //            {
-            //                var registro = registroLoopVariable;
-            //                correo = registro.correo;
-            //                Observacion = Observacion + "\\n Monto alto cargado al CUSPP: " +
-            //                              registro.Cuspp + ", por valor = " + registro.Valor.ToString;
-            //                InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), Observacion,
-            //                    NombreArchivo, IdArchivo);
-            //            }
-            //            Correo = correo;
-            //        }
-            //    }
-            //}
+            if (NombreArchivo.Substring(0, 3).ToLower() == "liq")
+            {
+                using (var context = new DISEntities())
+                {
+                    var monto = context.pa_valida_MontoAlto(IdArchivo, Convert.ToInt32(UsuarioModificacion));
+                    string montoAlto = null;
+                    montoAlto = monto.ToString();
+                    if (montoAlto == "1")
+                    {
+                        dynamic monto1 = context.pa_devuelveresultado(IdArchivo);
+                        var correo = "";
+                        foreach (var registroLoopVariable in monto1)
+                        {
+                            var registro = registroLoopVariable;
+                            correo = registro.correo;
+                            Observacion = Observacion + "\\n Monto alto cargado al CUSPP: " +
+                                          registro.Cuspp + ", por valor = " + registro.Valor.ToString;
+                            InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), Observacion,
+                                NombreArchivo, IdArchivo);
+                        }
+                        Correo = correo;
+                    }
+                }
+            }
         }
         public string EnviarCorreo(Correo mail, string formatoCuerpo)
         {

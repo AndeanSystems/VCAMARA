@@ -1230,6 +1230,18 @@ public partial class DISEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("pa_Valida_RangoFechaXContratoV2", date1Parameter, date2Parameter);
     }
 
+
+    public virtual ObjectResult<pa_sel_pagoNominaApruebaDetalle_Result> pa_sel_pagoNominaApruebaDetalle(Nullable<int> idHistoriaLinCab)
+    {
+
+        var idHistoriaLinCabParameter = idHistoriaLinCab.HasValue ?
+            new ObjectParameter("IdHistoriaLinCab", idHistoriaLinCab) :
+            new ObjectParameter("IdHistoriaLinCab", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_pagoNominaApruebaDetalle_Result>("pa_sel_pagoNominaApruebaDetalle", idHistoriaLinCabParameter);
+    }
+
 }
 
 }

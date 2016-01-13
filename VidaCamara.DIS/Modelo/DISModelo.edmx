@@ -1547,6 +1547,9 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Parameter Name="NombreTipoArchivo" Type="varchar" Mode="In" />
           <Parameter Name="Fecha" Type="date" Mode="In" />
         </Function>
+        <Function Name="pa_sel_pagoNominaApruebaDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdHistoriaLinCab" Type="int" Mode="In" />
+        </Function>
         <Function Name="pa_sel_SegDescarga" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdeContrato" Type="int" Mode="In" />
           <Parameter Name="NombreTipoArchivo" Type="varchar" Mode="In" />
@@ -2421,6 +2424,9 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <FunctionImport Name="pa_Valida_RangoFechaXContratoV2" ReturnType="Collection(Int32)">
             <Parameter Name="date1" Mode="In" Type="DateTime" />
             <Parameter Name="date2" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="pa_sel_pagoNominaApruebaDetalle" ReturnType="Collection(DISModelo.pa_sel_pagoNominaApruebaDetalle_Result)">
+            <Parameter Name="IdHistoriaLinCab" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
@@ -4251,6 +4257,12 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Type="String" Name="NombreCampo" Nullable="true" MaxLength="50" />
           <Property Type="Int16" Name="FormaValidacion" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="pa_sel_pagoNominaApruebaDetalle_Result">
+          <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="COD_AFP" Nullable="true" MaxLength="4" />
+          <Property Type="Decimal" Name="ImporteTotal" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="PagoVC" Nullable="true" Precision="13" Scale="10" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5866,6 +5878,16 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_Valida_RangoFechaXContratoV2" FunctionName="DISModelo.Store.pa_Valida_RangoFechaXContratoV2" />
+          <FunctionImportMapping FunctionImportName="pa_sel_pagoNominaApruebaDetalle" FunctionName="DISModelo.Store.pa_sel_pagoNominaApruebaDetalle">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DISModelo.pa_sel_pagoNominaApruebaDetalle_Result">
+                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+                <ScalarProperty Name="COD_AFP" ColumnName="COD_AFP" />
+                <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
+                <ScalarProperty Name="PagoVC" ColumnName="PagoVC" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -113,14 +113,26 @@ namespace VidaCamara.DIS.data
             }
         }
 
-        public List<eAprobacionCargaDetalle> listApruebaCargaDetalle(HistorialCargaArchivo_LinCab linCab)
+        public List<eAprobacionCargaDetalle> listApruebaCargaDetalle(HistorialCargaArchivo_LinCab linCab, object[] filters)
         {
+            var listDetalle = new List<eAprobacionCargaDetalle>();
             try
             {
-                using (resource)
+                using (var db = new DISEntities())
                 {
-                    
+                    var query = db.pa_sel_pagoNominaApruebaDetalle(Convert.ToInt32(linCab.IdHistorialCargaArchivoLinCab)).ToList();
+                    foreach (var item in query)
+                    {
+                        var eAprobacionDet = new eAprobacionCargaDetalle() { 
+                            NombreArchivoNomina = item.NombreArchivo,
+                            NombreAseguradora = item.COD_AFP,
+                            TotalImporteNomina = string.Format(filters[0].ToString(),item.ImporteTotal),
+                            PagoVcNomina = string.Format(filters[0].ToString(),(item.ImporteTotal * item.PagoVC))
+                        };
+                        listDetalle.Add(eAprobacionDet);
+                    }
                 }
+                return listDetalle;
             }
             catch (Exception)
             {

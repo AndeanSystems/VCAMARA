@@ -8,7 +8,10 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
 {
     public partial class CargaAprobacion : System.Web.UI.Page
     {
+        #region VARIABLES
+        static object[] filters = new object[1];//[1]fformato moneda
         static int total;
+        #endregion VARIABLES
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -17,6 +20,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 SetLLenadoContrato();
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipo_archivo, "17");
                 txt_fecha_inicio.Text = DateTime.Now.ToShortDateString();
+                filters[0] = Session["formatomoneda"].ToString();
             }
         }
         [System.Web.Services.WebMethod(EnableSession = true)]
@@ -26,10 +30,10 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             return new { Result = "OK", Records = negocio.listApruebaCarga(contrato, jtStartIndex, jtPageSize, filters, out total), TotalRecordCount = total };
         }
         [System.Web.Services.WebMethod(EnableSession = true)]
-        public static object listApruebaCargaDetalle(int IdeContrato)
+        public static object listApruebaCargaDetalle(int IdLinCab)
         {
             var negocio = new nAprobacionCarga();
-            return new { Result = "OK", Records = negocio.listApruebaCargaDetalle(new HistorialCargaArchivo_LinCab() { IDE_CONTRATO = IdeContrato }) };
+            return new { Result = "OK", Records = negocio.listApruebaCargaDetalle(new HistorialCargaArchivo_LinCab() { IdHistorialCargaArchivoLinCab = IdLinCab },filters) };
         }
          
         [System.Web.Services.WebMethod(EnableSession = true)]

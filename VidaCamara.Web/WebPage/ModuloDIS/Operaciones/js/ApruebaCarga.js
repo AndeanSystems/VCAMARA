@@ -62,12 +62,12 @@
                         actions:{listAction:"/WebPage/ModuloDIS/Operaciones/frmCargaAprobacion.aspx/listApruebaCargaDetalle"},
                         fields:{
                             NombreArchivoNomina: { title: 'Nomina' },
-                            NombreAseguradora: { title: 'Aseguradora' },
+                            NombreAseguradora: { title: 'AFP' },
                             TotalImporteNomina: { title: 'Monto Total' },
                             PagoVcNomina: { title: 'Monto Pago_Vc' },
                         }
                     },function(dataDetail){
-                        dataDetail.childTable.jtable('load',{IdeContrato:data.record.IdLinCab});
+                        dataDetail.childTable.jtable('load', { IdLinCab: data.record.IdLinCab });
                     });
             });
             return $icon;
