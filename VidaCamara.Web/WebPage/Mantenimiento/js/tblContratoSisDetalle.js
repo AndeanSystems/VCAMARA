@@ -16,7 +16,7 @@ $(document).ready(function () {
     //VALIDAR QUE EL NUMERO DE ORDEN NO SE A MAYOR QUE 7
     $("section").delegate("#ctl00_ContentPlaceHolder1_txt_orden_empresa_sis", "keyup", function (ev) {
         if (parseInt($(this).val()) > 7 || parseInt($(this).val()) < 1) {
-            mostrarMensajeAlert("El numero ingresado supera el limite permitido");
+            mostrarMensajeAlert("El numero ingresado es 0 o supera el limite permitido");
             $(this).val("");
         }
     });
@@ -78,6 +78,7 @@ $(document).ready(function () {
                     }
                 },
                 COD_CSV: { title: 'Cia. Seguros Vida' },
+                nombreCompania:{title:'Descripción'},
                 PRC_PARTICIACION: { title: '% Participación' },
                 NRO_ORDEN: { title: 'Orden (*)' },
                 ESTADO: { title: 'Estado', list: false },
@@ -115,7 +116,15 @@ $(document).ready(function () {
         for (var i in contratoSisDet) {
             porcentejeTotal += parseFloat(contratoSisDet[i].PRC_PARTICIACION);
         };
-        $("#totalPorcentaje").html("Total participación: "+porcentejeTotal.toString() + "% / " + (100 - porcentejeTotal)+"%");
+
+        var ntotal = (parseFloat(porcentejeTotal.toString()) + "").split(".");
+        var total = ntotal[0] + '.' + ntotal[1].substring(0, 6);
+
+        var nrestante = (parseFloat((100 - porcentejeTotal).toString()) + "").split(".");
+        var restante = nrestante[0] + '.' + nrestante[1].substring(0, 6);
+
+        $("#totalPorcentaje").html("Total participación: " + total.toString() + "% / " + restante.toString() + "%");
+        //$("#totalPorcentaje").html("Total participación: " + parseFloat(total).toFixed(0).toString() + "% / " + parseFloat(restante).toFixed(0).toString() + "%");
     }
     //LIMPIAR FORMULARIO
     function limpiarFormularioDetalle() {

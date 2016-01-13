@@ -52,6 +52,27 @@
     }
     var action = "/WebPage/ModuloDIS/Operaciones/frmCargaAprobacion.aspx/listApruebaCarga";
     var fields = {
+        IdHistoriaLinCab:{title:'Detalle',sorting:false,display:function(data){
+            var $icon = $("<a href='#'>Detalle</a>");
+            $icon.click(function(){
+                console.log($icon);
+                $("#tblApruebaCarga").jtable('openChildTable',
+                    $icon.closest('tr'),
+                    {
+                        actions:{listAction:"/WebPage/ModuloDIS/Operaciones/frmCargaAprobacion.aspx/listApruebaCargaDetalle"},
+                        fields:{
+                            NombreArchivoNomina: { title: 'Nomina' },
+                            NombreAseguradora: { title: 'Aseguradora' },
+                            TotalImporteNomina: { title: 'Monto Total' },
+                            PagoVcNomina: { title: 'Monto Pago_Vc' },
+                        }
+                    },function(dataDetail){
+                        dataDetail.childTable.jtable('load');
+                    });
+            });
+            return $icon;
+            }
+        },
         NombreArchivo: { title: 'NombreArchivo' },
         FechaCarga: { title: 'FechaCarga', type: 'date', displayFormat: 'dd/mm/yy' },
         moneda: { title: '  Moneda' },

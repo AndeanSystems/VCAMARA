@@ -105,16 +105,12 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                     if ((cargaLogica.MensageError != String.Empty))
                     {
                         //por revisar
-                        MessageBox(cargaLogica.MensageError==null?"La nómina se cargó correctamente.":cargaLogica.MensageError.Replace(Environment.NewLine, ""));
+                        //MessageBox(cargaLogica.MensageError.Replace(Environment.NewLine, ""));
+                        MessageBox("Cantidad de registros errados :" + cargaLogica.ContadorErrores.ToString());
                     }
                     else if ((cargaLogica.Observacion != String.Empty))
                     {
                         MessageBox(cargaLogica.Observacion.Replace(Environment.NewLine, ""));
-                    }
-                    else
-                    {
-                        //this.gvCargaExito.DataSource = cargaLogica.Resultado;
-                        //this.gvCargaExito.DataBind();
                     }
                 }
                 else

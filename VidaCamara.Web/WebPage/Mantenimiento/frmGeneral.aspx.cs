@@ -285,11 +285,13 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             var filterOptions = new Object[3] { 0, 10000, "IDE_CONTRATO ASC" };
             var listEmpresa = new nContratoSisDetalle().getlistContratoDetalle(contratoSisDetalle, filterOptions, out total);
             var sumaPorcentaje = 0.00m;
+            var eContratoSisDet = listEmpresa.Find(a => a.IDE_CONTRATO_DET == contratoSisDetalle.IDE_CONTRATO_DET); 
             foreach (var item in listEmpresa)
             {
                 sumaPorcentaje += Convert.ToDecimal(item.PRC_PARTICIACION);
             }
-            return sumaPorcentaje + Convert.ToDecimal(contratoSisDetalle.PRC_PARTICIACION);
+            var residuo = eContratoSisDet != null ? Convert.ToDecimal(sumaPorcentaje - eContratoSisDet.PRC_PARTICIACION) : sumaPorcentaje;
+            return residuo + Convert.ToDecimal(contratoSisDetalle.PRC_PARTICIACION);
         }
 
 
@@ -667,7 +669,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                     FEC_INI_VIG = DateTime.Parse(txtFechaInicio_sys.Text),
                     FEC_FIN_VIG = DateTime.Parse(txtFechaFin_sys.Text)
                 };
-                var siExisteFecha = new nContratoSis().existeFecha(contratoSisEF);
+                var siExisteFecha = new nContratoSis().existeFecha(contratoSisEF,0);
 
                 bContratoSys control = new bContratoSys();
                 if (contratoSis._ide_Contrato == 0)
@@ -681,6 +683,14 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                     {
                         MessageBox("La fecha ingresada se sobrepone al rango de fechas de otro contrato.");
                         return;
+                    }
+                    else {
+                        var siExisteFechaV2 = new nContratoSis().existeFecha(contratoSisEF, 1);
+                        if (siExisteFechaV2 > 0)
+                        {
+                            MessageBox("La fecha ingresada se sobrepone al rango de fechas de otro contrato.");
+                            return;
+                        }
                     }
                     resp = control.SetInsertarContratoSys(contratoSis);
                     //var elog = nlog.setLLenarEntidad(resp, "C001", "CONSIS_C", resp.ToString(), Session["username"].ToString());
@@ -735,7 +745,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             {
                 totalPorcenteje += Convert.ToDecimal(item.PRC_PARTICIACION);
             }
-            if (contratoSis._nro_empresa == listContratoSisDet.Count && totalPorcenteje == 100)
+            if (contratoSis._nro_empresa == listContratoSisDet.Count && Math.Round(totalPorcenteje) == 100)
                 return true;
             else
                 return false;
