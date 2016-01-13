@@ -27,5 +27,15 @@ namespace VidaCamara.DIS.Negocio
         {
             new dAprobacionCarga().eliminarPagoYNomina(historialCargaArchivo_LinCab);
         }
+
+        //public void actualizaEstadoArchivo(Archivo archivo)
+        //{
+        //    new dAprobacionCarga().actualizaEstadoArchivo(archivo);
+        //}
+
+        public List<eAprobacionCargaDetalle> listApruebaCargaDetalle(CONTRATO_SYS contrato)
+        {
+            return new dAprobacionCarga().listApruebaCargaDetalle(contrato);
+        }
     }
 }

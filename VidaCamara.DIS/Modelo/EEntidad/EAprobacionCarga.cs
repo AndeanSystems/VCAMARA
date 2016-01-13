@@ -16,4 +16,11 @@ namespace VidaCamara.DIS.Modelo.EEntidad
         public string Aprobar { get; set; }
         public string Eliminar { get; set; }
     }
+
+    public partial class eAprobacionCargaDetalle { 
+        public string NombreArchivoNomina { get; set; }
+        public string NombreAseguradora { get; set; }
+        public string TotalImporteNomina { get; set; }
+        public string PagoVcNomina { get; set; }
+    }
 }

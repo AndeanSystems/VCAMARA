@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using VidaCamara.DIS.data;
 using VidaCamara.DIS.Modelo;
+using VidaCamara.DIS.Modelo.EEntidad;
 
 namespace VidaCamara.DIS.Negocio
 {
@@ -16,7 +17,7 @@ namespace VidaCamara.DIS.Negocio
             return new dContrato_sis_detalle().setActualizarContratoDetalle(det);
         }
 
-        public List<CONTRATO_SIS_DET> getlistContratoDetalle(CONTRATO_SIS_DET contratoDetalle, object[] filterOptions, out int total)
+        public List<HCONTRATO_SIS_DET> getlistContratoDetalle(CONTRATO_SIS_DET contratoDetalle, object[] filterOptions, out int total)
         {
             return new dContrato_sis_detalle().getlistContratoDetalle(contratoDetalle, filterOptions,out total);
         }

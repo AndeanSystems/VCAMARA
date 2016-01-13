@@ -62,6 +62,22 @@ namespace VidaCamara.DIS.data
             }
         }
 
+        //public void actualizaEstadoArchivo(Archivo archivo)
+        //{
+        //    try
+        //    {
+        //        using (var db = new DISEntities())
+        //        {
+        //            db.pa_upd_InactivaLinCabNomina(archivo.ArchivoId, Convert.ToInt32(archivo.EstadoArchivoId));
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        throw;
+        //    }
+        //}
+
         public void actualizarEstado(HistorialCargaArchivo_LinCab historialCargaArchivo_LinCab)
         {
             try
@@ -93,6 +109,22 @@ namespace VidaCamara.DIS.data
             catch (System.Exception ex)
             {
 
+                throw;
+            }
+        }
+
+        public List<eAprobacionCargaDetalle> listApruebaCargaDetalle(CONTRATO_SYS contrato)
+        {
+            try
+            {
+                using (resource)
+                {
+                    
+                }
+            }
+            catch (Exception)
+            {
+                
                 throw;
             }
         }

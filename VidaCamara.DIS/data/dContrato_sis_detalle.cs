@@ -2,39 +2,52 @@
 using System.Collections.Generic;
 using System.Linq;
 using VidaCamara.DIS.Modelo;
+using VidaCamara.DIS.Modelo.EEntidad;
 
 namespace VidaCamara.DIS.data
 {
     public class dContrato_sis_detalle
     {
-        public List<CONTRATO_SIS_DET> getlistContratoDetalle(CONTRATO_SIS_DET contratoDetalle, object[] filterOptions, out int total)
+        public List<HCONTRATO_SIS_DET> getlistContratoDetalle(CONTRATO_SIS_DET contratoDetalle, object[] filterOptions, out int total)
         {
-            var listDetalle = new List<CONTRATO_SIS_DET>();
+            var listDetalle = new List<HCONTRATO_SIS_DET>();
             try
             {
                 var rowIndex = Int32.Parse(filterOptions[0].ToString());
                 var rowEnd = Int32.Parse(filterOptions[1].ToString());
                 using (var db = new DISEntities())
                 {
-                   total = db.CONTRATO_SIS_DETs.Where(a=>a.IDE_CONTRATO == contratoDetalle.IDE_CONTRATO).Count();
-                   var query = db.CONTRATO_SIS_DETs.Include("CONTRATO_SYS").Where(a => a.IDE_CONTRATO == contratoDetalle.IDE_CONTRATO).OrderBy(a => a.IDE_CONTRATO_DET).Skip(rowIndex).Take(rowEnd).ToList();
+                   //total = db.CONTRATO_SIS_DETs.Where(a=>a.IDE_CONTRATO == contratoDetalle.IDE_CONTRATO).Count();
+                   //var query = db.CONTRATO_SIS_DETs.Include("CONTRATO_SYS")
+                   //    .Where(a => a.IDE_CONTRATO == contratoDetalle.IDE_CONTRATO)
+                   //    .OrderBy(a => a.IDE_CONTRATO_DET).Skip(rowIndex).Take(rowEnd).ToList();
+                   var query = (from a in db.CONTRATO_SIS_DETs
+                                join b in db.CONTRATO_SYSs on a.IDE_CONTRATO equals b.IDE_CONTRATO
+                                join c in db.CONCEPTOs on a.COD_CSV.ToString() equals c.CODIGO
+                                where
+                                   a.IDE_CONTRATO == contratoDetalle.IDE_CONTRATO
+                               && c.TIPO_TABLA.Equals("29")
+                                orderby a.IDE_CONTRATO_DET
+                                select new { a, b, c }).ToList();
+                   total = query.Count;
                     foreach (var item in query)
                     {
-                        var entity = new CONTRATO_SIS_DET()
+                        var entity = new HCONTRATO_SIS_DET()
                         {
-                            IDE_CONTRATO_DET = item.IDE_CONTRATO_DET,
-                            IDE_CONTRATO = item.IDE_CONTRATO,
-                            COD_CSV = item.COD_CSV,
-                            PRC_PARTICIACION = item.PRC_PARTICIACION,
-                            NRO_ORDEN = item.NRO_ORDEN,
-                            ESTADO = item.ESTADO,
-                            FEC_REG = item.FEC_REG,
-                            USU_REG = item.USU_REG,
+                            IDE_CONTRATO_DET = item.a.IDE_CONTRATO_DET,
+                            IDE_CONTRATO = item.a.IDE_CONTRATO,
+                            COD_CSV = item.a.COD_CSV,
+                            PRC_PARTICIACION = item.a.PRC_PARTICIACION,
+                            NRO_ORDEN = item.a.NRO_ORDEN,
+                            ESTADO = item.a.ESTADO,
+                            FEC_REG = item.a.FEC_REG,
+                            USU_REG = item.a.USU_REG,
                             CONTRATO_SYS = new CONTRATO_SYS()
                             {
-                                DES_CONTRATO = item.CONTRATO_SYS.DES_CONTRATO,
-                                NRO_CONTRATO = item.CONTRATO_SYS.NRO_CONTRATO
+                                DES_CONTRATO = item.b.DES_CONTRATO,
+                                NRO_CONTRATO = item.b.NRO_CONTRATO
                             },
+                            nombreCompania = item.c.DESCRIPCION
                         };
                         listDetalle.Add(entity);
                     }
