@@ -113,7 +113,7 @@ namespace VidaCamara.DIS.data
             }
         }
 
-        public List<eAprobacionCargaDetalle> listApruebaCargaDetalle(CONTRATO_SYS contrato)
+        public List<eAprobacionCargaDetalle> listApruebaCargaDetalle(HistorialCargaArchivo_LinCab linCab)
         {
             try
             {

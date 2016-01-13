@@ -33,9 +33,9 @@ namespace VidaCamara.DIS.Negocio
         //    new dAprobacionCarga().actualizaEstadoArchivo(archivo);
         //}
 
-        public List<eAprobacionCargaDetalle> listApruebaCargaDetalle(CONTRATO_SYS contrato)
+        public List<eAprobacionCargaDetalle> listApruebaCargaDetalle(HistorialCargaArchivo_LinCab linCab)
         {
-            return new dAprobacionCarga().listApruebaCargaDetalle(contrato);
+            return new dAprobacionCarga().listApruebaCargaDetalle(linCab);
         }
     }
 }
