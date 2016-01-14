@@ -24,10 +24,11 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             }
         }
         [System.Web.Services.WebMethod(EnableSession = true)]
-        public static object listApruebaCarga(int jtStartIndex, int jtPageSize, string jtSorting, CONTRATO_SYS contrato,object[] filters)
+        public static object listApruebaCarga(int jtStartIndex, int jtPageSize, string jtSorting, CONTRATO_SYS contrato,object[] filtersP)
         {
+            filtersP[3] = filters[0].ToString();
             var negocio = new nAprobacionCarga();
-            return new { Result = "OK", Records = negocio.listApruebaCarga(contrato, jtStartIndex, jtPageSize, filters, out total), TotalRecordCount = total };
+            return new { Result = "OK", Records = negocio.listApruebaCarga(contrato, jtStartIndex, jtPageSize, filtersP, out total), TotalRecordCount = total };
         }
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static object listApruebaCargaDetalle(int IdLinCab)

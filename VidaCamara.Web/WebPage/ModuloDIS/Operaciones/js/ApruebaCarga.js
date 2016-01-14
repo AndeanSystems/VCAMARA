@@ -26,7 +26,7 @@
             llamarAjax(new linCab(parseInt($(this).attr('class'))), urlEliminar).success(function (res) {
                 console.log(res);
                 if (res.d.Result == true) {
-                    mostrarMensajeAlert("La información de pagos ha descartada, debera ser cargada nuevamente.");
+                    mostrarMensajeAlert("La nformación de pagos ha sido descartada, debera ser cargada nuevamente.");
                     consultarRegistros();
                 } else
                     mostrarMensajeAlert(res.d.Result);
@@ -47,7 +47,7 @@
         }
     });
     function consultarRegistros() {
-        var filters = [$("#ctl00_ContentPlaceHolder1_ddl_tipo_archivo").val(), $("#ctl00_ContentPlaceHolder1_txt_fecha_inicio").val(), $("#ctl00_ContentPlaceHolder1_txt_fecha_inicio").val()];
+        var filters = [$("#ctl00_ContentPlaceHolder1_ddl_tipo_archivo").val(), $("#ctl00_ContentPlaceHolder1_txt_fecha_inicio").val(), $("#ctl00_ContentPlaceHolder1_txt_fecha_inicio").val(),""];
         listApruebaCarga(new contrato_sis(), filters);
     }
     var action = "/WebPage/ModuloDIS/Operaciones/frmCargaAprobacion.aspx/listApruebaCarga";
@@ -64,7 +64,7 @@
                             NombreArchivoNomina: { title: 'Nomina' },
                             NombreAseguradora: { title: 'AFP' },
                             TotalImporteNomina: { title: 'Monto Total' },
-                            PagoVcNomina: { title: 'Monto Pago_Vc' },
+                            //PagoVcNomina: { title: 'Monto Pago_Vc' },
                         }
                     },function(dataDetail){
                         dataDetail.childTable.jtable('load', { IdLinCab: data.record.IdLinCab });
@@ -78,7 +78,7 @@
         moneda: { title: '  Moneda' },
         TotalRegistros: { title: 'TotalRegistros' },
         TotalImporte: { title: 'TotalImporte' },
-        PagoVc: { title: 'PagoVc' },
+        //PagoVc: { title: 'PagoVc' },
         FechaInfo: { title: 'FechaInfo', type: 'date', displayFormat: 'dd/mm/yy' },
         UsuReg: { title: 'Usuario' },
         Aprobar: {
@@ -111,6 +111,6 @@
 
         $("#ApruebaCarga").css({ "text-align": "center" });
         $('#tblApruebaCarga.jtable-main-container').css({ "width": "1500px" });
-        $('#tblApruebaCarga').jtable('load', { contrato: contrato, filters: filters });
+        $('#tblApruebaCarga').jtable('load', { contrato: contrato, filtersP: filters });
     }
 })
