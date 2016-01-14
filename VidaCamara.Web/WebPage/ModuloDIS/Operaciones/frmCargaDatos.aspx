@@ -89,7 +89,7 @@
                 <br />
                 <br />
                <div class="panel-group" id="accordion">
-                   <div class="panel">
+                   <div class="panel panel-success">
                        <div class="panel-heading">
                            <h6 class="panel-title">
                                <a data-toggle="collapse" data-parent="#accordion" data-target="#screen1" aria-expanded="true" class="collapsed" href="javascript:void(0)">
@@ -106,7 +106,7 @@
                        </div>
                    </div>
            
-                   <div class="panel">
+                   <div class="panel panel-success">
                        <div class="panel-heading">
                            <h6 class="panel-title">
                                <a data-toggle="collapse" data-parent="#accordion" data-target="#screen2" aria-expanded="false" class="collapsed" href="javascript:void(0)">
