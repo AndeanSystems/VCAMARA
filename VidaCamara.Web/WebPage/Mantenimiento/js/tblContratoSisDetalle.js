@@ -112,19 +112,19 @@ $(document).ready(function () {
     }
     //TOTAlLIZADOR DE SUMA DE PORCENTAJES
     function mostrarTotalPorcentaje(contratoSisDet) {
-        var porcentejeTotal = 0;
+        var porcentajeTotal = 0;
         for (var i in contratoSisDet) {
-            porcentejeTotal += parseFloat(contratoSisDet[i].PRC_PARTICIACION);
+            porcentajeTotal += parseFloat(contratoSisDet[i].PRC_PARTICIACION);
         };
 
-        var ntotal = (parseFloat(porcentejeTotal.toString()) + "").split(".");
-        var total = ntotal[0] + '.' + ntotal[1].substring(0, 6);
+        //var ntotal = (parseFloat(porcentejeTotal.toString()) + "").split(".");
+        //var total = ntotal[0] + '.' + ntotal[1].substring(0, 6);
 
-        var nrestante = (parseFloat((100 - porcentejeTotal).toString()) + "").split(".");
-        var restante = nrestante[0] + '.' + nrestante[1].substring(0, 6);
+        //var nrestante = (parseFloat((100 - porcentejeTotal).toString()) + "").split(".");
+        //var restante = nrestante[0] + '.' + nrestante[1].substring(0, 6);
 
-        $("#totalPorcentaje").html("Total participación: " + total.toString() + "% / " + restante.toString() + "%");
-        //$("#totalPorcentaje").html("Total participación: " + parseFloat(total).toFixed(0).toString() + "% / " + parseFloat(restante).toFixed(0).toString() + "%");
+        //$("#totalPorcentaje").html("Total participación: " + total.toString() + "% / " + restante.toString() + "%");
+        $("#totalPorcentaje").html("Total participación: " + parseFloat(porcentajeTotal).toFixed(0).toString() + "% / " + parseFloat(100 - porcentajeTotal).toFixed(0).toString() + "%");
     }
     //LIMPIAR FORMULARIO
     function limpiarFormularioDetalle() {
