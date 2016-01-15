@@ -90,7 +90,7 @@
             } else {
                 return confirm("¿ Está Seguro de Actualizar el Registro ?");
             }
-        } else if (tablaidContratoSbs == 1 && tablaidContratoSbsDet == 1 && tablaidContratoSis == 0 && tableidContratoSisDet == 0) {
+        } else if (tablaidContratoSbs == 0 && tablaidContratoSbsDet == 1 && tablaidContratoSis == 0 && tableidContratoSisDet == 0) {
             var idcontdet = $("#ctl00_ContentPlaceHolder1_txt_idContratoDetalle_c").val();
             if (idcontdet == 0) {
                 var calcula = 0;
