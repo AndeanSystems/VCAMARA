@@ -496,25 +496,12 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 bContratoDetalleVC icd = new bContratoDetalleVC();
                 if(d._ide_Contrato_Det == 0){
                     resp = icd.SetInsertarContratoDetalle(d);
-                    if (resp != 0)
-                    {
-                        MessageBox("Registro Grabado Correctamente!");
-                    }
-                    else
-                    {
-                        MessageBox("Ocurrio un Error en el Servidor!");
-                    }
+                    MessageBox("Registro Grabado Correctamente!");
                 }
                 else
                 {
                     resp = icd.SetActualizarContratoDetalle(d);
-                    if (resp != 0)
-                    {
-                        MessageBox("Registro Actualizado Correctamente");
-                    }
-                    else {
-                        MessageBox("Ocurrio un Error en el Servidor!");
-                    }
+                    MessageBox("Registro Actualizado Correctamente");
                 }
             }
             catch (Exception e) {
