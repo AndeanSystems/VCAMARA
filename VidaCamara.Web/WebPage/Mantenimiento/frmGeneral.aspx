@@ -26,7 +26,7 @@
                 Orientation="Horizontal" OnMenuItemClick="menuTabs_MenuItemClick" Runat="server">
             <Items>
                 <asp:MenuItem Text="Generales" Value="0" Selected="true" />
-                <asp:MenuItem Text="Contratos SBS" Value="1" />
+                <asp:MenuItem Text="Contratos Reaseguros" Value="1" />
                 <asp:MenuItem Text="Reasegurador" Value="2" />                
                 <asp:MenuItem Text="Contratos SIS" Value="3" />
                 <asp:MenuItem Text="CSV - SIS" Value="4" />
