@@ -21,7 +21,7 @@ namespace VidaCamara.DIS.data
                     var nombreTipoArchivo = filterParam[0].ToString();
 
                     var result = db.pa_sel_historiaCargaArchivoLinDet(nombreTipoArchivo, cab.IDE_CONTRATO, det.COD_AFP, det.COD_CUSP,
-                                det.PRI_NOMB_PEN, det.APE_MATE_PEN, det.NUM_DOCU_PEN, det.NUM_SOLI_PEN, det.TIP_MONE.Trim(), fecha_ini, fecha_fin).ToList();
+                                det.PRI_NOMB_PEN, det.APE_MATE_PEN, det.NUM_DOCU_PEN, det.NUM_SOLI_PEN, det.TIP_MONE.Trim(), fecha_ini, fecha_fin,cab.ESTADO).ToList();
                     total = result.Count;
                     foreach (var item in result.Skip(jtStartIndex).Take(jtPageSize))
                     {

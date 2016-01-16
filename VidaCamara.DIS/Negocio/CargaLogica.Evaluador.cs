@@ -112,6 +112,7 @@ namespace VidaCamara.DIS.Negocio
         private int EvaluarRegla(string tipoArchivo, Regla regla, string[] text, int indexLinea,
             Dictionary<string, object> propertyValues)
         {
+
             CampoActual = Mid(text[indexLinea].Trim(), regla.CaracterInicial - 1, regla.LargoCampo);
             var exitoLinea = 0;
             if (regla.NombreCampo != null) propertyValues.Add(regla.NombreCampo, CampoActual);

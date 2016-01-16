@@ -229,6 +229,9 @@
     <Compile Include="Modelo\pa_devuelveresultado_Result.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\pa_file_CantidadRegistroArchivo_Result.cs">
+      <DependentUpon>DISModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\pa_file_ObtieneErrorArchivo_Result.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>

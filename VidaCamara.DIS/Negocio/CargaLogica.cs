@@ -41,6 +41,9 @@ namespace VidaCamara.DIS.Negocio
         private Dictionary<string, List<Regla>> _reglasLineaPorTipo = new Dictionary<string, List<Regla>>();
         //david choque 27 12 2015
         public int ContadorExito { get; set; }
+        public string moneda { get; set; }
+        public string importe { get; set; }
+        public string formatoMoneda { get; set; }
 
         public CargaLogica(string archivo)
         {
@@ -139,6 +142,7 @@ namespace VidaCamara.DIS.Negocio
         public int LeeArchivo(string tipoArchivo, StringCollection tipoLinea, int contratoId)
         {
             var text = LineaArchivo();
+            var eContratoSis = new nContratoSis().listContratoByID(new CONTRATO_SYS() { IDE_CONTRATO = contratoId });
 
             //Consultar en tabla el estado del archivo
             //entregara 0 si no existe
@@ -183,8 +187,7 @@ namespace VidaCamara.DIS.Negocio
                             if (!_reglasLineaPorTipo.ContainsKey(caracterInicial))
                             {
                                 _reglasLineaPorTipo.Add(caracterInicial,
-                                    ObtieneReglaLinea(context.pa_file_ObtieneReglasArchivoPorLinea(tipoArchivo,
-                                        caracterInicial)));
+                                ObtieneReglaLinea(context.pa_file_ObtieneReglasArchivoPorLinea(tipoArchivo,caracterInicial,Convert.ToInt32(eContratoSis.NRO_CONTRATO))));
                             }
                         }
                         //InsertaAuditoria(Me.UsuarioModificacion, "Obtiene Regla de archivo por línea", "pa_file_ObtieneReglasArchivoPorLinea '" + tipoLinea + "', " + CaracterInicial, Me.idArchivo)
@@ -192,8 +195,8 @@ namespace VidaCamara.DIS.Negocio
                         {
                             var propertyValues = new Dictionary<string, object>();
                             var exitoLinea = 1;
-                            if (!caracterInicial.Equals("T"))
-                            {
+                            //if (!caracterInicial.Equals("T"))
+                            //{
                                 foreach (var regla in _reglasLineaPorTipo[caracterInicial])
                                 {
                                     try
@@ -205,7 +208,7 @@ namespace VidaCamara.DIS.Negocio
                                         throw ex;
                                     }
                                 }
-                            }
+                            //}
                             GrabarFilaArchivo(caracterInicial, IdArchivo, indexLinea + 1, propertyValues, contratoId, exitoLinea, tipoArchivo);
                         }
                         catch (Exception ex)
@@ -298,6 +301,21 @@ namespace VidaCamara.DIS.Negocio
             if (tipoLinea == "T")
             {
                 GrabarLineaDetalles();
+
+                _lineaDetalles = new List<HistorialCargaArchivo_LinDet>();
+
+                var eHistoriaLinDet = new HistorialCargaArchivo_LinDet();
+                PopulateType(eHistoriaLinDet, propertyValues);
+                eHistoriaLinDet.IdHistorialCargaArchivoLinCab = CodigoCabecera;
+                eHistoriaLinDet.FechaInsert = DateTime.Now;
+                eHistoriaLinDet.CumpleValidacion = exitoLinea;
+                eHistoriaLinDet.TipoLinea = tipoLinea;
+                eHistoriaLinDet.NumeroLinea = nroLinea;
+
+                _lineaDetalles.Add(eHistoriaLinDet);
+
+                GrabarLineaDetalles();
+
                 _lineaDetalles = new List<HistorialCargaArchivo_LinDet>();
             }
 
@@ -410,11 +428,13 @@ namespace VidaCamara.DIS.Negocio
             {
                 using (var context = new DISEntities())
                 {
-                    var cantidad = context.pa_file_CantidadRegistroArchivo(IdArchivo);
-                    ContadorExito = cantidad.FirstOrDefault().Value;
-                    Observacion = "cantidad de registros cargados: " + ContadorExito;
-                    InsertaAuditoria(Convert.ToInt32(UsuarioModificacion),
-                        "Archivo cargado correctamente, cantidad de registros cargados: " + ContadorExito,NombreArchivo, IdArchivo);
+                    var cantidadRes = context.pa_file_CantidadRegistroArchivo(IdArchivo).ToList();
+                    moneda = cantidadRes.FirstOrDefault().Moneda;
+                    importe = string.Format(formatoMoneda,cantidadRes.FirstOrDefault().Importe);
+                    ContadorExito = Convert.ToInt32(cantidadRes.FirstOrDefault().cantidad);
+
+                    Observacion = "<br> Registros procesados correctamente  " + ContadorExito.ToString() + " <br> Datos observados "+ContadorErrores.ToString();
+                    //insrtar auditoria
                 }
             }
 
