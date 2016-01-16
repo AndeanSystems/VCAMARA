@@ -424,19 +424,19 @@ namespace VidaCamara.DIS.Negocio
                 }
             }
 
-            if (ContadorErrores == 0)
-            {
+            //if (ContadorErrores == 0)
+            //{
                 using (var context = new DISEntities())
                 {
-                    var cantidadRes = context.pa_file_CantidadRegistroArchivo(IdArchivo).ToList();
-                    moneda = cantidadRes.FirstOrDefault().Moneda;
-                    importe = string.Format(formatoMoneda,cantidadRes.FirstOrDefault().Importe);
-                    ContadorExito = Convert.ToInt32(cantidadRes.FirstOrDefault().cantidad);
+                    var cantidadRes = context.pa_file_CantidadRegistroArchivo(IdArchivo).FirstOrDefault();
+                    moneda = cantidadRes.Moneda;
+                    importe = string.Format(formatoMoneda,cantidadRes.Importe);
+                    ContadorExito = Convert.ToInt32(cantidadRes.cantidad);
 
-                    Observacion = "<br> Registros procesados correctamente  " + ContadorExito.ToString() + " <br> Datos observados "+ContadorErrores.ToString();
+                    Observacion = "<br> Registros procesados correctamente :" + ContadorExito.ToString() + " <br> Datos observados :"+ContadorErrores.ToString();
                     //insrtar auditoria
-                }
-            }
+                } 
+            //}
 
             //esto válida que los montos por cuspp no sean mayor a lo establecido
             //en la entidad: negocio.MontoAlto
