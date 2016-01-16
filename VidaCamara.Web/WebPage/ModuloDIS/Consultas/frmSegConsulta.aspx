@@ -49,6 +49,12 @@
                 <label class="input_right_L">Nº Solicitud</label>
                 <asp:TextBox runat="server" ID="txt_nro_solicitud" CssClass="input_right" Height="25px" Width="14.8%"/>
 
+                <label class="input_right_T">Estado</label>
+                <asp:DropDownList runat="server" ID="ddl_estado" CssClass="input_right"  Height="25px" Width="14.8%">
+                    <asp:ListItem Text="Creados" Value="C" />
+                    <asp:ListItem Text="Errados" Value="E" />
+                </asp:DropDownList>
+
                 <div class="iframe" id="tblConsulta1">
                     <asp:GridView ID="gv_archivo_cargado" runat="server" CssClass="table table-hover" Font-Size="9px"></asp:GridView>
                     <div id="frmSeqConsulta"></div>

@@ -61,68 +61,65 @@
 
                 <label class="label_to">Tipo del Archivo (*)</label>
                 <asp:DropDownList runat="server" ID="ddl_tipo_archivo" CssClass="input_to" Height="25px" Width="40%"></asp:DropDownList>
-
-                <label class="label_to" for="fileUpload">Moneda</label>
-                <asp:Label ID="txt_moneda" runat="server" CssClass="input_to" Text="."></asp:Label>
-
-                <label class="label_to" for="fileUpload">Tipo del importe</label>
-                <asp:Label ID="txt_total_importe" runat="server" CssClass="input_to" Text="0"></asp:Label>
-
-                <label class="label_to" for="fileUpload">Registros Procesados</label>
-                <asp:Label ID="txt_registro_procesado" runat="server" CssClass="input_to" Text="0"></asp:Label>
-
-                <label class="label_to" for="fileUpload">Registros Observados</label>
-                <asp:Label ID="txt_registro_observado" runat="server" CssClass="input_to" Text="0"></asp:Label>
-
             </asp:View>
             <!--seccion de RSP-->
-            <asp:View ID="view2" runat="server">               
+            <asp:View ID="view2" runat="server">
+                               
                <label class="label_to" for="ddl_nombre_archivo_det">Nombre del Archivo (*)</label>
-               <asp:Label ID="txt_nombre_archivo_det" Text="_.CAM" runat="server"  CssClass="input_to"/>
+               <asp:Label ID="txt_nombre_archivo_det" Text="." runat="server"  CssClass="input_to" Width="22%"/>
 
-               <label class="label_to" for="dbl_contrato_d">Tipo del Archivo (*)</label>
-               <asp:Label  ID="txt_tipo_informacion_det" Text="_" runat="server"  CssClass="input_to"/>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-               <div class="panel-group" id="accordion">
-                   <div class="panel panel-success">
-                       <div class="panel-heading">
-                           <h6 class="panel-title">
-                               <a data-toggle="collapse" data-parent="#accordion" data-target="#screen1" aria-expanded="true" class="collapsed" href="javascript:void(0)">
-                                   <span class="glyphicon glyphicon-plus-sign"></span> Información Cargada
-                               </a>
-                           </h6>
-                       </div>
-                       <div id="screen1" class="panel-collapse collapse fade in" aria-expanded="false">
-                           <div class="panel-body">
-                               <div class="iframe" id="Cargada">
-                                   <div id="frmCargaExito"></div>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
+                <label class="input_right_L" for="fileUpload">Importe</label>
+                <asp:Label ID="txt_total_importe" runat="server" CssClass="input_right" Text="0.00" Width="15%"></asp:Label>
+
+                <label class="input_right_T" for="fileUpload">Moneda</label>
+                <asp:Label ID="txt_moneda" runat="server" CssClass="input_right" Text="."></asp:Label>
+
+                <label class="label_to" for="dbl_contrato_d">Tipo del Archivo (*)</label>
+                <asp:Label  ID="txt_tipo_informacion_det" Text="." runat="server"  CssClass="input_to" Width="22%"/>
+
+                <label class="input_right_L" for="fileUpload">Lineas Procesados</label>
+                <asp:Label ID="txt_registro_procesado" runat="server" CssClass="input_right" Text="0" Width="15%"></asp:Label>
+
+                <label class="input_right_T" for="fileUpload">Datos Observados</label>
+                <asp:Label ID="txt_registro_observado" runat="server" CssClass="input_right" Text="0"></asp:Label>
+
+                <div style="margin-top:7%;">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h6 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" data-target="#screen1" aria-expanded="true" class="collapsed" href="javascript:void(0)">
+                                        <span class="glyphicon glyphicon-plus-sign"></span> Información Cargada
+                                    </a>
+                                </h6>
+                            </div>
+                            <div id="screen1" class="panel-collapse collapse fade in" aria-expanded="false">
+                                <div class="panel-body">
+                                    <div class="iframe" id="Cargada">
+                                        <div id="frmCargaExito"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
            
-                   <div class="panel panel-success">
-                       <div class="panel-heading">
-                           <h6 class="panel-title">
-                               <a data-toggle="collapse" data-parent="#accordion" data-target="#screen2" aria-expanded="false" class="collapsed" href="javascript:void(0)">
-                                   <span class="glyphicon glyphicon-plus-sign"></span> Información Observada
-                               </a>
-                           </h6>
-                       </div>
-                       <div id="screen2" class="panel-collapse collapse fade" aria-expanded="false">
-                           <div class="panel-body">
-                               <div class="iframe" id="Observada">
-                                   <div id="frmCargaObservado"></div>
-                               </div> 
-                           </div>
-                       </div>
-                   </div>
-               </div>              
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h6 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" data-target="#screen2" aria-expanded="false" class="collapsed" href="javascript:void(0)">
+                                        <span class="glyphicon glyphicon-plus-sign"></span> Información Observada
+                                    </a>
+                                </h6>
+                            </div>
+                            <div id="screen2" class="panel-collapse collapse fade" aria-expanded="false">
+                                <div class="panel-body">
+                                    <div class="iframe" id="Observada">
+                                        <div id="frmCargaObservado"></div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>           
+                </div>
             </asp:View>
             <asp:View ID="view3" runat="server">
 

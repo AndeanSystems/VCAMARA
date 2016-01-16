@@ -88,10 +88,15 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 var fileName = Server.MapPath(("~/Temp/Archivos/")) + fileUpload.FileName;
                 fileUpload.SaveAs(fileName);
                 var cargaLogica = new CargaLogica(fileName) { UsuarioModificacion = /*Session["usernameId"].ToString() */   "2"};
+                cargaLogica.formatoMoneda = Session["formatomoneda"].ToString();
                 cargaLogica.CargarArchivo(Convert.ToInt32(ddl_conrato1.SelectedValue));
                 //david choque 27 12 2015
                 tipoArchivo = ddl_tipo_archivo.SelectedItem.Value;
                 setCargarReglaArchivo();
+                txt_moneda.Text = cargaLogica.moneda;
+                txt_registro_procesado.Text = cargaLogica.ContadorExito.ToString();
+                txt_total_importe.Text = string.IsNullOrEmpty(cargaLogica.importe)?"0.00":cargaLogica.importe;
+                txt_registro_observado.Text = cargaLogica.ContadorErrores.ToString();
                 //fin david choque 27 12 2015
 
                 if ((cargaLogica.MensajeExcepcion != ""))
@@ -99,20 +104,19 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                     var mensaje = "Se produjo un error al cargar el archivo. Se terminó la carga. " + cargaLogica.MensajeExcepcion;
                     MessageBox(mensaje.Replace(Environment.NewLine,""));
                 }
-                else if ((cargaLogica.ContadorErrores > 0))
-                {
-                    txt_registro_observado.Text = cargaLogica.ContadorErrores.ToString();
-                    if ((cargaLogica.MensageError != String.Empty))
-                    {
-                        //por revisar
-                        //MessageBox(cargaLogica.MensageError.Replace(Environment.NewLine, ""));
-                        MessageBox("Cantidad de registros errados :" + cargaLogica.ContadorErrores.ToString());
-                    }
-                    else if ((cargaLogica.Observacion != String.Empty))
-                    {
-                        MessageBox(cargaLogica.Observacion.Replace(Environment.NewLine, ""));
-                    }
-                }
+                //else if ((cargaLogica.ContadorErrores > 0))
+                //{
+                //    if ((cargaLogica.MensageError != String.Empty))
+                //    {
+                //        //por revisar
+                //        //MessageBox(cargaLogica.MensageError.Replace(Environment.NewLine, ""));
+                //        MessageBox("Cantidad de registros errados :" + cargaLogica.ContadorErrores.ToString());
+                //    }
+                //    else if ((cargaLogica.Observacion != String.Empty))
+                //    {
+                //        MessageBox(cargaLogica.Observacion.Replace(Environment.NewLine, ""));
+                //    }
+                //}
                 else
                 {
                     string nombre;
@@ -144,7 +148,6 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                     }
                     else
                     {
-                        txt_registro_procesado.Text = cargaLogica.ContadorExito.ToString();
                         nombre = "Archivo procesado Ok.";
                         if ((cargaLogica.Observacion != String.Empty))
                         {
@@ -204,7 +207,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static object listHistoriaDetalleByArchivoObservado(int jtStartIndex, int jtPageSize, string jtSorting)
         {
-            filters[2] = 0;//cumple validacion exitoso.
+            filters[2] = 0;//no cumple validacion exitoso.
             var negocio = new nArchivoCargado();
             return new { Result = "OK", Records = negocio.listArchivoCargadoByArchivo(historiaCab, filters, jtStartIndex, jtPageSize, out total), TotalRecordCount = total };
         }

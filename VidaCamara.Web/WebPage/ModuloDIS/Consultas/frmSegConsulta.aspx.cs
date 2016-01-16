@@ -42,6 +42,8 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
                 concepto.SetEstablecerDataSourceConcepto(ddl_afp, "23");
                 concepto.SetEstablecerDataSourceConcepto(ddl_moneda, "20");
                 formatoMoneda = Session["formatomoneda"].ToString();
+                txt_fec_ini_o.Text = DateTime.Now.ToShortDateString();
+                txt_fec_hasta_o.Text = DateTime.Now.ToShortDateString();
             }
         }
         //LISTAR HISTORIA CARGA DETALLE
@@ -96,6 +98,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
         {
             //HISTORIALINCAB
             cabecera.IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value);
+            cabecera.ESTADO = ddl_estado.SelectedItem.Value;
             //HISTORIALINDET
             historiaLinDet.COD_AFP = ddl_afp.SelectedItem.Value;
             historiaLinDet.TIP_MONE = ddl_moneda.SelectedItem.Value;

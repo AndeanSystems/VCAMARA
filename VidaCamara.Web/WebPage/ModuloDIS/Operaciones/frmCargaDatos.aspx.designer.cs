@@ -76,42 +76,6 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones {
         protected global::System.Web.UI.WebControls.DropDownList ddl_tipo_archivo;
         
         /// <summary>
-        /// txt_moneda control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txt_moneda;
-        
-        /// <summary>
-        /// txt_total_importe control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txt_total_importe;
-        
-        /// <summary>
-        /// txt_registro_procesado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txt_registro_procesado;
-        
-        /// <summary>
-        /// txt_registro_observado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txt_registro_observado;
-        
-        /// <summary>
         /// view2 control.
         /// </summary>
         /// <remarks>
@@ -130,6 +94,24 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones {
         protected global::System.Web.UI.WebControls.Label txt_nombre_archivo_det;
         
         /// <summary>
+        /// txt_total_importe control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txt_total_importe;
+        
+        /// <summary>
+        /// txt_moneda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txt_moneda;
+        
+        /// <summary>
         /// txt_tipo_informacion_det control.
         /// </summary>
         /// <remarks>
@@ -137,6 +119,24 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txt_tipo_informacion_det;
+        
+        /// <summary>
+        /// txt_registro_procesado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txt_registro_procesado;
+        
+        /// <summary>
+        /// txt_registro_observado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txt_registro_observado;
         
         /// <summary>
         /// view3 control.

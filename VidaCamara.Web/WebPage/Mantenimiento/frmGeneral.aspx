@@ -283,7 +283,7 @@
                 <asp:HiddenField runat="server" ID="txt_ide_contrato_sis" Value="0"/>
 
                 <label class="label_to" for="txt_nrocont_sys">Codigo de Contrato (*)</label>
-                <asp:TextBox CssClass="input_to" ID="txt_nrocont_sys" runat="server" Height="25px" Width="14%"></asp:TextBox>
+                <asp:TextBox CssClass="input_to numeric" ID="txt_nrocont_sys" runat="server" Height="25px" Width="14%"></asp:TextBox>
 
                 <label class="input_right_L" for="txt_ruc">Nº  Empresas (*)</label>
                 <asp:TextBox CssClass="input_right numeric" ID="txt_numero_empresa" runat="server" Height="25px" Width="14.5%" ToolTip="Ingrese este Campo"></asp:TextBox>
