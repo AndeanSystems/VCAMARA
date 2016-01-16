@@ -853,15 +853,6 @@ namespace VidaCamara.DIS.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_pagoNominaApruebaDetalle_Result>("pa_sel_pagoNominaApruebaDetalle", idHistoriaLinCabParameter);
         }
     
-        public virtual ObjectResult<pa_file_CantidadRegistroArchivo_Result> pa_file_CantidadRegistroArchivo(Nullable<int> idArchivo)
-        {
-            var idArchivoParameter = idArchivo.HasValue ?
-                new ObjectParameter("IdArchivo", idArchivo) :
-                new ObjectParameter("IdArchivo", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_file_CantidadRegistroArchivo_Result>("pa_file_CantidadRegistroArchivo", idArchivoParameter);
-        }
-    
         public virtual ObjectResult<pa_sel_historiaCargaArchivoLinDet_Result> pa_sel_historiaCargaArchivoLinDet(string nombreTipoArchivo, Nullable<int> iDE_CONTRATO, string cOD_AFP, string cOD_CUSP, string pRI_NOMB_PEN, string aPE_MATE_PEN, string nUM_DOCU_PEN, string nUM_SOLI_PEN, string tIP_MONE, Nullable<System.DateTime> fEC_PAGO_INI, Nullable<System.DateTime> fEC_PAGO_FIN, string estado)
         {
             var nombreTipoArchivoParameter = nombreTipoArchivo != null ?
@@ -930,6 +921,15 @@ namespace VidaCamara.DIS.Modelo
                 new ObjectParameter("Num_Contrato", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_file_ObtieneReglasArchivoPorLinea_Result>("pa_file_ObtieneReglasArchivoPorLinea", param_TipoArchivoParameter, param_TipoLineaParameter, num_ContratoParameter);
+        }
+    
+        public virtual ObjectResult<pa_file_CantidadRegistroArchivo_Result> pa_file_CantidadRegistroArchivo(Nullable<int> idArchivo)
+        {
+            var idArchivoParameter = idArchivo.HasValue ?
+                new ObjectParameter("IdArchivo", idArchivo) :
+                new ObjectParameter("IdArchivo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_file_CantidadRegistroArchivo_Result>("pa_file_CantidadRegistroArchivo", idArchivoParameter);
         }
     }
 }

@@ -2411,9 +2411,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <FunctionImport Name="pa_sel_pagoNominaApruebaDetalle" ReturnType="Collection(DISModelo.pa_sel_pagoNominaApruebaDetalle_Result)">
           <Parameter Name="IdHistoriaLinCab" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="pa_file_CantidadRegistroArchivo" ReturnType="Collection(DISModelo.pa_file_CantidadRegistroArchivo_Result)">
-          <Parameter Name="IdArchivo" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="pa_sel_historiaCargaArchivoLinDet" ReturnType="Collection(DISModelo.pa_sel_historiaCargaArchivoLinDet_Result)">
             <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
             <Parameter Name="IDE_CONTRATO" Mode="In" Type="Int32" />
@@ -2432,6 +2429,9 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
             <Parameter Name="Param_TipoArchivo" Mode="In" Type="String" />
             <Parameter Name="Param_TipoLinea" Mode="In" Type="String" />
             <Parameter Name="Num_Contrato" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_file_CantidadRegistroArchivo" ReturnType="Collection(DISModelo.pa_file_CantidadRegistroArchivo_Result)">
+            <Parameter Name="IdArchivo" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
@@ -4119,11 +4119,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Type="Decimal" Name="ImporteTotal" Nullable="true" Precision="38" Scale="6" />
           <Property Type="Decimal" Name="PagoVC" Nullable="true" Precision="13" Scale="10" />
         </ComplexType>
-        <ComplexType Name="pa_file_CantidadRegistroArchivo_Result">
-          <Property Type="String" Name="Moneda" Nullable="false" MaxLength="7" />
-          <Property Type="Int32" Name="cantidad" Nullable="true" />
-          <Property Type="Decimal" Name="Importe" Nullable="true" Precision="38" Scale="6" />
-        </ComplexType>
         <ComplexType Name="pa_sel_historiaCargaArchivoLinDet_Result">
           <Property Type="DateTime" Name="FechaInsert" Nullable="true" Precision="23" />
           <Property Type="Int64" Name="IdHistorialCargaArchivoLinDet" Nullable="false" />
@@ -4273,6 +4268,11 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Type="String" Name="TablaDestino" Nullable="true" MaxLength="1000" />
           <Property Type="String" Name="NombreCampo" Nullable="true" MaxLength="50" />
           <Property Type="Int16" Name="FormaValidacion" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="pa_file_CantidadRegistroArchivo_Result">
+          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="cantidad" Nullable="true" />
+          <Property Type="Decimal" Name="Importe" Nullable="true" Precision="18" Scale="6" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -5741,15 +5741,6 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_file_CantidadRegistroArchivo" FunctionName="DISModelo.Store.pa_file_CantidadRegistroArchivo">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DISModelo.pa_file_CantidadRegistroArchivo_Result">
-                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-                <ScalarProperty Name="Importe" ColumnName="Importe" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_sel_historiaCargaArchivoLinDet" FunctionName="DISModelo.Store.pa_sel_historiaCargaArchivoLinDet">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DISModelo.pa_sel_historiaCargaArchivoLinDet_Result">
@@ -5905,6 +5896,15 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
                 <ScalarProperty Name="TablaDestino" ColumnName="TablaDestino" />
                 <ScalarProperty Name="NombreCampo" ColumnName="NombreCampo" />
                 <ScalarProperty Name="FormaValidacion" ColumnName="FormaValidacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_file_CantidadRegistroArchivo" FunctionName="DISModelo.Store.pa_file_CantidadRegistroArchivo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DISModelo.pa_file_CantidadRegistroArchivo_Result">
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
