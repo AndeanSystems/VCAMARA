@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Web.UI.WebControls;
 using VidaCamara.DIS.Modelo;
 using VidaCamara.DIS.Negocio;
@@ -20,7 +21,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 SetLLenadoContrato();
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipo_archivo, "17");
                 txt_fecha_inicio.Text = DateTime.Now.ToShortDateString();
-                filters[0] = Session["formatomoneda"].ToString();
+                filters[0] = ConfigurationManager.AppSettings.Get("Float").ToString();
             }
         }
         [System.Web.Services.WebMethod(EnableSession = true)]

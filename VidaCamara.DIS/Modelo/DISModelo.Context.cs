@@ -853,6 +853,32 @@ namespace VidaCamara.DIS.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_pagoNominaApruebaDetalle_Result>("pa_sel_pagoNominaApruebaDetalle", idHistoriaLinCabParameter);
         }
     
+        public virtual ObjectResult<pa_file_ObtieneReglasArchivoPorLinea_Result> pa_file_ObtieneReglasArchivoPorLinea(string param_TipoArchivo, string param_TipoLinea, Nullable<int> num_Contrato)
+        {
+            var param_TipoArchivoParameter = param_TipoArchivo != null ?
+                new ObjectParameter("Param_TipoArchivo", param_TipoArchivo) :
+                new ObjectParameter("Param_TipoArchivo", typeof(string));
+    
+            var param_TipoLineaParameter = param_TipoLinea != null ?
+                new ObjectParameter("Param_TipoLinea", param_TipoLinea) :
+                new ObjectParameter("Param_TipoLinea", typeof(string));
+    
+            var num_ContratoParameter = num_Contrato.HasValue ?
+                new ObjectParameter("Num_Contrato", num_Contrato) :
+                new ObjectParameter("Num_Contrato", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_file_ObtieneReglasArchivoPorLinea_Result>("pa_file_ObtieneReglasArchivoPorLinea", param_TipoArchivoParameter, param_TipoLineaParameter, num_ContratoParameter);
+        }
+    
+        public virtual ObjectResult<pa_file_CantidadRegistroArchivo_Result> pa_file_CantidadRegistroArchivo(Nullable<int> idArchivo)
+        {
+            var idArchivoParameter = idArchivo.HasValue ?
+                new ObjectParameter("IdArchivo", idArchivo) :
+                new ObjectParameter("IdArchivo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_file_CantidadRegistroArchivo_Result>("pa_file_CantidadRegistroArchivo", idArchivoParameter);
+        }
+    
         public virtual ObjectResult<pa_sel_historiaCargaArchivoLinDet_Result> pa_sel_historiaCargaArchivoLinDet(string nombreTipoArchivo, Nullable<int> iDE_CONTRATO, string cOD_AFP, string cOD_CUSP, string pRI_NOMB_PEN, string aPE_MATE_PEN, string nUM_DOCU_PEN, string nUM_SOLI_PEN, string tIP_MONE, Nullable<System.DateTime> fEC_PAGO_INI, Nullable<System.DateTime> fEC_PAGO_FIN, string estado)
         {
             var nombreTipoArchivoParameter = nombreTipoArchivo != null ?
@@ -904,32 +930,6 @@ namespace VidaCamara.DIS.Modelo
                 new ObjectParameter("Estado", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_historiaCargaArchivoLinDet_Result>("pa_sel_historiaCargaArchivoLinDet", nombreTipoArchivoParameter, iDE_CONTRATOParameter, cOD_AFPParameter, cOD_CUSPParameter, pRI_NOMB_PENParameter, aPE_MATE_PENParameter, nUM_DOCU_PENParameter, nUM_SOLI_PENParameter, tIP_MONEParameter, fEC_PAGO_INIParameter, fEC_PAGO_FINParameter, estadoParameter);
-        }
-    
-        public virtual ObjectResult<pa_file_ObtieneReglasArchivoPorLinea_Result> pa_file_ObtieneReglasArchivoPorLinea(string param_TipoArchivo, string param_TipoLinea, Nullable<int> num_Contrato)
-        {
-            var param_TipoArchivoParameter = param_TipoArchivo != null ?
-                new ObjectParameter("Param_TipoArchivo", param_TipoArchivo) :
-                new ObjectParameter("Param_TipoArchivo", typeof(string));
-    
-            var param_TipoLineaParameter = param_TipoLinea != null ?
-                new ObjectParameter("Param_TipoLinea", param_TipoLinea) :
-                new ObjectParameter("Param_TipoLinea", typeof(string));
-    
-            var num_ContratoParameter = num_Contrato.HasValue ?
-                new ObjectParameter("Num_Contrato", num_Contrato) :
-                new ObjectParameter("Num_Contrato", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_file_ObtieneReglasArchivoPorLinea_Result>("pa_file_ObtieneReglasArchivoPorLinea", param_TipoArchivoParameter, param_TipoLineaParameter, num_ContratoParameter);
-        }
-    
-        public virtual ObjectResult<pa_file_CantidadRegistroArchivo_Result> pa_file_CantidadRegistroArchivo(Nullable<int> idArchivo)
-        {
-            var idArchivoParameter = idArchivo.HasValue ?
-                new ObjectParameter("IdArchivo", idArchivo) :
-                new ObjectParameter("IdArchivo", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_file_CantidadRegistroArchivo_Result>("pa_file_CantidadRegistroArchivo", idArchivoParameter);
         }
     }
 }

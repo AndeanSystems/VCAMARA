@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VidaCamara.DIS.data;
 using VidaCamara.DIS.Modelo;
+using VidaCamara.DIS.Modelo.EEntidad;
 
 namespace VidaCamara.DIS.Negocio
 {
@@ -21,7 +22,7 @@ namespace VidaCamara.DIS.Negocio
             filters[0] = Path.GetFileNameWithoutExtension(filters[0].ToString())+".CSV";
             return new dNomina().listNominaByArchivo(nomina,filters,jtStartIndex,jtPageSize,out total);
         }
-        public List<NOMINA> listNominaConsulta(NOMINA nomina, object[] filters, int jtStartIndex, int jtPageSize, out int total)
+        public List<HNOMINA> listNominaConsulta(NOMINA nomina, object[] filters, int jtStartIndex, int jtPageSize, out int total)
         {
             return new dNomina().listNominaConsulta(nomina,filters,jtStartIndex,jtPageSize,out total);
         }

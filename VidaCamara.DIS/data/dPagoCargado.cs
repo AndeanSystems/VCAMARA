@@ -2,13 +2,15 @@
 using System.Linq;
 using System.Collections.Generic;
 using VidaCamara.DIS.Modelo;
+using VidaCamara.DIS.Modelo.EEntidad;
+
 namespace VidaCamara.DIS.data
 {
     public class dPagoCargado
     {
-        public List<HistorialCargaArchivo_LinDet> listArchivoCargado(HistorialCargaArchivo_LinCab cab, HistorialCargaArchivo_LinDet det, object[] filterParam, int jtStartIndex, int jtPageSize, out int total)
+        public List<HHistorialCargaArchivo_LinDet> listArchivoCargado(HistorialCargaArchivo_LinCab cab, HistorialCargaArchivo_LinDet det, object[] filterParam, int jtStartIndex, int jtPageSize, out int total)
         {
-            var listDetalle = new List<HistorialCargaArchivo_LinDet>();
+            var listDetalle = new List<HHistorialCargaArchivo_LinDet>();
             try
             {
                 using (var db = new DISEntities())
@@ -25,8 +27,9 @@ namespace VidaCamara.DIS.data
                     total = result.Count;
                     foreach (var item in result.Skip(jtStartIndex).Take(jtPageSize))
                     {
-                        var historiadet = new HistorialCargaArchivo_LinDet()
+                        var historiadet = new HHistorialCargaArchivo_LinDet()
                         {
+                            NombreArchivo = item.NombreArchivo,
                             FechaInsert = item.FechaInsert,
                             IdHistorialCargaArchivoLinDet = item.IdHistorialCargaArchivoLinDet,
                             IdHistorialCargaArchivoLinCab = item.IdHistorialCargaArchivoLinCab,
@@ -208,9 +211,9 @@ namespace VidaCamara.DIS.data
             {
                 using (var db = new DISEntities())
                 {
-                    var nombreArchivo = filterParam[0].ToString();
+                    var archivId = filterParam[3].ToString();
                     var cumpleValidacion = Convert.ToInt32(filterParam[2].ToString());
-                    var query = db.pa_sel_historiaLinDetXArchivo(nombreArchivo, cab.IDE_CONTRATO, cumpleValidacion).ToList();
+                    var query = db.pa_sel_historiaLinDetXArchivo(archivId, cab.IDE_CONTRATO, cumpleValidacion).ToList();
                     total = query.Count();
                     foreach (var item in query.Skip(jtStartIndex).Take(jtPageSize))
                     {

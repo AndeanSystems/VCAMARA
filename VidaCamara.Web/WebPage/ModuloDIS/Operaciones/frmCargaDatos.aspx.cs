@@ -18,7 +18,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         static string tipoArchivo = string.Empty;
         static HistorialCargaArchivo_LinCab historiaCab = new HistorialCargaArchivo_LinCab();
         static NOMINA nomina = new NOMINA();
-        static object[] filters = new object[3];//[0]NombreArchivo,[1]tipo moneda [2]cumpleValidacion
+        static object[] filters = new object[4];//[0]NombreArchivo,[1]tipo moneda [2]cumpleValidacion,[3]ArchivoId
         static nContratoSis contratoSis = new nContratoSis();
         #endregion variables
 
@@ -97,6 +97,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 txt_registro_procesado.Text = cargaLogica.ContadorExito.ToString();
                 txt_total_importe.Text = string.IsNullOrEmpty(cargaLogica.importe)?"0.00":cargaLogica.importe;
                 txt_registro_observado.Text = cargaLogica.ContadorErrores.ToString();
+                filters[3] = cargaLogica.IdArchivo;
                 //fin david choque 27 12 2015
 
                 if ((cargaLogica.MensajeExcepcion != ""))

@@ -125,10 +125,10 @@
                         <li><a href="#">Consultas</a>
                             <ul>
                                 <li>
-                                    <asp:HyperLink ID="HyperLink18" NavigateUrl="~/SegConsulta?go=5" runat="server" Text="Pagos Cargados" />
+                                    <asp:HyperLink ID="HyperLink18" NavigateUrl="~/SegConsulta?go=5" runat="server" Text="Pagos Procesados" />
                                 </li>
                                 <li>
-                                    <asp:HyperLink ID="HyperLink19" NavigateUrl="~/SegDescarga?go=5" runat="server" Text="Descargas" />
+                                    <asp:HyperLink ID="HyperLink19" NavigateUrl="~/SegDescarga?go=5" runat="server" Text="Archivos Procesados" />
                                 </li>
                                 <li>
                                     <asp:HyperLink ID="HyperLink20" NavigateUrl="~/SegLogAdmin?go=5" runat="server" Text="Log Administrativo" />

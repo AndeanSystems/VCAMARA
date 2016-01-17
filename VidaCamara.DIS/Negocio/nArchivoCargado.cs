@@ -8,6 +8,7 @@ using System.Web;
 using System;
 using System.Reflection;
 using NPOI.HSSF.Util;
+using VidaCamara.DIS.Modelo.EEntidad;
 
 namespace VidaCamara.DIS.Negocio
 {
@@ -23,7 +24,7 @@ namespace VidaCamara.DIS.Negocio
         /// <param name="jtPageSize"></param>
         /// <param name="total"></param>
         /// <returns></returns>
-        public List<HistorialCargaArchivo_LinDet> listArchivoCargado(HistorialCargaArchivo_LinCab historiaLinCab,HistorialCargaArchivo_LinDet historiaLinDet, object[] filterParam,int jtStartIndex, int jtPageSize,out int total)
+        public List<HHistorialCargaArchivo_LinDet> listArchivoCargado(HistorialCargaArchivo_LinCab historiaLinCab,HistorialCargaArchivo_LinDet historiaLinDet, object[] filterParam,int jtStartIndex, int jtPageSize,out int total)
         {
             return new dPagoCargado().listArchivoCargado(historiaLinCab,historiaLinDet, filterParam, jtStartIndex, jtPageSize,out total);
         }

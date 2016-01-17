@@ -24,7 +24,7 @@ namespace VidaCamara.DIS.Negocio
         /// </summary>
         /// <param name="regla"></param>
         /// <returns></returns>
-        public StringBuilder getColumnGridByArchivo(ReglaArchivo regla)
+        public StringBuilder getColumnGridByArchivo(ReglaArchivo regla,string columnsAdd = null)
         {
             var total = 0;
             var listRegla = new dReglaArchivo().getListReglaArchivo(regla, 0, 200, out total);
@@ -36,6 +36,7 @@ namespace VidaCamara.DIS.Negocio
                 sb.Append(listRegla[i - 1].NombreCampo + ":{");
                 sb.Append("title:" + "'" + listRegla[i - 1].TituloColumna +"'"+type+ "}" + (i == listRegla.Count ? "" : ","));
             }
+            sb.Append(columnsAdd);
             sb.Append("};");
             return sb;
         }

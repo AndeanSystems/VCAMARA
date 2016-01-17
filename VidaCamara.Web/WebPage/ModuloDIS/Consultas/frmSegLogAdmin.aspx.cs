@@ -22,6 +22,8 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
                 SetLLenadoContrato();
                 //concepto.SetEstablecerDataSourceConcepto(ddl_operacion, "26");
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipo_evento,"25");
+                txt_fec_hasta_o.Text = DateTime.Now.ToShortDateString();
+                txt_fec_ini_o.Text = DateTime.Now.ToShortDateString();
             }
         }
         private void SetLLenadoContrato()

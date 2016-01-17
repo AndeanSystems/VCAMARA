@@ -167,7 +167,9 @@
     <Compile Include="Modelo\EEntidad\EAprobacionCarga.cs" />
     <Compile Include="Modelo\EEntidad\ESegDescarga.cs" />
     <Compile Include="Modelo\EEntidad\HCONTRATO_SIS_DET.cs" />
+    <Compile Include="Modelo\EEntidad\HHistorialCargaArchivo_LinDet.cs" />
     <Compile Include="Modelo\EEntidad\HLogOperacion.cs" />
+    <Compile Include="Modelo\EEntidad\HNOMINA.cs" />
     <Compile Include="Modelo\Enumerado\EstadoPago.cs" />
     <Compile Include="Modelo\EstadoArchivo.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>

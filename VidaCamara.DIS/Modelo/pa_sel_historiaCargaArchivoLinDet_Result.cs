@@ -13,6 +13,7 @@ namespace VidaCamara.DIS.Modelo
     
     public partial class pa_sel_historiaCargaArchivoLinDet_Result
     {
+        public string NombreArchivo { get; set; }
         public Nullable<System.DateTime> FechaInsert { get; set; }
         public long IdHistorialCargaArchivoLinDet { get; set; }
         public Nullable<long> IdHistorialCargaArchivoLinCab { get; set; }

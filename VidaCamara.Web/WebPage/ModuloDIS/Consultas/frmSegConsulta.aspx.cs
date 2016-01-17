@@ -63,14 +63,17 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
         protected void btn_consultar_Click1(object sender, ImageClickEventArgs e)
         {
             var nombreTipoArchivo = ddl_tipo_archivo.SelectedItem.Value;
+            //AQUI SE AGREGAN DATOS FIJOS A LA GRILLA DE CONSULTA
+            var columns = nombreTipoArchivo != "NOMINA" ? ",FechaInsert:{title:'Fecha_Registro',display: function (data) {return ConvertNumberToDateTime(data.record.FechaInsert);}},NombreArchivo: { title: 'NombreArchivo'}" :
+                                                         ",FechaReg:{title:'Fecha_Registro',display: function (data) {return ConvertNumberToDateTime(data.record.FechaReg);}},NombreArchivo: { title: 'NombreArchivo'}";
             setLlenarEntiddes();
             var action = nombreTipoArchivo == "NOMINA"? "/WebPage/ModuloDIS/Consultas/frmSegConsulta.aspx/listNominaConsulta" : "/WebPage/ModuloDIS/Consultas/frmSegConsulta.aspx/listHistoriaDetalle";
             var tipoLinea = nombreTipoArchivo == "NOMINA"?"*":"D";
             var sorter = nombreTipoArchivo == "NOMINA" ? "RUC_ORDE ASC" : "TIP_REGI ASC";
             var regla = new ReglaArchivo() { Archivo = ddl_tipo_archivo.SelectedItem.Value, TipoLinea = tipoLinea };
-            var fields = new nReglaArchivo().getColumnGridByArchivo(regla).ToString();
+            var fields = new nReglaArchivo().getColumnGridByArchivo(regla, columns).ToString();
             Page.ClientScript.RegisterStartupScript(GetType(), "Fields", fields, true);
-            var grid = new gridCreator().getGrid("frmSeqConsulta", "4800", action, sorter).ToString();
+            var grid = new gridCreator().getGrid("frmSeqConsulta", "5000", action, sorter).ToString();
             Page.ClientScript.RegisterStartupScript(GetType(), "Grid", grid, true);
         }
         protected void btn_exportar_Click(object sender, ImageClickEventArgs e)

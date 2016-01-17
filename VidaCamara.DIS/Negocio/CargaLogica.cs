@@ -326,6 +326,8 @@ namespace VidaCamara.DIS.Negocio
                 nomina.Id_Empresa = 1;//observado
                 nomina.IDE_CONTRATO = contratoId;
                 nomina.Estado = "C";
+                nomina.FechaReg = DateTime.Now;
+                nomina.UsuReg = System.Web.HttpContext.Current.Session["username"].ToString();
 
                 //EVALUAR RETORNO
                 var resp = new nNomina().setGrabarNomina(nomina);
