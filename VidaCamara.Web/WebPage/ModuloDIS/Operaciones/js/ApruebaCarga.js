@@ -21,12 +21,12 @@
     });
 
     $("body #tblApruebaCarga").delegate("#link_eliminar", "click", function () {
-        if (confirm("Esta seguro de eliminar este registro")) {
+        if (confirm("Esta seguro de descartar la información")) {
             //programar llamada ajax
             llamarAjax(new linCab(parseInt($(this).attr('class'))), urlEliminar).success(function (res) {
                 console.log(res);
                 if (res.d.Result == true) {
-                    mostrarMensajeAlert("La nformación de pagos ha sido descartada, debera ser cargada nuevamente.");
+                    mostrarMensajeAlert("La información de pagos ha sido descartada, debera ser cargada nuevamente.");
                     consultarRegistros();
                 } else
                     mostrarMensajeAlert(res.d.Result);
@@ -87,8 +87,8 @@
             }
         },
         Eliminar: {
-            title: 'Eliminar', display: function (data) {
-                return "<a id='link_eliminar' class='" + data.record.IdLinCab + "' href='#'>Eliminar</a>";
+            title: 'Descartar', display: function (data) {
+                return "<a id='link_eliminar' class='" + data.record.IdLinCab + "' href='#'>Descartar</a>";
             }
         }
     }
