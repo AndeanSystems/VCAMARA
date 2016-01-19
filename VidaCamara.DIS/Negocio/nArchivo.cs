@@ -47,7 +47,7 @@ namespace VidaCamara.DIS.Negocio
             }
             else if (nombreNomina[1].Equals("RGS"))
             {
-                archivo.NombreArchivo = Path.GetFileNameWithoutExtension("LIQ" + "SEP" + archivo.NombreArchivo.Substring(nombreNomina[0].Length + nombreNomina[1].Length + 1)) + ".CAM";
+                archivo.NombreArchivo = Path.GetFileNameWithoutExtension("LIQ" + "PSEP" + archivo.NombreArchivo.Substring(nombreNomina[0].Length + nombreNomina[1].Length + 1)) + ".CAM";
             }
             else
             {

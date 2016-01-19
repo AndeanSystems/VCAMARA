@@ -112,7 +112,7 @@ namespace VidaCamara.DIS.Negocio
         private int EvaluarRegla(string tipoArchivo, Regla regla, string[] text, int indexLinea,
             Dictionary<string, object> propertyValues)
         {
-
+            //  Aca se identifican si hay errores en ReglaArchivo
             CampoActual = Mid(text[indexLinea].Trim(), regla.CaracterInicial - 1, regla.LargoCampo);
             var exitoLinea = 0;
             if (regla.NombreCampo != null) propertyValues.Add(regla.NombreCampo, CampoActual);
@@ -146,6 +146,12 @@ namespace VidaCamara.DIS.Negocio
                 case "":
                     exitoLinea = 1;
                     break;
+            }
+            if (exitoLinea == 0)
+            {
+                var reglaNow = regla;
+                var ppruab = string.Empty;
+
             }
             return exitoLinea;
         }
@@ -556,7 +562,11 @@ namespace VidaCamara.DIS.Negocio
         {
             try
             {
-                Convert.ToDecimal(campoActual);
+                var charIndex = campoActual.IndexOf("-");
+                if (charIndex == 0 || charIndex == -1)
+                    Convert.ToDecimal(campoActual);
+                else
+                    Convert.ToDecimal(campoActual.Replace("-", ""));
                 return 1;
             }
             catch (Exception ex)
