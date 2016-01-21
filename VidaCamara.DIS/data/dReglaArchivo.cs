@@ -14,7 +14,7 @@ namespace VidaCamara.DIS.data
             {
                 using (var db = new DISEntities())
                 {
-                    var query = db.ReglaArchivos.OrderBy(a=>a.CaracterInicial).Where(a=>a.Archivo.Equals(regla.Archivo) && (a.TipoLinea.Equals(regla.TipoLinea) || regla.TipoLinea.Equals("0")) && a.vigente == 1).ToList();
+                    var query = db.ReglaArchivos.OrderBy(a=>a.CaracterInicial).Where(a=>a.Archivo.Equals(regla.Archivo) && (a.TipoLinea.Equals(regla.TipoLinea) || regla.TipoLinea.Equals("0")) && a.vigente == 1 && a.NUM_CONT_LIC == regla.NUM_CONT_LIC).ToList();
                     total = query.Count();
                     foreach (var item in query.Skip(jtStartIndex).Take(jtPageSize))
                     {

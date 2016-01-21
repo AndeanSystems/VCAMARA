@@ -45,7 +45,8 @@ namespace VidaCamara.DIS.Negocio
                 var tipoLinea = filterParam[0].ToString() == "NOMINA" ? "*" : "D";
                 //new Utils.DeleteFile().deleteFile(HttpContext.Current.Server.MapPath(@"~/Utils/xlsxs/"));
                 XSSFWorkbook book = new XSSFWorkbook();
-                var reglaArchivo = new ReglaArchivo() { Archivo = filterParam[0].ToString(), TipoLinea = tipoLinea };
+                var contratoSis = new nContratoSis().listContratoByID(new CONTRATO_SYS() { IDE_CONTRATO = cab.IDE_CONTRATO});
+                var reglaArchivo = new ReglaArchivo() { Archivo = filterParam[0].ToString(), TipoLinea = tipoLinea,NUM_CONT_LIC = Convert.ToInt32(contratoSis.NRO_CONTRATO) };
                 var listReglaArchivo = new nReglaArchivo().getListReglaArchivo(reglaArchivo, 0, 200, out total);
 
                 //crear el libro
@@ -71,7 +72,7 @@ namespace VidaCamara.DIS.Negocio
                         {
                             cellBody = rowBody.CreateCell(c + 1);
                             var property = listNomina[i].GetType().GetProperty(listReglaArchivo[c].NombreCampo.ToString().Trim(), BindingFlags.Public | BindingFlags.Instance);
-                            cellBody.SetCellValue(property.GetValue(listNomina[i]) == null ? "" : property.GetValue(listNomina[i]).ToString());
+                            cellBody.SetCellValue(property.GetValue(listNomina[i],null) == null ? "" : property.GetValue(listNomina[i],null).ToString());
                             cellBody.CellStyle = setFontText(11, false, book);
                         }
                     }
@@ -86,7 +87,7 @@ namespace VidaCamara.DIS.Negocio
                         {
                             cellBody = rowBody.CreateCell(c + 1);
                             var property = listHistoriaLinDet[i].GetType().GetProperty(listReglaArchivo[c].NombreCampo.ToString().Trim(), BindingFlags.Public | BindingFlags.Instance);
-                            cellBody.SetCellValue(property.GetValue(listHistoriaLinDet[i]) == null ? "" : property.GetValue(listHistoriaLinDet[i]).ToString());
+                            cellBody.SetCellValue(property.GetValue(listHistoriaLinDet[i],null) == null ? "" : property.GetValue(listHistoriaLinDet[i],null).ToString());
                             cellBody.CellStyle = setFontText(11, false, book);
                         }
                     }

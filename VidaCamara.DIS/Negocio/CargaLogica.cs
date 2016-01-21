@@ -2,13 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Data;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using VidaCamara.DIS.data;
 using VidaCamara.DIS.Modelo;
 
