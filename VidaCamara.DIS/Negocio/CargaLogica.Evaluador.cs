@@ -583,7 +583,7 @@ namespace VidaCamara.DIS.Negocio
                 respuesta = valorActual;
             }
             else {
-                respuesta = valorActual.Replace("-", "");
+                respuesta = "-"+valorActual.Replace("-", "");
             }
             return respuesta;
         }
@@ -610,8 +610,9 @@ namespace VidaCamara.DIS.Negocio
             var sumaDetalle =
                 _lineaDetalles.Sum(
                     x => Convert.ToDecimal(x.GetType().GetProperty(reglaDetalle.NombreCampo).GetValue(x, null)));
-
-            return sumaDetalle == Convert.ToDecimal(verificaDecimalNumero(CampoActual)) ? 1 : 0;
+            var valorRetorno = verificaDecimalNumero(CampoActual);
+            CampoActual = valorRetorno;
+            return sumaDetalle == Convert.ToDecimal(valorRetorno) ? 1 : 0;
         }
 
 
