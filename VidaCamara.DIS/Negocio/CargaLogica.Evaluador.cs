@@ -115,7 +115,6 @@ namespace VidaCamara.DIS.Negocio
             //  Aca se identifican si hay errores en ReglaArchivo
             CampoActual = Mid(text[indexLinea].Trim(), regla.CaracterInicial - 1, regla.LargoCampo);
             var exitoLinea = 0;
-            if (regla.NombreCampo != null) propertyValues.Add(regla.NombreCampo, CampoActual);
 
             switch (regla.TipoValidacion)
             {
@@ -147,6 +146,8 @@ namespace VidaCamara.DIS.Negocio
                     exitoLinea = 1;
                     break;
             }
+
+            if (regla.NombreCampo != null) propertyValues.Add(regla.NombreCampo, CampoActual);
             if (exitoLinea == 0)
             {
                 var reglaNow = regla;
@@ -558,21 +559,33 @@ namespace VidaCamara.DIS.Negocio
             }
         }
 
-        private  static int paValidaNumero7x2(string campoActual)
+        private  static int paValidaNumero7x2(string valorActual)
         {
             try
             {
-                var charIndex = campoActual.IndexOf("-");
-                if (charIndex == 0 || charIndex == -1)
-                    Convert.ToDecimal(campoActual);
-                else
-                    Convert.ToDecimal(campoActual.Replace("-", ""));
+                var valorRetorno = verificaDecimalNumero(valorActual);
+                Convert.ToDecimal(valorRetorno);
+                CampoActual = valorRetorno;
                 return 1;
             }
             catch (Exception ex)
             {
                 return 0;
             }
+        }
+
+        private static string verificaDecimalNumero(string valorActual)
+        {
+            var respuesta = string.Empty;
+            var charIndex = valorActual.IndexOf("-");
+            if (charIndex == 0 || charIndex == -1)
+            {
+                respuesta = valorActual;
+            }
+            else {
+                respuesta = valorActual.Replace("-", "");
+            }
+            return respuesta;
         }
 
         private static int paValidaFecha(string campoActual)
@@ -598,7 +611,7 @@ namespace VidaCamara.DIS.Negocio
                 _lineaDetalles.Sum(
                     x => Convert.ToDecimal(x.GetType().GetProperty(reglaDetalle.NombreCampo).GetValue(x, null)));
 
-            return sumaDetalle == Convert.ToDecimal(CampoActual) ? 1 : 0;
+            return sumaDetalle == Convert.ToDecimal(verificaDecimalNumero(CampoActual)) ? 1 : 0;
         }
 
 

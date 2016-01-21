@@ -31,7 +31,7 @@ namespace VidaCamara.DIS.Negocio
         public string Observacion { get; set; }
         public int Estado { get; set; }
         public string Correo { get; set; }
-        private string CampoActual { get; set; }
+        private static string CampoActual { get; set; }
         private long CodigoCabecera { get; set; }
 
         private HistorialCargaArchivo_LinCab _lineaCabecera = new HistorialCargaArchivo_LinCab();
