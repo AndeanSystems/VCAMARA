@@ -592,8 +592,17 @@ namespace VidaCamara.DIS.Negocio
         {
             try
             {
-                new DateTime(int.Parse(campoActual.Substring(0,4)),int.Parse(campoActual.Substring(4,2)),int.Parse(campoActual.Substring(6,2)));
-                return 1;
+                if (campoActual == "00000000")
+                {
+                    return 1;
+                }
+                else
+                {
+                    new DateTime(int.Parse(campoActual.Substring(0, 4)), int.Parse(campoActual.Substring(4, 2)), int.Parse(campoActual.Substring(6, 2)));
+                    return 1;
+                }
+
+                
             }
             catch (Exception ex)
             {
