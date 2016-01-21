@@ -70,7 +70,8 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             var action = nombreTipoArchivo == "NOMINA"? "/WebPage/ModuloDIS/Consultas/frmSegConsulta.aspx/listNominaConsulta" : "/WebPage/ModuloDIS/Consultas/frmSegConsulta.aspx/listHistoriaDetalle";
             var tipoLinea = nombreTipoArchivo == "NOMINA"?"*":"D";
             var sorter = nombreTipoArchivo == "NOMINA" ? "RUC_ORDE ASC" : "TIP_REGI ASC";
-            var regla = new ReglaArchivo() { Archivo = ddl_tipo_archivo.SelectedItem.Value, TipoLinea = tipoLinea };
+            var contratoSis = new nContratoSis().listContratoByID(new CONTRATO_SYS() { IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value) });
+            var regla = new ReglaArchivo() { Archivo = ddl_tipo_archivo.SelectedItem.Value, TipoLinea = tipoLinea,NUM_CONT_LIC = Convert.ToInt32(contratoSis.NRO_CONTRATO) };
             var fields = new nReglaArchivo().getColumnGridByArchivo(regla, columns).ToString();
             Page.ClientScript.RegisterStartupScript(GetType(), "Fields", fields, true);
             var grid = new gridCreator().getGrid("frmSeqConsulta", "5000", action, sorter).ToString();
