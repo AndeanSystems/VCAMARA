@@ -134,7 +134,10 @@ namespace VidaCamara.SBS.Negocio
                         {
                             if (nregistro < dt.Rows.Count)
                             {
-                                if (Convert.ToString(dt.Rows[nregistro][4]) == Convert.ToString(dtHidden.Columns[ncolumna]))
+                                var columna1 = dt.Rows[nregistro][4].ToString();
+                                var columna2 = dtHidden.Columns[ncolumna].ToString();
+
+                                if (dt.Rows[nregistro][4].ToString().Equals(dtHidden.Columns[ncolumna].ToString()))
                                 {
                                     obj[ncolumna] = String.Format(ent._Formato_Moneda, Convert.ToDecimal(dt.Rows[nregistro][5]));
                                     obj[piramide.Columns.Count - 1] = String.Format(ent._Formato_Moneda, costo_fila += Convert.ToDecimal(dt.Rows[nregistro][5]));
