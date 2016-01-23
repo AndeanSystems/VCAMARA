@@ -443,31 +443,18 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 if (c._ide_Contrato == 0)
                 {
                     resp = control.SetInsertarContrato(c);
-                    if (resp != 0)
-                    {
-                        MessageBox("Registro Grabado Correctamente");
-                        SetLLenadoContrato();
-                    }
-                    else
-                    {
-                        MessageBox("Ocurrio un Error en el Servidor!");
-                    }
+                    MessageBox("Registro Grabado Correctamente");
+                    SetLLenadoContrato();
+                    
                 }
                 else {
                     resp = control.SetActualizarContrato(c);
-                    if (resp != 0)
-                    {
-                        MessageBox("Registro Actualizado Correctamente");
-                        SetLLenadoContrato();
-                    }
-                    else
-                    {
-                        MessageBox("Ocurrio un Error en el Servidor!");
-                    }
+                    MessageBox("Registro Actualizado Correctamente");
+                    SetLLenadoContrato();
                 }
             }
             catch (Exception e) {
-                MessageBoxcCatch("ERROR =>" + e.Message);
+                MessageBoxcCatch("ERROR =>" + e.Message.Replace(Environment.NewLine,""));
             }
         }
         //funcion de insertar  reaseguradores

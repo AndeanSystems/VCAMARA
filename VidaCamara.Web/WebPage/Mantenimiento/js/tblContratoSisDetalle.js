@@ -124,7 +124,7 @@ $(document).ready(function () {
         //var restante = nrestante[0] + '.' + nrestante[1].substring(0, 6);
 
         //$("#totalPorcentaje").html("Total participación: " + total.toString() + "% / " + restante.toString() + "%");
-        $("#totalPorcentaje").html("Total participación: " + parseFloat(porcentajeTotal).toFixed(0).toString() + "% / " + parseFloat(100 - porcentajeTotal).toFixed(0).toString() + "%");
+        $("#totalPorcentaje").html("Total % participación: " + parseFloat(porcentajeTotal).toFixed(0).toString() + "% /  Pendiente: " + parseFloat(100 - porcentajeTotal).toFixed(0).toString() + "%");
     }
     //LIMPIAR FORMULARIO
     function limpiarFormularioDetalle() {

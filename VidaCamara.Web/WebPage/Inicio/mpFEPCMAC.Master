@@ -74,7 +74,7 @@
                             <asp:HyperLink ID="HyperLink4" NavigateUrl="~/Tablas?go=3" runat="server">Tablas</asp:HyperLink></li>
                     </ul>
                 </li>
-                <li><a href="#">Modulo SBS</a>
+                <li><a href="#">Modulo Reaseguro</a>
                     <ul>
                         <li><a href="#">Operaciones</a>
                             <ul>
