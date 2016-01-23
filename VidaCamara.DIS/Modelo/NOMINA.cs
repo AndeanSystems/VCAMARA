@@ -32,6 +32,7 @@ namespace VidaCamara.DIS.Modelo
         public string Estado { get; set; }
         public Nullable<System.DateTime> FechaReg { get; set; }
         public string UsuReg { get; set; }
+        public string ReglaObservada { get; set; }
     
         public virtual CONTRATO_SYS CONTRATO_SYS { get; set; }
         public virtual Archivo Archivo { get; set; }

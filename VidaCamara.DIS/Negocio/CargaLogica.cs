@@ -42,6 +42,7 @@ namespace VidaCamara.DIS.Negocio
         public string moneda { get; set; }
         public string importe { get; set; }
         public string formatoMoneda { get; set; }
+        private static string ReglaObservada { get; set; }
 
         public CargaLogica(string archivo)
         {
@@ -128,8 +129,7 @@ namespace VidaCamara.DIS.Negocio
         public string[] LineaArchivo()
         {
             ContadorErrores = 0;
-            var sr = new StreamReader(FullNombreArchivo,
-                System.Text.Encoding.GetEncoding(437));
+            var sr = new StreamReader(FullNombreArchivo,System.Text.Encoding.Default);
 
             var texto = sr.ReadToEnd();
             var text = texto.Split('\n');
@@ -192,7 +192,7 @@ namespace VidaCamara.DIS.Negocio
                         try
                         {
                             var propertyValues = new Dictionary<string, object>();
-                            var exitoLinea = 1;
+                            var exitoLinea = 1; 
                             //if (!caracterInicial.Equals("T"))
                             //{
                                 foreach (var regla in _reglasLineaPorTipo[caracterInicial])
@@ -291,7 +291,8 @@ namespace VidaCamara.DIS.Negocio
                 detalle.CumpleValidacion = exitoLinea;
                 detalle.TipoLinea = tipoLinea;
                 detalle.NumeroLinea = nroLinea;
-                
+                detalle.ReglaObservada = string.IsNullOrEmpty(ReglaObservada)?"OK": ReglaObservada;
+
                 //PopulateType(detalle, propertyValues);
                 _lineaDetalles.Add(detalle);
             }
@@ -309,6 +310,7 @@ namespace VidaCamara.DIS.Negocio
                 eHistoriaLinDet.CumpleValidacion = exitoLinea;
                 eHistoriaLinDet.TipoLinea = tipoLinea;
                 eHistoriaLinDet.NumeroLinea = nroLinea;
+                eHistoriaLinDet.ReglaObservada = string.IsNullOrEmpty(ReglaObservada) ? "OK" : ReglaObservada; ;
 
                 _lineaDetalles.Add(eHistoriaLinDet);
 
@@ -324,12 +326,14 @@ namespace VidaCamara.DIS.Negocio
                 nomina.Id_Empresa = 1;//observado
                 nomina.IDE_CONTRATO = contratoId;
                 nomina.Estado = "C";
+                nomina.ReglaObservada = string.IsNullOrEmpty(ReglaObservada) ? "OK" : ReglaObservada;
                 nomina.FechaReg = DateTime.Now;
                 nomina.UsuReg = System.Web.HttpContext.Current.Session["username"].ToString();
 
                 //EVALUAR RETORNO
                 var resp = new nNomina().setGrabarNomina(nomina);
             }
+            ReglaObservada = string.Empty;
 
         }
         private void GrabarLineaCabecera()
@@ -391,37 +395,38 @@ namespace VidaCamara.DIS.Negocio
         {
             if (ValidacionesArchivo(tipoArchivo, 2) == false)
             {
-                using (var context = new DISEntities())
-                {
-                    Resultado = context.pa_file_ObtieneErrorArchivo(IdArchivo);
-                    var result = context.pa_file_ObtieneErrorArchivo(IdArchivo);
+                //COMENTADO ESTA VALIDACION SE USA EN EL ANTIGUO SISTEMA
+                //using (var context = new DISEntities())
+                //{
+                //    Resultado = context.pa_file_ObtieneErrorArchivo(IdArchivo);
+                //    var result = context.pa_file_ObtieneErrorArchivo(IdArchivo);
 
-                    var nombre = "";
-                    var largo = 0;
-                    foreach (var datoLoopVariable in result)
-                    {
-                        var dato = datoLoopVariable;
-                        if (dato.NumeroLinea.Value > 0)
-                        {
-                            nombre = dato.NombreArchivo;
-                            largo = dato.LargoCampo.Value;
-                        }
-                    }
-                    if (nombre != string.Empty & largo != null)
-                    {
-                        //If largo = 25 Then
-                        var valor1 = context.pa_valida_CodigoTransferenciaNomina(nombre, IdArchivo, largo);
-                        var resultado = 0;
-                        resultado = valor1.FirstOrDefault().Value;
-                        if (resultado == 0)
-                        {
-                            Resultado = null;
-                            Observacion =
-                                "No existe liquidación, debe cargar liquidación y despúes la nómina";
-                            //End If
-                        }
-                    }
-                }
+                //    var nombre = "";
+                //    var largo = 0;
+                //    foreach (var datoLoopVariable in result)
+                //    {
+                //        var dato = datoLoopVariable;
+                //        if (dato.NumeroLinea.Value > 0)
+                //        {
+                //            nombre = dato.NombreArchivo;
+                //            largo = dato.LargoCampo.Value;
+                //        }
+                //    }
+                //    if (nombre != string.Empty & largo != null)
+                //    {
+                //        //If largo = 25 Then
+                //        var valor1 = context.pa_valida_CodigoTransferenciaNomina(nombre, IdArchivo, largo);
+                //        var resultado = 0;
+                //        resultado = valor1.FirstOrDefault().Value;
+                //        if (resultado == 0)
+                //        {
+                //            Resultado = null;
+                //            Observacion =
+                //                "No existe liquidación, debe cargar liquidación y despúes la nómina";
+                //            //End If
+                //        }
+                //    }
+                //}
             }
 
             //if (ContadorErrores == 0)

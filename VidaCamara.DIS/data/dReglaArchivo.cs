@@ -20,6 +20,7 @@ namespace VidaCamara.DIS.data
                     {
                         var reglaArchivo = new ReglaArchivo()
                         {
+                            IdReglaArchivo = item.IdReglaArchivo,
                             Archivo = item.Archivo,
                             NombreCampo = item.NombreCampo,
                             InformacionCampo = item.InformacionCampo,

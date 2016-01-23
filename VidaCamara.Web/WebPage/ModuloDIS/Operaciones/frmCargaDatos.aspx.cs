@@ -25,7 +25,8 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         #region eventos control
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["pagina"] = "OTROS";
+            var tabIndex = multiTabs.ActiveViewIndex;
+           Session["pagina"] = "OTROS";
             if (Session["username"] == null)
                 Response.Redirect("Login?go=0");
             else
@@ -43,6 +44,13 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipo_linea,"18");
                 filters[1] = Session["formatomoneda"].ToString();
             }
+            //david choque 27 12 2015
+            if (!control_grid.Value.Equals("0"))
+            {
+                setMostrarRegistroCargadosOK(tipoArchivo);
+                setMostrarRegistroCargadosObservado(tipoArchivo);
+            }
+            //fin david choque
         }
         protected void btnGuardar_Click(object sender, ImageClickEventArgs e)
         {
@@ -173,6 +181,9 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 //david choque 27 12 2015
                 setMostrarRegistroCargadosOK(tipoArchivo);
                 setMostrarRegistroCargadosObservado(tipoArchivo);
+                multiTabs.ActiveViewIndex = 1;
+                menuTabs.Items[1].Selected = true;
+                control_grid.Value = "1";
                 //fin david choque
             }
             catch (Exception s)
@@ -252,7 +263,9 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             txt_nombre_archivo_det.Text = nombreArchivo;
             txt_tipo_informacion_det.Text = ddl_tipo_archivo.SelectedItem.Text;
 
-            if(tipoArchivo == "NOMINA")
+            var columns = ",ReglaObservada:{title:'Observaciones'}";
+
+            if (tipoArchivo == "NOMINA")
                 nomina.IDE_CONTRATO = Convert.ToInt32(ddl_conrato1.SelectedItem.Value);
             else
                 historiaCab.IDE_CONTRATO = Convert.ToInt32(ddl_conrato1.SelectedItem.Value);
@@ -262,12 +275,11 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             var sorter = tipoArchivo == "NOMINA" ? "RUC_ORDE ASC" : "TIP_REGI ASC";
             var contratoSis = new nContratoSis().listContratoByID(new CONTRATO_SYS() { IDE_CONTRATO = Convert.ToInt32(ddl_conrato1.SelectedItem.Value) });
             var regla = new ReglaArchivo() { Archivo = ddl_tipo_archivo.SelectedItem.Value, TipoLinea = tipoLinea,NUM_CONT_LIC = Convert.ToInt32(contratoSis.NRO_CONTRATO) };
-            var fields = new nReglaArchivo().getColumnGridByArchivo(regla).ToString();
+            var fields = new nReglaArchivo().getColumnGridByArchivo(regla, columns).ToString();
+
             Page.ClientScript.RegisterStartupScript(GetType(), "Fields", fields, true);
             var grid = new gridCreator().getGrid("frmCargaExito", "5000", action, sorter).ToString();
             Page.ClientScript.RegisterStartupScript(GetType(), "Grid", grid, true);
-            multiTabs.ActiveViewIndex = 1;
-            menuTabs.Items[1].Selected = true;
         }
         private void setMostrarRegistroCargadosObservado(string tipoArchivo)
         {

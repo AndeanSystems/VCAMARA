@@ -2,6 +2,7 @@
     //validacion detablas para mostrar data
     //validacion de campos para grabar
     $("section").delegate("#ctl00_ContentPlaceHolder1_btnGuardar", 'click', function () {
+        $("#ctl00_ContentPlaceHolder1_control_grid").val("0");
         var nro_contrato = $('#ctl00_ContentPlaceHolder1_ddl_conrato1').val();
         var tipo_archivo = $("#ctl00_ContentPlaceHolder1_ddl_tipo_archivo").val();
         var tipo_archivo_des = $("#ctl00_ContentPlaceHolder1_ddl_tipo_archivo option:selected").text();

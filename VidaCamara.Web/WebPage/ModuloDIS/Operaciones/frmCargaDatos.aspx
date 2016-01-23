@@ -49,6 +49,7 @@
       
     <!--Cuerpo de los tabs-->
     <div class="tabBody">
+        <asp:HiddenField ID="control_grid" value="0"  runat="server"/>               
         <asp:MultiView id="multiTabs" ActiveViewIndex="0" Runat="server">
             <!--VISTA CARGA DE DATOS-->
             <asp:View ID="view1" runat="server">      
@@ -64,7 +65,7 @@
             </asp:View>
             <!--seccion de RSP-->
             <asp:View ID="view2" runat="server">
-                               
+               
                <label class="label_to" for="ddl_nombre_archivo_det">Nombre del Archivo (*)</label>
                <asp:Label ID="txt_nombre_archivo_det" Text="." runat="server"  CssClass="input_to" Width="22%"/>
 

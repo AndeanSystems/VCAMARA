@@ -31,6 +31,15 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones {
         protected global::System.Web.UI.WebControls.Menu menuTabs;
         
         /// <summary>
+        /// control_grid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField control_grid;
+        
+        /// <summary>
         /// multiTabs control.
         /// </summary>
         /// <remarks>

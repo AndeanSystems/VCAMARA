@@ -682,36 +682,6 @@ namespace VidaCamara.DIS.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("pa_Valida_RangoFechaXContrato", date1Parameter, date2Parameter);
         }
     
-        public virtual ObjectResult<pa_sel_historiaLinDetXArchivo_Result> pa_sel_historiaLinDetXArchivo(string nombreArchivo, Nullable<int> ideContrato, Nullable<int> cumpleValidacion)
-        {
-            var nombreArchivoParameter = nombreArchivo != null ?
-                new ObjectParameter("NombreArchivo", nombreArchivo) :
-                new ObjectParameter("NombreArchivo", typeof(string));
-    
-            var ideContratoParameter = ideContrato.HasValue ?
-                new ObjectParameter("IdeContrato", ideContrato) :
-                new ObjectParameter("IdeContrato", typeof(int));
-    
-            var cumpleValidacionParameter = cumpleValidacion.HasValue ?
-                new ObjectParameter("CumpleValidacion", cumpleValidacion) :
-                new ObjectParameter("CumpleValidacion", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_historiaLinDetXArchivo_Result>("pa_sel_historiaLinDetXArchivo", nombreArchivoParameter, ideContratoParameter, cumpleValidacionParameter);
-        }
-    
-        public virtual ObjectResult<pa_sel_nominaXArchivo_Result> pa_sel_nominaXArchivo(Nullable<int> ideContrato, string nombreArchivo)
-        {
-            var ideContratoParameter = ideContrato.HasValue ?
-                new ObjectParameter("IdeContrato", ideContrato) :
-                new ObjectParameter("IdeContrato", typeof(int));
-    
-            var nombreArchivoParameter = nombreArchivo != null ?
-                new ObjectParameter("NombreArchivo", nombreArchivo) :
-                new ObjectParameter("NombreArchivo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_nominaXArchivo_Result>("pa_sel_nominaXArchivo", ideContratoParameter, nombreArchivoParameter);
-        }
-    
         public virtual ObjectResult<pa_sel_LogOperacion_Result> pa_sel_LogOperacion(Nullable<int> ideContrato, string tipoEvento, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string descripcion)
         {
             var ideContratoParameter = ideContrato.HasValue ?
@@ -930,6 +900,36 @@ namespace VidaCamara.DIS.Modelo
                 new ObjectParameter("Estado", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_historiaCargaArchivoLinDet_Result>("pa_sel_historiaCargaArchivoLinDet", nombreTipoArchivoParameter, iDE_CONTRATOParameter, cOD_AFPParameter, cOD_CUSPParameter, pRI_NOMB_PENParameter, aPE_MATE_PENParameter, nUM_DOCU_PENParameter, nUM_SOLI_PENParameter, tIP_MONEParameter, fEC_PAGO_INIParameter, fEC_PAGO_FINParameter, estadoParameter);
+        }
+    
+        public virtual ObjectResult<pa_sel_historiaLinDetXArchivo_Result> pa_sel_historiaLinDetXArchivo(string nombreArchivo, Nullable<int> ideContrato, Nullable<int> cumpleValidacion)
+        {
+            var nombreArchivoParameter = nombreArchivo != null ?
+                new ObjectParameter("NombreArchivo", nombreArchivo) :
+                new ObjectParameter("NombreArchivo", typeof(string));
+    
+            var ideContratoParameter = ideContrato.HasValue ?
+                new ObjectParameter("IdeContrato", ideContrato) :
+                new ObjectParameter("IdeContrato", typeof(int));
+    
+            var cumpleValidacionParameter = cumpleValidacion.HasValue ?
+                new ObjectParameter("CumpleValidacion", cumpleValidacion) :
+                new ObjectParameter("CumpleValidacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_historiaLinDetXArchivo_Result>("pa_sel_historiaLinDetXArchivo", nombreArchivoParameter, ideContratoParameter, cumpleValidacionParameter);
+        }
+    
+        public virtual ObjectResult<pa_sel_nominaXArchivo_Result> pa_sel_nominaXArchivo(Nullable<int> ideContrato, string nombreArchivo)
+        {
+            var ideContratoParameter = ideContrato.HasValue ?
+                new ObjectParameter("IdeContrato", ideContrato) :
+                new ObjectParameter("IdeContrato", typeof(int));
+    
+            var nombreArchivoParameter = nombreArchivo != null ?
+                new ObjectParameter("NombreArchivo", nombreArchivo) :
+                new ObjectParameter("NombreArchivo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_nominaXArchivo_Result>("pa_sel_nominaXArchivo", ideContratoParameter, nombreArchivoParameter);
         }
     }
 }

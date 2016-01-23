@@ -355,6 +355,7 @@ namespace VidaCamara.DIS.data
                             SEG_NOMB_SOL = item.SEG_NOMB_SOL,
                             SUC_INTE = item.SUC_INTE,
                             CumpleValidacion = item.CumpleValidacion,
+                            ReglaObservada = item.ReglaObservada
                         };
                         listHistoriaLinDet.Add(historiadet);
                     }

@@ -28,5 +28,6 @@ namespace VidaCamara.DIS.Modelo
         public Nullable<int> TIP_CTA { get; set; }
         public string CTA_BENE { get; set; }
         public string DET_TRAN { get; set; }
+        public string ReglaObservada { get; set; }
     }
 }

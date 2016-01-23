@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     var action = "/WebPage/ModuloDIS/Operaciones/frmCargaDatos.aspx/listReglaArchivo";
     var fields = {
+        IdReglaArchivo:{title:'Id Regla'},
         NombreCampo: { title: 'NombreCampo'},
         InformacionCampo: { title: 'InformacionCampo' },
         TipoLinea: { title: 'TipoLinea' },

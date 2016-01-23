@@ -149,5 +149,6 @@ namespace VidaCamara.DIS.Modelo
         public string SEG_NOMB_SOL { get; set; }
         public string SUC_INTE { get; set; }
         public Nullable<int> CumpleValidacion { get; set; }
+        public string ReglaObservada { get; set; }
     }
 }

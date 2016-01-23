@@ -54,7 +54,8 @@ namespace VidaCamara.DIS.data
                             NOM_BENE = item.NOM_BENE,
                             TIP_CTA = item.TIP_CTA,
                             CTA_BENE = item.CTA_BENE,
-                            DET_TRAN = item.DET_TRAN
+                            DET_TRAN = item.DET_TRAN,
+                            ReglaObservada = item.ReglaObservada
 
                         };
                         listNomina.Add(entity);

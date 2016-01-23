@@ -127,7 +127,7 @@ namespace VidaCamara.DIS.Negocio
                     break;
 
                 case "BOOL_IF_SP":
-                    exitoLinea = EvaluarBoolIfSp(regla, indexLinea, exitoLinea);
+                    exitoLinea = EvaluarBoolIfSp(regla, indexLinea, exitoLinea,text);
                     break;
 
                 case "IN_QUERY":
@@ -149,11 +149,7 @@ namespace VidaCamara.DIS.Negocio
 
             if (regla.NombreCampo != null) propertyValues.Add(regla.NombreCampo, CampoActual);
             if (exitoLinea == 0)
-            {
-                var reglaNow = regla;
-                var ppruab = string.Empty;
-
-            }
+                ReglaObservada = string.IsNullOrEmpty(ReglaObservada) ? regla.idRegla.ToString() : ReglaObservada + "," + regla.idRegla.ToString();
             return exitoLinea;
         }
 
@@ -214,7 +210,7 @@ namespace VidaCamara.DIS.Negocio
             return exitoLinea;
         }
 
-        private int EvaluarBoolIfSp(Regla r, int x, int exitoLinea)
+        private int EvaluarBoolIfSp(Regla r, int x, int exitoLinea, string[] text)
         {
             string valor;
             int res1;
@@ -258,9 +254,7 @@ namespace VidaCamara.DIS.Negocio
                         case "IQ#":
                             resultadoValor = ExecQuery(conditionString[1].Substring(3));
                             if (resultadoValor.Contains(CampoActual))
-                            {
                                 res1 = 1;
-                            }
                             break;
                         //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IQ#", Me.campoActual + "IN(" + ConditionString[1].Substring(3) + ")", Me.idArchivo)
                         case "IN#":
@@ -281,24 +275,18 @@ namespace VidaCamara.DIS.Negocio
                     {
                         case "SP#":
                             if (ExecSpBool(conditionString[2].Substring(3)))
-                            {
                                 res2 = 1;
-                            }
                             break;
                         //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP SP#", ConditionString[2].Substring(3), Me.idArchivo)
                         case "EQ#":
                             if (CampoActual == conditionString[2].Substring(3))
-                            {
                                 res2 = 1;
-                            }
                             break;
                         //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP EQ#", Me.campoActual + "=" + ConditionString[2].Substring(3), Me.idArchivo)
                         case "IQ#":
                             resultadoValor = ExecQuery(conditionString[2].Substring(3));
                             if (resultadoValor.Contains(CampoActual))
-                            {
                                 res2 = 1;
-                            }
                             break;
                         //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IQ#", Me.campoActual + "IN(" + ConditionString[2].Substring(3) + ")", Me.idArchivo)
                         case "IN#":
@@ -319,169 +307,165 @@ namespace VidaCamara.DIS.Negocio
                     if (conditionString[0] == "AND")
                     {
                         if (res1 == 1 & res2 == 1)
-                        {
                             exitoLinea = 1;
-                        }
                         else
-                        {
                             ContadorErrores = ContadorErrores + 1;
-                        }
                     }
                     else
                     {
                         if (res1 == 1 | res2 == 1)
-                        {
                             exitoLinea = 1;
-                        }
                         else
-                        {
                             ContadorErrores = ContadorErrores + 1;
-                        }
                     }
                     break;
                 case "IF":
                     switch (conditionString[1].Substring(0, 3))
                     {
+                        case "LT#":
+                            if (ExecSpBoolLT1(conditionString[1].Substring(3), x, text))
+                                exitoLinea = 1;
+                            else
+                                exitoLinea = evaluarPasoPasoFalse(conditionString);
+                            break; 
                         case "SP#":
                             if (ExecSpBool(conditionString[1].Substring(3)))
-                            {
-                                switch (conditionString[2].Substring(0, 3))
-                                {
-                                    case "SP#":
-                                        if (ExecSpBool(conditionString[2].Substring(3)))
-                                        {
-                                            exitoLinea = 1;
-                                        }
-                                        else
-                                        {
-                                            ContadorErrores = ContadorErrores + 1;
-                                        }
-                                        break;
-                                    //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP SP#", ConditionString[2].Substring(3), Me.idArchivo)
-                                    case "EQ#":
-                                        if (
-                                            CampoActual.Equals(
-                                                conditionString[2].Substring(3)))
-                                        {
-                                            exitoLinea = 1;
-                                        }
-                                        else
-                                        {
-                                            ContadorErrores = ContadorErrores + 1;
-                                        }
-                                        break;
-                                    //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP EQ#", Me.campoActual + "=" + ConditionString[2].Substring(3), Me.idArchivo)
-                                    case "IQ#":
-                                        resultadoValor =
-                                            ExecQuery(conditionString[2].Substring(3));
-                                        if (resultadoValor.Contains(CampoActual))
-                                        {
-                                            exitoLinea = 1;
-                                        }
-                                        else
-                                        {
-                                            ContadorErrores = ContadorErrores + 1;
-                                        }
-                                        break;
-                                    //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IQ#", Me.campoActual + "IN(" + ConditionString[2].Substring(3) + ")", Me.idArchivo)
-                                    case "IN#":
-                                        inString = conditionString[2].Substring(3)
-                                            .Split(',');
-                                        for (j = 0; j <= inString.Count() - 1; j++)
-                                        {
-                                            if (CampoActual == inString[j])
-                                            {
-                                                exitoLinea = 1;
-                                                break;
-                                                // TODO: might not be correct. Was : Exit For
-                                            }
-                                        }
-
-                                        if (exitoLinea == 0)
-                                        {
-                                            ContadorErrores = ContadorErrores + 1;
-                                        }
-                                        break;
-                                    //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IN#", Me.campoActual + "IN(" + ConditionString[2].Substring(3) + ")", Me.idArchivo)
-                                }
-                            }
+                                exitoLinea = evaluarPasoPasoTrue(conditionString);
                             else
-                            {
-                                switch (conditionString[3].Substring(0, 3))
-                                {
-                                    case "SP#":
-                                        if (ExecSpBool(conditionString[3].Substring(3)))
-                                        {
-                                            exitoLinea = 1;
-                                        }
-                                        else
-                                        {
-                                            ContadorErrores = ContadorErrores + 1;
-                                        }
-                                        break;
-                                    //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP SP#", ConditionString[2].Substring(3), Me.idArchivo)
-                                    case "EQ#":
-                                        if (CampoActual ==
-                                            conditionString[3].Substring(3))
-                                        {
-                                            exitoLinea = 1;
-                                        }
-                                        else
-                                        {
-                                            ContadorErrores = ContadorErrores + 1;
-                                        }
-                                        break;
-                                    //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP EQ#", Me.campoActual + "=" + ConditionString[2].Substring(3), Me.idArchivo)
-                                    case "IQ#":
-                                        resultadoValor =
-                                            ExecQuery(conditionString[3].Substring(3));
-                                        if (resultadoValor.Contains(CampoActual))
-                                        {
-                                            exitoLinea = 1;
-                                        }
-                                        else
-                                        {
-                                            ContadorErrores = ContadorErrores + 1;
-                                        }
-                                        break;
-                                    //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IQ#", Me.campoActual + "IN(" + ConditionString[2].Substring(3) + ")", Me.idArchivo)
-                                    case "IN#":
-                                        inString = conditionString[3].Substring(3)
-                                            .Split(',');
-                                        for (j = 0; j <= inString.Count() - 1; j++)
-                                        {
-                                            if (CampoActual == inString[j])
-                                            {
-                                                exitoLinea = 1;
-                                                break;
-                                                // TODO: might not be correct. Was : Exit For
-                                            }
-                                        }
-
-                                        if (exitoLinea == 0)
-                                        {
-                                            ContadorErrores = ContadorErrores + 1;
-                                        }
-                                        break;
-                                    //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IN#", Me.campoActual + "IN(" + ConditionString[2].Substring(3) + ")", Me.idArchivo)
-                                }
-                            }
+                                exitoLinea = evaluarPasoPasoFalse(conditionString);
                             break;
                         case "EQ#":
                             if (CampoActual.Equals(conditionString[2].Substring(3)))
-                            {
                                 exitoLinea = 1;
-                            }
                             else
-                            {
                                 ContadorErrores = ContadorErrores + 1;
-                            }
                             break;
                         //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP EQ#", Me.campoActual + "=" + ConditionString[2].Substring(3), Me.idArchivo)
                     }
                     break;
             }
             return exitoLinea;
+        }
+
+        private int evaluarPasoPasoFalse(string[] conditionString)
+        {
+            var exitoLineaLT = 0;
+            StringCollection resultQuery;
+            string[] inStringValue;
+            switch (conditionString[3].Substring(0, 3))
+            {
+                case "SP#":
+                    if (ExecSpBool(conditionString[3].Substring(3)))
+                    {
+                        exitoLineaLT = 1;
+                    }
+                    else
+                    {
+                        ContadorErrores = ContadorErrores + 1;
+                    }
+                    break;
+                //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP SP#", ConditionString[2].Substring(3), Me.idArchivo)
+                case "EQ#":
+                    if (CampoActual == conditionString[3].Substring(3))
+                    {
+                        exitoLineaLT = 1;
+                    }
+                    else
+                    {
+                        ContadorErrores = ContadorErrores + 1;
+                    }
+                    break;
+                //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP EQ#", Me.campoActual + "=" + ConditionString[2].Substring(3), Me.idArchivo)
+                case "IQ#":
+                    resultQuery = ExecQuery(conditionString[3].Substring(3));
+                    if (resultQuery.Contains(CampoActual))
+                    {
+                        exitoLineaLT = 1;
+                    }
+                    else
+                    {
+                        ContadorErrores = ContadorErrores + 1;
+                    }
+                    break;
+                //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IQ#", Me.campoActual + "IN(" + ConditionString[2].Substring(3) + ")", Me.idArchivo)
+                case "IN#":
+                    inStringValue = conditionString[3].Substring(3).Split(',');
+                    for (var j = 0; j <= inStringValue.Count() - 1; j++)
+                    {
+                        if (CampoActual == inStringValue[j])
+                        {
+                            exitoLineaLT = 1;
+                            break;
+                            // TODO: might not be correct. Was : Exit For
+                        }
+                    }
+
+                    if (exitoLineaLT == 0)
+                    {
+                        ContadorErrores = ContadorErrores + 1;
+                    }
+                    break;
+                    //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IN#", Me.campoActual + "IN(" + ConditionString[2].Substring(3) + ")", Me.idArchivo)
+            }
+            return exitoLineaLT;
+        }
+
+        private int evaluarPasoPasoTrue(string[] conditionString)
+        {
+            var exitoLineaLT = 0;
+            StringCollection resultQuery;
+            string[] inStringValue;
+            switch (conditionString[2].Substring(0, 3))
+            {
+                case "SP#":
+                    if (ExecSpBool(conditionString[2].Substring(3)))
+                        exitoLineaLT =  1;
+                    else
+                        ContadorErrores = ContadorErrores + 1;
+                    break;
+                //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP SP#", ConditionString[2].Substring(3), Me.idArchivo)
+                case "EQ#":
+                    if (CampoActual.Equals(conditionString[2].Substring(3)))
+                        exitoLineaLT = 1;
+                    else
+                        ContadorErrores = ContadorErrores + 1;
+                    break;
+                //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP EQ#", Me.campoActual + "=" + ConditionString[2].Substring(3), Me.idArchivo)
+                case "IQ#":
+                    resultQuery = ExecQuery(conditionString[2].Substring(3));
+                    if (resultQuery.Contains(CampoActual))
+                        exitoLineaLT = 1;
+                    else
+                        ContadorErrores = ContadorErrores + 1;
+                    break;
+                //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IQ#", Me.campoActual + "IN(" + ConditionString[2].Substring(3) + ")", Me.idArchivo)
+                case "IN#":
+                    inStringValue = conditionString[2].Substring(3).Split(',');
+                    for (var j = 0; j <= inStringValue.Count() - 1; j++)
+                    {
+                        if (CampoActual == inStringValue[j])
+                        {
+                            exitoLineaLT  = 1;
+                            break;
+                        }
+                    }
+
+                    if (exitoLineaLT == 0)
+                        ContadorErrores = ContadorErrores + 1;
+                    break;
+            }
+            return exitoLineaLT;
+        }
+
+        private bool ExecSpBoolLT1(string parameter, int x, string[] text)
+        {
+            var condition = parameter.Split(',');
+            var line = text[x].Trim();
+            var value = line.Substring(int.Parse(condition[0]),int.Parse(condition[1]));
+            if (value.Trim().Equals(condition[2].Trim()))
+                return true;
+            else
+                return false;
         }
 
         private int EvaluarBoolSp(string tipoArchivo, Regla regla, int x,int exitoLinea)
