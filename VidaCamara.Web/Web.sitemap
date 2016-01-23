@@ -30,8 +30,8 @@
         <siteMapNode url="~/InterfaceContbleSIS" title="Interface Coontable"  description="Interface Coontable" />
       </siteMapNode>
       <siteMapNode title="Consultas">
-        <siteMapNode url="~/SegConsulta" title="Datos Cargados"  description="Datos Cargados" />
-        <siteMapNode url="~/SegDescarga" title="Descargas"  description="Descargas" />
+        <siteMapNode url="~/SegConsulta" title="Pagos Procesados"  description="Pagos Procesados" />
+        <siteMapNode url="~/SegDescarga" title="Archivos Procesados"  description="Archivos Procesados" />
         <siteMapNode url="~/SegLogAdmin" title="Log Administrativo"  description="Log Administrativo" />
       </siteMapNode>
     </siteMapNode>

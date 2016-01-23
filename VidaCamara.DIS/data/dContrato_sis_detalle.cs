@@ -27,7 +27,7 @@ namespace VidaCamara.DIS.data
                                 where
                                    a.IDE_CONTRATO == contratoDetalle.IDE_CONTRATO
                                && c.TIPO_TABLA.Equals("29")
-                                orderby a.IDE_CONTRATO_DET
+                                orderby a.NRO_ORDEN
                                 select new { a, b, c }).ToList();
                    total = query.Count;
                     foreach (var item in query)

@@ -61,7 +61,7 @@ $(document).ready(function () {
             paging: true,
             sorting: true,
             pageSize: 7,
-            defaultSorting: 'IDE_CONTRATO ASC',
+            defaultSorting: 'NRO_ORDEN DESC',
             selecting: true,
             saveUserPreferences: true,
             actions: {
