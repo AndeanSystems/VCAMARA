@@ -931,5 +931,27 @@ namespace VidaCamara.DIS.Modelo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_nominaXArchivo_Result>("pa_sel_nominaXArchivo", ideContratoParameter, nombreArchivoParameter);
         }
+    
+        public virtual ObjectResult<pa_sel_NominaForTelebankinByArchivoId_Result> pa_sel_NominaForTelebankinByArchivoId(Nullable<int> archivoId)
+        {
+            var archivoIdParameter = archivoId.HasValue ?
+                new ObjectParameter("ArchivoId", archivoId) :
+                new ObjectParameter("ArchivoId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_NominaForTelebankinByArchivoId_Result>("pa_sel_NominaForTelebankinByArchivoId", archivoIdParameter);
+        }
+    
+        public virtual ObjectResult<pa_sel_NominaForTelebanking_Result> pa_sel_NominaForTelebanking(Nullable<int> ideContrato, Nullable<System.DateTime> fechaCarga)
+        {
+            var ideContratoParameter = ideContrato.HasValue ?
+                new ObjectParameter("IdeContrato", ideContrato) :
+                new ObjectParameter("IdeContrato", typeof(int));
+    
+            var fechaCargaParameter = fechaCarga.HasValue ?
+                new ObjectParameter("FechaCarga", fechaCarga) :
+                new ObjectParameter("FechaCarga", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_NominaForTelebanking_Result>("pa_sel_NominaForTelebanking", ideContratoParameter, fechaCargaParameter);
+        }
     }
 }

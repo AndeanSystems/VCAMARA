@@ -215,6 +215,7 @@
     <Content Include="WebPage\ModuloDIS\Operaciones\frmTelebankig.aspx" />
     <Content Include="WebPage\ModuloDIS\Operaciones\js\CargaDatos.js" />
     <Content Include="WebPage\ModuloDIS\Operaciones\js\frmReglaArchivo.js" />
+    <Content Include="WebPage\ModuloDIS\Operaciones\js\frmTelebanking.js" />
     <Content Include="WebPage\ModuloSBS\Consultas\js\frmInformes.js" />
     <Content Include="WebPage\ModuloSBS\Consultas\js\tblComprobante.js" />
     <Content Include="WebPage\ModuloSBS\Consultas\js\tblOperacion.js" />

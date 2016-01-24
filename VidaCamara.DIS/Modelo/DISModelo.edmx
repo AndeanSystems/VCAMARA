@@ -1545,6 +1545,13 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Parameter Name="FechaFin" Type="date" Mode="In" />
           <Parameter Name="Descripcion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="pa_sel_NominaForTelebankinByArchivoId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ArchivoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pa_sel_NominaForTelebanking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdeContrato" Type="int" Mode="In" />
+          <Parameter Name="FechaCarga" Type="date" Mode="In" />
+        </Function>
         <Function Name="pa_sel_nominaXArchivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdeContrato" Type="int" Mode="In" />
           <Parameter Name="NombreArchivo" Type="varchar" Mode="In" />
@@ -2436,6 +2443,13 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <FunctionImport Name="pa_sel_nominaXArchivo" ReturnType="Collection(DISModelo.pa_sel_nominaXArchivo_Result)">
             <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
             <Parameter Name="NombreArchivo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pa_sel_NominaForTelebankinByArchivoId" ReturnType="Collection(DISModelo.pa_sel_NominaForTelebankinByArchivoId_Result)">
+            <Parameter Name="ArchivoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_sel_NominaForTelebanking" ReturnType="Collection(DISModelo.pa_sel_NominaForTelebanking_Result)">
+            <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
+            <Parameter Name="FechaCarga" Mode="In" Type="DateTime" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
@@ -4285,6 +4299,20 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
           <Property Type="String" Name="DET_TRAN" Nullable="true" MaxLength="40" />
           <Property Type="String" Name="ReglaObservada" Nullable="true" MaxLength="40" />
         </ComplexType>
+        <ComplexType Name="pa_sel_NominaForTelebankinByArchivoId_Result">
+          <Property Type="String" Name="RUC_BENE" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="NOM_BENE" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="TIP_CTA" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="CTA_BENE" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="IMPORTE" Nullable="true" Precision="24" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="pa_sel_NominaForTelebanking_Result">
+          <Property Type="Int32" Name="ArchivoId" Nullable="false" />
+          <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="FechaOperacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Moneda" Nullable="false" MaxLength="250" />
+          <Property Type="Decimal" Name="Importe" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5923,6 +5951,28 @@ warning 6002: The table/view 'vcamara.Negocio.CheckLists' does not have a primar
                 <ScalarProperty Name="CTA_BENE" ColumnName="CTA_BENE" />
                 <ScalarProperty Name="DET_TRAN" ColumnName="DET_TRAN" />
                 <ScalarProperty Name="ReglaObservada" ColumnName="ReglaObservada" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_sel_NominaForTelebankinByArchivoId" FunctionName="DISModelo.Store.pa_sel_NominaForTelebankinByArchivoId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DISModelo.pa_sel_NominaForTelebankinByArchivoId_Result">
+                <ScalarProperty Name="RUC_BENE" ColumnName="RUC_BENE" />
+                <ScalarProperty Name="NOM_BENE" ColumnName="NOM_BENE" />
+                <ScalarProperty Name="TIP_CTA" ColumnName="TIP_CTA" />
+                <ScalarProperty Name="CTA_BENE" ColumnName="CTA_BENE" />
+                <ScalarProperty Name="IMPORTE" ColumnName="IMPORTE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_sel_NominaForTelebanking" FunctionName="DISModelo.Store.pa_sel_NominaForTelebanking">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DISModelo.pa_sel_NominaForTelebanking_Result">
+                <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
+                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+                <ScalarProperty Name="FechaOperacion" ColumnName="FechaOperacion" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

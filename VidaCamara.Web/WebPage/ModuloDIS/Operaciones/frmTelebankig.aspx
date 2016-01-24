@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebPage/Inicio/mpFEPCMAC.Master" AutoEventWireup="true" CodeBehind="frmTelebankig.aspx.cs" Inherits="VidaCamara.Web.WebPage.ModuloDIS.Operaciones.frmTelebankig" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="/WebPage/ModuloDIS/operaciones/js/frmTelebanking.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="content_header">
@@ -18,17 +19,17 @@
                 <label class="label_to" for="ddl_contrato_c">Contrato </label>
                 <asp:DropDownList CssClass="input_to" ID="ddl_contrato" runat="server" Height="25px" Width="77%"></asp:DropDownList>
 
-                <label class="label_to" for="ddl_tipcom_c">Tipo de Archivo </label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_tipo_archivo" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
+                <%--<label class="label_to" for="ddl_tipcom_c">Tipo de Archivo </label>
+                <asp:DropDownList CssClass="input_to" ID="ddl_tipo_archivo" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>--%>
 
-                <label class="input_right_L" for="ddl_ramo_c">Fecha </label>
-                <asp:TextBox runat="server"  CssClass="input_right datetime" Height="25px" Width="14.8%"/>
+                <label class="label_to" for="ddl_ramo_c">Fecha </label>
+                <asp:TextBox ID="txt_fecha" runat="server"  CssClass="input_to datetime" Height="25px" Width="25%"/>
 
-                <div class="iframe" id="tbl_comprobante">
-                    <div id="tblAprobar"></div>
+                <div class="iframe">
+                    <div id="tblTelebanking"></div>
                 </div>  
-
             </asp:View>
         </asp:MultiView>
+    <iframe id="fileDonwload" src="" style="display:none;visibility:hidden;width:1px;height:1px"></iframe>
     </div>
 </asp:Content>

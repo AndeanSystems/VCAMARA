@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="data\dReglaArchivo.cs" />
     <Compile Include="data\dSegDescarga.cs" />
+    <Compile Include="data\dTelebanking.cs" />
     <Compile Include="data\HistorialCargaArchivo.cs" />
     <Compile Include="Helpers\excelStyle.cs" />
     <Compile Include="Helpers\gridCreator.cs" />
@@ -165,6 +166,7 @@
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\EEntidad\EAprobacionCarga.cs" />
+    <Compile Include="Modelo\EEntidad\EGeneraTelebankig.cs" />
     <Compile Include="Modelo\EEntidad\ESegDescarga.cs" />
     <Compile Include="Modelo\EEntidad\HCONTRATO_SIS_DET.cs" />
     <Compile Include="Modelo\EEntidad\HHistorialCargaArchivo_LinDet.cs" />
@@ -261,6 +263,12 @@
     <Compile Include="Modelo\pa_sel_LogOperacion_Result.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\pa_sel_NominaForTelebankinByArchivoId_Result.cs">
+      <DependentUpon>DISModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\pa_sel_NominaForTelebanking_Result.cs">
+      <DependentUpon>DISModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\pa_sel_nominaXArchivo_Result.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
@@ -337,6 +345,7 @@
     <Compile Include="Negocio\nNomina.cs" />
     <Compile Include="Negocio\nReglaArchivo.cs" />
     <Compile Include="Negocio\nSegDescarga.cs" />
+    <Compile Include="Negocio\nTelebanking.cs" />
     <Compile Include="Negocio\Regla.cs" />
     <Compile Include="Negocio\SiniestroLogica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
