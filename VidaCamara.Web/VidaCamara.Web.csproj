@@ -250,10 +250,10 @@
     <Content Include="Resources\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Resources\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="packages.config" />
-    <Content Include="Db\vcamara_db_03012016.bak" />
     <None Include="Properties\PublishProfiles\camara.pubxml" />
     <None Include="Properties\PublishProfiles\DAVID.pubxml" />
     <None Include="Properties\PublishProfiles\vcamara.pubxml" />
+    <None Include="Properties\PublishProfiles\vcamara1.pubxml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.0.js" />
     <Content Include="Scripts\jquery-1.9.0.min.js" />
@@ -495,7 +495,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\Temp\Archivos\" />
-    <Folder Include="sql\" />
     <Folder Include="Temp\Archivos\" />
     <Folder Include="Temp\Descargas\" />
   </ItemGroup>

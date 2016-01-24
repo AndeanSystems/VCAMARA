@@ -39,7 +39,11 @@
             }
         },
         NombreArchivo: { title: 'NombreArchivo' },
-        FechaOperacion: { title: 'FechaOperación' },
+        FechaOperacion: {
+            title: 'FechaOperación', display: function (data) {
+                return ConvertNumberToDateTime(data.record.FechaOperacion);
+            }
+        },
         Moneda: { title: 'Moneda' },
         Importe: { title: 'Importe' },
         RutaNomina: {
@@ -56,6 +60,7 @@
             pageSize: 12,
             defaultSorting: 'FechaOperacion ASC',
             selecting: false,
+            openChildAsAccordion: true,
             actions: {
                 listAction: urlListTelebanking,
             },

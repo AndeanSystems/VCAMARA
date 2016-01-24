@@ -495,17 +495,15 @@ namespace VidaCamara.DIS.Negocio
         {
             try
             {
-                var directorioArchivo = System.Configuration.ConfigurationManager.AppSettings["RutaArchivos"] +
-                                        tipoArchivo + "\\";
-                InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), directorioArchivo, NombreArchivo,
-                    IdArchivo);
+                var folderFile = System.Configuration.ConfigurationManager.AppSettings["CarpetaArchivos"].ToString();
+                var directorioArchivo = @System.Web.HttpContext.Current.Server.MapPath("~/"+ folderFile +"/"+ tipoArchivo + "/");
+                //InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), directorioArchivo, NombreArchivo,IdArchivo);
 
                 if (!Directory.Exists(directorioArchivo))
                 {
                     Directory.CreateDirectory(directorioArchivo);
                 }
-                InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), "despues de validar directorio",
-                    NombreArchivo, IdArchivo);
+                //InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), "despues de validar directorio", NombreArchivo, IdArchivo);
 
                 var rutaArchivos = directorioArchivo + NombreArchivo;
 
@@ -513,21 +511,17 @@ namespace VidaCamara.DIS.Negocio
                 {
                     File.Delete(rutaArchivos);
                 }
-                InsertaAuditoria(Convert.ToInt32(UsuarioModificacion),
-                    "despues de validar si el archivo existe en el directorio: " + rutaArchivos, NombreArchivo,
-                    IdArchivo);
+                //InsertaAuditoria(Convert.ToInt32(UsuarioModificacion),"despues de validar si el archivo existe en el directorio: " + rutaArchivos, NombreArchivo,IdArchivo);
 
                 File.Copy(FullNombreArchivo, rutaArchivos);
-                InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), "despues de copiar archivo en directorio",
-                    NombreArchivo, IdArchivo);
+                //InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), "despues de copiar archivo en directorio",NombreArchivo, IdArchivo);
 
                 if (tipoArchivo == "PRIMAPAG")
                 {
                     var nombre = FullNombreArchivo.Replace("PRIMAPAG", "PRIMPAGA");
                     dynamic nombreArch = Path.GetFileName(nombre);
 
-                    directorioArchivo = System.Configuration.ConfigurationManager.AppSettings["RutaArchivos"] +
-                                        "PRIMPAGA\\";
+                    directorioArchivo = @System.Web.HttpContext.Current.Server.MapPath("~/" + folderFile+"/" +"PRIMPAGA/");
 
                     if (!Directory.Exists(directorioArchivo))
                     {
@@ -571,15 +565,13 @@ namespace VidaCamara.DIS.Negocio
                         var m = context.pa_file_InsertaReferenciaArchivo(nombreArch, UsuarioModificacion);
                         IdArchivo = m;
 
-                        InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), "Se genero archivo(PrimPaga) en Servidor",
-                            nombreArch, IdArchivo);
+                        InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), "Se genero archivo(PrimPaga) en Servidor",nombreArch, IdArchivo);
                     }
                 }
 
                 File.Delete(FullNombreArchivo);
 
-                InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), "Se guarda archivo en Servidor",
-                    NombreArchivo, IdArchivo);
+                InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), "Se guarda archivo en Servidor",NombreArchivo, IdArchivo);
 
                 return;
             }

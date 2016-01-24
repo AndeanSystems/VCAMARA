@@ -8,8 +8,9 @@ namespace VidaCamara.DIS.data
 {
     public class dTelebanking
     {
-        public List<EGeneraTelebankig> listTelebanking(NOMINA nomina, int jtStartIndex, int jtPageSize, out int total)
+        public List<EGeneraTelebankig> listTelebanking(NOMINA nomina, int jtStartIndex, int jtPageSize,string formatoMoneda, out int total)
         {
+            var folder = System.Configuration.ConfigurationManager.AppSettings["CarpetaArchivos"].ToString();
             var listTelebankig = new List<EGeneraTelebankig>();
             try
             {
@@ -17,7 +18,7 @@ namespace VidaCamara.DIS.data
                 {
                     var query = db.pa_sel_NominaForTelebanking(nomina.IDE_CONTRATO, nomina.FechaReg).ToList();
                     total = query.Count;
-                    foreach (var item in query)
+                    foreach (var item in query.Skip(jtStartIndex).Take(jtPageSize))
                     {
                         var telebankig = new EGeneraTelebankig()
                         {
@@ -25,8 +26,8 @@ namespace VidaCamara.DIS.data
                             NombreArchivo = item.NombreArchivo,
                             FechaOperacion = Convert.ToDateTime(item.FechaOperacion),
                             Moneda = item.Moneda,
-                            Importe = item.Importe.ToString(),
-                            RutaNomina = "Temp/"+item.NombreArchivo
+                            Importe = string.Format(formatoMoneda,item.Importe),
+                            RutaNomina = folder+"/NOMINA/"+item.NombreArchivo
                         };
                         listTelebankig.Add(telebankig);
                     }
@@ -40,7 +41,7 @@ namespace VidaCamara.DIS.data
             }
         }
 
-        public List<EGeneraTelebankig> listTelebankingByArchivoId(NOMINA nomina)
+        public List<EGeneraTelebankig> listTelebankingByArchivoId(NOMINA nomina,string formatoMoneda)
         {
             var listTelebankig = new List<EGeneraTelebankig>();
             try
@@ -56,7 +57,7 @@ namespace VidaCamara.DIS.data
                             NOM_BENE = item.NOM_BENE,
                             TIP_CTA = item.TIP_CTA,
                             CTA_BENE = item.CTA_BENE,
-                            Importe = item.IMPORTE.ToString()
+                            Importe = string.Format(formatoMoneda,item.IMPORTE)
                         };
                         listTelebankig.Add(telebankig);
                     }

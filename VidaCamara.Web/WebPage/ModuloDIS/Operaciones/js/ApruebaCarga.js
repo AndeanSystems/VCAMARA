@@ -100,6 +100,7 @@
             pageSize: 12,
             defaultSorting: 'NombreArchivo ASC',
             selecting: false,
+            openChildAsAccordion: true,
             actions: {
                 listAction: action,
             },

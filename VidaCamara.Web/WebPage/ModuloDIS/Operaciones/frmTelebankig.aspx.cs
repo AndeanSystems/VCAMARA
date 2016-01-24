@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
+using System.Configuration;
 using System.Web.UI.WebControls;
 using VidaCamara.DIS.Modelo;
 using VidaCamara.DIS.Negocio;
@@ -13,6 +10,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
     public partial class frmTelebankig : System.Web.UI.Page
     {
         static int total;
+        static string formatoMoneda = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -21,6 +19,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 SetLLenadoContrato();
                 txt_fecha.Text = DateTime.Now.ToShortDateString();
                 //concepto.SetEstablecerDataSourceConcepto(ddl_tipo_archivo,"17");
+                formatoMoneda = ConfigurationManager.AppSettings.Get("Float").ToString();
             }
         }
         [System.Web.Services.WebMethod(EnableSession = true)]
@@ -28,14 +27,14 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         {
             var negocio = new nTelebanking();
             nomina.FechaReg = Convert.ToDateTime(fecha);
-            return new { Result = "OK", Records = negocio.listTelebanking(nomina,jtStartIndex, jtPageSize, out total), TotalRecordCount = total };
+            return new { Result = "OK", Records = negocio.listTelebanking(nomina,jtStartIndex, jtPageSize,formatoMoneda, out total), TotalRecordCount = total };
         }
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static object listTelebankingByArchivoId(int ArchivoId)
         {
             var nomina = new NOMINA() { ArchivoId = ArchivoId };
             var negocio = new nTelebanking();
-            return new { Result = "OK", Records = negocio.listTelebankingByArchivoId(nomina)};
+            return new { Result = "OK", Records = negocio.listTelebankingByArchivoId(nomina, formatoMoneda) };
         }
         private void SetLLenadoContrato()
         {
