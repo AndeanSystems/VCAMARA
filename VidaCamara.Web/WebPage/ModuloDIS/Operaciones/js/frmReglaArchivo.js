@@ -8,7 +8,8 @@
         CaracterInicial: { title: 'CaracterInicial' },
         LargoCampo: { title: 'LargoCampo' },
         TipoCampo: { title: 'TipoCampo' },
-        FormatoContenido: { title: 'FormatoContenido' }
+        FormatoContenido: { title: 'FormatoContenido' },
+        ReglaValidacion: { title: 'ReglaValidacion' }
     }
     var reglaArchivo = function () {
         this.TipoLinea = $("#ctl00_ContentPlaceHolder1_ddl_tipo_linea").val(),
