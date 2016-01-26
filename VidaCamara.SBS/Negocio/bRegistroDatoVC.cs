@@ -243,5 +243,10 @@ namespace VidaCamara.SBS.Negocio
             }
             return res_column;
         }
+
+        public List<eDatoM> listMesDevengue(eDatoM datoM)
+        {
+            return new dSqlRegistroDatoVC().listMesDevengue(datoM);
+        }
     }
 }

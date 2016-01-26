@@ -258,81 +258,111 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Operaciones
                 Boolean resp = SetInsertarDataM(tab_selected);
                 if (resp == true && tab_selected == 0)
                 {
-                    gvPrima.DataSource = this.GetDatasourceGrid(edm, tab_selected); 
+                    gvPrima.DataSource = this.GetDatasourceGrid(edm, tab_selected);
                     gvPrima.DataBind();
                 }
-                else if (resp == true && tab_selected == 1) {
+                else if (resp == true && tab_selected == 1)
+                {
                     gvIbnr.DataSource = this.GetDatasourceGrid(edm, tab_selected);
                     gvIbnr.DataBind();
                 }
+                else
+                    MessageBox("No se encontró registros ingresados para el mes anterior");
             }
 
         }
         //funciones de grabado de primas Y ibnr
         private Boolean SetInsertarDataM(Int32 tab_selected)
         {
-            eContratoVC ecn = new eContratoVC();
-            ecn._inicio = 0;
-            ecn._fin = 1000000;
-            ecn._orderby = "IDE_CONTRATO ASC";
-            if(tab_selected == 0)
-                ecn._nro_Contrato = ddl_contrato_p.SelectedItem.Value;
-            else
-                ecn._nro_Contrato = ddl_contrato_ib.SelectedItem.Value;
-            ecn._estado = "A";
-
-            bContratoVC bcn = new bContratoVC();
-            List<eContratoVC> list = bcn.GetSelecionarContrato(ecn,out totalContrato);
+            var ecn = new eContratoVC()
+            {
+                _inicio = 0,
+                _fin = 1000000,
+                _orderby = "IDE_CONTRATO ASC",
+                _nro_Contrato = tab_selected == 0 ? ddl_contrato_p.SelectedItem.Value : ddl_contrato_ib.SelectedItem.Value,
+                _estado = "A"
+            };
+            var bcn = new bContratoVC();
+            var list = bcn.GetSelecionarContrato(ecn,out totalContrato);
             DateTime inicio_contrato = list[0]._fec_Ini_Vig;
             DateTime fin_contrato = list[0]._fec_Fin_Vig;
-
             Int32 mes_vigente = inicio_contrato.Month;
 
-            bRegistroDatoVC dm = new bRegistroDatoVC();
-            Int32 total_mes_contrato = dm.CalcularMesesDeDiferencia(inicio_contrato, fin_contrato);
-
-            List<eDatoM> listdm = new List<eDatoM>();
-            for (int m = 0; m <= total_mes_contrato; m++) {
-                if (mes_vigente > 12) {
-                    mes_vigente = 1;
-                }
-                eDatoM p = new eDatoM();
-                if (tab_selected == 0)
-                {
-                    p._id_Empresa = Convert.ToInt32(Session["idempresa"]);
-                    p._tipo_info = "07";
-                    p._nro_Contrato = ddl_contrato_p.SelectedItem.Value;
-                    p._anio_Vigente = anio_vigente_session;
-                    p._mes_Vigente = SetCalculaMesDevengue(inicio_contrato.Year, inicio_contrato.Month, m, mes_vigente);
-                    p._mes_Contable = SetConcatenarMesAnioContable();
-                    p._cod_Ramo = ddl_ramo_p.SelectedItem.Value;
-                    p._cod_Producto = ddl_producto_p.SelectedItem.Value;
-                    p._mto_Abonado = 0.00m;
-                    p._mto_Prima_Est = 0.00m;
-                    p._Formato_Moneda = formato_moneda;
-                    p._estado = "A";
-                    p._usu_reg = Session["username"].ToString();
-                }
-                else {
-                    p._id_Empresa = Convert.ToInt32(Session["idempresa"]);
-                    p._nro_Contrato = ddl_contrato_ib.SelectedItem.Value;
-                    p._tipo_info = "08";
-                    p._anio_Vigente = anio_vigente_session;
-                    p._mes_Vigente = SetCalculaMesDevengue(inicio_contrato.Year, inicio_contrato.Month, m, mes_vigente);
-                    p._mes_Contable = SetConcatenarMesAnioContable();
-                    p._cod_Ramo = ddl_ramo_ib.SelectedItem.Value;
-                    p._cod_Producto = ddl_producto_ib.SelectedItem.Value;
-                    p._mto_Abonado = 0.00m;
-                    p._mto_Prima_Est = 0.00m;
-                    p._estado = "A";
-                    p._usu_reg = Session["username"].ToString();
-                }
-
-                listdm.Add(p);
-                mes_vigente++;
+            //Validar que se hayan ingresado todos los meses en forma secuencial
+            var datoM = new eDatoM() {
+                _nro_Contrato = ecn._nro_Contrato ,
+                _tipo_info = tab_selected==0?"07":"08",
+                _cod_Ramo = ddl_ramo_p.SelectedItem.Value,
+                _cod_Producto = ddl_producto_p.SelectedItem.Value
+            };
+            var listDatoM = new bRegistroDatoVC().listMesDevengue(datoM);
+            var mesContable = SetConcatenarMesAnioContable();
+            var mesInicioContrt = Convert.ToInt32(inicio_contrato.Year.ToString() + "" + (mes_vigente<10?"0"+ mes_vigente.ToString(): mes_vigente.ToString()));
+            var sigueSecuencia = false;
+            if (listDatoM.Count > 0)
+            {
+                var encontroAnterior = listDatoM.FindAll(a => a._mes_Contable == (mesContable - 1));
+                if (encontroAnterior.Count > 0)
+                    sigueSecuencia = true;
             }
-            if (dm.SetInsertarDatoM(listdm) > 0)
-                return true;
+
+            if (mesContable == mesInicioContrt || sigueSecuencia == true)
+            {
+                try
+                {
+                    var dm = new bRegistroDatoVC();
+                    Int32 total_mes_contrato = dm.CalcularMesesDeDiferencia(inicio_contrato, fin_contrato);
+                    var listdm = new List<eDatoM>();
+                    for (int m = 0; m <= total_mes_contrato; m++)
+                    {
+                        if (mes_vigente > 12)
+                        {
+                            mes_vigente = 1;
+                        }
+                        var  p = new eDatoM();
+                        if (tab_selected == 0)
+                        {
+                            p._id_Empresa = Convert.ToInt32(Session["idempresa"]);
+                            p._tipo_info = "07";
+                            p._nro_Contrato = ddl_contrato_p.SelectedItem.Value;
+                            p._anio_Vigente = anio_vigente_session;
+                            p._mes_Vigente = SetCalculaMesDevengue(inicio_contrato.Year, inicio_contrato.Month, m, mes_vigente);
+                            p._mes_Contable = SetConcatenarMesAnioContable();
+                            p._cod_Ramo = ddl_ramo_p.SelectedItem.Value;
+                            p._cod_Producto = ddl_producto_p.SelectedItem.Value;
+                            p._mto_Abonado = 0.00m;
+                            p._mto_Prima_Est = 0.00m;
+                            p._Formato_Moneda = formato_moneda;
+                            p._estado = "A";
+                            p._usu_reg = Session["username"].ToString();
+                        }
+                        else {
+                            p._id_Empresa = Convert.ToInt32(Session["idempresa"]);
+                            p._nro_Contrato = ddl_contrato_ib.SelectedItem.Value;
+                            p._tipo_info = "08";
+                            p._anio_Vigente = anio_vigente_session;
+                            p._mes_Vigente = SetCalculaMesDevengue(inicio_contrato.Year, inicio_contrato.Month, m, mes_vigente);
+                            p._mes_Contable = SetConcatenarMesAnioContable();
+                            p._cod_Ramo = ddl_ramo_ib.SelectedItem.Value;
+                            p._cod_Producto = ddl_producto_ib.SelectedItem.Value;
+                            p._mto_Abonado = 0.00m;
+                            p._mto_Prima_Est = 0.00m;
+                            p._estado = "A";
+                            p._usu_reg = Session["username"].ToString();
+                        }
+
+                        listdm.Add(p);
+                        mes_vigente++;
+                    }
+                    dm.SetInsertarDatoM(listdm);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox("ERROR => " +ex.Message.Replace(Environment.NewLine,""));
+                    throw;
+                }
+            }
             else
                 return false;
         }
@@ -375,7 +405,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Operaciones
                 }
                 else
                 {
-                    MessageBox("Ocurrio un Error en el Servidor!");
+                    MessageBox("No hay registros para realizar esta acción.");
                 }
             }
             catch (Exception e)

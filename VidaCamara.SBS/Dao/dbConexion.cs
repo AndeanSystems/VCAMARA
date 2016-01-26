@@ -51,6 +51,7 @@ namespace VidaCamara.SBS.Dao
         public String sSinsertarContratoDet = "SP_INS_CONTRATO_DETALLE";
         public String sSinsertarDatoM = "SP_INS_DATO_M";
         public String sSinsertarDatoA = "SP_INS_DATO_A";
+        public string sValidaRegistroManual = "SP_VALIDA_REGISTRO_MANUAL";
         public String sSinsertarConcepto = "SP_INS_CONCEPTO";
         public String sSinsertarOperacionManual = "SP_INS_OPERACION_MANUAL";
         public String sSinsertarUsuario = "SP_INS_USUARIO";

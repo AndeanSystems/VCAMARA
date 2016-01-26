@@ -43,10 +43,9 @@ namespace VidaCamara.SBS.Dao
                     _bool = _bool + sqlcmd.ExecuteNonQuery();
                 }
             }
-
             catch (Exception ex)
             {
-
+                throw (new Exception(ex.Message));
             }
             finally
             {
@@ -208,6 +207,46 @@ namespace VidaCamara.SBS.Dao
             }
             total_column = DBtotRow;
             return dt;
+        }
+
+        public List<eDatoM> listMesDevengue(eDatoM datoM)
+        {
+            var listDatoM = new List<eDatoM>();
+            try
+            {
+                conexion.Open();
+                var sqlcmd = new SqlCommand()
+                {
+                    Connection = conexion,
+                    CommandType = CommandType.StoredProcedure,
+                    CommandText = _db.sValidaRegistroManual
+                };
+
+                sqlcmd.Parameters.Clear();
+                sqlcmd.Parameters.Add("@NroContrato", SqlDbType.VarChar).Value = datoM._nro_Contrato;
+                sqlcmd.Parameters.Add("@TipoInfo", SqlDbType.Char).Value = datoM._tipo_info;
+                sqlcmd.Parameters.Add("@CodRamo", SqlDbType.Char).Value = datoM._cod_Ramo;
+                sqlcmd.Parameters.Add("@CodProducto", SqlDbType.Char).Value = datoM._cod_Producto;
+
+                var  reader = sqlcmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var eDatoM = new eDatoM()
+                    {
+                        _mes_Contable = Convert.ToInt32(reader["MES_CONTABLE"].ToString())
+                    };
+                    listDatoM.Add(eDatoM);
+                }
+                return listDatoM;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
         }
     }
 }
