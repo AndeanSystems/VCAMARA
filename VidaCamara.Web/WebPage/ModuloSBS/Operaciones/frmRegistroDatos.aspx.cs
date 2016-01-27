@@ -44,15 +44,10 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Operaciones
         protected void btn_nuevo_Click(object sender, ImageClickEventArgs e)
         {
             int tab = Convert.ToInt16(menuTabs.SelectedValue);
-
             if (tab == 0)
-            {
                 clearScreenPrima();
-            }
             else if (tab == 1)
-            {
                 clearScreenIbnr();
-            }
         }
         protected void btn_borrar_r_Click(object sender, ImageClickEventArgs e)
         {
@@ -296,17 +291,18 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Operaciones
                 _cod_Producto = ddl_producto_p.SelectedItem.Value
             };
             var listDatoM = new bRegistroDatoVC().listMesDevengue(datoM);
-            var mesContable = SetConcatenarMesAnioContable();
+            var mesContable = SetConcatenarMesAnioContable().ToString();
             var mesInicioContrt = Convert.ToInt32(inicio_contrato.Year.ToString() + "" + (mes_vigente<10?"0"+ mes_vigente.ToString(): mes_vigente.ToString()));
             var sigueSecuencia = false;
             if (listDatoM.Count > 0)
             {
-                var encontroAnterior = listDatoM.FindAll(a => a._mes_Contable == (mesContable - 1));
+                mesContable = Convert.ToInt32(mesContable.Substring(4, 2)) == 1 ? (Convert.ToInt32(mesContable.Substring(0, 4)) - 1).ToString() + "12" : (Convert.ToInt32(mesContable)-1).ToString();
+                var encontroAnterior = listDatoM.FindAll(a => a._mes_Contable == (int.Parse(mesContable)));
                 if (encontroAnterior.Count > 0)
                     sigueSecuencia = true;
             }
 
-            if (mesContable == mesInicioContrt || sigueSecuencia == true)
+            if (Convert.ToInt32(mesContable) == mesInicioContrt || sigueSecuencia == true)
             {
                 try
                 {
