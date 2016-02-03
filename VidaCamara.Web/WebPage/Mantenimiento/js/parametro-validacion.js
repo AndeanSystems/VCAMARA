@@ -80,7 +80,9 @@
                 var porret = $("#ctl00_ContentPlaceHolder1_txt_retencion_c").val();
                 var porcec = $("#ctl00_ContentPlaceHolder1_txt_cesion_c").val();
                 var porcia = $("#ctl00_ContentPlaceHolder1_txt_cia_c").val();
-                if (clacont == 0 || nrocont == "" || tipcont == 0 || ramo == 0 || ramsin == 0 || tipcontdet == 0 || fecini == "" || fecfin == "" || asegur == 0 || moneda == 0) {
+                //por evaluar
+                var modalidadContrato = $("#ctl00_ContentPlaceHolder1_ddl_modalidad_c").val();
+                if (clacont == 0 || nrocont == "" || tipcont == 0 || ramo == 0 || ramsin == 0 || tipcontdet == 0 || fecini == "" || fecfin == "" || asegur == 0 || moneda == 0 || modalidadContrato == "0") {
                     MessageBox("Ingrese y Selecione los Campos Requiridos"); return false;
                 } else if (porret == 0 || porcec == 0 || porcia == 0) {
                     return confirm("Hay Algunos Campos con valor cero. ¿Esta seguro de Grabar?");

@@ -15,6 +15,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
         static HSSFWorkbook hssfworkbook;
         static String formato_moneda;
         bValidarAcceso accesso = new bValidarAcceso();
+        static int ultimoDiaMes = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["pagina"] = "OTROS";
@@ -642,7 +643,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
 
             FilaTitulo = hojaTrabajo.CreateRow(15);
             CeldaTitulo = FilaTitulo.CreateCell(1);
-            CeldaTitulo.SetCellValue("POR LOS CONTRATOS VIGENTES AL "+System.DateTime.Today.ToShortDateString());
+            CeldaTitulo.SetCellValue("POR LOS CONTRATOS VIGENTES AL "+new DateTime(DateTime.Now.Year,DateTime.Now.Month,ultimoDiaMes).ToShortDateString());
             CeldaTitulo.CellStyle = styleTitulo;
             hojaTrabajo.AddMergedRegion(new CellRangeAddress(15, 15, 1, 5));
             CeldaTitulo.CellStyle.Alignment = HorizontalAlignment.Center;
@@ -863,7 +864,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
 
             FilaTitulo = hojaTrabajo.CreateRow(14);
             CeldaTitulo = FilaTitulo.CreateCell(1);
-            CeldaTitulo.SetCellValue("AL "+System.DateTime.Today.ToShortDateString());
+            CeldaTitulo.SetCellValue("AL "+new DateTime(DateTime.Now.Year,DateTime.Now.Month,ultimoDiaMes).ToShortDateString());
             hojaTrabajo.AddMergedRegion(new CellRangeAddress(14, 14, 1, 13));
 
             CeldaTitulo.CellStyle = styleTitulo;
@@ -1080,7 +1081,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
 
             FilaTitulo = hojaTrabajo.CreateRow(15);
             CeldaTitulo = FilaTitulo.CreateCell(1);
-            CeldaTitulo.SetCellValue("AL : "+System.DateTime.Today.ToShortDateString());
+            CeldaTitulo.SetCellValue("AL : " + new DateTime(DateTime.Now.Year, DateTime.Now.Month, ultimoDiaMes).ToShortDateString());
             hojaTrabajo.AddMergedRegion(new CellRangeAddress(15, 15, 1, 13));
             CeldaTitulo.CellStyle.Alignment = HorizontalAlignment.Center;
 
