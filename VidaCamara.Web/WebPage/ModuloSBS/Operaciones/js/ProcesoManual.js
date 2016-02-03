@@ -7,11 +7,9 @@
         var tipComprobante = $("#ctl00_ContentPlaceHolder1_ddl_comprobante").val();
         var tipoRegistro = $("#ctl00_ContentPlaceHolder1_ddl_tipreg_m").val();
         var codAsegurado = $("#ctl00_ContentPlaceHolder1_ddl_codasegurado_m").val();
-        var codRamo = $("#ctl00_ContentPlaceHolder1_ddl_codasegurado_m").val();
+        var codRamo = $("#ctl00_ContentPlaceHolder1_ddl_codramo_m").val();
         var codMoneda = $("#ctl00_ContentPlaceHolder1_ddl_codmoneda_m").val();
-        if (nroCcontrato == "0") {
 
-        }
         var calcula = 0;
         $("#tblopemanual input[type='text'],#tblopemanual select").each(function (index, element) {
             valor = $(this).val();
