@@ -45,7 +45,8 @@ namespace VidaCamara.DIS.data
                             CONTRATO_SYS = new CONTRATO_SYS()
                             {
                                 DES_CONTRATO = item.b.DES_CONTRATO,
-                                NRO_CONTRATO = item.b.NRO_CONTRATO
+                                NRO_CONTRATO = item.b.NRO_CONTRATO,
+                                NRO_EMPRESAS = item.b.NRO_EMPRESAS
                             },
                             nombreCompania = item.c.DESCRIPCION
                         };

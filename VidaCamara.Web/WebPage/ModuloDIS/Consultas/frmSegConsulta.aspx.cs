@@ -5,6 +5,7 @@ using VidaCamara.DIS.Modelo;
 using VidaCamara.DIS.Negocio;
 using VidaCamara.SBS.Negocio;
 using VidaCamara.DIS.Helpers;
+using System.Configuration;
 
 namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
 {
@@ -41,7 +42,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipo_archivo, "17");
                 concepto.SetEstablecerDataSourceConcepto(ddl_afp, "23");
                 concepto.SetEstablecerDataSourceConcepto(ddl_moneda, "20");
-                formatoMoneda = Session["formatomoneda"].ToString();
+                formatoMoneda = ConfigurationManager.AppSettings.Get("Float").ToString();
                 txt_fec_ini_o.Text = DateTime.Now.ToShortDateString();
                 txt_fec_hasta_o.Text = DateTime.Now.ToShortDateString();
             }

@@ -1,5 +1,6 @@
 ﻿var descripcion_contrato = "Contrato SYS ";
 var meses = new Array("-", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+var nroEmpresa = 0;
 $(document).ready(function () {
     limpiarFormularioDetalle();
     //LIMPIAR DATOS DEL FORMULARIO
@@ -15,7 +16,7 @@ $(document).ready(function () {
     });
     //VALIDAR QUE EL NUMERO DE ORDEN NO SE A MAYOR QUE 7
     $("section").delegate("#ctl00_ContentPlaceHolder1_txt_orden_empresa_sis", "keyup", function (ev) {
-        if (parseInt($(this).val()) > 7 || parseInt($(this).val()) < 1) {
+        if (parseInt($(this).val()) > parseInt(nroEmpresa) || parseInt($(this).val()) < 1) {
             mostrarMensajeAlert("El numero ingresado es 0 o supera el limite permitido");
             $(this).val("");
         }
@@ -112,18 +113,12 @@ $(document).ready(function () {
     }
     //TOTAlLIZADOR DE SUMA DE PORCENTAJES
     function mostrarTotalPorcentaje(contratoSisDet) {
+        //asginar valor a numero de empresas
+        nroEmpresa = contratoSisDet[0].CONTRATO_SYS.NRO_EMPRESAS;
         var porcentajeTotal = 0;
         for (var i in contratoSisDet) {
             porcentajeTotal += parseFloat(contratoSisDet[i].PRC_PARTICIACION);
         };
-
-        //var ntotal = (parseFloat(porcentejeTotal.toString()) + "").split(".");
-        //var total = ntotal[0] + '.' + ntotal[1].substring(0, 6);
-
-        //var nrestante = (parseFloat((100 - porcentejeTotal).toString()) + "").split(".");
-        //var restante = nrestante[0] + '.' + nrestante[1].substring(0, 6);
-
-        //$("#totalPorcentaje").html("Total participación: " + total.toString() + "% / " + restante.toString() + "%");
         $("#totalPorcentaje").html("Total % participación: " + parseFloat(porcentajeTotal).toFixed(0).toString() + "% /  Pendiente: " + parseFloat(100 - porcentajeTotal).toFixed(0).toString() + "%");
     }
     //LIMPIAR FORMULARIO

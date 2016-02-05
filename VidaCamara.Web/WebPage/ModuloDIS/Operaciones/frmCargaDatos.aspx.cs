@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using VidaCamara.DIS.Helpers;
@@ -41,7 +42,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 SetLLenadoContrato();
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipo_archivo, "17");
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipo_linea,"18");
-                filters[1] = Session["formatomoneda"].ToString();
+                filters[1] = ConfigurationManager.AppSettings.Get("Float").ToString();
             }
             //david choque 27 12 2015
             if (!control_grid.Value.Equals("0"))
