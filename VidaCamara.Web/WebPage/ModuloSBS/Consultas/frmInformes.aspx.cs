@@ -40,6 +40,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
 
             string value = ddl_anexo_i.SelectedValue;
             string text = ddl_anexo_i.SelectedItem.Text;
+            var fecha_reporte = string.IsNullOrWhiteSpace(txt_hasta.Text) ? new DateTime(DateTime.Now.Year, DateTime.Now.Month, ultimoDiaMes).ToShortDateString() : txt_hasta.Text;
 
             if (value == "0") return;
 
@@ -55,11 +56,11 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             else if (value == "2")
                 ms = ES_18A(ddl_contrato_i.SelectedItem.Value,Convert.ToDateTime(txt_fecha_creacion.Text),Convert.ToDateTime(txt_hasta.Text),formato_moneda);
             else if (value == "3")
-                ms = ES_18B(ddl_contrato_i.SelectedItem.Value);
+                ms = ES_18B(ddl_contrato_i.SelectedItem.Value, fecha_reporte);
             else if (value == "4")
-                ms = ES_18C(ddl_contrato_i.SelectedItem.Value, formato_moneda);
+                ms = ES_18C(ddl_contrato_i.SelectedItem.Value, formato_moneda, fecha_reporte);
             else if (value == "5")
-                ms = ES_18D(ddl_contrato_i.SelectedItem.Value,formato_moneda);
+                ms = ES_18D(ddl_contrato_i.SelectedItem.Value,formato_moneda, fecha_reporte);
             else if (value == "6")
                 ms = ES_18E(ddl_contrato_i.SelectedItem.Value,Convert.ToDateTime(txt_fecha_creacion.Text),Convert.ToDateTime(txt_hasta.Text),formato_moneda);
             else if (value == "7")
@@ -571,7 +572,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
 
         }
 
-        public MemoryStream ES_18B(String contratos)
+        public MemoryStream ES_18B(String contratos,string fecha_reporte)
         {
             var output = new MemoryStream();
             var writer = new StreamWriter(output);
@@ -643,7 +644,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
 
             FilaTitulo = hojaTrabajo.CreateRow(15);
             CeldaTitulo = FilaTitulo.CreateCell(1);
-            CeldaTitulo.SetCellValue("POR LOS CONTRATOS VIGENTES AL "+new DateTime(DateTime.Now.Year,DateTime.Now.Month,ultimoDiaMes).ToShortDateString());
+            CeldaTitulo.SetCellValue("POR LOS CONTRATOS VIGENTES AL "+ fecha_reporte);
             CeldaTitulo.CellStyle = styleTitulo;
             hojaTrabajo.AddMergedRegion(new CellRangeAddress(15, 15, 1, 5));
             CeldaTitulo.CellStyle.Alignment = HorizontalAlignment.Center;
@@ -804,7 +805,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             return output;
         }
 
-        public MemoryStream ES_18C(String contrato, String formato_moneda)
+        public MemoryStream ES_18C(String contrato, String formato_moneda,string fecha_reporte)
         {
             var output = new MemoryStream();
             var writer = new StreamWriter(output);
@@ -864,7 +865,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
 
             FilaTitulo = hojaTrabajo.CreateRow(14);
             CeldaTitulo = FilaTitulo.CreateCell(1);
-            CeldaTitulo.SetCellValue("AL "+new DateTime(DateTime.Now.Year,DateTime.Now.Month,ultimoDiaMes).ToShortDateString());
+            CeldaTitulo.SetCellValue("AL "+ fecha_reporte);
             hojaTrabajo.AddMergedRegion(new CellRangeAddress(14, 14, 1, 13));
 
             CeldaTitulo.CellStyle = styleTitulo;
@@ -1016,7 +1017,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             return output;
         }
 
-        public MemoryStream ES_18D(String contrato,String formato_moneda)
+        public MemoryStream ES_18D(String contrato,String formato_moneda,string fecha_reporte)
         {
 
             var output = new MemoryStream();
@@ -1081,7 +1082,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
 
             FilaTitulo = hojaTrabajo.CreateRow(15);
             CeldaTitulo = FilaTitulo.CreateCell(1);
-            CeldaTitulo.SetCellValue("AL : " + new DateTime(DateTime.Now.Year, DateTime.Now.Month, ultimoDiaMes).ToShortDateString());
+            CeldaTitulo.SetCellValue("AL : " + fecha_reporte);
             hojaTrabajo.AddMergedRegion(new CellRangeAddress(15, 15, 1, 13));
             CeldaTitulo.CellStyle.Alignment = HorizontalAlignment.Center;
 
