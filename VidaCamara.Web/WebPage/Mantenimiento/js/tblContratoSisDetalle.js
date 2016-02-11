@@ -114,7 +114,7 @@ $(document).ready(function () {
     //TOTAlLIZADOR DE SUMA DE PORCENTAJES
     function mostrarTotalPorcentaje(contratoSisDet) {
         //asginar valor a numero de empresas
-        nroEmpresa = contratoSisDet[0].CONTRATO_SYS.NRO_EMPRESAS;
+        nroEmpresa = contratoSisDet.length>0?contratoSisDet[0].CONTRATO_SYS.NRO_EMPRESAS:7;
         var porcentajeTotal = 0;
         for (var i in contratoSisDet) {
             porcentajeTotal += parseFloat(contratoSisDet[i].PRC_PARTICIACION);
