@@ -100,8 +100,8 @@ namespace VidaCamara.SBS.Dao
                     obj[8] = dr.GetString(8);
                     obj[9] = dr.GetString(9);
                     obj[10] = dr.GetDateTime(10).ToShortDateString();
-                    obj[11] = String.Format(formato_moneda, dr.GetDecimal(11));
-                    obj[12] = String.Format(formato_moneda,dr.GetDecimal(12));
+                    obj[11] = String.Format(formato_moneda, dr.IsDBNull(11)? 0.00m:dr.GetDecimal(11));
+                    obj[12] = String.Format(formato_moneda, dr.IsDBNull(12)? 0.00m : dr.GetDecimal(12));
                     obj[13] = dr.GetString(13);
                     dt.Rows.Add(obj);
                 }

@@ -326,13 +326,22 @@ namespace VidaCamara.DIS.Negocio
                             if (ExecSpBoolLT1(conditionString[1].Substring(3), x, text))
                                 exitoLinea = 1;
                             else
-                                exitoLinea = evaluarPasoPasoFalse(conditionString);
+                            {
+                                exitoLinea = evaluarPasoPasoFalse(conditionString) == 0 ? evaluarPasoPasoTrue(conditionString) : 1;
+                                ContadorErrores = exitoLinea == 1 ? ContadorErrores: ContadorErrores + 1;
+                            }
                             break; 
                         case "SP#":
                             if (ExecSpBool(conditionString[1].Substring(3)))
+                            {
                                 exitoLinea = evaluarPasoPasoTrue(conditionString);
+                                ContadorErrores = exitoLinea == 1 ? ContadorErrores : ContadorErrores + 1;
+                            }
                             else
+                            {
                                 exitoLinea = evaluarPasoPasoFalse(conditionString);
+                                ContadorErrores = exitoLinea == 1 ? ContadorErrores : ContadorErrores + 1;
+                            }
                             break;
                         case "EQ#":
                             if (CampoActual.Equals(conditionString[2].Substring(3)))
@@ -359,20 +368,12 @@ namespace VidaCamara.DIS.Negocio
                     {
                         exitoLineaLT = 1;
                     }
-                    else
-                    {
-                        ContadorErrores = ContadorErrores + 1;
-                    }
                     break;
                 //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP SP#", ConditionString[2].Substring(3), Me.idArchivo)
                 case "EQ#":
                     if (CampoActual == conditionString[3].Substring(3))
                     {
                         exitoLineaLT = 1;
-                    }
-                    else
-                    {
-                        ContadorErrores = ContadorErrores + 1;
                     }
                     break;
                 //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP EQ#", Me.campoActual + "=" + ConditionString[2].Substring(3), Me.idArchivo)
@@ -381,10 +382,6 @@ namespace VidaCamara.DIS.Negocio
                     if (resultQuery.Contains(CampoActual))
                     {
                         exitoLineaLT = 1;
-                    }
-                    else
-                    {
-                        ContadorErrores = ContadorErrores + 1;
                     }
                     break;
                 //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IQ#", Me.campoActual + "IN(" + ConditionString[2].Substring(3) + ")", Me.idArchivo)
@@ -398,11 +395,6 @@ namespace VidaCamara.DIS.Negocio
                             break;
                             // TODO: might not be correct. Was : Exit For
                         }
-                    }
-
-                    if (exitoLineaLT == 0)
-                    {
-                        ContadorErrores = ContadorErrores + 1;
                     }
                     break;
                     //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IN#", Me.campoActual + "IN(" + ConditionString[2].Substring(3) + ")", Me.idArchivo)
@@ -420,23 +412,17 @@ namespace VidaCamara.DIS.Negocio
                 case "SP#":
                     if (ExecSpBool(conditionString[2].Substring(3)))
                         exitoLineaLT =  1;
-                    else
-                        ContadorErrores = ContadorErrores + 1;
                     break;
                 //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP SP#", ConditionString[2].Substring(3), Me.idArchivo)
                 case "EQ#":
                     if (CampoActual.Equals(conditionString[2].Substring(3)))
                         exitoLineaLT = 1;
-                    else
-                        ContadorErrores = ContadorErrores + 1;
                     break;
                 //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP EQ#", Me.campoActual + "=" + ConditionString[2].Substring(3), Me.idArchivo)
                 case "IQ#":
                     resultQuery = ExecQuery(conditionString[2].Substring(3));
                     if (resultQuery.Contains(CampoActual))
                         exitoLineaLT = 1;
-                    else
-                        ContadorErrores = ContadorErrores + 1;
                     break;
                 //InsertaAuditoria(Me.UsuarioModificacion, "BOOL_IF_SP IQ#", Me.campoActual + "IN(" + ConditionString[2].Substring(3) + ")", Me.idArchivo)
                 case "IN#":
@@ -449,9 +435,6 @@ namespace VidaCamara.DIS.Negocio
                             break;
                         }
                     }
-
-                    if (exitoLineaLT == 0)
-                        ContadorErrores = ContadorErrores + 1;
                     break;
             }
             return exitoLineaLT;

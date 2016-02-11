@@ -253,6 +253,7 @@ namespace VidaCamara.DIS.Negocio
                     TraspasaArchivo(tipoArchivo);
 
                     ProcesarErrores(tipoArchivo);
+                    ContadorErrores = ContadorErrores > 0 ? ContadorErrores : 0;
                 }
                 catch (Exception ex)
                 {
