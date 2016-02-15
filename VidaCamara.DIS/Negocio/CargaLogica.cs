@@ -221,8 +221,7 @@ namespace VidaCamara.DIS.Negocio
                         {
                             using (var context = new DISEntities())
                             {
-                                context.pa_file_InsertaHistorialCarga(IdArchivo, 451, "#", indexLinea + 1, 1,
-                                    text[indexLinea].Trim().Count(), text[indexLinea], 0);
+                                context.pa_file_InsertaHistorialCarga(IdArchivo, 451, "#", indexLinea + 1, 1,text[indexLinea].Trim().Count(), text[indexLinea], 0);
                             }
                             //InsertaAuditoria(Me.UsuarioModificacion, "Inserta Historial de CargaLogica", "pa_file_InsertaHistorialCarga 451" + ", " + "'#'" + ", " + (x + 1).ToString() + ", " + "1" + ", " + text[x].Trim()().Count().ToString() + ", '" + Me.campoActual + "', " + "0", Me.idArchivo)
                             ContadorErrores = ContadorErrores + 1;
@@ -312,6 +311,8 @@ namespace VidaCamara.DIS.Negocio
                 eHistoriaLinDet.TipoLinea = tipoLinea;
                 eHistoriaLinDet.NumeroLinea = nroLinea;
                 eHistoriaLinDet.ReglaObservada = string.IsNullOrEmpty(ReglaObservada) ? "OK" : ReglaObservada; ;
+                eHistoriaLinDet.FEC_PAGO = string.IsNullOrWhiteSpace(eHistoriaLinDet.FEC_PAGO)?string.Empty:eHistoriaLinDet.FEC_PAGO;
+                eHistoriaLinDet.NUM_SINI = string.IsNullOrWhiteSpace(eHistoriaLinDet.NUM_SINI) ? string.Empty : eHistoriaLinDet.NUM_SINI;
 
                 _lineaDetalles.Add(eHistoriaLinDet);
 
@@ -350,18 +351,15 @@ namespace VidaCamara.DIS.Negocio
             }
             catch (DbEntityValidationException e)
             {
+                var menssageException = string.Empty;
                 foreach (var eve in e.EntityValidationErrors)
                 {
-                    Console.WriteLine(
-                        "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
                     foreach (var ve in eve.ValidationErrors)
                     {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
+                        menssageException += string.Format("{0} - {1} <br>", ve.PropertyName, ve.ErrorMessage);
                     }
                 }
-                throw;
+                throw (new Exception(menssageException));
             }
         }
 
@@ -377,18 +375,15 @@ namespace VidaCamara.DIS.Negocio
             }
             catch (DbEntityValidationException e)
             {
+                var menssageException = string.Empty;
                 foreach (var eve in e.EntityValidationErrors)
                 {
-                    Console.WriteLine(
-                        "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
                     foreach (var ve in eve.ValidationErrors)
                     {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
+                        menssageException += string.Format("{0} - {1} <br>", ve.PropertyName, ve.ErrorMessage);
                     }
                 }
-                throw;
+                throw (new Exception(menssageException));
             }
         }
 

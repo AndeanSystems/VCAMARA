@@ -110,28 +110,15 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
 
                 if ((cargaLogica.MensajeExcepcion != ""))
                 {
-                    var mensaje = "Se produjo un error al cargar el archivo. Se terminó la carga. " + cargaLogica.MensajeExcepcion;
-                    MessageBox(mensaje.Replace(Environment.NewLine,""));
+                    var mensaje = "Se produjo un error al cargar el archivo.<br> " + cargaLogica.MensajeExcepcion;
+                    MessageBox(mensaje.Replace(Environment.NewLine,"").Replace("'",""));
                 }
-                //else if ((cargaLogica.ContadorErrores > 0))
-                //{
-                //    if ((cargaLogica.MensageError != String.Empty))
-                //    {
-                //        //por revisar
-                //        //MessageBox(cargaLogica.MensageError.Replace(Environment.NewLine, ""));
-                //        MessageBox("Cantidad de registros errados :" + cargaLogica.ContadorErrores.ToString());
-                //    }
-                //    else if ((cargaLogica.Observacion != String.Empty))
-                //    {
-                //        MessageBox(cargaLogica.Observacion.Replace(Environment.NewLine, ""));
-                //    }
-                //}
                 else
                 {
                     string nombre;
                     if ((cargaLogica.NombreArchivo.Split('_')[0] == "NOMINA"))
                     {
-                        nombre = "Nomina procesada Ok.";
+                        nombre = string.Format("Nomina cargada con: <br> {0}",cargaLogica.Observacion);
                         if ((cargaLogica.MensageError != String.Empty))
                         {
                             nombre = (nombre + (", " + cargaLogica.MensageError));
@@ -206,7 +193,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static object listReglaArchivo(int jtStartIndex, int jtPageSize, string jtSorting, ReglaArchivo regla)
         {
-            var contratoSis = new nContratoSis().listContratoByID(new CONTRATO_SYS() { IDE_CONTRATO = historiaCab.IDE_CONTRATO });
+            var contratoSis = new nContratoSis().listContratoByID(new CONTRATO_SYS() { IDE_CONTRATO = tipoArchivo.Equals("NOMINA")? nomina.IDE_CONTRATO:historiaCab.IDE_CONTRATO });
             regla.NUM_CONT_LIC = Convert.ToInt32(contratoSis.NRO_CONTRATO);
             var negocio = new nReglaArchivo();
             return new { Result = "OK", Records = negocio.getListReglaArchivo(regla, jtStartIndex, jtPageSize,out total), TotalRecordCount = total };

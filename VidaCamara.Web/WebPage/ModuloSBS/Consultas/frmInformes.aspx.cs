@@ -248,23 +248,23 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
 
             //columnas para nombre de aseguradores PARA ANEXO 2A
             IRow FilaAutomatico = hojaTrabajo.CreateRow(13);
-            IRow FilaFacultivo = hojaTrabajo.CreateRow(15 + (count-1));
-            IRow FilaNoAutomatico = hojaTrabajo.CreateRow(17 + (count - 1));
-            IRow FilaNoFacultivos = hojaTrabajo.CreateRow(19 + (count - 1));
-            IRow FilaOtraModalidad = hojaTrabajo.CreateRow(21 + (count - 1));
-            IRow FilaCoaseguros = hojaTrabajo.CreateRow(23 + (count - 1));
-            IRow FilaCoaRecibido = hojaTrabajo.CreateRow(25 + (count - 1));
-            IRow FilaTotales = hojaTrabajo.CreateRow(26 + (count - 1));
+            IRow FilaFacultivo = hojaTrabajo.CreateRow(15 + (count));
+            IRow FilaNoAutomatico = hojaTrabajo.CreateRow(17 + (count));
+            IRow FilaNoFacultivos = hojaTrabajo.CreateRow(19 + (count));
+            IRow FilaOtraModalidad = hojaTrabajo.CreateRow(21 + (count));
+            IRow FilaCoaseguros = hojaTrabajo.CreateRow(23 + (count));
+            IRow FilaCoaRecibido = hojaTrabajo.CreateRow(25 + (count));
+            IRow FilaTotales = hojaTrabajo.CreateRow(26 + (count));
 
             //COLUMNAS PARa nombre de aseguradores NEXO2B
             IRow FilaAutomatico2 = hojaTrabajo2.CreateRow(13);
-            IRow FilaFacultivo2 = hojaTrabajo2.CreateRow(15 + (count - 1));
-            IRow FilaNoAutomatico2 = hojaTrabajo2.CreateRow(17 + (count - 1));
-            IRow FilaNoFacultivos2 = hojaTrabajo2.CreateRow(19 + (count - 1));
-            IRow FilaOtraModalidad2 = hojaTrabajo2.CreateRow(21 + (count - 1));
-            IRow FilaCoaseguros2 = hojaTrabajo2.CreateRow(23 + (count - 1));
-            IRow FilaCoaRecibido2 = hojaTrabajo2.CreateRow(25 + (count - 1));
-            IRow FilaTotales2 = hojaTrabajo2.CreateRow(26 + (count - 1));
+            IRow FilaFacultivo2 = hojaTrabajo2.CreateRow(15 + (count));
+            IRow FilaNoAutomatico2 = hojaTrabajo2.CreateRow(17 + (count));
+            IRow FilaNoFacultivos2 = hojaTrabajo2.CreateRow(19 + (count));
+            IRow FilaOtraModalidad2 = hojaTrabajo2.CreateRow(21 + (count));
+            IRow FilaCoaseguros2 = hojaTrabajo2.CreateRow(23 + (count));
+            IRow FilaCoaRecibido2 = hojaTrabajo2.CreateRow(25 + (count));
+            IRow FilaTotales2 = hojaTrabajo2.CreateRow(26 + (count));
 
             ICell CellAutomatico = FilaAutomatico.CreateCell(2);
             CellAutomatico.SetCellValue("CONTRATOS \n PROPORCIONALES  \nAUTOMÁTICOS");
@@ -1542,10 +1542,15 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                 rowcell.CellStyle = styleCabecera;
                 rowcell.CellStyle.WrapText = true;
             }
+            var level_trimestre = 1;
+            var row_advances = 0;
             //for en la data de la tabla 
             for (int r = 0; r < tbmodelo.Rows.Count; r++)
             {
-                IRow dataRow1 = hojaTrabajo.CreateRow(7 + r);
+                if (level_trimestre != Convert.ToInt32(tbmodelo.Rows[r][1].ToString()))
+                    row_advances = 1;
+                level_trimestre = Convert.ToInt32(tbmodelo.Rows[r][1].ToString());
+                IRow dataRow1 = hojaTrabajo.CreateRow((7+row_advances) + r);
                 ICell dataCell1;
                 for (int c = 1; c < tbmodelo.Columns.Count+1; c++)
                 {
@@ -1554,7 +1559,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                     dataCell1.CellStyle = this.SetFontData(this.SetFontDataText());
                 }
             }
-            IRow Filasuma = hojaTrabajo.CreateRow(7+tbmodelo.Rows.Count);
+            IRow Filasuma = hojaTrabajo.CreateRow((7+row_advances)+tbmodelo.Rows.Count);
             ICell CelldataTittle;
             CelldataTittle = Filasuma.CreateCell(10);
             CelldataTittle.SetCellValue("TOTALES");

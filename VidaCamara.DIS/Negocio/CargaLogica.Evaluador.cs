@@ -22,15 +22,13 @@ namespace VidaCamara.DIS.Negocio
                     if (tipoRegla == 2 & ContadorErrores == 0)
                     {
                         var valorRetorno = context.pa_file_ArchivoValido(IdArchivo);
-                        InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), "Se valida archivo",
-                            "pa_file_ArchivoValido", IdArchivo);
+                        InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), "Se valida archivo","pa_file_ArchivoValido", IdArchivo);
                         exitoValidacion = int.Parse(valorRetorno.ToString());
                         if (exitoValidacion == 0)
                         {
                             ContadorErrores = ContadorErrores + 1;
                             MensageError = "Error en Cuadratura de primas";
-                            InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), MensageError, NombreArchivo,
-                                IdArchivo);
+                            InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), MensageError, NombreArchivo,IdArchivo);
                             return false;
                         }
                     }
@@ -580,15 +578,21 @@ namespace VidaCamara.DIS.Negocio
         private int EvaluarBoolSumaDetalleEnTotal(Regla regla)
         {
             var reglaDetalle =
-                _reglasLineaPorTipo["D"].FirstOrDefault(
-                    x => x.CaracterInicial == regla.CaracterInicial && x.LargoCampo == regla.LargoCampo);
+                _reglasLineaPorTipo["D"].FirstOrDefault(x => x.CaracterInicial == regla.CaracterInicial && x.LargoCampo == regla.LargoCampo);
 
             var sumaDetalle =
-                _lineaDetalles.Sum(
-                    x => Convert.ToDecimal(x.GetType().GetProperty(reglaDetalle.NombreCampo).GetValue(x, null)));
+                _lineaDetalles.Sum(x => Convert.ToDecimal(x.GetType().GetProperty(reglaDetalle.NombreCampo).GetValue(x, null)));
+
             var valorRetorno = verificaDecimalNumero(CampoActual);
             CampoActual = valorRetorno;
-            return sumaDetalle == Convert.ToDecimal(valorRetorno) ? 1 : 0;
+            if (sumaDetalle == Convert.ToDecimal(valorRetorno))
+                return 1;
+            else
+            {
+                ContadorErrores = ContadorErrores + 1;
+                return 0;
+            }
+
         }
 
 

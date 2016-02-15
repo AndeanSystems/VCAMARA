@@ -391,7 +391,7 @@ namespace VidaCamara.SBS.Dao
                 {
                     Object[] obj = new Object[dt.Columns.Count];
                     obj[0] = Convert.ToDateTime(dr["FEC_OPERACION"]).ToShortDateString();
-                    obj[1] = "";
+                    obj[1] = Convert.ToInt32(dr["LEVEL_TRIMESTRE"].ToString());
                     obj[2] = "CT";
                     obj[3] = dr["NRO_OPERACION"];
                     obj[4] = dr["REASEGURADOR"];
