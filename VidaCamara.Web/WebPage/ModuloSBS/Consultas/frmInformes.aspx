@@ -14,8 +14,8 @@
             <!--VISTA INFORMES-->
             <asp:View ID="view1" runat="server">
 
-                <label class="label_to" for="ddl_contrato_i">Contrato (*)</label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_contrato_i" runat="server" Height="25px" Width="77%"></asp:DropDownList>
+                <label class="label_to" for="ddl_contrato_i" style="display:none;">Contrato (*)</label>
+                <asp:DropDownList CssClass="input_to" ID="ddl_contrato_i" runat="server" Height="25px" Width="77%" Visible="false"></asp:DropDownList>
 
                 <label class="label_to" for="ddl_anexo_i">Anexo o Reporte (*)</label>
                 <asp:DropDownList CssClass="input_to" ID="ddl_anexo_i" runat="server" Height="25px" Width="77%">
@@ -30,6 +30,11 @@
                     <asp:ListItem Value="8">MODELO 1</asp:ListItem>
                     <asp:ListItem Value="9">MODELO 2</asp:ListItem>
                 </asp:DropDownList> 
+
+                <div  id="div_reasegurador" class="reasegurador" style="display:none">
+                    <label class="label_to" for="ddl_reasegurador">Reasegurador (*)</label>
+                    <asp:DropDownList runat="server" ID="ddl_reasegurador" CssClass="input_to" Height="25px" Width="77%"></asp:DropDownList>
+                </div>
 
                 <label class="label_to" for="ddl_fecreg_i">Fecha de Creación :</label>
                 <asp:TextBox CssClass="input_to" ID="txt_fecha_creacion" runat="server" Height="25px" Width="14.5%"></asp:TextBox>

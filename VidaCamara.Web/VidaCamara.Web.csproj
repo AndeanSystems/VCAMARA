@@ -200,6 +200,8 @@
     <Content Include="Scripts\jtable\localization\jquery.jtable.ru.js" />
     <Content Include="Scripts\jtable\localization\jquery.jtable.se.js" />
     <Content Include="Scripts\jtable\themes\metro\green\list_metro.png" />
+    <Content Include="WebPage\Mantenimiento\frmReglaArchivo.aspx" />
+    <Content Include="WebPage\Mantenimiento\js\frmReglaArchivo.js" />
     <Content Include="WebPage\Mantenimiento\js\parametro-validacion.js" />
     <Content Include="WebPage\Mantenimiento\js\tblContratoSisDetalle.js" />
     <Content Include="WebPage\Mantenimiento\js\tblContratoViewSyS.js" />
@@ -331,6 +333,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebPage\Mantenimiento\frmReglaArchivo.aspx.cs">
+      <DependentUpon>frmReglaArchivo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPage\Mantenimiento\frmReglaArchivo.aspx.designer.cs">
+      <DependentUpon>frmReglaArchivo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebPage\ModuloDIS\Consultas\frmSegConsulta.aspx.cs">
       <DependentUpon>frmSegConsulta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -497,6 +506,7 @@
     <Folder Include="Scripts\Temp\Archivos\" />
     <Folder Include="Temp\Archivos\" />
     <Folder Include="Temp\Descargas\" />
+    <Folder Include="Temp\Reportes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="WebPage\Inicio\mpFEPCMAC.Master" />

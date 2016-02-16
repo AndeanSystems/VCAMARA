@@ -39,10 +39,10 @@ namespace VidaCamara.SBS.Negocio
             dSqlExportarData ed = new dSqlExportarData();
             return ed.GetSelecionarEs18F(contrato,fecha_inicio,fecha_hasta,formato_moneda);
         }
-        public DataTable GetSelecionarModelo(String contrato, DateTime fecha_inicio, DateTime fecha_hasta, String formato_moneda,Int32 token)
+        public DataTable GetSelecionarModelo(String contrato, DateTime fecha_inicio, DateTime fecha_hasta, String formato_moneda,Int32 token,string reasegurador)
         {
             dSqlExportarData ed = new dSqlExportarData();
-            return ed.GetSelecionarModelo(contrato, fecha_inicio, fecha_hasta, formato_moneda, token);
+            return ed.GetSelecionarModelo(contrato, fecha_inicio, fecha_hasta, formato_moneda, token, reasegurador);
 
         }
         public DataTable GetSelecionarAnexoEs2A(String contrato)

@@ -200,7 +200,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             var contratoSis = new nContratoSis().listContratoByID(new CONTRATO_SYS() { IDE_CONTRATO = tipoArchivo.Equals("NOMINA")? nomina.IDE_CONTRATO:historiaCab.IDE_CONTRATO });
             regla.NUM_CONT_LIC = Convert.ToInt32(contratoSis.NRO_CONTRATO);
             var negocio = new nReglaArchivo();
-            return new { Result = "OK", Records = negocio.getListReglaArchivo(regla, jtStartIndex, jtPageSize,out total), TotalRecordCount = total };
+            return new { Result = "OK", Records = negocio.getListReglaArchivo(regla, jtStartIndex, jtPageSize,jtSorting,out total), TotalRecordCount = total };
         }
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static object listHistoriaDetalleByArchivoOK(int jtStartIndex, int jtPageSize, string jtSorting)
@@ -265,7 +265,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             var tipoLinea = tipoArchivo == "NOMINA" ? "*" : "D";
             var sorter = tipoArchivo == "NOMINA" ? "RUC_ORDE ASC" : "TIP_REGI ASC";
             var contratoSis = new nContratoSis().listContratoByID(new CONTRATO_SYS() { IDE_CONTRATO = Convert.ToInt32(ddl_conrato1.SelectedItem.Value) });
-            var regla = new ReglaArchivo() { Archivo = ddl_tipo_archivo.SelectedItem.Value, TipoLinea = tipoLinea,NUM_CONT_LIC = Convert.ToInt32(contratoSis.NRO_CONTRATO) };
+            var regla = new ReglaArchivo() { Archivo = ddl_tipo_archivo.SelectedItem.Value, TipoLinea = tipoLinea,NUM_CONT_LIC = Convert.ToInt32(contratoSis.NRO_CONTRATO),vigente = 1 };
             var fields = new nReglaArchivo().getColumnGridByArchivo(regla, columns).ToString();
 
             Page.ClientScript.RegisterStartupScript(GetType(), "Fields", fields, true);

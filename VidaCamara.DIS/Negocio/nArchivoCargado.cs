@@ -46,8 +46,8 @@ namespace VidaCamara.DIS.Negocio
                 //new Utils.DeleteFile().deleteFile(HttpContext.Current.Server.MapPath(@"~/Utils/xlsxs/"));
                 XSSFWorkbook book = new XSSFWorkbook();
                 var contratoSis = new nContratoSis().listContratoByID(new CONTRATO_SYS() { IDE_CONTRATO = cab.IDE_CONTRATO});
-                var reglaArchivo = new ReglaArchivo() { Archivo = filterParam[0].ToString(), TipoLinea = tipoLinea,NUM_CONT_LIC = Convert.ToInt32(contratoSis.NRO_CONTRATO) };
-                var listReglaArchivo = new nReglaArchivo().getListReglaArchivo(reglaArchivo, 0, 200, out total);
+                var reglaArchivo = new ReglaArchivo() { Archivo = filterParam[0].ToString(), TipoLinea = tipoLinea,NUM_CONT_LIC = Convert.ToInt32(contratoSis.NRO_CONTRATO),vigente = 1 };
+                var listReglaArchivo = new nReglaArchivo().getListReglaArchivo(reglaArchivo, 0, 200,"IdReglaArchivo ASC", out total);
 
                 //crear el libro
                 var sheet = book.CreateSheet(nombreArchivo);

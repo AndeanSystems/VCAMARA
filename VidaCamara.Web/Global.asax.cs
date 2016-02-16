@@ -36,6 +36,9 @@ namespace VidaCamara.Web
             coleccion.MapPageRoute("SegDescarga", "SegDescarga", "~/WebPage/ModuloDIS/Consultas/frmSegDescarga.aspx");
             coleccion.MapPageRoute("SegLogAdmin", "SegLogAdmin", "~/WebPage/ModuloDIS/Consultas/frmSegLogAdmin.aspx");
 
+            coleccion.MapPageRoute("ReglaArchivo", "ReglaArchivo", "~/WebPage/Mantenimiento/frmReglaArchivo.aspx");
+            
+
 
         }
         protected void Session_Start(object sender, EventArgs e)

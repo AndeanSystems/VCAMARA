@@ -14,7 +14,8 @@
     var reglaArchivo = function () {
         this.TipoLinea = $("#ctl00_ContentPlaceHolder1_ddl_tipo_linea").val(),
         this.Archivo = $("#ctl00_ContentPlaceHolder1_hdf_tipo_archivo").val(),
-        this.IdReglaArchivo = $("#ctl00_ContentPlaceHolder1_txt_idregla").val() == ""?0:parseInt($("#ctl00_ContentPlaceHolder1_txt_idregla").val())
+        this.IdReglaArchivo = $("#ctl00_ContentPlaceHolder1_txt_idregla").val() == ""?0:parseInt($("#ctl00_ContentPlaceHolder1_txt_idregla").val()),
+        this.Vigente = 1
     };
     //verificar si nos encontramos en la pestaña de información
     const existePestanaRegla = $("#tblReglaArchivo").length;

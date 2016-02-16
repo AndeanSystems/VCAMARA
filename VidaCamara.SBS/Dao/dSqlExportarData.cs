@@ -362,7 +362,7 @@ namespace VidaCamara.SBS.Dao
             }
             return dt;
         }
-        public DataTable GetSelecionarModelo(String contrato, DateTime fecha_inicio, DateTime fecha_hasta, String formato_moneda,Int32 token)
+        public DataTable GetSelecionarModelo(String contrato, DateTime fecha_inicio, DateTime fecha_hasta, String formato_moneda, Int32 token, string reasegurador)
         {
             DataTable dt = new DataTable();
             //String[] column = { "FECHA","REASEGURADOR","TIPO","NRO","ASEGURADO","CONTRATO","RAMO","MONEDA","PRI_XPAG_REA_CED", "PRI_XCOB_REA_ACE", "SIN_XCOB_REA_CED", "SIN_XPAG_REA_ACE", "OTR_CTA_XCOB_REA_CED", "OTR_CTA_XPAG_REA_ACE", "DSCTO_COMIS_REA", "SALDO_DEUDOR", "SALDO_ACREEDOR","COMP_1","COMP_2" };
@@ -385,6 +385,7 @@ namespace VidaCamara.SBS.Dao
                 sqlcmd.Parameters.Add("@NRO_CONTRATO", SqlDbType.VarChar).Value = contrato;
                 sqlcmd.Parameters.Add("@FECHA_INICIO", SqlDbType.Date).Value = fecha_inicio;
                 sqlcmd.Parameters.Add("@FECHA_HASTA", SqlDbType.Date).Value = fecha_hasta;
+                sqlcmd.Parameters.Add("@COD_REASEGURADOR",SqlDbType.VarChar).Value = reasegurador;
 
                 SqlDataReader dr = sqlcmd.ExecuteReader();
                 while (dr.Read())

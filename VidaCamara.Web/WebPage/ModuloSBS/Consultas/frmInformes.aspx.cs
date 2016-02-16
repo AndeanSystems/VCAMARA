@@ -7,15 +7,20 @@ using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.SS.Util;
 using VidaCamara.SBS.Negocio;
+using NPOI.XSSF.UserModel;
+using NPOI.HSSF.Util;
+using System.Web;
 
 namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
 {
     public partial class frmInformes : System.Web.UI.Page
     {
-        static HSSFWorkbook hssfworkbook;
+        #region VARIABLES
         static String formato_moneda;
-        bValidarAcceso accesso = new bValidarAcceso();
+        static bValidarAcceso accesso = new bValidarAcceso();
+        static bTablaVC concepto = new bTablaVC();
         static int ultimoDiaMes = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+        #endregion VARIABLES
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["pagina"] = "OTROS";
@@ -31,6 +36,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             if (!IsPostBack) {
                 bContratoVC contrato = new bContratoVC();
                 contrato.SetEstablecerDataSourceContrato(ddl_contrato_i);
+                concepto.SetEstablecerDataSourceConcepto(ddl_reasegurador,"01");
                 formato_moneda = Session["formatomoneda"].ToString();
             }
         }
@@ -44,68 +50,66 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
 
             if (value == "0") return;
 
-            string filename = "REPORTE SBS " + text + " "+ System.DateTime.Today.ToShortDateString() + ".xls";
-            Response.ContentType = "application/vnd.ms-excel";
-            Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", filename));
-            Response.Clear();
+            string filename = "REPORTE SBS " + text + " "+ System.DateTime.Today.ToShortDateString() + ".xlsx";
 
-            MemoryStream ms = new MemoryStream();
+            var book = new XSSFWorkbook();
 
             if (value == "1")
-                ms = Anexos(formato_moneda,Convert.ToDateTime(txt_fecha_creacion.Text),Convert.ToDateTime(txt_hasta.Text));
+                book = Anexos(formato_moneda, Convert.ToDateTime(txt_fecha_creacion.Text), Convert.ToDateTime(txt_hasta.Text));
             else if (value == "2")
-                ms = ES_18A(ddl_contrato_i.SelectedItem.Value,Convert.ToDateTime(txt_fecha_creacion.Text),Convert.ToDateTime(txt_hasta.Text),formato_moneda);
+                book = ES_18A(ddl_contrato_i.SelectedItem.Value, Convert.ToDateTime(txt_fecha_creacion.Text), Convert.ToDateTime(txt_hasta.Text), formato_moneda);
             else if (value == "3")
-                ms = ES_18B(ddl_contrato_i.SelectedItem.Value, fecha_reporte);
+                book = ES_18B(ddl_contrato_i.SelectedItem.Value, fecha_reporte);
             else if (value == "4")
-                ms = ES_18C(ddl_contrato_i.SelectedItem.Value, formato_moneda, fecha_reporte);
+                book = ES_18C(ddl_contrato_i.SelectedItem.Value, formato_moneda, fecha_reporte);
             else if (value == "5")
-                ms = ES_18D(ddl_contrato_i.SelectedItem.Value,formato_moneda, fecha_reporte);
+                book = ES_18D(ddl_contrato_i.SelectedItem.Value, formato_moneda, fecha_reporte);
             else if (value == "6")
-                ms = ES_18E(ddl_contrato_i.SelectedItem.Value,Convert.ToDateTime(txt_fecha_creacion.Text),Convert.ToDateTime(txt_hasta.Text),formato_moneda);
+                book = ES_18E(ddl_contrato_i.SelectedItem.Value, Convert.ToDateTime(txt_fecha_creacion.Text), Convert.ToDateTime(txt_hasta.Text), formato_moneda);
             else if (value == "7")
-                ms = ES_18F(ddl_contrato_i.SelectedItem.Value, Convert.ToDateTime(txt_fecha_creacion.Text), Convert.ToDateTime(txt_hasta.Text), formato_moneda);
+                book = ES_18F(ddl_contrato_i.SelectedItem.Value, Convert.ToDateTime(txt_fecha_creacion.Text), Convert.ToDateTime(txt_hasta.Text), formato_moneda);
             else if (value == "8")
-                ms = Modelos(ddl_contrato_i.SelectedItem.Value,Convert.ToDateTime(txt_fecha_creacion.Text),Convert.ToDateTime(txt_hasta.Text),formato_moneda,1);
+                book = Modelos(ddl_contrato_i.SelectedItem.Value, Convert.ToDateTime(txt_fecha_creacion.Text), Convert.ToDateTime(txt_hasta.Text), formato_moneda, 1);
             else if (value == "9")
-                ms = Modelos(ddl_contrato_i.SelectedItem.Value, Convert.ToDateTime(txt_fecha_creacion.Text), Convert.ToDateTime(txt_hasta.Text), formato_moneda,2);
+                book = Modelos(ddl_contrato_i.SelectedItem.Value, Convert.ToDateTime(txt_fecha_creacion.Text), Convert.ToDateTime(txt_hasta.Text), formato_moneda, 2);
 
-            Response.BinaryWrite(ms.GetBuffer());
+            Response.Clear();
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}",filename));
+            Response.TransmitFile(saveFileTemp(book,ddl_anexo_i.SelectedItem.Value));
             Response.End();
         }
 
-        public MemoryStream Anexos(String formato_moneda,DateTime fecha_inicio,DateTime fecha_hasta) {
+        private XSSFWorkbook Anexos(String formato_moneda, DateTime fecha_inicio, DateTime fecha_hasta)
+        {
             //seccionde variables
             Int32 count = 1;
 
-            var output = new MemoryStream();
-            var writer = new StreamWriter(output);
-
-            hssfworkbook = new HSSFWorkbook();
+            var xssfworkbook = new XSSFWorkbook();
 
             String[] Cabecera1 = { "CODIGOS SBS","EMPRESAS \n REASEGURADORAS Y/O \n COASEGURADORAS", "PRIMAS POR \n PAGAR \n REASEGUROS \n CEDIDOS", "PRIMAS POR \n COBRAR \n REASEGUROS \n ACEPTADOS", "SINIESTROS \n POR COBRAR \n REASEGUROS \n CEDIDOS",
                                     "SINIESTROS \n POR PAGAR \n REASEGUROS \n ACEPTADOS", "OTRAS \n CUENTAS POR \n COBRAR \n REASEGUROS \n CEDIDOS", "OTRAS \n CUENTAS POR \n PAGAR \n REASEGUROS \n ACEPTADOS", "DESCUENOTS Y \n COMISIONES DE \n REASEGUROS",
                                     "SALDO \n DEUDOR", "SALDO \n ACREEDOR","SALDO \n DEUDOR \n COMPENSADOS","SALDO \n ACREEDOR \n COMPENSADOS" };
 
-            ISheet hojaTrabajo = hssfworkbook.CreateSheet("ANEXO ES - 2A");
+            ISheet hojaTrabajo = xssfworkbook.CreateSheet("ANEXO ES - 2A");
 
             String[] Cabecera2 = { "CODIGOS SBS", "NOMBRE DE LAS \n EMPRESAS Y DETALLE \n DE CONTRATOS", "CUENTAS POR COBRAR A \n REASEGURADORES Y/O \n COASEGURADORES", "6  ó  \n MAS MESES DE ANTIGÜEDAD",
                                     "12  ó  MAS  MESES \n DE ANTIGÜEDAD", "TOTAL DE \n PARTIDAS \n A PROVISIONAR" };
 
-            ISheet hojaTrabajo2 = hssfworkbook.CreateSheet("ANEXO ES - 2B");
+            ISheet hojaTrabajo2 = xssfworkbook.CreateSheet("ANEXO ES - 2B");
 
-            IFont titleFontBlack = hssfworkbook.CreateFont();
+            IFont titleFontBlack = xssfworkbook.CreateFont();
             titleFontBlack.FontName = "Calibri";
             titleFontBlack.Boldweight = (short)FontBoldWeight.Bold;
             titleFontBlack.Color = (IndexedColors.Black.Index);
             titleFontBlack.FontHeightInPoints = 11;
 
-            IFont dataFont = hssfworkbook.CreateFont();
+            IFont dataFont = xssfworkbook.CreateFont();
             dataFont.FontName = "Calibri";
             dataFont.Color = (IndexedColors.Black.Index);
             dataFont.FontHeightInPoints = 10;
 
-            ICellStyle styleCabecera = this.SetStyleHeader(this.SetFontTitle());
+            ICellStyle styleCabecera = this.SetStyleHeader(this.SetFontTitle(xssfworkbook), xssfworkbook);
 
             IRow FilaTitulo = hojaTrabajo.CreateRow(4);
             ICell CeldaTitulo;
@@ -364,7 +368,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                 }
             }
             //segunda ventana
-            ICellStyle styleData = this.SetFontData(dataFont);
+            ICellStyle styleData = this.SetFontData(dataFont, xssfworkbook);
 
             for (int cl = 2; cl <= 7; cl++) {
                 hojaTrabajo2.SetColumnWidth(cl,300*25);
@@ -401,7 +405,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             {
                 celdaSheet2 = FilaCabecera22.CreateCell(c + 1);
                 celdaSheet2.SetCellValue(Cabecera2[c]);
-                celdaSheet2.CellStyle = this.SetFontData(this.SetFontDataText());
+                celdaSheet2.CellStyle = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
                 celdaSheet2.CellStyle = styleCabecera;
                 celdaSheet2.CellStyle.WrapText = true;
             }
@@ -410,29 +414,14 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             dtanexo.Columns.Clear();
             dtanexo.Clear();
 
-            hssfworkbook.Write(output);
-            writer.Flush();
-
-            MemoryStream file = new MemoryStream();
-            hssfworkbook.Write(file);
-
-            return output;
+            return xssfworkbook;
         
         }
 
-        public MemoryStream ES_18A(String contrato, DateTime fecha_inicio, DateTime fecha_hasta,String formato_moneda)
+        private XSSFWorkbook ES_18A(String contrato, DateTime fecha_inicio, DateTime fecha_hasta, String formato_moneda)
         {
 
-            var output = new MemoryStream();
-            var writer = new StreamWriter(output);
-
-            hssfworkbook = new HSSFWorkbook();
-
-            DocumentSummaryInformation dsi = PropertySetFactory.CreateDocumentSummaryInformation();
-            dsi.Company = "Andean System";
-            hssfworkbook.DocumentSummaryInformation = dsi;
-            SummaryInformation si = PropertySetFactory.CreateSummaryInformation();
-            si.Subject = "Powered by JLevano";
+            var xssfworkbook = new XSSFWorkbook();
 
             String[] Cabecera = { "Nº", "EMPRESA DE REASEGUROS","EMPRESA CORREDORA DE SEGUROS", "INFORMACION SOBRE CONTRATOS DE REASEGUROS","OBSERVACIONES"};
 
@@ -440,19 +429,19 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                                     "Nº DE REGISTRO", "NOMBRE", "TIPO DE \n CONTRATO","RAMO","INICIO DE \n VIGENCIA",
                                     "PRIMA CEDITAS \n BRUTAS", "PRIMAS CEDITAS \n NETAS" };
 
-            ISheet hojaTrabajo = hssfworkbook.CreateSheet("ES-18A");
+            ISheet hojaTrabajo = xssfworkbook.CreateSheet("ES-18A");
 
-            IFont titleFont = this.SetFontTitle();
+            IFont titleFont = this.SetFontTitle(xssfworkbook);
 
-            IFont titleFontBlack = hssfworkbook.CreateFont();
+            IFont titleFontBlack = xssfworkbook.CreateFont();
             titleFontBlack.FontName = "Calibri";
             titleFontBlack.Boldweight = (short)FontBoldWeight.Bold;
             titleFontBlack.Color = (IndexedColors.Black.Index);
             titleFontBlack.FontHeightInPoints = 11;
 
-            ICellStyle styleCabecera = this.SetStyleHeader(titleFont);
+            ICellStyle styleCabecera = this.SetStyleHeader(titleFont, xssfworkbook);
 
-            ICellStyle styleTitulo = hssfworkbook.CreateCellStyle();
+            ICellStyle styleTitulo = xssfworkbook.CreateCellStyle();
             styleCabecera.Alignment = HorizontalAlignment.Center;
             styleCabecera.SetFont(titleFont);
 
@@ -554,7 +543,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
 
                     CeldaData = filaData.CreateCell(c + 1);
                     CeldaData.SetCellValue(table18.Rows[r][c].ToString());
-                    CeldaData.CellStyle = this.SetFontData(this.SetFontDataText());
+                    CeldaData.CellStyle = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
                     hojaTrabajo.AutoSizeColumn(table18.Columns[c].Ordinal);
                 }
             }
@@ -562,50 +551,32 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             table18.Columns.Clear();
             table18.Clear();
 
-            hssfworkbook.Write(output);
-            writer.Flush();
-
-            MemoryStream file = new MemoryStream();
-            hssfworkbook.Write(file);
-
-            return output;
-
+            return xssfworkbook;
         }
 
-        public MemoryStream ES_18B(String contratos,string fecha_reporte)
+        private XSSFWorkbook ES_18B(String contratos, string fecha_reporte)
         {
-            var output = new MemoryStream();
-            var writer = new StreamWriter(output);
 
-            hssfworkbook = new HSSFWorkbook();
+            var xssfworkbook = new XSSFWorkbook();
 
-            ISheet hojaTrabajo = hssfworkbook.CreateSheet("ES-18B");
+            ISheet hojaTrabajo = xssfworkbook.CreateSheet("ES-18B");
 
-            /*HSSFPatriarch patriarch = (HSSFPatriarch)hojaTrabajo.CreateDrawingPatriarch();
-            HSSFClientAnchor anchor = new HSSFClientAnchor(0, 0, 0, 100, 3, 1, 4, 4);
-            anchor.AnchorType = 2;
-            String imageUrl = Directory.GetCurrentDirectory();
-            HSSFPicture picture = (HSSFPicture)patriarch.CreatePicture(anchor, LoadImage("/../../ISL/im_titulo.jpg", hssfworkbook));
-            picture.Resize();
-            //picture.LineStyle = HSSFPicture.LINESTYLE_DASHDOTGEL;*/
+            IFont titleFont = this.SetFontTitle(xssfworkbook);
 
-
-            IFont titleFont = this.SetFontTitle();
-
-            IFont titleFontBlack = hssfworkbook.CreateFont();
+            IFont titleFontBlack = xssfworkbook.CreateFont();
             titleFontBlack.FontName = "Calibri";
             titleFontBlack.Boldweight = (short)FontBoldWeight.Bold;
             titleFontBlack.Color = (IndexedColors.Black.Index);
             titleFontBlack.FontHeightInPoints = 11;
 
-            IFont dataFont = hssfworkbook.CreateFont();
+            IFont dataFont = xssfworkbook.CreateFont();
             dataFont.FontName = "Calibri";
             dataFont.Color = (IndexedColors.Black.Index);
             dataFont.FontHeightInPoints = 10;
 
-            ICellStyle styleCabecera = this.SetStyleHeader(titleFont);
+            ICellStyle styleCabecera = this.SetStyleHeader(titleFont, xssfworkbook);
 
-            ICellStyle styleTitulo = hssfworkbook.CreateCellStyle();
+            ICellStyle styleTitulo = xssfworkbook.CreateCellStyle();
             styleCabecera.Alignment = HorizontalAlignment.Center;
             styleCabecera.SetFont(titleFont);
 
@@ -649,7 +620,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             hojaTrabajo.AddMergedRegion(new CellRangeAddress(15, 15, 1, 5));
             CeldaTitulo.CellStyle.Alignment = HorizontalAlignment.Center;
 
-            ICellStyle styleData = hssfworkbook.CreateCellStyle();
+            ICellStyle styleData = xssfworkbook.CreateCellStyle();
             styleData.SetFont(dataFont);
             styleData.Alignment = HorizontalAlignment.Left;
 
@@ -757,36 +728,36 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                         {
                             dataCell = dataRow.CreateCell(3);
                             dataCell.SetCellValue(Convert.ToString(Convert.ToDecimal(tableB.Rows[r][c + 3])/100));
-                            dataCell.CellStyle = this.SetFontData(this.SetFontDataText());
+                            dataCell.CellStyle = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
                         }
                         else if (tableB.Rows[r][0].ToString().Trim().Equals("NPA"))
                         {
                             dataCell = dataRow.CreateCell(4);
                             dataCell.SetCellValue(Convert.ToString(Convert.ToDecimal(tableB.Rows[r][c + 3]) / 100));
-                            dataCell.CellStyle = this.SetFontData(this.SetFontDataText());
+                            dataCell.CellStyle = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
                         }
                         else if (tableB.Rows[r][0].ToString().Trim().Equals("PF")) {
 
                             dataCell = dataRow.CreateCell(5);
                             dataCell.SetCellValue(Convert.ToString(Convert.ToDecimal(tableB.Rows[r][c + 3]) / 100));
-                            dataCell.CellStyle = this.SetFontData(this.SetFontDataText());
+                            dataCell.CellStyle = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
                         }
                         else
                         {
                             dataCell = dataRow.CreateCell(6);
                             dataCell.SetCellValue("0");
-                            dataCell.CellStyle = this.SetFontData(this.SetFontDataText());
+                            dataCell.CellStyle = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
 
                             dataCell = dataRow.CreateCell(6);
                             dataCell.SetCellValue(Convert.ToString(Convert.ToDecimal(tableB.Rows[r][c + 3]) / 100));
-                            dataCell.CellStyle = this.SetFontData(this.SetFontDataText());
+                            dataCell.CellStyle = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
                         }
                     }
                     else
                     {
                         dataCell = dataRow.CreateCell(c + 1);
                         dataCell.SetCellValue(Convert.ToString(tableB.Rows[r][c + 3].ToString()));
-                        dataCell.CellStyle = this.SetFontData(this.SetFontDataText());
+                        dataCell.CellStyle = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
                     }
 
                 }
@@ -796,51 +767,36 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             tableB.Columns.Clear();
             tableB.Clear();
 
-            hssfworkbook.Write(output);
-            writer.Flush();
-
-            MemoryStream file = new MemoryStream();
-            hssfworkbook.Write(file);
-
-            return output;
+            return xssfworkbook;
         }
 
-        public MemoryStream ES_18C(String contrato, String formato_moneda,string fecha_reporte)
+        private XSSFWorkbook ES_18C(String contrato, String formato_moneda, string fecha_reporte)
         {
-            var output = new MemoryStream();
-            var writer = new StreamWriter(output);
+            var xssfworkbook = new XSSFWorkbook();
 
-            hssfworkbook = new HSSFWorkbook();
+            ISheet hojaTrabajo = xssfworkbook.CreateSheet("ES-18C");
 
-            DocumentSummaryInformation dsi = PropertySetFactory.CreateDocumentSummaryInformation();
-            dsi.Company = "Andean System";
-            hssfworkbook.DocumentSummaryInformation = dsi;
-            SummaryInformation si = PropertySetFactory.CreateSummaryInformation();
-            si.Subject = "Powered by JLevano";
+            IFont titleFont = this.SetFontTitle(xssfworkbook);
 
-            ISheet hojaTrabajo = hssfworkbook.CreateSheet("ES-18C");
-
-            IFont titleFont = this.SetFontTitle();
-
-            IFont titleFontBlack = hssfworkbook.CreateFont();
+            IFont titleFontBlack = xssfworkbook.CreateFont();
             titleFontBlack.FontName = "Calibri";
             titleFontBlack.Boldweight = (short)FontBoldWeight.Bold;
             titleFontBlack.Color = (IndexedColors.Black.Index);
             titleFontBlack.FontHeightInPoints = 11;
 
-            IFont dataFont = hssfworkbook.CreateFont();
+            IFont dataFont = xssfworkbook.CreateFont();
             dataFont.FontName = "Calibri";
             dataFont.Color = (IndexedColors.Black.Index);
             dataFont.FontHeightInPoints = 10;
 
-            ICellStyle styleCabecera = this.SetStyleHeader(titleFont);
+            ICellStyle styleCabecera = this.SetStyleHeader(titleFont, xssfworkbook);
             styleCabecera.Alignment = HorizontalAlignment.Center;
             styleCabecera.SetFont(titleFont);
 
-            ICellStyle styleTitulo = hssfworkbook.CreateCellStyle();
+            ICellStyle styleTitulo = xssfworkbook.CreateCellStyle();
             styleTitulo.Alignment = HorizontalAlignment.Center;
 
-            ICellStyle styleOtro = hssfworkbook.CreateCellStyle();
+            ICellStyle styleOtro = xssfworkbook.CreateCellStyle();
             styleOtro.Alignment = HorizontalAlignment.Left;
             styleOtro.SetFont(titleFont);
 
@@ -1000,7 +956,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                 {
                     dataCell = dataRow.CreateCell(c + 1);
                     dataCell.SetCellValue(tableC.Rows[r][c].ToString());
-                    dataCell.CellStyle = this.SetFontData(this.SetFontDataText());
+                    dataCell.CellStyle = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
                 }
             }
 
@@ -1008,55 +964,40 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             tableC.Columns.Clear();
             tableC.Clear();
 
-            hssfworkbook.Write(output);
-            writer.Flush();
-
-            MemoryStream file = new MemoryStream();
-            hssfworkbook.Write(file);
-
-            return output;
+            return xssfworkbook;
         }
 
-        public MemoryStream ES_18D(String contrato,String formato_moneda,string fecha_reporte)
+        private XSSFWorkbook ES_18D(String contrato, String formato_moneda, string fecha_reporte)
         {
 
-            var output = new MemoryStream();
-            var writer = new StreamWriter(output);
-
-            hssfworkbook = new HSSFWorkbook();
-
-            DocumentSummaryInformation dsi = PropertySetFactory.CreateDocumentSummaryInformation();
-            dsi.Company = "Andean System";
-            hssfworkbook.DocumentSummaryInformation = dsi;
-            SummaryInformation si = PropertySetFactory.CreateSummaryInformation();
-            si.Subject = "Powered by JLevano";
+            var xssfworkbook = new XSSFWorkbook();
 
             String[] Cabecera = { "Nº", "TIPO DE \n CONTRATO (1)", "RAMOS (2)", "REASEGURADORA LIDER", " ","CODIGO SBS","INICIO DE \n VIGENCIA","FIN DE \n VIGENCIA",
                                 "CAPA Nº (XL)", "PRIORIDAD", "CESION EN \n EXCESO DE LA \n PRIORIDAD", "MONTO MAXIMO \n DE LA CAPA O \n LIMITE SUPERIOR", "PRIMA MINIMA \n O PRIMA \n DEPOSITO" };
 
-            ISheet hojaTrabajo = hssfworkbook.CreateSheet("ES-18D");
+            ISheet hojaTrabajo = xssfworkbook.CreateSheet("ES-18D");
 
-            IFont titleFont = this.SetFontTitle();
+            IFont titleFont = this.SetFontTitle(xssfworkbook);
 
-            IFont titleFontBlack = hssfworkbook.CreateFont();
+            IFont titleFontBlack = xssfworkbook.CreateFont();
             titleFontBlack.FontName = "Calibri";
             titleFontBlack.Boldweight = (short)FontBoldWeight.Bold;
             titleFontBlack.Color = (IndexedColors.Black.Index);
             titleFontBlack.FontHeightInPoints = 14;
 
-            IFont dataFont = hssfworkbook.CreateFont();
+            IFont dataFont = xssfworkbook.CreateFont();
             dataFont.FontName = "Calibri";
             dataFont.Color = (IndexedColors.Black.Index);
             dataFont.FontHeightInPoints = 14;
 
-            ICellStyle styleCabecera = this.SetStyleHeader(titleFont);
+            ICellStyle styleCabecera = this.SetStyleHeader(titleFont, xssfworkbook);
 
             styleCabecera.Alignment = HorizontalAlignment.Center;
             styleCabecera.SetFont(titleFont);
 
-            ICellStyle styleTitulo = hssfworkbook.CreateCellStyle();
+            ICellStyle styleTitulo = xssfworkbook.CreateCellStyle();
 
-            ICellStyle styleOtro = hssfworkbook.CreateCellStyle();
+            ICellStyle styleOtro = xssfworkbook.CreateCellStyle();
             styleOtro.Alignment = HorizontalAlignment.Left;
             styleOtro.SetFont(titleFont);
             
@@ -1131,7 +1072,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             hojaTrabajo.AddMergedRegion(new CellRangeAddress(18, 19, 13, 13));
 
 
-            ICellStyle styleData = this.SetFontData(this.SetFontDataText());
+            ICellStyle styleData = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
 
             bExportarData ed = new bExportarData();
             DataTable tableD = ed.GetSelecionarEs18D(contrato, formato_moneda);
@@ -1143,59 +1084,44 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                 {
                     dataCell = dataRow.CreateCell(c + 1);
                     dataCell.SetCellValue(tableD.Rows[r][c].ToString());
-                    dataCell.CellStyle = this.SetFontData(this.SetFontDataText());
+                    dataCell.CellStyle = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
                 }
             }
             tableD.Rows.Clear();
             tableD.Columns.Clear();
             tableD.Clear();
 
-            hssfworkbook.Write(output);
-            writer.Flush();
-
-            MemoryStream file = new MemoryStream();
-            hssfworkbook.Write(file);
-
-            return output;
+            return xssfworkbook;
 
         }
 
-        public MemoryStream ES_18E(String contrato,DateTime fecha_inicio,DateTime fecha_hasta,String formato_moneda)
+        private XSSFWorkbook ES_18E(String contrato, DateTime fecha_inicio, DateTime fecha_hasta, String formato_moneda)
         {
-            var output = new MemoryStream();
-            var writer = new StreamWriter(output);
+            var xssfworkbook = new XSSFWorkbook();
 
-            hssfworkbook = new HSSFWorkbook();
+            ISheet hojaTrabajo = xssfworkbook.CreateSheet("ES-18C");
 
-            DocumentSummaryInformation dsi = PropertySetFactory.CreateDocumentSummaryInformation();
-            dsi.Company = "Andean System";
-            hssfworkbook.DocumentSummaryInformation = dsi;
-            SummaryInformation si = PropertySetFactory.CreateSummaryInformation();
-            si.Subject = "Powered by JLevano";
+            IFont titleFont = this.SetFontTitle(xssfworkbook);
 
-            ISheet hojaTrabajo = hssfworkbook.CreateSheet("ES-18C");
-
-            IFont titleFont = this.SetFontTitle();
-
-            IFont titleFontBlack = hssfworkbook.CreateFont();
+            IFont titleFontBlack = xssfworkbook.CreateFont();
             titleFontBlack.FontName = "Calibri";
             titleFontBlack.Boldweight = (short)FontBoldWeight.Bold;
             titleFontBlack.Color = (IndexedColors.Black.Index);
             titleFontBlack.FontHeightInPoints = 11;
 
-            IFont dataFont = hssfworkbook.CreateFont();
+            IFont dataFont = xssfworkbook.CreateFont();
             dataFont.FontName = "Calibri";
             dataFont.Color = (IndexedColors.Black.Index);
             dataFont.FontHeightInPoints = 10;
 
-            ICellStyle styleCabecera = this.SetStyleHeader(titleFont);
+            ICellStyle styleCabecera = this.SetStyleHeader(titleFont, xssfworkbook);
             styleCabecera.VerticalAlignment = VerticalAlignment.Center;
             styleCabecera.Alignment = HorizontalAlignment.Center;
             styleCabecera.SetFont(titleFont);
 
-            ICellStyle styleTitulo = hssfworkbook.CreateCellStyle();
+            ICellStyle styleTitulo = xssfworkbook.CreateCellStyle();
                        styleTitulo.Alignment = HorizontalAlignment.Center;
-            ICellStyle styleOtro = hssfworkbook.CreateCellStyle();
+                       ICellStyle styleOtro = xssfworkbook.CreateCellStyle();
             styleOtro.Alignment = HorizontalAlignment.Left;
             styleOtro.SetFont(titleFont);
 
@@ -1329,49 +1255,41 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                 {
                     dataCell = dataRow.CreateCell(c + 2);
                     dataCell.SetCellValue(tableE.Rows[r][c].ToString());
-                    dataCell.CellStyle = this.SetFontData(this.SetFontDataText());
+                    dataCell.CellStyle = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
                 }
             }
 
-            hssfworkbook.Write(output);
-            writer.Flush();
-
-            MemoryStream file = new MemoryStream();
-            hssfworkbook.Write(file);
-
-            return output;
+            return xssfworkbook;
 
         }
 
-        public MemoryStream ES_18F(String contrato,DateTime fecha_inicio,DateTime fecha_hasta,String formato_moneda)
+        private XSSFWorkbook ES_18F(String contrato, DateTime fecha_inicio, DateTime fecha_hasta, String formato_moneda)
         {
-            var output = new MemoryStream();
-            var writer = new StreamWriter(output);
 
-            hssfworkbook = new HSSFWorkbook();
+            var xssfworkbook = new XSSFWorkbook();
 
-            ISheet hojaTrabajo = hssfworkbook.CreateSheet("ES-18F");
+            ISheet hojaTrabajo = xssfworkbook.CreateSheet("ES-18F");
 
-            IFont titleFont = this.SetFontTitle();
+            IFont titleFont = this.SetFontTitle(xssfworkbook);
 
-            IFont titleFontBlack = hssfworkbook.CreateFont();
+            IFont titleFontBlack = xssfworkbook.CreateFont();
             titleFontBlack.FontName = "Calibri";
             titleFontBlack.Boldweight = (short)FontBoldWeight.Bold;
             titleFontBlack.Color = (IndexedColors.Black.Index);
             titleFontBlack.FontHeightInPoints = 11;
 
-            IFont dataFont = hssfworkbook.CreateFont();
+            IFont dataFont = xssfworkbook.CreateFont();
             dataFont.FontName = "Calibri";
             dataFont.Color = (IndexedColors.Black.Index);
             dataFont.FontHeightInPoints = 10;
 
-            ICellStyle styleCabecera = this.SetStyleHeader(titleFont);
+            ICellStyle styleCabecera = this.SetStyleHeader(titleFont, xssfworkbook);
             styleCabecera.Alignment = HorizontalAlignment.Center;
             styleCabecera.SetFont(titleFont);
 
-            ICellStyle styleTitulo = hssfworkbook.CreateCellStyle();
+            ICellStyle styleTitulo = xssfworkbook.CreateCellStyle();
                        styleTitulo.Alignment = HorizontalAlignment.Center;
-            ICellStyle styleOtro = hssfworkbook.CreateCellStyle();
+            ICellStyle styleOtro = xssfworkbook.CreateCellStyle();
             styleOtro.Alignment = HorizontalAlignment.Left;
             styleOtro.SetFont(titleFont);
 
@@ -1474,13 +1392,13 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                 {
                     dataCell = dataRow.CreateCell(c + 2);
                     dataCell.SetCellValue(tableF.Rows[r][c].ToString());
-                    dataCell.CellStyle = this.SetFontData(this.SetFontDataText());
+                    dataCell.CellStyle = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
                 }
             }
             IRow FilaTotal = hojaTrabajo.CreateRow(15 + tableF.Rows.Count);
             ICell celldataTittle = FilaTotal.CreateCell(2);
             celldataTittle.SetCellValue("TOTALES");
-            celldataTittle.CellStyle = this.SetFontData(this.SetFontDataText());
+            celldataTittle.CellStyle = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
             //sumalisar el reporte
             for (int cl = 1; cl < tableF.Columns.Count; cl++) {
                 decimal sumatotal = 0;
@@ -1490,39 +1408,31 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                 }
                 sumadatatotal = FilaTotal.CreateCell(cl+2);
                 sumadatatotal.SetCellValue(String.Format(formato_moneda, sumatotal));
-                sumadatatotal.CellStyle = this.SetFontData(this.SetFontDataText());
+                sumadatatotal.CellStyle = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
             }
-            hssfworkbook.Write(output);
-            writer.Flush();
 
-            MemoryStream file = new MemoryStream();
-            hssfworkbook.Write(file);
-
-            return output;
+            return xssfworkbook;
 
         }
-        private MemoryStream Modelos(String nro_contrato,DateTime fecha_inicio,DateTime fecha_hasta,String formato_moneda,Int32 token) {
-
-            var output = new MemoryStream();
-            var writer = new StreamWriter(output);
-
-            hssfworkbook = new HSSFWorkbook();
+        private XSSFWorkbook Modelos(String nro_contrato, DateTime fecha_inicio, DateTime fecha_hasta, String formato_moneda, Int32 token)
+        {
+            var xssfworkbook = new XSSFWorkbook();
 
             String[] cabecera = { "","FECHA \n COMPROBANTE","TIPO \n COMPROBANTE","COMPROBANTE","N° CT","REASEGURADOR" , "ASEGURADO ", "N° CONTRATO","DESCRIPCIÓN \n COMPROBANTES", "RAMO","MONEDA", "PRIMAS POR PAGAR \n REASEGUROS CEDIDOS \n (4)", "PRIMAS  POR COBRAR \n REASEGUROS ACEPTADOS \n (5)",
                                  "SINIESTROS POR COBRAR \n REASEGUROS CEDIDOS (6)","SINIESTROS POR PAGAR \n REASEGUROS ACEPTADOS (7)","OTRAS CUENTAS POR COBRAR \n REASEGUROS CEDIDOS (8)"," OTRAS CUENTAS POR PAGAR \n REASEGUROS ACEPTADOS (9)",
                                  "DESCUENTOS Y COMISIONES \n DE REASEGUROS (10)","SALDO DEUDOR \n (11)","SALDO ACREEDOR \n (12)","SALDO DEUDOR \n COMPENSADO \n (13)","SALDO ACREEDOR COMPENSADO\n (14)"};
-            ISheet hojaTrabajo = hssfworkbook.CreateSheet("Modelo");
+            ISheet hojaTrabajo = xssfworkbook.CreateSheet("Modelo");
 
-            IFont titleFont = this.SetFontTitle();
+            IFont titleFont = this.SetFontTitle(xssfworkbook);
 
-            ICellStyle styleCabecera = this.SetStyleHeader(titleFont);
+            ICellStyle styleCabecera = this.SetStyleHeader(titleFont, xssfworkbook);
             styleCabecera.Alignment = HorizontalAlignment.Center;
             styleCabecera.VerticalAlignment = VerticalAlignment.Center;
             styleCabecera.SetFont(titleFont);
 
             //DATA DESDE DB PARA TITULO SI ES PROPORCIONAL Y NO PROPORCIONAL
             bExportarData ed = new bExportarData();
-            DataTable tbmodelo = ed.GetSelecionarModelo(nro_contrato, fecha_inicio, fecha_hasta,formato_moneda,token);
+            DataTable tbmodelo = ed.GetSelecionarModelo(nro_contrato, fecha_inicio, fecha_hasta,formato_moneda,token,ddl_reasegurador.SelectedItem.Value);
             
             IRow title = hojaTrabajo.CreateRow(3);
             if (token == 1){
@@ -1556,14 +1466,14 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                 {
                     dataCell1 = dataRow1.CreateCell(c);
                     dataCell1.SetCellValue(tbmodelo.Rows[r][c-1].ToString());
-                    dataCell1.CellStyle = this.SetFontData(this.SetFontDataText());
+                    dataCell1.CellStyle = setFontText(11, false, xssfworkbook);
                 }
             }
             IRow Filasuma = hojaTrabajo.CreateRow((7+row_advances)+tbmodelo.Rows.Count);
             ICell CelldataTittle;
             CelldataTittle = Filasuma.CreateCell(10);
             CelldataTittle.SetCellValue("TOTALES");
-            CelldataTittle.CellStyle = this.SetFontData(this.SetFontDataText());
+            CelldataTittle.CellStyle = setFontText(11, false, xssfworkbook);
 
             for (int cl = 10; cl < tbmodelo.Columns.Count; cl++) {
                 decimal costtotal = 0;
@@ -1573,24 +1483,18 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                 }
                 sumadatatotal = Filasuma.CreateCell(cl+1);
                 sumadatatotal.SetCellValue(String.Format(formato_moneda, costtotal));
-                sumadatatotal.CellStyle = this.SetFontData(this.SetFontDataText());
+                sumadatatotal.CellStyle = setFontText(11, false, xssfworkbook);
             }
-
-            hssfworkbook.Write(output);
-            writer.Flush();
 
             tbmodelo.Columns.Clear();
             tbmodelo.Rows.Clear();
             tbmodelo.Clear();
 
-            MemoryStream file = new MemoryStream();
-            hssfworkbook.Write(file);
-
-            return output;
+            return xssfworkbook;
         }
-        private ICellStyle SetStyleHeader(IFont SetFontTitle)
+        private ICellStyle SetStyleHeader(IFont SetFontTitle,XSSFWorkbook book)
         {
-            ICellStyle styleCabecera = hssfworkbook.CreateCellStyle();
+            ICellStyle styleCabecera = book.CreateCellStyle();
             styleCabecera.SetFont(SetFontTitle);
             styleCabecera.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
             styleCabecera.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
@@ -1600,17 +1504,17 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             return styleCabecera;
         }
 
-        private IFont SetFontDataText()
+        private IFont SetFontDataText(XSSFWorkbook book)
         {
-            IFont dataFont = hssfworkbook.CreateFont();
+            IFont dataFont = book.CreateFont();
             dataFont.FontName = "Calibri";
             dataFont.Color = (IndexedColors.Black.Index);
             dataFont.FontHeightInPoints = 10;
             return dataFont;
         }
-        private ICellStyle SetFontData(IFont SetFontDataText)
+        private ICellStyle SetFontData(IFont SetFontDataText, XSSFWorkbook book)
         {
-            ICellStyle styleData = hssfworkbook.CreateCellStyle();
+            ICellStyle styleData = book.CreateCellStyle();
             styleData.SetFont(SetFontDataText);
             styleData.Alignment = HorizontalAlignment.Center;
             styleData.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
@@ -1620,10 +1524,10 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
 
             return styleData;
         }
-        private IFont SetFontTitle()
+        private IFont SetFontTitle(XSSFWorkbook book)
         {
 
-            IFont titleFont = hssfworkbook.CreateFont();
+            IFont titleFont = book.CreateFont();
             titleFont.FontName = "Calibri";
             titleFont.Boldweight = (short)FontBoldWeight.Bold;
             titleFont.Color = (IndexedColors.Black.Index);
@@ -1639,9 +1543,43 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             return wb.AddPicture(buffer, PictureType.JPEG);
 
         }
+        private ICellStyle setFontText(short point, bool color, XSSFWorkbook book)
+        {
+            var font = book.CreateFont();
+            font.FontName = "Calibri";
+            font.Color = (IndexedColors.Black.Index);
+            font.FontHeightInPoints = point;
+
+            var style = book.CreateCellStyle();
+            style.SetFont(font);
+            style.Alignment = HorizontalAlignment.Center;
+            style.VerticalAlignment = VerticalAlignment.Center;
+            if (color)
+            {
+                style.FillForegroundColor = HSSFColor.Grey25Percent.Index;
+                style.FillPattern = FillPattern.SolidForeground;
+            }
+            style.BorderBottom = BorderStyle.Thin;
+            style.BorderTop = BorderStyle.Thin;
+            style.BorderLeft = BorderStyle.Thin;
+            style.BorderRight = BorderStyle.Thin;
+            return style;
+        }
         private void MessageBox(String text)
         {
             Page.ClientScript.RegisterStartupScript(GetType(), "msgbox", "$('<div>" + text + "</div>').dialog({title:'Confirmación',modal:true,width:400,height:170,buttons: [{id: 'aceptar',text: 'Aceptar',icons: { primary: 'ui-icon-circle-check' },click: function () {$(this).dialog('close');}}]})", true);
+        }
+        private string saveFileTemp(XSSFWorkbook book,string name)
+        {
+            var directoryName = @HttpContext.Current.Server.MapPath("~/Temp/Reportes/") + name + DateTime.Now.ToString("MMMMddyyyy") + ".xlsx";
+            if(File.Exists(directoryName))
+                File.Delete(directoryName);
+            using (var file = new FileStream(directoryName, FileMode.Create, FileAccess.ReadWrite))
+            {
+                book.Write(file);
+                file.Close();
+                return directoryName;
+            }
         }
     }
 }

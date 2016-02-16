@@ -15,9 +15,9 @@ namespace VidaCamara.DIS.Negocio
         /// <param name="jtPageSize"></param>
         /// <param name="total"></param>
         /// <returns></returns>
-        public List<ReglaArchivo> getListReglaArchivo(ReglaArchivo regla, int jtStartIndex, int jtPageSize, out int total)
+        public List<ReglaArchivo> getListReglaArchivo(ReglaArchivo regla, int jtStartIndex, int jtPageSize,string jtSorting, out int total)
         {
-            return new dReglaArchivo().getListReglaArchivo(regla, jtStartIndex, jtPageSize, out total);
+            return new dReglaArchivo().getListReglaArchivo(regla, jtStartIndex, jtPageSize,jtSorting, out total);
         }
         /// <summary>
         /// Devuelve la las colunas para una grilla en formato de json acuerdo a un tipo de regla
@@ -27,7 +27,7 @@ namespace VidaCamara.DIS.Negocio
         public StringBuilder getColumnGridByArchivo(ReglaArchivo regla,string columnsAdd = null)
         {
             var total = 0;
-            var listRegla = new dReglaArchivo().getListReglaArchivo(regla, 0, 200, out total);
+            var listRegla = new dReglaArchivo().getListReglaArchivo(regla, 0, 200,"IdReglaArchivo ASC", out total);
             var sb = new StringBuilder();
             sb.Append("var fields = {");
             for (int i = 1; i <= listRegla.Count; i++)
@@ -39,6 +39,16 @@ namespace VidaCamara.DIS.Negocio
             sb.Append(columnsAdd);
             sb.Append("};");
             return sb;
+        }
+
+        public void grabarReglaArchivo(ReglaArchivo regla)
+        {
+            new dReglaArchivo().grabarReglaArchivo(regla);
+        }
+
+        public void actualizarReglaArchivo(ReglaArchivo regla)
+        {
+            new dReglaArchivo().actualizarReglaArchivo(regla);
         }
     }
 }

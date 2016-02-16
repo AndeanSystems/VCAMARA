@@ -58,6 +58,15 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas {
         protected global::System.Web.UI.WebControls.DropDownList ddl_anexo_i;
         
         /// <summary>
+        /// ddl_reasegurador control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_reasegurador;
+        
+        /// <summary>
         /// txt_fecha_creacion control.
         /// </summary>
         /// <remarks>
