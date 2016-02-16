@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using VidaCamara.DIS.Modelo;
 using VidaCamara.DIS.Modelo.EEntidad;
 using System.Linq;
+using System.Configuration;
 
 namespace VidaCamara.DIS.data
 {
@@ -24,7 +25,7 @@ namespace VidaCamara.DIS.data
                         var eSegDescarga = new ESegDescarga() {
                             Estado = item.Estado,
                             FechaCarga = item.FecReg,
-                            Importe = item.ImporteTotalSoles.ToString(),
+                            Importe = string.Format(ConfigurationManager.AppSettings.Get("Float"),item.ImporteTotalSoles),
                             nombreArchivo = item.NombreArchivo,
                             NroLineas = Convert.ToInt32(item.TotalRegistros),
                             Moneda = item.Moneda,

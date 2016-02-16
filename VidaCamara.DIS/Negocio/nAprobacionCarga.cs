@@ -15,6 +15,7 @@ namespace VidaCamara.DIS.Negocio
 
         public void actualizarEstado(HistorialCargaArchivo_LinCab historialCargaArchivo_LinCab)
         {
+            new nLogOperacion().setLLenarEntidad(Convert.ToInt32(historialCargaArchivo_LinCab.IDE_CONTRATO), "I", "I03", historialCargaArchivo_LinCab.IdHistorialCargaArchivoLinCab.ToString(), System.Web.HttpContext.Current.Session["username"].ToString());
             new dAprobacionCarga().actualizarEstado(historialCargaArchivo_LinCab);
         }
 
@@ -25,6 +26,7 @@ namespace VidaCamara.DIS.Negocio
 
         public void eliminarPagoYNomina(HistorialCargaArchivo_LinCab historialCargaArchivo_LinCab)
         {
+            new nLogOperacion().setLLenarEntidad(Convert.ToInt32(historialCargaArchivo_LinCab.IDE_CONTRATO), "E", "E01", historialCargaArchivo_LinCab.IdHistorialCargaArchivoLinCab.ToString(), System.Web.HttpContext.Current.Session["username"].ToString());
             new dAprobacionCarga().eliminarPagoYNomina(historialCargaArchivo_LinCab);
         }
 

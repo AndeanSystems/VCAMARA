@@ -163,17 +163,17 @@ $(document).ready(function () {
             console.log(e);
         });
     }
-    var ControlarObjetos = function (tipo,active) {
-        if (parseInt(tipo[0]) == 2) {
-            $("#ctl00_ContentPlaceHolder1_txt_codigo_t").attr("readonly", true).css({ "background": "rgba(0,10,10,0.1)" });
-        } else {
-            $("#ctl00_ContentPlaceHolder1_txt_codigo_t").attr("readonly", false).css({ "background": "white" });
-        }
-        if (parseInt(tipo[1]) == 0) {
-            $("#ctl00_ContentPlaceHolder1_btn_enviar_t").attr("disabled", true);
-        } else {
-            $("#ctl00_ContentPlaceHolder1_btn_enviar_t").attr("disabled", false);
-        }
+    var ControlarObjetos = function (tipo, active) {
+        //if (parseInt(tipo[0]) == 2) {
+        //    $("#ctl00_ContentPlaceHolder1_txt_codigo_t").attr("readonly", true).css({ "background": "rgba(0,10,10,0.1)" });
+        //} else {
+        //    $("#ctl00_ContentPlaceHolder1_txt_codigo_t").attr("readonly", false).css({ "background": "white" });
+        //}
+        //if (parseInt(tipo[1]) == 0) {
+        //    $("#ctl00_ContentPlaceHolder1_btn_enviar_t").attr("disabled", true);
+        //} else {
+        //    $("#ctl00_ContentPlaceHolder1_btn_enviar_t").attr("disabled", false);
+        //}
     }
     $("body").delegate("#select_operacion", "change", function (ev) {
         document.getElementById("ctl00_ContentPlaceHolder1_txt_tipo_t").value = $(this).val();

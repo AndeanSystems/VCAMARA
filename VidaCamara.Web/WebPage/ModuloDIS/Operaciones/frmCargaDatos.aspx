@@ -125,7 +125,11 @@
             <asp:View ID="view3" runat="server">
 
                 <label class="label_to" for="txt_nombre_archivo_inf">Nombre del Archivo (*)</label>
-                <asp:Label ID="txt_nombre_archivo_inf" Text="_.CAM" runat="server"  CssClass="input_to"/>
+                <asp:Label ID="txt_nombre_archivo_inf" Text="_" runat="server"  CssClass="input_to" Width="35%"/>
+
+                <label class="input_right_L" for="ddl_tipinfo_d">Id Regla (*)</label>
+                <asp:TextBox CssClass="input_right numeric" ID="txt_idregla" runat="server"  Height="25px" Width="17%"></asp:TextBox>
+                <a href="#" id="buscar_regla_id"><img src="Resources/Imagenes/u154_normal.png" style="width:30px;height:25px;float:left;margin-left:3px;"/></a> 
 
                 <label class="label_to" for="txt_tipo_archivo">Tipo del Archivo (*)</label>
                 <asp:Label ID="txt_tipo_archivo_inf" Text="_" runat="server"  CssClass="input_to" Width="35%"/>

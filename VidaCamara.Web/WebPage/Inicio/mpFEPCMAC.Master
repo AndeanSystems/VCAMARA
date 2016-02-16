@@ -109,29 +109,29 @@
                         <li><a href="#">Operaciones</a>
                             <ul>
                                 <li>
-                                    <asp:HyperLink ID="HyperLink14" NavigateUrl="~/CargaDatosDIS?go=5" runat="server">Carga Archivos de Pagos</asp:HyperLink>
+                                    <asp:HyperLink ID="HyperLink14" NavigateUrl="~/CargaDatosDIS?go=13" runat="server">Carga Archivos de Pagos</asp:HyperLink>
                                 </li>
                                 <li>
-                                    <asp:HyperLink ID="HyperLink15" NavigateUrl="~/ApruebaCarga?go=5" runat="server">Aprueba Carga</asp:HyperLink>
+                                    <asp:HyperLink ID="HyperLink15" NavigateUrl="~/ApruebaCarga?go=14" runat="server">Aprueba Carga</asp:HyperLink>
                                 </li>
                                 <li>
-                                    <asp:HyperLink ID="HyperLink16" NavigateUrl="~/Telebankig?go=5" runat="server">Genera Telebanking</asp:HyperLink>
+                                    <asp:HyperLink ID="HyperLink16" NavigateUrl="~/Telebankig?go=15" runat="server">Genera Telebanking</asp:HyperLink>
                                 </li>
                                  <li>
-                                    <asp:HyperLink ID="HyperLink17" NavigateUrl="~/InterfaceContbleSIS?go=5" runat="server">Interface Contable</asp:HyperLink>
+                                    <asp:HyperLink ID="HyperLink17" NavigateUrl="~/InterfaceContbleSIS?go=16" runat="server">Interface Contable</asp:HyperLink>
                                 </li>
                             </ul>
                         </li>
                         <li><a href="#">Consultas</a>
                             <ul>
                                 <li>
-                                    <asp:HyperLink ID="HyperLink18" NavigateUrl="~/SegConsulta?go=5" runat="server" Text="Pagos Procesados" />
+                                    <asp:HyperLink ID="HyperLink18" NavigateUrl="~/SegConsulta?go=17" runat="server" Text="Pagos Procesados" />
                                 </li>
                                 <li>
-                                    <asp:HyperLink ID="HyperLink19" NavigateUrl="~/SegDescarga?go=5" runat="server" Text="Archivos Procesados" />
+                                    <asp:HyperLink ID="HyperLink19" NavigateUrl="~/SegDescarga?go=18" runat="server" Text="Archivos Procesados" />
                                 </li>
                                 <li>
-                                    <asp:HyperLink ID="HyperLink20" NavigateUrl="~/SegLogAdmin?go=5" runat="server" Text="Log Administrativo" />
+                                    <asp:HyperLink ID="HyperLink20" NavigateUrl="~/SegLogAdmin?go=19" runat="server" Text="Log Administrativo" />
                                 </li>
                             </ul>
                         </li>

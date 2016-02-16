@@ -20,6 +20,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         static NOMINA nomina = new NOMINA();
         static object[] filters = new object[4];//[0]NombreArchivo,[1]tipo moneda [2]cumpleValidacion,[3]ArchivoId
         static nContratoSis contratoSis = new nContratoSis();
+        static nLogOperacion nlog = new nLogOperacion();
         #endregion variables
 
         #region eventos control
@@ -101,6 +102,9 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 //david choque 27 12 2015
                 tipoArchivo = ddl_tipo_archivo.SelectedItem.Value;
                 setCargarReglaArchivo();
+                //insertar log
+                nlog.setLLenarEntidad(Convert.ToInt32(ddl_conrato1.SelectedItem.Value), "I", (tipoArchivo.Equals("NOMINA") ? "I05" : "I04"), cargaLogica.IdArchivo.ToString(), Session["username"].ToString());
+
                 txt_moneda.Text = cargaLogica.moneda;
                 txt_registro_procesado.Text = cargaLogica.ContadorExito.ToString();
                 txt_total_importe.Text = string.IsNullOrEmpty(cargaLogica.importe)?"0.00":cargaLogica.importe;

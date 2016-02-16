@@ -14,7 +14,9 @@ namespace VidaCamara.DIS.data
             {
                 using (var db = new DISEntities())
                 {
-                    var query = db.ReglaArchivos.OrderBy(a=>a.CaracterInicial).Where(a=>a.Archivo.Equals(regla.Archivo) && (a.TipoLinea.Equals(regla.TipoLinea) || regla.TipoLinea.Equals("0")) && a.vigente == 1 && a.NUM_CONT_LIC == regla.NUM_CONT_LIC).ToList();
+                    var query = db.ReglaArchivos.OrderBy(a=>a.CaracterInicial).Where(a=>a.Archivo.Equals(regla.Archivo) &&
+                                (a.TipoLinea.Equals(regla.TipoLinea) || regla.TipoLinea.Equals("0")) && a.vigente == 1 && 
+                                a.NUM_CONT_LIC == regla.NUM_CONT_LIC && (a.IdReglaArchivo == regla.IdReglaArchivo ||regla.IdReglaArchivo == 0)).ToList();
                     total = query.Count();
                     foreach (var item in query.Skip(jtStartIndex).Take(jtPageSize))
                     {
@@ -29,7 +31,8 @@ namespace VidaCamara.DIS.data
                             LargoCampo = item.LargoCampo,
                             TipoCampo = item.TipoCampo,
                             FormatoContenido = item.FormatoContenido,
-                            TituloColumna = item.TituloColumna
+                            TituloColumna = item.TituloColumna,
+                            ReglaValidacion = item.ReglaValidacion
                         };
                         listReglaArchivo.Add(reglaArchivo);
                     }

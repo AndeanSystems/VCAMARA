@@ -10,9 +10,22 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
 {
     public partial class frmInterfaceContableSIS : System.Web.UI.Page
     {
+        #region VARIABLES
+        static bValidarAcceso _accesso = new bValidarAcceso();
         static int total;
+        #endregion VARIABLES
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["pagina"] = "OTROS";
+            if (Session["username"] == null)
+                Response.Redirect("Login?go=0");
+            else
+            {
+                if (!_accesso.GetValidarAcceso(Request.QueryString["go"]))
+                {
+                    Response.Redirect("Error");
+                }
+            }
             if (!IsPostBack)
             {
                 var concepto = new bTablaVC();

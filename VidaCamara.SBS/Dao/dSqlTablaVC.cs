@@ -186,7 +186,7 @@ namespace VidaCamara.SBS.Dao
             var resp = new StringCollection();
             try
             {
-                String query = "SELECT TIPO,IS_EDITABLE  FROM CONCEPTO WHERE TIPO_TABLA = '9999' AND CODIGO = '"+codigo+"'";
+                String query = string.Format("SELECT TIPO,IS_EDITABLE  FROM CONCEPTO WHERE TIPO_TABLA = '9999' AND CODIGO = '{0}'",codigo);
                 SqlCommand sqlcmd = new SqlCommand();
                 sqlcmd.Connection = conexion;
                 sqlcmd.CommandType = CommandType.Text;

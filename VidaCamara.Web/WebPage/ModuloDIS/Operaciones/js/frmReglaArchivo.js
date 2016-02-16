@@ -13,7 +13,8 @@
     }
     var reglaArchivo = function () {
         this.TipoLinea = $("#ctl00_ContentPlaceHolder1_ddl_tipo_linea").val(),
-        this.Archivo = $("#ctl00_ContentPlaceHolder1_hdf_tipo_archivo").val()
+        this.Archivo = $("#ctl00_ContentPlaceHolder1_hdf_tipo_archivo").val(),
+        this.IdReglaArchivo = $("#ctl00_ContentPlaceHolder1_txt_idregla").val() == ""?0:parseInt($("#ctl00_ContentPlaceHolder1_txt_idregla").val())
     };
     //verificar si nos encontramos en la pestaña de información
     const existePestanaRegla = $("#tblReglaArchivo").length;
@@ -22,6 +23,10 @@
         listReglaArchivo(new reglaArchivo());
     //ejecutar recarga de la grilla por tipo de archivo
     $(".tabBody").delegate("#ctl00_ContentPlaceHolder1_ddl_tipo_linea", "change", function () {
+        if (existePestanaRegla == 1 && parseInt(tipoArchivo) != 0)
+            listReglaArchivo(new reglaArchivo());
+    });
+    $(".tabBody").delegate("#buscar_regla_id", "click", function (ev) {
         if (existePestanaRegla == 1 && parseInt(tipoArchivo) != 0)
             listReglaArchivo(new reglaArchivo());
     });

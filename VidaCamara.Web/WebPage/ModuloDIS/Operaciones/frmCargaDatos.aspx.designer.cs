@@ -166,6 +166,15 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones {
         protected global::System.Web.UI.WebControls.Label txt_nombre_archivo_inf;
         
         /// <summary>
+        /// txt_idregla control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_idregla;
+        
+        /// <summary>
         /// txt_tipo_archivo_inf control.
         /// </summary>
         /// <remarks>

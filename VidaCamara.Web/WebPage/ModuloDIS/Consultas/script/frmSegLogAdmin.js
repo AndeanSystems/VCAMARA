@@ -13,10 +13,10 @@
     });
     var action = "/WebPage/ModuloDIS/Consultas/frmSegLogAdmin.aspx/listLogOperacion";
     var fields = {
-        IDE_CONTRATO: { title: 'IDE_CONTRATO'},
+        IDE_CONTRATO: { title: 'Contrato'},
         TipoEvento: { title: 'Tipo de Evento' },
         FechEven: {
-            title: 'FechEven', display: function (data) {
+            title: 'Fecha de creación', display: function (data) {
                 return ConvertNumberToDateTime(data.record.FechEven);
             }
         },
@@ -46,7 +46,7 @@
             fields: fields
         });
 
-        $('.jtable-main-container').css({ "width": "1420px" });
+        $('.jtable-main-container').css({ "width": "1200px" });
         $('#tblLogOperacion').jtable('load', { log: log, filters: filters });
     }
 })
