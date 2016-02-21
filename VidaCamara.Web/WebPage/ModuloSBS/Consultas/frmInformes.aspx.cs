@@ -185,7 +185,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                                 dataCell2HJ2 = filaData2HJ2.CreateCell(c);
                                 dataCell2HJ2.SetCellValue(dtanexo.Rows[r][c].ToString());
                                 dataCell2HJ2.CellStyle = styleCabecera;
-                            }
+                            }      
 
                         }
                         count++;

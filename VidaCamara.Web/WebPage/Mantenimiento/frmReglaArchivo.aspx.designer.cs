@@ -67,15 +67,6 @@ namespace VidaCamara.Web.WebPage.Mantenimiento {
         protected global::System.Web.UI.WebControls.View view1;
         
         /// <summary>
-        /// hdf_idRegla control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdf_idRegla;
-        
-        /// <summary>
         /// ddl_contrato control.
         /// </summary>
         /// <remarks>
@@ -83,6 +74,15 @@ namespace VidaCamara.Web.WebPage.Mantenimiento {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_contrato;
+        
+        /// <summary>
+        /// txt_idRegla control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_idRegla;
         
         /// <summary>
         /// ddl_Archivo control.

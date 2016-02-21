@@ -85,6 +85,15 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones {
         protected global::System.Web.UI.WebControls.DropDownList ddl_tipo_archivo;
         
         /// <summary>
+        /// chk_permitir control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chk_permitir;
+        
+        /// <summary>
         /// view2 control.
         /// </summary>
         /// <remarks>

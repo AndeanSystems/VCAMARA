@@ -33,14 +33,16 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipo_archivo, "17");
                 concepto.SetEstablecerDataSourceConcepto(ddl_moneda, "20");
                 concepto.SetEstablecerDataSourceConcepto(ddl_estado, "21");
+                txt_desde.Text = DateTime.Now.ToShortDateString();
+                txt_hasta.Text = DateTime.Now.ToShortDateString();
             }
         }
         private void SetLLenadoContrato()
         {
-            var list = new VidaCamara.SBS.Utils.Utility().getContrato(out total);
+            var list = new VidaCamara.SBS.Utils.Utility().getContratoSys(out total);
             ddl_contrato.DataSource = list;
             ddl_contrato.DataTextField = "_des_Contrato";
-            ddl_contrato.DataValueField = "_nro_Contrato";
+            ddl_contrato.DataValueField = "_ide_Contrato";
             ddl_contrato.DataBind();
             ddl_contrato.Items.Insert(0, new ListItem("Seleccione ----", "0"));
         }

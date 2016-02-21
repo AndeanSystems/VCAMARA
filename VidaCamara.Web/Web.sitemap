@@ -28,7 +28,7 @@
         <siteMapNode url="~/CargaDatosDIS" title="Carga Archivos Pagos"  description="Carga Archivos Pagos" />
         <siteMapNode url="~/ApruebaCarga" title="Aprobacion de Carga"  description="Aprobacion de Carga" />
         <siteMapNode url="~/Telebankig" title="Genera Telebanking"  description="Genera Telebanking" />
-        <siteMapNode url="~/InterfaceContbleSIS" title="Interface Coontable"  description="Interface Coontable" />
+        <siteMapNode url="~/InterfaceContbleSIS" title="Interface Coontable"  description="Interface Contable" />
       </siteMapNode>
       <siteMapNode title="Consultas">
         <siteMapNode url="~/SegConsulta" title="Pagos Procesados"  description="Pagos Procesados" />

@@ -34,7 +34,7 @@ namespace VidaCamara.DIS.data
                 using (var db = new DISEntities())
                 {
                     var archivoId = filters[3].ToString();
-                    var query = db.pa_sel_nominaXArchivo(nomina.IDE_CONTRATO, archivoId).ToList();
+                    var query = db.pa_sel_nominaXArchivo(nomina.IDE_CONTRATO, archivoId,nomina.CumpleValidacion).ToList();
                     total = query.Count();
                     foreach (var item in query.Skip(jtStartIndex).Take(jtPageSize))
                     {

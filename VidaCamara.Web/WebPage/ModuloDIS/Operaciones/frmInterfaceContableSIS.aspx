@@ -25,10 +25,10 @@
                 <asp:DropDownList ID="ddl_moneda" runat="server" CssClass="input_right" Height="25px" Width="15.5%"></asp:DropDownList>
 
                 <label class="label_to" for="ddl_ramo_c">Desde </label>
-                <asp:TextBox runat="server"  CssClass="input_to datetime"  Height="25px" Width="15.5%"/>
+                <asp:TextBox runat="server"  CssClass="input_to datetime"  Height="25px" Width="15.5%" ID="txt_desde"/>
 
                 <label class="input_right_L" for="ddl_ramo_c">Hasta </label>
-                <asp:TextBox runat="server"  CssClass="input_right datetime"  Height="25px" Width="15.5%"/>
+                <asp:TextBox runat="server"  CssClass="input_right datetime"  Height="25px" Width="15.5%" ID="txt_hasta"/>
 
                 <label class="input_right_L" for="ddl_ramo_c">Estado </label>
                 <asp:DropDownList ID="ddl_estado" runat="server" CssClass="input_right" Height="25px" Width="12.5%"></asp:DropDownList>

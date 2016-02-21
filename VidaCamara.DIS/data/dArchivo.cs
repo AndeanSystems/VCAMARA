@@ -60,5 +60,23 @@ namespace VidaCamara.DIS.data
                 throw;
             }
         }
+
+        public void actualizarEstadoArchivo(Archivo archivo)
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    var entity = db.Archivos.Find(archivo.ArchivoId);
+                    entity.EstadoArchivoId = 1;
+                    entity.Vigente = false;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw(new Exception(ex.Message));
+            }
+        }
     }
 }

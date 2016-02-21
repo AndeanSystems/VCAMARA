@@ -56,5 +56,10 @@ namespace VidaCamara.DIS.Negocio
             
             return new dArchivo().getArchivoByNombre(archivo);
         }
+
+        public void actualizarEstadoArchivo(Archivo archivo)
+        {
+            new dArchivo().actualizarEstadoArchivo(archivo);
+        }
     }
 }

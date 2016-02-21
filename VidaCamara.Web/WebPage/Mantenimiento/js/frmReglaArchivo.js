@@ -4,7 +4,7 @@
         this.Archivo = $("#ctl00_ContentPlaceHolder1_ddl_Archivo").val(),
         this.TipoLinea = $("#ctl00_ContentPlaceHolder1_ddl_tipo_linea").val(),
         this.vigente = parseInt($("#ctl00_ContentPlaceHolder1_ddl_vigente").val()),
-        this.IdReglaArchivo = parseInt($("#ctl00_ContentPlaceHolder1_hdf_idRegla").val())
+        this.IdReglaArchivo = parseInt($("#ctl00_ContentPlaceHolder1_txt_idRegla").val())
     }
     $("section").delegate("#ctl00_ContentPlaceHolder1_btn_buscar", "click", function (ev) {
         ev.preventDefault();
@@ -16,6 +16,28 @@
             mostrarMensajeAlert("Seleccione el tipo archivo");
         else
             listReglaArchivo(new reglaAarchivo());
+    });
+
+    //grabar
+    $("section").delegate("#ctl00_ContentPlaceHolder1_btn_guardar", "click", function (ev) {
+        var calcula = 0;
+        $(".tabBody input[type='text']").each(function (index, element) {
+            valor = $(this).val();
+            if (valor == "") {
+                calcula++;
+            }
+        });
+        $(".tabBody select").each(function (index, element) {
+            valor = $(this).val();
+            if (parseInt(valor) == 0) {
+                calcula++;
+            }
+        });
+        if (calcula > 0) {
+            mostrarMensajeAlert("Todos los campos son requeridos");
+            return false;
+        } else
+            return confirm("¿Estas seguro de crear la regla?");
     });
 
     $("section").delegate("#ctl00_ContentPlaceHolder1_btn_nuevo", "click", function (ev) {
@@ -80,7 +102,7 @@
         $("#ctl00_ContentPlaceHolder1_txt_nombre_Campo").val(data.NombreCampo);
         $("#ctl00_ContentPlaceHolder1_txt_titulo").val(data.TituloColumna);
         $("#ctl00_ContentPlaceHolder1_txt_tipo_Campo").val(data.TipoCampo);
-        $("#ctl00_ContentPlaceHolder1_hdf_idRegla").val(data.IdReglaArchivo);
+        $("#ctl00_ContentPlaceHolder1_txt_idRegla").val(data.IdReglaArchivo);
     }
     function limpiarFormulario() {
         $("#ctl00_ContentPlaceHolder1_ddl_contrato").val("0");
@@ -96,6 +118,6 @@
         $("#ctl00_ContentPlaceHolder1_txt_nombre_Campo").val("");
         $("#ctl00_ContentPlaceHolder1_txt_titulo").val("");
         $("#ctl00_ContentPlaceHolder1_txt_tipo_Campo").val("");
-        $("#ctl00_ContentPlaceHolder1_hdf_idRegla").val("0");
+        $("#ctl00_ContentPlaceHolder1_txt_idRegla").val("0");
     }
 })

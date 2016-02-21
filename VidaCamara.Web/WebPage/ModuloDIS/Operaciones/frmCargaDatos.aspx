@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <link rel="stylesheet" href="../../../Resources/CSS/bootstrap.css" />
 <link rel="stylesheet" href="../../../Resources/CSS/Progressbar.css" />
+<style>.margin-left{margin-left:15px;}</style>
 <script src="../../../Resources/js/bootstrap.min.js"></script>
 <script src="/WebPage/ModuloDIS/Operaciones/js/CargaDatos.js"></script>
 <script src="/WebPage/ModuloDIS/Operaciones/js/frmReglaArchivo.js"></script>
@@ -62,6 +63,8 @@
 
                 <label class="label_to">Tipo del Archivo (*)</label>
                 <asp:DropDownList runat="server" ID="ddl_tipo_archivo" CssClass="input_to" Height="25px" Width="40%"></asp:DropDownList>
+
+                <asp:CheckBox ID="chk_permitir" runat="server" Text="Permitir reemplazar archivo exsistente" CssClass="input_right margin-left" Height="25px" Width="20%" Visible="false" />
             </asp:View>
             <!--seccion de RSP-->
             <asp:View ID="view2" runat="server">

@@ -33,7 +33,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             return new { Result = "OK", Records = listRegla, TotalRecordCount = total };
         }
 
-        protected void btn_nuevo_Click(object sender, ImageClickEventArgs e)
+        protected void btn_guardar_Click(object sender, ImageClickEventArgs e)
         {
             setGrabarActualizarReglaArchivo();
         }
@@ -44,7 +44,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
             {
                 var regla = new ReglaArchivo()
                 {
-                    IdReglaArchivo = Convert.ToInt32(hdf_idRegla.Value),
+                    IdReglaArchivo = Convert.ToInt32(txt_idRegla.Text),
                     Archivo = ddl_Archivo.SelectedItem.Value,
                     TipoLinea = ddl_tipo_linea.SelectedItem.Value,
                     CaracterInicial = Convert.ToInt32(txt_caracter_inicial.Text),
@@ -60,15 +60,20 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                     NUM_CONT_LIC = Convert.ToInt32(ddl_contrato.SelectedItem.Value),
                 };
                 if (regla.IdReglaArchivo == 0)
+                {
                     new nReglaArchivo().grabarReglaArchivo(regla);
+                    Page.ClientScript.RegisterStartupScript(GetType(), "alert", string.Format("mostrarMensajeAlert({0})", "Regla grabado correctamente"), true);
+                }
                 else
+                {
                     new nReglaArchivo().actualizarReglaArchivo(regla);
+                    Page.ClientScript.RegisterStartupScript(GetType(), "alert", string.Format("mostrarMensajeAlert({0})", "Regla actualizado correctamente"), true);
+                }
                   
             }
             catch (Exception ex)
             {
-                
-                throw;
+                Page.ClientScript.RegisterStartupScript(GetType(), "alert", string.Format("mostrarMensajeAlert({0})", ex.Message.Replace(Environment.NewLine,"")), true);
             }
         }
 

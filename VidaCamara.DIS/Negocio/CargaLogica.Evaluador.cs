@@ -121,7 +121,7 @@ namespace VidaCamara.DIS.Negocio
                     break;
 
                 case "BOOL_SP":
-                    exitoLinea = EvaluarBoolSp(tipoArchivo, regla, indexLinea, exitoLinea);
+                    exitoLinea = EvaluarBoolSp(tipoArchivo, regla, indexLinea, exitoLinea, text[indexLinea]);
                     break;
 
                 case "BOOL_IF_SP":
@@ -449,7 +449,7 @@ namespace VidaCamara.DIS.Negocio
                 return false;
         }
 
-        private int EvaluarBoolSp(string tipoArchivo, Regla regla, int x,int exitoLinea)
+        private int EvaluarBoolSp(string tipoArchivo, Regla regla, int x,int exitoLinea,string text)
         {
             //en la tabla regla de archivos se agrego una columna forma de validacion los cuales son:
             //1 = Valida el dato en la aplicacion
@@ -477,12 +477,20 @@ namespace VidaCamara.DIS.Negocio
 
                 if (valor.Contains("pa_valida_SumaDetalleEnTotal"))
                     return EvaluarBoolSumaDetalleEnTotal(regla);
-
-                valor = valor.Replace("@valor", "'" + CampoActual + "'");
-                valor = valor.Replace("@IdArchivo", IdArchivo.ToString());
-                valor = valor.Replace("@NumeroLinea", (x + 1).ToString());
-                valor = valor.Replace("@CampoInicial", regla.CaracterInicial.ToString());
-                valor = valor.Replace("@LargoCampo", regla.LargoCampo.ToString());
+                if (valor.Contains("pa_valida_montoWithKeyNomina"))
+                {
+                    valor = valor.Replace("@IdArchivo", IdArchivo.ToString());
+                    valor = valor.Replace("@monto", CampoActual);
+                    valor = valor.Replace("@keyNomina", string.Format("'{0}'", text.Trim().Substring(31, 25)));
+                }
+                else
+                {
+                    valor = valor.Replace("@valor", "'" + CampoActual + "'");
+                    valor = valor.Replace("@IdArchivo", IdArchivo.ToString());
+                    valor = valor.Replace("@NumeroLinea", (x + 1).ToString());
+                    valor = valor.Replace("@CampoInicial", regla.CaracterInicial.ToString());
+                    valor = valor.Replace("@LargoCampo", regla.LargoCampo.ToString());
+                }
 
                 using (var context = new DISEntities())
                 {
