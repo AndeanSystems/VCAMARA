@@ -31,6 +31,13 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 {
                     Response.Redirect("Error");
                 }
+                else
+                {
+                    if (!accesso.GetValidarAcceso("100"))
+                    {
+                        menuTabs.Items[3].Selected = true;
+                    }
+                }
             }
 
             if (!IsPostBack){
@@ -608,6 +615,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
 
         private void SetInsertarActualizarContratoSys()
         {
+            var mensajeConfirmn = string.Empty;
             try
             {
                 Int32 resp = 0;
@@ -641,7 +649,8 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 //valida rango de fecha para un contrato 
                 var contratoSisEF = new CONTRATO_SYS() {
                     FEC_INI_VIG = DateTime.Parse(txtFechaInicio_sys.Text),
-                    FEC_FIN_VIG = DateTime.Parse(txtFechaFin_sys.Text)
+                    FEC_FIN_VIG = DateTime.Parse(txtFechaFin_sys.Text),
+                    NRO_CONTRATO = txt_nrocont_sys.Text
                 };
                 var siExisteFecha = new nContratoSis().existeFecha(contratoSisEF,0);
 
@@ -686,6 +695,13 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                         MessageBox("Para pasar la empresa como activa, debe completar la infomación de las CSV SIS.");
                     }
                     else {
+                        //validar si existe o no las reglas para el numero de contrato selecciondo
+                        var existeReglaArchivo = new nReglaArchivo().validarExisteReglaByContrato(contratoSisEF);
+                        if (existeReglaArchivo == 0)
+                        {
+                            var numeroContrato = new nReglaArchivo().copiarUltimaReglaArchivo(contratoSisEF);
+                            mensajeConfirmn = string.Format(", Se copió las reglas del contrato Nro: {0}", numeroContrato);
+                        }
                         resp = control.SetActualizarContratoSys(contratoSis);
                         if (resp != 0)
                         {
@@ -693,7 +709,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                             //contrato sys
                             var bContrato = new bContratoSys();
                             bContrato.SetEstablecerDataSourceContratoSys(ddl_contrato_sis);
-                            MessageBox("Registro Actualizado Correctamente");
+                            MessageBox(string.Format("Registro Actualizado Correctamente {0}",mensajeConfirmn));
                         }
                         else
                             MessageBox("Ocurrio un Error en el Servidor!");
@@ -726,5 +742,6 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
         }
 
         #endregion "METODOS"
+       
     }
 }

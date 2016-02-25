@@ -129,5 +129,36 @@ namespace VidaCamara.DIS.data
                 throw(new Exception(ex.Message));
             }
         }
+
+        public int validarExisteReglaByContrato(CONTRATO_SYS contratoSisEF)
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    var numeroContrato = Convert.ToInt32(contratoSisEF.NRO_CONTRATO);
+                    return db.ReglaArchivos.Where(r => r.NUM_CONT_LIC == numeroContrato).Count();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw(new Exception(ex.Message));
+            }
+        }
+
+        public string copiarUltimaReglaArchivo(CONTRATO_SYS contrato)
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    return db.pa_copia_reglaArchivo(Convert.ToInt32(contrato.NRO_CONTRATO)).FirstOrDefault().Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            { 
+                throw(new Exception(ex.Message));
+            }
+        }
     }
 }

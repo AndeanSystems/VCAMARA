@@ -28,15 +28,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
         public static object ListUsuario(int jtStartIndex, int jtPageSize, string jtSorting)
         {
             bUsuarioVC busuario = new bUsuarioVC();
-            int indexPage;
-            if (jtStartIndex != 0)
-            {
-                indexPage = jtStartIndex / jtPageSize;
-            }
-            else
-            {
-                indexPage = jtStartIndex;
-            }
+            var indexPage = jtStartIndex != 0?jtStartIndex / jtPageSize:jtStartIndex;
             int total;
             List<eUsuarioVC> list = busuario.GetSelectUsuario(indexPage,jtPageSize,jtSorting.Substring(1),out total);
             return new { Result = "OK", Records = list, TotalRecordCount = total };

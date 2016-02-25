@@ -1248,23 +1248,6 @@ public partial class DISEntities : DbContext
     }
 
 
-    public virtual ObjectResult<pa_sel_NominaForTelebanking_Result> pa_sel_NominaForTelebanking(Nullable<int> ideContrato, Nullable<System.DateTime> fechaCarga)
-    {
-
-        var ideContratoParameter = ideContrato.HasValue ?
-            new ObjectParameter("IdeContrato", ideContrato) :
-            new ObjectParameter("IdeContrato", typeof(int));
-
-
-        var fechaCargaParameter = fechaCarga.HasValue ?
-            new ObjectParameter("FechaCarga", fechaCarga) :
-            new ObjectParameter("FechaCarga", typeof(System.DateTime));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_NominaForTelebanking_Result>("pa_sel_NominaForTelebanking", ideContratoParameter, fechaCargaParameter);
-    }
-
-
     public virtual ObjectResult<pa_sel_nominaXArchivo_Result> pa_sel_nominaXArchivo(Nullable<int> ideContrato, string nombreArchivo, Nullable<long> cumpleValidacion)
     {
 
@@ -1284,6 +1267,52 @@ public partial class DISEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_nominaXArchivo_Result>("pa_sel_nominaXArchivo", ideContratoParameter, nombreArchivoParameter, cumpleValidacionParameter);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> pa_copia_reglaArchivo(Nullable<int> nroContrato)
+    {
+
+        var nroContratoParameter = nroContrato.HasValue ?
+            new ObjectParameter("NroContrato", nroContrato) :
+            new ObjectParameter("NroContrato", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("pa_copia_reglaArchivo", nroContratoParameter);
+    }
+
+
+    public virtual ObjectResult<pa_sel_NominaForTelebanking_Result> pa_sel_NominaForTelebanking(Nullable<int> ideContrato, Nullable<System.DateTime> fechaCarga, string estado)
+    {
+
+        var ideContratoParameter = ideContrato.HasValue ?
+            new ObjectParameter("IdeContrato", ideContrato) :
+            new ObjectParameter("IdeContrato", typeof(int));
+
+
+        var fechaCargaParameter = fechaCarga.HasValue ?
+            new ObjectParameter("FechaCarga", fechaCarga) :
+            new ObjectParameter("FechaCarga", typeof(System.DateTime));
+
+
+        var estadoParameter = estado != null ?
+            new ObjectParameter("Estado", estado) :
+            new ObjectParameter("Estado", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_NominaForTelebanking_Result>("pa_sel_NominaForTelebanking", ideContratoParameter, fechaCargaParameter, estadoParameter);
+    }
+
+
+    public virtual int pa_confirmaPagoNomina(Nullable<int> archivoId)
+    {
+
+        var archivoIdParameter = archivoId.HasValue ?
+            new ObjectParameter("ArchivoId", archivoId) :
+            new ObjectParameter("ArchivoId", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_confirmaPagoNomina", archivoIdParameter);
     }
 
 }

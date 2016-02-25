@@ -82,7 +82,6 @@
     <Compile Include="data\dReglaArchivo.cs" />
     <Compile Include="data\dSegDescarga.cs" />
     <Compile Include="data\dTelebanking.cs" />
-    <Compile Include="data\HistorialCargaArchivo.cs" />
     <Compile Include="Helpers\excelStyle.cs" />
     <Compile Include="Helpers\gridCreator.cs" />
     <Compile Include="Helpers\txtWriter.cs" />
@@ -172,6 +171,7 @@
     <Compile Include="Modelo\EEntidad\HHistorialCargaArchivo_LinDet.cs" />
     <Compile Include="Modelo\EEntidad\HLogOperacion.cs" />
     <Compile Include="Modelo\EEntidad\HNOMINA.cs" />
+    <Compile Include="Modelo\Enumerado\EstadoNomina.cs" />
     <Compile Include="Modelo\Enumerado\EstadoPago.cs" />
     <Compile Include="Modelo\EstadoArchivo.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>

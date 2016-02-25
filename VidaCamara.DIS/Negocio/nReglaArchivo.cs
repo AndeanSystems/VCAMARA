@@ -50,5 +50,15 @@ namespace VidaCamara.DIS.Negocio
         {
             new dReglaArchivo().actualizarReglaArchivo(regla);
         }
+
+        public int validarExisteReglaByContrato(CONTRATO_SYS contratoSisEF)
+        {
+            return new dReglaArchivo().validarExisteReglaByContrato(contratoSisEF);
+        }
+
+        public string copiarUltimaReglaArchivo(CONTRATO_SYS contratoSisEF)
+        {
+            return new dReglaArchivo().copiarUltimaReglaArchivo(contratoSisEF);
+        }
     }
 }

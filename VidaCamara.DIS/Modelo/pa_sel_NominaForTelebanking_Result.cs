@@ -25,6 +25,8 @@ public partial class pa_sel_NominaForTelebanking_Result
 
     public string Moneda { get; set; }
 
+    public string Estado { get; set; }
+
     public Nullable<decimal> Importe { get; set; }
 
 }

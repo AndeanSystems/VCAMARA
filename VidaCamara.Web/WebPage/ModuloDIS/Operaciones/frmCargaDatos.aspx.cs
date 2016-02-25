@@ -92,7 +92,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                     }
                     else
                     {
-                        MessageBox("El archivo: " + nombreArchivo + " ya fue cargado corretamente, si desea reemplazar haga click en: <br> Permitir reemplazar archivo exsistente.");
+                        MessageBox("El archivo: " + nombreArchivo + " ya fue cargado correctamente, si desea reemplazar haga click en: <br> Permitir reemplazar archivo existente.");
                         chk_permitir.Visible = true;
                         return;
                     }

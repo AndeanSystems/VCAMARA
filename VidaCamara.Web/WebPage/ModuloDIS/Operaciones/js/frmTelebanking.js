@@ -1,8 +1,10 @@
 ﻿$(document).ready(function () {
     const urlListTelebanking = "/WebPage/ModuloDIS/Operaciones/frmTelebankig.aspx/listTelebanking";
+    const urlAprobarNomina = "/WebPage/ModuloDIS/Operaciones/frmTelebankig.aspx/aprobarTelebanking";
     var nomina = function (ArchivoId) {
         this.ArchivoId = ArchivoId,
-        this.IDE_CONTRATO = parseInt($("#ctl00_ContentPlaceHolder1_ddl_contrato").val())
+        this.IDE_CONTRATO = parseInt($("#ctl00_ContentPlaceHolder1_ddl_contrato").val()),
+        this.Estado = $("#ctl00_ContentPlaceHolder1_ddl_estado").val()
     }
 
     $("body").delegate("#ctl00_ContentPlaceHolder1_btn_buscar", "click", function (ev) {
@@ -10,16 +12,24 @@
         var fecha = $("#ctl00_ContentPlaceHolder1_txt_fecha").val();
         listApruebaCarga(new nomina(0), fecha);
     });
-    //$("body #tblTelebanking").delegate("#lnk_descarga", "click", function () {
-    //    var rutaDescarga = $(this).attr('class');
-    //    document.getElementById("fileDonwload").src = rutaDescarga;
-    //});
+    $("body #tblTelebanking").delegate("#lnk_confirmar", "click", function () {
+        var archivoId = {archivoId:parseInt($(this).attr('class'))};
+        if (confirm("¿Está seguro de confirmar?")) {
+            llamarAjax(archivoId, urlAprobarNomina).success(function (res) {
+                if (res.d.Result == true) {
+                    mostrarMensajeAlert("Se confirmó el pago del archivo");
+                    listApruebaCarga(new nomina(0), $("#ctl00_ContentPlaceHolder1_txt_fecha").val())
+                } else
+                    mostrarMensajeAlert(res.d.Result);
+            });
+        }
+
+    });
     var fields = {
         ArchivoId: {
             title: 'Detalle', sorting: false, display: function (data) {
                 var $icon = $("<a href='#'>Detalle</a>");
                 $icon.click(function () {
-                    console.log($icon, data);
                     $("#tblTelebanking").jtable('openChildTable',
                         $icon.closest('tr'),
                         {
@@ -48,7 +58,15 @@
         Importe: { title: 'Importe' },
         RutaNomina: {
             title: 'Descargar', display: function (data) {
-                return "<a id='lnk_descarga' class='" + data.record.RutaNomina + "' href='" + data.record.RutaNomina + "' target='_blank'>Descargar</a>";
+                return "<a id='lnk_descarga' class='" + data.record.RutaNomina + "' href='" + data.record.RutaNomina + "'>Descargar</a>";
+            }
+        },
+        Estado: {
+            title: 'Acción', display: function (data) {
+                if(data.record.Estado == "A")
+                    return "<a id='lnk_confirmar' class='" + data.record.ArchivoId + "' href='#'>Confirmar pago</a>";
+                else
+                    return "<a href='#'><span>Confirmado</span></a>";
             }
         }
     }

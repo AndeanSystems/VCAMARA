@@ -16,7 +16,7 @@ namespace VidaCamara.DIS.data
             {
                 using (var db = new DISEntities())
                 {
-                    var query = db.pa_sel_NominaForTelebanking(nomina.IDE_CONTRATO, nomina.FechaReg).ToList();
+                    var query = db.pa_sel_NominaForTelebanking(nomina.IDE_CONTRATO, nomina.FechaReg,nomina.Estado).ToList();
                     total = query.Count;
                     foreach (var item in query.Skip(jtStartIndex).Take(jtPageSize))
                     {
@@ -27,7 +27,9 @@ namespace VidaCamara.DIS.data
                             FechaOperacion = Convert.ToDateTime(item.FechaOperacion),
                             Moneda = item.Moneda,
                             Importe = string.Format(formatoMoneda,item.Importe),
-                            RutaNomina = folder+"/NOMINA/"+item.NombreArchivo
+                            RutaNomina = string.Format("{0}/NOMINA/{1}",folder,item.NombreArchivo),
+                            Estado = item.Estado
+                            
                         };
                         listTelebankig.Add(telebankig);
                     }
@@ -68,6 +70,21 @@ namespace VidaCamara.DIS.data
             {
 
                 throw;
+            }
+        }
+
+        public void aprobarTelebanking(NOMINA nOMINA)
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    db.pa_confirmaPagoNomina(nOMINA.ArchivoId);
+                }
+            }
+            catch (Exception ex)
+            { 
+                throw(new Exception(ex.Message));
             }
         }
     }

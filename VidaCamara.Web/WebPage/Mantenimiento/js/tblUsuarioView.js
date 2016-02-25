@@ -40,7 +40,7 @@ $(document).ready(function () {
     $('#tblUsuarioView').jtable({
         paging: true,
         sorting: true,
-        pageSize: 5, //Actually this is not needed since default value is 10.
+        pageSize: 10, //Actually this is not needed since default value is 10.
         defaultSorting: '_nombres ASC', //Optional. Default sorting on first load.
         selecting: true, //Enable selecting
         actions: {

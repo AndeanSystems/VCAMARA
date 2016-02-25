@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.IO;
 using System.Web.UI.WebControls;
 using VidaCamara.DIS.Modelo;
 using VidaCamara.DIS.Negocio;
@@ -49,6 +50,19 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             var negocio = new nTelebanking();
             return new { Result = "OK", Records = negocio.listTelebankingByArchivoId(nomina, formatoMoneda) };
         }
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static object aprobarTelebanking(int archivoId)
+        {
+            try
+            {
+                new nTelebanking().aprobarTelebanking(new NOMINA(){ArchivoId = archivoId});
+                return new { Result = true };
+            }
+            catch (Exception ex)
+            {
+                return new { Result = ex.Message };
+            }
+        }
         private void SetLLenadoContrato()
         {
             var list = new VidaCamara.SBS.Utils.Utility().getContratoSys(out total);
@@ -57,6 +71,18 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             ddl_contrato.DataValueField = "_ide_Contrato";
             ddl_contrato.DataBind();
             ddl_contrato.Items.Insert(0, new ListItem("Seleccione ----", "0"));
+        }
+
+        protected void btn_exportar_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        {
+            var nomina = new NOMINA() { IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value),FechaReg = Convert.ToDateTime(txt_fecha.Text)};
+            var filePath = new nTelebanking().descargarExcelTelebankig(nomina, formatoMoneda);
+
+            Response.Clear();
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", Path.GetFileName(filePath)));
+            Response.TransmitFile(filePath);
+            Response.End();
         }
     }
 }

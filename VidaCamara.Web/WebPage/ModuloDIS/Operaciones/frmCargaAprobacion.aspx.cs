@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.IO;
 using System.Web.UI.WebControls;
 using VidaCamara.DIS.Modelo;
 using VidaCamara.DIS.Negocio;
@@ -85,6 +86,19 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             ddl_contrato.DataValueField = "_ide_contrato";
             ddl_contrato.DataBind();
             ddl_contrato.Items.Insert(0, new ListItem("Seleccione ----", "0"));
+        }
+
+        protected void btn_exportar_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        {
+            var contratoSis = new CONTRATO_SYS() { IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value) };
+            var filtersNow = new object[4] {ddl_tipo_archivo.SelectedItem.Value,txt_fecha_inicio.Text,txt_fecha_inicio.Text,filters[0].ToString() };
+            var filePath = new nAprobacionCarga().descargarExcelAprueba(contratoSis,filtersNow);
+
+            Response.Clear();
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}",Path.GetFileName(filePath)));
+            Response.TransmitFile(filePath);
+            Response.End();
         }
     }
 }

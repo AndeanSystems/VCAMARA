@@ -42,21 +42,26 @@ namespace VidaCamara.SBS.Negocio
             int total;
 
             List<eUsuarioVC> listUsuario = dusuario.GetSelecionarAccesoUsuario(ide_usuario);
-            String lista_pagina = listUsuario[0]._Aceso_Pagina;
-            String[] ide_pagina = lista_pagina.Split(',');
+            var lista_pagina = listUsuario[0]._Aceso_Pagina.Split(',');
 
-            List<eTabla> list = tb.GetSelectConcepto(o, out total);
-            List<eAccesoPagina> listPagina = new List<eAccesoPagina>();
+            var list = tb.GetSelectConcepto(o, out total);
+            var listPagina = new List<eAccesoPagina>();
             for (int l = 0; l < list.Count; l++)
             {
+                var existeAcceso = false;
                 eAccesoPagina acceso = new eAccesoPagina();
                 acceso.ide_Pagina = list[l]._codigo;
                 acceso.Descripcion = list[l]._descripcion;
-                if (lista_pagina.Contains(list[l]._codigo))
-                    acceso.permiso = true;
-                else
-                    acceso.permiso = false;
-
+                
+                foreach (var item in lista_pagina)
+                {
+                    if (item.Equals(list[l]._codigo))
+                    {
+                        existeAcceso = true;
+                        break;
+                    }
+                }
+                acceso.permiso = existeAcceso;
                 listPagina.Add(acceso);
             }
             return listPagina;

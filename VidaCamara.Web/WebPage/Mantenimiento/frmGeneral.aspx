@@ -13,7 +13,16 @@
    <script runat="server">
         protected void menuTabs_MenuItemClick(object sender, MenuEventArgs e)
         {
-            multiTabs.ActiveViewIndex = Int32.Parse(menuTabs.SelectedValue);
+            var accesso = new VidaCamara.SBS.Negocio.bValidarAcceso();
+            var index = Int32.Parse(menuTabs.SelectedValue);
+            if (index == 1 || index == 0 || index == 2)
+            {
+                if (!accesso.GetValidarAcceso("100"))
+                {
+                    Response.Redirect("Error");
+                }
+            }
+            multiTabs.ActiveViewIndex = index;
         }
     </script>
     <div class="btn_crud">
@@ -25,8 +34,8 @@
     <asp:Menu id="menuTabs" CssClass="menuTabs" StaticMenuItemStyle-CssClass="tab" StaticSelectedStyle-CssClass="selectedTab"
                 Orientation="Horizontal" OnMenuItemClick="menuTabs_MenuItemClick" Runat="server">
             <Items>
-                <asp:MenuItem Text="Generales" Value="0" Selected="true" />
-                <asp:MenuItem Text="Contratos Reaseguros" Value="1" />
+                <asp:MenuItem Text="Generales" Value="0" Selected="true"/>
+                <asp:MenuItem Text="Contratos Reaseguros" Value="1"/>
                 <asp:MenuItem Text="Reasegurador" Value="2" />                
                 <asp:MenuItem Text="Contratos SIS" Value="3" />
                 <asp:MenuItem Text="CSV - SIS" Value="4" />

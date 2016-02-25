@@ -4,6 +4,7 @@ using ActiveDirectoryValidation;
 using Seguridadv2;
 using VidaCamara.SBS.Entity;
 using VidaCamara.SBS.Negocio;
+using System.Configuration;
 
 
 namespace VidaCamara.Web.WebPage.Inicio

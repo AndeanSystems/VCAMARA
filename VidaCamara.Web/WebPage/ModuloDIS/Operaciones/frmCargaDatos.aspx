@@ -64,7 +64,7 @@
                 <label class="label_to">Tipo del Archivo (*)</label>
                 <asp:DropDownList runat="server" ID="ddl_tipo_archivo" CssClass="input_to" Height="25px" Width="40%"></asp:DropDownList>
 
-                <asp:CheckBox ID="chk_permitir" runat="server" Text="Permitir reemplazar archivo exsistente" CssClass="input_right margin-left" Height="25px" Width="20%" Visible="false" />
+                <asp:CheckBox ID="chk_permitir" runat="server" Text="Permitir reemplazar archivo existente" CssClass="input_right margin-left" Height="25px" Width="20%" Visible="false"/>
             </asp:View>
             <!--seccion de RSP-->
             <asp:View ID="view2" runat="server">

@@ -18,5 +18,6 @@ namespace VidaCamara.DIS.Modelo.EEntidad
         public string TIP_CTA { get; set; }
         public string CTA_BENE { get; set; }
         public string RutaNomina { get; set; }
+        public string Estado { get; set; }
     }
 }
