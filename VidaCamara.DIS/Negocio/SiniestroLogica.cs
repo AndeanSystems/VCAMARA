@@ -453,7 +453,7 @@ namespace VidaCamara.DIS.Negocio
             using (var repositorio = new DISEntities())
             {
                 var tipocambio = (from tipo in repositorio.TipoCambios
-                    where tipo.Vigente.Value
+                    where tipo.Vigente
                     select tipo).ToList();
                 return tipocambio;
             }

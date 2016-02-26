@@ -82,6 +82,7 @@
     <Compile Include="data\dReglaArchivo.cs" />
     <Compile Include="data\dSegDescarga.cs" />
     <Compile Include="data\dTelebanking.cs" />
+    <Compile Include="data\dTipoCambio.cs" />
     <Compile Include="Helpers\excelStyle.cs" />
     <Compile Include="Helpers\gridCreator.cs" />
     <Compile Include="Helpers\txtWriter.cs" />
@@ -346,6 +347,7 @@
     <Compile Include="Negocio\nReglaArchivo.cs" />
     <Compile Include="Negocio\nSegDescarga.cs" />
     <Compile Include="Negocio\nTelebanking.cs" />
+    <Compile Include="Negocio\nTipoCambio.cs" />
     <Compile Include="Negocio\Regla.cs" />
     <Compile Include="Negocio\SiniestroLogica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

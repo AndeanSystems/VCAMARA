@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0565ad74d7e3449abb6dbeb897cf9a5e" Name="Diagram1" ZoomLevel="11">
+      <Diagram DiagramId="0565ad74d7e3449abb6dbeb897cf9a5e" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="DISModelo.CIERRE_PROCESO" Width="1.5" PointX="2.75" PointY="8.75" />
         <EntityTypeShape EntityType="DISModelo.CONCEPTO" Width="1.5" PointX="8.75" PointY="8.75" />
         <EntityTypeShape EntityType="DISModelo.CONTRATO" Width="1.5" PointX="10.75" PointY="1.75" />
@@ -46,7 +46,6 @@
         <EntityTypeShape EntityType="DISModelo.Role" Width="1.5" PointX="18.75" PointY="5.75" />
         <EntityTypeShape EntityType="DISModelo.Siniestro" Width="1.5" PointX="3" PointY="3.75" />
         <EntityTypeShape EntityType="DISModelo.TipoArchivo" Width="1.5" PointX="5" PointY="27.625" />
-        <EntityTypeShape EntityType="DISModelo.TipoCambio" Width="1.5" PointX="18.75" PointY="8.75" />
         <EntityTypeShape EntityType="DISModelo.TipoDocumentoIdentificacion" Width="1.5" PointX="18.75" PointY="11.75" />
         <EntityTypeShape EntityType="DISModelo.TipoInforme" Width="1.5" PointX="2.75" PointY="28.75" />
         <EntityTypeShape EntityType="DISModelo.TipoMoneda" Width="1.5" PointX="8.25" PointY="0.75" />
@@ -83,6 +82,7 @@
         <AssociationConnector Association="DISModelo.FK_TipoMovimientoSiniestro" />
         <AssociationConnector Association="DISModelo.FK_TipoSolicitudSiniestro" />
         <AssociationConnector Association="DISModelo.FK_TipoArchivo_TipoInforme" />
+        <EntityTypeShape EntityType="DISModelo.TipoCambio" Width="1.5" PointX="3.375" PointY="21.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

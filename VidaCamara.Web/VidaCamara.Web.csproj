@@ -201,7 +201,9 @@
     <Content Include="Scripts\jtable\localization\jquery.jtable.se.js" />
     <Content Include="Scripts\jtable\themes\metro\green\list_metro.png" />
     <Content Include="WebPage\Mantenimiento\frmReglaArchivo.aspx" />
+    <Content Include="WebPage\Mantenimiento\frmTipoCambio.aspx" />
     <Content Include="WebPage\Mantenimiento\js\frmReglaArchivo.js" />
+    <Content Include="WebPage\Mantenimiento\js\frmTipoCambio.js" />
     <Content Include="WebPage\Mantenimiento\js\parametro-validacion.js" />
     <Content Include="WebPage\Mantenimiento\js\tblContratoSisDetalle.js" />
     <Content Include="WebPage\Mantenimiento\js\tblContratoViewSyS.js" />
@@ -339,6 +341,13 @@
     </Compile>
     <Compile Include="WebPage\Mantenimiento\frmReglaArchivo.aspx.designer.cs">
       <DependentUpon>frmReglaArchivo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPage\Mantenimiento\frmTipoCambio.aspx.cs">
+      <DependentUpon>frmTipoCambio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPage\Mantenimiento\frmTipoCambio.aspx.designer.cs">
+      <DependentUpon>frmTipoCambio.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebPage\ModuloDIS\Consultas\frmSegConsulta.aspx.cs">
       <DependentUpon>frmSegConsulta.aspx</DependentUpon>

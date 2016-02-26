@@ -1078,11 +1078,12 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
         </EntityType>
         <EntityType Name="TipoCambio">
           <Key>
-            <PropertyRef Name="Periodo" />
+            <PropertyRef Name="IdTipoCambio" />
           </Key>
+          <Property Name="IdTipoCambio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Periodo" Type="varchar" MaxLength="6" Nullable="false" />
           <Property Name="Monto" Type="decimal" Precision="10" Scale="3" Nullable="false" />
-          <Property Name="Vigente" Type="bit" />
+          <Property Name="Vigente" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TipoDocumentoIdentificacion">
           <Key>
@@ -2349,7 +2350,6 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <EntitySet Name="Roles" EntityType="DISModelo.Role" />
           <EntitySet Name="Siniestros" EntityType="DISModelo.Siniestro" />
           <EntitySet Name="TipoArchivoes" EntityType="DISModelo.TipoArchivo" />
-          <EntitySet Name="TipoCambios" EntityType="DISModelo.TipoCambio" />
           <EntitySet Name="TipoDocumentoIdentificacions" EntityType="DISModelo.TipoDocumentoIdentificacion" />
           <EntitySet Name="TipoInformes" EntityType="DISModelo.TipoInforme" />
           <EntitySet Name="TipoMonedas" EntityType="DISModelo.TipoMoneda" />
@@ -2466,8 +2466,9 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
             <Parameter Name="Estado" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pa_confirmaPagoNomina">
-            <Parameter Name="ArchivoId" Mode="In" Type="Int32" />
+          <Parameter Name="ArchivoId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="TipoCambios" EntityType="DISModelo.TipoCambio" />
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
           <Property Type="Int32" Name="IdRegistroMontoAlto" Nullable="false" />
@@ -3684,14 +3685,6 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <NavigationProperty Name="Archivoes" Relationship="DISModelo.FK_TipoArchivoArchivo" FromRole="TipoArchivo" ToRole="Archivo" />
           <NavigationProperty Name="TipoInforme" Relationship="DISModelo.FK_TipoArchivo_TipoInforme" FromRole="TipoArchivo" ToRole="TipoInforme" />
         </EntityType>
-        <EntityType Name="TipoCambio">
-          <Key>
-            <PropertyRef Name="Periodo" />
-          </Key>
-          <Property Name="Periodo" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
-          <Property Name="Vigente" Type="Boolean" />
-        </EntityType>
         <EntityType Name="TipoDocumentoIdentificacion">
           <Key>
             <PropertyRef Name="TipoDocumentoIdentificacionId" />
@@ -4332,6 +4325,15 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <Property Type="String" Name="Estado" Nullable="true" MaxLength="1" />
           <Property Type="Decimal" Name="Importe" Nullable="true" Precision="38" Scale="6" />
         </ComplexType>
+        <EntityType Name="TipoCambio">
+          <Key>
+            <PropertyRef Name="IdTipoCambio" />
+          </Key>
+          <Property Name="IdTipoCambio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Periodo" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
+          <Property Name="Vigente" Type="Boolean" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5647,15 +5649,6 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TipoCambios">
-            <EntityTypeMapping TypeName="DISModelo.TipoCambio">
-              <MappingFragment StoreEntitySet="TipoCambio">
-                <ScalarProperty Name="Vigente" ColumnName="Vigente" />
-                <ScalarProperty Name="Monto" ColumnName="Monto" />
-                <ScalarProperty Name="Periodo" ColumnName="Periodo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TipoDocumentoIdentificacions">
             <EntityTypeMapping TypeName="DISModelo.TipoDocumentoIdentificacion">
               <MappingFragment StoreEntitySet="TipoDocumentoIdentificacion">
@@ -5999,6 +5992,16 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_confirmaPagoNomina" FunctionName="DISModelo.Store.pa_confirmaPagoNomina" />
+          <EntitySetMapping Name="TipoCambios">
+            <EntityTypeMapping TypeName="DISModelo.TipoCambio">
+              <MappingFragment StoreEntitySet="TipoCambio">
+                <ScalarProperty Name="Vigente" ColumnName="Vigente" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Periodo" ColumnName="Periodo" />
+                <ScalarProperty Name="IdTipoCambio" ColumnName="IdTipoCambio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

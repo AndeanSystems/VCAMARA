@@ -37,6 +37,7 @@ namespace VidaCamara.Web
             coleccion.MapPageRoute("SegLogAdmin", "SegLogAdmin", "~/WebPage/ModuloDIS/Consultas/frmSegLogAdmin.aspx");
 
             coleccion.MapPageRoute("ReglaArchivo", "ReglaArchivo", "~/WebPage/Mantenimiento/frmReglaArchivo.aspx");
+            coleccion.MapPageRoute("TipoCambio", "TipoCambio", "~/WebPage/Mantenimiento/frmTipoCambio.aspx");
             
 
 

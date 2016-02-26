@@ -117,8 +117,6 @@ public partial class DISEntities : DbContext
 
     public virtual DbSet<TipoArchivo> TipoArchivos { get; set; }
 
-    public virtual DbSet<TipoCambio> TipoCambios { get; set; }
-
     public virtual DbSet<TipoDocumentoIdentificacion> TipoDocumentoIdentificacions { get; set; }
 
     public virtual DbSet<TipoInforme> TipoInformes { get; set; }
@@ -146,6 +144,8 @@ public partial class DISEntities : DbContext
     public virtual DbSet<USUARIO> USUARIOs { get; set; }
 
     public virtual DbSet<CheckList> CheckLists { get; set; }
+
+    public virtual DbSet<TipoCambio> TipoCambios { get; set; }
 
 
     public virtual int pa_audit_InsertaBitacora(Nullable<int> param_IdUsuario, string param_Descripcion, string param_Comando, Nullable<int> param_Idarchivo)

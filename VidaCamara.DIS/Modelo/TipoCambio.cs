@@ -18,11 +18,13 @@ using System;
 public partial class TipoCambio
 {
 
+    public int IdTipoCambio { get; set; }
+
     public string Periodo { get; set; }
 
     public decimal Monto { get; set; }
 
-    public Nullable<bool> Vigente { get; set; }
+    public bool Vigente { get; set; }
 
 }
 
