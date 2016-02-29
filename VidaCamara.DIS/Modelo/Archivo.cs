@@ -21,6 +21,8 @@ public partial class Archivo
     public Archivo()
     {
 
+        this.EXACTUS_CABECERA_SIS = new HashSet<EXACTUS_CABECERA_SIS>();
+
         this.NOMINAs = new HashSet<NOMINA>();
 
         this.HistorialCargaArchivoes = new HashSet<HistorialCargaArchivo>();
@@ -45,6 +47,8 @@ public partial class Archivo
     public Nullable<bool> Vigente { get; set; }
 
 
+
+    public virtual ICollection<EXACTUS_CABECERA_SIS> EXACTUS_CABECERA_SIS { get; set; }
 
     public virtual ICollection<NOMINA> NOMINAs { get; set; }
 

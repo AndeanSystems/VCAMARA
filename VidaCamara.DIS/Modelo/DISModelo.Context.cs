@@ -51,6 +51,8 @@ public partial class DISEntities : DbContext
 
     public virtual DbSet<Exactu> Exactus { get; set; }
 
+    public virtual DbSet<EXACTUS_CABECERA_SIS> EXACTUS_CABECERA_SISs { get; set; }
+
     public virtual DbSet<EXACTUS_DETALLE> EXACTUS_DETALLEs { get; set; }
 
     public virtual DbSet<GENERAL> GENERALs { get; set; }
@@ -117,6 +119,8 @@ public partial class DISEntities : DbContext
 
     public virtual DbSet<TipoArchivo> TipoArchivos { get; set; }
 
+    public virtual DbSet<TipoCambio> TipoCambios { get; set; }
+
     public virtual DbSet<TipoDocumentoIdentificacion> TipoDocumentoIdentificacions { get; set; }
 
     public virtual DbSet<TipoInforme> TipoInformes { get; set; }
@@ -141,11 +145,11 @@ public partial class DISEntities : DbContext
 
     public virtual DbSet<EXACTUS_CABECERA> EXACTUS_CABECERAs { get; set; }
 
+    public virtual DbSet<EXACTUS_DETALLE_SIS> EXACTUS_DETALLE_SISs { get; set; }
+
     public virtual DbSet<USUARIO> USUARIOs { get; set; }
 
     public virtual DbSet<CheckList> CheckLists { get; set; }
-
-    public virtual DbSet<TipoCambio> TipoCambios { get; set; }
 
 
     public virtual int pa_audit_InsertaBitacora(Nullable<int> param_IdUsuario, string param_Descripcion, string param_Comando, Nullable<int> param_Idarchivo)
@@ -1313,6 +1317,28 @@ public partial class DISEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_confirmaPagoNomina", archivoIdParameter);
+    }
+
+
+    public virtual int pa_create_cuenta_42_26_sis(Nullable<int> exactusCabeceraId, Nullable<int> archivoNominaId, Nullable<int> numeroAsiento)
+    {
+
+        var exactusCabeceraIdParameter = exactusCabeceraId.HasValue ?
+            new ObjectParameter("ExactusCabeceraId", exactusCabeceraId) :
+            new ObjectParameter("ExactusCabeceraId", typeof(int));
+
+
+        var archivoNominaIdParameter = archivoNominaId.HasValue ?
+            new ObjectParameter("ArchivoNominaId", archivoNominaId) :
+            new ObjectParameter("ArchivoNominaId", typeof(int));
+
+
+        var numeroAsientoParameter = numeroAsiento.HasValue ?
+            new ObjectParameter("NumeroAsiento", numeroAsiento) :
+            new ObjectParameter("NumeroAsiento", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_create_cuenta_42_26_sis", exactusCabeceraIdParameter, archivoNominaIdParameter, numeroAsientoParameter);
     }
 
 }

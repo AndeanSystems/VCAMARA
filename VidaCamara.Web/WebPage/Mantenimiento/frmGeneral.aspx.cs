@@ -631,7 +631,8 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                     _estado = ddl_estado_sys.SelectedItem.Value,
                     _usu_reg = Session["username"].ToString(),
                     _usu_mod = Session["username"].ToString(),
-                    _nro_empresa = int.Parse(txt_numero_empresa.Text)
+                    _nro_empresa = int.Parse(txt_numero_empresa.Text),
+                    _centro_costo = txt_centro_costo_sys.Text
                 };
 
                 if(contratoSis._fec_Ini_Vig >= contratoSis._fec_Fin_Vig)

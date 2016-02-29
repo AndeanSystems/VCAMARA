@@ -213,6 +213,7 @@ warning 6002: The table/view 'vcamara2.dbo.CONTRATO_DETALLE' does not have a pri
           <Property Name="CLA_CONTRATO" Type="char" MaxLength="4" Nullable="false" />
           <Property Name="FEC_INI_VIG" Type="date" Nullable="false" />
           <Property Name="FEC_FIN_VIG" Type="date" Nullable="false" />
+          <Property Name="CENTRO_COSTO" Type="varchar" MaxLength="25" />
           <Property Name="DES_CONTRATO" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ESTADO" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="FEC_REG" Type="datetime" Nullable="false" />
@@ -437,6 +438,28 @@ warning 6002: The table/view 'vcamara2.dbo.EXACTUS_CABECERA' does not have a pri
           <Property Name="FECHA_CREACION" Type="datetime" Nullable="false" />
           <Property Name="USUARIO_REGISTRO" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
+        <EntityType Name="EXACTUS_CABECERA_SIS">
+          <Key>
+            <PropertyRef Name="IDE_EXACTUS_CABECERA_SIS" />
+          </Key>
+          <Property Name="IDE_EXACTUS_CABECERA_SIS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDE_CONTRATO" Type="int" Nullable="false" />
+          <Property Name="ArchivoId" Type="int" Nullable="false" />
+          <Property Name="ASIENTO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PAQUETE" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="TIPO_ASIENTO" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="FECHA" Type="datetime" Nullable="false" />
+          <Property Name="CONTABILIDAD" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="NOTAS" Type="text" />
+          <Property Name="ESTADO" Type="int" Nullable="false" />
+          <Property Name="ESTADO_TRANSFERENCIA" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="PERMITIR_DESCUADRADO" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CONSERVAR_NUMERACION" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ACTUALIZAR_CONSECUTIVO" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="FECHA_AUDITORIA" Type="datetime" />
+          <Property Name="FECHA_CREACION" Type="datetime" Nullable="false" />
+          <Property Name="USUARIO_REGISTRO" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
         <EntityType Name="EXACTUS_DETALLE">
           <Key>
             <PropertyRef Name="CONSECUTIVO" />
@@ -445,6 +468,44 @@ warning 6002: The table/view 'vcamara2.dbo.EXACTUS_CABECERA' does not have a pri
           <Property Name="ANIO_VIGENTE" Type="int" Nullable="false" />
           <Property Name="MES_VIGENTE" Type="int" Nullable="false" />
           <Property Name="TIPO_INFO" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="ASIENTO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CONSECUTIVO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CENTRO_COSTO" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="CUENTA_CONTABLE" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="FUENTE" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="REFERENCIA" Type="varchar" MaxLength="249" Nullable="false" />
+          <Property Name="CONTRIBUYENTE" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="MONTO_LOCAL" Type="decimal" Precision="28" Scale="8" Nullable="false" />
+          <Property Name="MONTO_DOLAR" Type="decimal" Precision="28" Scale="8" Nullable="false" />
+          <Property Name="MONTO_UNIDADES" Type="decimal" Precision="28" Scale="8" Nullable="false" />
+          <Property Name="FECHA_REGISTRO" Type="datetime" Nullable="false" />
+          <Property Name="ESTADO_TRANSFERENCIA" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="NIT" Type="varchar" MaxLength="20" />
+          <Property Name="DIMENSION1" Type="varchar" MaxLength="25" />
+          <Property Name="DIMENSION2" Type="varchar" MaxLength="25" />
+          <Property Name="DIMENSION3" Type="varchar" MaxLength="25" />
+          <Property Name="DIMENSION4" Type="varchar" MaxLength="25" />
+          <Property Name="DIMENSION5" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'vcamara2.dbo.EXACTUS_DETALLE_SIS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EXACTUS_DETALLE_SIS">
+          <Key>
+            <PropertyRef Name="IDE_EXACTUS_CABECERA_SIS" />
+            <PropertyRef Name="ASIENTO" />
+            <PropertyRef Name="CONSECUTIVO" />
+            <PropertyRef Name="CENTRO_COSTO" />
+            <PropertyRef Name="CUENTA_CONTABLE" />
+            <PropertyRef Name="FUENTE" />
+            <PropertyRef Name="REFERENCIA" />
+            <PropertyRef Name="CONTRIBUYENTE" />
+            <PropertyRef Name="MONTO_LOCAL" />
+            <PropertyRef Name="MONTO_DOLAR" />
+            <PropertyRef Name="MONTO_UNIDADES" />
+            <PropertyRef Name="FECHA_REGISTRO" />
+            <PropertyRef Name="ESTADO_TRANSFERENCIA" />
+          </Key>
+          <Property Name="IDE_EXACTUS_CABECERA_SIS" Type="int" Nullable="false" />
           <Property Name="ASIENTO" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="CONSECUTIVO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CENTRO_COSTO" Type="varchar" MaxLength="25" Nullable="false" />
@@ -1198,6 +1259,42 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EXACTUS_CABECERA_SIS_Archivo">
+          <End Role="Archivo" Type="Self.Archivo" Multiplicity="1" />
+          <End Role="EXACTUS_CABECERA_SIS" Type="Self.EXACTUS_CABECERA_SIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Archivo">
+              <PropertyRef Name="ArchivoId" />
+            </Principal>
+            <Dependent Role="EXACTUS_CABECERA_SIS">
+              <PropertyRef Name="ArchivoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EXACTUS_CABECERA_SIS_CONTRATO_SYS">
+          <End Role="CONTRATO_SYS" Type="Self.CONTRATO_SYS" Multiplicity="1" />
+          <End Role="EXACTUS_CABECERA_SIS" Type="Self.EXACTUS_CABECERA_SIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTRATO_SYS">
+              <PropertyRef Name="IDE_CONTRATO" />
+            </Principal>
+            <Dependent Role="EXACTUS_CABECERA_SIS">
+              <PropertyRef Name="IDE_CONTRATO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EXACTUS_DETALLE_SIS_EXACTUS_CABECERA_SIS">
+          <End Role="EXACTUS_CABECERA_SIS" Type="Self.EXACTUS_CABECERA_SIS" Multiplicity="1" />
+          <End Role="EXACTUS_DETALLE_SIS" Type="Self.EXACTUS_DETALLE_SIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EXACTUS_CABECERA_SIS">
+              <PropertyRef Name="IDE_EXACTUS_CABECERA_SIS" />
+            </Principal>
+            <Dependent Role="EXACTUS_DETALLE_SIS">
+              <PropertyRef Name="IDE_EXACTUS_CABECERA_SIS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_HistorialCargaArchivo_Archivo">
           <End Role="Archivo" Type="Self.Archivo" Multiplicity="1" />
           <End Role="HistorialCargaArchivo" Type="Self.HistorialCargaArchivo" Multiplicity="*" />
@@ -1426,6 +1523,11 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
         </Function>
         <Function Name="pa_copia_reglaArchivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NroContrato" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pa_create_cuenta_42_26_sis" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ExactusCabeceraId" Type="int" Mode="In" />
+          <Parameter Name="ArchivoNominaId" Type="int" Mode="In" />
+          <Parameter Name="NumeroAsiento" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_devuelveresultado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idarchivo" Type="int" Mode="In" />
@@ -1688,6 +1790,7 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <EntitySet Name="DATO_M" EntityType="Self.DATO_M" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Exactus" EntityType="Self.Exactus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EXACTUS_CABECERA_SIS" EntityType="Self.EXACTUS_CABECERA_SIS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EXACTUS_DETALLE" EntityType="Self.EXACTUS_DETALLE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GENERAL" EntityType="Self.GENERAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LogOperacion" EntityType="Self.LogOperacion" Schema="dbo" store:Type="Tables" />
@@ -1932,6 +2035,29 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
     [EXACTUS_CABECERA].[USUARIO_REGISTRO] AS [USUARIO_REGISTRO]
     FROM [dbo].[EXACTUS_CABECERA] AS [EXACTUS_CABECERA]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="EXACTUS_DETALLE_SIS" EntityType="Self.EXACTUS_DETALLE_SIS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EXACTUS_DETALLE_SIS].[IDE_EXACTUS_CABECERA_SIS] AS [IDE_EXACTUS_CABECERA_SIS], 
+    [EXACTUS_DETALLE_SIS].[ASIENTO] AS [ASIENTO], 
+    [EXACTUS_DETALLE_SIS].[CONSECUTIVO] AS [CONSECUTIVO], 
+    [EXACTUS_DETALLE_SIS].[CENTRO_COSTO] AS [CENTRO_COSTO], 
+    [EXACTUS_DETALLE_SIS].[CUENTA_CONTABLE] AS [CUENTA_CONTABLE], 
+    [EXACTUS_DETALLE_SIS].[FUENTE] AS [FUENTE], 
+    [EXACTUS_DETALLE_SIS].[REFERENCIA] AS [REFERENCIA], 
+    [EXACTUS_DETALLE_SIS].[CONTRIBUYENTE] AS [CONTRIBUYENTE], 
+    [EXACTUS_DETALLE_SIS].[MONTO_LOCAL] AS [MONTO_LOCAL], 
+    [EXACTUS_DETALLE_SIS].[MONTO_DOLAR] AS [MONTO_DOLAR], 
+    [EXACTUS_DETALLE_SIS].[MONTO_UNIDADES] AS [MONTO_UNIDADES], 
+    [EXACTUS_DETALLE_SIS].[FECHA_REGISTRO] AS [FECHA_REGISTRO], 
+    [EXACTUS_DETALLE_SIS].[ESTADO_TRANSFERENCIA] AS [ESTADO_TRANSFERENCIA], 
+    [EXACTUS_DETALLE_SIS].[NIT] AS [NIT], 
+    [EXACTUS_DETALLE_SIS].[DIMENSION1] AS [DIMENSION1], 
+    [EXACTUS_DETALLE_SIS].[DIMENSION2] AS [DIMENSION2], 
+    [EXACTUS_DETALLE_SIS].[DIMENSION3] AS [DIMENSION3], 
+    [EXACTUS_DETALLE_SIS].[DIMENSION4] AS [DIMENSION4], 
+    [EXACTUS_DETALLE_SIS].[DIMENSION5] AS [DIMENSION5]
+    FROM [dbo].[EXACTUS_DETALLE_SIS] AS [EXACTUS_DETALLE_SIS]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="USUARIO" EntityType="Self.USUARIO" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [USUARIO].[IDE_USUARIO] AS [IDE_USUARIO], 
@@ -1981,6 +2107,18 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <AssociationSet Name="FK_EstadoArchivoArchivo" Association="Self.FK_EstadoArchivoArchivo">
             <End Role="EstadoArchivo" EntitySet="EstadoArchivo" />
             <End Role="Archivo" EntitySet="Archivo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXACTUS_CABECERA_SIS_Archivo" Association="Self.FK_EXACTUS_CABECERA_SIS_Archivo">
+            <End Role="Archivo" EntitySet="Archivo" />
+            <End Role="EXACTUS_CABECERA_SIS" EntitySet="EXACTUS_CABECERA_SIS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXACTUS_CABECERA_SIS_CONTRATO_SYS" Association="Self.FK_EXACTUS_CABECERA_SIS_CONTRATO_SYS">
+            <End Role="CONTRATO_SYS" EntitySet="CONTRATO_SYS" />
+            <End Role="EXACTUS_CABECERA_SIS" EntitySet="EXACTUS_CABECERA_SIS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXACTUS_DETALLE_SIS_EXACTUS_CABECERA_SIS" Association="Self.FK_EXACTUS_DETALLE_SIS_EXACTUS_CABECERA_SIS">
+            <End Role="EXACTUS_CABECERA_SIS" EntitySet="EXACTUS_CABECERA_SIS" />
+            <End Role="EXACTUS_DETALLE_SIS" EntitySet="EXACTUS_DETALLE_SIS" />
           </AssociationSet>
           <AssociationSet Name="FK_HistorialCargaArchivo_Archivo" Association="Self.FK_HistorialCargaArchivo_Archivo">
             <End Role="Archivo" EntitySet="Archivo" />
@@ -2309,6 +2447,22 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <FunctionImport Name="pa_sel_NominaForTelebankinByArchivoId" ReturnType="Collection(DISModelo.pa_sel_NominaForTelebankinByArchivoId_Result)">
           <Parameter Name="ArchivoId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="pa_sel_nominaXArchivo" ReturnType="Collection(DISModelo.pa_sel_nominaXArchivo_Result)">
+            <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
+            <Parameter Name="NombreArchivo" Mode="In" Type="String" />
+            <Parameter Name="CumpleValidacion" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="pa_copia_reglaArchivo" ReturnType="Collection(Int32)">
+          <Parameter Name="NroContrato" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_sel_NominaForTelebanking" ReturnType="Collection(DISModelo.pa_sel_NominaForTelebanking_Result)">
+            <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
+            <Parameter Name="FechaCarga" Mode="In" Type="DateTime" />
+            <Parameter Name="Estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pa_confirmaPagoNomina">
+          <Parameter Name="ArchivoId" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="CIERRE_PROCESO" EntityType="DISModelo.CIERRE_PROCESO" />
           <EntitySet Name="CONCEPTOes" EntityType="DISModelo.CONCEPTO" />
           <EntitySet Name="CONTRATOes" EntityType="DISModelo.CONTRATO" />
@@ -2317,6 +2471,7 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <EntitySet Name="DATO_M" EntityType="DISModelo.DATO_M" />
           <EntitySet Name="Eventoes" EntityType="DISModelo.Evento" />
           <EntitySet Name="Exactus" EntityType="DISModelo.Exactu" />
+          <EntitySet Name="EXACTUS_CABECERA_SIS" EntityType="DISModelo.EXACTUS_CABECERA_SIS" />
           <EntitySet Name="EXACTUS_DETALLE" EntityType="DISModelo.EXACTUS_DETALLE" />
           <EntitySet Name="GENERALs" EntityType="DISModelo.GENERAL" />
           <EntitySet Name="LogOperacions" EntityType="DISModelo.LogOperacion" />
@@ -2350,6 +2505,7 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <EntitySet Name="Roles" EntityType="DISModelo.Role" />
           <EntitySet Name="Siniestros" EntityType="DISModelo.Siniestro" />
           <EntitySet Name="TipoArchivoes" EntityType="DISModelo.TipoArchivo" />
+          <EntitySet Name="TipoCambios" EntityType="DISModelo.TipoCambio" />
           <EntitySet Name="TipoDocumentoIdentificacions" EntityType="DISModelo.TipoDocumentoIdentificacion" />
           <EntitySet Name="TipoInformes" EntityType="DISModelo.TipoInforme" />
           <EntitySet Name="TipoMonedas" EntityType="DISModelo.TipoMoneda" />
@@ -2362,11 +2518,16 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <EntitySet Name="CONTRATO_DETALLE" EntityType="DISModelo.CONTRATO_DETALLE" />
           <EntitySet Name="DATO_A" EntityType="DISModelo.DATO_A" />
           <EntitySet Name="EXACTUS_CABECERA" EntityType="DISModelo.EXACTUS_CABECERA" />
+          <EntitySet Name="EXACTUS_DETALLE_SIS" EntityType="DISModelo.EXACTUS_DETALLE_SIS" />
           <EntitySet Name="USUARIOs" EntityType="DISModelo.USUARIO" />
           <EntitySet Name="CheckLists" EntityType="DISModelo.CheckList" />
           <AssociationSet Name="FK_CONTRATO_SIS_DET_CONTRATO_SYS" Association="DISModelo.FK_CONTRATO_SIS_DET_CONTRATO_SYS">
             <End Role="CONTRATO_SYS" EntitySet="CONTRATO_SYS" />
             <End Role="CONTRATO_SIS_DET" EntitySet="CONTRATO_SIS_DET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXACTUS_CABECERA_SIS_CONTRATO_SYS" Association="DISModelo.FK_EXACTUS_CABECERA_SIS_CONTRATO_SYS">
+            <End Role="CONTRATO_SYS" EntitySet="CONTRATO_SYS" />
+            <End Role="EXACTUS_CABECERA_SIS" EntitySet="EXACTUS_CABECERA_SIS" />
           </AssociationSet>
           <AssociationSet Name="FK_HistorialCargaArchivo_LinCab_CONTRATO_SYS" Association="DISModelo.FK_HistorialCargaArchivo_LinCab_CONTRATO_SYS">
             <End Role="CONTRATO_SYS" EntitySet="CONTRATO_SYS" />
@@ -2379,6 +2540,14 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <AssociationSet Name="FK_NOMINA_CONTRATO_SYS" Association="DISModelo.FK_NOMINA_CONTRATO_SYS">
             <End Role="CONTRATO_SYS" EntitySet="CONTRATO_SYS" />
             <End Role="NOMINA" EntitySet="NOMINAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXACTUS_CABECERA_SIS_Archivo" Association="DISModelo.FK_EXACTUS_CABECERA_SIS_Archivo">
+            <End Role="Archivo" EntitySet="Archivoes" />
+            <End Role="EXACTUS_CABECERA_SIS" EntitySet="EXACTUS_CABECERA_SIS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXACTUS_DETALLE_SIS_EXACTUS_CABECERA_SIS" Association="DISModelo.FK_EXACTUS_DETALLE_SIS_EXACTUS_CABECERA_SIS">
+            <End Role="EXACTUS_CABECERA_SIS" EntitySet="EXACTUS_CABECERA_SIS" />
+            <End Role="EXACTUS_DETALLE_SIS" EntitySet="EXACTUS_DETALLE_SIS" />
           </AssociationSet>
           <AssociationSet Name="FK_NOMINA_Archivo" Association="DISModelo.FK_NOMINA_Archivo">
             <End Role="Archivo" EntitySet="Archivoes" />
@@ -2452,23 +2621,11 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
             <End Role="TipoInforme" EntitySet="TipoInformes" />
             <End Role="TipoArchivo" EntitySet="TipoArchivoes" />
           </AssociationSet>
-          <FunctionImport Name="pa_sel_nominaXArchivo" ReturnType="Collection(DISModelo.pa_sel_nominaXArchivo_Result)">
-            <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
-            <Parameter Name="NombreArchivo" Mode="In" Type="String" />
-            <Parameter Name="CumpleValidacion" Mode="In" Type="Int64" />
+          <FunctionImport Name="pa_create_cuenta_42_26_sis">
+            <Parameter Name="ExactusCabeceraId" Mode="In" Type="Int32" />
+            <Parameter Name="ArchivoNominaId" Mode="In" Type="Int32" />
+            <Parameter Name="NumeroAsiento" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="pa_copia_reglaArchivo" ReturnType="Collection(Int32)">
-          <Parameter Name="NroContrato" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="pa_sel_NominaForTelebanking" ReturnType="Collection(DISModelo.pa_sel_NominaForTelebanking_Result)">
-            <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
-            <Parameter Name="FechaCarga" Mode="In" Type="DateTime" />
-            <Parameter Name="Estado" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="pa_confirmaPagoNomina">
-          <Parameter Name="ArchivoId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <EntitySet Name="TipoCambios" EntityType="DISModelo.TipoCambio" />
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
           <Property Type="Int32" Name="IdRegistroMontoAlto" Nullable="false" />
@@ -2881,6 +3038,32 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <Property Type="String" Name="CTA_BENE" Nullable="true" MaxLength="20" />
           <Property Type="Decimal" Name="IMPORTE" Nullable="true" Precision="24" Scale="6" />
         </ComplexType>
+        <ComplexType Name="pa_sel_nominaXArchivo_Result">
+          <Property Type="Int32" Name="Id_Nomina" Nullable="false" />
+          <Property Type="Int32" Name="Id_Empresa" Nullable="true" />
+          <Property Type="Int32" Name="ArchivoId" Nullable="true" />
+          <Property Type="Int32" Name="IDE_CONTRATO" Nullable="false" />
+          <Property Type="String" Name="RUC_ORDE" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="CTA_ORDE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="COD_TRAN" Nullable="true" MaxLength="25" />
+          <Property Type="Int32" Name="TIP_MONE" Nullable="true" />
+          <Property Type="Decimal" Name="MON_TRAN" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="FEC_TRAN" Nullable="true" Precision="23" />
+          <Property Type="String" Name="RUC_BENE" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="NOM_BENE" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="TIP_CTA" Nullable="true" />
+          <Property Type="String" Name="CTA_BENE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DET_TRAN" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="ReglaObservada" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="pa_sel_NominaForTelebanking_Result">
+          <Property Type="Int32" Name="ArchivoId" Nullable="false" />
+          <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="FechaOperacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Moneda" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="Importe" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
         <EntityType Name="CIERRE_PROCESO">
           <Key>
             <PropertyRef Name="ID_CIERRE" />
@@ -2988,6 +3171,7 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <Property Name="CLA_CONTRATO" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
           <Property Name="FEC_INI_VIG" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FEC_FIN_VIG" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CENTRO_COSTO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="DES_CONTRATO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FEC_REG" Type="DateTime" Nullable="false" Precision="3" />
@@ -2996,6 +3180,7 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <Property Name="USU_MOD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="NRO_EMPRESAS" Type="Int32" />
           <NavigationProperty Name="CONTRATO_SIS_DET" Relationship="DISModelo.FK_CONTRATO_SIS_DET_CONTRATO_SYS" FromRole="CONTRATO_SYS" ToRole="CONTRATO_SIS_DET" />
+          <NavigationProperty Name="EXACTUS_CABECERA_SIS" Relationship="DISModelo.FK_EXACTUS_CABECERA_SIS_CONTRATO_SYS" FromRole="CONTRATO_SYS" ToRole="EXACTUS_CABECERA_SIS" />
           <NavigationProperty Name="HistorialCargaArchivo_LinCab" Relationship="DISModelo.FK_HistorialCargaArchivo_LinCab_CONTRATO_SYS" FromRole="CONTRATO_SYS" ToRole="HistorialCargaArchivo_LinCab" />
           <NavigationProperty Name="LogOperacions" Relationship="DISModelo.FK_LogOperacion_CONTRATO_SYS" FromRole="CONTRATO_SYS" ToRole="LogOperacion" />
           <NavigationProperty Name="NOMINAs" Relationship="DISModelo.FK_NOMINA_CONTRATO_SYS" FromRole="CONTRATO_SYS" ToRole="NOMINA" />
@@ -3054,6 +3239,31 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <Property Name="HostName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="NTDomainName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="RowCounts" Type="Int64" />
+        </EntityType>
+        <EntityType Name="EXACTUS_CABECERA_SIS">
+          <Key>
+            <PropertyRef Name="IDE_EXACTUS_CABECERA_SIS" />
+          </Key>
+          <Property Name="IDE_EXACTUS_CABECERA_SIS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDE_CONTRATO" Type="Int32" Nullable="false" />
+          <Property Name="ArchivoId" Type="Int32" Nullable="false" />
+          <Property Name="ASIENTO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PAQUETE" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="TIPO_ASIENTO" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CONTABILIDAD" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="NOTAS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="Int32" Nullable="false" />
+          <Property Name="ESTADO_TRANSFERENCIA" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="PERMITIR_DESCUADRADO" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CONSERVAR_NUMERACION" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ACTUALIZAR_CONSECUTIVO" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FECHA_AUDITORIA" Type="DateTime" Precision="3" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="USUARIO_REGISTRO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CONTRATO_SYS" Relationship="DISModelo.FK_EXACTUS_CABECERA_SIS_CONTRATO_SYS" FromRole="EXACTUS_CABECERA_SIS" ToRole="CONTRATO_SYS" />
+          <NavigationProperty Name="Archivo" Relationship="DISModelo.FK_EXACTUS_CABECERA_SIS_Archivo" FromRole="EXACTUS_CABECERA_SIS" ToRole="Archivo" />
+          <NavigationProperty Name="EXACTUS_DETALLE_SIS" Relationship="DISModelo.FK_EXACTUS_DETALLE_SIS_EXACTUS_CABECERA_SIS" FromRole="EXACTUS_CABECERA_SIS" ToRole="EXACTUS_DETALLE_SIS" />
         </EntityType>
         <EntityType Name="EXACTUS_DETALLE">
           <Key>
@@ -3424,6 +3634,7 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
           <Property Name="UsuarioModificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Vigente" Type="Boolean" />
+          <NavigationProperty Name="EXACTUS_CABECERA_SIS" Relationship="DISModelo.FK_EXACTUS_CABECERA_SIS_Archivo" FromRole="Archivo" ToRole="EXACTUS_CABECERA_SIS" />
           <NavigationProperty Name="NOMINAs" Relationship="DISModelo.FK_NOMINA_Archivo" FromRole="Archivo" ToRole="NOMINA" />
           <NavigationProperty Name="HistorialCargaArchivoes" Relationship="DISModelo.FK_HistorialCargaArchivo_Archivo" FromRole="Archivo" ToRole="HistorialCargaArchivo" />
           <NavigationProperty Name="HistorialCargaArchivo_LinCab" Relationship="DISModelo.FK_HistorialCargaArchivo_LinCab_Archivo" FromRole="Archivo" ToRole="HistorialCargaArchivo_LinCab" />
@@ -3684,6 +3895,15 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <Property Name="Vigente" Type="Boolean" />
           <NavigationProperty Name="Archivoes" Relationship="DISModelo.FK_TipoArchivoArchivo" FromRole="TipoArchivo" ToRole="Archivo" />
           <NavigationProperty Name="TipoInforme" Relationship="DISModelo.FK_TipoArchivo_TipoInforme" FromRole="TipoArchivo" ToRole="TipoInforme" />
+        </EntityType>
+        <EntityType Name="TipoCambio">
+          <Key>
+            <PropertyRef Name="IdTipoCambio" />
+          </Key>
+          <Property Name="IdTipoCambio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Periodo" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
+          <Property Name="Vigente" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="TipoDocumentoIdentificacion">
           <Key>
@@ -3996,6 +4216,43 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <Property Name="FECHA_CREACION" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="USUARIO_REGISTRO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="EXACTUS_DETALLE_SIS">
+          <Key>
+            <PropertyRef Name="IDE_EXACTUS_CABECERA_SIS" />
+            <PropertyRef Name="ASIENTO" />
+            <PropertyRef Name="CONSECUTIVO" />
+            <PropertyRef Name="CENTRO_COSTO" />
+            <PropertyRef Name="CUENTA_CONTABLE" />
+            <PropertyRef Name="FUENTE" />
+            <PropertyRef Name="REFERENCIA" />
+            <PropertyRef Name="CONTRIBUYENTE" />
+            <PropertyRef Name="MONTO_LOCAL" />
+            <PropertyRef Name="MONTO_DOLAR" />
+            <PropertyRef Name="MONTO_UNIDADES" />
+            <PropertyRef Name="FECHA_REGISTRO" />
+            <PropertyRef Name="ESTADO_TRANSFERENCIA" />
+          </Key>
+          <Property Name="IDE_EXACTUS_CABECERA_SIS" Type="Int32" Nullable="false" />
+          <Property Name="ASIENTO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CONSECUTIVO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CENTRO_COSTO" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="CUENTA_CONTABLE" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="FUENTE" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="REFERENCIA" Type="String" Nullable="false" MaxLength="249" FixedLength="false" Unicode="false" />
+          <Property Name="CONTRIBUYENTE" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="MONTO_LOCAL" Type="Decimal" Nullable="false" Precision="28" Scale="8" />
+          <Property Name="MONTO_DOLAR" Type="Decimal" Nullable="false" Precision="28" Scale="8" />
+          <Property Name="MONTO_UNIDADES" Type="Decimal" Nullable="false" Precision="28" Scale="8" />
+          <Property Name="FECHA_REGISTRO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ESTADO_TRANSFERENCIA" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="NIT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DIMENSION1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DIMENSION2" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DIMENSION3" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DIMENSION4" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DIMENSION5" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EXACTUS_CABECERA_SIS" Relationship="DISModelo.FK_EXACTUS_DETALLE_SIS_EXACTUS_CABECERA_SIS" FromRole="EXACTUS_DETALLE_SIS" ToRole="EXACTUS_CABECERA_SIS" />
+        </EntityType>
         <EntityType Name="USUARIO">
           <Key>
             <PropertyRef Name="IDE_USUARIO" />
@@ -4047,6 +4304,18 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EXACTUS_CABECERA_SIS_CONTRATO_SYS">
+          <End Type="DISModelo.CONTRATO_SYS" Role="CONTRATO_SYS" Multiplicity="1" />
+          <End Type="DISModelo.EXACTUS_CABECERA_SIS" Role="EXACTUS_CABECERA_SIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTRATO_SYS">
+              <PropertyRef Name="IDE_CONTRATO" />
+            </Principal>
+            <Dependent Role="EXACTUS_CABECERA_SIS">
+              <PropertyRef Name="IDE_CONTRATO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_HistorialCargaArchivo_LinCab_CONTRATO_SYS">
           <End Type="DISModelo.CONTRATO_SYS" Role="CONTRATO_SYS" Multiplicity="1" />
           <End Type="DISModelo.HistorialCargaArchivo_LinCab" Role="HistorialCargaArchivo_LinCab" Multiplicity="*" />
@@ -4080,6 +4349,30 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
             </Principal>
             <Dependent Role="NOMINA">
               <PropertyRef Name="IDE_CONTRATO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EXACTUS_CABECERA_SIS_Archivo">
+          <End Type="DISModelo.Archivo" Role="Archivo" Multiplicity="1" />
+          <End Type="DISModelo.EXACTUS_CABECERA_SIS" Role="EXACTUS_CABECERA_SIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Archivo">
+              <PropertyRef Name="ArchivoId" />
+            </Principal>
+            <Dependent Role="EXACTUS_CABECERA_SIS">
+              <PropertyRef Name="ArchivoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EXACTUS_DETALLE_SIS_EXACTUS_CABECERA_SIS">
+          <End Type="DISModelo.EXACTUS_CABECERA_SIS" Role="EXACTUS_CABECERA_SIS" Multiplicity="1" />
+          <End Type="DISModelo.EXACTUS_DETALLE_SIS" Role="EXACTUS_DETALLE_SIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EXACTUS_CABECERA_SIS">
+              <PropertyRef Name="IDE_EXACTUS_CABECERA_SIS" />
+            </Principal>
+            <Dependent Role="EXACTUS_DETALLE_SIS">
+              <PropertyRef Name="IDE_EXACTUS_CABECERA_SIS" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4299,41 +4592,6 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="pa_sel_nominaXArchivo_Result">
-          <Property Type="Int32" Name="Id_Nomina" Nullable="false" />
-          <Property Type="Int32" Name="Id_Empresa" Nullable="true" />
-          <Property Type="Int32" Name="ArchivoId" Nullable="true" />
-          <Property Type="Int32" Name="IDE_CONTRATO" Nullable="false" />
-          <Property Type="String" Name="RUC_ORDE" Nullable="true" MaxLength="11" />
-          <Property Type="String" Name="CTA_ORDE" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="COD_TRAN" Nullable="true" MaxLength="25" />
-          <Property Type="Int32" Name="TIP_MONE" Nullable="true" />
-          <Property Type="Decimal" Name="MON_TRAN" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="DateTime" Name="FEC_TRAN" Nullable="true" Precision="23" />
-          <Property Type="String" Name="RUC_BENE" Nullable="true" MaxLength="11" />
-          <Property Type="String" Name="NOM_BENE" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="TIP_CTA" Nullable="true" />
-          <Property Type="String" Name="CTA_BENE" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="DET_TRAN" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="ReglaObservada" Nullable="true" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="pa_sel_NominaForTelebanking_Result">
-          <Property Type="Int32" Name="ArchivoId" Nullable="false" />
-          <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
-          <Property Type="DateTime" Name="FechaOperacion" Nullable="true" Precision="23" />
-          <Property Type="String" Name="Moneda" Nullable="false" MaxLength="250" />
-          <Property Type="String" Name="Estado" Nullable="true" MaxLength="1" />
-          <Property Type="Decimal" Name="Importe" Nullable="true" Precision="38" Scale="6" />
-        </ComplexType>
-        <EntityType Name="TipoCambio">
-          <Key>
-            <PropertyRef Name="IdTipoCambio" />
-          </Key>
-          <Property Name="IdTipoCambio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Periodo" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
-          <Property Name="Vigente" Type="Boolean" Nullable="false" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4843,6 +5101,42 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_sel_nominaXArchivo" FunctionName="DISModelo.Store.pa_sel_nominaXArchivo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DISModelo.pa_sel_nominaXArchivo_Result">
+                <ScalarProperty Name="Id_Nomina" ColumnName="Id_Nomina" />
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
+                <ScalarProperty Name="IDE_CONTRATO" ColumnName="IDE_CONTRATO" />
+                <ScalarProperty Name="RUC_ORDE" ColumnName="RUC_ORDE" />
+                <ScalarProperty Name="CTA_ORDE" ColumnName="CTA_ORDE" />
+                <ScalarProperty Name="COD_TRAN" ColumnName="COD_TRAN" />
+                <ScalarProperty Name="TIP_MONE" ColumnName="TIP_MONE" />
+                <ScalarProperty Name="MON_TRAN" ColumnName="MON_TRAN" />
+                <ScalarProperty Name="FEC_TRAN" ColumnName="FEC_TRAN" />
+                <ScalarProperty Name="RUC_BENE" ColumnName="RUC_BENE" />
+                <ScalarProperty Name="NOM_BENE" ColumnName="NOM_BENE" />
+                <ScalarProperty Name="TIP_CTA" ColumnName="TIP_CTA" />
+                <ScalarProperty Name="CTA_BENE" ColumnName="CTA_BENE" />
+                <ScalarProperty Name="DET_TRAN" ColumnName="DET_TRAN" />
+                <ScalarProperty Name="ReglaObservada" ColumnName="ReglaObservada" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_copia_reglaArchivo" FunctionName="DISModelo.Store.pa_copia_reglaArchivo" />
+          <FunctionImportMapping FunctionImportName="pa_sel_NominaForTelebanking" FunctionName="DISModelo.Store.pa_sel_NominaForTelebanking">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DISModelo.pa_sel_NominaForTelebanking_Result">
+                <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
+                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+                <ScalarProperty Name="FechaOperacion" ColumnName="FechaOperacion" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_confirmaPagoNomina" FunctionName="DISModelo.Store.pa_confirmaPagoNomina" />
           <EntitySetMapping Name="CIERRE_PROCESO">
             <EntityTypeMapping TypeName="DISModelo.CIERRE_PROCESO">
               <MappingFragment StoreEntitySet="CIERRE_PROCESO">
@@ -4953,6 +5247,7 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
                 <ScalarProperty Name="FEC_REG" ColumnName="FEC_REG" />
                 <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="DES_CONTRATO" ColumnName="DES_CONTRATO" />
+                <ScalarProperty Name="CENTRO_COSTO" ColumnName="CENTRO_COSTO" />
                 <ScalarProperty Name="FEC_FIN_VIG" ColumnName="FEC_FIN_VIG" />
                 <ScalarProperty Name="FEC_INI_VIG" ColumnName="FEC_INI_VIG" />
                 <ScalarProperty Name="CLA_CONTRATO" ColumnName="CLA_CONTRATO" />
@@ -5017,6 +5312,29 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
                 <ScalarProperty Name="TextData" ColumnName="TextData" />
                 <ScalarProperty Name="EventClass" ColumnName="EventClass" />
                 <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EXACTUS_CABECERA_SIS">
+            <EntityTypeMapping TypeName="DISModelo.EXACTUS_CABECERA_SIS">
+              <MappingFragment StoreEntitySet="EXACTUS_CABECERA_SIS">
+                <ScalarProperty Name="USUARIO_REGISTRO" ColumnName="USUARIO_REGISTRO" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="FECHA_AUDITORIA" ColumnName="FECHA_AUDITORIA" />
+                <ScalarProperty Name="ACTUALIZAR_CONSECUTIVO" ColumnName="ACTUALIZAR_CONSECUTIVO" />
+                <ScalarProperty Name="CONSERVAR_NUMERACION" ColumnName="CONSERVAR_NUMERACION" />
+                <ScalarProperty Name="PERMITIR_DESCUADRADO" ColumnName="PERMITIR_DESCUADRADO" />
+                <ScalarProperty Name="ESTADO_TRANSFERENCIA" ColumnName="ESTADO_TRANSFERENCIA" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="NOTAS" ColumnName="NOTAS" />
+                <ScalarProperty Name="CONTABILIDAD" ColumnName="CONTABILIDAD" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="TIPO_ASIENTO" ColumnName="TIPO_ASIENTO" />
+                <ScalarProperty Name="PAQUETE" ColumnName="PAQUETE" />
+                <ScalarProperty Name="ASIENTO" ColumnName="ASIENTO" />
+                <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
+                <ScalarProperty Name="IDE_CONTRATO" ColumnName="IDE_CONTRATO" />
+                <ScalarProperty Name="IDE_EXACTUS_CABECERA_SIS" ColumnName="IDE_EXACTUS_CABECERA_SIS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5649,6 +5967,16 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TipoCambios">
+            <EntityTypeMapping TypeName="DISModelo.TipoCambio">
+              <MappingFragment StoreEntitySet="TipoCambio">
+                <ScalarProperty Name="Vigente" ColumnName="Vigente" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Periodo" ColumnName="Periodo" />
+                <ScalarProperty Name="IdTipoCambio" ColumnName="IdTipoCambio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TipoDocumentoIdentificacions">
             <EntityTypeMapping TypeName="DISModelo.TipoDocumentoIdentificacion">
               <MappingFragment StoreEntitySet="TipoDocumentoIdentificacion">
@@ -5922,6 +6250,31 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="EXACTUS_DETALLE_SIS">
+            <EntityTypeMapping TypeName="DISModelo.EXACTUS_DETALLE_SIS">
+              <MappingFragment StoreEntitySet="EXACTUS_DETALLE_SIS">
+                <ScalarProperty Name="DIMENSION5" ColumnName="DIMENSION5" />
+                <ScalarProperty Name="DIMENSION4" ColumnName="DIMENSION4" />
+                <ScalarProperty Name="DIMENSION3" ColumnName="DIMENSION3" />
+                <ScalarProperty Name="DIMENSION2" ColumnName="DIMENSION2" />
+                <ScalarProperty Name="DIMENSION1" ColumnName="DIMENSION1" />
+                <ScalarProperty Name="NIT" ColumnName="NIT" />
+                <ScalarProperty Name="ESTADO_TRANSFERENCIA" ColumnName="ESTADO_TRANSFERENCIA" />
+                <ScalarProperty Name="FECHA_REGISTRO" ColumnName="FECHA_REGISTRO" />
+                <ScalarProperty Name="MONTO_UNIDADES" ColumnName="MONTO_UNIDADES" />
+                <ScalarProperty Name="MONTO_DOLAR" ColumnName="MONTO_DOLAR" />
+                <ScalarProperty Name="MONTO_LOCAL" ColumnName="MONTO_LOCAL" />
+                <ScalarProperty Name="CONTRIBUYENTE" ColumnName="CONTRIBUYENTE" />
+                <ScalarProperty Name="REFERENCIA" ColumnName="REFERENCIA" />
+                <ScalarProperty Name="FUENTE" ColumnName="FUENTE" />
+                <ScalarProperty Name="CUENTA_CONTABLE" ColumnName="CUENTA_CONTABLE" />
+                <ScalarProperty Name="CENTRO_COSTO" ColumnName="CENTRO_COSTO" />
+                <ScalarProperty Name="CONSECUTIVO" ColumnName="CONSECUTIVO" />
+                <ScalarProperty Name="ASIENTO" ColumnName="ASIENTO" />
+                <ScalarProperty Name="IDE_EXACTUS_CABECERA_SIS" ColumnName="IDE_EXACTUS_CABECERA_SIS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="USUARIOs">
             <EntityTypeMapping TypeName="DISModelo.USUARIO">
               <MappingFragment StoreEntitySet="USUARIO">
@@ -5956,52 +6309,7 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="pa_sel_nominaXArchivo" FunctionName="DISModelo.Store.pa_sel_nominaXArchivo">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DISModelo.pa_sel_nominaXArchivo_Result">
-                <ScalarProperty Name="Id_Nomina" ColumnName="Id_Nomina" />
-                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
-                <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
-                <ScalarProperty Name="IDE_CONTRATO" ColumnName="IDE_CONTRATO" />
-                <ScalarProperty Name="RUC_ORDE" ColumnName="RUC_ORDE" />
-                <ScalarProperty Name="CTA_ORDE" ColumnName="CTA_ORDE" />
-                <ScalarProperty Name="COD_TRAN" ColumnName="COD_TRAN" />
-                <ScalarProperty Name="TIP_MONE" ColumnName="TIP_MONE" />
-                <ScalarProperty Name="MON_TRAN" ColumnName="MON_TRAN" />
-                <ScalarProperty Name="FEC_TRAN" ColumnName="FEC_TRAN" />
-                <ScalarProperty Name="RUC_BENE" ColumnName="RUC_BENE" />
-                <ScalarProperty Name="NOM_BENE" ColumnName="NOM_BENE" />
-                <ScalarProperty Name="TIP_CTA" ColumnName="TIP_CTA" />
-                <ScalarProperty Name="CTA_BENE" ColumnName="CTA_BENE" />
-                <ScalarProperty Name="DET_TRAN" ColumnName="DET_TRAN" />
-                <ScalarProperty Name="ReglaObservada" ColumnName="ReglaObservada" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_copia_reglaArchivo" FunctionName="DISModelo.Store.pa_copia_reglaArchivo" />
-          <FunctionImportMapping FunctionImportName="pa_sel_NominaForTelebanking" FunctionName="DISModelo.Store.pa_sel_NominaForTelebanking">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DISModelo.pa_sel_NominaForTelebanking_Result">
-                <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
-                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
-                <ScalarProperty Name="FechaOperacion" ColumnName="FechaOperacion" />
-                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Importe" ColumnName="Importe" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_confirmaPagoNomina" FunctionName="DISModelo.Store.pa_confirmaPagoNomina" />
-          <EntitySetMapping Name="TipoCambios">
-            <EntityTypeMapping TypeName="DISModelo.TipoCambio">
-              <MappingFragment StoreEntitySet="TipoCambio">
-                <ScalarProperty Name="Vigente" ColumnName="Vigente" />
-                <ScalarProperty Name="Monto" ColumnName="Monto" />
-                <ScalarProperty Name="Periodo" ColumnName="Periodo" />
-                <ScalarProperty Name="IdTipoCambio" ColumnName="IdTipoCambio" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pa_create_cuenta_42_26_sis" FunctionName="DISModelo.Store.pa_create_cuenta_42_26_sis" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

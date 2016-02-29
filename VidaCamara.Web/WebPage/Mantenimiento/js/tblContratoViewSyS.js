@@ -27,6 +27,7 @@ $(document).ready(function () {
                 _fec_Ini_Vig: { title: 'Inicio_Vigencia', displayFormat: 'dd/mm/yy', type: 'date'},
                 _fec_Fin_Vig: { title: 'Fin_Vigencia', displayFormat: 'dd/mm/yy', type: 'date' },
                 _des_Contrato: { title: 'Descripción_Contrato' },
+                _centro_costo:{ title:'Centro Costo'},
                 _estado: { title: 'Estado' },
                 _fec_reg: { title: 'Fecha_Registro', displayFormat: 'dd/mm/yy', type: 'date' },
                 _usu_reg: { title: 'Usuario_Registro' }
@@ -49,6 +50,7 @@ $(document).ready(function () {
                         $("#ctl00_ContentPlaceHolder1_txtdescripcion_sys").val(record._des_Contrato);
                         $("#ctl00_ContentPlaceHolder1_ddl_estado_sys").val(record._estado);
                         $("#ctl00_ContentPlaceHolder1_txt_numero_empresa").val(record._nro_empresa);
+                        $("#ctl00_ContentPlaceHolder1_txt_centro_costo_sys").val(record._centro_costo);
                         $('#ctl00_hdf_control').val(999);
 
                     });
@@ -70,5 +72,6 @@ $(document).ready(function () {
         $("#ctl00_ContentPlaceHolder1_ddl_estado_sys").val("C");
         $("#ctl00_ContentPlaceHolder1_ddl_clase_contrato_sys").val("0");
         $("#ctl00_ContentPlaceHolder1_txt_numero_empresa").val("");
+        $("#ctl00_ContentPlaceHolder1_txt_centro_costo_sys").val("");
     }
 });

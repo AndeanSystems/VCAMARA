@@ -5,65 +5,71 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="0565ad74d7e3449abb6dbeb897cf9a5e" Name="Diagram1" ZoomLevel="72">
-        <EntityTypeShape EntityType="DISModelo.CIERRE_PROCESO" Width="1.5" PointX="2.75" PointY="8.75" />
-        <EntityTypeShape EntityType="DISModelo.CONCEPTO" Width="1.5" PointX="8.75" PointY="8.75" />
-        <EntityTypeShape EntityType="DISModelo.CONTRATO" Width="1.5" PointX="10.75" PointY="1.75" />
-        <EntityTypeShape EntityType="DISModelo.CONTRATO_SIS_DET" Width="1.5" PointX="12.5" PointY="32.75" />
-        <EntityTypeShape EntityType="DISModelo.CONTRATO_SYS" Width="1.5" PointX="10.25" PointY="21.5" />
-        <EntityTypeShape EntityType="DISModelo.DATO_M" Width="1.5" PointX="4.75" PointY="11.75" />
-        <EntityTypeShape EntityType="DISModelo.Evento" Width="1.5" PointX="10.75" PointY="11.75" />
-        <EntityTypeShape EntityType="DISModelo.Exactu" Width="1.5" PointX="12.75" PointY="1.75" />
-        <EntityTypeShape EntityType="DISModelo.EXACTUS_DETALLE" Width="1.5" PointX="0.75" PointY="13.75" />
-        <EntityTypeShape EntityType="DISModelo.GENERAL" Width="1.5" PointX="6.75" PointY="13.75" />
-        <EntityTypeShape EntityType="DISModelo.LogOperacion" Width="1.5" PointX="12.5" PointY="18.25" />
-        <EntityTypeShape EntityType="DISModelo.NOMINA" Width="1.5" PointX="9.5" PointY="27" />
-        <EntityTypeShape EntityType="DISModelo.OPERACION" Width="1.5" PointX="14.75" PointY="1.75" />
-        <EntityTypeShape EntityType="DISModelo.sysdiagram" Width="1.5" PointX="8.75" PointY="14.75" />
-        <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo" Width="1.5" PointX="12.5" PointY="27.875" />
-        <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo_LinCab" Width="1.5" PointX="12.5" PointY="22.25" />
-        <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo_LinDet" Width="1.5" PointX="14.75" PointY="10.75" />
-        <EntityTypeShape EntityType="DISModelo.ReglaArchivo" Width="1.5" PointX="10.25" PointY="33" />
-        <EntityTypeShape EntityType="DISModelo.AFP" Width="1.5" PointX="0.75" PointY="7.5" />
-        <EntityTypeShape EntityType="DISModelo.Archivo" Width="1.5" PointX="7.25" PointY="27.875" />
-        <EntityTypeShape EntityType="DISModelo.Bitacora" Width="1.5" PointX="10.75" PointY="14.75" />
-        <EntityTypeShape EntityType="DISModelo.Checkeado" Width="1.5" PointX="6" PointY="8" />
-        <EntityTypeShape EntityType="DISModelo.ContratoCSV" Width="1.5" PointX="2.75" PointY="16.75" />
-        <EntityTypeShape EntityType="DISModelo.Contrato1" Width="1.5" PointX="0.75" PointY="10.25" />
-        <EntityTypeShape EntityType="DISModelo.Correlativo" Width="1.5" PointX="16.75" PointY="1.75" />
-        <EntityTypeShape EntityType="DISModelo.CSV" Width="1.5" PointX="16.75" PointY="4.75" />
-        <EntityTypeShape EntityType="DISModelo.Documento" Width="1.5" PointX="3.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DISModelo.DocumentoSolicitado" Width="1.5" PointX="6" PointY="4.5" />
-        <EntityTypeShape EntityType="DISModelo.EstadoArchivo" Width="1.5" PointX="5" PointY="24.75" />
-        <EntityTypeShape EntityType="DISModelo.EstadoPago" Width="1.5" PointX="16.75" PointY="7.75" />
-        <EntityTypeShape EntityType="DISModelo.Imputacion" Width="1.5" PointX="16.75" PointY="10.75" />
-        <EntityTypeShape EntityType="DISModelo.Moneda" Width="1.5" PointX="6" PointY="1.75" />
-        <EntityTypeShape EntityType="DISModelo.MontoAlto" Width="1.5" PointX="8.75" PointY="17.75" />
-        <EntityTypeShape EntityType="DISModelo.Pago" Width="1.5" PointX="8.25" PointY="3.625" />
-        <EntityTypeShape EntityType="DISModelo.Parametro" Width="1.5" PointX="16.75" PointY="16.75" />
-        <EntityTypeShape EntityType="DISModelo.Parentesco" Width="1.5" PointX="4.75" PointY="18.75" />
-        <EntityTypeShape EntityType="DISModelo.Persona" Width="1.5" PointX="18.75" PointY="1.75" />
-        <EntityTypeShape EntityType="DISModelo.RegistroMontoAlto" Width="1.5" PointX="0.75" PointY="19.75" />
-        <EntityTypeShape EntityType="DISModelo.Role" Width="1.5" PointX="18.75" PointY="5.75" />
-        <EntityTypeShape EntityType="DISModelo.Siniestro" Width="1.5" PointX="3" PointY="3.75" />
-        <EntityTypeShape EntityType="DISModelo.TipoArchivo" Width="1.5" PointX="5" PointY="27.625" />
-        <EntityTypeShape EntityType="DISModelo.TipoDocumentoIdentificacion" Width="1.5" PointX="18.75" PointY="11.75" />
-        <EntityTypeShape EntityType="DISModelo.TipoInforme" Width="1.5" PointX="2.75" PointY="28.75" />
-        <EntityTypeShape EntityType="DISModelo.TipoMoneda" Width="1.5" PointX="8.25" PointY="0.75" />
-        <EntityTypeShape EntityType="DISModelo.TipoMovimiento" Width="1.5" PointX="0.75" PointY="4.625" />
-        <EntityTypeShape EntityType="DISModelo.TipoPension" Width="1.5" PointX="18.75" PointY="14.75" />
-        <EntityTypeShape EntityType="DISModelo.TipoRegistro" Width="1.5" PointX="18.75" PointY="17.75" />
-        <EntityTypeShape EntityType="DISModelo.TipoSolicitude" Width="1.5" PointX="0.75" PointY="1.875" />
-        <EntityTypeShape EntityType="DISModelo.COMPROBANTE" Width="1.5" PointX="16.75" PointY="20.75" />
-        <EntityTypeShape EntityType="DISModelo.Consulta" Width="1.5" PointX="18.75" PointY="20.75" />
-        <EntityTypeShape EntityType="DISModelo.CONTRATO_DETALLE" Width="1.5" PointX="20.75" PointY="1.75" />
-        <EntityTypeShape EntityType="DISModelo.DATO_A" Width="1.5" PointX="20.75" PointY="7.75" />
-        <EntityTypeShape EntityType="DISModelo.EXACTUS_CABECERA" Width="1.5" PointX="22.75" PointY="1.75" />
-        <EntityTypeShape EntityType="DISModelo.USUARIO" Width="1.5" PointX="0.75" PointY="23.75" />
-        <EntityTypeShape EntityType="DISModelo.CheckList" Width="1.5" PointX="6.75" PointY="20.75" />
+        <EntityTypeShape EntityType="DISModelo.CIERRE_PROCESO" Width="2.75" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="DISModelo.CONCEPTO" Width="2.75" PointX="10.75" PointY="1.75" />
+        <EntityTypeShape EntityType="DISModelo.CONTRATO" Width="2.75" PointX="10.75" PointY="6.75" />
+        <EntityTypeShape EntityType="DISModelo.CONTRATO_SIS_DET" Width="2.75" PointX="7.5" PointY="29.375" />
+        <EntityTypeShape EntityType="DISModelo.CONTRATO_SYS" Width="2.75" PointX="5.25" PointY="17.375" />
+        <EntityTypeShape EntityType="DISModelo.DATO_M" Width="2.75" PointX="4.75" PointY="11.75" />
+        <EntityTypeShape EntityType="DISModelo.Evento" Width="2.75" PointX="12.75" PointY="1.75" />
+        <EntityTypeShape EntityType="DISModelo.Exactu" Width="2.75" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="DISModelo.EXACTUS_CABECERA_SIS" Width="2.75" PointX="10.5" PointY="18.25" />
+        <EntityTypeShape EntityType="DISModelo.EXACTUS_DETALLE" Width="2.75" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DISModelo.GENERAL" Width="2.75" PointX="12.75" PointY="10.75" />
+        <EntityTypeShape EntityType="DISModelo.LogOperacion" Width="2.75" PointX="7.5" PointY="33.25" />
+        <EntityTypeShape EntityType="DISModelo.NOMINA" Width="2.75" PointX="7.5" PointY="17" />
+        <EntityTypeShape EntityType="DISModelo.OPERACION" Width="2.75" PointX="14.75" PointY="1.75" />
+        <EntityTypeShape EntityType="DISModelo.sysdiagram" Width="2.75" PointX="14.75" PointY="10.75" />
+        <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo" Width="2.75" PointX="10.5" PointY="23.875" />
+        <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo_LinCab" Width="2.75" PointX="7.5" PointY="23.375" />
+        <EntityTypeShape EntityType="DISModelo.HistorialCargaArchivo_LinDet" Width="2.75" PointX="9.75" PointY="28.875" />
+        <EntityTypeShape EntityType="DISModelo.ReglaArchivo" Width="2.75" PointX="8.25" PointY="11.125" />
+        <EntityTypeShape EntityType="DISModelo.AFP" Width="2.75" PointX="0.75" PointY="7.5" />
+        <EntityTypeShape EntityType="DISModelo.Archivo" Width="2.75" PointX="5.25" PointY="23.875" />
+        <EntityTypeShape EntityType="DISModelo.Bitacora" Width="2.75" PointX="14.75" PointY="13.75" />
+        <EntityTypeShape EntityType="DISModelo.Checkeado" Width="2.75" PointX="6" PointY="8" />
+        <EntityTypeShape EntityType="DISModelo.ContratoCSV" Width="2.75" PointX="14.75" PointY="16.75" />
+        <EntityTypeShape EntityType="DISModelo.Contrato1" Width="2.75" PointX="0.75" PointY="10.25" />
+        <EntityTypeShape EntityType="DISModelo.Correlativo" Width="2.75" PointX="16.75" PointY="1.75" />
+        <EntityTypeShape EntityType="DISModelo.CSV" Width="2.75" PointX="16.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DISModelo.Documento" Width="2.75" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DISModelo.DocumentoSolicitado" Width="2.75" PointX="6" PointY="4.5" />
+        <EntityTypeShape EntityType="DISModelo.EstadoArchivo" Width="2.75" PointX="3" PointY="20.875" />
+        <EntityTypeShape EntityType="DISModelo.EstadoPago" Width="2.75" PointX="16.75" PointY="7.75" />
+        <EntityTypeShape EntityType="DISModelo.Imputacion" Width="2.75" PointX="16.75" PointY="10.75" />
+        <EntityTypeShape EntityType="DISModelo.Moneda" Width="2.75" PointX="6" PointY="1.75" />
+        <EntityTypeShape EntityType="DISModelo.MontoAlto" Width="2.75" PointX="16.75" PointY="16.75" />
+        <EntityTypeShape EntityType="DISModelo.Pago" Width="2.75" PointX="8.25" PointY="3.625" />
+        <EntityTypeShape EntityType="DISModelo.Parametro" Width="2.75" PointX="18.75" PointY="1.75" />
+        <EntityTypeShape EntityType="DISModelo.Parentesco" Width="2.75" PointX="18.75" PointY="5.75" />
+        <EntityTypeShape EntityType="DISModelo.Persona" Width="2.75" PointX="18.75" PointY="8.75" />
+        <EntityTypeShape EntityType="DISModelo.RegistroMontoAlto" Width="2.75" PointX="18.75" PointY="12.75" />
+        <EntityTypeShape EntityType="DISModelo.Role" Width="2.75" PointX="14.75" PointY="19.75" />
+        <EntityTypeShape EntityType="DISModelo.Siniestro" Width="2.75" PointX="3" PointY="3.75" />
+        <EntityTypeShape EntityType="DISModelo.TipoArchivo" Width="2.75" PointX="1.625" PointY="23.375" />
+        <EntityTypeShape EntityType="DISModelo.TipoCambio" Width="2.75" PointX="18.75" PointY="16.75" />
+        <EntityTypeShape EntityType="DISModelo.TipoDocumentoIdentificacion" Width="2.75" PointX="16.75" PointY="19.75" />
+        <EntityTypeShape EntityType="DISModelo.TipoInforme" Width="2.75" PointX="0.75" PointY="24.875" />
+        <EntityTypeShape EntityType="DISModelo.TipoMoneda" Width="2.75" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="DISModelo.TipoMovimiento" Width="2.75" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="DISModelo.TipoPension" Width="2.75" PointX="18.75" PointY="19.75" />
+        <EntityTypeShape EntityType="DISModelo.TipoRegistro" Width="2.75" PointX="20.75" PointY="1.75" />
+        <EntityTypeShape EntityType="DISModelo.TipoSolicitude" Width="2.75" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="DISModelo.COMPROBANTE" Width="2.75" PointX="20.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DISModelo.Consulta" Width="2.75" PointX="20.75" PointY="12.75" />
+        <EntityTypeShape EntityType="DISModelo.CONTRATO_DETALLE" Width="2.75" PointX="20.75" PointY="17.75" />
+        <EntityTypeShape EntityType="DISModelo.DATO_A" Width="2.75" PointX="14.75" PointY="22.75" />
+        <EntityTypeShape EntityType="DISModelo.EXACTUS_CABECERA" Width="2.75" PointX="16.75" PointY="22.75" />
+        <EntityTypeShape EntityType="DISModelo.EXACTUS_DETALLE_SIS" Width="2.75" PointX="12.75" PointY="18.25" />
+        <EntityTypeShape EntityType="DISModelo.USUARIO" Width="2.75" PointX="22.75" PointY="1.75" />
+        <EntityTypeShape EntityType="DISModelo.CheckList" Width="2.75" PointX="22.75" PointY="6.75" />
         <AssociationConnector Association="DISModelo.FK_CONTRATO_SIS_DET_CONTRATO_SYS" />
+        <AssociationConnector Association="DISModelo.FK_EXACTUS_CABECERA_SIS_CONTRATO_SYS" />
         <AssociationConnector Association="DISModelo.FK_HistorialCargaArchivo_LinCab_CONTRATO_SYS" />
         <AssociationConnector Association="DISModelo.FK_LogOperacion_CONTRATO_SYS" />
         <AssociationConnector Association="DISModelo.FK_NOMINA_CONTRATO_SYS" />
+        <AssociationConnector Association="DISModelo.FK_EXACTUS_CABECERA_SIS_Archivo" />
+        <AssociationConnector Association="DISModelo.FK_EXACTUS_DETALLE_SIS_EXACTUS_CABECERA_SIS" />
         <AssociationConnector Association="DISModelo.FK_NOMINA_Archivo" />
         <AssociationConnector Association="DISModelo.FK_HistorialCargaArchivo_Archivo" />
         <AssociationConnector Association="DISModelo.FK_HistorialCargaArchivo_ReglaArchivo" />
@@ -82,7 +88,6 @@
         <AssociationConnector Association="DISModelo.FK_TipoMovimientoSiniestro" />
         <AssociationConnector Association="DISModelo.FK_TipoSolicitudSiniestro" />
         <AssociationConnector Association="DISModelo.FK_TipoArchivo_TipoInforme" />
-        <EntityTypeShape EntityType="DISModelo.TipoCambio" Width="1.5" PointX="3.375" PointY="21.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

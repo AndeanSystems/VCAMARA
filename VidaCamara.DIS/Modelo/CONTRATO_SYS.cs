@@ -23,6 +23,8 @@ public partial class CONTRATO_SYS
 
         this.CONTRATO_SIS_DET = new HashSet<CONTRATO_SIS_DET>();
 
+        this.EXACTUS_CABECERA_SIS = new HashSet<EXACTUS_CABECERA_SIS>();
+
         this.HistorialCargaArchivo_LinCab = new HashSet<HistorialCargaArchivo_LinCab>();
 
         this.LogOperacions = new HashSet<LogOperacion>();
@@ -44,6 +46,8 @@ public partial class CONTRATO_SYS
 
     public System.DateTime FEC_FIN_VIG { get; set; }
 
+    public string CENTRO_COSTO { get; set; }
+
     public string DES_CONTRATO { get; set; }
 
     public string ESTADO { get; set; }
@@ -61,6 +65,8 @@ public partial class CONTRATO_SYS
 
 
     public virtual ICollection<CONTRATO_SIS_DET> CONTRATO_SIS_DET { get; set; }
+
+    public virtual ICollection<EXACTUS_CABECERA_SIS> EXACTUS_CABECERA_SIS { get; set; }
 
     public virtual ICollection<HistorialCargaArchivo_LinCab> HistorialCargaArchivo_LinCab { get; set; }
 

@@ -652,6 +652,15 @@ namespace VidaCamara.Web.WebPage.Mantenimiento {
         protected global::System.Web.UI.WebControls.TextBox txtFechaFin_sys;
         
         /// <summary>
+        /// txt_centro_costo_sys control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_centro_costo_sys;
+        
+        /// <summary>
         /// txtdescripcion_sys control.
         /// </summary>
         /// <remarks>

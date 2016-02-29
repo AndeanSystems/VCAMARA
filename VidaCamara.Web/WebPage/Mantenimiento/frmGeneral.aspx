@@ -305,8 +305,13 @@
 
                 <label class="input_right_L" for="txtFechaFin_sys">Fecha de Fin (*)</label>
                 <asp:TextBox CssClass="input_right datetime" ID="txtFechaFin_sys" runat="server" Height="25px" Width="15%"></asp:TextBox>
+
+                <label class="input_right_L" for="txtFechaFin_sys">Centro Costo(*)</label>
+                <asp:TextBox CssClass="input_right" ID="txt_centro_costo_sys" runat="server" Height="25px" Width="12.1%"></asp:TextBox>
+
                 <label class="label_to" for="txtdescripcion_sys">Descripción (*)</label>
                 <asp:TextBox CssClass="input_to" ID="txtdescripcion_sys" runat="server" Height="25px" Width="47.2%"></asp:TextBox>
+
                 <label class="input_right_L" for="ddl_estado_sys" runat="server">Estado (*)</label>
                 <asp:DropDownList CssClass="input_right" ID="ddl_estado_sys" runat="server" Height="25px" Width="12.1%"></asp:DropDownList>
 
