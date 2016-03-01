@@ -82,7 +82,9 @@ namespace VidaCamara.DIS.Negocio
 
         public void aprobarTelebanking(NOMINA nOMINA)
         {
-            new dTelebanking().aprobarTelebanking(nOMINA);
+            //llamada para generar los asientos contables respectivos
+            new nInterfaceContable().createInterfaceContable(nOMINA);
+            //new dTelebanking().aprobarTelebanking(nOMINA);
         }
     }
 }

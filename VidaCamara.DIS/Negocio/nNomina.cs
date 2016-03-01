@@ -31,5 +31,10 @@ namespace VidaCamara.DIS.Negocio
         {
             new dNomina().actualizarEstadoFallido(idArchivo, contratoId);
         }
+
+        public NOMINA getNominaByArchivoId(NOMINA nomina)
+        {
+            return new dNomina().getNominaByArchivoId(nomina);
+        }
     }
 }

@@ -135,5 +135,20 @@ namespace VidaCamara.DIS.data
                 throw;
             }
         }
+
+        internal NOMINA getNominaByArchivoId(NOMINA nomina)
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    return db.NOMINAs.Where(n => n.ArchivoId == nomina.ArchivoId).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw(new Exception(ex.Message));
+            }
+        }
     }
 }

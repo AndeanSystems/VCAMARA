@@ -1320,12 +1320,17 @@ public partial class DISEntities : DbContext
     }
 
 
-    public virtual int pa_create_cuenta_42_26_sis(Nullable<int> exactusCabeceraId, Nullable<int> archivoNominaId, Nullable<int> numeroAsiento)
+    public virtual int pa_create_cuenta_42_26_sis(Nullable<int> exactusCabeceraId, string asiento, Nullable<int> archivoNominaId, Nullable<int> numeroAsiento)
     {
 
         var exactusCabeceraIdParameter = exactusCabeceraId.HasValue ?
             new ObjectParameter("ExactusCabeceraId", exactusCabeceraId) :
             new ObjectParameter("ExactusCabeceraId", typeof(int));
+
+
+        var asientoParameter = asiento != null ?
+            new ObjectParameter("Asiento", asiento) :
+            new ObjectParameter("Asiento", typeof(string));
 
 
         var archivoNominaIdParameter = archivoNominaId.HasValue ?
@@ -1338,7 +1343,7 @@ public partial class DISEntities : DbContext
             new ObjectParameter("NumeroAsiento", typeof(int));
 
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_create_cuenta_42_26_sis", exactusCabeceraIdParameter, archivoNominaIdParameter, numeroAsientoParameter);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_create_cuenta_42_26_sis", exactusCabeceraIdParameter, asientoParameter, archivoNominaIdParameter, numeroAsientoParameter);
     }
 
 }

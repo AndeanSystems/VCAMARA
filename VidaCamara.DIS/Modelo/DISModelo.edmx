@@ -1526,6 +1526,7 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
         </Function>
         <Function Name="pa_create_cuenta_42_26_sis" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ExactusCabeceraId" Type="int" Mode="In" />
+          <Parameter Name="Asiento" Type="varchar" Mode="In" />
           <Parameter Name="ArchivoNominaId" Type="int" Mode="In" />
           <Parameter Name="NumeroAsiento" Type="int" Mode="In" />
         </Function>
@@ -2623,6 +2624,7 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           </AssociationSet>
           <FunctionImport Name="pa_create_cuenta_42_26_sis">
             <Parameter Name="ExactusCabeceraId" Mode="In" Type="Int32" />
+            <Parameter Name="Asiento" Mode="In" Type="String" />
             <Parameter Name="ArchivoNominaId" Mode="In" Type="Int32" />
             <Parameter Name="NumeroAsiento" Mode="In" Type="Int32" />
           </FunctionImport>
