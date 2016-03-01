@@ -9,6 +9,7 @@
             <asp:HyperLink ID="HyperLink1" CssClass="btn_crud_button"  ToolTip="Inicio" runat="server" ImageUrl="~/Resources/Imagenes/u158_normal.png" NavigateUrl="~/Inicio"></asp:HyperLink>
             <asp:ImageButton  CssClass="btn_crud_button" ID="btn_exportar" runat="server" ToolTip="Exportar" ImageUrl="~/Resources/Imagenes/u123_normal.png" OnClick="btn_exportar_Click"/>
             <asp:ImageButton  CssClass="btn_crud_button" ID="btn_buscar" runat="server" ToolTip="Buscar" ImageUrl="~/Resources/Imagenes/u154_normal.png" />
+            <asp:ImageButton  CssClass="btn_crud_button" ID="btn_transfer" TollTip="Transferir Data" runat="server" ToolTip="Transferir" ImageUrl="~/Resources/Imagenes/data_transfer.jpg" OnClick="btn_transfer_Click"/>
         </div>
     </div>
         <div class="tabBody" id="frmComprobante">
@@ -32,7 +33,11 @@
                 <asp:TextBox runat="server"  CssClass="input_right datetime"  Height="25px" Width="15.5%" ID="txt_hasta"/>
 
                 <label class="input_right_L" for="ddl_ramo_c">Estado </label>
-                <asp:DropDownList ID="ddl_estado" runat="server" CssClass="input_right" Height="25px" Width="12.5%"></asp:DropDownList>
+                <asp:DropDownList ID="ddl_estado" runat="server" CssClass="input_right" Height="25px" Width="12.5%">
+                    <asp:ListItem Value="0" Text="Todos"/>
+                    <asp:ListItem Value="C" Text="Creado"/>
+                    <asp:ListItem Value="T" Text="Transferido"/>
+                </asp:DropDownList>
 
                 <div class="iframe" id="tblInterfaceSIS">
                     <div id="tblInterfaceContableSIS"></div>

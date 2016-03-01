@@ -35,7 +35,6 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 SetLLenadoContrato();
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipo_archivo, "17");
                 concepto.SetEstablecerDataSourceConcepto(ddl_moneda, "20");
-                concepto.SetEstablecerDataSourceConcepto(ddl_estado, "21");
                 txt_desde.Text = DateTime.Now.ToShortDateString();
                 txt_hasta.Text = DateTime.Now.ToShortDateString();
             }
@@ -55,7 +54,8 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             {
                 IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value),
                 FECHA = Convert.ToDateTime(txt_desde.Text),
-                FECHA_CREACION = Convert.ToDateTime(txt_hasta.Text)
+                FECHA_CREACION = Convert.ToDateTime(txt_hasta.Text),
+                ESTADO_TRANSFERENCIA = ddl_estado.SelectedItem.Value
             };
             var pathArchivo = new nInterfaceContable().descargarExcel(contrato, new TipoArchivo() { NombreTipoArchivo = ddl_tipo_archivo.SelectedItem.Value},Convert.ToInt32(ddl_moneda.SelectedItem.Value));
             Response.Clear();
@@ -73,6 +73,32 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             ddl_contrato.DataValueField = "_ide_Contrato";
             ddl_contrato.DataBind();
             ddl_contrato.Items.Insert(0, new ListItem("Seleccione ----", "0"));
+        }
+
+        protected void btn_transfer_Click(object sender, ImageClickEventArgs e)
+        {
+            var contrato = new EXACTUS_CABECERA_SIS()
+            {
+                IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value),
+                FECHA = Convert.ToDateTime(txt_desde.Text),
+                FECHA_CREACION = Convert.ToDateTime(txt_hasta.Text),
+                ESTADO_TRANSFERENCIA = ddl_estado.SelectedItem.Value
+            };
+            try
+            {
+                var respuesta = new nInterfaceContable().transferirInterfaceContable(contrato, new TipoArchivo() { NombreTipoArchivo = ddl_tipo_archivo.SelectedItem.Value }, Convert.ToInt32(ddl_moneda.SelectedItem.Value));
+                MessageBox("Asiento (s) transferido (s) correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox(string.Format("ERROR =>{0}",ex.Message.Replace(Environment.NewLine,"").ToString()));
+            }
+            
+        }
+
+        private void MessageBox(string text)
+        {
+            Page.ClientScript.RegisterStartupScript(GetType(), "msgbox", "$('<div style=\"font-size:14px;text-align:center;\">" + text + "</div>').dialog({title:'Confirmación',modal:true,width:400,height:240,buttons: [{id: 'aceptar',text: 'Aceptar',icons: { primary: 'ui-icon-circle-check' },click: function () {$(this).dialog('close');}}]});", true);
         }
     }
 }

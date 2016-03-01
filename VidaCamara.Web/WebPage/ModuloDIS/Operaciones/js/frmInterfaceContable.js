@@ -1,7 +1,8 @@
 ﻿$(document).ready(function () {
     //entidades y variables
     var cabecera = function (ide_contrato) {
-        this.IDE_CONTRATO = ide_contrato
+        this.IDE_CONTRATO = ide_contrato,
+        this.ESTADO_TRANSFERENCIA = $("#ctl00_ContentPlaceHolder1_ddl_estado").val()
     }
     //eventos
     $("section").delegate("#ctl00_ContentPlaceHolder1_btn_buscar", "click", function (ev) {
@@ -15,6 +16,17 @@
             listInterfaceContable(new cabecera(contrato), filter);
         }
     });
+    //transferir
+    $("section").delegate("#ctl00_ContentPlaceHolder1_btn_transfer", "click", function (ev) {
+        var contrato = parseInt($("#ctl00_ContentPlaceHolder1_ddl_contrato").val());
+        if (contrato == 0) {
+            mostrarMensajeAlert("Seleccione el contrato");
+            return false;
+        } else{
+            return confirm("¿Está seguro de transferir la información?");
+        }
+    });
+    
     var action = "/WebPage/ModuloDIS/Operaciones/frmInterfaceContableSIS.aspx/listInterfaceContable";
     var fields = {
         PAQUETE: {
@@ -51,7 +63,12 @@
         CreditoSoles: { title: 'CreditoSoles' },
         DebitoDolar: { title: 'DebitoDolar' },
         CreditoDolar: { title: 'CreditoDolar' },
-        MONTO_UNIDADES: { title: 'MONTO_UNIDADES' }
+        MONTO_UNIDADES: { title: 'MONTO_UNIDADES' },
+        ESTADO_TRANSFERENCIA: {
+            title: 'EstadoTransferencia', display: function (data) {
+                return data.record.EXACTUS_CABECERA_SIS.ESTADO_TRANSFERENCIA == "C" ? "CREADO" : "TRANSFERIDO";
+            }
+        }
     }
     function listInterfaceContable(cabecera, filter) {
         $('#tblInterfaceContableSIS').jtable({

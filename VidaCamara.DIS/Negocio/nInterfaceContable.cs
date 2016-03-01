@@ -15,7 +15,8 @@ namespace VidaCamara.DIS.Negocio
         public void createInterfaceContable(NOMINA nomina)
         {
             nomina = new nNomina().getNominaByArchivoId(nomina);
-            var cabecera = new dInterfaceContable().createInterfaceContableCabecera(nomina);
+            var nombreLiqByNomina = new nArchivo().getArchivoByNomina(new Archivo() { NombreArchivo = nomina.Archivo.NombreArchivo });
+            var cabecera = new dInterfaceContable().createInterfaceContableCabecera(nomina, nombreLiqByNomina);
 
             var asiento = new List<int>(){ 42, 26 };
             for (int i = 0; i < asiento.Count; i++)
@@ -123,6 +124,34 @@ namespace VidaCamara.DIS.Negocio
                 }
 
                 return rutaTemporal;
+            }
+            catch (Exception ex)
+            {
+                throw(new Exception(ex.Message));
+            }
+        }
+
+        public bool transferirInterfaceContable(EXACTUS_CABECERA_SIS contrato, TipoArchivo tipoArchivo, int moneda)
+        {
+            var exactusCabecera = new dInterfaceContable().getExactusCabecera(contrato,tipoArchivo,moneda);
+            var interfaceContable = new dInterfaceContable();
+            var response = true;
+            try
+            {
+                foreach (var item in exactusCabecera)
+                {
+                    if (interfaceContable.createCabeceraInRemoteExactus(item))
+                    {
+                        interfaceContable.createDetalleInRemote(item);
+                        interfaceContable.actualizarEstadoTransferido(item);
+                    }
+                    else
+                    {
+                        response = false;
+                        break;
+                    }
+                }
+                return response;
             }
             catch (Exception ex)
             {

@@ -142,7 +142,7 @@ namespace VidaCamara.DIS.data
             {
                 using (var db = new DISEntities())
                 {
-                    return db.NOMINAs.Where(n => n.ArchivoId == nomina.ArchivoId).FirstOrDefault();
+                    return db.NOMINAs.Include("Archivo").Where(n => n.ArchivoId == nomina.ArchivoId).FirstOrDefault();
                 }
             }
             catch (Exception ex)

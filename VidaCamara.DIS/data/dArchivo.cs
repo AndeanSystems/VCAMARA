@@ -9,7 +9,7 @@ namespace VidaCamara.DIS.data
     {
         public List<Archivo> listExisteArchivo(Archivo archivo,int tamanoNombre)
         {
-            // Valida que el archivo exista el estado de la tabla archivo este validado | Validado = 2
+            // Valida que el archivo exista y el estado de del archivo este validado | Validado = 2
             try
             {
                 using (var db = new DISEntities())
@@ -71,6 +71,21 @@ namespace VidaCamara.DIS.data
                     entity.EstadoArchivoId = 1;
                     entity.Vigente = false;
                     db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw(new Exception(ex.Message));
+            }
+        }
+
+        internal Archivo getArchivoByNomina(Archivo archivo)
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    return db.Archivos.Where(x => x.NombreArchivo == archivo.NombreArchivo && x.Vigente == true && x.EstadoArchivoId == 2).FirstOrDefault();
                 }
             }
             catch (Exception ex)

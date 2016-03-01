@@ -32,6 +32,8 @@ public partial class EXACTUS_CABECERA_SIS
 
     public int ArchivoId { get; set; }
 
+    public string TIPO_ARCHIVO { get; set; }
+
     public string ASIENTO { get; set; }
 
     public string PAQUETE { get; set; }
