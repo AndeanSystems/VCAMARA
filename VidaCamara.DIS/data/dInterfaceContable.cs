@@ -12,7 +12,7 @@ namespace VidaCamara.DIS.data
 {
     public class dInterfaceContable
     {
-        public void createInterfaceContableDetalle(NOMINA nomina,EXACTUS_CABECERA_SIS cabecera, int asiento)
+        internal void createInterfaceContableDetalle(NOMINA nomina, EXACTUS_CABECERA_SIS cabecera, int asiento)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace VidaCamara.DIS.data
             }
         }
 
-        public EXACTUS_CABECERA_SIS createInterfaceContableCabecera(NOMINA nomina,Archivo archivo)
+        internal EXACTUS_CABECERA_SIS createInterfaceContableCabecera(NOMINA nomina, Archivo archivo)
         {
             try
             {
