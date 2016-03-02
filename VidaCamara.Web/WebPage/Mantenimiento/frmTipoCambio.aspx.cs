@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using VidaCamara.DIS.Modelo;
 using VidaCamara.DIS.Negocio;
+using VidaCamara.SBS.Negocio;
 
 namespace VidaCamara.Web.WebPage.Mantenimiento
 {
@@ -13,10 +14,20 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
     {
         #region VARIABLES
         static int total;
+        static bValidarAcceso accesso = new bValidarAcceso();
         #endregion VARIABLES
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session["pagina"] = "OTROS";
+            if (Session["username"] == null)
+                Response.Redirect("Login?go=0");
+            else
+            {
+                if (!accesso.GetValidarAcceso(Request.QueryString["go"]))
+                {
+                    Response.Redirect("Error");
+                }
+            }
         }
 
         [System.Web.Services.WebMethod(EnableSession = true)]

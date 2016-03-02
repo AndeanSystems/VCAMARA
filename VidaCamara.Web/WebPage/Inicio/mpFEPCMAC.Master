@@ -74,10 +74,10 @@
                             <asp:HyperLink ID="HyperLink4" NavigateUrl="~/Tablas?go=3" runat="server">Tablas</asp:HyperLink>
                         </li>
                         <li>
-                            <asp:HyperLink ID="HyperLink22" NavigateUrl="~/ReglaArchivo?go=3" runat="server">Regla Archivo</asp:HyperLink>
+                            <asp:HyperLink ID="HyperLink22" NavigateUrl="~/ReglaArchivo?go=20" runat="server">Regla Archivo</asp:HyperLink>
                         </li>
                         <li>
-                            <asp:HyperLink ID="HyperLink23" NavigateUrl="~/TipoCambio?go=3" runat="server">Tipo Cambio</asp:HyperLink>
+                            <asp:HyperLink ID="HyperLink23" NavigateUrl="~/TipoCambio?go=21" runat="server">Tipo Cambio</asp:HyperLink>
                         </li>
                     </ul>
                 </li>
