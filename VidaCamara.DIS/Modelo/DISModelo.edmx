@@ -446,6 +446,7 @@ warning 6002: The table/view 'vcamara2.dbo.EXACTUS_CABECERA' does not have a pri
           <Property Name="IDE_CONTRATO" Type="int" Nullable="false" />
           <Property Name="ArchivoId" Type="int" Nullable="false" />
           <Property Name="TIPO_ARCHIVO" Type="varchar" MaxLength="20" />
+          <Property Name="IDE_MONEDA" Type="int" />
           <Property Name="ASIENTO" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="PAQUETE" Type="char" MaxLength="4" Nullable="false" />
           <Property Name="TIPO_ASIENTO" Type="char" MaxLength="4" Nullable="false" />
@@ -3346,6 +3347,7 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <Property Name="IDE_CONTRATO" Type="Int32" Nullable="false" />
           <Property Name="ArchivoId" Type="Int32" Nullable="false" />
           <Property Name="TIPO_ARCHIVO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IDE_MONEDA" Type="Int32" />
           <Property Name="ASIENTO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="PAQUETE" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
           <Property Name="TIPO_ASIENTO" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
@@ -5432,6 +5434,7 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
                 <ScalarProperty Name="TIPO_ASIENTO" ColumnName="TIPO_ASIENTO" />
                 <ScalarProperty Name="PAQUETE" ColumnName="PAQUETE" />
                 <ScalarProperty Name="ASIENTO" ColumnName="ASIENTO" />
+                <ScalarProperty Name="IDE_MONEDA" ColumnName="IDE_MONEDA" />
                 <ScalarProperty Name="TIPO_ARCHIVO" ColumnName="TIPO_ARCHIVO" />
                 <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
                 <ScalarProperty Name="IDE_CONTRATO" ColumnName="IDE_CONTRATO" />

@@ -15,12 +15,9 @@
         {
             var accesso = new VidaCamara.SBS.Negocio.bValidarAcceso();
             var index = Int32.Parse(menuTabs.SelectedValue);
-            if (index == 1 || index == 0 || index == 2)
+            if (!accesso.GetValidarAcceso((index+100).ToString()))
             {
-                if (!accesso.GetValidarAcceso("100"))
-                {
-                    Response.Redirect("Error");
-                }
+                Response.Redirect("Error");
             }
             multiTabs.ActiveViewIndex = index;
         }

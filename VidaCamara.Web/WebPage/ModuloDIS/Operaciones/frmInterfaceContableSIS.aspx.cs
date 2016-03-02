@@ -45,7 +45,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             cabecera.FECHA = Convert.ToDateTime(filter[0].ToString());
             cabecera.FECHA_CREACION = Convert.ToDateTime(filter[1].ToString());
             var negocio = new nInterfaceContable();
-            return new { Result = "OK", Records = negocio.listInterfaceContable(cabecera,new TipoArchivo(){NombreTipoArchivo = filter[2].ToString() },Convert.ToInt32(filter[3].ToString()),jtStartIndex, jtPageSize, out total), TotalRecordCount = total };
+            return new { Result = "OK", Records = negocio.listInterfaceContable(cabecera,new TipoArchivo(){NombreTipoArchivo = filter[2].ToString() },jtStartIndex, jtPageSize, out total), TotalRecordCount = total };
         }
 
         protected void btn_exportar_Click(object sender, ImageClickEventArgs e)
@@ -55,9 +55,10 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value),
                 FECHA = Convert.ToDateTime(txt_desde.Text),
                 FECHA_CREACION = Convert.ToDateTime(txt_hasta.Text),
-                ESTADO_TRANSFERENCIA = ddl_estado.SelectedItem.Value
+                ESTADO_TRANSFERENCIA = ddl_estado.SelectedItem.Value,
+                IDE_MONEDA = Convert.ToInt32(ddl_moneda.SelectedItem.Value)
             };
-            var pathArchivo = new nInterfaceContable().descargarExcel(contrato, new TipoArchivo() { NombreTipoArchivo = ddl_tipo_archivo.SelectedItem.Value},Convert.ToInt32(ddl_moneda.SelectedItem.Value));
+            var pathArchivo = new nInterfaceContable().descargarExcel(contrato, new TipoArchivo() { NombreTipoArchivo = ddl_tipo_archivo.SelectedItem.Value});
             Response.Clear();
             Response.ContentType = "application/vnd.ms-excel";
             Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}",Path.GetFileName(pathArchivo)));
@@ -82,11 +83,12 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value),
                 FECHA = Convert.ToDateTime(txt_desde.Text),
                 FECHA_CREACION = Convert.ToDateTime(txt_hasta.Text),
-                ESTADO_TRANSFERENCIA = ddl_estado.SelectedItem.Value
+                ESTADO_TRANSFERENCIA = ddl_estado.SelectedItem.Value,
+                IDE_MONEDA = Convert.ToInt32(ddl_moneda.SelectedItem.Value)
             };
             try
             {
-                var respuesta = new nInterfaceContable().transferirInterfaceContable(contrato, new TipoArchivo() { NombreTipoArchivo = ddl_tipo_archivo.SelectedItem.Value }, Convert.ToInt32(ddl_moneda.SelectedItem.Value));
+                var respuesta = new nInterfaceContable().transferirInterfaceContable(contrato, new TipoArchivo() { NombreTipoArchivo = ddl_tipo_archivo.SelectedItem.Value });
                 MessageBox("Asiento (s) transferido (s) correctamente.");
             }
             catch (Exception ex)

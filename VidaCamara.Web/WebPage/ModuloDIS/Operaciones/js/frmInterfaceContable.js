@@ -2,7 +2,8 @@
     //entidades y variables
     var cabecera = function (ide_contrato) {
         this.IDE_CONTRATO = ide_contrato,
-        this.ESTADO_TRANSFERENCIA = $("#ctl00_ContentPlaceHolder1_ddl_estado").val()
+        this.ESTADO_TRANSFERENCIA = $("#ctl00_ContentPlaceHolder1_ddl_estado").val(),
+        this.IDE_MONEDA = parseInt($("#ctl00_ContentPlaceHolder1_ddl_moneda").val())
     }
     //eventos
     $("section").delegate("#ctl00_ContentPlaceHolder1_btn_buscar", "click", function (ev) {
@@ -12,7 +13,7 @@
             mostrarMensajeAlert("Seleccione el contrato");
         } else {
             var filter = [$("#ctl00_ContentPlaceHolder1_txt_desde").val(), $("#ctl00_ContentPlaceHolder1_txt_hasta").val(),
-                         $("#ctl00_ContentPlaceHolder1_ddl_tipo_archivo").val(), $("#ctl00_ContentPlaceHolder1_ddl_moneda").val()];
+                         $("#ctl00_ContentPlaceHolder1_ddl_tipo_archivo").val()];
             listInterfaceContable(new cabecera(contrato), filter);
         }
     });

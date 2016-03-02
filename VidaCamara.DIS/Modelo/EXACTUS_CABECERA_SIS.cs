@@ -34,6 +34,8 @@ public partial class EXACTUS_CABECERA_SIS
 
     public string TIPO_ARCHIVO { get; set; }
 
+    public Nullable<int> IDE_MONEDA { get; set; }
+
     public string ASIENTO { get; set; }
 
     public string PAQUETE { get; set; }

@@ -7,10 +7,17 @@ namespace VidaCamara.SBS.Negocio
     {
         public Boolean GetValidarAcceso(String QueryParam)
         {
-            String listaPagina = Session["accesos"].ToString();
-            String[] listSearch = listaPagina.Split(',');
-            String httpPost = QueryParam;
-            return listSearch.Contains(httpPost);
+            var listaPagina = Session["accesos"].ToString().Split(',');
+            var encontro = false;
+            foreach (var item in listaPagina)
+            {
+                if (item.Equals(QueryParam))
+                {
+                    encontro = true;
+                    break;
+                }
+            }
+            return encontro;
         }
     }
 }

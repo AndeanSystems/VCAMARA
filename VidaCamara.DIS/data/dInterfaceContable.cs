@@ -36,6 +36,7 @@ namespace VidaCamara.DIS.data
                     IDE_CONTRATO = nomina.IDE_CONTRATO,
                     ArchivoId = (int)nomina.ArchivoId,
                     TIPO_ARCHIVO = archivo.NombreArchivo.Split('_')[0].ToString(),
+                    IDE_MONEDA = nomina.TIP_MONE,
                     ASIENTO =  string.Format("SIN{0}{1}",DateTime.Now.ToString("yyMMdd"),nomina.TIP_MONE.ToString()),
                     PAQUETE = "SIN",
                     TIPO_ASIENTO = "RS",
@@ -72,7 +73,7 @@ namespace VidaCamara.DIS.data
             }
         }
 
-        internal List<HEXACTUS_DETALLE_SIS> listInterfaceContable(EXACTUS_CABECERA_SIS cabecera, TipoArchivo archivo, int moneda, int index, int size, out int total)
+        internal List<HEXACTUS_DETALLE_SIS> listInterfaceContable(EXACTUS_CABECERA_SIS cabecera, TipoArchivo archivo, int index, int size, out int total)
         {
             var listInterface = new List<HEXACTUS_DETALLE_SIS>();
             var formatoMoneda = System.Configuration.ConfigurationManager.AppSettings["Float"].ToString();
@@ -83,14 +84,12 @@ namespace VidaCamara.DIS.data
                     var fechaHasta = cabecera.FECHA_CREACION.AddDays(1);
                     var query = (from xd in db.EXACTUS_DETALLE_SISs
                                  join x in db.EXACTUS_CABECERA_SISs on xd.IDE_EXACTUS_CABECERA_SIS equals x.IDE_EXACTUS_CABECERA_SIS
-                                 join a in db.Archivos on x.ArchivoId equals a.ArchivoId
-                                 join n in db.NOMINAs on a.ArchivoId equals n.ArchivoId
                                  where x.IDE_CONTRATO == cabecera.IDE_CONTRATO &&
                                        (x.ESTADO_TRANSFERENCIA == cabecera.ESTADO_TRANSFERENCIA || cabecera.ESTADO_TRANSFERENCIA == "0") &&
                                        x.FECHA >= cabecera.FECHA &&
                                        x.FECHA < fechaHasta &&
                                        (x.TIPO_ARCHIVO == archivo.NombreTipoArchivo || archivo.NombreTipoArchivo == "0") &&
-                                       (n.TIP_MONE == moneda || moneda == 0)
+                                       (x.IDE_MONEDA == cabecera.IDE_MONEDA || cabecera.IDE_MONEDA == 0)
                                  select new {xd,x}).ToList();
                     total = query.Count;
                     foreach (var item in query.Skip(index).Take(size))
@@ -126,7 +125,7 @@ namespace VidaCamara.DIS.data
             }
         }
 
-        internal List<EXACTUS_CABECERA_SIS> getExactusCabecera(EXACTUS_CABECERA_SIS cabecera, TipoArchivo tipoArchivo, int moneda)
+        internal List<EXACTUS_CABECERA_SIS> getExactusCabecera(EXACTUS_CABECERA_SIS cabecera, TipoArchivo tipoArchivo)
         {
             var listCabecera = new List<EXACTUS_CABECERA_SIS>();
             try
@@ -135,14 +134,12 @@ namespace VidaCamara.DIS.data
                 {
                     var fechaHasta = cabecera.FECHA_CREACION.AddDays(1);
                     return (from x in db.EXACTUS_CABECERA_SISs 
-                                 join a in db.Archivos on x.ArchivoId equals a.ArchivoId
-                                 join n in db.NOMINAs on a.ArchivoId equals n.ArchivoId
                                  where x.IDE_CONTRATO == cabecera.IDE_CONTRATO &&
                                        x.ESTADO_TRANSFERENCIA == "C" &&
                                        x.FECHA >= cabecera.FECHA &&
                                        x.FECHA < fechaHasta &&
                                        (x.TIPO_ARCHIVO == tipoArchivo.NombreTipoArchivo || tipoArchivo.NombreTipoArchivo == "0") &&
-                                       (n.TIP_MONE == moneda || moneda == 0)
+                                       (x.IDE_MONEDA == cabecera.IDE_MONEDA || cabecera.IDE_MONEDA == 0)
                                  select x).ToList();
                 }
             }

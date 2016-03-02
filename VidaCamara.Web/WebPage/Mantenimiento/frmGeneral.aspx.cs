@@ -33,10 +33,13 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                 }
                 else
                 {
-                    if (!accesso.GetValidarAcceso("100"))
-                    {
-                        menuTabs.Items[3].Selected = true;
-                    }
+                    //if (!accesso.GetValidarAcceso("100"))
+                    //    if (accesso.GetValidarAcceso("103"))
+                    //    {
+                    //        menuTabs.Items[2].Selected = true;
+                    //        multiTabs.ActiveViewIndex = 2;
+                    //    }
+
                 }
             }
 

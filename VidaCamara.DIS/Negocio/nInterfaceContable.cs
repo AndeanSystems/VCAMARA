@@ -24,17 +24,17 @@ namespace VidaCamara.DIS.Negocio
                 new dInterfaceContable().createInterfaceContableDetalle(nomina, cabecera, asiento[i]);
             }
         }
-        public List<HEXACTUS_DETALLE_SIS> listInterfaceContable(EXACTUS_CABECERA_SIS cabecera,TipoArchivo archivo,int moneda, int index, int size, out int total)
+        public List<HEXACTUS_DETALLE_SIS> listInterfaceContable(EXACTUS_CABECERA_SIS cabecera,TipoArchivo archivo, int index, int size, out int total)
         {
-            return new dInterfaceContable().listInterfaceContable(cabecera,archivo,moneda,index,size,out total);
+            return new dInterfaceContable().listInterfaceContable(cabecera,archivo,index,size,out total);
         }
-        public string descargarExcel(EXACTUS_CABECERA_SIS cabecera,TipoArchivo archivo,int moneda)
+        public string descargarExcel(EXACTUS_CABECERA_SIS cabecera,TipoArchivo archivo)
         {
             var helperStyle = new Helpers.excelStyle();
             try
             {
                 int total;
-                var listInterface = new dInterfaceContable().listInterfaceContable(cabecera, archivo, moneda,0, 100000, out total);
+                var listInterface = new dInterfaceContable().listInterfaceContable(cabecera, archivo,0, 100000, out total);
                 //atributos del file
                 var nombreArchivo = string.Format("Interface {0}",DateTime.Now.ToString("yyyyMMdd"));
                 var rutaTemporal = @HttpContext.Current.Server.MapPath(string.Format("~/Temp/Descargas/{0}.xlsx", nombreArchivo));
@@ -131,9 +131,9 @@ namespace VidaCamara.DIS.Negocio
             }
         }
 
-        public bool transferirInterfaceContable(EXACTUS_CABECERA_SIS contrato, TipoArchivo tipoArchivo, int moneda)
+        public bool transferirInterfaceContable(EXACTUS_CABECERA_SIS contrato, TipoArchivo tipoArchivo)
         {
-            var exactusCabecera = new dInterfaceContable().getExactusCabecera(contrato,tipoArchivo,moneda);
+            var exactusCabecera = new dInterfaceContable().getExactusCabecera(contrato,tipoArchivo);
             var interfaceContable = new dInterfaceContable();
             var response = true;
             try

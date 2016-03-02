@@ -3,6 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="btn_crud">
-            <h3 style="color:#009BB8;font-family:'Segoe UI Semilight','Open Sans',Verdana,Arial,Helvetica,sans-serif;">No Tienes Permiso para ver esta Página</h3>
+            <h3 style="color:#009BB8;font-family:'Segoe UI Semilight','Open Sans',Verdana,Arial,Helvetica,sans-serif;">No tiene suficiente previligios para ver esta página</h3>
     </div>
 </asp:Content>
