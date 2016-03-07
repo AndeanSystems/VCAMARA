@@ -43,12 +43,14 @@ namespace VidaCamara.DIS.Negocio
                                    "CENTRO_COSTO","CUENTA_CONTABLE","DebitoSoles","CreditoSoles","DebitoDolar","CreditoDolar","MONTO_UNIDADES"};
                 var sheet = book.CreateSheet(nombreArchivo);
                 var rowBook = sheet.CreateRow(1);
+                var headerStyle = helperStyle.setFontText(12, true, book);
+                var bodyStyle = helperStyle.setFontText(11, false, book);
                 ICell cellBook;
                 for (int i = 0; i < columns.Length; i++)
                 {
                     cellBook = rowBook.CreateCell(i + 1);
                     cellBook.SetCellValue(columns[i]);
-                    cellBook.CellStyle = helperStyle.setFontText(12, true, book);
+                    cellBook.CellStyle = headerStyle;
                 }
                 for (int i = 0; i < listInterface.Count; i++)
                 {
@@ -56,63 +58,63 @@ namespace VidaCamara.DIS.Negocio
 
                     ICell cellPaquete = rowBody.CreateCell(1);
                     cellPaquete.SetCellValue(listInterface[i].EXACTUS_CABECERA_SIS.PAQUETE);
-                    cellPaquete.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellPaquete.CellStyle = bodyStyle;
 
                     ICell cellAsiento = rowBody.CreateCell(2);
                     cellAsiento.SetCellValue(listInterface[i].EXACTUS_CABECERA_SIS.ASIENTO);
-                    cellAsiento.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellAsiento.CellStyle = bodyStyle;
 
                     ICell cellFechaReg = rowBody.CreateCell(3);
                     cellFechaReg.SetCellValue(listInterface[i].EXACTUS_CABECERA_SIS.FECHA.ToString());
-                    cellFechaReg.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellFechaReg.CellStyle = bodyStyle;
 
                     ICell cellTipoAsiento = rowBody.CreateCell(4);
                     cellTipoAsiento.SetCellValue(listInterface[i].EXACTUS_CABECERA_SIS.TIPO_ASIENTO);
-                    cellTipoAsiento.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellTipoAsiento.CellStyle = bodyStyle;
 
                     ICell cellContabilidad = rowBody.CreateCell(5);
                     cellContabilidad.SetCellValue(listInterface[i].EXACTUS_CABECERA_SIS.CONTABILIDAD);
-                    cellContabilidad.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellContabilidad.CellStyle = bodyStyle;
 
                     ICell cellFuente = rowBody.CreateCell(6);
                     cellFuente.SetCellValue(listInterface[i].FUENTE);
-                    cellFuente.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellFuente.CellStyle = bodyStyle;
 
                     ICell cellReferencia = rowBody.CreateCell(7);
                     cellReferencia.SetCellValue(listInterface[i].REFERENCIA);
-                    cellReferencia.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellReferencia.CellStyle = bodyStyle;
 
                     ICell cellContribuyente = rowBody.CreateCell(8);
                     cellContribuyente.SetCellValue(listInterface[i].CONTRIBUYENTE);
-                    cellContribuyente.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellContribuyente.CellStyle = bodyStyle;
 
                     ICell cellCentroCosto = rowBody.CreateCell(9);
                     cellCentroCosto.SetCellValue(listInterface[i].CENTRO_COSTO);
-                    cellCentroCosto.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellCentroCosto.CellStyle = bodyStyle;
 
                     ICell cellCuentaCont = rowBody.CreateCell(10);
                     cellCuentaCont.SetCellValue(listInterface[i].CUENTA_CONTABLE);
-                    cellCuentaCont.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellCuentaCont.CellStyle = bodyStyle;
 
                     ICell cellDebitoSol = rowBody.CreateCell(11);
                     cellDebitoSol.SetCellValue(listInterface[i].DebitoSoles);
-                    cellDebitoSol.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellDebitoSol.CellStyle = bodyStyle;
 
                     ICell cellCreditoSol = rowBody.CreateCell(12);
                     cellCreditoSol.SetCellValue(listInterface[i].CreditoSoles);
-                    cellCreditoSol.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellCreditoSol.CellStyle = bodyStyle;
 
                     ICell cellDebitoDol = rowBody.CreateCell(13);
                     cellDebitoDol.SetCellValue(listInterface[i].DebitoDolar);
-                    cellDebitoDol.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellDebitoDol.CellStyle = bodyStyle;
 
                     ICell cellCreditoDol = rowBody.CreateCell(14);
                     cellCreditoDol.SetCellValue(listInterface[i].CreditoDolar);
-                    cellCreditoDol.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellCreditoDol.CellStyle = bodyStyle;
 
                     ICell cellMontoUnid = rowBody.CreateCell(15);
                     cellMontoUnid.SetCellValue(listInterface[i].MONTO_UNIDADES.ToString());
-                    cellMontoUnid.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellMontoUnid.CellStyle = bodyStyle;
                 }
                 if (File.Exists(rutaTemporal))
                     File.Delete(rutaTemporal);

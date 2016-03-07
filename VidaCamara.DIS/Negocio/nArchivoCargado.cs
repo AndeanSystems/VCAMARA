@@ -37,6 +37,7 @@ namespace VidaCamara.DIS.Negocio
         /// <returns></returns>
         public string getDescargarConsulta(HistorialCargaArchivo_LinCab cab,NOMINA nomina, HistorialCargaArchivo_LinDet det, object[] filterParam)
         {
+            var helperStyle = new Helpers.excelStyle();
             try
             {
                 var nombreArchivo = "Archivo " + filterParam[0].ToString()+" "+DateTime.Now.ToString("yyyyMMdd");
@@ -52,13 +53,15 @@ namespace VidaCamara.DIS.Negocio
                 //crear el libro
                 var sheet = book.CreateSheet(nombreArchivo);
                 var rowCabecera = sheet.CreateRow(1);
+                var headerStyle = helperStyle.setFontText(12, true, book);
+                var bodyStyle = helperStyle.setFontText(11, false, book);
                 //construir cabecera
                 ICell cellCabecera;
                 for (int i = 0; i < listReglaArchivo.Count; i++)
                 {
                     cellCabecera = rowCabecera.CreateCell(i+1);
                     cellCabecera.SetCellValue(listReglaArchivo[i].TituloColumna);
-                    cellCabecera.CellStyle = setFontText(12, true, book);
+                    cellCabecera.CellStyle = headerStyle;
                 }
                 //consultar datos segun los filtros especificados
                 if (filterParam[0].ToString() == "NOMINA")
@@ -73,7 +76,7 @@ namespace VidaCamara.DIS.Negocio
                             cellBody = rowBody.CreateCell(c + 1);
                             var property = listNomina[i].GetType().GetProperty(listReglaArchivo[c].NombreCampo.ToString().Trim(), BindingFlags.Public | BindingFlags.Instance);
                             cellBody.SetCellValue(property.GetValue(listNomina[i],null) == null ? "" : property.GetValue(listNomina[i],null).ToString());
-                            cellBody.CellStyle = setFontText(11, false, book);
+                            cellBody.CellStyle = bodyStyle;
                         }
                     }
                 }
@@ -88,11 +91,12 @@ namespace VidaCamara.DIS.Negocio
                             cellBody = rowBody.CreateCell(c + 1);
                             var property = listHistoriaLinDet[i].GetType().GetProperty(listReglaArchivo[c].NombreCampo.ToString().Trim(), BindingFlags.Public | BindingFlags.Instance);
                             cellBody.SetCellValue(property.GetValue(listHistoriaLinDet[i],null) == null ? "" : property.GetValue(listHistoriaLinDet[i],null).ToString());
-                            cellBody.CellStyle = setFontText(11, false, book);
+                            cellBody.CellStyle = bodyStyle;
                         }
                     }
                 }
-
+                if (File.Exists(rutaTemporal))
+                    File.Delete(rutaTemporal);
                 //guardar el archivo creado en memoria
                 using (var file = new FileStream(rutaTemporal,FileMode.Create,FileAccess.ReadWrite))
                 {

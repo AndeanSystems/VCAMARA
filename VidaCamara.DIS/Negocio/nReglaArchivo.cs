@@ -27,7 +27,7 @@ namespace VidaCamara.DIS.Negocio
         public StringBuilder getColumnGridByArchivo(ReglaArchivo regla,string columnsAdd = null)
         {
             var total = 0;
-            var listRegla = new dReglaArchivo().getListReglaArchivo(regla, 0, 200,"IdReglaArchivo ASC", out total);
+            var listRegla = new dReglaArchivo().getListReglaArchivo(regla, 0, 1000, "CaracterInicial ASC", out total);
             var sb = new StringBuilder();
             sb.Append("var fields = {");
             for (int i = 1; i <= listRegla.Count; i++)

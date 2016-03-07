@@ -52,18 +52,20 @@ namespace VidaCamara.DIS.Negocio
                 int total;
                 var listDescarga = new dAprobacionCarga().listApruebaCarga(contratoSis, 0, 100000, filtersNow, out total);
                 //atributos del file
-                var nombreArchivo = string.Format("Aprueba {0}{1}",filtersNow[0].ToString(),DateTime.Now.ToString("yyyyMMdd"));
+                var nombreArchivo = string.Format("Aprueba {0}_{1}_{2}",filtersNow[0].ToString(),DateTime.Now.ToString("yyyyMMdd"),contratoSis.IDE_CONTRATO.ToString());
                 var rutaTemporal = @HttpContext.Current.Server.MapPath(string.Format("~/Temp/Descargas/{0}.xlsx",nombreArchivo));
                 var book = new XSSFWorkbook();
                 string[] columns = {"NombreArchivo","Fecha Carga","Mondeda","TotalRegistros","TotalImporte","FechaCreacción","Usuario"};
                 var sheet = book.CreateSheet(nombreArchivo);
                 var rowBook = sheet.CreateRow(1);
+                var headerStyle = helperStyle.setFontText(12, true, book);
+                var bodyStyle = helperStyle.setFontText(11, false, book);
                 ICell cellBook;
                 for (int i = 0; i < columns.Length; i++)
                 {
                     cellBook = rowBook.CreateCell(i+1);
                     cellBook.SetCellValue(columns[i]);
-                    cellBook.CellStyle = helperStyle.setFontText(12, true, book);
+                    cellBook.CellStyle = headerStyle;
                 }
                 for (int i = 0; i < listDescarga.Count; i++)
                 {
@@ -71,31 +73,31 @@ namespace VidaCamara.DIS.Negocio
 
                     ICell cellArchivo = rowBody.CreateCell(1);
                     cellArchivo.SetCellValue(listDescarga[i].NombreArchivo);
-                    cellArchivo.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellArchivo.CellStyle = bodyStyle;
 
                     ICell cellFechaCarga = rowBody.CreateCell(2);
                     cellFechaCarga.SetCellValue(listDescarga[i].FechaCarga.ToShortDateString());
-                    cellFechaCarga.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellFechaCarga.CellStyle = bodyStyle;
 
                     ICell cellMoneda = rowBody.CreateCell(3);
                     cellMoneda.SetCellValue(listDescarga[i].moneda);
-                    cellMoneda.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellMoneda.CellStyle = bodyStyle;
 
                     ICell cellTotalRegistros = rowBody.CreateCell(4);
                     cellTotalRegistros.SetCellValue(listDescarga[i].TotalRegistros);
-                    cellTotalRegistros.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellTotalRegistros.CellStyle = bodyStyle;
 
                     ICell cellTotalImporte = rowBody.CreateCell(5);
                     cellTotalImporte.SetCellValue(listDescarga[i].TotalImporte);
-                    cellTotalImporte.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellTotalImporte.CellStyle = bodyStyle;
 
                     ICell cellFechaInfo = rowBody.CreateCell(6);
                     cellFechaInfo.SetCellValue(listDescarga[i].FechaInfo.ToShortDateString());
-                    cellFechaInfo.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellFechaInfo.CellStyle = bodyStyle;
 
                     ICell cellUsuReg = rowBody.CreateCell(7);
                     cellUsuReg.SetCellValue(listDescarga[i].UsuReg);
-                    cellUsuReg.CellStyle = helperStyle.setFontText(11, false, book);
+                    cellUsuReg.CellStyle = bodyStyle;
                 }
                 if (File.Exists(rutaTemporal))
                     File.Delete(rutaTemporal);

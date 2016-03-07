@@ -75,7 +75,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
 
         protected void btn_exportar_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
-            var nomina = new NOMINA() { IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value),FechaReg = Convert.ToDateTime(txt_fecha.Text)};
+            var nomina = new NOMINA() { IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value),FechaReg = Convert.ToDateTime(txt_fecha.Text),Estado = ddl_estado.SelectedItem.Value};
             var filePath = new nTelebanking().descargarExcelTelebankig(nomina, formatoMoneda);
 
             Response.Clear();

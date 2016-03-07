@@ -6,6 +6,7 @@ using VidaCamara.DIS.Negocio;
 using VidaCamara.SBS.Negocio;
 using VidaCamara.DIS.Helpers;
 using System.Configuration;
+using System.IO;
 
 namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
 {
@@ -84,7 +85,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             var nombreArchivo = new nArchivoCargado().getDescargarConsulta(cabecera,nomina, historiaLinDet, filterParam);
             Response.Clear();
             Response.ContentType = "application/vnd.ms-excel";
-            Response.AddHeader("Content-Disposition", "attachment;filename="+ nombreArchivo);
+            Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", Path.GetFileName(nombreArchivo)));
             Response.TransmitFile(nombreArchivo);
             Response.End();
         }

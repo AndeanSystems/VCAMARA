@@ -11,9 +11,11 @@ namespace VidaCamara.Web.WebPage.Inicio
 {
     public partial class frmLogin : System.Web.UI.Page
     {
+        #region VARIABLES
         List<eUsuarioActiveDirec> lstUsuarioAD = new List<eUsuarioActiveDirec>();
         ADFunctions oADFunctions = new ADFunctions();
         bUsuarioVC busuario = new bUsuarioVC();
+        #endregion VARIABLES
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -30,7 +32,6 @@ namespace VidaCamara.Web.WebPage.Inicio
             }
 
         }
-
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             if (ValidarUsuarioEnActiveDirectory() == true)
@@ -42,8 +43,6 @@ namespace VidaCamara.Web.WebPage.Inicio
                 txtUsuario.Text = "";
             }
         }
-
-
         public bool ValidarUsuarioEnActiveDirectory()
         {
             if (txtUsuario.Text == "reaseguros")//oADFunctions.FnValidarUsuario(ConfigurationManager.AppSettings.Get("Dominio"), txtUsuario.Text, txtContrasena.Text, ConfigurationManager.AppSettings.Get("UrlLDAP")))

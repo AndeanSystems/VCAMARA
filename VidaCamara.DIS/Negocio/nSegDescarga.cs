@@ -20,6 +20,7 @@ namespace VidaCamara.DIS.Negocio
 
         public string descargarConsultaExcel(CONTRATO_SYS contrato, object[] filters)
         {
+            var helperStyle = new Helpers.excelStyle();
             try
             {
                 var nombreArchivo = "Descarga " + filters[0].ToString() + " " + DateTime.Now.ToString("yyyyMMdd");
@@ -29,12 +30,14 @@ namespace VidaCamara.DIS.Negocio
                 string[] columns = {"Archivo","Fecha Carga","Usuario","Nro Lineas","Estado","Moneda","Importe" };
                 var sheet = book.CreateSheet(nombreArchivo);
                 var rowBook = sheet.CreateRow(1);
+                var headerStyle = helperStyle.setFontText(12, true, book);
+                var bodyStyle = helperStyle.setFontText(11, false, book);
                 ICell cellBook;
                 for (int i = 0; i < columns.Length; i++)
                 {
                     cellBook = rowBook.CreateCell(i+1);
                     cellBook.SetCellValue(columns[i]);
-                    cellBook.CellStyle = setFontText(12, true, book);
+                    cellBook.CellStyle = headerStyle;
                 }
 
                 var listSegDescarga = new nSegDescarga().listSegDescarga(contrato, filters, 0, 100000, out total);
@@ -44,34 +47,35 @@ namespace VidaCamara.DIS.Negocio
 
                     ICell cellNombre = rowBody.CreateCell(1);
                     cellNombre.SetCellValue(listSegDescarga[i].nombreArchivo);
-                    cellNombre.CellStyle = setFontText(11, false, book);
+                    cellNombre.CellStyle = bodyStyle;
 
                     ICell cellFecCarga = rowBody.CreateCell(2);
                     cellFecCarga.SetCellValue(listSegDescarga[i].FechaCarga.ToShortDateString());
-                    cellFecCarga.CellStyle = setFontText(11, false, book);
+                    cellFecCarga.CellStyle = bodyStyle;
 
                     ICell cellUsuario = rowBody.CreateCell(3);
                     cellUsuario.SetCellValue(listSegDescarga[i].Usuario);
-                    cellUsuario.CellStyle = setFontText(11, false, book);
+                    cellUsuario.CellStyle = bodyStyle;
 
                     ICell cellNroLinea = rowBody.CreateCell(4);
                     cellNroLinea.SetCellValue(listSegDescarga[i].NroLineas);
-                    cellNroLinea.CellStyle = setFontText(11, false, book);
+                    cellNroLinea.CellStyle = bodyStyle;
 
                     ICell cellEstado = rowBody.CreateCell(5);
                     cellEstado.SetCellValue(listSegDescarga[i].Estado);
-                    cellEstado.CellStyle = setFontText(11, false, book);
+                    cellEstado.CellStyle = bodyStyle;
 
                     ICell cellMoneda = rowBody.CreateCell(6);
                     cellMoneda.SetCellValue(listSegDescarga[i].Moneda);
-                    cellMoneda.CellStyle = setFontText(11, false, book);
+                    cellMoneda.CellStyle = bodyStyle;
 
                     ICell cellImporte = rowBody.CreateCell(7);
                     cellImporte.SetCellValue(listSegDescarga[i].Importe);
-                    cellImporte.CellStyle = setFontText(11, false, book);
+                    cellImporte.CellStyle = bodyStyle;
 
                 }
-
+                if(File.Exists(rutaTemporal))
+                    File.Delete(rutaTemporal);
                 using (var file = new FileStream(rutaTemporal, FileMode.Create, FileAccess.ReadWrite))
                 {
                     book.Write(file);
@@ -86,28 +90,6 @@ namespace VidaCamara.DIS.Negocio
 
                 throw;
             }
-        }
-        private ICellStyle setFontText(short point, bool color, XSSFWorkbook book)
-        {
-            var font = book.CreateFont();
-            font.FontName = "Calibri";
-            font.Color = (IndexedColors.Black.Index);
-            font.FontHeightInPoints = point;
-
-            var style = book.CreateCellStyle();
-            style.SetFont(font);
-            style.Alignment = HorizontalAlignment.Center;
-            style.VerticalAlignment = VerticalAlignment.Center;
-            if (color)
-            {
-                style.FillForegroundColor = HSSFColor.Grey25Percent.Index;
-                style.FillPattern = FillPattern.SolidForeground;
-            }
-            style.BorderBottom = BorderStyle.Thin;
-            style.BorderTop = BorderStyle.Thin;
-            style.BorderLeft = BorderStyle.Thin;
-            style.BorderRight = BorderStyle.Thin;
-            return style;
         }
     }
 }

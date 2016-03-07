@@ -47,6 +47,7 @@ namespace VidaCamara.DIS.Negocio
         }
         public string descargarConsultaExcel(HLogOperacion log, object[] filters)
         {
+            var helperStyle = new Helpers.excelStyle();
             try
             {
                 var nombreArchivo = "Log " + filters[0].ToString() + " " + DateTime.Now.ToString("yyyyMMdd");
@@ -56,12 +57,14 @@ namespace VidaCamara.DIS.Negocio
                 string[] columns = { "Contrato", "Tipo evento", "Fecha  evento", "Evento", "Usuario" };
                 var sheet = book.CreateSheet(nombreArchivo);
                 var rowBook = sheet.CreateRow(1);
+                var headerStyle = helperStyle.setFontText(12, true, book);
+                var bodyStyle = helperStyle.setFontText(11, false, book);
                 ICell cellBook;
                 for (int i = 0; i < columns.Length; i++)
                 {
                     cellBook = rowBook.CreateCell(i + 1);
                     cellBook.SetCellValue(columns[i]);
-                    cellBook.CellStyle = setFontText(12, true, book);
+                    cellBook.CellStyle = headerStyle;
                 }
                 var listLogOperacion = getListLogOperacion(log, 0, 100000, filters, out total);
                 for (int i = 0; i < listLogOperacion.Count; i++)
@@ -70,23 +73,23 @@ namespace VidaCamara.DIS.Negocio
 
                     ICell cellContrato = rowBody.CreateCell(1);
                     cellContrato.SetCellValue(listLogOperacion[i].IDE_CONTRATO);
-                    cellContrato.CellStyle = setFontText(11, false, book);
+                    cellContrato.CellStyle = bodyStyle;
 
                     ICell cellTipoEvento = rowBody.CreateCell(2);
                     cellTipoEvento.SetCellValue(listLogOperacion[i].TipoEvento);
-                    cellTipoEvento.CellStyle = setFontText(11, false, book);
+                    cellTipoEvento.CellStyle = bodyStyle;
 
                     ICell cellFechaEvento = rowBody.CreateCell(3);
                     cellFechaEvento.SetCellValue(listLogOperacion[i].FechEven.ToString());
-                    cellFechaEvento.CellStyle = setFontText(11, false, book);
+                    cellFechaEvento.CellStyle = bodyStyle;
 
                     ICell cellEvento = rowBody.CreateCell(4);
                     cellEvento.SetCellValue(listLogOperacion[i].Evento);
-                    cellEvento.CellStyle = setFontText(11, false, book);
+                    cellEvento.CellStyle = bodyStyle;
 
                     ICell cellUsuario = rowBody.CreateCell(5);
                     cellUsuario.SetCellValue(listLogOperacion[i].CodiUsu);
-                    cellUsuario.CellStyle = setFontText(11, false, book);
+                    cellUsuario.CellStyle = bodyStyle;
                 }
 
                 using (var file = new FileStream(rutaTemporal, FileMode.Create, FileAccess.ReadWrite))
@@ -103,28 +106,6 @@ namespace VidaCamara.DIS.Negocio
 
                 throw;
             }
-        }
-        private ICellStyle setFontText(short point, bool color, XSSFWorkbook book)
-        {
-            var font = book.CreateFont();
-            font.FontName = "Calibri";
-            font.Color = (IndexedColors.Black.Index);
-            font.FontHeightInPoints = point;
-
-            var style = book.CreateCellStyle();
-            style.SetFont(font);
-            style.Alignment = HorizontalAlignment.Center;
-            style.VerticalAlignment = VerticalAlignment.Center;
-            if (color)
-            {
-                style.FillForegroundColor = HSSFColor.Grey25Percent.Index;
-                style.FillPattern = FillPattern.SolidForeground;
-            }
-            style.BorderBottom = BorderStyle.Thin;
-            style.BorderTop = BorderStyle.Thin;
-            style.BorderLeft = BorderStyle.Thin;
-            style.BorderRight = BorderStyle.Thin;
-            return style;
         }
     }
 }
