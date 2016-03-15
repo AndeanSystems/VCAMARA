@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -69,7 +70,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             var ruta = new nLogOperacion().descargarConsultaExcel(eLog, filters);
             Response.Clear();
             Response.ContentType = "application/vnd.ms-excel";
-            Response.AddHeader("Content-Disposition", "attachment;filename=" + ruta);
+            Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", Path.GetFileName(ruta)));
             Response.TransmitFile(ruta);
             Response.End();
         }

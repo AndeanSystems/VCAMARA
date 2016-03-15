@@ -116,10 +116,10 @@
                         <li><a href="#">Operaciones</a>
                             <ul>
                                 <li>
-                                    <asp:HyperLink ID="HyperLink14" NavigateUrl="~/CargaDatosDIS?go=13" runat="server">Carga Archivos de Pagos</asp:HyperLink>
+                                    <asp:HyperLink ID="HyperLink14" NavigateUrl="~/CargaDatosDIS?go=13" runat="server">Carga</asp:HyperLink>
                                 </li>
                                 <li>
-                                    <asp:HyperLink ID="HyperLink15" NavigateUrl="~/ApruebaCarga?go=14" runat="server">Aprueba Carga</asp:HyperLink>
+                                    <asp:HyperLink ID="HyperLink15" NavigateUrl="~/ApruebaCarga?go=14" runat="server">Aprobación</asp:HyperLink>
                                 </li>
                                 <li>
                                     <asp:HyperLink ID="HyperLink16" NavigateUrl="~/Telebankig?go=15" runat="server">Genera Telebanking</asp:HyperLink>

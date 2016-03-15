@@ -36,7 +36,7 @@ namespace VidaCamara.DIS.Negocio
                 int total;
                 var listInterface = new dInterfaceContable().listInterfaceContable(cabecera, archivo,0, 100000, out total);
                 //atributos del file
-                var nombreArchivo = string.Format("Interface {0}",DateTime.Now.ToString("yyyyMMdd"));
+                var nombreArchivo = string.Format("Interface {0}_{1}",cabecera.IDE_CONTRATO,DateTime.Now.ToString("yyyyMMdd"));
                 var rutaTemporal = @HttpContext.Current.Server.MapPath(string.Format("~/Temp/Descargas/{0}.xlsx", nombreArchivo));
                 var book = new XSSFWorkbook();
                 string[] columns = { "PAQUETE", "ASIENTO", "FECHA_REGISTRO", "TIPO_ASIENTO", "CONTABILIDAD", "FUENTE", "REFERENCIA", "CONTRIBUYENTE",

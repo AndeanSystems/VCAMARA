@@ -68,7 +68,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 //VALIDA SI EL NUMERO CONTRATO SELECCIONADO COICEDE CON EL ARCHIVO A CARGAR
                 if (validarNumeroContratoXArchivo(nombreArchivo, ddl_conrato1.SelectedItem.Value) == 0)
                 {
-                    MessageBox("El archivo contiene un numero de contrato diferente.");
+                    MessageBox("El archivo que se está intentando cargar pertenece a un número de contrato diferente.");
                     return;
                 }
                 //validar que el archivo seleccionado corresponde al mismo tipo al que esta seleccionado el combo combo
@@ -137,7 +137,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                     string nombre;
                     if ((cargaLogica.NombreArchivo.Split('_')[0] == "NOMINA"))
                     {
-                        nombre = string.Format("Nomina cargada con: <br> {0}", cargaLogica.Observacion);
+                        nombre = string.Format("Nomina cargada {0} <br> {1}",(cargaLogica.ContadorErrores > 0 ? "incorrectamente" : "correctamente"), cargaLogica.Observacion);
                         if ((cargaLogica.MensageError != String.Empty))
                         {
                             nombre = (nombre + (", " + cargaLogica.MensageError));
@@ -150,7 +150,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                     }
                     else if ((cargaLogica.NombreArchivo.Split('_')[0] == "INOMINA"))
                     {
-                        nombre = "Nomina procesada Ok.";
+                        nombre = string.Format("Nomina procesada {0}", (cargaLogica.ContadorErrores > 0 ? "incorrectamente" : "correctamente"));
                         if ((cargaLogica.MensageError != String.Empty))
                         {
                             nombre = (nombre + (", " + cargaLogica.MensageError));
@@ -163,7 +163,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                     }
                     else
                     {
-                        nombre = "Archivo procesado Ok.";
+                        nombre = cargaLogica.ContadorErrores > 0? "Archivo procesado incorrectamente": "Archivo procesado correctamente";
                         if ((cargaLogica.Observacion != String.Empty))
                         {
                             nombre = (nombre + (", " + cargaLogica.Observacion));

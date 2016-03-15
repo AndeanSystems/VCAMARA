@@ -50,12 +50,12 @@ namespace VidaCamara.DIS.Negocio
             var helperStyle = new Helpers.excelStyle();
             try
             {
-                var nombreArchivo = "Log " + filters[0].ToString() + " " + DateTime.Now.ToString("yyyyMMdd");
+                var nombreArchivo = string.Format("Log {0}_{1}",log.IDE_CONTRATO,DateTime.Now.ToString("yyyyMMdd"));
                 var rutaTemporal = @HttpContext.Current.Server.MapPath("~/Temp/Descargas/" + nombreArchivo + ".xlsx");
                 int total;
                 var book = new XSSFWorkbook();
                 string[] columns = { "Contrato", "Tipo evento", "Fecha  evento", "Evento", "Usuario" };
-                var sheet = book.CreateSheet(nombreArchivo);
+                var sheet = book.CreateSheet();
                 var rowBook = sheet.CreateRow(1);
                 var headerStyle = helperStyle.setFontText(12, true, book);
                 var bodyStyle = helperStyle.setFontText(11, false, book);
