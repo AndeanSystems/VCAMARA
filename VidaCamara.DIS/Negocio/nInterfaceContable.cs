@@ -40,7 +40,7 @@ namespace VidaCamara.DIS.Negocio
                 var rutaTemporal = @HttpContext.Current.Server.MapPath(string.Format("~/Temp/Descargas/{0}.xlsx", nombreArchivo));
                 var book = new XSSFWorkbook();
                 string[] columns = { "PAQUETE", "ASIENTO", "FECHA_REGISTRO", "TIPO_ASIENTO", "CONTABILIDAD", "FUENTE", "REFERENCIA", "CONTRIBUYENTE",
-                                   "CENTRO_COSTO","CUENTA_CONTABLE","DebitoSoles","CreditoSoles","DebitoDolar","CreditoDolar","MONTO_UNIDADES"};
+                                   "CENTRO_COSTO","CUENTA_CONTABLE","DebitoSoles","CreditoSoles","DebitoDolar","CreditoDolar","MONTO_UNIDADES","NIT","DIMENSION1","DIMENSION2","DIMENSION3","DIMENSION4","DIMENSION5"};
                 var sheet = book.CreateSheet(nombreArchivo);
                 var rowBook = sheet.CreateRow(1);
                 var headerStyle = helperStyle.setFontText(12, true, book);
@@ -65,7 +65,7 @@ namespace VidaCamara.DIS.Negocio
                     cellAsiento.CellStyle = bodyStyle;
 
                     ICell cellFechaReg = rowBody.CreateCell(3);
-                    cellFechaReg.SetCellValue(listInterface[i].EXACTUS_CABECERA_SIS.FECHA.ToString());
+                    cellFechaReg.SetCellValue(listInterface[i].EXACTUS_CABECERA_SIS.FECHA.ToShortDateString());
                     cellFechaReg.CellStyle = bodyStyle;
 
                     ICell cellTipoAsiento = rowBody.CreateCell(4);
@@ -115,6 +115,31 @@ namespace VidaCamara.DIS.Negocio
                     ICell cellMontoUnid = rowBody.CreateCell(15);
                     cellMontoUnid.SetCellValue(listInterface[i].MONTO_UNIDADES.ToString());
                     cellMontoUnid.CellStyle = bodyStyle;
+
+                    ICell cellNit = rowBody.CreateCell(16);
+                    cellNit.SetCellValue(listInterface[i].NIT);
+                    cellNit.CellStyle = bodyStyle;
+
+                    ICell cellDIMENSION1 = rowBody.CreateCell(17);
+                    cellDIMENSION1.SetCellValue(listInterface[i].DIMENSION1);
+                    cellDIMENSION1.CellStyle = bodyStyle;
+
+                    ICell cellDIMENSION2 = rowBody.CreateCell(18);
+                    cellDIMENSION2.SetCellValue(listInterface[i].DIMENSION2);
+                    cellDIMENSION2.CellStyle = bodyStyle;
+
+                    ICell cellDIMENSION3 = rowBody.CreateCell(19);
+                    cellDIMENSION3.SetCellValue(listInterface[i].DIMENSION3);
+                    cellDIMENSION3.CellStyle = bodyStyle;
+
+                    ICell cellDIMENSION4 = rowBody.CreateCell(20);
+                    cellDIMENSION4.SetCellValue(listInterface[i].DIMENSION4);
+                    cellDIMENSION4.CellStyle = bodyStyle;
+
+                    ICell cellDIMENSION5 = rowBody.CreateCell(21);
+                    cellDIMENSION5.SetCellValue(listInterface[i].DIMENSION5);
+                    cellDIMENSION5.CellStyle = bodyStyle;
+
                 }
                 if (File.Exists(rutaTemporal))
                     File.Delete(rutaTemporal);
