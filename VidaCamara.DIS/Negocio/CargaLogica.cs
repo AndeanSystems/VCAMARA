@@ -328,6 +328,7 @@ namespace VidaCamara.DIS.Negocio
                 nomina.Id_Empresa = 1;//observado
                 nomina.IDE_CONTRATO = contratoId;
                 nomina.Estado = "C";
+                nomina.EstadoPago = "C";
                 nomina.CumpleValidacion = exitoLinea;
                 nomina.ReglaObservada = string.IsNullOrEmpty(ReglaObservada) ? "OK" : ReglaObservada;
                 nomina.FechaReg = DateTime.Now;

@@ -63,6 +63,20 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 return new { Result = ex.Message };
             }
         }
+        //set 
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static object aprobarFinalTelebanking(int archivoId)
+        {
+            try
+            {
+                new nTelebanking().aprobarFinalTelebanking(new NOMINA() { ArchivoId = archivoId });
+                return new { Result = true };
+            }
+            catch (Exception ex)
+            {
+                return new { Result = ex.Message };
+            }
+        }
         private void SetLLenadoContrato()
         {
             var list = new VidaCamara.SBS.Utils.Utility().getContratoSys(out total);

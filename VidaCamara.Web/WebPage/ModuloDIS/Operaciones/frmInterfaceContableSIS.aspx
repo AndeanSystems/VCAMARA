@@ -18,7 +18,13 @@
             <asp:View ID="view1" runat="server">
 
                 <label class="label_to" for="ddl_contrato_c">Contrato </label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_contrato" runat="server" Height="25px" Width="77%"></asp:DropDownList>
+                <asp:DropDownList CssClass="input_to" ID="ddl_contrato" runat="server" Height="25px" Width="49.3%"></asp:DropDownList>
+
+                <label class="input_right_L" for="ddl_tipo_interface">Tipo Interface</label>
+                <asp:DropDownList runat="server" ID="ddl_tipo_interface" Height="25px" Width="12.5%">
+                    <asp:ListItem Text="Provisión de pago" Value="1"/>
+                    <asp:ListItem Text="Pago banco" Value="2" />
+                </asp:DropDownList>
 
                 <label class="label_to" for="ddl_tipcom_c">Tipo de Archivo </label>
                 <asp:DropDownList CssClass="input_to" ID="ddl_tipo_archivo" runat="server" Height="25px" Width="15.8%"></asp:DropDownList>
@@ -41,6 +47,7 @@
 
                 <div class="iframe" id="tblInterfaceSIS">
                     <div id="tblInterfaceContableSIS"></div>
+                    <div id="tblInterfaceContableSISParcial"></div>
                 </div>  
 
             </asp:View>

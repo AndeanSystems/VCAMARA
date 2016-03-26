@@ -19,5 +19,6 @@ namespace VidaCamara.DIS.Modelo.EEntidad
         public string CTA_BENE { get; set; }
         public string RutaNomina { get; set; }
         public string Estado { get; set; }
+        public string EstadoPago { get; set; }
     }
 }

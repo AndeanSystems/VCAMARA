@@ -28,7 +28,8 @@ namespace VidaCamara.DIS.data
                             Moneda = item.Moneda,
                             Importe = string.Format(formatoMoneda,item.Importe),
                             RutaNomina = string.Format("{0}/NOMINA/{1}",folder,item.NombreArchivo),
-                            Estado = item.Estado
+                            Estado = item.Estado,
+                            EstadoPago = item.EstadoPago
                             
                         };
                         listTelebankig.Add(telebankig);
@@ -79,12 +80,27 @@ namespace VidaCamara.DIS.data
             {
                 using (var db = new DISEntities())
                 {
-                    db.pa_confirmaPagoNomina(nOMINA.ArchivoId);
+                    db.pa_confirmaPagoNomina(nOMINA.ArchivoId,1);
                 }
             }
             catch (Exception ex)
             { 
                 throw(new Exception(ex.Message));
+            }
+        }
+
+        public void aprobarFinalTelebanking(NOMINA nOMINA)
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    db.pa_confirmaPagoNomina(nOMINA.ArchivoId,2);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw (new Exception(ex.Message));
             }
         }
     }

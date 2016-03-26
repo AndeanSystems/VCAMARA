@@ -47,10 +47,18 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             var negocio = new nInterfaceContable();
             return new { Result = "OK", Records = negocio.listInterfaceContable(cabecera,new TipoArchivo(){NombreTipoArchivo = filter[2].ToString() },jtStartIndex, jtPageSize, out total), TotalRecordCount = total };
         }
-
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static object listInterfaceContableParcial(int jtStartIndex, int jtPageSize, EXACTUS_CABECERA_SIS cabecera, object[] filter)
+        {
+            cabecera.FECHA = Convert.ToDateTime(filter[0].ToString());
+            cabecera.FECHA_CREACION = Convert.ToDateTime(filter[1].ToString());
+            var negocio = new nInterfaceContable();
+            return new { Result = "OK", Records = negocio.listInterfaceContableParcial(cabecera, new TipoArchivo() { NombreTipoArchivo = filter[2].ToString() }, jtStartIndex, jtPageSize, out total), TotalRecordCount = total };
+        }
+        
         protected void btn_exportar_Click(object sender, ImageClickEventArgs e)
         {
-            var contrato = new EXACTUS_CABECERA_SIS()
+            var cabecera = new EXACTUS_CABECERA_SIS()
             {
                 IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value),
                 FECHA = Convert.ToDateTime(txt_desde.Text),
@@ -58,7 +66,9 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 ESTADO_TRANSFERENCIA = ddl_estado.SelectedItem.Value,
                 IDE_MONEDA = Convert.ToInt32(ddl_moneda.SelectedItem.Value)
             };
-            var pathArchivo = new nInterfaceContable().descargarExcel(contrato, new TipoArchivo() { NombreTipoArchivo = ddl_tipo_archivo.SelectedItem.Value});
+            var pathArchivo = int.Parse(ddl_tipo_interface.SelectedItem.Value) == 1? 
+                              new nInterfaceContable().descargarExcel(cabecera, new TipoArchivo() { NombreTipoArchivo = ddl_tipo_archivo.SelectedItem.Value}):
+                              new nInterfaceContable().descargarExcelExport(cabecera, new TipoArchivo() { NombreTipoArchivo = ddl_tipo_archivo.SelectedItem.Value });
             Response.Clear();
             Response.ContentType = "application/vnd.ms-excel";
             Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}",Path.GetFileName(pathArchivo)));

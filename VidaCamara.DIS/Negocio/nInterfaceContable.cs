@@ -36,7 +36,7 @@ namespace VidaCamara.DIS.Negocio
                 int total;
                 var listInterface = new dInterfaceContable().listInterfaceContable(cabecera, archivo,0, 100000, out total);
                 //atributos del file
-                var nombreArchivo = string.Format("Interface {0}_{1}",cabecera.IDE_CONTRATO,DateTime.Now.ToString("yyyyMMdd"));
+                var nombreArchivo = string.Format("Interface Provision_{0}_{1}",cabecera.IDE_CONTRATO,DateTime.Now.ToString("yyyyMMdd"));
                 var rutaTemporal = @HttpContext.Current.Server.MapPath(string.Format("~/Temp/Descargas/{0}.xlsx", nombreArchivo));
                 var book = new XSSFWorkbook();
                 string[] columns = { "PAQUETE", "ASIENTO", "FECHA_REGISTRO", "TIPO_ASIENTO", "CONTABILIDAD", "FUENTE", "REFERENCIA", "CONTRIBUYENTE",
@@ -156,6 +156,138 @@ namespace VidaCamara.DIS.Negocio
             {
                 throw(new Exception(ex.Message));
             }
+        }
+
+        public string descargarExcelExport(EXACTUS_CABECERA_SIS cabecera, TipoArchivo tipoArchivo)
+        {
+            var helperStyle = new Helpers.excelStyle();
+            try
+            {
+                int total;
+                var listInterfaceParcial = new dInterfaceContable().listInterfaceContableParcial(cabecera, tipoArchivo, 0, 100000, out total);
+                //atributos del file
+                var nombreArchivo = string.Format("Interface Banco_{0}_{1}", cabecera.IDE_CONTRATO, DateTime.Now.ToString("yyyyMMdd"));
+                var rutaTemporal = @HttpContext.Current.Server.MapPath(string.Format("~/Temp/Descargas/{0}.xlsx", nombreArchivo));
+                var book = new XSSFWorkbook();
+                string[] columns = {"CUENTA_BANCARIA","NUMERO","TIPO_DOCUMENTO","FECHA_DOCUMENTO","CONCEPTO","BENEFICIARIO","CONTRIBUYENTE",
+                                    "MONTO","DETALLE","SUBTIPO","CENTRO_COSTO","CUENTA_CONTABLE","RUBRO_1","RUBRO_2","RUBRO_3","RUBRO_4","RUBRO_5","PAQUETE"};
+                var sheet = book.CreateSheet(nombreArchivo);
+                var rowBook = sheet.CreateRow(1);
+                var headerStyle = helperStyle.setFontText(12, true, book);
+                var bodyStyle = helperStyle.setFontText(11, false, book);
+                ICell cellBook;
+                for (int i = 0; i < columns.Length; i++)
+                {
+                    cellBook = rowBook.CreateCell(i + 1);
+                    cellBook.SetCellValue(columns[i]);
+                    cellBook.CellStyle = headerStyle;
+                }
+                for (int i = 0; i < listInterfaceParcial.Count; i++)
+                {
+                    var rowBody = sheet.CreateRow(2 + i);
+
+                    ICell cellCuentaBan = rowBody.CreateCell(1);
+                    cellCuentaBan.SetCellValue(listInterfaceParcial[i].CUENTA_BANCARIA);
+                    cellCuentaBan.CellStyle = bodyStyle;
+
+                    ICell cellNumero = rowBody.CreateCell(2);
+                    cellNumero.SetCellValue(listInterfaceParcial[i].NUMERO);
+                    cellNumero.CellStyle = bodyStyle;
+
+                    ICell cellTipDoc= rowBody.CreateCell(3);
+                    cellTipDoc.SetCellValue(listInterfaceParcial[i].TIPO_DOCUMENTO);
+                    cellTipDoc.CellStyle = bodyStyle;
+
+                    ICell cellFecDoc = rowBody.CreateCell(4);
+                    cellFecDoc.SetCellValue(listInterfaceParcial[i].FECHA_DOCUMENTO.ToShortDateString());
+                    cellFecDoc.CellStyle = bodyStyle;
+
+                    ICell cellConcepto = rowBody.CreateCell(5);
+                    cellConcepto.SetCellValue(listInterfaceParcial[i].CONCEPTO);
+                    cellConcepto.CellStyle = bodyStyle;
+
+                    ICell cellBenificiario = rowBody.CreateCell(6);
+                    cellBenificiario.SetCellValue(listInterfaceParcial[i].BENEFICIARIO);
+                    cellBenificiario.CellStyle = bodyStyle;
+
+
+                    ICell cellContribuyente = rowBody.CreateCell(7);
+                    cellContribuyente.SetCellValue(listInterfaceParcial[i].CONTRIBUYENTE);
+                    cellContribuyente.CellStyle = bodyStyle;
+
+                    ICell cellMonto = rowBody.CreateCell(8);
+                    cellMonto.SetCellValue(listInterfaceParcial[i].MONTOSTR);
+                    cellMonto.CellStyle = bodyStyle;
+
+                    ICell cellDetalle = rowBody.CreateCell(9);
+                    cellDetalle.SetCellValue(listInterfaceParcial[i].DETALLE);
+                    cellDetalle.CellStyle = bodyStyle;
+
+                    ICell cellSubTipo = rowBody.CreateCell(10);
+                    cellSubTipo.SetCellValue(listInterfaceParcial[i].SUBTIPO.ToString());
+                    cellSubTipo.CellStyle = bodyStyle;
+
+
+                    ICell cellCentroCosto = rowBody.CreateCell(11);
+                    cellCentroCosto.SetCellValue(listInterfaceParcial[i].CENTRO_COSTO);
+                    cellCentroCosto.CellStyle = bodyStyle;
+
+                    ICell cellCuentaCont = rowBody.CreateCell(12);
+                    cellCuentaCont.SetCellValue(listInterfaceParcial[i].CUENTA_CONTABLE);
+                    cellCuentaCont.CellStyle = bodyStyle;
+
+                    ICell cellRubro1 = rowBody.CreateCell(13);
+                    cellRubro1.SetCellValue(listInterfaceParcial[i].RUBRO_1);
+                    cellRubro1.CellStyle = bodyStyle;
+
+                    ICell cellRubro2 = rowBody.CreateCell(14);
+                    cellRubro2.SetCellValue(listInterfaceParcial[i].RUBRO_2);
+                    cellRubro2.CellStyle = bodyStyle;
+
+                    ICell cellRubro3 = rowBody.CreateCell(15);
+                    cellRubro3.SetCellValue(listInterfaceParcial[i].RUBRO_3);
+                    cellRubro3.CellStyle = bodyStyle;
+
+                    ICell cellRubro4 = rowBody.CreateCell(16);
+                    cellRubro4.SetCellValue(listInterfaceParcial[i].RUBRO_4);
+                    cellRubro4.CellStyle = bodyStyle;
+
+                    ICell cellRubro5 = rowBody.CreateCell(17);
+                    cellRubro5.SetCellValue(listInterfaceParcial[i].RUBRO_5);
+                    cellRubro5.CellStyle = bodyStyle;
+
+                    ICell cellPaquete = rowBody.CreateCell(18);
+                    cellPaquete.SetCellValue(listInterfaceParcial[i].PAQUETE);
+                    cellPaquete.CellStyle = bodyStyle;
+
+                }
+                if (File.Exists(rutaTemporal))
+                    File.Delete(rutaTemporal);
+                using (var file = new FileStream(rutaTemporal, FileMode.Create, FileAccess.ReadWrite))
+                {
+                    book.Write(file);
+                    file.Close();
+                    book.Close();
+                }
+
+                return rutaTemporal;
+            }
+            catch (Exception ex)
+            {
+                throw (new Exception(ex.Message));
+            }
+        }
+
+        public List<HEXACTUS_DETALLE_EXPORT_SIS> listInterfaceContableParcial(EXACTUS_CABECERA_SIS cabecera, TipoArchivo tipoArchivo, int index, int size, out int total)
+        {
+            return new dInterfaceContable().listInterfaceContableParcial(cabecera, tipoArchivo, index, size, out total);
+        }
+
+        public void createInterfaceContableExport(NOMINA nOMINA)
+        {
+            nOMINA = new nNomina().getNominaByArchivoId(nOMINA);
+            var nombreLiqByNomina = new nArchivo().getArchivoByNomina(new Archivo() { NombreArchivo = nOMINA.Archivo.NombreArchivo });
+            new dInterfaceContable().createInterfaceContableExport(nOMINA, nombreLiqByNomina);
         }
 
         public bool transferirInterfaceContable(EXACTUS_CABECERA_SIS contrato, TipoArchivo tipoArchivo)

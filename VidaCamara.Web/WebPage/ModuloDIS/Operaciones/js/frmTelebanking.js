@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     const urlListTelebanking = "/WebPage/ModuloDIS/Operaciones/frmTelebankig.aspx/listTelebanking";
     const urlAprobarNomina = "/WebPage/ModuloDIS/Operaciones/frmTelebankig.aspx/aprobarTelebanking";
+    const urlAprobarFinal = "/WebPage/ModuloDIS/Operaciones/frmTelebankig.aspx/aprobarFinalTelebanking";
     var nomina = function (ArchivoId) {
         this.ArchivoId = ArchivoId,
         this.IDE_CONTRATO = parseInt($("#ctl00_ContentPlaceHolder1_ddl_contrato").val()),
@@ -17,7 +18,21 @@
         if (confirm("¿Está seguro de confirmar?")) {
             llamarAjax(archivoId, urlAprobarNomina).success(function (res) {
                 if (res.d.Result == true) {
-                    mostrarMensajeAlert("Se confirmó el pago del archivo");
+                    mostrarMensajeAlert("Se confirmó el pago provisión del archivo");
+                    listApruebaCarga(new nomina(0), $("#ctl00_ContentPlaceHolder1_txt_fecha").val())
+                } else
+                    mostrarMensajeAlert(res.d.Result);
+            });
+        }
+
+    });
+    //estado pago
+    $("body #tblTelebanking").delegate("#lnk_estadoPago", "click", function () {
+        var archivoId = { archivoId: parseInt($(this).attr('class')) };
+        if (confirm("¿Está seguro de confirmar ?")) {
+            llamarAjax(archivoId, urlAprobarFinal).success(function (res) {
+                if (res.d.Result == true) {
+                    mostrarMensajeAlert("Se confirmó el pago banco correctamente");
                     listApruebaCarga(new nomina(0), $("#ctl00_ContentPlaceHolder1_txt_fecha").val())
                 } else
                     mostrarMensajeAlert(res.d.Result);
@@ -62,11 +77,19 @@
             }
         },
         Estado: {
-            title: 'Acción', display: function (data) {
+            title: 'Provisión', display: function (data) {
                 if(data.record.Estado == "A")
-                    return "<a id='lnk_confirmar' class='" + data.record.ArchivoId + "' href='#'>Confirmar pago</a>";
+                    return "<a id='lnk_confirmar' class='" + data.record.ArchivoId + "' href='#'>Provisionar pago</a>";
                 else
                     return "<a href='#'><span>Confirmado</span></a>";
+            }
+        },
+        EstadoPago: {
+            title: 'Pago_Banco', display: function (data) {
+                if (data.record.EstadoPago == "C")
+                    return "<a id='lnk_estadoPago' class='" + data.record.ArchivoId + "' href='#'>Pago a banco</a>";
+                else
+                    return "<a href='#'><span>Pagado</span></a>";
             }
         }
     }

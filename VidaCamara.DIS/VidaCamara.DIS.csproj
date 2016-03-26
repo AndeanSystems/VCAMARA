@@ -170,6 +170,7 @@
     <Compile Include="Modelo\EEntidad\EGeneraTelebankig.cs" />
     <Compile Include="Modelo\EEntidad\ESegDescarga.cs" />
     <Compile Include="Modelo\EEntidad\HCONTRATO_SIS_DET.cs" />
+    <Compile Include="Modelo\EEntidad\HEXACTUS_DETALLE_EXPORT_SIS.cs" />
     <Compile Include="Modelo\EEntidad\HEXACTUS_DETALLE_SIS.cs" />
     <Compile Include="Modelo\EEntidad\HHistorialCargaArchivo_LinDet.cs" />
     <Compile Include="Modelo\EEntidad\HLogOperacion.cs" />
@@ -195,6 +196,9 @@
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\EXACTUS_DETALLE.cs">
+      <DependentUpon>DISModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\EXACTUS_DETALLE_EXPORT_SIS.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\EXACTUS_DETALLE_SIS.cs">

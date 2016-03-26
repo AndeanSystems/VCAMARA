@@ -187,6 +187,72 @@ namespace VidaCamara.DIS.data
             }
         }
 
+        internal List<HEXACTUS_DETALLE_EXPORT_SIS> listInterfaceContableParcial(EXACTUS_CABECERA_SIS cabecera, TipoArchivo tipoArchivo, int index, int size, out int total)
+        {
+            var listInterfaceExport = new List<HEXACTUS_DETALLE_EXPORT_SIS>();
+            var formatoMoneda = System.Configuration.ConfigurationManager.AppSettings["Float"].ToString();
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    var fechaHasta = cabecera.FECHA_CREACION.AddDays(1);
+                    var query = db.EXACTUS_DETALLE_EXPORT_SISs
+                                .Where(x => x.IDE_CONTRATO == cabecera.IDE_CONTRATO &&
+                                       x.FECHA_DOCUMENTO >= cabecera.FECHA &&
+                                       x.FECHA_DOCUMENTO < fechaHasta &&
+                                       (x.TIPO_ARHIVO == tipoArchivo.NombreTipoArchivo || tipoArchivo.NombreTipoArchivo == "0") &&
+                                       (x.IDE_MONEDA == cabecera.IDE_MONEDA || cabecera.IDE_MONEDA == 0)
+                                ).ToList();
+                    total = query.Count;
+                    foreach (var item in query)
+                    {
+                        var v_interfaceExport = new HEXACTUS_DETALLE_EXPORT_SIS()
+                        {
+                            CUENTA_BANCARIA = item.CUENTA_BANCARIA,
+                            NUMERO = item.NUMERO,
+                            TIPO_DOCUMENTO = item.TIPO_DOCUMENTO,
+                            FECHA_DOCUMENTO = item.FECHA_DOCUMENTO,
+                            CONCEPTO = item.CONCEPTO,
+                            BENEFICIARIO = item.BENEFICIARIO,
+                            CONTRIBUYENTE = item.CONTRIBUYENTE,
+                            MONTOSTR = string.Format(formatoMoneda, item.MONTO),
+                            DETALLE = item.DETALLE,
+                            SUBTIPO = item.SUBTIPO,
+                            CENTRO_COSTO = item.CENTRO_COSTO,
+                            CUENTA_CONTABLE = item.CUENTA_CONTABLE,
+                            RUBRO_1 = item.RUBRO_1,
+                            RUBRO_2 = item.RUBRO_2,
+                            RUBRO_3 = item.RUBRO_3,
+                            RUBRO_4 = item.RUBRO_4,
+                            RUBRO_5 = item.RUBRO_5,
+                            PAQUETE = item.PAQUETE
+                        };
+                        listInterfaceExport.Add(v_interfaceExport);
+                    }
+                }
+                return listInterfaceExport;
+            }
+            catch (Exception ex)
+            {
+                throw (new Exception(ex.Message));
+            }
+        }
+
+        internal void createInterfaceContableExport(NOMINA nomina, Archivo archivo)
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    db.pa_create_cuenta_26_export_sis(nomina.ArchivoId, 26, archivo.NombreArchivo.Split('_')[0].ToString());
+                }
+            }
+            catch (System.Exception ex)
+            {
+                throw (new System.Exception(ex.Message));
+            }
+        }
+
         internal void createDetalleInRemote(EXACTUS_CABECERA_SIS item)
         {
             var connectionString = ConfigurationManager.AppSettings.Get("CnnBDEX").ToString();
