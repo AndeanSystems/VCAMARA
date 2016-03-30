@@ -51,7 +51,7 @@
     }
     const fieldsParcial = {
         CUENTA_BANCARIA: { title: 'CUENTA_BANCARIA' },
-        NUMERO: { title: 'NUMERO' },
+        NUMEROSTR: { title: 'NUMERO' },
         TIPO_DOCUMENTO: { title: 'TIPO_DOCUMENTO' },
         FECHA_DOCUMENTO: { title: 'FECHA_DOCUMENTO', type: 'date', displayFormat: 'dd/mm/yy' },
         CONCEPTO: { title: 'CONCEPTO' },

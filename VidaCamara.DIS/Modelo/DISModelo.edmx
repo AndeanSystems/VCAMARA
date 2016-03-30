@@ -514,7 +514,7 @@ warning 6002: The table/view 'vcamara2.dbo.EXACTUS_DETALLE_EXPORT_SIS' does not 
           <Property Name="TIPO_ARHIVO" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="IDE_MONEDA" Type="int" Nullable="false" />
           <Property Name="CUENTA_BANCARIA" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="NUMERO" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="NUMERO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TIPO_DOCUMENTO" Type="char" MaxLength="3" Nullable="false" />
           <Property Name="FECHA_DOCUMENTO" Type="date" Nullable="false" />
           <Property Name="CONCEPTO" Type="varchar" MaxLength="50" />
@@ -668,6 +668,101 @@ warning 6002: The table/view 'vcamara2.dbo.EXACTUS_DETALLE_SIS' does not have a 
           <Property Name="ORI_REG" Type="char" MaxLength="1" />
           <Property Name="TIP_COMPROBANTE" Type="char" MaxLength="3" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'vcamara2.dbo.ReporteDictamen' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ReporteDictamen">
+          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO PATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO MATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PRIMER NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SEGUNDO _NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
+          <Property Name="CONTRATO" Type="float" />
+          <Property Name="ESTADO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="NÚMERO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="EMISOR DICTAMEN" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO DE PENSIÓN" Type="nvarchar" MaxLength="255" />
+          <Property Name="NÚMERO DE EVALUACIÓN" Type="float" />
+          <Property Name="PORCENTAJE DE PENSIÓN" Type="float" />
+          <Property Name="FECHA DE OCURRENCIA" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE DEVENGUE  INICIAL" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE INICIO DE VIGENCIA DEL DICTAMEN INICIAL#" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA FIN DE VIGENCIA DEL DICTAMEN " Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE AVISO DEL# DICTAMEN " Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'vcamara2.dbo.ReporteSECI' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ReporteSECI">
+          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDOPATERNOAFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDOMATERNOAFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PRIMERNOMBREAFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SEGUNDONOMBREAFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPODESOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
+          <Property Name="CONTRATO" Type="float" />
+          <Property Name="NUMERODESECI" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHADESECI" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHADEAVISODESECI" Type="nvarchar" MaxLength="255" />
+          <Property Name="INDICADORDESUBSIDIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="NUMERODE SOLICITUDDEPENSION" Type="nvarchar" MaxLength="255" />
+          <Property Name="ESTADODELASOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHADESOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPODESOLICITUD1" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHADEAVISODESOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPODEPENSION" Type="nvarchar" MaxLength="255" />
+          <Property Name="PORCENTAJEDEPENSION" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHADEOCURRENCIA" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE  DEVENGUE INICIAL" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'vcamara2.dbo.ReportesSolicitudes' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ReportesSolicitudes">
+          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO PATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO MATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PRIMER NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SEGUNDO NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
+          <Property Name="CONTRATO" Type="float" />
+          <Property Name="ESTADO DE LA_SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="NÚMERO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO DE INVALIDEZ" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO DE PENSIÓN" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO PATERNO BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="APELLIDO MATERNO BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PRIMER NOMBRE BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SEGUNDO NOMBRE BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PARENTESCO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SEXO  DEL BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="EDAD DEL BENEFICIARIO" Type="float" />
+          <Property Name="CONDICIÓN DE INVALIDEZ DEL BENEFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PORCENTAJE DE PENSIÓN" Type="float" />
+          <Property Name="ESTADO DEL BENFICIARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE OCURRENCIA" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE DEVENGE INICIAL" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE AVISO  DE SOLICITUD" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA  PRONUNCIAMIENTO  DE COBERTURA" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIPO  DE COBERTURA " Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE  REACTIVACIÓN  DE COBERTURA" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE  NOTIFICACIÓN DEL ANEXO  16" Type="nvarchar" MaxLength="255" />
+          <Property Name="NÚMERO DE DIAS TRANSCURRIDOS DESDE LA FECHA  DEL FALLECIMIENTO" Type="float" />
+          <Property Name="MONEDA" Type="nvarchar" MaxLength="255" />
+          <Property Name="PROMEDIO DE RAM" Type="nvarchar" MaxLength="255" />
+          <Property Name="MONTO DE LA PENSIÓN  QUE LE CORRESPONDE" Type="float" />
+          <Property Name="FECHA DE LIQUIDACIÓN DEL PRIMER PAGO" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE VENCIMIENTO DEL C#S#" Type="nvarchar" MaxLength="255" />
+          <Property Name="NÚMERO DE PAGOS DE PENSIONES PRELIMINARES" Type="float" />
+          <Property Name="FECHA DE CUMPLIMIENTO DE CONDICIONES PARA CALCULO AA " Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE NOTIFICACIÓN DE AA AL DIS" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE PRONUNCIAMIENTO DEL PAGO DEL AA# " Type="nvarchar" MaxLength="255" />
+          <Property Name="ESTADO DE LA SOLICITUD DEL AA" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA DE LIQUIDACIÓN DE AA" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -2572,6 +2667,20 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
             <Parameter Name="ArchivoNominaId" Mode="In" Type="Int32" />
             <Parameter Name="NumeroAsiento" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="pa_create_cuenta_26_export_sis">
+            <Parameter Name="ArchivoNominaId" Mode="In" Type="Int32" />
+            <Parameter Name="NumeroAsiento" Mode="In" Type="Int32" />
+            <Parameter Name="TipoArchivo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pa_sel_NominaForTelebanking" ReturnType="Collection(DISModelo.pa_sel_NominaForTelebanking_Result)">
+            <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
+            <Parameter Name="FechaCarga" Mode="In" Type="DateTime" />
+            <Parameter Name="Estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pa_confirmaPagoNomina">
+            <Parameter Name="ArchivoId" Mode="In" Type="Int32" />
+            <Parameter Name="Column" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="CIERRE_PROCESO" EntityType="DISModelo.CIERRE_PROCESO" />
           <EntitySet Name="CONCEPTOes" EntityType="DISModelo.CONCEPTO" />
           <EntitySet Name="CONTRATOes" EntityType="DISModelo.CONTRATO" />
@@ -2739,20 +2848,6 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
             <End Role="TipoInforme" EntitySet="TipoInformes" />
             <End Role="TipoArchivo" EntitySet="TipoArchivoes" />
           </AssociationSet>
-          <FunctionImport Name="pa_create_cuenta_26_export_sis">
-            <Parameter Name="ArchivoNominaId" Mode="In" Type="Int32" />
-            <Parameter Name="NumeroAsiento" Mode="In" Type="Int32" />
-            <Parameter Name="TipoArchivo" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="pa_sel_NominaForTelebanking" ReturnType="Collection(DISModelo.pa_sel_NominaForTelebanking_Result)">
-            <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
-            <Parameter Name="FechaCarga" Mode="In" Type="DateTime" />
-            <Parameter Name="Estado" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="pa_confirmaPagoNomina">
-            <Parameter Name="ArchivoId" Mode="In" Type="Int32" />
-            <Parameter Name="Column" Mode="In" Type="Int32" />
-          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
           <Property Type="Int32" Name="IdRegistroMontoAlto" Nullable="false" />
@@ -3182,6 +3277,15 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <Property Type="String" Name="CTA_BENE" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="DET_TRAN" Nullable="true" MaxLength="40" />
           <Property Type="String" Name="ReglaObservada" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="pa_sel_NominaForTelebanking_Result">
+          <Property Type="Int32" Name="ArchivoId" Nullable="false" />
+          <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="FechaOperacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Moneda" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="EstadoPago" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="Importe" Nullable="true" Precision="38" Scale="6" />
         </ComplexType>
         <EntityType Name="CIERRE_PROCESO">
           <Key>
@@ -4363,7 +4467,7 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <Property Name="TIPO_ARHIVO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IDE_MONEDA" Type="Int32" Nullable="false" />
           <Property Name="CUENTA_BANCARIA" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="NUMERO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NUMERO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TIPO_DOCUMENTO" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
           <Property Name="FECHA_DOCUMENTO" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="CONCEPTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -4783,15 +4887,6 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="pa_sel_NominaForTelebanking_Result">
-          <Property Type="Int32" Name="ArchivoId" Nullable="false" />
-          <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
-          <Property Type="DateTime" Name="FechaOperacion" Nullable="true" Precision="23" />
-          <Property Type="String" Name="Moneda" Nullable="false" MaxLength="250" />
-          <Property Type="String" Name="Estado" Nullable="true" MaxLength="1" />
-          <Property Type="String" Name="EstadoPago" Nullable="true" MaxLength="1" />
-          <Property Type="Decimal" Name="Importe" Nullable="true" Precision="38" Scale="6" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5325,6 +5420,21 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_copia_reglaArchivo" FunctionName="DISModelo.Store.pa_copia_reglaArchivo" />
           <FunctionImportMapping FunctionImportName="pa_create_cuenta_42_26_sis" FunctionName="DISModelo.Store.pa_create_cuenta_42_26_sis" />
+          <FunctionImportMapping FunctionImportName="pa_create_cuenta_26_export_sis" FunctionName="DISModelo.Store.pa_create_cuenta_26_export_sis" />
+          <FunctionImportMapping FunctionImportName="pa_sel_NominaForTelebanking" FunctionName="DISModelo.Store.pa_sel_NominaForTelebanking">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DISModelo.pa_sel_NominaForTelebanking_Result">
+                <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
+                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+                <ScalarProperty Name="FechaOperacion" ColumnName="FechaOperacion" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="EstadoPago" ColumnName="EstadoPago" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_confirmaPagoNomina" FunctionName="DISModelo.Store.pa_confirmaPagoNomina" />
           <EntitySetMapping Name="CIERRE_PROCESO">
             <EntityTypeMapping TypeName="DISModelo.CIERRE_PROCESO">
               <MappingFragment StoreEntitySet="CIERRE_PROCESO">
@@ -6528,21 +6638,6 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="pa_create_cuenta_26_export_sis" FunctionName="DISModelo.Store.pa_create_cuenta_26_export_sis" />
-          <FunctionImportMapping FunctionImportName="pa_sel_NominaForTelebanking" FunctionName="DISModelo.Store.pa_sel_NominaForTelebanking">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DISModelo.pa_sel_NominaForTelebanking_Result">
-                <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
-                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
-                <ScalarProperty Name="FechaOperacion" ColumnName="FechaOperacion" />
-                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="EstadoPago" ColumnName="EstadoPago" />
-                <ScalarProperty Name="Importe" ColumnName="Importe" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_confirmaPagoNomina" FunctionName="DISModelo.Store.pa_confirmaPagoNomina" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

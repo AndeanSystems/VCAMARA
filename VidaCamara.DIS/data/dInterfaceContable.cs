@@ -210,6 +210,7 @@ namespace VidaCamara.DIS.data
                         {
                             CUENTA_BANCARIA = item.CUENTA_BANCARIA,
                             NUMERO = item.NUMERO,
+                            NUMEROSTR = string.Format("CB{0}{1}", new string('0', 8 - item.NUMERO.ToString().Length), item.NUMERO.ToString()),
                             TIPO_DOCUMENTO = item.TIPO_DOCUMENTO,
                             FECHA_DOCUMENTO = item.FECHA_DOCUMENTO,
                             CONCEPTO = item.CONCEPTO,

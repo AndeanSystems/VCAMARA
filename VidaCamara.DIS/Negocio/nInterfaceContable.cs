@@ -186,12 +186,13 @@ namespace VidaCamara.DIS.Negocio
                 {
                     var rowBody = sheet.CreateRow(2 + i);
 
+                    var numberInterface = listInterfaceParcial[i].NUMERO;
                     ICell cellCuentaBan = rowBody.CreateCell(1);
                     cellCuentaBan.SetCellValue(listInterfaceParcial[i].CUENTA_BANCARIA);
                     cellCuentaBan.CellStyle = bodyStyle;
 
                     ICell cellNumero = rowBody.CreateCell(2);
-                    cellNumero.SetCellValue(listInterfaceParcial[i].NUMERO);
+                    cellNumero.SetCellValue(string.Format("CB{0}{1}",new string('0',8-numberInterface.ToString().Length), numberInterface.ToString()));
                     cellNumero.CellStyle = bodyStyle;
 
                     ICell cellTipDoc= rowBody.CreateCell(3);
