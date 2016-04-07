@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using VidaCamara.DIS.Modelo;
 namespace VidaCamara.DIS.data
 {
@@ -39,6 +40,21 @@ namespace VidaCamara.DIS.data
             catch (System.Exception ex)
             {
                 
+                throw;
+            }
+        }
+
+        internal CONTRATO_SYS listByNroContrato(CONTRATO_SYS contrato)
+        {
+            try
+            {
+                using (var db = new DISEntities())
+                {
+                    return db.CONTRATO_SYSs.Where(x => x.NRO_CONTRATO == contrato.NRO_CONTRATO && x.ESTADO == "A").FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
                 throw;
             }
         }

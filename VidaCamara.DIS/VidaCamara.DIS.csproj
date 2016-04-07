@@ -366,7 +366,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <EntityDeploy Include="Modelo\DISModelo.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DISModelo.Designer.cs</LastGenOutput>
@@ -385,6 +384,7 @@
       <LastGenOutput>DISModelo.cs</LastGenOutput>
     </None>
     <None Include="Helpers\packages.config" />
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

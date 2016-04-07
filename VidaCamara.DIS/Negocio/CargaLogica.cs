@@ -43,6 +43,7 @@ namespace VidaCamara.DIS.Negocio
         public string importe { get; set; }
         public string formatoMoneda { get; set; }
         private static string ReglaObservada { get; set; }
+        public int ejecucionWeb { get; set; } = 0;
 
         public CargaLogica(string archivo)
         {
@@ -248,8 +249,8 @@ namespace VidaCamara.DIS.Negocio
                             new nNomina().actualizarEstadoFallido(IdArchivo,contratoId);
                         }
                     }
-
-                    TraspasaArchivo(tipoArchivo);
+                    if(ejecucionWeb ==0)
+                        TraspasaArchivo(tipoArchivo);
 
                     ProcesarErrores(tipoArchivo);
                     ContadorErrores = ContadorErrores > 0 ? ContadorErrores : 0;
@@ -269,11 +270,20 @@ namespace VidaCamara.DIS.Negocio
 
         private void GrabarFilaArchivo(string tipoLinea, int archivoId, int nroLinea, Dictionary<string, object> propertyValues, int contratoId, int exitoLinea,string tipoArchivo)
         {
+            string session;
+            try
+            {
+                session = System.Web.HttpContext.Current.Session["username"].ToString();
+            }
+            catch (Exception ex)
+            {
+                session = null;
+        }
             if (tipoLinea == "C")
             {
                 PopulateType(_lineaCabecera, propertyValues);
                 _lineaCabecera.ArchivoId = archivoId;
-                _lineaCabecera.USU_REG = System.Web.HttpContext.Current.Session["username"].ToString();
+                _lineaCabecera.USU_REG = string.IsNullOrEmpty(session) ? "jose.camara" : session;
                 _lineaCabecera.FEC_REG = DateTime.Now;
                 _lineaCabecera.ESTADO = "C";
                 _lineaCabecera.CumpleValidacion = exitoLinea;
@@ -291,7 +301,7 @@ namespace VidaCamara.DIS.Negocio
                 detalle.CumpleValidacion = exitoLinea;
                 detalle.TipoLinea = tipoLinea;
                 detalle.NumeroLinea = nroLinea;
-                detalle.ReglaObservada = string.IsNullOrEmpty(ReglaObservada)?"OK": ReglaObservada;
+                detalle.ReglaObservada = string.IsNullOrEmpty(ReglaObservada) ? "OK" : ReglaObservada;
 
                 //PopulateType(detalle, propertyValues);
                 _lineaDetalles.Add(detalle);
@@ -311,7 +321,7 @@ namespace VidaCamara.DIS.Negocio
                 eHistoriaLinDet.TipoLinea = tipoLinea;
                 eHistoriaLinDet.NumeroLinea = nroLinea;
                 eHistoriaLinDet.ReglaObservada = string.IsNullOrEmpty(ReglaObservada) ? "OK" : ReglaObservada; ;
-                eHistoriaLinDet.FEC_PAGO = string.IsNullOrWhiteSpace(eHistoriaLinDet.FEC_PAGO)?string.Empty:eHistoriaLinDet.FEC_PAGO;
+                eHistoriaLinDet.FEC_PAGO = string.IsNullOrWhiteSpace(eHistoriaLinDet.FEC_PAGO) ? string.Empty : eHistoriaLinDet.FEC_PAGO;
                 eHistoriaLinDet.NUM_SINI = string.IsNullOrWhiteSpace(eHistoriaLinDet.NUM_SINI) ? string.Empty : eHistoriaLinDet.NUM_SINI;
 
                 _lineaDetalles.Add(eHistoriaLinDet);
@@ -321,7 +331,8 @@ namespace VidaCamara.DIS.Negocio
                 _lineaDetalles = new List<HistorialCargaArchivo_LinDet>();
             }
 
-            if (tipoLinea == "*") {
+            if (tipoLinea == "*")
+            {
                 var nomina = new NOMINA();
                 PopulateType(nomina, propertyValues);
                 nomina.ArchivoId = archivoId;
@@ -332,13 +343,12 @@ namespace VidaCamara.DIS.Negocio
                 nomina.CumpleValidacion = exitoLinea;
                 nomina.ReglaObservada = string.IsNullOrEmpty(ReglaObservada) ? "OK" : ReglaObservada;
                 nomina.FechaReg = DateTime.Now;
-                nomina.UsuReg = System.Web.HttpContext.Current.Session["username"].ToString();
+                nomina.UsuReg = string.IsNullOrEmpty(session) ? "jose.camara" : session;
 
                 //EVALUAR RETORNO
                 var resp = new nNomina().setGrabarNomina(nomina);
             }
             ReglaObservada = string.Empty;
-
         }
         private void GrabarLineaCabecera()
         {
