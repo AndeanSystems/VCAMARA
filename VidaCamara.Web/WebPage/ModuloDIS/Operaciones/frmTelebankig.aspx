@@ -22,7 +22,7 @@
                 <%--<label class="label_to" for="ddl_tipcom_c">Tipo de Archivo </label>
                 <asp:DropDownList CssClass="input_to" ID="ddl_tipo_archivo" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>--%>
 
-                <label class="label_to" for="ddl_ramo_c">Fecha </label>
+                <label class="label_to" for="ddl_ramo_c">Fecha Aprobación</label>
                 <asp:TextBox ID="txt_fecha" runat="server"  CssClass="input_to datetime" Height="25px" Width="25%"/>
 
                 <label class="input_right_L" for="ddl_estado">Estado</label>
