@@ -14,6 +14,7 @@ namespace VidaCamara.DIS.Negocio
 {
     public partial class CargaLogica
     {
+        #region VARIABLES
         public string FullNombreArchivo { get; set; }
         public string NombreArchivo { get; set; }
         public ObjectResult Resultado { get; set; }
@@ -43,10 +44,13 @@ namespace VidaCamara.DIS.Negocio
         public string importe { get; set; }
         public string formatoMoneda { get; set; }
         private static string ReglaObservada { get; set; }
-        public int ejecucionWeb { get; set; } = 0;
+        private string rootPath { get; set; }
 
-        public CargaLogica(string archivo)
+        #endregion VARIABLES
+        #region METODOS
+        public CargaLogica(string archivo,string pathSave)
         {
+            rootPath = pathSave;
             FullNombreArchivo = archivo;
             NombreArchivo = Path.GetFileName(archivo);
             string nombreArchivo = null;
@@ -249,9 +253,8 @@ namespace VidaCamara.DIS.Negocio
                             new nNomina().actualizarEstadoFallido(IdArchivo,contratoId);
                         }
                     }
-                    if(ejecucionWeb ==0)
-                        TraspasaArchivo(tipoArchivo);
 
+                    TraspasaArchivo(tipoArchivo);
                     ProcesarErrores(tipoArchivo);
                     ContadorErrores = ContadorErrores > 0 ? ContadorErrores : 0;
                 }
@@ -503,17 +506,16 @@ namespace VidaCamara.DIS.Negocio
         {
             try
             {
-                var folderFile = System.Configuration.ConfigurationManager.AppSettings["CarpetaArchivos"].ToString();
-                var directorioArchivo = @System.Web.HttpContext.Current.Server.MapPath("~/"+ folderFile +"/"+ tipoArchivo + "/");
+                var destDirectory = string.Format(@"{0}\{1}\",rootPath, tipoArchivo);
                 //InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), directorioArchivo, NombreArchivo,IdArchivo);
 
-                if (!Directory.Exists(directorioArchivo))
+                if (!Directory.Exists(destDirectory))
                 {
-                    Directory.CreateDirectory(directorioArchivo);
+                    Directory.CreateDirectory(destDirectory);
                 }
                 //InsertaAuditoria(Convert.ToInt32(UsuarioModificacion), "despues de validar directorio", NombreArchivo, IdArchivo);
 
-                var rutaArchivos = directorioArchivo + NombreArchivo;
+                var rutaArchivos = destDirectory + NombreArchivo;
 
                 if (File.Exists(rutaArchivos))
                 {
@@ -529,14 +531,14 @@ namespace VidaCamara.DIS.Negocio
                     var nombre = FullNombreArchivo.Replace("PRIMAPAG", "PRIMPAGA");
                     dynamic nombreArch = Path.GetFileName(nombre);
 
-                    directorioArchivo = @System.Web.HttpContext.Current.Server.MapPath("~/" + folderFile+"/" +"PRIMPAGA/");
+                    destDirectory = string.Format(@"{0}\{1}\",rootPath, "PRIMPAGA");
 
-                    if (!Directory.Exists(directorioArchivo))
+                    if (!Directory.Exists(destDirectory))
                     {
-                        Directory.CreateDirectory(directorioArchivo);
+                        Directory.CreateDirectory(destDirectory);
                     }
 
-                    rutaArchivos = directorioArchivo + nombreArch;
+                    rutaArchivos = destDirectory + nombreArch;
 
                     if (File.Exists(rutaArchivos))
                     {
@@ -675,5 +677,6 @@ namespace VidaCamara.DIS.Negocio
                 }
             }
         }
+        #endregion METODOS
     }
 }

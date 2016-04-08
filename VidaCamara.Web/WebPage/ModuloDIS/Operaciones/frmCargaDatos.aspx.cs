@@ -61,6 +61,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
 
         private void cargarValidarArchivo()
         {
+            var pathRoot = Server.MapPath(string.Format(@"~\{0}\", ConfigurationManager.AppSettings["CarpetaArchivos"].ToString()));
             try
             {
                 //david choque 27 12 2015
@@ -111,7 +112,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 //fin david choque 27 12 2015
                 var fileName = Server.MapPath(("~/Temp/Archivos/")) + fileUpload.FileName;
                 fileUpload.SaveAs(fileName);
-                var cargaLogica = new CargaLogica(fileName) { UsuarioModificacion = /*Session["usernameId"].ToString() */   "2" };
+                var cargaLogica = new CargaLogica(fileName, pathRoot) { UsuarioModificacion = /*Session["usernameId"].ToString() */   "2" };
                 cargaLogica.formatoMoneda = ConfigurationManager.AppSettings.Get("Float").ToString();
                 cargaLogica.CargarArchivo(Convert.ToInt32(ddl_conrato1.SelectedValue));
                 //david choque 27 12 2015

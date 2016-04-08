@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,10 @@ namespace VidaCamara.Masiva
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Ingresa la ruta donde se encuentra los archivos  de liquidaciones ó nominas a cargar");
-            Console.ReadKey();
-            var pathFolder = Console.ReadLine();
+            Console.Title = "Carga masiva de archivos y/o nominas";
             try
             {
+                var pathFolder = args[0].ToString();
                 if (Directory.Exists(pathFolder.ToString()))
                     listarDirectoryFiles(pathFolder);
                 else
@@ -25,7 +25,8 @@ namespace VidaCamara.Masiva
             {
                 Console.WriteLine("ERROR => {0} - {1}", ex.Message.ToString());
             }
-            Console.ReadKey();
+            Console.WriteLine("*********** Fin de proceso ****************");
+            Environment.Exit(0);
         }
 
         private static void listarDirectoryFiles(string pathFolder)
@@ -45,7 +46,7 @@ namespace VidaCamara.Masiva
             try
             {
                 var name = string.Format("info _{0}", DateTime.Now.ToString("yyyyMMdd"));
-                var rootDirectory = @"C:\CargaMasiva\Log\";
+                var rootDirectory = ConfigurationManager.AppSettings["PathLog"].ToString();
                 if (!Directory.Exists(rootDirectory))
                     Directory.CreateDirectory(rootDirectory);
                 using (var file = File.AppendText(string.Format("{0}{1}.txt", rootDirectory,name )))
