@@ -67,7 +67,7 @@ namespace VidaCamara.Masiva.Logica
                 //insertar log
                 nlog.setLLenarEntidad(IdContrato, "I", (listNameFile[0].Equals("NOMINA") ? "I05" : "I04"), cargaLogica.IdArchivo.ToString(), "jose.camara"/*Session["username"].ToString()*/);
                 var messageLog = string.Format("Archivo {0} ", fileName);
-                messageLog += listNameFile[0].Equals("NOMINAa") ? string.Format("Nomina procesada {0}", (cargaLogica.ContadorErrores > 0 ? "incorrectamente" : "correctamente")):
+                messageLog += listNameFile[0].Equals("NOMINA") ? string.Format("Nomina procesada {0}", (cargaLogica.ContadorErrores > 0 ? "incorrectamente" : "correctamente")):
                                                                      cargaLogica.ContadorErrores > 0? "Archivo procesado incorrectamente": "Archivo procesado correctamente";
                 messageLog += cargaLogica.Observacion;
                 lineMessageLog.AppendLine(messageLog);
