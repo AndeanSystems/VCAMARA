@@ -28,7 +28,7 @@ namespace VidaCamara.DIS.Negocio
             return new dLogOperacion().setGuardarLogOperacion(log);
         }
 
-        public void setLLenarEntidad(int IdeContrato,string TipoOper,string CodiEven, string CodiOper,string CodiUsu)
+        public void setLLenarEntidad(int IdeContrato,string TipoOper,string CodiEven, string CodiOper,string CodiUsu,string Entidad)
         {
             var entity = new LogOperacion()
             {
@@ -36,7 +36,8 @@ namespace VidaCamara.DIS.Negocio
                 TipoOper = TipoOper,
                 CodiEven = CodiEven,
                 CodiOper = CodiOper,
-                CodiUsu = CodiUsu
+                CodiUsu = CodiUsu,
+                Entidad = Entidad
             };
             this.setGuardarLogOperacion(entity);
         }
@@ -54,7 +55,7 @@ namespace VidaCamara.DIS.Negocio
                 var rutaTemporal = @HttpContext.Current.Server.MapPath("~/Temp/Descargas/" + nombreArchivo + ".xlsx");
                 int total;
                 var book = new XSSFWorkbook();
-                string[] columns = { "Contrato", "Tipo evento", "Fecha  evento", "Evento", "Usuario" };
+                string[] columns = { "Contrato","Tabla - ID" ,"Tipo evento", "Fecha  evento", "Evento","Columna - Dato", "Usuario" };
                 var sheet = book.CreateSheet();
                 var rowBook = sheet.CreateRow(1);
                 var headerStyle = helperStyle.setFontText(12, true, book);
@@ -72,26 +73,35 @@ namespace VidaCamara.DIS.Negocio
                     var rowBody = sheet.CreateRow(2 + i);
 
                     ICell cellContrato = rowBody.CreateCell(1);
-                    cellContrato.SetCellValue(listLogOperacion[i].IDE_CONTRATO);
+                    cellContrato.SetCellValue(listLogOperacion[i].CONTRATO_SYS.DES_CONTRATO);
                     cellContrato.CellStyle = bodyStyle;
 
-                    ICell cellTipoEvento = rowBody.CreateCell(2);
+                    ICell cellTablaId = rowBody.CreateCell(2);
+                    cellTablaId.SetCellValue(listLogOperacion[i].Tabla);
+                    cellTablaId.CellStyle = bodyStyle;
+
+                    ICell cellTipoEvento = rowBody.CreateCell(3);
                     cellTipoEvento.SetCellValue(listLogOperacion[i].TipoEvento);
                     cellTipoEvento.CellStyle = bodyStyle;
 
-                    ICell cellFechaEvento = rowBody.CreateCell(3);
+                    ICell cellFechaEvento = rowBody.CreateCell(4);
                     cellFechaEvento.SetCellValue(listLogOperacion[i].FechEven.ToString());
                     cellFechaEvento.CellStyle = bodyStyle;
 
-                    ICell cellEvento = rowBody.CreateCell(4);
+                    ICell cellEvento = rowBody.CreateCell(5);
                     cellEvento.SetCellValue(listLogOperacion[i].Evento);
                     cellEvento.CellStyle = bodyStyle;
 
-                    ICell cellUsuario = rowBody.CreateCell(5);
+                    ICell cellColDato = rowBody.CreateCell(6);
+                    cellColDato.SetCellValue(listLogOperacion[i].Columna);
+                    cellColDato.CellStyle = bodyStyle;
+
+                    ICell cellUsuario = rowBody.CreateCell(7);
                     cellUsuario.SetCellValue(listLogOperacion[i].CodiUsu);
                     cellUsuario.CellStyle = bodyStyle;
                 }
-
+                if (File.Exists(rutaTemporal))
+                    File.Delete(rutaTemporal);
                 using (var file = new FileStream(rutaTemporal, FileMode.Create, FileAccess.ReadWrite))
                 {
                     book.Write(file);

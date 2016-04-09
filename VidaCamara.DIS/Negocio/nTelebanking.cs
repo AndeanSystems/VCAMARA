@@ -12,6 +12,12 @@ namespace VidaCamara.DIS.Negocio
 {
     public class nTelebanking
     {
+        #region variables
+        private string interfaceBanco = "I07";
+        private string interfaceGeneral = "I06";
+        private string aprobarInterfaProvision = "A03";
+        private string aprobarInterfaBanco = "A04";
+        #endregion variables
         public List<EGeneraTelebankig> listTelebanking(NOMINA nomina, int jtStartIndex, int jtPageSize,string formatoMoneda, out int total)
         {
             return new dTelebanking().listTelebanking(nomina, jtStartIndex, jtPageSize,formatoMoneda,out total);
@@ -87,6 +93,10 @@ namespace VidaCamara.DIS.Negocio
             //llamada para generar los asientos contables respectivos
             new nInterfaceContable().createInterfaceContableExport(nOMINA);
             new dTelebanking().aprobarFinalTelebanking(nOMINA);
+            ////crear log de operacion tanto para genera telebankig y interface contable
+            var contratoFromNomina = new nNomina().getNominaByArchivoId(nOMINA);
+            new nLogOperacion().setLLenarEntidad(contratoFromNomina.IDE_CONTRATO, "A", aprobarInterfaBanco, nOMINA.ArchivoId.ToString(), HttpContext.Current.Session["username"].ToString(), "Archivo");
+            new nLogOperacion().setLLenarEntidad(contratoFromNomina.IDE_CONTRATO, "I", interfaceBanco, nOMINA.ArchivoId.ToString(), HttpContext.Current.Session["username"].ToString(), "Archivo");
         }
 
         public void aprobarTelebanking(NOMINA nOMINA)
@@ -94,6 +104,10 @@ namespace VidaCamara.DIS.Negocio
             //llamada para generar los asientos contables respectivos
             new nInterfaceContable().createInterfaceContable(nOMINA);
             new dTelebanking().aprobarTelebanking(nOMINA);
+            //crear log de operacion tanto para genera telebankig y interface contable
+            var contratoFromNomina = new nNomina().getNominaByArchivoId(nOMINA);
+            new nLogOperacion().setLLenarEntidad(contratoFromNomina.IDE_CONTRATO, "A", aprobarInterfaProvision, nOMINA.ArchivoId.ToString(), HttpContext.Current.Session["username"].ToString(), "Archivo");
+            new nLogOperacion().setLLenarEntidad(contratoFromNomina.IDE_CONTRATO, "I", interfaceGeneral, nOMINA.ArchivoId.ToString(), HttpContext.Current.Session["username"].ToString(), "Archivo");
         }
     }
 }

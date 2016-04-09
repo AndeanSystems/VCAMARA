@@ -23,8 +23,9 @@ namespace VidaCamara.DIS.data
                         var eApruebaCarga = new EAprobacionCarga()
                         {
                             IdLinCab = item.IdLinCab,
+                            IdArchivo = item.ArchivoId,
                             NombreArchivo = item.NombreArchivo,
-                            FechaCarga = item.FechaCarga,
+                            FechaCarga = Convert.ToDateTime(item.FechaCarga),
                             moneda = item.Moneda,
                             TotalRegistros = Convert.ToInt64(item.TotalRegistros),
                             TotalImporte = string.Format(filters[3].ToString(), item.ImporteTotal),

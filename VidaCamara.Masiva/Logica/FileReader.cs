@@ -12,7 +12,7 @@ namespace VidaCamara.Masiva.Logica
         private Int32 IdContrato { get; set; }
         private Int32 IdMoneda { get; set; }
         private String FullNombreArchivo { get; set; }
-        public StringBuilder lineMessageLog { get; set; } 
+        public StringBuilder lineMessageLog = new StringBuilder();
         public Boolean archivoValido { get; set; }
         public Int32 existeArchivo { get; set; }
         public String fileName { get; set; }
@@ -24,7 +24,6 @@ namespace VidaCamara.Masiva.Logica
 
         public Boolean loadFileAndSave(string path)
         {
-            lineMessageLog = new StringBuilder();
             setAtributeClass(path);
             return true;
         }
@@ -65,7 +64,7 @@ namespace VidaCamara.Masiva.Logica
                 cargaLogica.formatoMoneda = ConfigurationManager.AppSettings.Get("Float").ToString();
                 cargaLogica.CargarArchivo(IdContrato);
                 //insertar log
-                nlog.setLLenarEntidad(IdContrato, "I", (listNameFile[0].Equals("NOMINA") ? "I05" : "I04"), cargaLogica.IdArchivo.ToString(), "jose.camara"/*Session["username"].ToString()*/);
+                nlog.setLLenarEntidad(IdContrato, "I", (listNameFile[0].Equals("NOMINA") ? "I05" : "I04"), cargaLogica.IdArchivo.ToString(), "jose.camara"/*Session["username"].ToString()*/,"Archivo");
                 var messageLog = string.Format("Archivo {0} ", fileName);
                 messageLog += listNameFile[0].Equals("NOMINA") ? string.Format("Nomina procesada {0}", (cargaLogica.ContadorErrores > 0 ? "incorrectamente" : "correctamente")):
                                                                      cargaLogica.ContadorErrores > 0? "Archivo procesado incorrectamente": "Archivo procesado correctamente";

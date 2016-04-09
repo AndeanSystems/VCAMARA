@@ -13,7 +13,12 @@
     });
     var action = "/WebPage/ModuloDIS/Consultas/frmSegLogAdmin.aspx/listLogOperacion";
     var fields = {
-        IDE_CONTRATO: { title: 'Contrato'},
+        IDE_CONTRATO: {
+            title: 'Contrato', display: function (data) {
+                return data.record.CONTRATO_SYS.DES_CONTRATO;
+            }
+        },
+        Tabla : {title:'Tabla - ID'},
         TipoEvento: { title: 'Tipo de Evento' },
         FechEven: {
             title: 'Fecha de creación', display: function (data) {
@@ -21,7 +26,8 @@
             }
         },
         Evento: { title: 'Evento' },
-        CodiUsu:{title:'Usuario'}
+        Columna: {title:'Columna - Dato'},
+        CodiUsu: {title:'Usuario'}
     }
     //
     //ejecutar recarga de la grilla por tipo de archivo

@@ -19,9 +19,11 @@ public partial class pa_sel_LogOperacion_Result
 
     public long CodiLogOper { get; set; }
 
-    public Nullable<int> IDE_CONTRATO { get; set; }
+    public int IDE_CONTRATO { get; set; }
 
-    public Nullable<System.DateTime> FechEven { get; set; }
+    public string DES_CONTRATO { get; set; }
+
+    public System.DateTime FechEven { get; set; }
 
     public string TipoOper { get; set; }
 
@@ -36,6 +38,10 @@ public partial class pa_sel_LogOperacion_Result
     public string TipoEvento { get; set; }
 
     public string Evento { get; set; }
+
+    public string Columna { get; set; }
+
+    public string tabla { get; set; }
 
 }
 

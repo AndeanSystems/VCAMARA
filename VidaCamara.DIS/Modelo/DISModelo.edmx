@@ -599,6 +599,7 @@ warning 6002: The table/view 'vcamara2.dbo.EXACTUS_DETALLE_SIS' does not have a 
           <Property Name="CodiEven" Type="char" MaxLength="8" />
           <Property Name="CodiUsu" Type="varchar" MaxLength="30" />
           <Property Name="CodiCnx" Type="char" MaxLength="15" />
+          <Property Name="Entidad" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="NOMINA">
           <Key>
@@ -668,101 +669,6 @@ warning 6002: The table/view 'vcamara2.dbo.EXACTUS_DETALLE_SIS' does not have a 
           <Property Name="ORI_REG" Type="char" MaxLength="1" />
           <Property Name="TIP_COMPROBANTE" Type="char" MaxLength="3" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'vcamara2.dbo.ReporteDictamen' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ReporteDictamen">
-          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO PATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO MATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PRIMER NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEGUNDO _NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
-          <Property Name="CONTRATO" Type="float" />
-          <Property Name="ESTADO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="EMISOR DICTAMEN" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE PENSIÓN" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE EVALUACIÓN" Type="float" />
-          <Property Name="PORCENTAJE DE PENSIÓN" Type="float" />
-          <Property Name="FECHA DE OCURRENCIA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE DEVENGUE  INICIAL" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE INICIO DE VIGENCIA DEL DICTAMEN INICIAL#" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA FIN DE VIGENCIA DEL DICTAMEN " Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE AVISO DEL# DICTAMEN " Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'vcamara2.dbo.ReporteSECI' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ReporteSECI">
-          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDOPATERNOAFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDOMATERNOAFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PRIMERNOMBREAFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEGUNDONOMBREAFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPODESOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
-          <Property Name="CONTRATO" Type="float" />
-          <Property Name="NUMERODESECI" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADESECI" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADEAVISODESECI" Type="nvarchar" MaxLength="255" />
-          <Property Name="INDICADORDESUBSIDIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="NUMERODE SOLICITUDDEPENSION" Type="nvarchar" MaxLength="255" />
-          <Property Name="ESTADODELASOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADESOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPODESOLICITUD1" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADEAVISODESOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPODEPENSION" Type="nvarchar" MaxLength="255" />
-          <Property Name="PORCENTAJEDEPENSION" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADEOCURRENCIA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE  DEVENGUE INICIAL" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'vcamara2.dbo.ReportesSolicitudes' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ReportesSolicitudes">
-          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO PATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO MATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PRIMER NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEGUNDO NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
-          <Property Name="CONTRATO" Type="float" />
-          <Property Name="ESTADO DE LA_SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE INVALIDEZ" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE PENSIÓN" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO PATERNO BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO MATERNO BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PRIMER NOMBRE BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEGUNDO NOMBRE BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PARENTESCO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEXO  DEL BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="EDAD DEL BENEFICIARIO" Type="float" />
-          <Property Name="CONDICIÓN DE INVALIDEZ DEL BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PORCENTAJE DE PENSIÓN" Type="float" />
-          <Property Name="ESTADO DEL BENFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE OCURRENCIA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE DEVENGE INICIAL" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE AVISO  DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA  PRONUNCIAMIENTO  DE COBERTURA" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO  DE COBERTURA " Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE  REACTIVACIÓN  DE COBERTURA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE  NOTIFICACIÓN DEL ANEXO  16" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE DIAS TRANSCURRIDOS DESDE LA FECHA  DEL FALLECIMIENTO" Type="float" />
-          <Property Name="MONEDA" Type="nvarchar" MaxLength="255" />
-          <Property Name="PROMEDIO DE RAM" Type="nvarchar" MaxLength="255" />
-          <Property Name="MONTO DE LA PENSIÓN  QUE LE CORRESPONDE" Type="float" />
-          <Property Name="FECHA DE LIQUIDACIÓN DEL PRIMER PAGO" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE VENCIMIENTO DEL C#S#" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE PAGOS DE PENSIONES PRELIMINARES" Type="float" />
-          <Property Name="FECHA DE CUMPLIMIENTO DE CONDICIONES PARA CALCULO AA " Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE NOTIFICACIÓN DE AA AL DIS" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE PRONUNCIAMIENTO DEL PAGO DEL AA# " Type="nvarchar" MaxLength="255" />
-          <Property Name="ESTADO DE LA SOLICITUD DEL AA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE LIQUIDACIÓN DE AA" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -2582,26 +2488,9 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
             <Parameter Name="date1" Mode="In" Type="DateTime" />
             <Parameter Name="date2" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="pa_sel_LogOperacion" ReturnType="Collection(DISModelo.pa_sel_LogOperacion_Result)">
-            <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
-            <Parameter Name="TipoEvento" Mode="In" Type="String" />
-            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
-            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="pa_sel_pagoAprueba" ReturnType="Collection(DISModelo.pa_sel_pagoAprueba_Result)">
-            <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
-            <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
-            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="pa_upd_ApruebaLinCabNomina">
             <Parameter Name="IdContrato" Mode="In" Type="Int32" />
             <Parameter Name="IdHistoriaLinCab" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="pa_sel_pagoNominaAprueba" ReturnType="Collection(DISModelo.pa_sel_pagoNominaAprueba_Result)">
-            <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
-            <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
-            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="pa_upd_cambiaEstadoNomina">
             <Parameter Name="IdArchivoNomina" Mode="In" Type="Int32" />
@@ -2849,6 +2738,18 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
             <End Role="TipoInforme" EntitySet="TipoInformes" />
             <End Role="TipoArchivo" EntitySet="TipoArchivoes" />
           </AssociationSet>
+          <FunctionImport Name="pa_sel_pagoNominaAprueba" ReturnType="Collection(DISModelo.pa_sel_pagoNominaAprueba_Result)">
+            <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
+            <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="pa_sel_LogOperacion" ReturnType="Collection(DISModelo.pa_sel_LogOperacion_Result)">
+            <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
+            <Parameter Name="TipoEvento" Mode="In" Type="String" />
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
           <Property Type="Int32" Name="IdRegistroMontoAlto" Nullable="false" />
@@ -2907,18 +2808,6 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <Property Type="String" Name="Código_Transferencia" Nullable="true" MaxLength="500" />
           <Property Type="Decimal" Name="Monto" Nullable="true" Precision="38" Scale="2" />
         </ComplexType>
-        <ComplexType Name="pa_sel_LogOperacion_Result">
-          <Property Type="Int64" Name="CodiLogOper" Nullable="false" />
-          <Property Type="Int32" Name="IDE_CONTRATO" Nullable="true" />
-          <Property Type="DateTime" Name="FechEven" Nullable="true" Precision="23" />
-          <Property Type="String" Name="TipoOper" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="CodiOper" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="CodiEven" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="CodiUsu" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="CodiCnx" Nullable="true" MaxLength="15" />
-          <Property Type="String" Name="TipoEvento" Nullable="false" MaxLength="250" />
-          <Property Type="String" Name="Evento" Nullable="false" MaxLength="250" />
-        </ComplexType>
         <ComplexType Name="pa_sel_pagoAprueba_Result">
           <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
           <Property Type="DateTime" Name="FechaCarga" Nullable="false" Precision="23" />
@@ -2926,19 +2815,6 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <Property Type="Int32" Name="TotalRegistros" Nullable="true" />
           <Property Type="Decimal" Name="ImporteTotal" Nullable="true" Precision="38" Scale="6" />
           <Property Type="Decimal" Name="PagoVC" Nullable="true" Precision="38" Scale="6" />
-          <Property Type="DateTime" Name="FechaInfo" Nullable="false" Precision="23" />
-          <Property Type="String" Name="UsuReg" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="Aprobar" Nullable="false" MaxLength="1" />
-          <Property Type="String" Name="Eliminar" Nullable="false" MaxLength="1" />
-        </ComplexType>
-        <ComplexType Name="pa_sel_pagoNominaAprueba_Result">
-          <Property Type="Int64" Name="IdLinCab" Nullable="false" />
-          <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
-          <Property Type="DateTime" Name="FechaCarga" Nullable="false" Precision="23" />
-          <Property Type="String" Name="Moneda" Nullable="false" MaxLength="7" />
-          <Property Type="Int32" Name="TotalRegistros" Nullable="true" />
-          <Property Type="Decimal" Name="ImporteTotal" Nullable="true" Precision="38" Scale="6" />
-          <Property Type="Decimal" Name="PagoVC" Nullable="true" Precision="9" Scale="6" />
           <Property Type="DateTime" Name="FechaInfo" Nullable="false" Precision="23" />
           <Property Type="String" Name="UsuReg" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="Aprobar" Nullable="false" MaxLength="1" />
@@ -3548,6 +3424,7 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <Property Name="CodiEven" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
           <Property Name="CodiUsu" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="CodiCnx" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="Entidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CONTRATO_SYS" Relationship="DISModelo.FK_LogOperacion_CONTRATO_SYS" FromRole="LogOperacion" ToRole="CONTRATO_SYS" />
         </EntityType>
         <EntityType Name="NOMINA">
@@ -4889,6 +4766,35 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="pa_sel_pagoNominaAprueba_Result">
+          <Property Type="Int32" Name="ArchivoId" Nullable="false" />
+          <Property Type="Int64" Name="IdLinCab" Nullable="false" />
+          <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="FechaCarga" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Moneda" Nullable="false" MaxLength="7" />
+          <Property Type="Int32" Name="TotalRegistros" Nullable="true" />
+          <Property Type="Decimal" Name="ImporteTotal" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="PagoVC" Nullable="true" Precision="9" Scale="6" />
+          <Property Type="DateTime" Name="FechaInfo" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuReg" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Aprobar" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="Eliminar" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="pa_sel_LogOperacion_Result">
+          <Property Type="Int64" Name="CodiLogOper" Nullable="false" />
+          <Property Type="Int32" Name="IDE_CONTRATO" Nullable="false" />
+          <Property Type="String" Name="DES_CONTRATO" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="FechEven" Nullable="false" Precision="23" />
+          <Property Type="String" Name="TipoOper" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CodiOper" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="CodiEven" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="CodiUsu" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CodiCnx" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="TipoEvento" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Evento" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Columna" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="tabla" Nullable="true" MaxLength="100" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5016,40 +4922,7 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <FunctionImportMapping FunctionImportName="pa_valida_SumaDetalleEnTotal" FunctionName="DISModelo.Store.pa_valida_SumaDetalleEnTotal" />
           <FunctionImportMapping FunctionImportName="pa_valida_TotalNominaEnLiquidacion" FunctionName="DISModelo.Store.pa_valida_TotalNominaEnLiquidacion" />
           <FunctionImportMapping FunctionImportName="pa_Valida_RangoFechaXContrato" FunctionName="DISModelo.Store.pa_Valida_RangoFechaXContrato" />
-          <FunctionImportMapping FunctionImportName="pa_sel_LogOperacion" FunctionName="DISModelo.Store.pa_sel_LogOperacion">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DISModelo.pa_sel_LogOperacion_Result">
-                <ScalarProperty Name="CodiLogOper" ColumnName="CodiLogOper" />
-                <ScalarProperty Name="IDE_CONTRATO" ColumnName="IDE_CONTRATO" />
-                <ScalarProperty Name="FechEven" ColumnName="FechEven" />
-                <ScalarProperty Name="TipoOper" ColumnName="TipoOper" />
-                <ScalarProperty Name="CodiOper" ColumnName="CodiOper" />
-                <ScalarProperty Name="CodiEven" ColumnName="CodiEven" />
-                <ScalarProperty Name="CodiUsu" ColumnName="CodiUsu" />
-                <ScalarProperty Name="CodiCnx" ColumnName="CodiCnx" />
-                <ScalarProperty Name="TipoEvento" ColumnName="TipoEvento" />
-                <ScalarProperty Name="Evento" ColumnName="Evento" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_upd_ApruebaLinCabNomina" FunctionName="DISModelo.Store.pa_upd_ApruebaLinCabNomina" />
-          <FunctionImportMapping FunctionImportName="pa_sel_pagoNominaAprueba" FunctionName="DISModelo.Store.pa_sel_pagoNominaAprueba">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DISModelo.pa_sel_pagoNominaAprueba_Result">
-                <ScalarProperty Name="IdLinCab" ColumnName="IdLinCab" />
-                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
-                <ScalarProperty Name="FechaCarga" ColumnName="FechaCarga" />
-                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-                <ScalarProperty Name="TotalRegistros" ColumnName="TotalRegistros" />
-                <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
-                <ScalarProperty Name="PagoVC" ColumnName="PagoVC" />
-                <ScalarProperty Name="FechaInfo" ColumnName="FechaInfo" />
-                <ScalarProperty Name="UsuReg" ColumnName="UsuReg" />
-                <ScalarProperty Name="Aprobar" ColumnName="Aprobar" />
-                <ScalarProperty Name="Eliminar" ColumnName="Eliminar" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_upd_cambiaEstadoNomina" FunctionName="DISModelo.Store.pa_upd_cambiaEstadoNomina" />
           <FunctionImportMapping FunctionImportName="pa_upd_InactivaLinCabNomina" FunctionName="DISModelo.Store.pa_upd_InactivaLinCabNomina" />
           <FunctionImportMapping FunctionImportName="pa_sel_SegDescarga" FunctionName="DISModelo.Store.pa_sel_SegDescarga">
@@ -5689,6 +5562,7 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <EntitySetMapping Name="LogOperacions">
             <EntityTypeMapping TypeName="DISModelo.LogOperacion">
               <MappingFragment StoreEntitySet="LogOperacion">
+                <ScalarProperty Name="Entidad" ColumnName="Entidad" />
                 <ScalarProperty Name="CodiCnx" ColumnName="CodiCnx" />
                 <ScalarProperty Name="CodiUsu" ColumnName="CodiUsu" />
                 <ScalarProperty Name="CodiEven" ColumnName="CodiEven" />
@@ -6641,6 +6515,43 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pa_sel_pagoNominaAprueba" FunctionName="DISModelo.Store.pa_sel_pagoNominaAprueba">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DISModelo.pa_sel_pagoNominaAprueba_Result">
+                <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
+                <ScalarProperty Name="IdLinCab" ColumnName="IdLinCab" />
+                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+                <ScalarProperty Name="FechaCarga" ColumnName="FechaCarga" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="TotalRegistros" ColumnName="TotalRegistros" />
+                <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
+                <ScalarProperty Name="PagoVC" ColumnName="PagoVC" />
+                <ScalarProperty Name="FechaInfo" ColumnName="FechaInfo" />
+                <ScalarProperty Name="UsuReg" ColumnName="UsuReg" />
+                <ScalarProperty Name="Aprobar" ColumnName="Aprobar" />
+                <ScalarProperty Name="Eliminar" ColumnName="Eliminar" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_sel_LogOperacion" FunctionName="DISModelo.Store.pa_sel_LogOperacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DISModelo.pa_sel_LogOperacion_Result">
+                <ScalarProperty Name="CodiLogOper" ColumnName="CodiLogOper" />
+                <ScalarProperty Name="IDE_CONTRATO" ColumnName="IDE_CONTRATO" />
+                <ScalarProperty Name="DES_CONTRATO" ColumnName="DES_CONTRATO" />
+                <ScalarProperty Name="FechEven" ColumnName="FechEven" />
+                <ScalarProperty Name="TipoOper" ColumnName="TipoOper" />
+                <ScalarProperty Name="CodiOper" ColumnName="CodiOper" />
+                <ScalarProperty Name="CodiEven" ColumnName="CodiEven" />
+                <ScalarProperty Name="CodiUsu" ColumnName="CodiUsu" />
+                <ScalarProperty Name="CodiCnx" ColumnName="CodiCnx" />
+                <ScalarProperty Name="TipoEvento" ColumnName="TipoEvento" />
+                <ScalarProperty Name="Evento" ColumnName="Evento" />
+                <ScalarProperty Name="Columna" ColumnName="Columna" />
+                <ScalarProperty Name="tabla" ColumnName="tabla" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

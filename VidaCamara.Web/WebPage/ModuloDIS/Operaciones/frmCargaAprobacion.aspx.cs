@@ -51,11 +51,11 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         }
          
         [System.Web.Services.WebMethod(EnableSession = true)]
-        public static object setAprobar(int linCabId, int IdeContrato)
+        public static object setAprobar(int linCabId, int IdeContrato,int ArchivoId)
         {
             try
             {
-                new nAprobacionCarga().actualizarEstado(new HistorialCargaArchivo_LinCab() { IDE_CONTRATO = IdeContrato, IdHistorialCargaArchivoLinCab = linCabId });
+                new nAprobacionCarga().actualizarEstado(new HistorialCargaArchivo_LinCab() { IDE_CONTRATO = IdeContrato, IdHistorialCargaArchivoLinCab = linCabId },new Archivo() { ArchivoId = ArchivoId});
                 return new { Result = true };
             }
             catch (Exception ex)
@@ -65,11 +65,11 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         }
 
         [System.Web.Services.WebMethod(EnableSession = true)]
-        public static object setEliminar(int linCabId, int IdeContrato)
+        public static object setEliminar(int linCabId, int IdeContrato, int ArchivoId)
         {
             try
             {
-                new nAprobacionCarga().eliminarPagoYNomina(new HistorialCargaArchivo_LinCab() { IDE_CONTRATO = IdeContrato, IdHistorialCargaArchivoLinCab = linCabId });
+                new nAprobacionCarga().eliminarPagoYNomina(new HistorialCargaArchivo_LinCab() { IDE_CONTRATO = IdeContrato, IdHistorialCargaArchivoLinCab = linCabId }, new Archivo() { ArchivoId = ArchivoId });
                 return new { Result = true };
             }
             catch (Exception ex)

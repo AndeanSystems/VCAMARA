@@ -35,12 +35,14 @@ namespace VidaCamara.Masiva
             Console.WriteLine("************** Iniciando Carga ****************");
             var listDirectoryFiles = new DirectoryInfo(pathFolder);
             Console.WriteLine("*************  Cantidad de archivos encontrados {0} son: {1} *******",pathFolder, listDirectoryFiles.EnumerateFiles().Count());
+            fileReader.lineMessageLog.AppendLine(string.Format("******************** Inicio de carga {0} **************", DateTime.Now.ToString()));
             foreach (var file in listDirectoryFiles.GetFiles(string.Format("*.{0}", "CAM")))
             {
-                var response = fileReader.loadFileAndSave(file.FullName);
-                writeLog(fileReader.lineMessageLog);
+                var response = fileReader.loadFileAndSave(file.FullName); 
                 Console.WriteLine(file.FullName);
             }
+            fileReader.lineMessageLog.AppendLine("*************** fin de carga *****************");
+            writeLog(fileReader.lineMessageLog);
         }
         private static void writeLog(StringBuilder lines) {
             try

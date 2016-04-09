@@ -17,11 +17,13 @@ using System;
 public partial class pa_sel_pagoNominaAprueba_Result
 {
 
+    public int ArchivoId { get; set; }
+
     public long IdLinCab { get; set; }
 
     public string NombreArchivo { get; set; }
 
-    public System.DateTime FechaCarga { get; set; }
+    public Nullable<System.DateTime> FechaCarga { get; set; }
 
     public string Moneda { get; set; }
 

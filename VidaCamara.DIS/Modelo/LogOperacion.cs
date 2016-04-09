@@ -34,6 +34,8 @@ public partial class LogOperacion
 
     public string CodiCnx { get; set; }
 
+    public string Entidad { get; set; }
+
 
 
     public virtual CONTRATO_SYS CONTRATO_SYS { get; set; }

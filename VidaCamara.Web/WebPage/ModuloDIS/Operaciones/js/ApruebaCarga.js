@@ -1,16 +1,17 @@
 ﻿$(document).ready(function () {
     const urlAprobar = "/WebPage/ModuloDIS/Operaciones/frmCargaAprobacion.aspx/setAprobar";
     const urlEliminar = "/WebPage/ModuloDIS/Operaciones/frmCargaAprobacion.aspx/setEliminar";
-    var linCab = function (linCabId) {
+    var entityAprobar = function (linCabId,ArchivoId) {
         this.linCabId = linCabId,
-        this.IdeContrato = parseInt($("#ctl00_ContentPlaceHolder1_ddl_contrato").val())
+        this.IdeContrato = parseInt($("#ctl00_ContentPlaceHolder1_ddl_contrato").val()),
+        this.ArchivoId = ArchivoId
     }
     //eventos
     $("body #tblApruebaCarga").delegate("#link_aprobar", "click", function () {
         if (confirm("Esta seguro de aprobar este registro")) {
             //programar llamada ajax
-            llamarAjax(new linCab(parseInt($(this).attr('class'))), urlAprobar).success(function (res) {
-                console.log(res);
+            const controlAttr = $(this).attr('class').split(",");
+            llamarAjax(new entityAprobar(parseInt(controlAttr[0]), parseInt(controlAttr[1])), urlAprobar).success(function (res) {
                 if (res.d.Result == true) {
                     mostrarMensajeAlert("La información de pagos fue confirmada.");
                     consultarRegistros();
@@ -23,7 +24,8 @@
     $("body #tblApruebaCarga").delegate("#link_eliminar", "click", function () {
         if (confirm("Esta seguro de descartar la información")) {
             //programar llamada ajax
-            llamarAjax(new linCab(parseInt($(this).attr('class'))), urlEliminar).success(function (res) {
+            const controlAttr = $(this).attr('class').split(",");
+            llamarAjax(new entityAprobar(parseInt(controlAttr[0]), parseInt(controlAttr[1])), urlEliminar).success(function (res) {
                 console.log(res);
                 if (res.d.Result == true) {
                     mostrarMensajeAlert("La información de pagos ha sido descartada, debera ser cargada nuevamente.");
@@ -83,12 +85,12 @@
         UsuReg: { title: 'Usuario' },
         Aprobar: {
             title: 'Aprobar', align: 'center', display: function (data) {
-                return "<a id='link_aprobar' class='" + data.record.IdLinCab + "' href='#'>Aprobar</a>";
+                return "<a id='link_aprobar' class='" + data.record.IdLinCab + "," + data.record.IdArchivo + "' href='#'>Aprobar</a>";
             }
         },
         Eliminar: {
             title: 'Descartar', display: function (data) {
-                return "<a id='link_eliminar' class='" + data.record.IdLinCab + "' href='#'>Descartar</a>";
+                return "<a id='link_eliminar' class='" + data.record.IdLinCab + "," + data.record.IdArchivo + "' href='#'>Descartar</a>";
             }
         }
     }

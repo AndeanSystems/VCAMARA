@@ -44,12 +44,18 @@ namespace VidaCamara.DIS.data
                         var logOperacion = new HLogOperacion()
                         {
                             IDE_CONTRATO = Convert.ToInt32(item.IDE_CONTRATO),
+                            CONTRATO_SYS = new CONTRATO_SYS()
+                            {
+                                DES_CONTRATO = item.DES_CONTRATO
+                            },
                             TipoOper     = item.TipoOper,
                             FechEven     = Convert.ToDateTime(item.FechEven),
                             Evento       = item.Evento,
                             TipoEvento   = item.TipoEvento,
                             CodiEven     = item.CodiEven,
-                            CodiUsu = item.CodiUsu
+                            CodiUsu = item.CodiUsu,
+                            Columna = item.Columna,
+                            Tabla = string.Format("{0} - {1}",item.tabla,item.CodiOper)
                         };
 
                         listLogOperacion.Add(logOperacion);

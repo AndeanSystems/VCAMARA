@@ -119,7 +119,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 tipoArchivo = ddl_tipo_archivo.SelectedItem.Value;
                 setCargarReglaArchivo();
                 //insertar log
-                nlog.setLLenarEntidad(Convert.ToInt32(ddl_conrato1.SelectedItem.Value), "I", (tipoArchivo.Equals("NOMINA") ? "I05" : "I04"), cargaLogica.IdArchivo.ToString(), Session["username"].ToString());
+                nlog.setLLenarEntidad(Convert.ToInt32(ddl_conrato1.SelectedItem.Value), "I", (tipoArchivo.Equals("NOMINA") ? "I05" : "I04"), cargaLogica.IdArchivo.ToString(), Session["username"].ToString(),"Archivo");
 
                 txt_moneda.Text = cargaLogica.moneda;
                 txt_registro_procesado.Text = cargaLogica.ContadorExito.ToString();

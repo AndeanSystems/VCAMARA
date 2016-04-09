@@ -228,7 +228,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                     if (Math.Abs(restaRes) > 0.001m)
                     {
                         var resp = new nContratoSisDetalle().setGuardarContratoDetalle(ContratoSisDetalle);
-                        nlog.setLLenarEntidad(Convert.ToInt32(ContratoSisDetalle.IDE_CONTRATO), "I", "I02", resp.ToString(), Session["username"].ToString());
+                        nlog.setLLenarEntidad(Convert.ToInt32(ContratoSisDetalle.IDE_CONTRATO), "I", "I02", resp.ToString(), Session["username"].ToString(),"ContratoSisDetalle");
                         MessageBox("Registro  grabado corretamente");
                     }
                     else
@@ -248,7 +248,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                     else
                     {
                         var resp = new nContratoSisDetalle().setActualizarContratoDetalle(ContratoSisDetalle);
-                        nlog.setLLenarEntidad(Convert.ToInt32(ContratoSisDetalle.IDE_CONTRATO), "A", "A05", resp.ToString(), Session["username"].ToString());
+                        nlog.setLLenarEntidad(Convert.ToInt32(ContratoSisDetalle.IDE_CONTRATO), "A", "A05", ContratoSisDetalle.IDE_CONTRATO_DET.ToString(), Session["username"].ToString(), "ContratoSisDetalle");
                         MessageBox(resp + " Registro actualizado corretamente");
                     }
                 }
@@ -709,7 +709,7 @@ namespace VidaCamara.Web.WebPage.Mantenimiento
                         resp = control.SetActualizarContratoSys(contratoSis);
                         if (resp != 0)
                         {
-                            nlog.setLLenarEntidad(Convert.ToInt32(txt_ide_contrato_sis.Value), "A", "A01", resp.ToString(), Session["username"].ToString());
+                            nlog.setLLenarEntidad(Convert.ToInt32(txt_ide_contrato_sis.Value), "A", "A01", contratoSis._ide_Contrato.ToString(), Session["username"].ToString(),"Contrato");
                             //contrato sys
                             var bContrato = new bContratoSys();
                             bContrato.SetEstablecerDataSourceContratoSys(ddl_contrato_sis);
