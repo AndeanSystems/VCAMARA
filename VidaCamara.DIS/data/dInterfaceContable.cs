@@ -204,7 +204,7 @@ namespace VidaCamara.DIS.data
                                        (x.IDE_MONEDA == cabecera.IDE_MONEDA || cabecera.IDE_MONEDA == 0)
                                 ).ToList();
                     total = query.Count;
-                    foreach (var item in query)
+                    foreach (var item in query.Skip(index).Take(size))
                     {
                         var v_interfaceExport = new HEXACTUS_DETALLE_EXPORT_SIS()
                         {
