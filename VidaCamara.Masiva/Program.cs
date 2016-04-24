@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace VidaCamara.Masiva
 {
@@ -32,14 +30,24 @@ namespace VidaCamara.Masiva
         private static void listarDirectoryFiles(string pathFolder)
         {
             var fileReader = new Logica.FileReader();
+            var fileCounter = 0;
+            var divider = 0;
             Console.WriteLine("************** Iniciando Carga ****************");
             var listDirectoryFiles = new DirectoryInfo(pathFolder);
             Console.WriteLine("*************  Cantidad de archivos encontrados {0} son: {1} *******",pathFolder, listDirectoryFiles.EnumerateFiles().Count());
             fileReader.lineMessageLog.AppendLine(string.Format("******************** Inicio de carga {0} **************", DateTime.Now.ToString()));
             foreach (var file in listDirectoryFiles.GetFiles(string.Format("*.{0}", "CAM")))
             {
-                var response = fileReader.loadFileAndSave(file.FullName); 
-                Console.WriteLine(file.FullName);
+                var response = fileReader.loadFileAndSave(file.FullName);
+                ++fileCounter;
+                ++divider;
+                if(divider == 200)
+                {
+                    writeLog(fileReader.lineMessageLog);
+                    fileReader.lineMessageLog = new StringBuilder();
+                    divider = 0;
+                }
+                Console.WriteLine("{0} cantidad: {1}",file.FullName,fileCounter);
             }
             fileReader.lineMessageLog.AppendLine("*************** fin de carga *****************");
             writeLog(fileReader.lineMessageLog);

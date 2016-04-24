@@ -65,7 +65,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             try
             {
                 //david choque 27 12 2015
-                nombreArchivo = fileUpload.FileName.ToString().ToUpper();
+                nombreArchivo = fileUpload.FileName.ToString().ToUpper().Replace(" ","").Replace("  ","");
                 //VALIDA SI EL NUMERO CONTRATO SELECCIONADO COICEDE CON EL ARCHIVO A CARGAR
                 if (validarNumeroContratoXArchivo(nombreArchivo, ddl_conrato1.SelectedItem.Value) == 0)
                 {
@@ -110,7 +110,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 }
 
                 //fin david choque 27 12 2015
-                var fileName = Server.MapPath(("~/Temp/Archivos/")) + fileUpload.FileName;
+                var fileName = string.Format("{0}/{1}",Server.MapPath("~/Temp/Archivos"), nombreArchivo);
                 fileUpload.SaveAs(fileName);
                 var cargaLogica = new CargaLogica(fileName, pathRoot) { UsuarioModificacion = /*Session["usernameId"].ToString() */   "2" };
                 cargaLogica.formatoMoneda = ConfigurationManager.AppSettings.Get("Float").ToString();

@@ -58,6 +58,7 @@ namespace VidaCamara.Masiva.Logica
 
         private void SaveFile(string[] listNameFile)
         {
+            var startTime = DateTime.Now;
             try
             {
                 var cargaLogica = new CargaLogica(FullNombreArchivo, pathSaveFile) { UsuarioModificacion = /*Session["usernameId"].ToString() */   "2" };
@@ -68,7 +69,8 @@ namespace VidaCamara.Masiva.Logica
                 var messageLog = string.Format("Archivo {0} ", fileName);
                 messageLog += listNameFile[0].Equals("NOMINA") ? string.Format("Nomina procesada {0}", (cargaLogica.ContadorErrores > 0 ? "incorrectamente" : "correctamente")):
                                                                      cargaLogica.ContadorErrores > 0? "Archivo procesado incorrectamente": "Archivo procesado correctamente";
-                messageLog += cargaLogica.Observacion;
+                var endTime = DateTime.Now;
+                messageLog += string.Format("{0} - tiempo {1}", cargaLogica.Observacion,new TimeSpan(endTime.Ticks - startTime.Ticks));
                 lineMessageLog.AppendLine(messageLog);
             }
             catch (Exception ex)
