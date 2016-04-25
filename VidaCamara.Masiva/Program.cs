@@ -14,6 +14,7 @@ namespace VidaCamara.Masiva
             try
             {
                 var pathFolder = args[0].ToString();
+                Console.WriteLine(pathFolder);
                 if (Directory.Exists(pathFolder.ToString()))
                     listarDirectoryFiles(pathFolder);
                 else
@@ -34,7 +35,7 @@ namespace VidaCamara.Masiva
             var divider = 0;
             Console.WriteLine("************** Iniciando Carga ****************");
             var listDirectoryFiles = new DirectoryInfo(pathFolder);
-            Console.WriteLine("*************  Cantidad de archivos encontrados {0} son: {1} *******",pathFolder, listDirectoryFiles.EnumerateFiles().Count());
+            Console.WriteLine("*************  Cantidad de archivos encontrados en: {0} son: {1} *******",pathFolder, listDirectoryFiles.EnumerateFiles().Count());
             fileReader.lineMessageLog.AppendLine(string.Format("******************** Inicio de carga {0} **************", DateTime.Now.ToString()));
             foreach (var file in listDirectoryFiles.GetFiles(string.Format("*.{0}", "CAM")))
             {
@@ -47,7 +48,7 @@ namespace VidaCamara.Masiva
                     fileReader.lineMessageLog = new StringBuilder();
                     divider = 0;
                 }
-                Console.WriteLine("{0} cantidad: {1}",file.FullName,fileCounter);
+                Console.WriteLine("{0} numero de archivo: {1}",file.FullName,fileCounter);
             }
             fileReader.lineMessageLog.AppendLine("*************** fin de carga *****************");
             writeLog(fileReader.lineMessageLog);
