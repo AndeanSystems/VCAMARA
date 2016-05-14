@@ -10,11 +10,10 @@ namespace VidaCamara.Masiva
     {
         static void Main(string[] args)
         {
-            Console.Title = "Carga masiva de archivos y/o nominas";
+            Console.Title = string.Format("{0} - {1}", "Carga masiva de archivos y/o nominas", DateTime.Now.ToLongDateString());
             try
             {
                 var pathFolder = args[0].ToString();
-                Console.WriteLine(pathFolder);
                 if (Directory.Exists(pathFolder.ToString()))
                     listarDirectoryFiles(pathFolder);
                 else

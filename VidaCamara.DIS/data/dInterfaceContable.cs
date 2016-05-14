@@ -43,7 +43,7 @@ namespace VidaCamara.DIS.data
                     FECHA = DateTime.Now,
                     CONTABILIDAD = "A",
                     NOTAS = "CONTABLE SIS",
-                    ESTADO = 2,
+                    ESTADO = 1,
                     ESTADO_TRANSFERENCIA = "C",
                     PERMITIR_DESCUADRADO = "N",
                     CONSERVAR_NUMERACION = "S",
