@@ -4,7 +4,7 @@ using ActiveDirectoryValidation;
 using Seguridadv2;
 using VidaCamara.SBS.Entity;
 using VidaCamara.SBS.Negocio;
-
+using System.Configuration;
 
 namespace VidaCamara.Web.WebPage.Inicio
 {
@@ -44,7 +44,8 @@ namespace VidaCamara.Web.WebPage.Inicio
         }
         public bool ValidarUsuarioEnActiveDirectory()
         {
-            if (txtUsuario.Text == "reaseguros")//oADFunctions.FnValidarUsuario(ConfigurationManager.AppSettings.Get("Dominio"), txtUsuario.Text, txtContrasena.Text, ConfigurationManager.AppSettings.Get("UrlLDAP")))
+            //txtUsuario.Text.Equals("reaseguros"))//
+            if (oADFunctions.FnValidarUsuario(ConfigurationManager.AppSettings.Get("Dominio"), txtUsuario.Text, txtContrasena.Text, ConfigurationManager.AppSettings.Get("UrlLDAP")))
             {
                 Session["username"] = txtUsuario.Text;
                 //Guardamos el usuario y la clave AD en una sesión:

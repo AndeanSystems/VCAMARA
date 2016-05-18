@@ -8,6 +8,7 @@ using VidaCamara.DIS.Modelo;
 using VidaCamara.SBS.Negocio;
 using VidaCamara.DIS.Negocio;
 using System.IO;
+using System.Text;
 
 namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
 {
@@ -103,7 +104,8 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
             }
             catch (Exception ex)
             {
-                MessageBox(string.Format("ERROR =>{0}",ex.Message.Replace(Environment.NewLine,"").ToString()));
+                createFileLog(ex);
+                MessageBox(string.Format("ERROR =>{0}",ex.Message.Replace(Environment.NewLine,"").Replace(@"'",@"""").ToString()));
             }
             
         }
@@ -111,6 +113,26 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         private void MessageBox(string text)
         {
             Page.ClientScript.RegisterStartupScript(GetType(), "msgbox", "$('<div style=\"font-size:14px;text-align:center;\">" + text + "</div>').dialog({title:'Confirmación',modal:true,width:400,height:240,buttons: [{id: 'aceptar',text: 'Aceptar',icons: { primary: 'ui-icon-circle-check' },click: function () {$(this).dialog('close');}}]});", true);
+        }
+        protected void createFileLog(Exception error)
+        {
+            try
+            {
+                var lines = string.Format("{0} ********* {1} - {2}", DateTime.Now.ToString(), error.Message, error.InnerException ==null?"": error.InnerException.ToString());
+                var fileName = string.Format("info _{0}", DateTime.Now.ToString("yyyyMMdd"));
+                var rootDirectory = @"C:\CargaMasiva\Log\";
+                if (!Directory.Exists(rootDirectory))
+                    Directory.CreateDirectory(rootDirectory);
+                using (var file = File.AppendText(string.Format("{0}{1}.txt", rootDirectory, fileName)))
+                {
+                    file.WriteLine("******************* Trasferencia de archivos ******************************");
+                    file.WriteLine(lines);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox(string.Format("ERROR =>{0}", ex.Message.Replace(Environment.NewLine, "").Replace(@"'", @"""").ToString()));
+            }
         }
     }
 }

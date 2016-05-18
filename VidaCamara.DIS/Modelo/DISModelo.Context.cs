@@ -1300,28 +1300,6 @@ public partial class DISEntities : DbContext
     }
 
 
-    public virtual ObjectResult<pa_sel_pagoNominaAprueba_Result> pa_sel_pagoNominaAprueba(Nullable<int> ideContrato, string nombreTipoArchivo, Nullable<System.DateTime> fecha)
-    {
-
-        var ideContratoParameter = ideContrato.HasValue ?
-            new ObjectParameter("IdeContrato", ideContrato) :
-            new ObjectParameter("IdeContrato", typeof(int));
-
-
-        var nombreTipoArchivoParameter = nombreTipoArchivo != null ?
-            new ObjectParameter("NombreTipoArchivo", nombreTipoArchivo) :
-            new ObjectParameter("NombreTipoArchivo", typeof(string));
-
-
-        var fechaParameter = fecha.HasValue ?
-            new ObjectParameter("Fecha", fecha) :
-            new ObjectParameter("Fecha", typeof(System.DateTime));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_pagoNominaAprueba_Result>("pa_sel_pagoNominaAprueba", ideContratoParameter, nombreTipoArchivoParameter, fechaParameter);
-    }
-
-
     public virtual ObjectResult<pa_sel_LogOperacion_Result> pa_sel_LogOperacion(Nullable<int> ideContrato, string tipoEvento, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string descripcion)
     {
 
@@ -1351,6 +1329,33 @@ public partial class DISEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_LogOperacion_Result>("pa_sel_LogOperacion", ideContratoParameter, tipoEventoParameter, fechaInicioParameter, fechaFinParameter, descripcionParameter);
+    }
+
+
+    public virtual ObjectResult<pa_sel_pagoNominaAprueba_Result> pa_sel_pagoNominaAprueba(Nullable<int> ideContrato, string nombreTipoArchivo, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+    {
+
+        var ideContratoParameter = ideContrato.HasValue ?
+            new ObjectParameter("IdeContrato", ideContrato) :
+            new ObjectParameter("IdeContrato", typeof(int));
+
+
+        var nombreTipoArchivoParameter = nombreTipoArchivo != null ?
+            new ObjectParameter("NombreTipoArchivo", nombreTipoArchivo) :
+            new ObjectParameter("NombreTipoArchivo", typeof(string));
+
+
+        var fechaInicioParameter = fechaInicio.HasValue ?
+            new ObjectParameter("FechaInicio", fechaInicio) :
+            new ObjectParameter("FechaInicio", typeof(System.DateTime));
+
+
+        var fechaFinParameter = fechaFin.HasValue ?
+            new ObjectParameter("FechaFin", fechaFin) :
+            new ObjectParameter("FechaFin", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_pagoNominaAprueba_Result>("pa_sel_pagoNominaAprueba", ideContratoParameter, nombreTipoArchivoParameter, fechaInicioParameter, fechaFinParameter);
     }
 
 }

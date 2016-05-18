@@ -33,6 +33,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
                 SetLLenadoContrato();
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipo_archivo, "17");
                 txt_fecha_inicio.Text = DateTime.Now.ToShortDateString();
+                txt_fecha_fin.Text = DateTime.Now.ToShortDateString();
                 filters[0] = ConfigurationManager.AppSettings.Get("Float").ToString();
             }
         }

@@ -163,17 +163,17 @@ namespace VidaCamara.DIS.data
                     sqlcmd.CommandText = queryInsert;
 
                     sqlcmd.Parameters.Clear();
-                    sqlcmd.Parameters.AddWithValue("@ASIENTO", SqlDbType.VarChar).Value = item.ASIENTO;
-                    sqlcmd.Parameters.AddWithValue("@PAQUETE", SqlDbType.VarChar).Value = item.PAQUETE;
-                    sqlcmd.Parameters.AddWithValue("@TIPO_ASIENTO", SqlDbType.VarChar).Value = item.TIPO_ASIENTO;
-                    sqlcmd.Parameters.AddWithValue("@FECHA", SqlDbType.DateTime).Value = item.FECHA;
-                    sqlcmd.Parameters.AddWithValue("@CONTABILIDAD", SqlDbType.VarChar).Value = item.CONTABILIDAD;
-                    sqlcmd.Parameters.AddWithValue("@NOTAS", SqlDbType.VarChar).Value = item.NOTAS;
-                    sqlcmd.Parameters.AddWithValue("@ESTADO", SqlDbType.Int).Value = item.ESTADO;
-                    sqlcmd.Parameters.AddWithValue("@PERMITIR_DESCUADRADO", SqlDbType.Char).Value = item.PERMITIR_DESCUADRADO;
-                    sqlcmd.Parameters.AddWithValue("@CONSERVAR_NUMERACION", SqlDbType.Char).Value = item.CONSERVAR_NUMERACION;
-                    sqlcmd.Parameters.AddWithValue("@ACTUALIZAR_CONSECUTIVO", SqlDbType.Char).Value = item.ACTUALIZAR_CONSECUTIVO;
-                    sqlcmd.Parameters.AddWithValue("@FECHA_AUDITORIA", SqlDbType.DateTime).Value = item.FECHA_AUDITORIA;
+                    sqlcmd.Parameters.Add("@ASIENTO", SqlDbType.VarChar).Value = item.ASIENTO;
+                    sqlcmd.Parameters.Add("@PAQUETE", SqlDbType.VarChar).Value = item.PAQUETE;
+                    sqlcmd.Parameters.Add("@TIPO_ASIENTO", SqlDbType.VarChar).Value = item.TIPO_ASIENTO;
+                    sqlcmd.Parameters.Add("@FECHA", SqlDbType.DateTime).Value = item.FECHA;
+                    sqlcmd.Parameters.Add("@CONTABILIDAD", SqlDbType.VarChar).Value = item.CONTABILIDAD;
+                    sqlcmd.Parameters.Add("@NOTAS", SqlDbType.VarChar).Value = item.NOTAS;
+                    sqlcmd.Parameters.Add("@ESTADO", SqlDbType.Int).Value = item.ESTADO;
+                    sqlcmd.Parameters.Add("@PERMITIR_DESCUADRADO", SqlDbType.Char).Value = item.PERMITIR_DESCUADRADO;
+                    sqlcmd.Parameters.Add("@CONSERVAR_NUMERACION", SqlDbType.Char).Value = item.CONSERVAR_NUMERACION;
+                    sqlcmd.Parameters.Add("@ACTUALIZAR_CONSECUTIVO", SqlDbType.Char).Value = item.ACTUALIZAR_CONSECUTIVO;
+                    sqlcmd.Parameters.Add("@FECHA_AUDITORIA", SqlDbType.DateTime).Value = item.FECHA_AUDITORIA;
 
                     if (sqlcmd.ExecuteNonQuery() > 0)
                         return true;
@@ -183,7 +183,7 @@ namespace VidaCamara.DIS.data
             }
             catch (Exception ex)
             {
-                throw(new Exception(ex.Message));
+                throw(new Exception(ex.Message,ex.InnerException));
             }
         }
 
@@ -274,20 +274,20 @@ namespace VidaCamara.DIS.data
                         foreach (var det in detalle)
                         {
                             sqlcmd.Parameters.Clear();
-                            sqlcmd.Parameters.AddWithValue("@ASIENTO", SqlDbType.VarChar).Value = det.ASIENTO;
-                            sqlcmd.Parameters.AddWithValue("@CONSECUTIVO", SqlDbType.Int).Value = consecutivo;
-                            sqlcmd.Parameters.AddWithValue("@CENTRO_COSTO", SqlDbType.VarChar).Value = det.CENTRO_COSTO;
-                            sqlcmd.Parameters.AddWithValue("@CUENTA_CONTABLE", SqlDbType.VarChar).Value = det.CUENTA_CONTABLE;
-                            sqlcmd.Parameters.AddWithValue("@FUENTE", SqlDbType.VarChar).Value = det.FUENTE;
-                            sqlcmd.Parameters.AddWithValue("@REFERENCIA", SqlDbType.VarChar).Value = det.REFERENCIA;
-                            sqlcmd.Parameters.AddWithValue("@MONTO_LOCAL", SqlDbType.Decimal).Value = det.MONTO_LOCAL;
-                            sqlcmd.Parameters.AddWithValue("@MONTO_DOLAR", SqlDbType.Decimal).Value = det.MONTO_DOLAR;
-                            sqlcmd.Parameters.AddWithValue("@MONTO_UNIDADES", SqlDbType.Decimal).Value = det.MONTO_UNIDADES;
-                            sqlcmd.Parameters.AddWithValue("@NIT", SqlDbType.Char).Value = det.NIT;
-                            sqlcmd.Parameters.AddWithValue("@DIMENSION1", SqlDbType.VarChar).Value = det.DIMENSION1;
-                            sqlcmd.Parameters.AddWithValue("@DIMENSION2", SqlDbType.VarChar).Value = det.DIMENSION2;
-                            sqlcmd.Parameters.AddWithValue("@DIMENSION3", SqlDbType.VarChar).Value = det.DIMENSION3;
-                            sqlcmd.Parameters.AddWithValue("@DIMENSION4", SqlDbType.VarChar).Value = det.DIMENSION4;
+                            sqlcmd.Parameters.Add("@ASIENTO", SqlDbType.VarChar).Value = det.ASIENTO;
+                            sqlcmd.Parameters.Add("@CONSECUTIVO", SqlDbType.Int).Value = consecutivo;
+                            sqlcmd.Parameters.Add("@CENTRO_COSTO", SqlDbType.VarChar).Value = det.CENTRO_COSTO;
+                            sqlcmd.Parameters.Add("@CUENTA_CONTABLE", SqlDbType.VarChar).Value = det.CUENTA_CONTABLE;
+                            sqlcmd.Parameters.Add("@FUENTE", SqlDbType.VarChar).Value = det.FUENTE;
+                            sqlcmd.Parameters.Add("@REFERENCIA", SqlDbType.VarChar).Value = det.REFERENCIA;
+                            sqlcmd.Parameters.Add("@MONTO_LOCAL", SqlDbType.Decimal).Value = det.MONTO_LOCAL;
+                            sqlcmd.Parameters.Add("@MONTO_DOLAR", SqlDbType.Decimal).Value = det.MONTO_DOLAR;
+                            sqlcmd.Parameters.Add("@MONTO_UNIDADES", SqlDbType.Decimal).Value = det.MONTO_UNIDADES;
+                            sqlcmd.Parameters.Add("@NIT", SqlDbType.Char).Value = det.NIT==null?string.Empty: det.NIT;
+                            sqlcmd.Parameters.Add("@DIMENSION1", SqlDbType.VarChar).Value = det.DIMENSION1 == null ? string.Empty : det.DIMENSION1;
+                            sqlcmd.Parameters.Add("@DIMENSION2", SqlDbType.VarChar).Value = det.DIMENSION2 == null ? string.Empty : det.DIMENSION2;
+                            sqlcmd.Parameters.Add("@DIMENSION3", SqlDbType.VarChar).Value = det.DIMENSION3 == null ? string.Empty : det.DIMENSION3;
+                            sqlcmd.Parameters.Add("@DIMENSION4", SqlDbType.VarChar).Value = det.DIMENSION4 == null ? string.Empty : det.DIMENSION4;
                             sqlcmd.ExecuteNonQuery();
                             consecutivo++;
                         }
@@ -296,7 +296,7 @@ namespace VidaCamara.DIS.data
             }
             catch (Exception ex)
             {
-                throw(new Exception(ex.Message));
+                throw(new Exception(ex.Message,ex.InnerException));
             }
         }
 

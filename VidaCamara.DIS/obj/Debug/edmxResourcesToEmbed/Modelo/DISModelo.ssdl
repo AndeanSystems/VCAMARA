@@ -1745,7 +1745,8 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
   <Function Name="pa_sel_pagoNominaAprueba" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdeContrato" Type="int" Mode="In" />
     <Parameter Name="NombreTipoArchivo" Type="varchar" Mode="In" />
-    <Parameter Name="Fecha" Type="date" Mode="In" />
+    <Parameter Name="FechaInicio" Type="date" Mode="In" />
+    <Parameter Name="FechaFin" Type="date" Mode="In" />
   </Function>
   <Function Name="pa_sel_pagoNominaApruebaDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdHistoriaLinCab" Type="int" Mode="In" />

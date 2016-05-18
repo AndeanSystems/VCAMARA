@@ -42,7 +42,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/03/2016 14:58:50</publishTime>
     </File>
     <File Include="bin/VidaCamara.DIS.dll">
-      <publishTime>04/24/2016 18:05:18</publishTime>
+      <publishTime>05/15/2016 18:26:54</publishTime>
     </File>
     <File Include="bin/VidaCamara.Masiva.exe">
       <publishTime>04/06/2016 22:25:03</publishTime>
@@ -51,7 +51,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/24/2016 18:05:18</publishTime>
     </File>
     <File Include="bin/VidaCamara.Web.dll">
-      <publishTime>04/24/2016 18:17:42</publishTime>
+      <publishTime>05/15/2016 18:26:55</publishTime>
     </File>
     <File Include="Default.aspx">
       <publishTime>02/03/2016 14:58:49</publishTime>

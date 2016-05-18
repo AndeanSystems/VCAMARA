@@ -1750,7 +1750,8 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
         <Function Name="pa_sel_pagoNominaAprueba" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdeContrato" Type="int" Mode="In" />
           <Parameter Name="NombreTipoArchivo" Type="varchar" Mode="In" />
-          <Parameter Name="Fecha" Type="date" Mode="In" />
+          <Parameter Name="FechaInicio" Type="date" Mode="In" />
+          <Parameter Name="FechaFin" Type="date" Mode="In" />
         </Function>
         <Function Name="pa_sel_pagoNominaApruebaDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdHistoriaLinCab" Type="int" Mode="In" />
@@ -2738,17 +2739,18 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
             <End Role="TipoInforme" EntitySet="TipoInformes" />
             <End Role="TipoArchivo" EntitySet="TipoArchivoes" />
           </AssociationSet>
-          <FunctionImport Name="pa_sel_pagoNominaAprueba" ReturnType="Collection(DISModelo.pa_sel_pagoNominaAprueba_Result)">
-            <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
-            <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
-            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="pa_sel_LogOperacion" ReturnType="Collection(DISModelo.pa_sel_LogOperacion_Result)">
             <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
             <Parameter Name="TipoEvento" Mode="In" Type="String" />
             <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
             <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
             <Parameter Name="Descripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pa_sel_pagoNominaAprueba" ReturnType="Collection(DISModelo.pa_sel_pagoNominaAprueba_Result)">
+            <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
+            <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
@@ -4766,20 +4768,6 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="pa_sel_pagoNominaAprueba_Result">
-          <Property Type="Int32" Name="ArchivoId" Nullable="false" />
-          <Property Type="Int64" Name="IdLinCab" Nullable="false" />
-          <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
-          <Property Type="DateTime" Name="FechaCarga" Nullable="true" Precision="23" />
-          <Property Type="String" Name="Moneda" Nullable="false" MaxLength="7" />
-          <Property Type="Int32" Name="TotalRegistros" Nullable="true" />
-          <Property Type="Decimal" Name="ImporteTotal" Nullable="true" Precision="38" Scale="6" />
-          <Property Type="Decimal" Name="PagoVC" Nullable="true" Precision="9" Scale="6" />
-          <Property Type="DateTime" Name="FechaInfo" Nullable="false" Precision="23" />
-          <Property Type="String" Name="UsuReg" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="Aprobar" Nullable="false" MaxLength="1" />
-          <Property Type="String" Name="Eliminar" Nullable="false" MaxLength="1" />
-        </ComplexType>
         <ComplexType Name="pa_sel_LogOperacion_Result">
           <Property Type="Int64" Name="CodiLogOper" Nullable="false" />
           <Property Type="Int32" Name="IDE_CONTRATO" Nullable="false" />
@@ -4794,6 +4782,20 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <Property Type="String" Name="Evento" Nullable="false" MaxLength="250" />
           <Property Type="String" Name="Columna" Nullable="true" MaxLength="200" />
           <Property Type="String" Name="tabla" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="pa_sel_pagoNominaAprueba_Result">
+          <Property Type="Int32" Name="ArchivoId" Nullable="false" />
+          <Property Type="Int64" Name="IdLinCab" Nullable="false" />
+          <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="FechaCarga" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Moneda" Nullable="false" MaxLength="7" />
+          <Property Type="Int32" Name="TotalRegistros" Nullable="true" />
+          <Property Type="Decimal" Name="ImporteTotal" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="PagoVC" Nullable="true" Precision="9" Scale="6" />
+          <Property Type="DateTime" Name="FechaInfo" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuReg" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Aprobar" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="Eliminar" Nullable="false" MaxLength="1" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -6515,24 +6517,6 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="pa_sel_pagoNominaAprueba" FunctionName="DISModelo.Store.pa_sel_pagoNominaAprueba">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DISModelo.pa_sel_pagoNominaAprueba_Result">
-                <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
-                <ScalarProperty Name="IdLinCab" ColumnName="IdLinCab" />
-                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
-                <ScalarProperty Name="FechaCarga" ColumnName="FechaCarga" />
-                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-                <ScalarProperty Name="TotalRegistros" ColumnName="TotalRegistros" />
-                <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
-                <ScalarProperty Name="PagoVC" ColumnName="PagoVC" />
-                <ScalarProperty Name="FechaInfo" ColumnName="FechaInfo" />
-                <ScalarProperty Name="UsuReg" ColumnName="UsuReg" />
-                <ScalarProperty Name="Aprobar" ColumnName="Aprobar" />
-                <ScalarProperty Name="Eliminar" ColumnName="Eliminar" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_sel_LogOperacion" FunctionName="DISModelo.Store.pa_sel_LogOperacion">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DISModelo.pa_sel_LogOperacion_Result">
@@ -6549,6 +6533,24 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
                 <ScalarProperty Name="Evento" ColumnName="Evento" />
                 <ScalarProperty Name="Columna" ColumnName="Columna" />
                 <ScalarProperty Name="tabla" ColumnName="tabla" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_sel_pagoNominaAprueba" FunctionName="DISModelo.Store.pa_sel_pagoNominaAprueba">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DISModelo.pa_sel_pagoNominaAprueba_Result">
+                <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
+                <ScalarProperty Name="IdLinCab" ColumnName="IdLinCab" />
+                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+                <ScalarProperty Name="FechaCarga" ColumnName="FechaCarga" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="TotalRegistros" ColumnName="TotalRegistros" />
+                <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
+                <ScalarProperty Name="PagoVC" ColumnName="PagoVC" />
+                <ScalarProperty Name="FechaInfo" ColumnName="FechaInfo" />
+                <ScalarProperty Name="UsuReg" ColumnName="UsuReg" />
+                <ScalarProperty Name="Aprobar" ColumnName="Aprobar" />
+                <ScalarProperty Name="Eliminar" ColumnName="Eliminar" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

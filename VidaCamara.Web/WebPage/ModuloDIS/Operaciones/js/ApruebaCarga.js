@@ -49,7 +49,7 @@
         }
     });
     function consultarRegistros() {
-        var filters = [$("#ctl00_ContentPlaceHolder1_ddl_tipo_archivo").val(), $("#ctl00_ContentPlaceHolder1_txt_fecha_inicio").val(), $("#ctl00_ContentPlaceHolder1_txt_fecha_inicio").val(),""];
+        var filters = [$("#ctl00_ContentPlaceHolder1_ddl_tipo_archivo").val(), $("#ctl00_ContentPlaceHolder1_txt_fecha_inicio").val(), $("#txt_fecha_fin").val(), ""];
         listApruebaCarga(new contrato_sis(), filters);
     }
     var action = "/WebPage/ModuloDIS/Operaciones/frmCargaAprobacion.aspx/listApruebaCarga";

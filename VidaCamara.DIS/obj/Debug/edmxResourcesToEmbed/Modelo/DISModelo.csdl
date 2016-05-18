@@ -432,17 +432,18 @@
       <End Role="TipoInforme" EntitySet="TipoInformes" />
       <End Role="TipoArchivo" EntitySet="TipoArchivoes" />
     </AssociationSet>
-    <FunctionImport Name="pa_sel_pagoNominaAprueba" ReturnType="Collection(DISModelo.pa_sel_pagoNominaAprueba_Result)">
-      <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
-      <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
-      <Parameter Name="Fecha" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="pa_sel_LogOperacion" ReturnType="Collection(DISModelo.pa_sel_LogOperacion_Result)">
       <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
       <Parameter Name="TipoEvento" Mode="In" Type="String" />
       <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
       <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
       <Parameter Name="Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="pa_sel_pagoNominaAprueba" ReturnType="Collection(DISModelo.pa_sel_pagoNominaAprueba_Result)">
+      <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
+      <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
+      <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="pa_devuelveresultado_Result">
@@ -2460,20 +2461,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <ComplexType Name="pa_sel_pagoNominaAprueba_Result">
-    <Property Type="Int32" Name="ArchivoId" Nullable="false" />
-    <Property Type="Int64" Name="IdLinCab" Nullable="false" />
-    <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
-    <Property Type="DateTime" Name="FechaCarga" Nullable="true" Precision="23" />
-    <Property Type="String" Name="Moneda" Nullable="false" MaxLength="7" />
-    <Property Type="Int32" Name="TotalRegistros" Nullable="true" />
-    <Property Type="Decimal" Name="ImporteTotal" Nullable="true" Precision="38" Scale="6" />
-    <Property Type="Decimal" Name="PagoVC" Nullable="true" Precision="9" Scale="6" />
-    <Property Type="DateTime" Name="FechaInfo" Nullable="false" Precision="23" />
-    <Property Type="String" Name="UsuReg" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="Aprobar" Nullable="false" MaxLength="1" />
-    <Property Type="String" Name="Eliminar" Nullable="false" MaxLength="1" />
-  </ComplexType>
   <ComplexType Name="pa_sel_LogOperacion_Result">
     <Property Type="Int64" Name="CodiLogOper" Nullable="false" />
     <Property Type="Int32" Name="IDE_CONTRATO" Nullable="false" />
@@ -2488,5 +2475,19 @@
     <Property Type="String" Name="Evento" Nullable="false" MaxLength="250" />
     <Property Type="String" Name="Columna" Nullable="true" MaxLength="200" />
     <Property Type="String" Name="tabla" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="pa_sel_pagoNominaAprueba_Result">
+    <Property Type="Int32" Name="ArchivoId" Nullable="false" />
+    <Property Type="Int64" Name="IdLinCab" Nullable="false" />
+    <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="FechaCarga" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Moneda" Nullable="false" MaxLength="7" />
+    <Property Type="Int32" Name="TotalRegistros" Nullable="true" />
+    <Property Type="Decimal" Name="ImporteTotal" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="PagoVC" Nullable="true" Precision="9" Scale="6" />
+    <Property Type="DateTime" Name="FechaInfo" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UsuReg" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Aprobar" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="Eliminar" Nullable="false" MaxLength="1" />
   </ComplexType>
 </Schema>

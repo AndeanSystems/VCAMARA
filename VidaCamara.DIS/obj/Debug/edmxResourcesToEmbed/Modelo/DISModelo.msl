@@ -1715,24 +1715,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="pa_sel_pagoNominaAprueba" FunctionName="DISModelo.Store.pa_sel_pagoNominaAprueba">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="DISModelo.pa_sel_pagoNominaAprueba_Result">
-          <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
-          <ScalarProperty Name="IdLinCab" ColumnName="IdLinCab" />
-          <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
-          <ScalarProperty Name="FechaCarga" ColumnName="FechaCarga" />
-          <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-          <ScalarProperty Name="TotalRegistros" ColumnName="TotalRegistros" />
-          <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
-          <ScalarProperty Name="PagoVC" ColumnName="PagoVC" />
-          <ScalarProperty Name="FechaInfo" ColumnName="FechaInfo" />
-          <ScalarProperty Name="UsuReg" ColumnName="UsuReg" />
-          <ScalarProperty Name="Aprobar" ColumnName="Aprobar" />
-          <ScalarProperty Name="Eliminar" ColumnName="Eliminar" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="pa_sel_LogOperacion" FunctionName="DISModelo.Store.pa_sel_LogOperacion">
       <ResultMapping>
         <ComplexTypeMapping TypeName="DISModelo.pa_sel_LogOperacion_Result">
@@ -1749,6 +1731,24 @@
           <ScalarProperty Name="Evento" ColumnName="Evento" />
           <ScalarProperty Name="Columna" ColumnName="Columna" />
           <ScalarProperty Name="tabla" ColumnName="tabla" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="pa_sel_pagoNominaAprueba" FunctionName="DISModelo.Store.pa_sel_pagoNominaAprueba">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DISModelo.pa_sel_pagoNominaAprueba_Result">
+          <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
+          <ScalarProperty Name="IdLinCab" ColumnName="IdLinCab" />
+          <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+          <ScalarProperty Name="FechaCarga" ColumnName="FechaCarga" />
+          <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+          <ScalarProperty Name="TotalRegistros" ColumnName="TotalRegistros" />
+          <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
+          <ScalarProperty Name="PagoVC" ColumnName="PagoVC" />
+          <ScalarProperty Name="FechaInfo" ColumnName="FechaInfo" />
+          <ScalarProperty Name="UsuReg" ColumnName="UsuReg" />
+          <ScalarProperty Name="Aprobar" ColumnName="Aprobar" />
+          <ScalarProperty Name="Eliminar" ColumnName="Eliminar" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
