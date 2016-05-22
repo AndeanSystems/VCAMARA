@@ -15,9 +15,10 @@ namespace VidaCamara.DIS.data
                 var sort = jtSorting.Split(' ');
                 using (var db = new DISEntities())
                 {
-                    var query = db.ReglaArchivos.OrderBy(a=>a.CaracterInicial).Where(a=>a.Archivo.Equals(regla.Archivo) &&
-                                (a.TipoLinea.Equals(regla.TipoLinea) || regla.TipoLinea.Equals("0")) && a.vigente == regla.vigente && 
-                                a.NUM_CONT_LIC == regla.NUM_CONT_LIC && (a.IdReglaArchivo == regla.IdReglaArchivo ||regla.IdReglaArchivo == 0)).ToList();
+                    var query = db.ReglaArchivos.OrderBy(a=>a.CaracterInicial)
+                                                .Where(a=>(a.Archivo.Equals(regla.Archivo) || regla.Archivo.Equals("0"))&&
+                                                (a.TipoLinea.Equals(regla.TipoLinea) || regla.TipoLinea.Equals("0")) && a.vigente == regla.vigente && 
+                                                a.NUM_CONT_LIC == regla.NUM_CONT_LIC && (a.IdReglaArchivo == regla.IdReglaArchivo ||regla.IdReglaArchivo == 0)).ToList();
                     switch (sort[0])
                     {
                         case "TipoLinea":

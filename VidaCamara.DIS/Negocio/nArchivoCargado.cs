@@ -9,6 +9,7 @@ using System;
 using System.Reflection;
 using NPOI.HSSF.Util;
 using VidaCamara.DIS.Modelo.EEntidad;
+using System.Linq;
 
 namespace VidaCamara.DIS.Negocio
 {
@@ -35,7 +36,7 @@ namespace VidaCamara.DIS.Negocio
         /// <param name="det"></param>
         /// <param name="filterParam"></param>
         /// <returns></returns>
-        public string getDescargarConsulta(HistorialCargaArchivo_LinCab cab,NOMINA nomina, HistorialCargaArchivo_LinDet det, object[] filterParam)
+        public string getDescargarConsulta(HistorialCargaArchivo_LinCab cab, NOMINA nomina, HistorialCargaArchivo_LinDet det, object[] filterParam)
         {
             var helperStyle = new Helpers.excelStyle();
             try
@@ -48,8 +49,12 @@ namespace VidaCamara.DIS.Negocio
                 XSSFWorkbook book = new XSSFWorkbook();
                 var contratoSis = new nContratoSis().listContratoByID(new CONTRATO_SYS() { IDE_CONTRATO = cab.IDE_CONTRATO});
                 var reglaArchivo = new ReglaArchivo() { Archivo = filterParam[0].ToString(), TipoLinea = tipoLinea,NUM_CONT_LIC = Convert.ToInt32(contratoSis.NRO_CONTRATO),vigente = 1 };
-                var listReglaArchivo = new nReglaArchivo().getListReglaArchivo(reglaArchivo, 0, 200,"IdReglaArchivo ASC", out total);
-
+                var listReglaArchivo = new nReglaArchivo().getListReglaArchivo(reglaArchivo, 0, 1000,"IdReglaArchivo ASC", out total);
+                if (reglaArchivo.Archivo.Equals("0"))
+                {
+                    listReglaArchivo = listReglaArchivo.GroupBy(x => new { x.NombreCampo, x.TituloColumna })
+                                   .Select(y=>new ReglaArchivo() {NombreCampo = y.Key.NombreCampo,TituloColumna = y.Key.TituloColumna }).ToList();
+                }
                 //crear el libro
                 var sheet = book.CreateSheet(nombreArchivo);
                 var rowCabecera = sheet.CreateRow(1);

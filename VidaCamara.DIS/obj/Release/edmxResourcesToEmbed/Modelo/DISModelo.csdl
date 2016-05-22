@@ -265,6 +265,19 @@
       <Parameter Name="ArchivoId" Mode="In" Type="Int32" />
       <Parameter Name="Column" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="pa_sel_LogOperacion" ReturnType="Collection(DISModelo.pa_sel_LogOperacion_Result)">
+      <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
+      <Parameter Name="TipoEvento" Mode="In" Type="String" />
+      <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="pa_sel_pagoNominaAprueba" ReturnType="Collection(DISModelo.pa_sel_pagoNominaAprueba_Result)">
+      <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
+      <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
+      <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+    </FunctionImport>
     <EntitySet Name="CIERRE_PROCESO" EntityType="DISModelo.CIERRE_PROCESO" />
     <EntitySet Name="CONCEPTOes" EntityType="DISModelo.CONCEPTO" />
     <EntitySet Name="CONTRATOes" EntityType="DISModelo.CONTRATO" />
@@ -432,18 +445,6 @@
       <End Role="TipoInforme" EntitySet="TipoInformes" />
       <End Role="TipoArchivo" EntitySet="TipoArchivoes" />
     </AssociationSet>
-    <FunctionImport Name="pa_sel_pagoNominaAprueba" ReturnType="Collection(DISModelo.pa_sel_pagoNominaAprueba_Result)">
-      <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
-      <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
-      <Parameter Name="Fecha" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="pa_sel_LogOperacion" ReturnType="Collection(DISModelo.pa_sel_LogOperacion_Result)">
-      <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
-      <Parameter Name="TipoEvento" Mode="In" Type="String" />
-      <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
-      <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
-      <Parameter Name="Descripcion" Mode="In" Type="String" />
-    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="pa_devuelveresultado_Result">
     <Property Type="Int32" Name="IdRegistroMontoAlto" Nullable="false" />
@@ -857,6 +858,35 @@
     <Property Type="String" Name="Estado" Nullable="true" MaxLength="1" />
     <Property Type="String" Name="EstadoPago" Nullable="true" MaxLength="1" />
     <Property Type="Decimal" Name="Importe" Nullable="true" Precision="38" Scale="6" />
+  </ComplexType>
+  <ComplexType Name="pa_sel_LogOperacion_Result">
+    <Property Type="Int64" Name="CodiLogOper" Nullable="false" />
+    <Property Type="Int32" Name="IDE_CONTRATO" Nullable="false" />
+    <Property Type="String" Name="DES_CONTRATO" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="FechEven" Nullable="false" Precision="23" />
+    <Property Type="String" Name="TipoOper" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="CodiOper" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="CodiEven" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="CodiUsu" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="CodiCnx" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="TipoEvento" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="Evento" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="Columna" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="tabla" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="pa_sel_pagoNominaAprueba_Result">
+    <Property Type="Int32" Name="ArchivoId" Nullable="false" />
+    <Property Type="Int64" Name="IdLinCab" Nullable="false" />
+    <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="FechaCarga" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Moneda" Nullable="false" MaxLength="7" />
+    <Property Type="Int32" Name="TotalRegistros" Nullable="true" />
+    <Property Type="Decimal" Name="ImporteTotal" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="PagoVC" Nullable="true" Precision="9" Scale="6" />
+    <Property Type="DateTime" Name="FechaInfo" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UsuReg" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Aprobar" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="Eliminar" Nullable="false" MaxLength="1" />
   </ComplexType>
   <EntityType Name="CIERRE_PROCESO">
     <Key>
@@ -1383,7 +1413,7 @@
     <Property Name="SEG_NOMB_SOL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="SUC_INTE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
     <Property Name="CumpleValidacion" Type="Int32" />
-    <Property Name="ReglaObservada" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="ReglaObservada" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="HistorialCargaArchivo_LinCab" Relationship="DISModelo.FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab" FromRole="HistorialCargaArchivo_LinDet" ToRole="HistorialCargaArchivo_LinCab" />
   </EntityType>
   <EntityType Name="ReglaArchivo">
@@ -2460,33 +2490,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <ComplexType Name="pa_sel_pagoNominaAprueba_Result">
-    <Property Type="Int32" Name="ArchivoId" Nullable="false" />
-    <Property Type="Int64" Name="IdLinCab" Nullable="false" />
-    <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
-    <Property Type="DateTime" Name="FechaCarga" Nullable="true" Precision="23" />
-    <Property Type="String" Name="Moneda" Nullable="false" MaxLength="7" />
-    <Property Type="Int32" Name="TotalRegistros" Nullable="true" />
-    <Property Type="Decimal" Name="ImporteTotal" Nullable="true" Precision="38" Scale="6" />
-    <Property Type="Decimal" Name="PagoVC" Nullable="true" Precision="9" Scale="6" />
-    <Property Type="DateTime" Name="FechaInfo" Nullable="false" Precision="23" />
-    <Property Type="String" Name="UsuReg" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="Aprobar" Nullable="false" MaxLength="1" />
-    <Property Type="String" Name="Eliminar" Nullable="false" MaxLength="1" />
-  </ComplexType>
-  <ComplexType Name="pa_sel_LogOperacion_Result">
-    <Property Type="Int64" Name="CodiLogOper" Nullable="false" />
-    <Property Type="Int32" Name="IDE_CONTRATO" Nullable="false" />
-    <Property Type="String" Name="DES_CONTRATO" Nullable="false" MaxLength="100" />
-    <Property Type="DateTime" Name="FechEven" Nullable="false" Precision="23" />
-    <Property Type="String" Name="TipoOper" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="CodiOper" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="CodiEven" Nullable="true" MaxLength="8" />
-    <Property Type="String" Name="CodiUsu" Nullable="true" MaxLength="30" />
-    <Property Type="String" Name="CodiCnx" Nullable="true" MaxLength="15" />
-    <Property Type="String" Name="TipoEvento" Nullable="false" MaxLength="250" />
-    <Property Type="String" Name="Evento" Nullable="false" MaxLength="250" />
-    <Property Type="String" Name="Columna" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="tabla" Nullable="true" MaxLength="100" />
-  </ComplexType>
 </Schema>

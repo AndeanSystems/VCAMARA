@@ -18,12 +18,14 @@ namespace VidaCamara.DIS.data
                     DateTime fecha_ini = string.IsNullOrEmpty(filterParam[1].ToString()) ? new DateTime(1900, 01, 01) : Convert.ToDateTime(filterParam[1].ToString());
                     DateTime fecha_fin = string.IsNullOrEmpty(filterParam[2].ToString()) ? DateTime.Now : Convert.ToDateTime(filterParam[2].ToString());
 
-                    //DateTime.TryParse(filterParam[1].ToString(), out fecha_ini);
-                    //DateTime.TryParse(filterParam[2].ToString(), out fecha_fin);
+                    DateTime fechaAprobacionInicio = string.IsNullOrEmpty(filterParam[4].ToString()) ? new DateTime(1900, 01, 01) : Convert.ToDateTime(filterParam[4].ToString());
+                    DateTime fechaAprobacionFin = string.IsNullOrEmpty(filterParam[5].ToString()) ? DateTime.Now : Convert.ToDateTime(filterParam[5].ToString());
+
                     var nombreTipoArchivo = filterParam[0].ToString();
 
                     var result = db.pa_sel_historiaCargaArchivoLinDet(nombreTipoArchivo, cab.IDE_CONTRATO, det.COD_AFP, det.COD_CUSP,
-                                det.PRI_NOMB_PEN, det.APE_MATE_PEN, det.NUM_DOCU_PEN, det.NUM_SOLI_PEN, det.TIP_MONE.Trim(), fecha_ini, fecha_fin,cab.ESTADO).ToList();
+                                det.PRI_NOMB_PEN, det.APE_MATE_PEN, det.NUM_DOCU_PEN, det.NUM_SOLI_PEN, det.TIP_MONE.Trim(), fecha_ini,
+                                fecha_fin,fechaAprobacionInicio,fechaAprobacionFin,cab.ESTADO).ToList();
                     total = result.Count;
                     foreach (var item in result.Skip(jtStartIndex).Take(jtPageSize))
                     {

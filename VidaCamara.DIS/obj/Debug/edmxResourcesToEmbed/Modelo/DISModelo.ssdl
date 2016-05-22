@@ -876,7 +876,7 @@ warning 6002: The table/view 'vcamara2.dbo.USUARIO' does not have a primary key 
     <Property Name="SEG_NOMB_SOL" Type="varchar" MaxLength="20" />
     <Property Name="SUC_INTE" Type="varchar" MaxLength="25" />
     <Property Name="CumpleValidacion" Type="int" />
-    <Property Name="ReglaObservada" Type="varchar" MaxLength="40" />
+    <Property Name="ReglaObservada" Type="varchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="ReglaArchivo">
     <Key>
@@ -1715,6 +1715,8 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
     <Parameter Name="TIP_MONE" Type="char" Mode="In" />
     <Parameter Name="FEC_PAGO_INI" Type="date" Mode="In" />
     <Parameter Name="FEC_PAGO_FIN" Type="date" Mode="In" />
+    <Parameter Name="FechaAprobacionInicio" Type="date" Mode="In" />
+    <Parameter Name="FechaAprobacionHasta" Type="date" Mode="In" />
     <Parameter Name="Estado" Type="char" Mode="In" />
   </Function>
   <Function Name="pa_sel_historiaLinDetXArchivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1728,6 +1730,17 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
     <Parameter Name="FechaInicio" Type="date" Mode="In" />
     <Parameter Name="FechaFin" Type="date" Mode="In" />
     <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="pa_sel_nominaConsulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NombreTipoArchivo" Type="varchar" Mode="In" />
+    <Parameter Name="ContratoId" Type="int" Mode="In" />
+    <Parameter Name="NombreBene" Type="varchar" Mode="In" />
+    <Parameter Name="MonedaId" Type="smallint" Mode="In" />
+    <Parameter Name="Estado" Type="char" Mode="In" />
+    <Parameter Name="FechaCreacionInicio" Type="date" Mode="In" />
+    <Parameter Name="FechaCreacionFin" Type="date" Mode="In" />
+    <Parameter Name="FechaAprobacionInicio" Type="date" Mode="In" />
+    <Parameter Name="FechaAprobacionFin" Type="date" Mode="In" />
   </Function>
   <Function Name="pa_sel_NominaForTelebankinByArchivoId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ArchivoId" Type="int" Mode="In" />
@@ -1756,6 +1769,8 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
     <Parameter Name="NombreTipoArchivo" Type="varchar" Mode="In" />
     <Parameter Name="FechaInicio" Type="date" Mode="In" />
     <Parameter Name="FechaFin" Type="date" Mode="In" />
+    <Parameter Name="FechaInicioAprobacion" Type="date" Mode="In" />
+    <Parameter Name="FechaFinAprobacion" Type="date" Mode="In" />
   </Function>
   <Function Name="pa_upd_ApruebaLinCabNomina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdContrato" Type="int" Mode="In" />

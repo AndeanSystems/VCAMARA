@@ -31,6 +31,8 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
                 concepto.SetEstablecerDataSourceConcepto(ddl_tipo_archivo, "17");
                 txt_fec_ini_o.Text = DateTime.Now.ToShortDateString();
                 txt_fec_hasta_o.Text = DateTime.Now.ToShortDateString();
+                txt_fecha_aprobacion_desde.Text = DateTime.Now.ToShortDateString();
+                txt_fecha_aprobacion_hasta.Text = DateTime.Now.ToShortDateString();
             }
         }
         protected void btn_exportar_Click(object sender, System.Web.UI.ImageClickEventArgs e)

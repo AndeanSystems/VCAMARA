@@ -2,6 +2,7 @@
 using VidaCamara.DIS.Modelo;
 using VidaCamara.DIS.data;
 using System.Text;
+using System.Linq;
 
 namespace VidaCamara.DIS.Negocio
 {
@@ -28,6 +29,11 @@ namespace VidaCamara.DIS.Negocio
         {
             var total = 0;
             var listRegla = new dReglaArchivo().getListReglaArchivo(regla, 0, 1000, "CaracterInicial ASC", out total);
+            //if (regla.Archivo.Equals("0"))
+            //{
+            //    listRegla = listRegla.GroupBy(x => new { x.NombreCampo, x.TituloColumna,x.TipoCampo })
+            //                       .Select(y => new ReglaArchivo() { NombreCampo = y.Key.NombreCampo, TituloColumna = y.Key.TituloColumna,TipoCampo = y.Key.TipoCampo }).ToList();
+            //}
             var sb = new StringBuilder();
             sb.Append("var fields = {");
             for (int i = 1; i <= listRegla.Count; i++)
@@ -37,7 +43,7 @@ namespace VidaCamara.DIS.Negocio
                 sb.Append("title:" + "'" + listRegla[i - 1].TituloColumna +"'"+type+ "}" + (i == listRegla.Count ? "" : ","));
             }
             sb.Append(columnsAdd);
-            sb.Append("};");
+            sb.Append("}");
             return sb;
         }
 

@@ -42,7 +42,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/03/2016 14:58:50</publishTime>
     </File>
     <File Include="bin/VidaCamara.DIS.dll">
-      <publishTime>05/15/2016 18:26:54</publishTime>
+      <publishTime>05/19/2016 21:06:03</publishTime>
     </File>
     <File Include="bin/VidaCamara.Masiva.exe">
       <publishTime>04/06/2016 22:25:03</publishTime>
@@ -51,7 +51,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/24/2016 18:05:18</publishTime>
     </File>
     <File Include="bin/VidaCamara.Web.dll">
-      <publishTime>05/15/2016 18:26:55</publishTime>
+      <publishTime>05/19/2016 21:06:04</publishTime>
     </File>
     <File Include="Default.aspx">
       <publishTime>02/03/2016 14:58:49</publishTime>
@@ -561,19 +561,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/03/2016 14:58:51</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Operaciones/frmCargaAprobacion.aspx">
-      <publishTime>02/24/2016 19:41:30</publishTime>
+      <publishTime>05/17/2016 22:45:43</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Operaciones/frmCargaDatos.aspx">
       <publishTime>04/06/2016 23:20:12</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Operaciones/frmInterfaceContableSIS.aspx">
-      <publishTime>03/30/2016 11:34:06</publishTime>
+      <publishTime>05/17/2016 21:56:05</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Operaciones/frmTelebankig.aspx">
       <publishTime>04/04/2016 22:58:01</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Operaciones/js/ApruebaCarga.js">
-      <publishTime>04/09/2016 14:05:13</publishTime>
+      <publishTime>05/17/2016 22:46:42</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Operaciones/js/CargaDatos.js">
       <publishTime>02/20/2016 16:43:08</publishTime>

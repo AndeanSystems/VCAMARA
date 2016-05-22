@@ -1,11 +1,11 @@
 ﻿$(document).ready(function () {
     var contrato_sis = function () {
-        this.IDE_CONTRATO = $("#ctl00_ContentPlaceHolder1_ddl_contrato").val()
+        this.IDE_CONTRATO = $("#ddl_contrato").val()
     };
     //eventos
     $("section").delegate("#ctl00_ContentPlaceHolder1_btn_buscar", "click", function (ev) {
         ev.preventDefault();
-        var filters = [$("#ctl00_ContentPlaceHolder1_ddl_tipo_archivo").val(), $("#ctl00_ContentPlaceHolder1_txt_fec_ini_o").val(), $("#ctl00_ContentPlaceHolder1_txt_fec_hasta_o").val()];
+        var filters = [$("#ddl_tipo_archivo").val(), $("#txt_fec_ini_o").val(), $("#txt_fec_hasta_o").val(), $("#txt_fecha_aprobacion_desde").val(), $("#txt_fecha_aprobacion_hasta").val()];
         listSegDescarga(new contrato_sis(), filters);
     });
     const action = "/WebPage/ModuloDIS/Consultas/frmSegDescarga.aspx/listSegDescarga";

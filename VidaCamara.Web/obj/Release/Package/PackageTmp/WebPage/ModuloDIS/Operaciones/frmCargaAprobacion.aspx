@@ -22,8 +22,11 @@
                 <label class="label_to" for="ddl_tipcom_c">Tipo de Archivo </label>
                 <asp:DropDownList CssClass="input_to" ID="ddl_tipo_archivo" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
 
-                <label class="input_right_L" for="ddl_ramo_c">Fecha </label>
+                <label class="input_right_L" for="ddl_ramo_c">Desde</label>
                 <asp:TextBox runat="server"  CssClass="input_right datetime" ID="txt_fecha_inicio" Height="25px" Width="14.8%"/>
+
+                <label class="input_right_T" for="ddl_ramo_c">Hasta </label>
+                <asp:TextBox runat="server"  CssClass="input_right datetime" ID="txt_fecha_fin" ClientIDMode="Static" Height="25px" Width="14.8%"/>
 
                 <div class="iframe">
                     <div id="tblApruebaCarga"></div>

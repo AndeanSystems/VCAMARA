@@ -987,33 +987,6 @@ public partial class DISEntities : DbContext
     }
 
 
-    public virtual ObjectResult<pa_sel_SegDescarga_Result> pa_sel_SegDescarga(Nullable<int> ideContrato, string nombreTipoArchivo, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
-    {
-
-        var ideContratoParameter = ideContrato.HasValue ?
-            new ObjectParameter("IdeContrato", ideContrato) :
-            new ObjectParameter("IdeContrato", typeof(int));
-
-
-        var nombreTipoArchivoParameter = nombreTipoArchivo != null ?
-            new ObjectParameter("NombreTipoArchivo", nombreTipoArchivo) :
-            new ObjectParameter("NombreTipoArchivo", typeof(string));
-
-
-        var fechaInicioParameter = fechaInicio.HasValue ?
-            new ObjectParameter("FechaInicio", fechaInicio) :
-            new ObjectParameter("FechaInicio", typeof(System.DateTime));
-
-
-        var fechaFinParameter = fechaFin.HasValue ?
-            new ObjectParameter("FechaFin", fechaFin) :
-            new ObjectParameter("FechaFin", typeof(System.DateTime));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_SegDescarga_Result>("pa_sel_SegDescarga", ideContratoParameter, nombreTipoArchivoParameter, fechaInicioParameter, fechaFinParameter);
-    }
-
-
     public virtual ObjectResult<Nullable<int>> pa_Valida_RangoFechaXContratoV2(Nullable<System.DateTime> date1, Nullable<System.DateTime> date2)
     {
 
@@ -1074,73 +1047,6 @@ public partial class DISEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_file_CantidadRegistroArchivo_Result>("pa_file_CantidadRegistroArchivo", idArchivoParameter);
-    }
-
-
-    public virtual ObjectResult<pa_sel_historiaCargaArchivoLinDet_Result> pa_sel_historiaCargaArchivoLinDet(string nombreTipoArchivo, Nullable<int> iDE_CONTRATO, string cOD_AFP, string cOD_CUSP, string pRI_NOMB_PEN, string aPE_MATE_PEN, string nUM_DOCU_PEN, string nUM_SOLI_PEN, string tIP_MONE, Nullable<System.DateTime> fEC_PAGO_INI, Nullable<System.DateTime> fEC_PAGO_FIN, string estado)
-    {
-
-        var nombreTipoArchivoParameter = nombreTipoArchivo != null ?
-            new ObjectParameter("NombreTipoArchivo", nombreTipoArchivo) :
-            new ObjectParameter("NombreTipoArchivo", typeof(string));
-
-
-        var iDE_CONTRATOParameter = iDE_CONTRATO.HasValue ?
-            new ObjectParameter("IDE_CONTRATO", iDE_CONTRATO) :
-            new ObjectParameter("IDE_CONTRATO", typeof(int));
-
-
-        var cOD_AFPParameter = cOD_AFP != null ?
-            new ObjectParameter("COD_AFP", cOD_AFP) :
-            new ObjectParameter("COD_AFP", typeof(string));
-
-
-        var cOD_CUSPParameter = cOD_CUSP != null ?
-            new ObjectParameter("COD_CUSP", cOD_CUSP) :
-            new ObjectParameter("COD_CUSP", typeof(string));
-
-
-        var pRI_NOMB_PENParameter = pRI_NOMB_PEN != null ?
-            new ObjectParameter("PRI_NOMB_PEN", pRI_NOMB_PEN) :
-            new ObjectParameter("PRI_NOMB_PEN", typeof(string));
-
-
-        var aPE_MATE_PENParameter = aPE_MATE_PEN != null ?
-            new ObjectParameter("APE_MATE_PEN", aPE_MATE_PEN) :
-            new ObjectParameter("APE_MATE_PEN", typeof(string));
-
-
-        var nUM_DOCU_PENParameter = nUM_DOCU_PEN != null ?
-            new ObjectParameter("NUM_DOCU_PEN", nUM_DOCU_PEN) :
-            new ObjectParameter("NUM_DOCU_PEN", typeof(string));
-
-
-        var nUM_SOLI_PENParameter = nUM_SOLI_PEN != null ?
-            new ObjectParameter("NUM_SOLI_PEN", nUM_SOLI_PEN) :
-            new ObjectParameter("NUM_SOLI_PEN", typeof(string));
-
-
-        var tIP_MONEParameter = tIP_MONE != null ?
-            new ObjectParameter("TIP_MONE", tIP_MONE) :
-            new ObjectParameter("TIP_MONE", typeof(string));
-
-
-        var fEC_PAGO_INIParameter = fEC_PAGO_INI.HasValue ?
-            new ObjectParameter("FEC_PAGO_INI", fEC_PAGO_INI) :
-            new ObjectParameter("FEC_PAGO_INI", typeof(System.DateTime));
-
-
-        var fEC_PAGO_FINParameter = fEC_PAGO_FIN.HasValue ?
-            new ObjectParameter("FEC_PAGO_FIN", fEC_PAGO_FIN) :
-            new ObjectParameter("FEC_PAGO_FIN", typeof(System.DateTime));
-
-
-        var estadoParameter = estado != null ?
-            new ObjectParameter("Estado", estado) :
-            new ObjectParameter("Estado", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_historiaCargaArchivoLinDet_Result>("pa_sel_historiaCargaArchivoLinDet", nombreTipoArchivoParameter, iDE_CONTRATOParameter, cOD_AFPParameter, cOD_CUSPParameter, pRI_NOMB_PENParameter, aPE_MATE_PENParameter, nUM_DOCU_PENParameter, nUM_SOLI_PENParameter, tIP_MONEParameter, fEC_PAGO_INIParameter, fEC_PAGO_FINParameter, estadoParameter);
     }
 
 
@@ -1356,6 +1262,172 @@ public partial class DISEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_pagoNominaAprueba_Result>("pa_sel_pagoNominaAprueba", ideContratoParameter, nombreTipoArchivoParameter, fechaInicioParameter, fechaFinParameter);
+    }
+
+
+    public virtual ObjectResult<pa_sel_SegDescarga_Result> pa_sel_SegDescarga(Nullable<int> ideContrato, string nombreTipoArchivo, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, Nullable<System.DateTime> fechaInicioAprobacion, Nullable<System.DateTime> fechaFinAprobacion)
+    {
+
+        var ideContratoParameter = ideContrato.HasValue ?
+            new ObjectParameter("IdeContrato", ideContrato) :
+            new ObjectParameter("IdeContrato", typeof(int));
+
+
+        var nombreTipoArchivoParameter = nombreTipoArchivo != null ?
+            new ObjectParameter("NombreTipoArchivo", nombreTipoArchivo) :
+            new ObjectParameter("NombreTipoArchivo", typeof(string));
+
+
+        var fechaInicioParameter = fechaInicio.HasValue ?
+            new ObjectParameter("FechaInicio", fechaInicio) :
+            new ObjectParameter("FechaInicio", typeof(System.DateTime));
+
+
+        var fechaFinParameter = fechaFin.HasValue ?
+            new ObjectParameter("FechaFin", fechaFin) :
+            new ObjectParameter("FechaFin", typeof(System.DateTime));
+
+
+        var fechaInicioAprobacionParameter = fechaInicioAprobacion.HasValue ?
+            new ObjectParameter("FechaInicioAprobacion", fechaInicioAprobacion) :
+            new ObjectParameter("FechaInicioAprobacion", typeof(System.DateTime));
+
+
+        var fechaFinAprobacionParameter = fechaFinAprobacion.HasValue ?
+            new ObjectParameter("FechaFinAprobacion", fechaFinAprobacion) :
+            new ObjectParameter("FechaFinAprobacion", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_SegDescarga_Result>("pa_sel_SegDescarga", ideContratoParameter, nombreTipoArchivoParameter, fechaInicioParameter, fechaFinParameter, fechaInicioAprobacionParameter, fechaFinAprobacionParameter);
+    }
+
+
+    public virtual ObjectResult<pa_sel_historiaCargaArchivoLinDet_Result> pa_sel_historiaCargaArchivoLinDet(string nombreTipoArchivo, Nullable<int> iDE_CONTRATO, string cOD_AFP, string cOD_CUSP, string pRI_NOMB_PEN, string aPE_MATE_PEN, string nUM_DOCU_PEN, string nUM_SOLI_PEN, string tIP_MONE, Nullable<System.DateTime> fEC_PAGO_INI, Nullable<System.DateTime> fEC_PAGO_FIN, Nullable<System.DateTime> fechaAprobacionInicio, Nullable<System.DateTime> fechaAprobacionHasta, string estado)
+    {
+
+        var nombreTipoArchivoParameter = nombreTipoArchivo != null ?
+            new ObjectParameter("NombreTipoArchivo", nombreTipoArchivo) :
+            new ObjectParameter("NombreTipoArchivo", typeof(string));
+
+
+        var iDE_CONTRATOParameter = iDE_CONTRATO.HasValue ?
+            new ObjectParameter("IDE_CONTRATO", iDE_CONTRATO) :
+            new ObjectParameter("IDE_CONTRATO", typeof(int));
+
+
+        var cOD_AFPParameter = cOD_AFP != null ?
+            new ObjectParameter("COD_AFP", cOD_AFP) :
+            new ObjectParameter("COD_AFP", typeof(string));
+
+
+        var cOD_CUSPParameter = cOD_CUSP != null ?
+            new ObjectParameter("COD_CUSP", cOD_CUSP) :
+            new ObjectParameter("COD_CUSP", typeof(string));
+
+
+        var pRI_NOMB_PENParameter = pRI_NOMB_PEN != null ?
+            new ObjectParameter("PRI_NOMB_PEN", pRI_NOMB_PEN) :
+            new ObjectParameter("PRI_NOMB_PEN", typeof(string));
+
+
+        var aPE_MATE_PENParameter = aPE_MATE_PEN != null ?
+            new ObjectParameter("APE_MATE_PEN", aPE_MATE_PEN) :
+            new ObjectParameter("APE_MATE_PEN", typeof(string));
+
+
+        var nUM_DOCU_PENParameter = nUM_DOCU_PEN != null ?
+            new ObjectParameter("NUM_DOCU_PEN", nUM_DOCU_PEN) :
+            new ObjectParameter("NUM_DOCU_PEN", typeof(string));
+
+
+        var nUM_SOLI_PENParameter = nUM_SOLI_PEN != null ?
+            new ObjectParameter("NUM_SOLI_PEN", nUM_SOLI_PEN) :
+            new ObjectParameter("NUM_SOLI_PEN", typeof(string));
+
+
+        var tIP_MONEParameter = tIP_MONE != null ?
+            new ObjectParameter("TIP_MONE", tIP_MONE) :
+            new ObjectParameter("TIP_MONE", typeof(string));
+
+
+        var fEC_PAGO_INIParameter = fEC_PAGO_INI.HasValue ?
+            new ObjectParameter("FEC_PAGO_INI", fEC_PAGO_INI) :
+            new ObjectParameter("FEC_PAGO_INI", typeof(System.DateTime));
+
+
+        var fEC_PAGO_FINParameter = fEC_PAGO_FIN.HasValue ?
+            new ObjectParameter("FEC_PAGO_FIN", fEC_PAGO_FIN) :
+            new ObjectParameter("FEC_PAGO_FIN", typeof(System.DateTime));
+
+
+        var fechaAprobacionInicioParameter = fechaAprobacionInicio.HasValue ?
+            new ObjectParameter("FechaAprobacionInicio", fechaAprobacionInicio) :
+            new ObjectParameter("FechaAprobacionInicio", typeof(System.DateTime));
+
+
+        var fechaAprobacionHastaParameter = fechaAprobacionHasta.HasValue ?
+            new ObjectParameter("FechaAprobacionHasta", fechaAprobacionHasta) :
+            new ObjectParameter("FechaAprobacionHasta", typeof(System.DateTime));
+
+
+        var estadoParameter = estado != null ?
+            new ObjectParameter("Estado", estado) :
+            new ObjectParameter("Estado", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_historiaCargaArchivoLinDet_Result>("pa_sel_historiaCargaArchivoLinDet", nombreTipoArchivoParameter, iDE_CONTRATOParameter, cOD_AFPParameter, cOD_CUSPParameter, pRI_NOMB_PENParameter, aPE_MATE_PENParameter, nUM_DOCU_PENParameter, nUM_SOLI_PENParameter, tIP_MONEParameter, fEC_PAGO_INIParameter, fEC_PAGO_FINParameter, fechaAprobacionInicioParameter, fechaAprobacionHastaParameter, estadoParameter);
+    }
+
+
+    public virtual ObjectResult<pa_sel_nominaConsulta_Result> pa_sel_nominaConsulta(string nombreTipoArchivo, Nullable<int> contratoId, string nombreBene, Nullable<short> monedaId, string estado, Nullable<System.DateTime> fechaCreacionInicio, Nullable<System.DateTime> fechaCreacionFin, Nullable<System.DateTime> fechaAprobacionInicio, Nullable<System.DateTime> fechaAprobacionFin)
+    {
+
+        var nombreTipoArchivoParameter = nombreTipoArchivo != null ?
+            new ObjectParameter("NombreTipoArchivo", nombreTipoArchivo) :
+            new ObjectParameter("NombreTipoArchivo", typeof(string));
+
+
+        var contratoIdParameter = contratoId.HasValue ?
+            new ObjectParameter("ContratoId", contratoId) :
+            new ObjectParameter("ContratoId", typeof(int));
+
+
+        var nombreBeneParameter = nombreBene != null ?
+            new ObjectParameter("NombreBene", nombreBene) :
+            new ObjectParameter("NombreBene", typeof(string));
+
+
+        var monedaIdParameter = monedaId.HasValue ?
+            new ObjectParameter("MonedaId", monedaId) :
+            new ObjectParameter("MonedaId", typeof(short));
+
+
+        var estadoParameter = estado != null ?
+            new ObjectParameter("Estado", estado) :
+            new ObjectParameter("Estado", typeof(string));
+
+
+        var fechaCreacionInicioParameter = fechaCreacionInicio.HasValue ?
+            new ObjectParameter("FechaCreacionInicio", fechaCreacionInicio) :
+            new ObjectParameter("FechaCreacionInicio", typeof(System.DateTime));
+
+
+        var fechaCreacionFinParameter = fechaCreacionFin.HasValue ?
+            new ObjectParameter("FechaCreacionFin", fechaCreacionFin) :
+            new ObjectParameter("FechaCreacionFin", typeof(System.DateTime));
+
+
+        var fechaAprobacionInicioParameter = fechaAprobacionInicio.HasValue ?
+            new ObjectParameter("FechaAprobacionInicio", fechaAprobacionInicio) :
+            new ObjectParameter("FechaAprobacionInicio", typeof(System.DateTime));
+
+
+        var fechaAprobacionFinParameter = fechaAprobacionFin.HasValue ?
+            new ObjectParameter("FechaAprobacionFin", fechaAprobacionFin) :
+            new ObjectParameter("FechaAprobacionFin", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_nominaConsulta_Result>("pa_sel_nominaConsulta", nombreTipoArchivoParameter, contratoIdParameter, nombreBeneParameter, monedaIdParameter, estadoParameter, fechaCreacionInicioParameter, fechaCreacionFinParameter, fechaAprobacionInicioParameter, fechaAprobacionFinParameter);
     }
 
 }

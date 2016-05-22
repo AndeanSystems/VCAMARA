@@ -17,22 +17,28 @@
             <!--VISTA OPERACIONES-->
             <asp:View ID="view1" runat="server">
                 <label class="label_to" for="ddl_contrato_o">Contrato SIS(*)</label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_contrato" runat="server" Height="25px" Width="77%"></asp:DropDownList>
+                <asp:DropDownList CssClass="input_to" ID="ddl_contrato" runat="server" Height="25px" Width="48.2%"></asp:DropDownList>
 
-                <label class="label_to" for="ddl_tipo_archivo">Tipo de Archivo </label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_tipo_archivo" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
+                <label class="input_right_T" for="ddl_tipo_archivo">Tipo de Archivo </label>
+                <asp:DropDownList CssClass="input_right" ID="ddl_tipo_archivo" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
 
-                <label class="input_right_L" for="txt_fec_ini_o">Desde</label>
-                <asp:TextBox CssClass="input_right datetime" ID="txt_fec_ini_o" runat="server" Height="25px" Width="14.7%" ></asp:TextBox>
+                <label class="label_to">Moneda </label>
+                <asp:DropDownList runat="server" ID="ddl_moneda" Height="25px" Width="15.2%" CssClass="input_to"></asp:DropDownList>
 
-                <label class="input_right_T" for="txt_fec_hasta_o">Hasta  </label>
+                <label class="input_right_L" for="txt_fec_ini_o">F. Creación Desde</label>
+                <asp:TextBox CssClass="input_right datetime" ID="txt_fec_ini_o" runat="server" Height="25px" Width="14.8%" ></asp:TextBox>
+
+                <label class="input_right_T" for="txt_fec_hasta_o">F. Creación Hasta </label>
                 <asp:TextBox CssClass="input_right datetime" ID="txt_fec_hasta_o" runat="server" Height="25px" Width="14.7%" ></asp:TextBox>
 
                 <label class="label_to" for="ddl_ramo_o">AFP </label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_afp" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
+                <asp:DropDownList CssClass="input_to" ID="ddl_afp" runat="server" Height="25px" Width="15.2%"></asp:DropDownList>
 
-                <label class="input_right_L">Moneda </label>
-                <asp:DropDownList runat="server" ID="ddl_moneda" Height="25px" Width="14.8%" CssClass="input_right"></asp:DropDownList>
+                <label class="input_right_L" for="txt_fecha_aprobacion_inicio">F. Aprobación Desde</label>
+                <asp:TextBox CssClass="input_right datetime" ID="txt_fecha_aprobacion_inicio" ClientIDMode="Static" runat="server" Height="25px" Width="14.8%" ></asp:TextBox>
+
+                <label class="input_right_T" for="txt_fecha_aprobacion_hasta">F. Aprobación Hasta</label>
+                <asp:TextBox CssClass="input_right datetime" ID="txt_fecha_aprobacion_hasta" ClientIDMode="Static" runat="server" Height="25px" Width="14.7%" ></asp:TextBox>
 
                 <label class="label_to">CUSPP </label>
                 <asp:TextBox runat="server" ID="txt_cod_cusp" CssClass="input_to" Height="25px" Width="14.8%"/>
@@ -51,10 +57,11 @@
 
                 <label class="input_right_T">Estado</label>
                 <asp:DropDownList runat="server" ID="ddl_estado" CssClass="input_right"  Height="25px" Width="14.8%">
-                    <asp:ListItem Text="Seleccione" Value="0" />
+                    <asp:ListItem Text="Seleccione" Value="0" Selected="True"/>
                     <asp:ListItem Text="Aprobados" Value="A" />                    
                     <asp:ListItem Text="Creados" Value="C" />
                     <asp:ListItem Text="Errados" Value="E" />
+                    <asp:ListItem Text="Pagados (Solo Nomina)" Value="P" />
                </asp:DropDownList>
 
                 <div class="iframe" id="tblConsulta1">

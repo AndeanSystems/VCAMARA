@@ -276,6 +276,9 @@
     <Compile Include="Modelo\pa_sel_LogOperacion_Result.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\pa_sel_nominaConsulta_Result.cs">
+      <DependentUpon>DISModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\pa_sel_NominaForTelebankinByArchivoId_Result.cs">
       <DependentUpon>DISModelo.tt</DependentUpon>
     </Compile>

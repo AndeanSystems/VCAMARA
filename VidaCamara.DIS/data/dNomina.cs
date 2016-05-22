@@ -91,38 +91,36 @@ namespace VidaCamara.DIS.data
             var listNomina = new List<HNOMINA>();
             try
             {
+                var fechaCreacionInicio = string.IsNullOrEmpty(filters[1].ToString())? new DateTime(1900, 01, 01) : Convert.ToDateTime(filters[1].ToString());
+                var fechaCreacionFin = string.IsNullOrEmpty(filters[2].ToString()) ? DateTime.Now : Convert.ToDateTime(filters[2].ToString());
+
+                var fechaAprobacionInicio = string.IsNullOrEmpty(filters[4].ToString()) ? new DateTime(1900, 01, 01) : Convert.ToDateTime(filters[4].ToString());
+                var fechaAprobacionFin = string.IsNullOrEmpty(filters[5].ToString()) ? DateTime.Now : Convert.ToDateTime(filters[5].ToString());
+
                 using (var db = new DISEntities())
                 {
                     var nombreTipoArchivo = filters[0].ToString();
-                    var query = (from a in db.NOMINAs
-                                 join b in db.Archivos on
-                                 a.ArchivoId equals b.ArchivoId
-                                 join c in db.TipoArchivos on
-                                 b.TipoArchivoId equals c.TipoArchivoId
-                                 where
-                                    c.NombreTipoArchivo == nombreTipoArchivo
-                                &&  a.IDE_CONTRATO == nomina.IDE_CONTRATO
-                                select new { a, b }).ToList();
+                    var query = db.pa_sel_nominaConsulta(nombreTipoArchivo, nomina.IDE_CONTRATO, nomina.NOM_BENE,(short)nomina.TIP_MONE,nomina.Estado, fechaCreacionInicio, fechaCreacionFin, fechaAprobacionInicio, fechaAprobacionFin).ToList();
                     total = query.Count();
                     foreach (var item in query.Skip(jtStartIndex).Take(jtPageSize))
                     {
                         var eNomina = new HNOMINA() {
-                            FechaReg = item.a.FechaReg,
-                            NombreArchivo = item.b.NombreArchivo,
-                            Id_Nomina = item.a.Id_Nomina,
-                            ArchivoId = item.a.ArchivoId,
-                            IDE_CONTRATO = item.a.IDE_CONTRATO,
-                            RUC_ORDE = item.a.RUC_ORDE,
-                            CTA_ORDE = item.a.CTA_ORDE,
-                            COD_TRAN = item.a.COD_TRAN,
-                            TIP_MONE = item.a.TIP_MONE,
-                            MON_TRAN = item.a.MON_TRAN,
-                            FEC_TRAN = item.a.FEC_TRAN,
-                            RUC_BENE = item.a.RUC_BENE,
-                            NOM_BENE = item.a.NOM_BENE,
-                            TIP_CTA = item.a.TIP_CTA,
-                            CTA_BENE = item.a.CTA_BENE,
-                            DET_TRAN = item.a.DET_TRAN
+                            FechaReg = item.FechaReg,
+                            NombreArchivo = item.NombreArchivo,
+                            Id_Nomina = item.Id_Nomina,
+                            ArchivoId = item.ArchivoId,
+                            IDE_CONTRATO = item.IDE_CONTRATO,
+                            RUC_ORDE = item.RUC_ORDE,
+                            CTA_ORDE = item.CTA_ORDE,
+                            COD_TRAN = item.COD_TRAN,
+                            TIP_MONE = item.TIP_MONE,
+                            MON_TRAN = item.MON_TRAN,
+                            FEC_TRAN = item.FEC_TRAN,
+                            RUC_BENE = item.RUC_BENE,
+                            NOM_BENE = item.NOM_BENE,
+                            TIP_CTA = item.TIP_CTA,
+                            CTA_BENE = item.CTA_BENE,
+                            DET_TRAN = item.DET_TRAN
                         };
                         listNomina.Add(eNomina);
                     }

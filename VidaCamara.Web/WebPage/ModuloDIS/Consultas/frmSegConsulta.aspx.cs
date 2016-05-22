@@ -17,7 +17,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
         static bValidarAcceso accesso = new bValidarAcceso();
         static HistorialCargaArchivo_LinCab cabecera = new HistorialCargaArchivo_LinCab();
         static HistorialCargaArchivo_LinDet historiaLinDet = new HistorialCargaArchivo_LinDet();
-        static object[] filterParam = new object[4];//[0]Tipo de archivo [1] fecha inicio [2] fecha fin [3] fomato meneda 
+        static object[] filterParam = new object[6];//[0]Tipo de archivo [1] fecha inicio [2] fecha fin [3] fomato meneda [4] fecha inicio aprobacion [5] fecha  fin aprobacion 
         static NOMINA nomina = new NOMINA();
         static string formatoMoneda = string.Empty;
 
@@ -46,6 +46,8 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
                 formatoMoneda = ConfigurationManager.AppSettings.Get("Float").ToString();
                 txt_fec_ini_o.Text = DateTime.Now.ToShortDateString();
                 txt_fec_hasta_o.Text = DateTime.Now.ToShortDateString();
+                txt_fecha_aprobacion_inicio.Text = DateTime.Now.ToShortDateString();
+                txt_fecha_aprobacion_hasta.Text = DateTime.Now.ToShortDateString();
             }
         }
         //LISTAR HISTORIA CARGA DETALLE
@@ -66,7 +68,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
         {
             var nombreTipoArchivo = ddl_tipo_archivo.SelectedItem.Value;
             //AQUI SE AGREGAN DATOS FIJOS A LA GRILLA DE CONSULTA
-            var columns = nombreTipoArchivo != "NOMINA" ? ",FechaInsert:{title:'Fecha_Registro',display: function (data) {return ConvertNumberToDateTime(data.record.FechaInsert);}},NombreArchivo: { title: 'NombreArchivo'}" :
+            var columnsAux = nombreTipoArchivo != "NOMINA" ? ",FechaInsert:{title:'Fecha_Registro',display: function (data) {return ConvertNumberToDateTime(data.record.FechaInsert);}},NombreArchivo: { title: 'NombreArchivo'}" :
                                                          ",FechaReg:{title:'Fecha_Registro',display: function (data) {return ConvertNumberToDateTime(data.record.FechaReg);}},NombreArchivo: { title: 'NombreArchivo'}";
             setLlenarEntiddes();
             var action = nombreTipoArchivo == "NOMINA"? "/WebPage/ModuloDIS/Consultas/frmSegConsulta.aspx/listNominaConsulta" : "/WebPage/ModuloDIS/Consultas/frmSegConsulta.aspx/listHistoriaDetalle";
@@ -74,10 +76,10 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             var sorter = nombreTipoArchivo == "NOMINA" ? "RUC_ORDE ASC" : "TIP_REGI ASC";
             var contratoSis = new nContratoSis().listContratoByID(new CONTRATO_SYS() { IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value) });
             var regla = new ReglaArchivo() { Archivo = ddl_tipo_archivo.SelectedItem.Value, TipoLinea = tipoLinea,NUM_CONT_LIC = Convert.ToInt32(contratoSis.NRO_CONTRATO),vigente = 1 };
-            var fields = new nReglaArchivo().getColumnGridByArchivo(regla, columns).ToString();
-            Page.ClientScript.RegisterStartupScript(GetType(), "Fields", fields, true);
+            var fields = new nReglaArchivo().getColumnGridByArchivo(regla, columnsAux).ToString();
             var grid = new gridCreator().getGrid("frmSeqConsulta", "5000", action, sorter).ToString();
-            Page.ClientScript.RegisterStartupScript(GetType(), "Grid", grid, true);
+
+            Page.ClientScript.RegisterStartupScript(GetType(), "Fields", string.Format("{0};{1}",fields,grid), true);
         }
         protected void btn_exportar_Click(object sender, ImageClickEventArgs e)
         {
@@ -117,9 +119,18 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
             filterParam[0] = ddl_tipo_archivo.SelectedItem.Value;
             filterParam[1] = txt_fec_ini_o.Text;
             filterParam[2] = txt_fec_hasta_o.Text;
+            filterParam[3] = formatoMoneda;
+            filterParam[4] = txt_fecha_aprobacion_inicio.Text;
+            filterParam[5] = txt_fecha_aprobacion_hasta.Text;
 
-            if(ddl_tipo_archivo.SelectedItem.Value.Equals("NOMINA"))
+
+            if (ddl_tipo_archivo.SelectedItem.Value.Equals("NOMINA"))
+            {
                 nomina.IDE_CONTRATO = Convert.ToInt32(ddl_contrato.SelectedItem.Value);
+                nomina.TIP_MONE =  Convert.ToInt32(ddl_moneda.SelectedItem.Value);
+                nomina.NOM_BENE = (ddl_afp.SelectedItem.Text.Equals("Seleccione ----"))?"0": ddl_afp.SelectedItem.Text.Split('(')[0];
+                nomina.Estado = ddl_estado.SelectedItem.Value;
+            }
         }
         private void MessageBox(String text)
         {

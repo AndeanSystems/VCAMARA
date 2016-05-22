@@ -76,6 +76,15 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas {
         protected global::System.Web.UI.WebControls.DropDownList ddl_tipo_archivo;
         
         /// <summary>
+        /// ddl_moneda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_moneda;
+        
+        /// <summary>
         /// txt_fec_ini_o control.
         /// </summary>
         /// <remarks>
@@ -103,13 +112,22 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas {
         protected global::System.Web.UI.WebControls.DropDownList ddl_afp;
         
         /// <summary>
-        /// ddl_moneda control.
+        /// txt_fecha_aprobacion_inicio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_moneda;
+        protected global::System.Web.UI.WebControls.TextBox txt_fecha_aprobacion_inicio;
+        
+        /// <summary>
+        /// txt_fecha_aprobacion_hasta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_fecha_aprobacion_hasta;
         
         /// <summary>
         /// txt_cod_cusp control.

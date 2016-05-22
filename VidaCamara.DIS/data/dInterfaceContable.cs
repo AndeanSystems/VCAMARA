@@ -37,7 +37,7 @@ namespace VidaCamara.DIS.data
                     ArchivoId = (int)nomina.ArchivoId,
                     TIPO_ARCHIVO = archivo.NombreArchivo.Split('_')[0].ToString(),
                     IDE_MONEDA = nomina.TIP_MONE,
-                    ASIENTO =  string.Format("SIN{0}{1}",DateTime.Now.ToString("ddMMyy"),nomina.TIP_MONE.ToString()),
+                    ASIENTO = "SIN", //string.Format("SIN{0}{1}",DateTime.Now.ToString("ddMMyy"),nomina.TIP_MONE.ToString()),
                     PAQUETE = "SIN",
                     TIPO_ASIENTO = "RS",
                     FECHA = DateTime.Now,
@@ -46,7 +46,7 @@ namespace VidaCamara.DIS.data
                     ESTADO = 1,
                     ESTADO_TRANSFERENCIA = "C",
                     PERMITIR_DESCUADRADO = "N",
-                    CONSERVAR_NUMERACION = "S",
+                    CONSERVAR_NUMERACION = "N",
                     ACTUALIZAR_CONSECUTIVO = "N",
                     FECHA_AUDITORIA = DateTime.Now,
                     FECHA_CREACION = DateTime.Now,
@@ -54,7 +54,12 @@ namespace VidaCamara.DIS.data
                 };
                 using (var db = new DISEntities())
                 {
+                    //CREA SIN NUMERO ASIENTO
                     db.EXACTUS_CABECERA_SISs.Add(cabecera);
+                    db.SaveChanges();
+                    //ACTRUALIZA EL NUMERO ASIENTO
+                    cabecera.ASIENTO = string.Format("SIN{0}{1}", new string('0', 7 - cabecera.IDE_EXACTUS_CABECERA_SIS.ToString().Length), cabecera.IDE_EXACTUS_CABECERA_SIS.ToString());
+                    db.Entry(cabecera).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                 }
                 return cabecera;
@@ -283,7 +288,7 @@ namespace VidaCamara.DIS.data
                             sqlcmd.Parameters.Add("@MONTO_LOCAL", SqlDbType.Decimal).Value = det.MONTO_LOCAL;
                             sqlcmd.Parameters.Add("@MONTO_DOLAR", SqlDbType.Decimal).Value = det.MONTO_DOLAR;
                             sqlcmd.Parameters.Add("@MONTO_UNIDADES", SqlDbType.Decimal).Value = det.MONTO_UNIDADES;
-                            sqlcmd.Parameters.Add("@NIT", SqlDbType.Char).Value = det.NIT==null?string.Empty: det.NIT;
+                            sqlcmd.Parameters.Add("@NIT", SqlDbType.Char).Value = det.NIT;
                             sqlcmd.Parameters.Add("@DIMENSION1", SqlDbType.VarChar).Value = det.DIMENSION1 == null ? string.Empty : det.DIMENSION1;
                             sqlcmd.Parameters.Add("@DIMENSION2", SqlDbType.VarChar).Value = det.DIMENSION2 == null ? string.Empty : det.DIMENSION2;
                             sqlcmd.Parameters.Add("@DIMENSION3", SqlDbType.VarChar).Value = det.DIMENSION3 == null ? string.Empty : det.DIMENSION3;
