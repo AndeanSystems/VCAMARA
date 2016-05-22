@@ -110,6 +110,7 @@ namespace VidaCamara.DIS.data
                             DebitoDolar = string.Format(formatoMoneda,item.xd.MONTO_DOLAR>=0?item.xd.MONTO_DOLAR:0.00M),
                             CreditoDolar = string.Format(formatoMoneda,item.xd.MONTO_DOLAR < 0? Math.Abs(item.xd.MONTO_DOLAR):0.00M),
                             MONTO_UNIDADES = item.xd.MONTO_UNIDADES,
+                            NIT = item.xd.NIT,
                             EXACTUS_CABECERA_SIS = new EXACTUS_CABECERA_SIS(){
                                 PAQUETE = item.x.PAQUETE,
                                 ASIENTO = item.x.ASIENTO,
@@ -288,7 +289,7 @@ namespace VidaCamara.DIS.data
                             sqlcmd.Parameters.Add("@MONTO_LOCAL", SqlDbType.Decimal).Value = det.MONTO_LOCAL;
                             sqlcmd.Parameters.Add("@MONTO_DOLAR", SqlDbType.Decimal).Value = det.MONTO_DOLAR;
                             sqlcmd.Parameters.Add("@MONTO_UNIDADES", SqlDbType.Decimal).Value = det.MONTO_UNIDADES;
-                            sqlcmd.Parameters.Add("@NIT", SqlDbType.Char).Value = det.NIT;
+                            sqlcmd.Parameters.Add("@NIT", SqlDbType.VarChar).Value = det.NIT;
                             sqlcmd.Parameters.Add("@DIMENSION1", SqlDbType.VarChar).Value = det.DIMENSION1 == null ? string.Empty : det.DIMENSION1;
                             sqlcmd.Parameters.Add("@DIMENSION2", SqlDbType.VarChar).Value = det.DIMENSION2 == null ? string.Empty : det.DIMENSION2;
                             sqlcmd.Parameters.Add("@DIMENSION3", SqlDbType.VarChar).Value = det.DIMENSION3 == null ? string.Empty : det.DIMENSION3;

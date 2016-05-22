@@ -664,101 +664,6 @@ warning 6002: The table/view 'vcamara2.dbo.EXACTUS_DETALLE_SIS' does not have a 
     <Property Name="ORI_REG" Type="char" MaxLength="1" />
     <Property Name="TIP_COMPROBANTE" Type="char" MaxLength="3" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'vcamara2.dbo.ReporteDictamen' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ReporteDictamen">
-          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO PATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO MATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PRIMER NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEGUNDO _NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
-          <Property Name="CONTRATO" Type="float" />
-          <Property Name="ESTADO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="EMISOR DICTAMEN" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE PENSIÓN" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE EVALUACIÓN" Type="float" />
-          <Property Name="PORCENTAJE DE PENSIÓN" Type="float" />
-          <Property Name="FECHA DE OCURRENCIA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE DEVENGUE  INICIAL" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE INICIO DE VIGENCIA DEL DICTAMEN INICIAL#" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA FIN DE VIGENCIA DEL DICTAMEN " Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE AVISO DEL# DICTAMEN " Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'vcamara2.dbo.ReporteSECI' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ReporteSECI">
-          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDOPATERNOAFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDOMATERNOAFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PRIMERNOMBREAFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEGUNDONOMBREAFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPODESOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
-          <Property Name="CONTRATO" Type="float" />
-          <Property Name="NUMERODESECI" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADESECI" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADEAVISODESECI" Type="nvarchar" MaxLength="255" />
-          <Property Name="INDICADORDESUBSIDIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="NUMERODE SOLICITUDDEPENSION" Type="nvarchar" MaxLength="255" />
-          <Property Name="ESTADODELASOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADESOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPODESOLICITUD1" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADEAVISODESOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPODEPENSION" Type="nvarchar" MaxLength="255" />
-          <Property Name="PORCENTAJEDEPENSION" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHADEOCURRENCIA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE  DEVENGUE INICIAL" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'vcamara2.dbo.ReportesSolicitudes' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ReportesSolicitudes">
-          <Property Name="CUSPP" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO PATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO MATERNO AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PRIMER NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEGUNDO NOMBRE AFILIADO" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="AFP" Type="nvarchar" MaxLength="255" />
-          <Property Name="CONTRATO" Type="float" />
-          <Property Name="ESTADO DE LA_SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE INVALIDEZ" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO DE PENSIÓN" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO PATERNO BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="APELLIDO MATERNO BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PRIMER NOMBRE BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEGUNDO NOMBRE BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PARENTESCO" Type="nvarchar" MaxLength="255" />
-          <Property Name="SEXO  DEL BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="EDAD DEL BENEFICIARIO" Type="float" />
-          <Property Name="CONDICIÓN DE INVALIDEZ DEL BENEFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="PORCENTAJE DE PENSIÓN" Type="float" />
-          <Property Name="ESTADO DEL BENFICIARIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE OCURRENCIA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE DEVENGE INICIAL" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE AVISO  DE SOLICITUD" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA  PRONUNCIAMIENTO  DE COBERTURA" Type="nvarchar" MaxLength="255" />
-          <Property Name="TIPO  DE COBERTURA " Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE  REACTIVACIÓN  DE COBERTURA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE  NOTIFICACIÓN DEL ANEXO  16" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE DIAS TRANSCURRIDOS DESDE LA FECHA  DEL FALLECIMIENTO" Type="float" />
-          <Property Name="MONEDA" Type="nvarchar" MaxLength="255" />
-          <Property Name="PROMEDIO DE RAM" Type="nvarchar" MaxLength="255" />
-          <Property Name="MONTO DE LA PENSIÓN  QUE LE CORRESPONDE" Type="float" />
-          <Property Name="FECHA DE LIQUIDACIÓN DEL PRIMER PAGO" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE VENCIMIENTO DEL C#S#" Type="nvarchar" MaxLength="255" />
-          <Property Name="NÚMERO DE PAGOS DE PENSIONES PRELIMINARES" Type="float" />
-          <Property Name="FECHA DE CUMPLIMIENTO DE CONDICIONES PARA CALCULO AA " Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE NOTIFICACIÓN DE AA AL DIS" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE PRONUNCIAMIENTO DEL PAGO DEL AA# " Type="nvarchar" MaxLength="255" />
-          <Property Name="ESTADO DE LA SOLICITUD DEL AA" Type="nvarchar" MaxLength="255" />
-          <Property Name="FECHA DE LIQUIDACIÓN DE AA" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -971,7 +876,7 @@ warning 6002: The table/view 'vcamara2.dbo.USUARIO' does not have a primary key 
     <Property Name="SEG_NOMB_SOL" Type="varchar" MaxLength="20" />
     <Property Name="SUC_INTE" Type="varchar" MaxLength="25" />
     <Property Name="CumpleValidacion" Type="int" />
-    <Property Name="ReglaObservada" Type="varchar" MaxLength="200" />
+    <Property Name="ReglaObservada" Type="varchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="ReglaArchivo">
     <Key>
@@ -1810,6 +1715,8 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
     <Parameter Name="TIP_MONE" Type="char" Mode="In" />
     <Parameter Name="FEC_PAGO_INI" Type="date" Mode="In" />
     <Parameter Name="FEC_PAGO_FIN" Type="date" Mode="In" />
+    <Parameter Name="FechaAprobacionInicio" Type="date" Mode="In" />
+    <Parameter Name="FechaAprobacionHasta" Type="date" Mode="In" />
     <Parameter Name="Estado" Type="char" Mode="In" />
   </Function>
   <Function Name="pa_sel_historiaLinDetXArchivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1823,6 +1730,17 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
     <Parameter Name="FechaInicio" Type="date" Mode="In" />
     <Parameter Name="FechaFin" Type="date" Mode="In" />
     <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="pa_sel_nominaConsulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NombreTipoArchivo" Type="varchar" Mode="In" />
+    <Parameter Name="ContratoId" Type="int" Mode="In" />
+    <Parameter Name="NombreBene" Type="varchar" Mode="In" />
+    <Parameter Name="MonedaId" Type="smallint" Mode="In" />
+    <Parameter Name="Estado" Type="char" Mode="In" />
+    <Parameter Name="FechaCreacionInicio" Type="date" Mode="In" />
+    <Parameter Name="FechaCreacionFin" Type="date" Mode="In" />
+    <Parameter Name="FechaAprobacionInicio" Type="date" Mode="In" />
+    <Parameter Name="FechaAprobacionFin" Type="date" Mode="In" />
   </Function>
   <Function Name="pa_sel_NominaForTelebankinByArchivoId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ArchivoId" Type="int" Mode="In" />
@@ -1851,6 +1769,8 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
     <Parameter Name="NombreTipoArchivo" Type="varchar" Mode="In" />
     <Parameter Name="FechaInicio" Type="date" Mode="In" />
     <Parameter Name="FechaFin" Type="date" Mode="In" />
+    <Parameter Name="FechaInicioAprobacion" Type="date" Mode="In" />
+    <Parameter Name="FechaFinAprobacion" Type="date" Mode="In" />
   </Function>
   <Function Name="pa_upd_ApruebaLinCabNomina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdContrato" Type="int" Mode="In" />

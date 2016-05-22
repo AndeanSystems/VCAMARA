@@ -194,12 +194,6 @@
       <Parameter Name="IdContrato" Mode="In" Type="Int32" />
       <Parameter Name="IdHistoriaLinCab" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="pa_sel_SegDescarga" ReturnType="Collection(DISModelo.pa_sel_SegDescarga_Result)">
-      <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
-      <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
-      <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
-      <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="pa_Valida_RangoFechaXContratoV2" ReturnType="Collection(Int32)">
       <Parameter Name="date1" Mode="In" Type="DateTime" />
       <Parameter Name="date2" Mode="In" Type="DateTime" />
@@ -214,20 +208,6 @@
     </FunctionImport>
     <FunctionImport Name="pa_file_CantidadRegistroArchivo" ReturnType="Collection(DISModelo.pa_file_CantidadRegistroArchivo_Result)">
       <Parameter Name="IdArchivo" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="pa_sel_historiaCargaArchivoLinDet" ReturnType="Collection(DISModelo.pa_sel_historiaCargaArchivoLinDet_Result)">
-      <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
-      <Parameter Name="IDE_CONTRATO" Mode="In" Type="Int32" />
-      <Parameter Name="COD_AFP" Mode="In" Type="String" />
-      <Parameter Name="COD_CUSP" Mode="In" Type="String" />
-      <Parameter Name="PRI_NOMB_PEN" Mode="In" Type="String" />
-      <Parameter Name="APE_MATE_PEN" Mode="In" Type="String" />
-      <Parameter Name="NUM_DOCU_PEN" Mode="In" Type="String" />
-      <Parameter Name="NUM_SOLI_PEN" Mode="In" Type="String" />
-      <Parameter Name="TIP_MONE" Mode="In" Type="String" />
-      <Parameter Name="FEC_PAGO_INI" Mode="In" Type="DateTime" />
-      <Parameter Name="FEC_PAGO_FIN" Mode="In" Type="DateTime" />
-      <Parameter Name="Estado" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="pa_sel_historiaLinDetXArchivo" ReturnType="Collection(DISModelo.pa_sel_historiaLinDetXArchivo_Result)">
       <Parameter Name="NombreArchivo" Mode="In" Type="String" />
@@ -445,6 +425,41 @@
       <End Role="TipoInforme" EntitySet="TipoInformes" />
       <End Role="TipoArchivo" EntitySet="TipoArchivoes" />
     </AssociationSet>
+    <FunctionImport Name="pa_sel_SegDescarga" ReturnType="Collection(DISModelo.pa_sel_SegDescarga_Result)">
+      <Parameter Name="IdeContrato" Mode="In" Type="Int32" />
+      <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
+      <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaInicioAprobacion" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaFinAprobacion" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="pa_sel_historiaCargaArchivoLinDet" ReturnType="Collection(DISModelo.pa_sel_historiaCargaArchivoLinDet_Result)">
+      <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
+      <Parameter Name="IDE_CONTRATO" Mode="In" Type="Int32" />
+      <Parameter Name="COD_AFP" Mode="In" Type="String" />
+      <Parameter Name="COD_CUSP" Mode="In" Type="String" />
+      <Parameter Name="PRI_NOMB_PEN" Mode="In" Type="String" />
+      <Parameter Name="APE_MATE_PEN" Mode="In" Type="String" />
+      <Parameter Name="NUM_DOCU_PEN" Mode="In" Type="String" />
+      <Parameter Name="NUM_SOLI_PEN" Mode="In" Type="String" />
+      <Parameter Name="TIP_MONE" Mode="In" Type="String" />
+      <Parameter Name="FEC_PAGO_INI" Mode="In" Type="DateTime" />
+      <Parameter Name="FEC_PAGO_FIN" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaAprobacionInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaAprobacionHasta" Mode="In" Type="DateTime" />
+      <Parameter Name="Estado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="pa_sel_nominaConsulta" ReturnType="Collection(DISModelo.pa_sel_nominaConsulta_Result)">
+      <Parameter Name="NombreTipoArchivo" Mode="In" Type="String" />
+      <Parameter Name="ContratoId" Mode="In" Type="Int32" />
+      <Parameter Name="NombreBene" Mode="In" Type="String" />
+      <Parameter Name="MonedaId" Mode="In" Type="Int16" />
+      <Parameter Name="Estado" Mode="In" Type="String" />
+      <Parameter Name="FechaCreacionInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaCreacionFin" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaAprobacionInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaAprobacionFin" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="pa_devuelveresultado_Result">
     <Property Type="Int32" Name="IdRegistroMontoAlto" Nullable="false" />
@@ -515,15 +530,6 @@
     <Property Type="String" Name="Aprobar" Nullable="false" MaxLength="1" />
     <Property Type="String" Name="Eliminar" Nullable="false" MaxLength="1" />
   </ComplexType>
-  <ComplexType Name="pa_sel_SegDescarga_Result">
-    <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
-    <Property Type="DateTime" Name="FecReg" Nullable="false" Precision="23" />
-    <Property Type="String" Name="UsuReg" Nullable="false" MaxLength="30" />
-    <Property Type="Int32" Name="TotalRegistros" Nullable="true" />
-    <Property Type="String" Name="Estado" Nullable="true" MaxLength="8" />
-    <Property Type="String" Name="Moneda" Nullable="false" MaxLength="7" />
-    <Property Type="Decimal" Name="ImporteTotalSoles" Nullable="true" Precision="38" Scale="6" />
-  </ComplexType>
   <ComplexType Name="pa_sel_pagoNominaApruebaDetalle_Result">
     <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
     <Property Type="String" Name="COD_AFP" Nullable="true" MaxLength="4" />
@@ -546,145 +552,6 @@
     <Property Type="String" Name="Moneda" Nullable="true" MaxLength="10" />
     <Property Type="Int32" Name="cantidad" Nullable="true" />
     <Property Type="Decimal" Name="Importe" Nullable="true" Precision="18" Scale="6" />
-  </ComplexType>
-  <ComplexType Name="pa_sel_historiaCargaArchivoLinDet_Result">
-    <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
-    <Property Type="DateTime" Name="FechaInsert" Nullable="true" Precision="23" />
-    <Property Type="Int64" Name="IdHistorialCargaArchivoLinDet" Nullable="false" />
-    <Property Type="Int64" Name="IdHistorialCargaArchivoLinCab" Nullable="true" />
-    <Property Type="String" Name="TipoLinea" Nullable="true" MaxLength="10" />
-    <Property Type="Int32" Name="NumeroLinea" Nullable="true" />
-    <Property Type="DateTime" Name="FEC_DEVE" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="FEC_FALL" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="FEC_OCUR" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="FEC_PAGO_APO_ADI" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="FEC_INV_DEF" Nullable="true" Precision="23" />
-    <Property Type="String" Name="CAP_GAST_SEP" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="PARE" Nullable="true" MaxLength="1" />
-    <Property Type="String" Name="SAL_CIC_SOL" Nullable="true" MaxLength="11" />
-    <Property Type="String" Name="TIP_REGI" Nullable="true" MaxLength="1" />
-    <Property Type="String" Name="TIP_SOLI" Nullable="true" MaxLength="1" />
-    <Property Type="String" Name="NUM_BENE" Nullable="true" MaxLength="2" />
-    <Property Type="String" Name="NUM_MESE_DEV" Nullable="true" MaxLength="2" />
-    <Property Type="String" Name="POR_BENE" Nullable="true" MaxLength="2" />
-    <Property Type="String" Name="TIP_IDEN_SOL" Nullable="true" MaxLength="2" />
-    <Property Type="String" Name="TIP_PENS" Nullable="true" MaxLength="2" />
-    <Property Type="String" Name="TIP_DOCU_IDE_PEN" Nullable="true" MaxLength="2" />
-    <Property Type="String" Name="TIP_MOVI" Nullable="true" MaxLength="3" />
-    <Property Type="String" Name="COD_CSV_01" Nullable="true" MaxLength="4" />
-    <Property Type="String" Name="COD_CSV_02" Nullable="true" MaxLength="4" />
-    <Property Type="String" Name="COD_CSV_03" Nullable="true" MaxLength="4" />
-    <Property Type="String" Name="COD_CSV_04" Nullable="true" MaxLength="4" />
-    <Property Type="String" Name="COD_CSV_05" Nullable="true" MaxLength="4" />
-    <Property Type="String" Name="COD_CSV_06" Nullable="true" MaxLength="4" />
-    <Property Type="String" Name="COD_CSV_07" Nullable="true" MaxLength="4" />
-    <Property Type="String" Name="COD_CSV_08" Nullable="true" MaxLength="4" />
-    <Property Type="String" Name="COD_AFP" Nullable="true" MaxLength="4" />
-    <Property Type="String" Name="COD_IDE_CSV" Nullable="true" MaxLength="4" />
-    <Property Type="String" Name="FRA_MESE_DEV" Nullable="true" MaxLength="4" />
-    <Property Type="String" Name="IND_PENS_PRE" Nullable="true" MaxLength="1" />
-    <Property Type="String" Name="MTO_PPRE_ORI" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="TIP_CAMB_VTA" Nullable="true" MaxLength="5" />
-    <Property Type="String" Name="EXC_PENS_SOL" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="EXC_PENS_NM" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MES_DEVE" Nullable="true" MaxLength="6" />
-    <Property Type="String" Name="CAP_REQU_PEN" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="CRU_FAMI" Nullable="true" MaxLength="12" />
-    <Property Type="String" Name="FEC_NACI" Nullable="true" MaxLength="8" />
-    <Property Type="String" Name="FEC_NACI_PEN" Nullable="true" MaxLength="8" />
-    <Property Type="String" Name="FEC_PAGO" Nullable="true" MaxLength="8" />
-    <Property Type="String" Name="FEC_PAGO_TEX" Nullable="true" MaxLength="8" />
-    <Property Type="String" Name="FEC_SECI" Nullable="true" MaxLength="8" />
-    <Property Type="String" Name="FEC_SINI_OCU" Nullable="true" MaxLength="8" />
-    <Property Type="String" Name="FEC_DEVE_ACT" Nullable="true" MaxLength="8" />
-    <Property Type="String" Name="FEC_DEVE_INI" Nullable="true" MaxLength="8" />
-    <Property Type="String" Name="FEC_FIN_SUB" Nullable="true" MaxLength="8" />
-    <Property Type="String" Name="RAM_PROM_SOL" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="TAS_INTE" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="VACIO_10" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="DES_PENS_MONE" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_APOR_ADI" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_APOR_ADI_SOL" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_APOR_COM" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_PENS_PAG" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_PPRE_MN" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_APOR_OBL" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_MONE_APO_COM1" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_MONE_APO_COM2" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_MONE_APO_COM3" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_MONE_APO_COM4" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_MONE_APO_COM5" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_MONE_APO_COM6" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_MONE_APO_COM7" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_MONE_APO_COM8" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_MONE_APO_OBL1" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_MONE_APO_OBL2" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_MONE_APO_OBL3" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_MONE_APO_OBL4" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_MONE_APO_OBL5" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_MONE_APO_OBL6" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_MONE_APO_OBL7" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_MONE_APO_OBL8" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_PAGO_REE_SOL" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_PRIM_PAG_PENS_AFP1" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_PRIM_PAG_PENS_AFP2" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_PRIM_PAG_PENS_AFP3" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_PRIM_PAG_PENS_AFP4" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_PRIM_PAG_PENS_AFP5" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_PRIM_PAG_PENS_AFP6" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_PRIM_PAG_PENS_AFP7" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_PRIM_PAG_PENS_AFP8" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_DSCT_PENS_PAG_AFP1" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_DSCT_PENS_PAG_AFP2" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_DSCT_PENS_PAG_AFP3" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_DSCT_PENS_PAG_AFP4" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_DSCT_PENS_PAG_AFP5" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_DSCT_PENS_PAG_AFP6" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_DSCT_PENS_PAG_AFP7" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_DSCT_PENS_PAG_AFP8" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_SOLE_APO_ADI_AFP1" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_SOLE_APO_ADI_AFP2" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_SOLE_APO_ADI_AFP3" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_SOLE_APO_ADI_AFP4" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_SOLE_APO_ADI_AFP5" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_SOLE_APO_ADI_AFP6" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_SOLE_APO_ADI_AFP7" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_SOLE_APO_ADI_AFP8" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_SOLE_REE_PAG_AFP1" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_SOLE_REE_PAG_AFP2" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_SOLE_REE_PAG_AFP3" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_SOLE_REE_PAG_AFP4" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_SOLE_REE_PAG_AFP5" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_SOLE_REE_PAG_AFP6" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_SOLE_REE_PAG_AFP7" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="MTO_SOLE_REE_PAG_AFP8" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="NRO_CSV" Nullable="true" MaxLength="2" />
-    <Property Type="String" Name="NUM_DOCU_SOL" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="NUM_SINI" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="NUM_SOLI" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="NUM_SOLI_PEN" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="NUM_DOCU_PEN" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="PEN_PAGA_MON" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="PEN_BASE_MON" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="REM_PROM_ACT" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="NUM_APOR_ACT" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="SAL_CIC_MN" Nullable="true" MaxLength="11" />
-    <Property Type="String" Name="TIP_CAMB_COM" Nullable="true" MaxLength="5" />
-    <Property Type="String" Name="TIP_MONE" Nullable="true" MaxLength="2" />
-    <Property Type="String" Name="TOT_CAPI_REQ_MN" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="TOT_CAPI_REQ_ORI" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="COD_CUSP" Nullable="true" MaxLength="12" />
-    <Property Type="String" Name="COD_BENE_MN" Nullable="true" MaxLength="16" />
-    <Property Type="String" Name="APE_MATE_PEN" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="APE_MATE_SOLI" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="APE_PATE_PEN" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="APE_PATE_SOL" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="PRI_NOMB_PEN" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="PRI_NOMB_SOL" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="SEG_NOMB_PEN" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="SEG_NOMB_SOL" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="SUC_INTE" Nullable="true" MaxLength="25" />
-    <Property Type="Int32" Name="CumpleValidacion" Nullable="true" />
   </ComplexType>
   <ComplexType Name="pa_sel_historiaLinDetXArchivo_Result">
     <Property Type="DateTime" Name="FechaInsert" Nullable="true" Precision="23" />
@@ -1413,7 +1280,7 @@
     <Property Name="SEG_NOMB_SOL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="SUC_INTE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
     <Property Name="CumpleValidacion" Type="Int32" />
-    <Property Name="ReglaObservada" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ReglaObservada" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="HistorialCargaArchivo_LinCab" Relationship="DISModelo.FK_HistorialCargaArchivo_LinDet_HistorialCargaArchivo_LinCab" FromRole="HistorialCargaArchivo_LinDet" ToRole="HistorialCargaArchivo_LinCab" />
   </EntityType>
   <EntityType Name="ReglaArchivo">
@@ -2490,4 +2357,170 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="pa_sel_SegDescarga_Result">
+    <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="FecReg" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UsuReg" Nullable="false" MaxLength="30" />
+    <Property Type="Int32" Name="TotalRegistros" Nullable="true" />
+    <Property Type="String" Name="Estado" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="Moneda" Nullable="false" MaxLength="7" />
+    <Property Type="Decimal" Name="ImporteTotalSoles" Nullable="true" Precision="38" Scale="6" />
+  </ComplexType>
+  <ComplexType Name="pa_sel_historiaCargaArchivoLinDet_Result">
+    <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="FechaInsert" Nullable="true" Precision="23" />
+    <Property Type="Int64" Name="IdHistorialCargaArchivoLinDet" Nullable="false" />
+    <Property Type="Int64" Name="IdHistorialCargaArchivoLinCab" Nullable="true" />
+    <Property Type="String" Name="TipoLinea" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="NumeroLinea" Nullable="true" />
+    <Property Type="DateTime" Name="FEC_DEVE" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="FEC_FALL" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="FEC_OCUR" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="FEC_PAGO_APO_ADI" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="FEC_INV_DEF" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CAP_GAST_SEP" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="PARE" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="SAL_CIC_SOL" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="TIP_REGI" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="TIP_SOLI" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="NUM_BENE" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="NUM_MESE_DEV" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="POR_BENE" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="TIP_IDEN_SOL" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="TIP_PENS" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="TIP_DOCU_IDE_PEN" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="TIP_MOVI" Nullable="true" MaxLength="3" />
+    <Property Type="String" Name="COD_CSV_01" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="COD_CSV_02" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="COD_CSV_03" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="COD_CSV_04" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="COD_CSV_05" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="COD_CSV_06" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="COD_CSV_07" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="COD_CSV_08" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="COD_AFP" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="COD_IDE_CSV" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="FRA_MESE_DEV" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="IND_PENS_PRE" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="MTO_PPRE_ORI" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="TIP_CAMB_VTA" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="EXC_PENS_SOL" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="EXC_PENS_NM" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MES_DEVE" Nullable="true" MaxLength="6" />
+    <Property Type="String" Name="CAP_REQU_PEN" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="CRU_FAMI" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="FEC_NACI" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="FEC_NACI_PEN" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="FEC_PAGO" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="FEC_PAGO_TEX" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="FEC_SECI" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="FEC_SINI_OCU" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="FEC_DEVE_ACT" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="FEC_DEVE_INI" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="FEC_FIN_SUB" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="RAM_PROM_SOL" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="TAS_INTE" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="VACIO_10" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="DES_PENS_MONE" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_APOR_ADI" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_APOR_ADI_SOL" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_APOR_COM" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_PENS_PAG" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_PPRE_MN" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_APOR_OBL" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_MONE_APO_COM1" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_MONE_APO_COM2" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_MONE_APO_COM3" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_MONE_APO_COM4" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_MONE_APO_COM5" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_MONE_APO_COM6" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_MONE_APO_COM7" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_MONE_APO_COM8" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_MONE_APO_OBL1" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_MONE_APO_OBL2" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_MONE_APO_OBL3" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_MONE_APO_OBL4" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_MONE_APO_OBL5" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_MONE_APO_OBL6" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_MONE_APO_OBL7" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_MONE_APO_OBL8" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_PAGO_REE_SOL" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_PRIM_PAG_PENS_AFP1" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_PRIM_PAG_PENS_AFP2" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_PRIM_PAG_PENS_AFP3" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_PRIM_PAG_PENS_AFP4" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_PRIM_PAG_PENS_AFP5" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_PRIM_PAG_PENS_AFP6" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_PRIM_PAG_PENS_AFP7" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_PRIM_PAG_PENS_AFP8" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_DSCT_PENS_PAG_AFP1" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_DSCT_PENS_PAG_AFP2" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_DSCT_PENS_PAG_AFP3" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_DSCT_PENS_PAG_AFP4" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_DSCT_PENS_PAG_AFP5" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_DSCT_PENS_PAG_AFP6" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_DSCT_PENS_PAG_AFP7" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_DSCT_PENS_PAG_AFP8" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_SOLE_APO_ADI_AFP1" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_SOLE_APO_ADI_AFP2" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_SOLE_APO_ADI_AFP3" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_SOLE_APO_ADI_AFP4" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_SOLE_APO_ADI_AFP5" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_SOLE_APO_ADI_AFP6" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_SOLE_APO_ADI_AFP7" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_SOLE_APO_ADI_AFP8" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_SOLE_REE_PAG_AFP1" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_SOLE_REE_PAG_AFP2" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_SOLE_REE_PAG_AFP3" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_SOLE_REE_PAG_AFP4" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_SOLE_REE_PAG_AFP5" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_SOLE_REE_PAG_AFP6" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_SOLE_REE_PAG_AFP7" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MTO_SOLE_REE_PAG_AFP8" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="NRO_CSV" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="NUM_DOCU_SOL" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="NUM_SINI" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="NUM_SOLI" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="NUM_SOLI_PEN" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="NUM_DOCU_PEN" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="PEN_PAGA_MON" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="PEN_BASE_MON" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="REM_PROM_ACT" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="NUM_APOR_ACT" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="SAL_CIC_MN" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="TIP_CAMB_COM" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="TIP_MONE" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="TOT_CAPI_REQ_MN" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="TOT_CAPI_REQ_ORI" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="COD_CUSP" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="COD_BENE_MN" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="APE_MATE_PEN" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="APE_MATE_SOLI" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="APE_PATE_PEN" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="APE_PATE_SOL" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="PRI_NOMB_PEN" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="PRI_NOMB_SOL" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="SEG_NOMB_PEN" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="SEG_NOMB_SOL" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="SUC_INTE" Nullable="true" MaxLength="25" />
+    <Property Type="Int32" Name="CumpleValidacion" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="pa_sel_nominaConsulta_Result">
+    <Property Type="DateTime" Name="FechaReg" Nullable="true" Precision="23" />
+    <Property Type="String" Name="NombreArchivo" Nullable="false" MaxLength="200" />
+    <Property Type="Int32" Name="Id_Nomina" Nullable="false" />
+    <Property Type="Int32" Name="ArchivoId" Nullable="true" />
+    <Property Type="Int32" Name="IDE_CONTRATO" Nullable="false" />
+    <Property Type="String" Name="RUC_ORDE" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="CTA_ORDE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="COD_TRAN" Nullable="true" MaxLength="25" />
+    <Property Type="Int32" Name="TIP_MONE" Nullable="true" />
+    <Property Type="Decimal" Name="MON_TRAN" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="DateTime" Name="FEC_TRAN" Nullable="true" Precision="23" />
+    <Property Type="String" Name="RUC_BENE" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="NOM_BENE" Nullable="true" MaxLength="40" />
+    <Property Type="Int32" Name="TIP_CTA" Nullable="true" />
+    <Property Type="String" Name="CTA_BENE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="DET_TRAN" Nullable="true" MaxLength="40" />
+  </ComplexType>
 </Schema>

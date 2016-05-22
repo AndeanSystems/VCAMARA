@@ -17,16 +17,22 @@
             <asp:View ID="view1" runat="server">
 
                 <label class="label_to" for="ddl_contrato_o">Contrato (*)</label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_contrato" runat="server" Height="25px" Width="77%"></asp:DropDownList>
+                <asp:DropDownList CssClass="input_to" ID="ddl_contrato" ClientIDMode="Static" runat="server" Height="25px" Width="77%"></asp:DropDownList>
 
                 <label class="label_to" for="ddl_tipcom_o">Tipo de Archivo </label>
-                <asp:DropDownList CssClass="input_to" ID="ddl_tipo_archivo" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
+                <asp:DropDownList CssClass="input_to" ID="ddl_tipo_archivo" ClientIDMode="Static" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
 
-                <label class="input_right_L" for="txt_fec_ini_o">Desde</label>
-                <asp:TextBox CssClass="input_right datetime" ID="txt_fec_ini_o" runat="server" Height="25px" Width="14.7%" ></asp:TextBox>
+                <label class="input_right_L" for="txt_fec_ini_o">F. Creación Desde</label>
+                <asp:TextBox CssClass="input_right datetime" ID="txt_fec_ini_o" ClientIDMode="Static" runat="server" Height="25px" Width="14.7%" ></asp:TextBox>
 
-                <label class="input_right_T" for="txt_fec_hasta_o">Hasta  </label>
-                <asp:TextBox CssClass="input_right datetime" ID="txt_fec_hasta_o" runat="server" Height="25px" Width="14.7%" ></asp:TextBox>
+                <label class="input_right_T" for="txt_fec_hasta_o">F. Creación Hasta  </label>
+                <asp:TextBox CssClass="input_right datetime" ID="txt_fec_hasta_o" ClientIDMode="Static" runat="server" Height="25px" Width="14.7%" ></asp:TextBox>
+
+                <label class="label_to" for="txt_fec_ini_o">F. Aprobación Desde</label>
+                <asp:TextBox CssClass="input_to datetime" ID="txt_fecha_aprobacion_desde" ClientIDMode="Static" runat="server" Height="25px" Width="14.7%" ></asp:TextBox>
+
+                <label class="input_right_L" for="txt_fec_hasta_o">F. Aprobación Hasta </label>
+                <asp:TextBox CssClass="input_right datetime" ID="txt_fecha_aprobacion_hasta" ClientIDMode="Static"  runat="server" Height="25px" Width="14.7%" ></asp:TextBox>
 
                 <div class="iframe" id="tblConsulta1">
                     <div id="tblApruebaCarga"></div>

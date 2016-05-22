@@ -42,7 +42,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/03/2016 14:58:50</publishTime>
     </File>
     <File Include="bin/VidaCamara.DIS.dll">
-      <publishTime>05/19/2016 21:06:03</publishTime>
+      <publishTime>05/22/2016 16:03:43</publishTime>
     </File>
     <File Include="bin/VidaCamara.Masiva.exe">
       <publishTime>04/06/2016 22:25:03</publishTime>
@@ -51,7 +51,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/24/2016 18:05:18</publishTime>
     </File>
     <File Include="bin/VidaCamara.Web.dll">
-      <publishTime>05/19/2016 21:06:04</publishTime>
+      <publishTime>05/22/2016 16:03:44</publishTime>
     </File>
     <File Include="Default.aspx">
       <publishTime>02/03/2016 14:58:49</publishTime>
@@ -543,22 +543,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/25/2016 11:40:52</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Consultas/frmSegConsulta.aspx">
-      <publishTime>02/03/2016 14:58:51</publishTime>
+      <publishTime>05/22/2016 16:00:03</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Consultas/frmSegDescarga.aspx">
-      <publishTime>02/03/2016 14:58:51</publishTime>
+      <publishTime>05/21/2016 18:33:55</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Consultas/frmSegLogAdmin.aspx">
       <publishTime>02/03/2016 14:58:51</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Consultas/script/frmSegDescarga.js">
-      <publishTime>02/03/2016 14:58:51</publishTime>
+      <publishTime>05/21/2016 18:24:37</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Consultas/script/frmSegLogAdmin.js">
       <publishTime>04/09/2016 16:53:05</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Consultas/script/frmSeqConsulta.js">
-      <publishTime>02/03/2016 14:58:51</publishTime>
+      <publishTime>05/21/2016 19:13:42</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Operaciones/frmCargaAprobacion.aspx">
       <publishTime>05/17/2016 22:45:43</publishTime>

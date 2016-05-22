@@ -45,7 +45,7 @@ namespace VidaCamara.Web.WebPage.Inicio
         public bool ValidarUsuarioEnActiveDirectory()
         {
             //txtUsuario.Text.Equals("reaseguros"))//
-            if (txtUsuario.Text.Equals("reaseguros"))//oADFunctions.FnValidarUsuario(ConfigurationManager.AppSettings.Get("Dominio"), txtUsuario.Text, txtContrasena.Text, ConfigurationManager.AppSettings.Get("UrlLDAP")))
+            if (oADFunctions.FnValidarUsuario(ConfigurationManager.AppSettings.Get("Dominio"), txtUsuario.Text, txtContrasena.Text, ConfigurationManager.AppSettings.Get("UrlLDAP")))
             {
                 Session["username"] = txtUsuario.Text;
                 //Guardamos el usuario y la clave AD en una sesión:
