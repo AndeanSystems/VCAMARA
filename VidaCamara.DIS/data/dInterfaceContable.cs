@@ -18,7 +18,12 @@ namespace VidaCamara.DIS.data
             {
                 using (var db = new DISEntities())
                 {
-                    db.pa_create_cuenta_42_26_sis(cabecera.IDE_EXACTUS_CABECERA_SIS,cabecera.ASIENTO,nomina.ArchivoId, asiento);
+                    var respuesta = db.pa_create_cuenta_42_26_sis(cabecera.IDE_EXACTUS_CABECERA_SIS,cabecera.ASIENTO,nomina.ArchivoId, asiento).FirstOrDefault();
+                    if (respuesta.Equals("ERROR"))
+                    {
+                        throw(new ArgumentException("Ocurrió un error cuando intentaba buscar el tipo de cambio."));
+
+                    }
                 }
             }
             catch (System.Exception ex)

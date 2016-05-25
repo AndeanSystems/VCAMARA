@@ -338,7 +338,6 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="pa_copia_reglaArchivo" FunctionName="DISModelo.Store.pa_copia_reglaArchivo" />
-    <FunctionImportMapping FunctionImportName="pa_create_cuenta_42_26_sis" FunctionName="DISModelo.Store.pa_create_cuenta_42_26_sis" />
     <FunctionImportMapping FunctionImportName="pa_create_cuenta_26_export_sis" FunctionName="DISModelo.Store.pa_create_cuenta_26_export_sis" />
     <FunctionImportMapping FunctionImportName="pa_sel_NominaForTelebanking" FunctionName="DISModelo.Store.pa_sel_NominaForTelebanking">
       <ResultMapping>
@@ -1774,5 +1773,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="pa_create_cuenta_42_26_sis" FunctionName="DISModelo.Store.pa_create_cuenta_42_26_sis" />
   </EntityContainerMapping>
 </Mapping>

@@ -1118,33 +1118,6 @@ public partial class DISEntities : DbContext
     }
 
 
-    public virtual int pa_create_cuenta_42_26_sis(Nullable<int> exactusCabeceraId, string asiento, Nullable<int> archivoNominaId, Nullable<int> numeroAsiento)
-    {
-
-        var exactusCabeceraIdParameter = exactusCabeceraId.HasValue ?
-            new ObjectParameter("ExactusCabeceraId", exactusCabeceraId) :
-            new ObjectParameter("ExactusCabeceraId", typeof(int));
-
-
-        var asientoParameter = asiento != null ?
-            new ObjectParameter("Asiento", asiento) :
-            new ObjectParameter("Asiento", typeof(string));
-
-
-        var archivoNominaIdParameter = archivoNominaId.HasValue ?
-            new ObjectParameter("ArchivoNominaId", archivoNominaId) :
-            new ObjectParameter("ArchivoNominaId", typeof(int));
-
-
-        var numeroAsientoParameter = numeroAsiento.HasValue ?
-            new ObjectParameter("NumeroAsiento", numeroAsiento) :
-            new ObjectParameter("NumeroAsiento", typeof(int));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_create_cuenta_42_26_sis", exactusCabeceraIdParameter, asientoParameter, archivoNominaIdParameter, numeroAsientoParameter);
-    }
-
-
     public virtual int pa_create_cuenta_26_export_sis(Nullable<int> archivoNominaId, Nullable<int> numeroAsiento, string tipoArchivo)
     {
 
@@ -1428,6 +1401,33 @@ public partial class DISEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_nominaConsulta_Result>("pa_sel_nominaConsulta", nombreTipoArchivoParameter, contratoIdParameter, nombreBeneParameter, monedaIdParameter, estadoParameter, fechaCreacionInicioParameter, fechaCreacionFinParameter, fechaAprobacionInicioParameter, fechaAprobacionFinParameter);
+    }
+
+
+    public virtual ObjectResult<string> pa_create_cuenta_42_26_sis(Nullable<int> exactusCabeceraId, string asiento, Nullable<int> archivoNominaId, Nullable<int> numeroAsiento)
+    {
+
+        var exactusCabeceraIdParameter = exactusCabeceraId.HasValue ?
+            new ObjectParameter("ExactusCabeceraId", exactusCabeceraId) :
+            new ObjectParameter("ExactusCabeceraId", typeof(int));
+
+
+        var asientoParameter = asiento != null ?
+            new ObjectParameter("Asiento", asiento) :
+            new ObjectParameter("Asiento", typeof(string));
+
+
+        var archivoNominaIdParameter = archivoNominaId.HasValue ?
+            new ObjectParameter("ArchivoNominaId", archivoNominaId) :
+            new ObjectParameter("ArchivoNominaId", typeof(int));
+
+
+        var numeroAsientoParameter = numeroAsiento.HasValue ?
+            new ObjectParameter("NumeroAsiento", numeroAsiento) :
+            new ObjectParameter("NumeroAsiento", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("pa_create_cuenta_42_26_sis", exactusCabeceraIdParameter, asientoParameter, archivoNominaIdParameter, numeroAsientoParameter);
     }
 
 }

@@ -2547,12 +2547,6 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
           <FunctionImport Name="pa_copia_reglaArchivo" ReturnType="Collection(Int32)">
           <Parameter Name="NroContrato" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="pa_create_cuenta_42_26_sis">
-            <Parameter Name="ExactusCabeceraId" Mode="In" Type="Int32" />
-            <Parameter Name="Asiento" Mode="In" Type="String" />
-            <Parameter Name="ArchivoNominaId" Mode="In" Type="Int32" />
-            <Parameter Name="NumeroAsiento" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="pa_create_cuenta_26_export_sis">
             <Parameter Name="ArchivoNominaId" Mode="In" Type="Int32" />
             <Parameter Name="NumeroAsiento" Mode="In" Type="Int32" />
@@ -2781,6 +2775,12 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
             <Parameter Name="FechaCreacionFin" Mode="In" Type="DateTime" />
             <Parameter Name="FechaAprobacionInicio" Mode="In" Type="DateTime" />
             <Parameter Name="FechaAprobacionFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="pa_create_cuenta_42_26_sis" ReturnType="Collection(String)">
+            <Parameter Name="ExactusCabeceraId" Mode="In" Type="Int32" />
+            <Parameter Name="Asiento" Mode="In" Type="String" />
+            <Parameter Name="ArchivoNominaId" Mode="In" Type="Int32" />
+            <Parameter Name="NumeroAsiento" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pa_devuelveresultado_Result">
@@ -5188,7 +5188,6 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_copia_reglaArchivo" FunctionName="DISModelo.Store.pa_copia_reglaArchivo" />
-          <FunctionImportMapping FunctionImportName="pa_create_cuenta_42_26_sis" FunctionName="DISModelo.Store.pa_create_cuenta_42_26_sis" />
           <FunctionImportMapping FunctionImportName="pa_create_cuenta_26_export_sis" FunctionName="DISModelo.Store.pa_create_cuenta_26_export_sis" />
           <FunctionImportMapping FunctionImportName="pa_sel_NominaForTelebanking" FunctionName="DISModelo.Store.pa_sel_NominaForTelebanking">
             <ResultMapping>
@@ -6624,6 +6623,7 @@ warning 6002: The table/view 'vcamara2.Negocio.CheckLists' does not have a prima
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_create_cuenta_42_26_sis" FunctionName="DISModelo.Store.pa_create_cuenta_42_26_sis" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
