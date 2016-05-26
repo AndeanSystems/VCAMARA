@@ -74,6 +74,8 @@ $(document).ready(function () {
         return f = dia + "/" + mes + "/" + d.getFullYear();
     }
     function ConvertNumberToDateTime(numberdatetime) {
+        if (numberdatetime == null)
+            return "";
         var milli = numberdatetime.replace(/\/Date\((-?\d+)\)\//, '$1');
         var d = new Date(parseInt(milli));
         var mes = d.getMonth() < 10 ? "0" + parseInt(d.getMonth() + 1) : parseInt(d.getMonth() + 1);

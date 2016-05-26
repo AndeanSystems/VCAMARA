@@ -42,7 +42,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/03/2016 14:58:50</publishTime>
     </File>
     <File Include="bin/VidaCamara.DIS.dll">
-      <publishTime>05/22/2016 16:33:22</publishTime>
+      <publishTime>05/25/2016 23:49:20</publishTime>
     </File>
     <File Include="bin/VidaCamara.Masiva.exe">
       <publishTime>04/06/2016 22:25:03</publishTime>
@@ -51,7 +51,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/24/2016 18:05:18</publishTime>
     </File>
     <File Include="bin/VidaCamara.Web.dll">
-      <publishTime>05/22/2016 16:33:23</publishTime>
+      <publishTime>05/25/2016 23:49:21</publishTime>
     </File>
     <File Include="Default.aspx">
       <publishTime>02/03/2016 14:58:49</publishTime>
@@ -186,7 +186,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/03/2016 14:58:49</publishTime>
     </File>
     <File Include="Resources/js/ConfirmWindow.js">
-      <publishTime>04/09/2016 13:57:36</publishTime>
+      <publishTime>05/25/2016 22:39:27</publishTime>
     </File>
     <File Include="Resources/js/j-valida-login.js">
       <publishTime>02/03/2016 14:58:49</publishTime>
@@ -543,16 +543,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/25/2016 11:40:52</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Consultas/frmSegConsulta.aspx">
-      <publishTime>05/22/2016 16:00:03</publishTime>
+      <publishTime>05/25/2016 22:40:06</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Consultas/frmSegDescarga.aspx">
-      <publishTime>05/21/2016 18:33:55</publishTime>
+      <publishTime>05/25/2016 22:40:20</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Consultas/frmSegLogAdmin.aspx">
       <publishTime>02/03/2016 14:58:51</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Consultas/script/frmSegDescarga.js">
-      <publishTime>05/21/2016 18:24:37</publishTime>
+      <publishTime>05/25/2016 23:39:38</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Consultas/script/frmSegLogAdmin.js">
       <publishTime>04/09/2016 16:53:05</publishTime>
@@ -561,7 +561,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/21/2016 19:13:42</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Operaciones/frmCargaAprobacion.aspx">
-      <publishTime>05/17/2016 22:45:43</publishTime>
+      <publishTime>05/25/2016 22:40:48</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Operaciones/frmCargaDatos.aspx">
       <publishTime>04/06/2016 23:20:12</publishTime>

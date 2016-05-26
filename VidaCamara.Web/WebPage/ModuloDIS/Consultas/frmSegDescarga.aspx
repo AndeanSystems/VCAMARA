@@ -22,10 +22,10 @@
                 <label class="label_to" for="ddl_tipcom_o">Tipo de Archivo </label>
                 <asp:DropDownList CssClass="input_to" ID="ddl_tipo_archivo" ClientIDMode="Static" runat="server" Height="25px" Width="14.8%"></asp:DropDownList>
 
-                <label class="input_right_L" for="txt_fec_ini_o">F. Creación Desde</label>
+                <label class="input_right_L" for="txt_fec_ini_o">F. Carga Desde</label>
                 <asp:TextBox CssClass="input_right datetime" ID="txt_fec_ini_o" ClientIDMode="Static" runat="server" Height="25px" Width="14.7%" ></asp:TextBox>
 
-                <label class="input_right_T" for="txt_fec_hasta_o">F. Creación Hasta  </label>
+                <label class="input_right_T" for="txt_fec_hasta_o">F. Carga Hasta  </label>
                 <asp:TextBox CssClass="input_right datetime" ID="txt_fec_hasta_o" ClientIDMode="Static" runat="server" Height="25px" Width="14.7%" ></asp:TextBox>
 
                 <label class="label_to" for="txt_fec_ini_o">F. Aprobación Desde</label>

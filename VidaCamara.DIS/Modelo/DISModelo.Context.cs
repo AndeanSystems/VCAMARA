@@ -1238,40 +1238,30 @@ public partial class DISEntities : DbContext
     }
 
 
-    public virtual ObjectResult<pa_sel_SegDescarga_Result> pa_sel_SegDescarga(Nullable<int> ideContrato, string nombreTipoArchivo, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, Nullable<System.DateTime> fechaInicioAprobacion, Nullable<System.DateTime> fechaFinAprobacion)
+    public virtual ObjectResult<string> pa_create_cuenta_42_26_sis(Nullable<int> exactusCabeceraId, string asiento, Nullable<int> archivoNominaId, Nullable<int> numeroAsiento)
     {
 
-        var ideContratoParameter = ideContrato.HasValue ?
-            new ObjectParameter("IdeContrato", ideContrato) :
-            new ObjectParameter("IdeContrato", typeof(int));
+        var exactusCabeceraIdParameter = exactusCabeceraId.HasValue ?
+            new ObjectParameter("ExactusCabeceraId", exactusCabeceraId) :
+            new ObjectParameter("ExactusCabeceraId", typeof(int));
 
 
-        var nombreTipoArchivoParameter = nombreTipoArchivo != null ?
-            new ObjectParameter("NombreTipoArchivo", nombreTipoArchivo) :
-            new ObjectParameter("NombreTipoArchivo", typeof(string));
+        var asientoParameter = asiento != null ?
+            new ObjectParameter("Asiento", asiento) :
+            new ObjectParameter("Asiento", typeof(string));
 
 
-        var fechaInicioParameter = fechaInicio.HasValue ?
-            new ObjectParameter("FechaInicio", fechaInicio) :
-            new ObjectParameter("FechaInicio", typeof(System.DateTime));
+        var archivoNominaIdParameter = archivoNominaId.HasValue ?
+            new ObjectParameter("ArchivoNominaId", archivoNominaId) :
+            new ObjectParameter("ArchivoNominaId", typeof(int));
 
 
-        var fechaFinParameter = fechaFin.HasValue ?
-            new ObjectParameter("FechaFin", fechaFin) :
-            new ObjectParameter("FechaFin", typeof(System.DateTime));
+        var numeroAsientoParameter = numeroAsiento.HasValue ?
+            new ObjectParameter("NumeroAsiento", numeroAsiento) :
+            new ObjectParameter("NumeroAsiento", typeof(int));
 
 
-        var fechaInicioAprobacionParameter = fechaInicioAprobacion.HasValue ?
-            new ObjectParameter("FechaInicioAprobacion", fechaInicioAprobacion) :
-            new ObjectParameter("FechaInicioAprobacion", typeof(System.DateTime));
-
-
-        var fechaFinAprobacionParameter = fechaFinAprobacion.HasValue ?
-            new ObjectParameter("FechaFinAprobacion", fechaFinAprobacion) :
-            new ObjectParameter("FechaFinAprobacion", typeof(System.DateTime));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_SegDescarga_Result>("pa_sel_SegDescarga", ideContratoParameter, nombreTipoArchivoParameter, fechaInicioParameter, fechaFinParameter, fechaInicioAprobacionParameter, fechaFinAprobacionParameter);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("pa_create_cuenta_42_26_sis", exactusCabeceraIdParameter, asientoParameter, archivoNominaIdParameter, numeroAsientoParameter);
     }
 
 
@@ -1404,30 +1394,40 @@ public partial class DISEntities : DbContext
     }
 
 
-    public virtual ObjectResult<string> pa_create_cuenta_42_26_sis(Nullable<int> exactusCabeceraId, string asiento, Nullable<int> archivoNominaId, Nullable<int> numeroAsiento)
+    public virtual ObjectResult<pa_sel_SegDescarga_Result> pa_sel_SegDescarga(Nullable<int> ideContrato, string nombreTipoArchivo, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, Nullable<System.DateTime> fechaInicioAprobacion, Nullable<System.DateTime> fechaFinAprobacion)
     {
 
-        var exactusCabeceraIdParameter = exactusCabeceraId.HasValue ?
-            new ObjectParameter("ExactusCabeceraId", exactusCabeceraId) :
-            new ObjectParameter("ExactusCabeceraId", typeof(int));
+        var ideContratoParameter = ideContrato.HasValue ?
+            new ObjectParameter("IdeContrato", ideContrato) :
+            new ObjectParameter("IdeContrato", typeof(int));
 
 
-        var asientoParameter = asiento != null ?
-            new ObjectParameter("Asiento", asiento) :
-            new ObjectParameter("Asiento", typeof(string));
+        var nombreTipoArchivoParameter = nombreTipoArchivo != null ?
+            new ObjectParameter("NombreTipoArchivo", nombreTipoArchivo) :
+            new ObjectParameter("NombreTipoArchivo", typeof(string));
 
 
-        var archivoNominaIdParameter = archivoNominaId.HasValue ?
-            new ObjectParameter("ArchivoNominaId", archivoNominaId) :
-            new ObjectParameter("ArchivoNominaId", typeof(int));
+        var fechaInicioParameter = fechaInicio.HasValue ?
+            new ObjectParameter("FechaInicio", fechaInicio) :
+            new ObjectParameter("FechaInicio", typeof(System.DateTime));
 
 
-        var numeroAsientoParameter = numeroAsiento.HasValue ?
-            new ObjectParameter("NumeroAsiento", numeroAsiento) :
-            new ObjectParameter("NumeroAsiento", typeof(int));
+        var fechaFinParameter = fechaFin.HasValue ?
+            new ObjectParameter("FechaFin", fechaFin) :
+            new ObjectParameter("FechaFin", typeof(System.DateTime));
 
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("pa_create_cuenta_42_26_sis", exactusCabeceraIdParameter, asientoParameter, archivoNominaIdParameter, numeroAsientoParameter);
+        var fechaInicioAprobacionParameter = fechaInicioAprobacion.HasValue ?
+            new ObjectParameter("FechaInicioAprobacion", fechaInicioAprobacion) :
+            new ObjectParameter("FechaInicioAprobacion", typeof(System.DateTime));
+
+
+        var fechaFinAprobacionParameter = fechaFinAprobacion.HasValue ?
+            new ObjectParameter("FechaFinAprobacion", fechaFinAprobacion) :
+            new ObjectParameter("FechaFinAprobacion", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_sel_SegDescarga_Result>("pa_sel_SegDescarga", ideContratoParameter, nombreTipoArchivoParameter, fechaInicioParameter, fechaFinParameter, fechaInicioAprobacionParameter, fechaFinAprobacionParameter);
     }
 
 }

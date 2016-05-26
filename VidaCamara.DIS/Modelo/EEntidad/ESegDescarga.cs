@@ -11,5 +11,8 @@ namespace VidaCamara.DIS.Modelo.EEntidad
         public string Estado { get; set; }
         public string Moneda { get; set; }
         public string Importe { get; set; }
+        public Nullable<DateTime> FechaAprobacion { get; set; }
+
+
     }
 }

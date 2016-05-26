@@ -15,11 +15,21 @@ namespace VidaCamara.DIS.data
             {
                 using (var db = new DISEntities())
                 {
-                    DateTime fecha_ini = string.IsNullOrEmpty(filterParam[1].ToString()) ? new DateTime(1900, 01, 01) : Convert.ToDateTime(filterParam[1].ToString());
-                    DateTime fecha_fin = string.IsNullOrEmpty(filterParam[2].ToString()) ? DateTime.Now : Convert.ToDateTime(filterParam[2].ToString());
+                    Nullable<DateTime> fecha_ini = null;
+                    Nullable<DateTime> fecha_fin = null;
 
-                    DateTime fechaAprobacionInicio = string.IsNullOrEmpty(filterParam[4].ToString()) ? new DateTime(1900, 01, 01) : Convert.ToDateTime(filterParam[4].ToString());
-                    DateTime fechaAprobacionFin = string.IsNullOrEmpty(filterParam[5].ToString()) ? DateTime.Now : Convert.ToDateTime(filterParam[5].ToString());
+                    Nullable<DateTime> fechaAprobacionInicio = null;
+                    Nullable<DateTime> fechaAprobacionFin = null;
+
+                    if (!string.IsNullOrEmpty(filterParam[1].ToString()))
+                        fecha_ini = Convert.ToDateTime(filterParam[1].ToString());
+                    if(!string.IsNullOrEmpty(filterParam[2].ToString()))
+                        fecha_fin = Convert.ToDateTime(filterParam[2].ToString());
+
+                    if(!string.IsNullOrEmpty(filterParam[4].ToString()))
+                        fechaAprobacionInicio = Convert.ToDateTime(filterParam[4].ToString());
+                    if(!string.IsNullOrEmpty(filterParam[5].ToString()))
+                        fechaAprobacionFin = Convert.ToDateTime(filterParam[5].ToString());
 
                     var nombreTipoArchivo = filterParam[0].ToString();
 
@@ -31,8 +41,10 @@ namespace VidaCamara.DIS.data
                     {
                         var historiadet = new HHistorialCargaArchivo_LinDet()
                         {
+                            Estado = item.Estado,
                             NombreArchivo = item.NombreArchivo,
                             FechaInsert = item.FechaInsert,
+                            FechaAprobacion = item.FechaAprobacion,
                             IdHistorialCargaArchivoLinDet = item.IdHistorialCargaArchivoLinDet,
                             IdHistorialCargaArchivoLinCab = item.IdHistorialCargaArchivoLinCab,
                             TipoLinea = item.TipoLinea,

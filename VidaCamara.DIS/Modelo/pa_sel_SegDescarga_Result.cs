@@ -19,6 +19,8 @@ public partial class pa_sel_SegDescarga_Result
 
     public string NombreArchivo { get; set; }
 
+    public Nullable<System.DateTime> FechaAprobacion { get; set; }
+
     public System.DateTime FecReg { get; set; }
 
     public string UsuReg { get; set; }

@@ -25,10 +25,10 @@
                 <label class="label_to">Moneda </label>
                 <asp:DropDownList runat="server" ID="ddl_moneda" Height="25px" Width="15.2%" CssClass="input_to"></asp:DropDownList>
 
-                <label class="input_right_L" for="txt_fec_ini_o">F. Creación Desde</label>
+                <label class="input_right_L" for="txt_fec_ini_o">F. Carga Desde</label>
                 <asp:TextBox CssClass="input_right datetime" ID="txt_fec_ini_o" runat="server" Height="25px" Width="14.8%" ></asp:TextBox>
 
-                <label class="input_right_T" for="txt_fec_hasta_o">F. Creación Hasta </label>
+                <label class="input_right_T" for="txt_fec_hasta_o">F. Carga Hasta </label>
                 <asp:TextBox CssClass="input_right datetime" ID="txt_fec_hasta_o" runat="server" Height="25px" Width="14.7%" ></asp:TextBox>
 
                 <label class="label_to" for="ddl_ramo_o">AFP </label>
@@ -61,6 +61,7 @@
                     <asp:ListItem Text="Aprobados" Value="A" />                    
                     <asp:ListItem Text="Creados" Value="C" />
                     <asp:ListItem Text="Errados" Value="E" />
+                    <asp:ListItem Text="Inactivos" Value="I" />
                     <asp:ListItem Text="Pagados (Solo Nomina)" Value="P" />
                </asp:DropDownList>
 

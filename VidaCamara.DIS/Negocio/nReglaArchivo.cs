@@ -25,7 +25,7 @@ namespace VidaCamara.DIS.Negocio
         /// </summary>
         /// <param name="regla"></param>
         /// <returns></returns>
-        public StringBuilder getColumnGridByArchivo(ReglaArchivo regla,string columnsAdd = null)
+        public StringBuilder getColumnGridByArchivo(ReglaArchivo regla,string gridFor,string columnsAdd = null)
         {
             var total = 0;
             var listRegla = new dReglaArchivo().getListReglaArchivo(regla, 0, 1000, "CaracterInicial ASC", out total);
@@ -36,6 +36,13 @@ namespace VidaCamara.DIS.Negocio
             //}
             var sb = new StringBuilder();
             sb.Append("var fields = {");
+            if (!gridFor.ToUpper().Equals("CARGA"))
+            {
+                sb.Append("Estado:{ title: 'Estado'},");
+                sb.Append("NombreArchivo: { title: 'NombreArchivo'},");
+                sb.Append("FechaInsert:{title:'Fecha_Carga',display: function (data) {return ConvertNumberToDateTime(data.record.FechaInsert);}},");
+                sb.Append("FechaAprobacion:{title:'Fecha_Aprobación',display: function (data) {return ConvertNumberToDateTime(data.record.FechaAprobacion);}},");
+            }
             for (int i = 1; i <= listRegla.Count; i++)
             {
                 var type = listRegla[i - 1].TipoCampo.Trim() == "DATETIME" ? ",type: 'date', displayFormat: 'dd/mm/yy'" : "";

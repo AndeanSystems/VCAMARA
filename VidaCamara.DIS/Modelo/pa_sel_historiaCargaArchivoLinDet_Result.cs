@@ -17,7 +17,11 @@ using System;
 public partial class pa_sel_historiaCargaArchivoLinDet_Result
 {
 
+    public string Estado { get; set; }
+
     public string NombreArchivo { get; set; }
+
+    public Nullable<System.DateTime> FechaAprobacion { get; set; }
 
     public Nullable<System.DateTime> FechaInsert { get; set; }
 

@@ -1595,23 +1595,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="pa_sel_SegDescarga" FunctionName="DISModelo.Store.pa_sel_SegDescarga">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="DISModelo.pa_sel_SegDescarga_Result">
-          <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
-          <ScalarProperty Name="FecReg" ColumnName="FecReg" />
-          <ScalarProperty Name="UsuReg" ColumnName="UsuReg" />
-          <ScalarProperty Name="TotalRegistros" ColumnName="TotalRegistros" />
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
-          <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-          <ScalarProperty Name="ImporteTotalSoles" ColumnName="ImporteTotalSoles" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="pa_create_cuenta_42_26_sis" FunctionName="DISModelo.Store.pa_create_cuenta_42_26_sis" />
     <FunctionImportMapping FunctionImportName="pa_sel_historiaCargaArchivoLinDet" FunctionName="DISModelo.Store.pa_sel_historiaCargaArchivoLinDet">
       <ResultMapping>
         <ComplexTypeMapping TypeName="DISModelo.pa_sel_historiaCargaArchivoLinDet_Result">
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
           <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+          <ScalarProperty Name="FechaAprobacion" ColumnName="FechaAprobacion" />
           <ScalarProperty Name="FechaInsert" ColumnName="FechaInsert" />
           <ScalarProperty Name="IdHistorialCargaArchivoLinDet" ColumnName="IdHistorialCargaArchivoLinDet" />
           <ScalarProperty Name="IdHistorialCargaArchivoLinCab" ColumnName="IdHistorialCargaArchivoLinCab" />
@@ -1754,8 +1744,10 @@
     <FunctionImportMapping FunctionImportName="pa_sel_nominaConsulta" FunctionName="DISModelo.Store.pa_sel_nominaConsulta">
       <ResultMapping>
         <ComplexTypeMapping TypeName="DISModelo.pa_sel_nominaConsulta_Result">
-          <ScalarProperty Name="FechaReg" ColumnName="FechaReg" />
+          <ScalarProperty Name="FechaAprobacion" ColumnName="FechaAprobacion" />
+          <ScalarProperty Name="FechaInsert" ColumnName="FechaInsert" />
           <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
           <ScalarProperty Name="Id_Nomina" ColumnName="Id_Nomina" />
           <ScalarProperty Name="ArchivoId" ColumnName="ArchivoId" />
           <ScalarProperty Name="IDE_CONTRATO" ColumnName="IDE_CONTRATO" />
@@ -1773,6 +1765,19 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="pa_create_cuenta_42_26_sis" FunctionName="DISModelo.Store.pa_create_cuenta_42_26_sis" />
+    <FunctionImportMapping FunctionImportName="pa_sel_SegDescarga" FunctionName="DISModelo.Store.pa_sel_SegDescarga">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DISModelo.pa_sel_SegDescarga_Result">
+          <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+          <ScalarProperty Name="FechaAprobacion" ColumnName="FechaAprobacion" />
+          <ScalarProperty Name="FecReg" ColumnName="FecReg" />
+          <ScalarProperty Name="UsuReg" ColumnName="UsuReg" />
+          <ScalarProperty Name="TotalRegistros" ColumnName="TotalRegistros" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+          <ScalarProperty Name="ImporteTotalSoles" ColumnName="ImporteTotalSoles" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

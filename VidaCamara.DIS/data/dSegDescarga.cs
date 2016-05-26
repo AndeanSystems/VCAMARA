@@ -14,10 +14,15 @@ namespace VidaCamara.DIS.data
             var listDescarag = new List<ESegDescarga>();
             try
             {
-                var fechaInicioCreacion = string.IsNullOrEmpty(filters[1].ToString())?DateTime.MinValue: Convert.ToDateTime(filters[1]);
-                var fechaFinCreacion = string.IsNullOrEmpty(filters[2].ToString()) ?DateTime.Now: Convert.ToDateTime(filters[2]);
-                var fechaInicioAprobacion = string.IsNullOrEmpty(filters[3].ToString()) ? DateTime.MinValue : Convert.ToDateTime(filters[3]);
-                var fechaFinAprobacion = string.IsNullOrEmpty(filters[3].ToString()) ? DateTime.Now:Convert.ToDateTime(filters[4]);
+                Nullable<DateTime> fechaInicioCreacion = null, fechaFinCreacion = null, fechaInicioAprobacion = null, fechaFinAprobacion = null;
+                if(!string.IsNullOrEmpty(filters[1].ToString()))
+                    fechaInicioCreacion = Convert.ToDateTime(filters[1]);
+                if(!string.IsNullOrEmpty(filters[2].ToString()))
+                    fechaFinCreacion =  Convert.ToDateTime(filters[2]);
+                if(!string.IsNullOrEmpty(filters[3].ToString()))
+                    fechaInicioAprobacion = Convert.ToDateTime(filters[3]);
+                if(!string.IsNullOrEmpty(filters[3].ToString()))
+                    fechaFinAprobacion = Convert.ToDateTime(filters[4]);
                 using (var db = new DISEntities())
                 {
                     var query = db.pa_sel_SegDescarga(contrato.IDE_CONTRATO, filters[0].ToString(), fechaInicioCreacion, fechaFinCreacion,fechaInicioAprobacion,fechaFinAprobacion).ToList();
@@ -27,6 +32,7 @@ namespace VidaCamara.DIS.data
                         var eSegDescarga = new ESegDescarga() {
                             Estado = item.Estado,
                             FechaCarga = item.FecReg,
+                            FechaAprobacion = item.FechaAprobacion,
                             Importe = string.Format(ConfigurationManager.AppSettings.Get("Float"),item.ImporteTotalSoles),
                             nombreArchivo = item.NombreArchivo,
                             NroLineas = Convert.ToInt32(item.TotalRegistros),

@@ -91,11 +91,21 @@ namespace VidaCamara.DIS.data
             var listNomina = new List<HNOMINA>();
             try
             {
-                var fechaCreacionInicio = string.IsNullOrEmpty(filters[1].ToString())? new DateTime(1900, 01, 01) : Convert.ToDateTime(filters[1].ToString());
-                var fechaCreacionFin = string.IsNullOrEmpty(filters[2].ToString()) ? DateTime.Now : Convert.ToDateTime(filters[2].ToString());
+                Nullable<DateTime> fechaCreacionInicio = null;
+                Nullable<DateTime> fechaCreacionFin = null;
 
-                var fechaAprobacionInicio = string.IsNullOrEmpty(filters[4].ToString()) ? new DateTime(1900, 01, 01) : Convert.ToDateTime(filters[4].ToString());
-                var fechaAprobacionFin = string.IsNullOrEmpty(filters[5].ToString()) ? DateTime.Now : Convert.ToDateTime(filters[5].ToString());
+                Nullable<DateTime> fechaAprobacionInicio = null;
+                Nullable<DateTime> fechaAprobacionFin = null;
+
+                if(!string.IsNullOrEmpty(filters[1].ToString()))
+                    fechaCreacionInicio = Convert.ToDateTime(filters[1].ToString());
+                if(!string.IsNullOrEmpty(filters[2].ToString()))
+                    fechaCreacionFin = Convert.ToDateTime(filters[2].ToString());
+
+                if(!string.IsNullOrEmpty(filters[4].ToString()))
+                    fechaAprobacionInicio = Convert.ToDateTime(filters[4].ToString());
+                if(!string.IsNullOrEmpty(filters[5].ToString()))
+                    fechaAprobacionFin = Convert.ToDateTime(filters[5].ToString());
 
                 using (var db = new DISEntities())
                 {
@@ -105,7 +115,9 @@ namespace VidaCamara.DIS.data
                     foreach (var item in query.Skip(jtStartIndex).Take(jtPageSize))
                     {
                         var eNomina = new HNOMINA() {
-                            FechaReg = item.FechaReg,
+                            FechaInsert = item.FechaInsert,
+                            FechaAprobacion = item.FechaAprobacion,
+                            Estado = item.Estado,
                             NombreArchivo = item.NombreArchivo,
                             Id_Nomina = item.Id_Nomina,
                             ArchivoId = item.ArchivoId,

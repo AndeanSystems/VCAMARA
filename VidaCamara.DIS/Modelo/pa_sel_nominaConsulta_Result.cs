@@ -17,9 +17,13 @@ using System;
 public partial class pa_sel_nominaConsulta_Result
 {
 
-    public Nullable<System.DateTime> FechaReg { get; set; }
+    public Nullable<System.DateTime> FechaAprobacion { get; set; }
+
+    public Nullable<System.DateTime> FechaInsert { get; set; }
 
     public string NombreArchivo { get; set; }
+
+    public string Estado { get; set; }
 
     public int Id_Nomina { get; set; }
 
