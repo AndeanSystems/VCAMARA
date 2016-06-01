@@ -10,7 +10,7 @@
     });
     const action = "/WebPage/ModuloDIS/Consultas/frmSegDescarga.aspx/listSegDescarga";
     var fields = {
-        nombreArchivo :{title:'NombreArchivo'},
+        NombreArchivo: { title: 'NombreArchivo' },
         FechaCarga: { title: 'FechaCarga', type: 'date', displayFormat: 'dd/mm/yy' },
         FechaAprobacion: { title: 'FechaAprobación', type: 'date', displayFormat: 'dd/mm/yy' },
         Usuario: {title:'Usuario'},
@@ -24,7 +24,7 @@
             paging: true,
             sorting: true,
             pageSize: 12,
-            defaultSorting: 'nombreArchivo ASC',
+            defaultSorting: 'NombreArchivo ASC',
             selecting: false,
             actions: {
                 listAction: action,

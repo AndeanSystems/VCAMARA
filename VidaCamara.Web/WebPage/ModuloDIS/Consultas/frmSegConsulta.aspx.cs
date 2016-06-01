@@ -55,7 +55,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
         public static object listHistoriaDetalle(int jtStartIndex, int jtPageSize,string jtSorting)
         {
             filterParam[3] = formatoMoneda;
-            var listCargaDetalle = new nArchivoCargado().listArchivoCargado(cabecera,historiaLinDet, filterParam, jtStartIndex, jtPageSize, out total);
+            var listCargaDetalle = new nArchivoCargado().listArchivoCargado(cabecera,historiaLinDet, filterParam, jtStartIndex, jtPageSize, jtSorting, out total);
             return new { Result = "OK", Records = listCargaDetalle, TotalRecordCount = total };
         }
         [System.Web.Services.WebMethod(EnableSession = true)]

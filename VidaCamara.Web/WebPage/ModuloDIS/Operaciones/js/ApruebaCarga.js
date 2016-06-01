@@ -84,12 +84,12 @@
         FechaInfo: { title: 'FechaInfo', type: 'date', displayFormat: 'dd/mm/yy' },
         UsuReg: { title: 'Usuario' },
         Aprobar: {
-            title: 'Aprobar', align: 'center', display: function (data) {
+            sorting: false,title: 'Aprobar', align: 'center', display: function (data) {
                 return "<a id='link_aprobar' class='" + data.record.IdLinCab + "," + data.record.IdArchivo + "' href='#'>Aprobar</a>";
             }
         },
         Eliminar: {
-            title: 'Descartar', display: function (data) {
+            sorting: false,title: 'Descartar', display: function (data) {
                 return "<a id='link_eliminar' class='" + data.record.IdLinCab + "," + data.record.IdArchivo + "' href='#'>Descartar</a>";
             }
         }

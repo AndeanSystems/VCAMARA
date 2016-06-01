@@ -8,18 +8,15 @@ namespace VidaCamara.DIS.data
 {
     public class dPagoCargado
     {
-        public List<HHistorialCargaArchivo_LinDet> listArchivoCargado(HistorialCargaArchivo_LinCab cab, HistorialCargaArchivo_LinDet det, object[] filterParam, int jtStartIndex, int jtPageSize, out int total)
+        public List<HHistorialCargaArchivo_LinDet> listArchivoCargado(HistorialCargaArchivo_LinCab cab, HistorialCargaArchivo_LinDet det, object[] filterParam, int jtStartIndex, int jtPageSize,string jtSorting, out int total)
         {
             var listDetalle = new List<HHistorialCargaArchivo_LinDet>();
             try
             {
                 using (var db = new DISEntities())
                 {
-                    Nullable<DateTime> fecha_ini = null;
-                    Nullable<DateTime> fecha_fin = null;
-
-                    Nullable<DateTime> fechaAprobacionInicio = null;
-                    Nullable<DateTime> fechaAprobacionFin = null;
+                    #region variebles
+                    Nullable<DateTime> fecha_ini = null,fecha_fin = null,fechaAprobacionInicio = null, fechaAprobacionFin = null;
 
                     if (!string.IsNullOrEmpty(filterParam[1].ToString()))
                         fecha_ini = Convert.ToDateTime(filterParam[1].ToString());
@@ -33,11 +30,21 @@ namespace VidaCamara.DIS.data
 
                     var nombreTipoArchivo = filterParam[0].ToString();
 
+                    //sorter
+                    var sorter = jtSorting.Split(' ');
+                    var propertyInfo = typeof(pa_sel_historiaCargaArchivoLinDet_Result).GetProperty(sorter[0].Trim());
+                    #endregion variables
+
                     var result = db.pa_sel_historiaCargaArchivoLinDet(nombreTipoArchivo, cab.IDE_CONTRATO, det.COD_AFP, det.COD_CUSP,
                                 det.PRI_NOMB_PEN, det.APE_MATE_PEN, det.NUM_DOCU_PEN, det.NUM_SOLI_PEN, det.TIP_MONE.Trim(), fecha_ini,
                                 fecha_fin,fechaAprobacionInicio,fechaAprobacionFin,cab.ESTADO).ToList();
                     total = result.Count;
-                    foreach (var item in result.Skip(jtStartIndex).Take(jtPageSize))
+                    if(sorter[1].Trim().ToUpper().Equals("ASC"))
+                        result = result.OrderBy(x=>propertyInfo.GetValue(x,null)).Skip(jtStartIndex).Take(jtPageSize).ToList();
+                    else
+                        result = result.OrderByDescending(x => propertyInfo.GetValue(x, null)).Skip(jtStartIndex).Take(jtPageSize).ToList();
+                    //var rowFiltered = result..Skip(jtStartIndex).Take(jtPageSize);
+                    foreach (var item in result)
                     {
                         var historiadet = new HHistorialCargaArchivo_LinDet()
                         {

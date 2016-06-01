@@ -8,17 +8,30 @@ namespace VidaCamara.DIS.data
 {
     public class dAprobacionCarga
     {
-        public List<EAprobacionCarga> listApruebaCarga(CONTRATO_SYS contrato, int jtStartIndex, int jtPageSize,object[] filters, out int total)
+        public List<EAprobacionCarga> listApruebaCarga(CONTRATO_SYS contrato, int jtStartIndex, int jtPageSize,string sorting,object[] filters, out int total)
         {
             var listAprueba = new List<EAprobacionCarga>();
             try
             {
+                #region VARIABLES
+                var fecha_inicio = Convert.ToDateTime(filters[1]);
+                var fecha_fin = Convert.ToDateTime(filters[2]);
+                var sorter = sorting.Split(' ');
+                if (sorter[0].ToUpper().Equals("MONEDA"))
+                    sorter[0] = "Moneda";
+                else if(sorter[0].ToUpper().Equals("TOTALIMPORTE"))
+                    sorter[0] = "ImporteTotal";
+                var propertyInfo = typeof(pa_sel_pagoNominaAprueba_Result).GetProperty(sorter[0].Trim());
+                #endregion VARIABLES
+
                 using (var db = new DISEntities())
                 {
-                    var fecha_inicio = Convert.ToDateTime(filters[1]);
-                    var fecha_fin = Convert.ToDateTime(filters[2]);
                     var query = db.pa_sel_pagoNominaAprueba(contrato.IDE_CONTRATO,filters[0].ToString(), fecha_inicio,fecha_fin).ToList();
                     total = query.Count();
+                    if (sorter[1].Trim().ToUpper().Equals("ASC"))
+                        query = query.OrderBy(x => propertyInfo.GetValue(x, null)).Skip(jtStartIndex).Take(jtPageSize).ToList();
+                    else
+                        query = query.OrderByDescending(x => propertyInfo.GetValue(x, null)).Skip(jtStartIndex).Take(jtPageSize).ToList();
                     foreach (var item in query.Skip(jtStartIndex).Take(jtPageSize))
                     {
                         var eApruebaCarga = new EAprobacionCarga()

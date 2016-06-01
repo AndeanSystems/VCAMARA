@@ -83,7 +83,6 @@ $(document).ready(function () {
         var hora = d.getHours() < 10?"0"+ d.getHours():d.getHours();
         var minuto = d.getMinutes() < 10?"0"+d.getMinutes():d.getMinutes();
         var segundo = d.getSeconds() < 10 ? "0" + d.getSeconds() : d.getSeconds();
-        console.log(mes);
         return dia + "/" + mes + "/" + d.getFullYear() + " " + hora + ":" + minuto + ":" + segundo;
     }
     //funcion ajax

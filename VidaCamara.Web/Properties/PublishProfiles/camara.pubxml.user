@@ -42,7 +42,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/03/2016 14:58:50</publishTime>
     </File>
     <File Include="bin/VidaCamara.DIS.dll">
-      <publishTime>05/25/2016 23:49:20</publishTime>
+      <publishTime>05/30/2016 22:14:39</publishTime>
     </File>
     <File Include="bin/VidaCamara.Masiva.exe">
       <publishTime>04/06/2016 22:25:03</publishTime>
@@ -51,7 +51,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/24/2016 18:05:18</publishTime>
     </File>
     <File Include="bin/VidaCamara.Web.dll">
-      <publishTime>05/25/2016 23:49:21</publishTime>
+      <publishTime>05/30/2016 22:14:40</publishTime>
     </File>
     <File Include="Default.aspx">
       <publishTime>02/03/2016 14:58:49</publishTime>
@@ -543,7 +543,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/25/2016 11:40:52</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Consultas/frmSegConsulta.aspx">
-      <publishTime>05/25/2016 22:40:06</publishTime>
+      <publishTime>05/30/2016 21:47:41</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Consultas/frmSegDescarga.aspx">
       <publishTime>05/25/2016 22:40:20</publishTime>
@@ -552,13 +552,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/03/2016 14:58:51</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Consultas/script/frmSegDescarga.js">
-      <publishTime>05/25/2016 23:39:38</publishTime>
+      <publishTime>05/30/2016 21:06:34</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Consultas/script/frmSegLogAdmin.js">
       <publishTime>04/09/2016 16:53:05</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Consultas/script/frmSeqConsulta.js">
-      <publishTime>05/21/2016 19:13:42</publishTime>
+      <publishTime>05/30/2016 22:13:00</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Operaciones/frmCargaAprobacion.aspx">
       <publishTime>05/25/2016 22:40:48</publishTime>
@@ -573,7 +573,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/04/2016 22:58:01</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Operaciones/js/ApruebaCarga.js">
-      <publishTime>05/17/2016 22:46:42</publishTime>
+      <publishTime>05/30/2016 21:28:47</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Operaciones/js/CargaDatos.js">
       <publishTime>02/20/2016 16:43:08</publishTime>
@@ -585,7 +585,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/16/2016 09:07:20</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Operaciones/js/frmTelebanking.js">
-      <publishTime>04/09/2016 15:08:02</publishTime>
+      <publishTime>05/30/2016 21:28:20</publishTime>
     </File>
     <File Include="WebPage/ModuloSBS/Consultas/frmConsultaComprobante.aspx">
       <publishTime>02/03/2016 14:58:52</publishTime>

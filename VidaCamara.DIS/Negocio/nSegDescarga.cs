@@ -13,9 +13,9 @@ namespace VidaCamara.DIS.Negocio
 {
     public class nSegDescarga
     {
-        public List<ESegDescarga> listSegDescarga(CONTRATO_SYS contrato, object[] filters, int jtStartIndex, int jtPageSize, out int total)
+        public List<ESegDescarga> listSegDescarga(CONTRATO_SYS contrato, object[] filters, int jtStartIndex, int jtPageSize,string jtSorting, out int total)
         {
-            return new dSegDescarga().listSegDescarga(contrato,filters,jtStartIndex,jtPageSize,out total);
+            return new dSegDescarga().listSegDescarga(contrato,filters,jtStartIndex,jtPageSize, jtSorting, out total);
         }
 
         public string descargarConsultaExcel(CONTRATO_SYS contrato, object[] filters)
@@ -40,13 +40,13 @@ namespace VidaCamara.DIS.Negocio
                     cellBook.CellStyle = headerStyle;
                 }
 
-                var listSegDescarga = new nSegDescarga().listSegDescarga(contrato, filters, 0, 100000, out total);
+                var listSegDescarga = new nSegDescarga().listSegDescarga(contrato, filters, 0, 100000, "Estado ASC", out total);
                 for (int i = 0; i < listSegDescarga.Count; i++)
                 {
                     var rowBody = sheet.CreateRow(2+i);
 
                     ICell cellNombre = rowBody.CreateCell(1);
-                    cellNombre.SetCellValue(listSegDescarga[i].nombreArchivo);
+                    cellNombre.SetCellValue(listSegDescarga[i].NombreArchivo);
                     cellNombre.CellStyle = bodyStyle;
 
                     ICell cellFecCarga = rowBody.CreateCell(2);

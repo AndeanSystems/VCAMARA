@@ -41,7 +41,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         {
             var negocio = new nTelebanking();
             nomina.FechaReg = Convert.ToDateTime(fecha);
-            return new { Result = "OK", Records = negocio.listTelebanking(nomina,jtStartIndex, jtPageSize,formatoMoneda, out total), TotalRecordCount = total };
+            return new { Result = "OK", Records = negocio.listTelebanking(nomina,jtStartIndex, jtPageSize,jtSorting,formatoMoneda, out total), TotalRecordCount = total };
         }
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static object listTelebankingByArchivoId(int ArchivoId)

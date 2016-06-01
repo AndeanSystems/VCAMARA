@@ -12,9 +12,9 @@ namespace VidaCamara.DIS.Negocio
 {
     public class nAprobacionCarga
     {
-        public List<EAprobacionCarga> listApruebaCarga(CONTRATO_SYS contrato, int jtStartIndex, int jtPageSize,object[] filters, out int total)
+        public List<EAprobacionCarga> listApruebaCarga(CONTRATO_SYS contrato, int jtStartIndex, int jtPageSize,string sorting,object[] filters, out int total)
         {
-            return new dAprobacionCarga().listApruebaCarga(contrato,jtStartIndex,jtPageSize, filters, out total);
+            return new dAprobacionCarga().listApruebaCarga(contrato,jtStartIndex,jtPageSize,sorting, filters, out total);
         }
 
         public void actualizarEstado(HistorialCargaArchivo_LinCab historialCargaArchivo_LinCab,Archivo archivo)
@@ -50,7 +50,7 @@ namespace VidaCamara.DIS.Negocio
             try
             {
                 int total;
-                var listDescarga = new dAprobacionCarga().listApruebaCarga(contratoSis, 0, 100000, filtersNow, out total);
+                var listDescarga = new dAprobacionCarga().listApruebaCarga(contratoSis, 0, 100000, "IdLinCab ASC", filtersNow, out total);
                 //atributos del file
                 var nombreArchivo = string.Format("Aprueba {0}_{1}_{2}",filtersNow[0].ToString(),DateTime.Now.ToString("yyyyMMdd"),contratoSis.IDE_CONTRATO.ToString());
                 var rutaTemporal = @HttpContext.Current.Server.MapPath(string.Format("~/Temp/Descargas/{0}.xlsx",nombreArchivo));

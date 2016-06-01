@@ -25,9 +25,9 @@ namespace VidaCamara.DIS.Negocio
         /// <param name="jtPageSize"></param>
         /// <param name="total"></param>
         /// <returns></returns>
-        public List<HHistorialCargaArchivo_LinDet> listArchivoCargado(HistorialCargaArchivo_LinCab historiaLinCab,HistorialCargaArchivo_LinDet historiaLinDet, object[] filterParam,int jtStartIndex, int jtPageSize,out int total)
+        public List<HHistorialCargaArchivo_LinDet> listArchivoCargado(HistorialCargaArchivo_LinCab historiaLinCab,HistorialCargaArchivo_LinDet historiaLinDet, object[] filterParam,int jtStartIndex, int jtPageSize,string jtSorting, out int total)
         {
-            return new dPagoCargado().listArchivoCargado(historiaLinCab,historiaLinDet, filterParam, jtStartIndex, jtPageSize,out total);
+            return new dPagoCargado().listArchivoCargado(historiaLinCab,historiaLinDet, filterParam, jtStartIndex, jtPageSize, jtSorting, out total);
         }
         /// <summary>
         /// Crea un archivo excel acuerdo a los filtros especificados
@@ -86,7 +86,7 @@ namespace VidaCamara.DIS.Negocio
                     }
                 }
                 else {
-                    var listHistoriaLinDet = new dPagoCargado().listArchivoCargado(cab, det, filterParam, 0, 100000, out total);
+                    var listHistoriaLinDet = new dPagoCargado().listArchivoCargado(cab, det, filterParam, 0, 100000, "TipoLinea ASC", out total);
                     for (int i = 0; i < listHistoriaLinDet.Count; i++)
                     {
                         IRow rowBody = sheet.CreateRow(i + 2);

@@ -42,7 +42,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Operaciones
         {
             filtersP[3] = filters[0].ToString();
             var negocio = new nAprobacionCarga();
-            return new { Result = "OK", Records = negocio.listApruebaCarga(contrato, jtStartIndex, jtPageSize, filtersP, out total), TotalRecordCount = total };
+            return new { Result = "OK", Records = negocio.listApruebaCarga(contrato, jtStartIndex, jtPageSize,jtSorting, filtersP, out total), TotalRecordCount = total };
         }
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static object listApruebaCargaDetalle(int IdLinCab)

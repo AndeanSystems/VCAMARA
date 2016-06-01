@@ -18,9 +18,9 @@ namespace VidaCamara.DIS.Negocio
         private string aprobarInterfaProvision = "A03";
         private string aprobarInterfaBanco = "A04";
         #endregion variables
-        public List<EGeneraTelebankig> listTelebanking(NOMINA nomina, int jtStartIndex, int jtPageSize,string formatoMoneda, out int total)
+        public List<EGeneraTelebankig> listTelebanking(NOMINA nomina, int jtStartIndex, int jtPageSize,string sorting,string formatoMoneda, out int total)
         {
-            return new dTelebanking().listTelebanking(nomina, jtStartIndex, jtPageSize,formatoMoneda,out total);
+            return new dTelebanking().listTelebanking(nomina, jtStartIndex, jtPageSize, sorting, formatoMoneda,out total);
         }
 
         public List<EGeneraTelebankig> listTelebankingByArchivoId(NOMINA nomina,string formatoMoneda)
@@ -34,7 +34,7 @@ namespace VidaCamara.DIS.Negocio
             try
             {
                 int total;
-                var listDescarga = new dTelebanking().listTelebanking(nomina, 0, 100000, formatoMoneda, out total);
+                var listDescarga = new dTelebanking().listTelebanking(nomina, 0, 100000, "NombreArchivo ASC", formatoMoneda, out total);
                 //atributos del file
                 var nombreArchivo = string.Format("Nomina {0}_{1}", DateTime.Now.ToString("yyyyMMdd"),nomina.IDE_CONTRATO.ToString());
                 var rutaTemporal = @HttpContext.Current.Server.MapPath(string.Format("~/Temp/Descargas/{0}.xlsx", nombreArchivo));

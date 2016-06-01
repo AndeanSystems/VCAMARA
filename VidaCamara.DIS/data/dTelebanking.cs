@@ -8,12 +8,15 @@ namespace VidaCamara.DIS.data
 {
     public class dTelebanking
     {
-        public List<EGeneraTelebankig> listTelebanking(NOMINA nomina, int jtStartIndex, int jtPageSize,string formatoMoneda, out int total)
+        public List<EGeneraTelebankig> listTelebanking(NOMINA nomina, int jtStartIndex, int jtPageSize,string sorting, string formatoMoneda, out int total)
         {
             var folder = System.Configuration.ConfigurationManager.AppSettings["CarpetaArchivos"].ToString();
             var listTelebankig = new List<EGeneraTelebankig>();
             try
             {
+                var sorter = sorting.Split(' ');
+                var propertyInfo = typeof(pa_sel_NominaForTelebanking_Result).GetProperty(sorter[0].Trim());
+
                 using (var db = new DISEntities())
                 {
                     var query = db.pa_sel_NominaForTelebanking(nomina.IDE_CONTRATO, nomina.FechaReg,nomina.Estado).ToList();

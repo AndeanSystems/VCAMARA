@@ -72,12 +72,12 @@
         Moneda: { title: 'Moneda' },
         Importe: { title: 'Importe' },
         RutaNomina: {
-            title: 'Descargar', display: function (data) {
+            sorting: false,title: 'Descargar', display: function (data) {
                 return "<a id='lnk_descarga' class='" + data.record.RutaNomina + "' href='" + data.record.RutaNomina + "'>Descargar</a>";
             }
         },
         Estado: {
-            title: 'Provisión', display: function (data) {
+            sorting: false,title: 'Provisión', display: function (data) {
                 if(data.record.Estado == "A")
                     return "<a id='lnk_confirmar' class='" + data.record.ArchivoId + "' href='#'>Provisionar pago</a>";
                 else
@@ -85,7 +85,7 @@
             }
         },
         EstadoPago: {
-            title: 'Pago_Banco', display: function (data) {
+            sorting: false,title: 'Pago_Banco', display: function (data) {
                 if (data.record.EstadoPago == "C")
                     return "<a id='lnk_estadoPago' class='" + data.record.ArchivoId + "' href='#'>Pago a banco</a>";
                 else

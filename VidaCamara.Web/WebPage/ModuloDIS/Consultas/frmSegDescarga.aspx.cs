@@ -55,7 +55,7 @@ namespace VidaCamara.Web.WebPage.ModuloDIS.Consultas
         public static object listSegDescarga(int jtStartIndex, int jtPageSize, string jtSorting, CONTRATO_SYS contrato,object[] filters)
         {
             var negocio = new nSegDescarga();
-            return new { Result = "OK", Records = negocio.listSegDescarga(contrato, filters,jtStartIndex, jtPageSize, out total), TotalRecordCount = total };
+            return new { Result = "OK", Records = negocio.listSegDescarga(contrato, filters,jtStartIndex, jtPageSize, jtSorting, out total), TotalRecordCount = total };
         }
         private void SetLLenadoContrato()
         {
