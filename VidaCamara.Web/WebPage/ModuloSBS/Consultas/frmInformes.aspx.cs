@@ -1454,6 +1454,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             }
             var level_trimestre = 1;
             var row_advances = 0;
+            var styleRow = setFontText(11, false, xssfworkbook);
             //for en la data de la tabla 
             for (int r = 0; r < tbmodelo.Rows.Count; r++)
             {
@@ -1466,14 +1467,14 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                 {
                     dataCell1 = dataRow1.CreateCell(c);
                     dataCell1.SetCellValue(tbmodelo.Rows[r][c-1].ToString());
-                    dataCell1.CellStyle = setFontText(11, false, xssfworkbook);
+                    dataCell1.CellStyle = styleRow;
                 }
             }
             IRow Filasuma = hojaTrabajo.CreateRow((7+row_advances)+tbmodelo.Rows.Count);
             ICell CelldataTittle;
             CelldataTittle = Filasuma.CreateCell(10);
             CelldataTittle.SetCellValue("TOTALES");
-            CelldataTittle.CellStyle = setFontText(11, false, xssfworkbook);
+            CelldataTittle.CellStyle = styleRow;
 
             for (int cl = 10; cl < tbmodelo.Columns.Count; cl++) {
                 decimal costtotal = 0;
@@ -1483,7 +1484,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                 }
                 sumadatatotal = Filasuma.CreateCell(cl+1);
                 sumadatatotal.SetCellValue(String.Format(formato_moneda, costtotal));
-                sumadatatotal.CellStyle = setFontText(11, false, xssfworkbook);
+                sumadatatotal.CellStyle = styleRow;
             }
 
             tbmodelo.Columns.Clear();

@@ -42,7 +42,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/03/2016 14:58:50</publishTime>
     </File>
     <File Include="bin/VidaCamara.DIS.dll">
-      <publishTime>05/30/2016 22:14:39</publishTime>
+      <publishTime>06/05/2016 20:09:52</publishTime>
     </File>
     <File Include="bin/VidaCamara.Masiva.exe">
       <publishTime>04/06/2016 22:25:03</publishTime>
@@ -51,7 +51,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/24/2016 18:05:18</publishTime>
     </File>
     <File Include="bin/VidaCamara.Web.dll">
-      <publishTime>05/30/2016 22:14:40</publishTime>
+      <publishTime>06/05/2016 20:09:55</publishTime>
     </File>
     <File Include="Default.aspx">
       <publishTime>02/03/2016 14:58:49</publishTime>
@@ -186,7 +186,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/03/2016 14:58:49</publishTime>
     </File>
     <File Include="Resources/js/ConfirmWindow.js">
-      <publishTime>05/25/2016 22:39:27</publishTime>
+      <publishTime>05/31/2016 21:03:07</publishTime>
     </File>
     <File Include="Resources/js/j-valida-login.js">
       <publishTime>02/03/2016 14:58:49</publishTime>
@@ -558,7 +558,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/09/2016 16:53:05</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Consultas/script/frmSeqConsulta.js">
-      <publishTime>05/30/2016 22:13:00</publishTime>
+      <publishTime>06/02/2016 22:42:10</publishTime>
     </File>
     <File Include="WebPage/ModuloDIS/Operaciones/frmCargaAprobacion.aspx">
       <publishTime>05/25/2016 22:40:48</publishTime>

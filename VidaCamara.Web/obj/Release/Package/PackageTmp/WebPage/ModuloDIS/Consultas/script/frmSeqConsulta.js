@@ -6,16 +6,17 @@
         if (parseInt(contrato) == 0) {
             mostrarMensajeAlert("Seleccione Contrato"); return false;
         }
-        //$("#frmOperacion input[type='text'],#frmOperacion select").each(function (index, element) {
-        //    if (element.value != "0") {
-        //        filterSelected++;
-        //        if (element.value != "" && element.value != "0")
-        //            filterSelected++;
-        //    }
-        //});
-        //console.log(filterSelected);
-        //if (filterSelected <= 0)
-        //    mostrarMensajeAlert("Seleccione como minimo 2 o más campos"); return false;
-        //return false;
+        ////$("#frmOperacion select").each(function (index, element) {
+        ////    if (element.value != "0")
+        ////        filterSelected++;
+        ////});
+        ////$("#frmOperacion input[type='text']").each(function (index, element) {
+        ////    if (element.value != "") {
+        ////        filterSelected++;
+        ////    }
+        ////});
+        ////if (filterSelected < 2) {
+        ////    mostrarMensajeAlert("Seleccione como minimo 2 o más campos"); return false;
+        ////}
     });
 })
