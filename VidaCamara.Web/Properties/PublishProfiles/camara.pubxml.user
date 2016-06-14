@@ -48,10 +48,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/06/2016 22:25:03</publishTime>
     </File>
     <File Include="bin/VidaCamara.SBS.dll">
-      <publishTime>04/24/2016 18:05:18</publishTime>
+      <publishTime>06/13/2016 21:00:09</publishTime>
     </File>
     <File Include="bin/VidaCamara.Web.dll">
-      <publishTime>06/05/2016 20:09:55</publishTime>
+      <publishTime>06/13/2016 21:00:11</publishTime>
     </File>
     <File Include="Default.aspx">
       <publishTime>02/03/2016 14:58:49</publishTime>
@@ -615,7 +615,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/03/2016 14:58:52</publishTime>
     </File>
     <File Include="WebPage/ModuloSBS/Operaciones/frmOperacionManual.aspx">
-      <publishTime>02/03/2016 14:58:52</publishTime>
+      <publishTime>06/12/2016 18:07:02</publishTime>
     </File>
     <File Include="WebPage/ModuloSBS/Operaciones/frmProcesaOperacion.aspx">
       <publishTime>02/03/2016 14:58:52</publishTime>
@@ -639,7 +639,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/03/2016 14:58:52</publishTime>
     </File>
     <File Include="WebPage/ModuloSBS/Operaciones/js/ProcesoManual.js">
-      <publishTime>02/03/2016 15:06:31</publishTime>
+      <publishTime>06/12/2016 18:09:34</publishTime>
     </File>
     <File Include="WebPage/ModuloSBS/Operaciones/js/RegistroDato.js">
       <publishTime>02/03/2016 14:58:52</publishTime>

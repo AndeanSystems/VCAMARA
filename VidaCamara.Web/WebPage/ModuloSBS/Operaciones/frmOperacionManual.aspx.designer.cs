@@ -218,5 +218,14 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Operaciones {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_dscto_comis_m;
+        
+        /// <summary>
+        /// ddl_origen_operacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_origen_operacion;
     }
 }

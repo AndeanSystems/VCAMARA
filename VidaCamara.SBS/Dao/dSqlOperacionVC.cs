@@ -351,6 +351,7 @@ namespace VidaCamara.SBS.Dao
                 sqlcmd.Parameters.Add("@ESTADO", SqlDbType.Char).Value = o._Estado;
                 sqlcmd.Parameters.Add("@USU_REG", SqlDbType.VarChar).Value = o._Usu_Reg;
                 sqlcmd.Parameters.Add("@TIP_COMPROBANTE", SqlDbType.VarChar).Value = o._Tip_Comprobante;
+                sqlcmd.Parameters.Add("@ORIGEN_OPERACION", SqlDbType.SmallInt).Value = o._Origen_Operacion;
 
                 _bool = sqlcmd.ExecuteNonQuery();
             }

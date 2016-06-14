@@ -9,7 +9,6 @@
         var codAsegurado = $("#ctl00_ContentPlaceHolder1_ddl_codasegurado_m").val();
         var codRamo = $("#ctl00_ContentPlaceHolder1_ddl_codramo_m").val();
         var codMoneda = $("#ctl00_ContentPlaceHolder1_ddl_codmoneda_m").val();
-
         var calcula = 0;
         $("#tblopemanual input[type='text'],#tblopemanual select").each(function (index, element) {
             valor = $(this).val();

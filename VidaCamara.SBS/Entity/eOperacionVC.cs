@@ -44,6 +44,7 @@ namespace VidaCamara.SBS.Entity
         public String _token_fecha { get; set; }
         public String _Formato_Moneda { get; set; }
         public String _Tip_Comprobante { get; set; }
+        public short _Origen_Operacion { get; set; }
     }
     public class eValidarCierreVC {
 

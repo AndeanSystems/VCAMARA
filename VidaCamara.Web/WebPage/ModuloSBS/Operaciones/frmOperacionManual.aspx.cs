@@ -67,6 +67,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Operaciones
             eo._Estado = "A";
             eo._Usu_Reg = Session["username"].ToString();
             eo._Tip_Comprobante = ddl_comprobante.SelectedItem.Value;
+            eo._Origen_Operacion = Convert.ToInt16(ddl_origen_operacion.SelectedItem.Value);
 
             bOperacionVC bo = new bOperacionVC();
             Int32 resp = bo.SetGuardarOperacionManual(eo);

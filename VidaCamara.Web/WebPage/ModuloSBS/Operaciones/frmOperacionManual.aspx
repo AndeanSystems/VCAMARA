@@ -66,6 +66,11 @@
                 <label class="input_right_T" for="txt_dscto_comis_m">Dscto_Comis_Rea (*)</label>
                 <asp:TextBox CssClass="input_right" ID="txt_dscto_comis_m" runat="server" Height="25px" Width="14.7%"></asp:TextBox>
 
+                <label class="label_to" for="ddl_origen_operacion">Origen Operación (*)</label>
+                <asp:DropDownList runat="server" ClientIDMode="Static" ID="ddl_origen_operacion" CssClass="input_to" Height="25px" Width="14.7%">
+                    <asp:ListItem Text="Saldo Inicial" Value="1" />
+                    <asp:ListItem Text="Otros" Value="2" />
+                </asp:DropDownList>
             </asp:View>
         </asp:MultiView>  
     </div>
