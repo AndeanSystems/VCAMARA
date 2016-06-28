@@ -1460,21 +1460,43 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             {
                 if (level_trimestre != Convert.ToInt32(tbmodelo.Rows[r][1].ToString()))
                     row_advances = 1;
+                var nextRowCreate = (7 + row_advances) + r;
                 level_trimestre = Convert.ToInt32(tbmodelo.Rows[r][1].ToString());
-                IRow dataRow1 = hojaTrabajo.CreateRow((7+row_advances) + r);
+                IRow dataRow1 = hojaTrabajo.CreateRow(nextRowCreate);
                 ICell dataCell1;
+                #region "Saldo inicial text"
+                var textSaldoInicial = string.Format("{0} {1}", "Saldo Inicial al", txt_fecha_creacion.Text);
+                if (r == 0)
+                    hojaTrabajo.AddMergedRegion(new CellRangeAddress(nextRowCreate, nextRowCreate,1,10));
                 for (int c = 1; c < tbmodelo.Columns.Count+1; c++)
                 {
-                    dataCell1 = dataRow1.CreateCell(c);
-                    dataCell1.SetCellValue(tbmodelo.Rows[r][c-1].ToString());
-                    dataCell1.CellStyle = styleRow;
+                    if (c == 1 && r == 0)
+                    {
+                        var dataCellSaldoInicial = dataRow1.CreateCell(1);
+                        dataCellSaldoInicial.SetCellValue(textSaldoInicial);
+                        dataCellSaldoInicial.CellStyle = styleRow;
+                    }
+                    else if (r == 0 && c < 10)
+                        c = 10;
+                    else
+                    {
+                        dataCell1 = dataRow1.CreateCell(c);
+                        dataCell1.SetCellValue(tbmodelo.Rows[r][c - 1].ToString());
+                        dataCell1.CellStyle = styleRow;
+                    }
                 }
+                #endregion
             }
-            IRow Filasuma = hojaTrabajo.CreateRow((7+row_advances)+tbmodelo.Rows.Count);
+            var lastRowCreate = (7 + row_advances) + tbmodelo.Rows.Count;
+            var textSaldoFinal = string.Format("{0} {1}", "Saldo Final al", txt_hasta.Text);
+            IRow Filasuma = hojaTrabajo.CreateRow(lastRowCreate);
             ICell CelldataTittle;
-            CelldataTittle = Filasuma.CreateCell(10);
-            CelldataTittle.SetCellValue("TOTALES");
+            #region "Saldo Final"
+            hojaTrabajo.AddMergedRegion(new CellRangeAddress(lastRowCreate, lastRowCreate, 1, 10));
+            CelldataTittle = Filasuma.CreateCell(1);
+            CelldataTittle.SetCellValue(textSaldoFinal);
             CelldataTittle.CellStyle = styleRow;
+            #endregion
 
             for (int cl = 10; cl < tbmodelo.Columns.Count; cl++) {
                 decimal costtotal = 0;
