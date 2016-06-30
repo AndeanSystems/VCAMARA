@@ -13,7 +13,7 @@ using System.Web;
 
 namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
 {
-    public partial class frmInformes : System.Web.UI.Page
+    public partial class frmInformes : Page
     {
         #region VARIABLES
         static String formato_moneda;
@@ -167,248 +167,288 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             }
             bExportarData be = new bExportarData();
             DataTable dtanexo = be.GetSelecionarAnexo(ddl_contrato_i.SelectedItem.Value, formato_moneda,fecha_inicio,fecha_hasta);
-            for (int r = 0; r < dtanexo.Rows.Count; r++) {
-                switch (Convert.ToString(dtanexo.Rows[r][0]).Trim())
+            for (int r = 0; r < dtanexo.Rows.Count; r++)
+            {
+                var codigoReasegurador = dtanexo.Rows[r]["COD_REASEGURADOR"].ToString().Trim();
+                var tieneDetalle = Convert.ToInt16(dtanexo.Rows[r]["TIENE_DETALLE"]);
+                IRow filaExcelAnexo = hojaTrabajo.CreateRow(13 + r);
+                ICell cellExcelAnexo;
+                for (int c = 0; c < dtanexo.Columns.Count-1; c++)
                 {
-                    case "PCP":
-                        IRow filaData = hojaTrabajo.CreateRow(13 + count);
-                        ICell dataCell;
-                        IRow filaData2HJ2 = hojaTrabajo2.CreateRow(13 + count);
-                        ICell dataCell2HJ2;
-                        for (int c = 1; c < dtanexo.Columns.Count; c++)
-                        {
-                            dataCell = filaData.CreateCell(c);
-                            dataCell.SetCellValue(dtanexo.Rows[r][c].ToString());
-                            dataCell.CellStyle = styleCabecera;
-                            if (c < 4)
-                            {
-                                dataCell2HJ2 = filaData2HJ2.CreateCell(c);
-                                dataCell2HJ2.SetCellValue(dtanexo.Rows[r][c].ToString());
-                                dataCell2HJ2.CellStyle = styleCabecera;
-                            }      
-
-                        }
-                        count++;
-                        break;
-                    case "PF":
-                        IRow filaData1 = hojaTrabajo.CreateRow(15 + count);
-                        ICell dataCell1;
-                        IRow filaData3HJ2 = hojaTrabajo2.CreateRow(15 + count);
-                        ICell dataCell3HJ2;
-                        for (int c = 1; c < dtanexo.Columns.Count; c++)
-                        {
-                            dataCell1 = filaData1.CreateCell(c);
-                            dataCell1.SetCellValue(dtanexo.Rows[r][c].ToString());
-                            dataCell1.CellStyle = styleCabecera;
-                            if (c < 4)
-                            {
-                                dataCell3HJ2 = filaData3HJ2.CreateCell(c);
-                                dataCell3HJ2.SetCellValue(dtanexo.Rows[r][c].ToString());
-                                dataCell3HJ2.CellStyle = styleCabecera;
-                            }
-                        }
-                        count++;
-                        break;
-                    case "NPA":
-                        IRow filaData2 = hojaTrabajo.CreateRow(17 + count);
-                        ICell dataCell2;
-                        IRow filaData4HJ2 = hojaTrabajo2.CreateRow(17 + count);
-                        ICell dataCell4HJ2;
-                        for (int c = 1; c < dtanexo.Columns.Count; c++)
-                        {
-                            dataCell2 = filaData2.CreateCell(c);
-                            dataCell2.SetCellValue(dtanexo.Rows[r][c].ToString());
-                            dataCell2.CellStyle = styleCabecera;
-                            if (c < 4)
-                            {
-                                dataCell4HJ2 = filaData4HJ2.CreateCell(c);
-                                dataCell4HJ2.SetCellValue(dtanexo.Rows[r][c].ToString());
-                                dataCell4HJ2.CellStyle = styleCabecera;
-                            }
-                        }
-                        count++;
-                        break;
-                    case "NPF":
-                        IRow filaData3 = hojaTrabajo.CreateRow(19 + count);
-                        ICell dataCell3;
-                        IRow filaData5HJ2 = hojaTrabajo2.CreateRow(19 + count);
-                        ICell dataCell5HJ2;
-                        for (int c = 1; c < dtanexo.Columns.Count; c++)
-                        {
-                            dataCell3 = filaData3.CreateCell(c);
-                            dataCell3.SetCellValue(dtanexo.Rows[r][c].ToString());
-                            dataCell3.CellStyle = styleCabecera;
-                            if (c < 4)
-                            {
-                                dataCell5HJ2 = filaData5HJ2.CreateCell(c);
-                                dataCell5HJ2.SetCellValue(dtanexo.Rows[r][c].ToString());
-                                dataCell5HJ2.CellStyle = styleCabecera;
-                            }
-                        }
-                        count++;
-                        break;
+                    var valorCelda = ((codigoReasegurador.Equals("BREAK") || tieneDetalle == 0) && c != 1) ? string.Empty : dtanexo.Rows[r][c].ToString();
+                    cellExcelAnexo = filaExcelAnexo.CreateCell(1+c);
+                    cellExcelAnexo.SetCellValue(valorCelda);
+                    cellExcelAnexo.CellStyle = styleCabecera;
                 }
             }
+            //Totalizar
 
-            //columnas para nombre de aseguradores PARA ANEXO 2A
-            IRow FilaAutomatico = hojaTrabajo.CreateRow(13);
-            IRow FilaFacultivo = hojaTrabajo.CreateRow(15 + (count));
-            IRow FilaNoAutomatico = hojaTrabajo.CreateRow(17 + (count));
-            IRow FilaNoFacultivos = hojaTrabajo.CreateRow(19 + (count));
-            IRow FilaOtraModalidad = hojaTrabajo.CreateRow(21 + (count));
-            IRow FilaCoaseguros = hojaTrabajo.CreateRow(23 + (count));
-            IRow FilaCoaRecibido = hojaTrabajo.CreateRow(25 + (count));
-            IRow FilaTotales = hojaTrabajo.CreateRow(26 + (count));
-
-            //COLUMNAS PARa nombre de aseguradores NEXO2B
-            IRow FilaAutomatico2 = hojaTrabajo2.CreateRow(13);
-            IRow FilaFacultivo2 = hojaTrabajo2.CreateRow(15 + (count));
-            IRow FilaNoAutomatico2 = hojaTrabajo2.CreateRow(17 + (count));
-            IRow FilaNoFacultivos2 = hojaTrabajo2.CreateRow(19 + (count));
-            IRow FilaOtraModalidad2 = hojaTrabajo2.CreateRow(21 + (count));
-            IRow FilaCoaseguros2 = hojaTrabajo2.CreateRow(23 + (count));
-            IRow FilaCoaRecibido2 = hojaTrabajo2.CreateRow(25 + (count));
-            IRow FilaTotales2 = hojaTrabajo2.CreateRow(26 + (count));
-
-            ICell CellAutomatico = FilaAutomatico.CreateCell(2);
-            CellAutomatico.SetCellValue("CONTRATOS \n PROPORCIONALES  \nAUTOMÁTICOS");
-            CellAutomatico.CellStyle = styleCabecera;
-            CellAutomatico.CellStyle.WrapText = true;
-
-            ICell CellFacultivo = FilaFacultivo.CreateCell(2);
-            CellFacultivo.SetCellValue("CONTRATOS \n PROPORCIONALES \n FACULTATIVOS");
-            CellFacultivo.CellStyle = styleCabecera;
-            CellFacultivo.CellStyle.WrapText = true;
-
-            ICell CellNoAutomatico = FilaNoAutomatico.CreateCell(2);
-            CellNoAutomatico.SetCellValue("CONTRATOS NO \n PROPORCIONALES \n AUTOMÁTICOS");
-            CellNoAutomatico.CellStyle = styleCabecera;
-            CellNoAutomatico.CellStyle.WrapText = true;
-
-            ICell CellNoFacultivo = FilaNoFacultivos.CreateCell(2);
-            CellNoFacultivo.SetCellValue("CONTRATOS NO \n PROPORCIONALES \n FACULTATIVOS");
-            CellNoFacultivo.CellStyle = styleCabecera;
-            CellNoFacultivo.CellStyle.WrapText = true;
-
-            ICell CellOtraModalidad = FilaOtraModalidad.CreateCell(2);
-            CellOtraModalidad.SetCellValue("CONTRATO EN \n OTRAS \n MODALIDADES");
-            CellOtraModalidad.CellStyle = styleCabecera;
-            CellOtraModalidad.CellStyle.WrapText = true;
-
-            ICell Coaseguros = FilaCoaseguros.CreateCell(2);
-            Coaseguros.SetCellValue("CONTRATO DE \n COASEGUROS \n CEDIDOS");
-            Coaseguros.CellStyle = styleCabecera;
-            Coaseguros.CellStyle.WrapText = true;
-
-            ICell CellCoaRecibido = FilaCoaRecibido.CreateCell(2);
-            CellCoaRecibido.SetCellValue("CONTRATO DE \n COASEGUROS \n RECIBIDOS");
-            CellCoaRecibido.CellStyle = styleCabecera;
-            CellCoaRecibido.CellStyle.WrapText = true;
-
-            ICell CellTotalesTittle = FilaTotales.CreateCell(2);
-            CellTotalesTittle.SetCellValue("TOTALES");
-            CellTotalesTittle.CellStyle = styleCabecera;
-            CellTotalesTittle.CellStyle.WrapText = true;
-
-            //CELDAS DE SHEET 2B
-            ICell CellAutomatico2 = FilaAutomatico2.CreateCell(2);
-            CellAutomatico2.SetCellValue("CONTRATOS \n PROPORCIONALES  \nAUTOMÁTICOS");
-            CellAutomatico2.CellStyle = styleCabecera;
-            CellAutomatico2.CellStyle.WrapText = true;
-
-            ICell CellFacultivo2 = FilaFacultivo2.CreateCell(2);
-            CellFacultivo2.SetCellValue("CONTRATOS \n PROPORCIONALES \n FACULTATIVOS");
-            CellFacultivo2.CellStyle = styleCabecera;
-            CellFacultivo2.CellStyle.WrapText = true;
-
-            ICell CellNoAutomatico2 = FilaNoAutomatico2.CreateCell(2);
-            CellNoAutomatico2.SetCellValue("CONTRATOS NO \n PROPORCIONALES \n AUTOMÁTICOS");
-            CellNoAutomatico2.CellStyle = styleCabecera;
-            CellNoAutomatico2.CellStyle.WrapText = true;
-
-            ICell CellNoFacultivo2 = FilaNoFacultivos2.CreateCell(2);
-            CellNoFacultivo2.SetCellValue("CONTRATOS NO \n PROPORCIONALES \n FACULTATIVOS");
-            CellNoFacultivo2.CellStyle = styleCabecera;
-            CellNoFacultivo2.CellStyle.WrapText = true;
-
-            ICell CellOtraModalidad2 = FilaOtraModalidad2.CreateCell(2);
-            CellOtraModalidad2.SetCellValue("CONTRATO EN \n OTRAS \n MODALIDADES");
-            CellOtraModalidad2.CellStyle = styleCabecera;
-            CellOtraModalidad2.CellStyle.WrapText = true;
-
-            ICell Coaseguros2 = FilaCoaseguros2.CreateCell(2);
-            Coaseguros2.SetCellValue("CONTRATO DE \n COASEGUROS \n CEDIDOS");
-            Coaseguros2.CellStyle = styleCabecera;
-            Coaseguros2.CellStyle.WrapText = true;
-
-            ICell CellCoaRecibido2 = FilaCoaRecibido2.CreateCell(2);
-            CellCoaRecibido2.SetCellValue("CONTRATO DE \n COASEGUROS \n RECIBIDOS");
-            CellCoaRecibido2.CellStyle = styleCabecera;
-            CellCoaRecibido2.CellStyle.WrapText = true;
-
-            ICell CellTotalesTittle2 = FilaTotales2.CreateCell(2);
-            CellTotalesTittle2.SetCellValue("TOTALES");
-            CellTotalesTittle2.CellStyle = styleCabecera;
-            CellTotalesTittle2.CellStyle.WrapText = true;
-
-            for (int cl = 3; cl < dtanexo.Columns.Count; cl++) {
+            IRow FilaTotales = hojaTrabajo.CreateRow(dtanexo.Rows.Count+13);
+            for (int cl = 0; cl < dtanexo.Columns.Count-1; cl++)
+            {
                 decimal totales = 0;
                 ICell celldatatotal;
-                ICell celldatatotal2;
-                for (int rw = 0; rw < dtanexo.Rows.Count; rw++) {
-                    totales += Convert.ToDecimal(dtanexo.Rows[rw][cl]);
+                //ICell celldatatotal2;
+                if (cl >1)
+                {
+                    for (int rw = 0; rw < dtanexo.Rows.Count; rw++)
+                    {
+                        totales += Convert.ToDecimal(dtanexo.Rows[rw][cl]);
+                    }
                 }
-                celldatatotal = FilaTotales.CreateCell(cl);
-                celldatatotal.SetCellValue(String.Format(formato_moneda, totales));
+                var celdaTotalValor = (cl == 0) ?string.Empty: (cl == 1) ? "TOTALES" : String.Format(formato_moneda, totales);
+                celldatatotal = FilaTotales.CreateCell(cl+1);
+                celldatatotal.SetCellValue(celdaTotalValor);
                 celldatatotal.CellStyle = styleCabecera;
-                if (cl == 3) {
-                    celldatatotal2 = FilaTotales2.CreateCell(cl);
-                    celldatatotal2.SetCellValue(String.Format(formato_moneda, totales));
-                    celldatatotal2.CellStyle = styleCabecera;
-                }
+                //if (cl == 3)
+                //{
+                //    celldatatotal2 = FilaTotales2.CreateCell(cl);
+                //    celldatatotal2.SetCellValue(String.Format(formato_moneda, totales));
+                //    celldatatotal2.CellStyle = styleCabecera;
+                //}
             }
-            //segunda ventana
-            ICellStyle styleData = this.SetFontData(dataFont, xssfworkbook);
+            //for (int r = 0; r < dtanexo.Rows.Count; r++) {
+            //    switch (Convert.ToString(dtanexo.Rows[r][0]).Trim())
+            //    {
+            //        case "PCP":
+            //            IRow filaData = hojaTrabajo.CreateRow(13 + count);
+            //            ICell dataCell;
+            //            IRow filaData2HJ2 = hojaTrabajo2.CreateRow(13 + count);
+            //            ICell dataCell2HJ2;
+            //            for (int c = 1; c < dtanexo.Columns.Count; c++)
+            //            {
+            //                dataCell = filaData.CreateCell(c);
+            //                dataCell.SetCellValue(dtanexo.Rows[r][c].ToString());
+            //                dataCell.CellStyle = styleCabecera;
+            //                if (c < 4)
+            //                {
+            //                    dataCell2HJ2 = filaData2HJ2.CreateCell(c);
+            //                    dataCell2HJ2.SetCellValue(dtanexo.Rows[r][c].ToString());
+            //                    dataCell2HJ2.CellStyle = styleCabecera;
+            //                }      
 
-            for (int cl = 2; cl <= 7; cl++) {
-                hojaTrabajo2.SetColumnWidth(cl,300*25);
-            }
+            //            }
+            //            count++;
+            //            break;
+            //        case "PF":
+            //            IRow filaData1 = hojaTrabajo.CreateRow(15 + count);
+            //            ICell dataCell1;
+            //            IRow filaData3HJ2 = hojaTrabajo2.CreateRow(15 + count);
+            //            ICell dataCell3HJ2;
+            //            for (int c = 1; c < dtanexo.Columns.Count; c++)
+            //            {
+            //                dataCell1 = filaData1.CreateCell(c);
+            //                dataCell1.SetCellValue(dtanexo.Rows[r][c].ToString());
+            //                dataCell1.CellStyle = styleCabecera;
+            //                if (c < 4)
+            //                {
+            //                    dataCell3HJ2 = filaData3HJ2.CreateCell(c);
+            //                    dataCell3HJ2.SetCellValue(dtanexo.Rows[r][c].ToString());
+            //                    dataCell3HJ2.CellStyle = styleCabecera;
+            //                }
+            //            }
+            //            count++;
+            //            break;
+            //        case "NPA":
+            //            IRow filaData2 = hojaTrabajo.CreateRow(17 + count);
+            //            ICell dataCell2;
+            //            IRow filaData4HJ2 = hojaTrabajo2.CreateRow(17 + count);
+            //            ICell dataCell4HJ2;
+            //            for (int c = 1; c < dtanexo.Columns.Count; c++)
+            //            {
+            //                dataCell2 = filaData2.CreateCell(c);
+            //                dataCell2.SetCellValue(dtanexo.Rows[r][c].ToString());
+            //                dataCell2.CellStyle = styleCabecera;
+            //                if (c < 4)
+            //                {
+            //                    dataCell4HJ2 = filaData4HJ2.CreateCell(c);
+            //                    dataCell4HJ2.SetCellValue(dtanexo.Rows[r][c].ToString());
+            //                    dataCell4HJ2.CellStyle = styleCabecera;
+            //                }
+            //            }
+            //            count++;
+            //            break;
+            //        case "NPF":
+            //            IRow filaData3 = hojaTrabajo.CreateRow(19 + count);
+            //            ICell dataCell3;
+            //            IRow filaData5HJ2 = hojaTrabajo2.CreateRow(19 + count);
+            //            ICell dataCell5HJ2;
+            //            for (int c = 1; c < dtanexo.Columns.Count; c++)
+            //            {
+            //                dataCell3 = filaData3.CreateCell(c);
+            //                dataCell3.SetCellValue(dtanexo.Rows[r][c].ToString());
+            //                dataCell3.CellStyle = styleCabecera;
+            //                if (c < 4)
+            //                {
+            //                    dataCell5HJ2 = filaData5HJ2.CreateCell(c);
+            //                    dataCell5HJ2.SetCellValue(dtanexo.Rows[r][c].ToString());
+            //                    dataCell5HJ2.CellStyle = styleCabecera;
+            //                }
+            //            }
+            //            count++;
+            //            break;
+            //    }
+            //}
 
-            IRow FilaTitulo2 = hojaTrabajo2.CreateRow(4);
-            ICell CeldaTitulo2;
-            CeldaTitulo2 = FilaTitulo.CreateCell(1);
-            CeldaTitulo2.SetCellValue("ANEXO ES - 2B");
-            hojaTrabajo2.AddMergedRegion(new CellRangeAddress(4, 4, 1, 7));
-            CeldaTitulo2.CellStyle.Alignment = HorizontalAlignment.Center;
+            ////columnas para nombre de aseguradores PARA ANEXO 2A
+            //IRow FilaAutomatico = hojaTrabajo.CreateRow(13);
+            //IRow FilaFacultivo = hojaTrabajo.CreateRow(15 + (count));
+            //IRow FilaNoAutomatico = hojaTrabajo.CreateRow(17 + (count));
+            //IRow FilaNoFacultivos = hojaTrabajo.CreateRow(19 + (count));
+            //IRow FilaOtraModalidad = hojaTrabajo.CreateRow(21 + (count));
+            //IRow FilaCoaseguros = hojaTrabajo.CreateRow(23 + (count));
+            //IRow FilaCoaRecibido = hojaTrabajo.CreateRow(25 + (count));
+            //IRow FilaTotales = hojaTrabajo.CreateRow(26 + (count));
 
-            FilaTitulo2 = hojaTrabajo2.CreateRow(6);
-            CeldaTitulo2 = FilaTitulo2.CreateCell(1);
-            CeldaTitulo2.SetCellValue("CUENTAS CORRIENTES CON REASEGURADORAS Y/O COASEGURADORAS");
-            hojaTrabajo2.AddMergedRegion(new CellRangeAddress(6, 6, 1, 7));
-            CeldaTitulo2.CellStyle.Alignment = HorizontalAlignment.Center;
+            ////COLUMNAS PARa nombre de aseguradores NEXO2B
+            //IRow FilaAutomatico2 = hojaTrabajo2.CreateRow(13);
+            //IRow FilaFacultivo2 = hojaTrabajo2.CreateRow(15 + (count));
+            //IRow FilaNoAutomatico2 = hojaTrabajo2.CreateRow(17 + (count));
+            //IRow FilaNoFacultivos2 = hojaTrabajo2.CreateRow(19 + (count));
+            //IRow FilaOtraModalidad2 = hojaTrabajo2.CreateRow(21 + (count));
+            //IRow FilaCoaseguros2 = hojaTrabajo2.CreateRow(23 + (count));
+            //IRow FilaCoaRecibido2 = hojaTrabajo2.CreateRow(25 + (count));
+            //IRow FilaTotales2 = hojaTrabajo2.CreateRow(26 + (count));
 
-            FilaTitulo2 = hojaTrabajo2.CreateRow(7);
-            CeldaTitulo2 = FilaTitulo2.CreateCell(1);
-            CeldaTitulo2.SetCellValue("ANÁLISIS DE LAS PARTIDAS DEUDORAS POR ANTIGÜEDAD DE SALDOS Y DETERMINACIÓN DE  PROVISIONES");
-            hojaTrabajo2.AddMergedRegion(new CellRangeAddress(7, 7, 1, 7));
-            CeldaTitulo2.CellStyle.Alignment = HorizontalAlignment.Center;
+            //ICell CellAutomatico = FilaAutomatico.CreateCell(2);
+            //CellAutomatico.SetCellValue("CONTRATOS \n PROPORCIONALES  \nAUTOMÁTICOS");
+            //CellAutomatico.CellStyle = styleCabecera;
+            //CellAutomatico.CellStyle.WrapText = true;
 
-            FilaTitulo2 = hojaTrabajo2.CreateRow(9);
-            CeldaTitulo2 = FilaTitulo2.CreateCell(1);
-            CeldaTitulo2.SetCellValue("(EN NUEVOS SOLES)");
-            hojaTrabajo2.AddMergedRegion(new CellRangeAddress(9, 9, 1, 7));
-            CeldaTitulo2.CellStyle.Alignment = HorizontalAlignment.Center;
+            //ICell CellFacultivo = FilaFacultivo.CreateCell(2);
+            //CellFacultivo.SetCellValue("CONTRATOS \n PROPORCIONALES \n FACULTATIVOS");
+            //CellFacultivo.CellStyle = styleCabecera;
+            //CellFacultivo.CellStyle.WrapText = true;
 
-            IRow FilaCabecera22 = hojaTrabajo2.CreateRow(11);
-            ICell celdaSheet2;
-            for (int c = 0; c < Cabecera2.Length; c++)
-            {
-                celdaSheet2 = FilaCabecera22.CreateCell(c + 1);
-                celdaSheet2.SetCellValue(Cabecera2[c]);
-                celdaSheet2.CellStyle = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
-                celdaSheet2.CellStyle = styleCabecera;
-                celdaSheet2.CellStyle.WrapText = true;
-            }
+            //ICell CellNoAutomatico = FilaNoAutomatico.CreateCell(2);
+            //CellNoAutomatico.SetCellValue("CONTRATOS NO \n PROPORCIONALES \n AUTOMÁTICOS");
+            //CellNoAutomatico.CellStyle = styleCabecera;
+            //CellNoAutomatico.CellStyle.WrapText = true;
+
+            //ICell CellNoFacultivo = FilaNoFacultivos.CreateCell(2);
+            //CellNoFacultivo.SetCellValue("CONTRATOS NO \n PROPORCIONALES \n FACULTATIVOS");
+            //CellNoFacultivo.CellStyle = styleCabecera;
+            //CellNoFacultivo.CellStyle.WrapText = true;
+
+            //ICell CellOtraModalidad = FilaOtraModalidad.CreateCell(2);
+            //CellOtraModalidad.SetCellValue("CONTRATO EN \n OTRAS \n MODALIDADES");
+            //CellOtraModalidad.CellStyle = styleCabecera;
+            //CellOtraModalidad.CellStyle.WrapText = true;
+
+            //ICell Coaseguros = FilaCoaseguros.CreateCell(2);
+            //Coaseguros.SetCellValue("CONTRATO DE \n COASEGUROS \n CEDIDOS");
+            //Coaseguros.CellStyle = styleCabecera;
+            //Coaseguros.CellStyle.WrapText = true;
+
+            //ICell CellCoaRecibido = FilaCoaRecibido.CreateCell(2);
+            //CellCoaRecibido.SetCellValue("CONTRATO DE \n COASEGUROS \n RECIBIDOS");
+            //CellCoaRecibido.CellStyle = styleCabecera;
+            //CellCoaRecibido.CellStyle.WrapText = true;
+
+            //ICell CellTotalesTittle = FilaTotales.CreateCell(2);
+            //CellTotalesTittle.SetCellValue("TOTALES");
+            //CellTotalesTittle.CellStyle = styleCabecera;
+            //CellTotalesTittle.CellStyle.WrapText = true;
+
+            ////CELDAS DE SHEET 2B
+            //ICell CellAutomatico2 = FilaAutomatico2.CreateCell(2);
+            //CellAutomatico2.SetCellValue("CONTRATOS \n PROPORCIONALES  \nAUTOMÁTICOS");
+            //CellAutomatico2.CellStyle = styleCabecera;
+            //CellAutomatico2.CellStyle.WrapText = true;
+
+            //ICell CellFacultivo2 = FilaFacultivo2.CreateCell(2);
+            //CellFacultivo2.SetCellValue("CONTRATOS \n PROPORCIONALES \n FACULTATIVOS");
+            //CellFacultivo2.CellStyle = styleCabecera;
+            //CellFacultivo2.CellStyle.WrapText = true;
+
+            //ICell CellNoAutomatico2 = FilaNoAutomatico2.CreateCell(2);
+            //CellNoAutomatico2.SetCellValue("CONTRATOS NO \n PROPORCIONALES \n AUTOMÁTICOS");
+            //CellNoAutomatico2.CellStyle = styleCabecera;
+            //CellNoAutomatico2.CellStyle.WrapText = true;
+
+            //ICell CellNoFacultivo2 = FilaNoFacultivos2.CreateCell(2);
+            //CellNoFacultivo2.SetCellValue("CONTRATOS NO \n PROPORCIONALES \n FACULTATIVOS");
+            //CellNoFacultivo2.CellStyle = styleCabecera;
+            //CellNoFacultivo2.CellStyle.WrapText = true;
+
+            //ICell CellOtraModalidad2 = FilaOtraModalidad2.CreateCell(2);
+            //CellOtraModalidad2.SetCellValue("CONTRATO EN \n OTRAS \n MODALIDADES");
+            //CellOtraModalidad2.CellStyle = styleCabecera;
+            //CellOtraModalidad2.CellStyle.WrapText = true;
+
+            //ICell Coaseguros2 = FilaCoaseguros2.CreateCell(2);
+            //Coaseguros2.SetCellValue("CONTRATO DE \n COASEGUROS \n CEDIDOS");
+            //Coaseguros2.CellStyle = styleCabecera;
+            //Coaseguros2.CellStyle.WrapText = true;
+
+            //ICell CellCoaRecibido2 = FilaCoaRecibido2.CreateCell(2);
+            //CellCoaRecibido2.SetCellValue("CONTRATO DE \n COASEGUROS \n RECIBIDOS");
+            //CellCoaRecibido2.CellStyle = styleCabecera;
+            //CellCoaRecibido2.CellStyle.WrapText = true;
+
+            //ICell CellTotalesTittle2 = FilaTotales2.CreateCell(2);
+            //CellTotalesTittle2.SetCellValue("TOTALES");
+            //CellTotalesTittle2.CellStyle = styleCabecera;
+            //CellTotalesTittle2.CellStyle.WrapText = true;
+
+            //for (int cl = 3; cl < dtanexo.Columns.Count; cl++) {
+            //    decimal totales = 0;
+            //    ICell celldatatotal;
+            //    ICell celldatatotal2;
+            //    for (int rw = 0; rw < dtanexo.Rows.Count; rw++) {
+            //        totales += Convert.ToDecimal(dtanexo.Rows[rw][cl]);
+            //    }
+            //    celldatatotal = FilaTotales.CreateCell(cl);
+            //    celldatatotal.SetCellValue(String.Format(formato_moneda, totales));
+            //    celldatatotal.CellStyle = styleCabecera;
+            //    if (cl == 3) {
+            //        celldatatotal2 = FilaTotales2.CreateCell(cl);
+            //        celldatatotal2.SetCellValue(String.Format(formato_moneda, totales));
+            //        celldatatotal2.CellStyle = styleCabecera;
+            //    }
+            //}
+            ////segunda ventana
+            //ICellStyle styleData = this.SetFontData(dataFont, xssfworkbook);
+
+            //for (int cl = 2; cl <= 7; cl++) {
+            //    hojaTrabajo2.SetColumnWidth(cl,300*25);
+            //}
+
+            //IRow FilaTitulo2 = hojaTrabajo2.CreateRow(4);
+            //ICell CeldaTitulo2;
+            //CeldaTitulo2 = FilaTitulo.CreateCell(1);
+            //CeldaTitulo2.SetCellValue("ANEXO ES - 2B");
+            //hojaTrabajo2.AddMergedRegion(new CellRangeAddress(4, 4, 1, 7));
+            //CeldaTitulo2.CellStyle.Alignment = HorizontalAlignment.Center;
+
+            //FilaTitulo2 = hojaTrabajo2.CreateRow(6);
+            //CeldaTitulo2 = FilaTitulo2.CreateCell(1);
+            //CeldaTitulo2.SetCellValue("CUENTAS CORRIENTES CON REASEGURADORAS Y/O COASEGURADORAS");
+            //hojaTrabajo2.AddMergedRegion(new CellRangeAddress(6, 6, 1, 7));
+            //CeldaTitulo2.CellStyle.Alignment = HorizontalAlignment.Center;
+
+            //FilaTitulo2 = hojaTrabajo2.CreateRow(7);
+            //CeldaTitulo2 = FilaTitulo2.CreateCell(1);
+            //CeldaTitulo2.SetCellValue("ANÁLISIS DE LAS PARTIDAS DEUDORAS POR ANTIGÜEDAD DE SALDOS Y DETERMINACIÓN DE  PROVISIONES");
+            //hojaTrabajo2.AddMergedRegion(new CellRangeAddress(7, 7, 1, 7));
+            //CeldaTitulo2.CellStyle.Alignment = HorizontalAlignment.Center;
+
+            //FilaTitulo2 = hojaTrabajo2.CreateRow(9);
+            //CeldaTitulo2 = FilaTitulo2.CreateCell(1);
+            //CeldaTitulo2.SetCellValue("(EN NUEVOS SOLES)");
+            //hojaTrabajo2.AddMergedRegion(new CellRangeAddress(9, 9, 1, 7));
+            //CeldaTitulo2.CellStyle.Alignment = HorizontalAlignment.Center;
+
+            //IRow FilaCabecera22 = hojaTrabajo2.CreateRow(11);
+            //ICell celdaSheet2;
+            //for (int c = 0; c < Cabecera2.Length; c++)
+            //{
+            //    celdaSheet2 = FilaCabecera22.CreateCell(c + 1);
+            //    celdaSheet2.SetCellValue(Cabecera2[c]);
+            //    celdaSheet2.CellStyle = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
+            //    celdaSheet2.CellStyle = styleCabecera;
+            //    celdaSheet2.CellStyle.WrapText = true;
+            //}
 
             dtanexo.Rows.Clear();
             dtanexo.Columns.Clear();

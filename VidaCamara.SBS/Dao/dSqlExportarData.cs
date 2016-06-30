@@ -13,11 +13,11 @@ namespace VidaCamara.SBS.Dao
 
         public DataTable GetSelecionarAnexo(String contrato, String formato_moneda, DateTime fecha_inicio, DateTime fecha_hasta)
         {
-            DataTable dt = new DataTable();
-            String[] column = {"TIPO_CONT", "COD_REASG", "REASEG", "PRIMAX_PAG_CED", "PRIMA_X_COB_ACE", "SIN_X_PAG_CED", "SIN_X_COB_ACE", "OTR_X_PAG_CED", "OTR_X_PAG_ACE", "DESCUENTO", "DEUDOR", "ACREEDOR","COMP_1","COMP_2"};
+            DataTable dtResponse = new DataTable();
+            String[] column = { "COD_REASEGURADOR", "DES_REASEGURADOR", "PRI_XPAG_REA_CED", "PRI_XCOD_REA_ACE", "SIN_XCOB_REA_CED", "SIN_XPAG_REA_ced", "OTRA_CUENTAS_XCOB", "OTRA_CUENTAS_XPAG", "DESC_COMISIONES", "SALDO_DEUDOR", "SALDO_ACREEDOR", "SALDO_DEUDOR_COM", "SALDO_ACREEDOR_COM", "TIENE_DETALLE" };
             for (int i = 0; i < column.Length; i++)
             {
-                dt.Columns.Add(column[i]);
+                dtResponse.Columns.Add(column[i]);
             }
             try
             {
@@ -28,30 +28,30 @@ namespace VidaCamara.SBS.Dao
                 sqlcmd.CommandText = _db.ePselectAnexo;
 
                 sqlcmd.Parameters.Clear();
-                sqlcmd.Parameters.Add("@NRO_CONTRATO", SqlDbType.VarChar).Value = contrato;
+                //sqlcmd.Parameters.Add("@NRO_CONTRATO", SqlDbType.VarChar).Value = contrato;
                 sqlcmd.Parameters.Add("@FECHA_INICIO", SqlDbType.Date).Value = fecha_inicio;
                 sqlcmd.Parameters.Add("@FECHA_HASTA", SqlDbType.Date).Value = fecha_hasta;
                 SqlDataReader dr = sqlcmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    object[] obj = new object[column.Length];
+                    DataRow row = dtResponse.NewRow();
 
-                    obj[0] = dr.GetString(0);
-                    obj[1] = dr.GetString(1);
-                    obj[2] = dr.GetString(2);
-                    obj[3] = String.Format(formato_moneda, dr.GetDecimal(3));
-                    obj[4] = String.Format(formato_moneda,dr.GetDecimal(4));
-                    obj[5] = String.Format(formato_moneda,dr.GetDecimal(5));
-                    obj[6] = String.Format(formato_moneda,dr.GetDecimal(6));
-                    obj[7] = String.Format(formato_moneda,dr.GetDecimal(7));
-                    obj[8] = String.Format(formato_moneda,dr.GetDecimal(8));
-                    obj[9] = String.Format(formato_moneda,dr.GetDecimal(9));
-                    obj[10] = String.Format(formato_moneda,dr.GetDecimal(10));
-                    obj[11] = String.Format(formato_moneda, dr.GetDecimal(11));
-                    obj[12] = String.Format(formato_moneda, dr.GetDecimal(12));
-                    obj[13] = String.Format(formato_moneda, dr.GetDecimal(13));
+                    row["COD_REASEGURADOR"] = dr["COD_REASEGURADOR"].ToString();
+                    row["DES_REASEGURADOR"] = dr["DES_REASEGURADOR"].ToString();
+                    row["PRI_XPAG_REA_CED"] = String.Format(formato_moneda, Convert.ToDecimal(dr["PRI_XPAG_REA_CED"]));
+                    row["PRI_XCOD_REA_ACE"] = String.Format(formato_moneda, Convert.ToDecimal(dr["PRI_XCOD_REA_ACE"]));
+                    row["SIN_XCOB_REA_CED"] = String.Format(formato_moneda, Convert.ToDecimal(dr["SIN_XCOB_REA_CED"]));
+                    row["SIN_XPAG_REA_ced"] = String.Format(formato_moneda, Convert.ToDecimal(dr["SIN_XPAG_REA_ced"]));
+                    row["OTRA_CUENTAS_XCOB"] = String.Format(formato_moneda, Convert.ToDecimal(dr["OTRA_CUENTAS_XCOB"]));
+                    row["OTRA_CUENTAS_XPAG"] = String.Format(formato_moneda, Convert.ToDecimal(dr["OTRA_CUENTAS_XPAG"]));
+                    row["DESC_COMISIONES"] = String.Format(formato_moneda, Convert.ToDecimal(dr["DESC_COMISIONES"]));
+                    row["SALDO_DEUDOR"] = String.Format(formato_moneda, Convert.ToDecimal(dr["SALDO_DEUDOR"]));
+                    row["SALDO_ACREEDOR"] = String.Format(formato_moneda, Convert.ToDecimal(dr["SALDO_ACREEDOR"]));
+                    row["SALDO_DEUDOR_COM"] = String.Format(formato_moneda, Convert.ToDecimal(dr["SALDO_DEUDOR_COM"]));
+                    row["SALDO_ACREEDOR_COM"] = String.Format(formato_moneda, Convert.ToDecimal(dr["SALDO_ACREEDOR_COM"]));
+                    row["TIENE_DETALLE"] = Convert.ToInt16(dr["TIENE_DETALLE"].ToString());
 
-                    dt.Rows.Add(obj);
+                    dtResponse.Rows.Add(row);
                 }
             }
             catch (Exception ex)
@@ -62,7 +62,7 @@ namespace VidaCamara.SBS.Dao
             {
                 conexion.Close();
             }
-            return dt;
+            return dtResponse;
         }
         public DataTable GetSelecionarEs18A(String contrato, DateTime fecha_inicio, DateTime fecha_hasta,String formato_moneda) {
  

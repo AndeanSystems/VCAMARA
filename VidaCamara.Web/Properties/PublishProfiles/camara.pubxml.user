@@ -51,7 +51,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/13/2016 21:00:09</publishTime>
     </File>
     <File Include="bin/VidaCamara.Web.dll">
-      <publishTime>06/13/2016 21:00:11</publishTime>
+      <publishTime>06/27/2016 21:27:20</publishTime>
     </File>
     <File Include="Default.aspx">
       <publishTime>02/03/2016 14:58:49</publishTime>
@@ -84,7 +84,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/03/2016 14:58:49</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>02/03/2016 14:58:49</publishTime>
+      <publishTime>06/27/2016 20:45:45</publishTime>
     </File>
     <File Include="Resources/CSS/AjaxMenu.css">
       <publishTime>02/03/2016 14:58:49</publishTime>
