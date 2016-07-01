@@ -82,9 +82,6 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
 
         private XSSFWorkbook Anexos(String formato_moneda, DateTime fecha_inicio, DateTime fecha_hasta)
         {
-            //seccionde variables
-            Int32 count = 1;
-
             var xssfworkbook = new XSSFWorkbook();
 
             String[] Cabecera1 = { "CODIGOS SBS","EMPRESAS \n REASEGURADORAS Y/O \n COASEGURADORAS", "PRIMAS POR \n PAGAR \n REASEGUROS \n CEDIDOS", "PRIMAS POR \n COBRAR \n REASEGUROS \n ACEPTADOS", "SINIESTROS \n POR COBRAR \n REASEGUROS \n CEDIDOS",
@@ -132,7 +129,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             IRow filaDescF = hojaTrabajo.CreateRow(8);
             ICell celdaDescF;
             celdaDescF = filaDescF.CreateCell(1);
-            celdaDescF.SetCellValue("AL " + Convert.ToDateTime(txt_fecha_creacion.Text));
+            celdaDescF.SetCellValue("AL " + Convert.ToDateTime(txt_fecha_creacion.Text).ToShortDateString());
             hojaTrabajo.AddMergedRegion(new CellRangeAddress(8, 8, 1, 12));
 
             IRow FilaDesc3 = hojaTrabajo.CreateRow(9);
@@ -167,13 +164,14 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             }
             bExportarData be = new bExportarData();
             DataTable dtanexo = be.GetSelecionarAnexo(ddl_contrato_i.SelectedItem.Value, formato_moneda,fecha_inicio,fecha_hasta);
+            #region "Anexo 2A"
             for (int r = 0; r < dtanexo.Rows.Count; r++)
             {
                 var codigoReasegurador = dtanexo.Rows[r]["COD_REASEGURADOR"].ToString().Trim();
                 var tieneDetalle = Convert.ToInt16(dtanexo.Rows[r]["TIENE_DETALLE"]);
                 IRow filaExcelAnexo = hojaTrabajo.CreateRow(13 + r);
                 ICell cellExcelAnexo;
-                for (int c = 0; c < dtanexo.Columns.Count-1; c++)
+                for (int c = 0; c < dtanexo.Columns.Count-2; c++)
                 {
                     var valorCelda = ((codigoReasegurador.Equals("BREAK") || tieneDetalle == 0) && c != 1) ? string.Empty : dtanexo.Rows[r][c].ToString();
                     cellExcelAnexo = filaExcelAnexo.CreateCell(1+c);
@@ -181,32 +179,168 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
                     cellExcelAnexo.CellStyle = styleCabecera;
                 }
             }
-            //Totalizar
+            //Totalizar Anexo 2A
 
             IRow FilaTotales = hojaTrabajo.CreateRow(dtanexo.Rows.Count+13);
-            for (int cl = 0; cl < dtanexo.Columns.Count-1; cl++)
+            for (int cl = 0; cl < dtanexo.Columns.Count-2; cl++)
             {
-                decimal totales = 0;
+                decimal totales = 0.00m;
                 ICell celldatatotal;
-                //ICell celldatatotal2;
                 if (cl >1)
                 {
                     for (int rw = 0; rw < dtanexo.Rows.Count; rw++)
                     {
-                        totales += Convert.ToDecimal(dtanexo.Rows[rw][cl]);
+                        var isTotals = Convert.ToInt16(dtanexo.Rows[rw]["IS_TOTALS"].ToString());
+                        if(isTotals == 1)
+                            totales += Convert.ToDecimal(dtanexo.Rows[rw][cl]);
                     }
                 }
                 var celdaTotalValor = (cl == 0) ?string.Empty: (cl == 1) ? "TOTALES" : String.Format(formato_moneda, totales);
                 celldatatotal = FilaTotales.CreateCell(cl+1);
                 celldatatotal.SetCellValue(celdaTotalValor);
                 celldatatotal.CellStyle = styleCabecera;
-                //if (cl == 3)
-                //{
-                //    celldatatotal2 = FilaTotales2.CreateCell(cl);
-                //    celldatatotal2.SetCellValue(String.Format(formato_moneda, totales));
-                //    celldatatotal2.CellStyle = styleCabecera;
-                //}
             }
+            #endregion "Anexo 2A"
+
+            #region "Anexo 2B"
+            IRow FilaTitulo2 = hojaTrabajo2.CreateRow(4);
+            ICell CeldaTitulo2;
+            CeldaTitulo2 = FilaTitulo2.CreateCell(1);
+            CeldaTitulo2.SetCellValue("ANEXO ES - 2B");
+            hojaTrabajo2.AddMergedRegion(new CellRangeAddress(4, 4, 1, 7));
+            CeldaTitulo2.CellStyle.Alignment = HorizontalAlignment.Center;
+
+            FilaTitulo2 = hojaTrabajo2.CreateRow(6);
+            CeldaTitulo2 = FilaTitulo2.CreateCell(1);
+            CeldaTitulo2.SetCellValue("CUENTAS CORRIENTES CON REASEGURADORAS Y/O COASEGURADORAS");
+            hojaTrabajo2.AddMergedRegion(new CellRangeAddress(6, 6, 1, 7));
+            CeldaTitulo2.CellStyle.Alignment = HorizontalAlignment.Center;
+
+            FilaTitulo2 = hojaTrabajo2.CreateRow(7);
+            CeldaTitulo2 = FilaTitulo2.CreateCell(1);
+            CeldaTitulo2.SetCellValue("ANÁLISIS DE LAS PARTIDAS DEUDORAS POR ANTIGÜEDAD DE SALDOS Y DETERMINACIÓN DE  PROVISIONES");
+            hojaTrabajo2.AddMergedRegion(new CellRangeAddress(7, 7, 1, 7));
+            CeldaTitulo2.CellStyle.Alignment = HorizontalAlignment.Center;
+
+            FilaTitulo2 = hojaTrabajo2.CreateRow(9);
+            CeldaTitulo2 = FilaTitulo2.CreateCell(1);
+            CeldaTitulo2.SetCellValue("(EN NUEVOS SOLES)");
+            hojaTrabajo2.AddMergedRegion(new CellRangeAddress(9, 9, 1, 7));
+            CeldaTitulo2.CellStyle.Alignment = HorizontalAlignment.Center;
+
+            for (int cl = 2; cl <= 7; cl++)
+            {
+                hojaTrabajo2.SetColumnWidth(cl, 300 * 25);
+            }
+
+            //var styleFilaCabecera2B = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
+            IRow FilaCabeceraTitulo2B = hojaTrabajo2.CreateRow(11);
+            ICell celdaSheet2;
+            for (int c = 0; c < Cabecera2.Length; c++)
+            {
+                celdaSheet2 = FilaCabeceraTitulo2B.CreateCell(c + 1);
+                celdaSheet2.SetCellValue(Cabecera2[c]);
+                celdaSheet2.CellStyle = styleCabecera;
+                celdaSheet2.CellStyle.WrapText = true;
+            }
+            //Insertar Fila 2 despues de la cabecera
+            var filaNumerador2B = hojaTrabajo2.CreateRow(12);
+            for (int c = 0; c < 6; c++)
+            {
+                ICell cellNumero2B = filaNumerador2B.CreateCell(c+1);
+                cellNumero2B.SetCellValue(c.ToString());
+                cellNumero2B.CellStyle = styleCabecera;
+            }
+            for (int r = 0; r < dtanexo.Rows.Count; r++)
+            {
+                var codigoReasegurador = dtanexo.Rows[r]["COD_REASEGURADOR"].ToString().Trim();
+                var tieneDetalle = Convert.ToInt16(dtanexo.Rows[r]["TIENE_DETALLE"]);
+
+                var valorCodigoSBS = (codigoReasegurador.Equals("BREAK")) ? string.Empty : dtanexo.Rows[r]["COD_REASEGURADOR"].ToString();
+                var valorSaldoDeudor = (codigoReasegurador.Equals("BREAK") || tieneDetalle == 0) ? string.Empty : dtanexo.Rows[r]["SALDO_DEUDOR"].ToString();
+
+                var filaDetalle2B = hojaTrabajo2.CreateRow(13+r);
+                ICell cellCodigoSBS = filaDetalle2B.CreateCell(1);
+                cellCodigoSBS.SetCellValue(valorCodigoSBS);
+                cellCodigoSBS.CellStyle = styleCabecera;
+
+                ICell cellNombreEmpresa = filaDetalle2B.CreateCell(2);
+                cellNombreEmpresa.SetCellValue(dtanexo.Rows[r]["DES_REASEGURADOR"].ToString());
+                cellNombreEmpresa.CellStyle = styleCabecera;
+
+                ICell cellCuentaPorCobrar = filaDetalle2B.CreateCell(3);
+                cellCuentaPorCobrar.SetCellValue(valorSaldoDeudor);
+                cellCuentaPorCobrar.CellStyle = styleCabecera;
+
+                ICell cell6MesAntiguedad = filaDetalle2B.CreateCell(4);
+                cell6MesAntiguedad.SetCellValue(string.Empty);
+                cell6MesAntiguedad.CellStyle = styleCabecera;
+
+                ICell cell12MesAntiguedad = filaDetalle2B.CreateCell(5);
+                cell12MesAntiguedad.SetCellValue(string.Empty);
+                cell12MesAntiguedad.CellStyle = styleCabecera;
+
+                ICell cellTotalPartida = filaDetalle2B.CreateCell(6);
+                cellTotalPartida.SetCellValue(string.Empty);
+                cellTotalPartida.CellStyle = styleCabecera;
+            }
+
+            //Totalizar Anexo 2B
+            IRow FilaTotales2B = hojaTrabajo2.CreateRow(dtanexo.Rows.Count + 13);
+            decimal totalSaldoDeudor = 0.00m;
+            for (int r = 0; r < dtanexo.Rows.Count; r++)
+            {
+                var isTotals = Convert.ToInt16(dtanexo.Rows[r]["IS_TOTALS"].ToString());
+                if (isTotals == 1)
+                    totalSaldoDeudor += Convert.ToDecimal(dtanexo.Rows[r]["SALDO_DEUDOR"]);
+            }
+            //var celdaTotalValor = (cl == 0) ? string.Empty : (cl == 1) ? "TOTALES" : String.Format(formato_moneda, totales);
+            ICell cellCodigoSBS2B = FilaTotales2B.CreateCell(1);
+            cellCodigoSBS2B.SetCellValue(string.Empty);
+            cellCodigoSBS2B.CellStyle = styleCabecera;
+
+            ICell cellNombreEmpresa2B = FilaTotales2B.CreateCell(2);
+            cellNombreEmpresa2B.SetCellValue("TOTALES");
+            cellNombreEmpresa2B.CellStyle = styleCabecera;
+
+            ICell cellCuentaPorCobrar2B = FilaTotales2B.CreateCell(3);
+            cellCuentaPorCobrar2B.SetCellValue(String.Format(formato_moneda, totalSaldoDeudor));
+            cellCuentaPorCobrar2B.CellStyle = styleCabecera;
+
+            ICell cell6MesAntiguedad2B = FilaTotales2B.CreateCell(4);
+            cell6MesAntiguedad2B.SetCellValue(string.Empty);
+            cell6MesAntiguedad2B.CellStyle = styleCabecera;
+
+            ICell cell12MesAntiguedad2B = FilaTotales2B.CreateCell(5);
+            cell12MesAntiguedad2B.SetCellValue(string.Empty);
+            cell12MesAntiguedad2B.CellStyle = styleCabecera;
+
+            ICell cellTotalPartida2B = FilaTotales2B.CreateCell(6);
+            cellTotalPartida2B.SetCellValue(string.Empty);
+            cellTotalPartida2B.CellStyle = styleCabecera;
+
+
+            //for (int cl = 0; cl < dtanexo.Columns.Count - 2; cl++)
+            //{
+            //    decimal totales = 0.00m;
+            //    ICell celldatatotal;
+            //    if (cl > 1)
+            //    {
+            //        for (int rw = 0; rw < dtanexo.Rows.Count; rw++)
+            //        {
+            //            var isTotals = Convert.ToInt16(dtanexo.Rows[rw]["IS_TOTALS"].ToString());
+            //            if (isTotals == 1)
+            //                totales += Convert.ToDecimal(dtanexo.Rows[rw][cl]);
+            //        }
+            //    }
+            //    var celdaTotalValor = (cl == 0) ? string.Empty : (cl == 1) ? "TOTALES" : String.Format(formato_moneda, totales);
+            //    celldatatotal = FilaTotales.CreateCell(cl + 1);
+            //    celldatatotal.SetCellValue(celdaTotalValor);
+            //    celldatatotal.CellStyle = styleCabecera;
+            //}
+            #endregion "Anexo 2B"
+
+            #region "Antiguo 2A"
             //for (int r = 0; r < dtanexo.Rows.Count; r++) {
             //    switch (Convert.ToString(dtanexo.Rows[r][0]).Trim())
             //    {
@@ -410,45 +544,7 @@ namespace VidaCamara.Web.WebPage.ModuloSBS.Consultas
             ////segunda ventana
             //ICellStyle styleData = this.SetFontData(dataFont, xssfworkbook);
 
-            //for (int cl = 2; cl <= 7; cl++) {
-            //    hojaTrabajo2.SetColumnWidth(cl,300*25);
-            //}
-
-            //IRow FilaTitulo2 = hojaTrabajo2.CreateRow(4);
-            //ICell CeldaTitulo2;
-            //CeldaTitulo2 = FilaTitulo.CreateCell(1);
-            //CeldaTitulo2.SetCellValue("ANEXO ES - 2B");
-            //hojaTrabajo2.AddMergedRegion(new CellRangeAddress(4, 4, 1, 7));
-            //CeldaTitulo2.CellStyle.Alignment = HorizontalAlignment.Center;
-
-            //FilaTitulo2 = hojaTrabajo2.CreateRow(6);
-            //CeldaTitulo2 = FilaTitulo2.CreateCell(1);
-            //CeldaTitulo2.SetCellValue("CUENTAS CORRIENTES CON REASEGURADORAS Y/O COASEGURADORAS");
-            //hojaTrabajo2.AddMergedRegion(new CellRangeAddress(6, 6, 1, 7));
-            //CeldaTitulo2.CellStyle.Alignment = HorizontalAlignment.Center;
-
-            //FilaTitulo2 = hojaTrabajo2.CreateRow(7);
-            //CeldaTitulo2 = FilaTitulo2.CreateCell(1);
-            //CeldaTitulo2.SetCellValue("ANÁLISIS DE LAS PARTIDAS DEUDORAS POR ANTIGÜEDAD DE SALDOS Y DETERMINACIÓN DE  PROVISIONES");
-            //hojaTrabajo2.AddMergedRegion(new CellRangeAddress(7, 7, 1, 7));
-            //CeldaTitulo2.CellStyle.Alignment = HorizontalAlignment.Center;
-
-            //FilaTitulo2 = hojaTrabajo2.CreateRow(9);
-            //CeldaTitulo2 = FilaTitulo2.CreateCell(1);
-            //CeldaTitulo2.SetCellValue("(EN NUEVOS SOLES)");
-            //hojaTrabajo2.AddMergedRegion(new CellRangeAddress(9, 9, 1, 7));
-            //CeldaTitulo2.CellStyle.Alignment = HorizontalAlignment.Center;
-
-            //IRow FilaCabecera22 = hojaTrabajo2.CreateRow(11);
-            //ICell celdaSheet2;
-            //for (int c = 0; c < Cabecera2.Length; c++)
-            //{
-            //    celdaSheet2 = FilaCabecera22.CreateCell(c + 1);
-            //    celdaSheet2.SetCellValue(Cabecera2[c]);
-            //    celdaSheet2.CellStyle = this.SetFontData(this.SetFontDataText(xssfworkbook), xssfworkbook);
-            //    celdaSheet2.CellStyle = styleCabecera;
-            //    celdaSheet2.CellStyle.WrapText = true;
-            //}
+            #endregion "Antiguo 2A"
 
             dtanexo.Rows.Clear();
             dtanexo.Columns.Clear();

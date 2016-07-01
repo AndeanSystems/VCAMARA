@@ -14,7 +14,7 @@ namespace VidaCamara.SBS.Dao
         public DataTable GetSelecionarAnexo(String contrato, String formato_moneda, DateTime fecha_inicio, DateTime fecha_hasta)
         {
             DataTable dtResponse = new DataTable();
-            String[] column = { "COD_REASEGURADOR", "DES_REASEGURADOR", "PRI_XPAG_REA_CED", "PRI_XCOD_REA_ACE", "SIN_XCOB_REA_CED", "SIN_XPAG_REA_ced", "OTRA_CUENTAS_XCOB", "OTRA_CUENTAS_XPAG", "DESC_COMISIONES", "SALDO_DEUDOR", "SALDO_ACREEDOR", "SALDO_DEUDOR_COM", "SALDO_ACREEDOR_COM", "TIENE_DETALLE" };
+            String[] column = { "COD_REASEGURADOR", "DES_REASEGURADOR", "PRI_XPAG_REA_CED", "PRI_XCOD_REA_ACE", "SIN_XCOB_REA_CED", "SIN_XPAG_REA_ced", "OTRA_CUENTAS_XCOB", "OTRA_CUENTAS_XPAG", "DESC_COMISIONES", "SALDO_DEUDOR", "SALDO_ACREEDOR", "SALDO_DEUDOR_COM", "SALDO_ACREEDOR_COM", "TIENE_DETALLE" , "IS_TOTALS" };
             for (int i = 0; i < column.Length; i++)
             {
                 dtResponse.Columns.Add(column[i]);
@@ -49,8 +49,8 @@ namespace VidaCamara.SBS.Dao
                     row["SALDO_ACREEDOR"] = String.Format(formato_moneda, Convert.ToDecimal(dr["SALDO_ACREEDOR"]));
                     row["SALDO_DEUDOR_COM"] = String.Format(formato_moneda, Convert.ToDecimal(dr["SALDO_DEUDOR_COM"]));
                     row["SALDO_ACREEDOR_COM"] = String.Format(formato_moneda, Convert.ToDecimal(dr["SALDO_ACREEDOR_COM"]));
-                    row["TIENE_DETALLE"] = Convert.ToInt16(dr["TIENE_DETALLE"].ToString());
-
+                    row["TIENE_DETALLE"] = dr["TIENE_DETALLE"].ToString();
+                    row["IS_TOTALS"] = dr["IS_TOTALS"].ToString();
                     dtResponse.Rows.Add(row);
                 }
             }
