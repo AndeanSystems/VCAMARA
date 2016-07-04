@@ -42,16 +42,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/03/2016 14:58:50</publishTime>
     </File>
     <File Include="bin/VidaCamara.DIS.dll">
-      <publishTime>06/05/2016 20:09:52</publishTime>
+      <publishTime>07/03/2016 15:59:06</publishTime>
     </File>
     <File Include="bin/VidaCamara.Masiva.exe">
       <publishTime>04/06/2016 22:25:03</publishTime>
     </File>
     <File Include="bin/VidaCamara.SBS.dll">
-      <publishTime>06/13/2016 21:00:09</publishTime>
+      <publishTime>06/30/2016 23:02:35</publishTime>
     </File>
     <File Include="bin/VidaCamara.Web.dll">
-      <publishTime>06/27/2016 21:27:20</publishTime>
+      <publishTime>07/03/2016 15:59:07</publishTime>
     </File>
     <File Include="Default.aspx">
       <publishTime>02/03/2016 14:58:49</publishTime>

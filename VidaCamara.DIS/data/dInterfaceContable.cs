@@ -285,22 +285,25 @@ namespace VidaCamara.DIS.data
                         foreach (var det in detalle)
                         {
                             sqlcmd.Parameters.Clear();
-                            sqlcmd.Parameters.Add("@ASIENTO", SqlDbType.VarChar).Value = det.ASIENTO;
-                            sqlcmd.Parameters.Add("@CONSECUTIVO", SqlDbType.Int).Value = consecutivo;
-                            sqlcmd.Parameters.Add("@CENTRO_COSTO", SqlDbType.VarChar).Value = det.CENTRO_COSTO;
-                            sqlcmd.Parameters.Add("@CUENTA_CONTABLE", SqlDbType.VarChar).Value = det.CUENTA_CONTABLE;
-                            sqlcmd.Parameters.Add("@FUENTE", SqlDbType.VarChar).Value = det.FUENTE;
-                            sqlcmd.Parameters.Add("@REFERENCIA", SqlDbType.VarChar).Value = det.REFERENCIA;
-                            sqlcmd.Parameters.Add("@MONTO_LOCAL", SqlDbType.Decimal).Value = det.MONTO_LOCAL;
-                            sqlcmd.Parameters.Add("@MONTO_DOLAR", SqlDbType.Decimal).Value = det.MONTO_DOLAR;
-                            sqlcmd.Parameters.Add("@MONTO_UNIDADES", SqlDbType.Decimal).Value = det.MONTO_UNIDADES;
-                            sqlcmd.Parameters.Add("@NIT", SqlDbType.VarChar).Value = det.NIT;
-                            sqlcmd.Parameters.Add("@DIMENSION1", SqlDbType.VarChar).Value = det.DIMENSION1 == null ? string.Empty : det.DIMENSION1;
-                            sqlcmd.Parameters.Add("@DIMENSION2", SqlDbType.VarChar).Value = det.DIMENSION2 == null ? string.Empty : det.DIMENSION2;
-                            sqlcmd.Parameters.Add("@DIMENSION3", SqlDbType.VarChar).Value = det.DIMENSION3 == null ? string.Empty : det.DIMENSION3;
-                            sqlcmd.Parameters.Add("@DIMENSION4", SqlDbType.VarChar).Value = det.DIMENSION4 == null ? string.Empty : det.DIMENSION4;
-                            sqlcmd.ExecuteNonQuery();
-                            consecutivo++;
+                            if (det.MONTO_LOCAL > 0.00m && det.MONTO_DOLAR > 0.00m)
+                            {
+                                sqlcmd.Parameters.Add("@ASIENTO", SqlDbType.VarChar).Value = det.ASIENTO;
+                                sqlcmd.Parameters.Add("@CONSECUTIVO", SqlDbType.Int).Value = consecutivo;
+                                sqlcmd.Parameters.Add("@CENTRO_COSTO", SqlDbType.VarChar).Value = det.CENTRO_COSTO;
+                                sqlcmd.Parameters.Add("@CUENTA_CONTABLE", SqlDbType.VarChar).Value = det.CUENTA_CONTABLE;
+                                sqlcmd.Parameters.Add("@FUENTE", SqlDbType.VarChar).Value = det.FUENTE;
+                                sqlcmd.Parameters.Add("@REFERENCIA", SqlDbType.VarChar).Value = det.REFERENCIA;
+                                sqlcmd.Parameters.Add("@MONTO_LOCAL", SqlDbType.Decimal).Value = det.MONTO_LOCAL;
+                                sqlcmd.Parameters.Add("@MONTO_DOLAR", SqlDbType.Decimal).Value = det.MONTO_DOLAR;
+                                sqlcmd.Parameters.Add("@MONTO_UNIDADES", SqlDbType.Decimal).Value = det.MONTO_UNIDADES;
+                                sqlcmd.Parameters.Add("@NIT", SqlDbType.VarChar).Value = det.NIT;
+                                sqlcmd.Parameters.Add("@DIMENSION1", SqlDbType.VarChar).Value = det.DIMENSION1 == null ? string.Empty : det.DIMENSION1;
+                                sqlcmd.Parameters.Add("@DIMENSION2", SqlDbType.VarChar).Value = det.DIMENSION2 == null ? string.Empty : det.DIMENSION2;
+                                sqlcmd.Parameters.Add("@DIMENSION3", SqlDbType.VarChar).Value = det.DIMENSION3 == null ? string.Empty : det.DIMENSION3;
+                                sqlcmd.Parameters.Add("@DIMENSION4", SqlDbType.VarChar).Value = det.DIMENSION4 == null ? string.Empty : det.DIMENSION4;
+                                sqlcmd.ExecuteNonQuery();
+                                consecutivo++;
+                            }
                         }
                     }
                 }
