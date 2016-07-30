@@ -8,6 +8,7 @@ using System.Configuration;
 
 namespace VidaCamara.Web.WebPage.Inicio
 {
+    //Prueba de github en otro repositorio
     public partial class frmLogin : System.Web.UI.Page
     {
         #region VARIABLES
