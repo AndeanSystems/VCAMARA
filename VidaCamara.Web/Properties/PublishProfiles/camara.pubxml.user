@@ -51,7 +51,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/30/2016 23:02:35</publishTime>
     </File>
     <File Include="bin/VidaCamara.Web.dll">
-      <publishTime>07/03/2016 15:59:07</publishTime>
+      <publishTime>07/13/2016 06:52:22</publishTime>
     </File>
     <File Include="Default.aspx">
       <publishTime>02/03/2016 14:58:49</publishTime>
