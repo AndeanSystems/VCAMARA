@@ -18,6 +18,8 @@ using System;
 public partial class EXACTUS_DETALLE_SIS
 {
 
+    public int IDE_EXACTUS_DETALLE_SIS { get; set; }
+
     public int IDE_EXACTUS_CABECERA_SIS { get; set; }
 
     public string ASIENTO { get; set; }

@@ -92,6 +92,8 @@ public partial class OPERACION
 
     public string TIP_COMPROBANTE { get; set; }
 
+    public Nullable<short> ORIGEN_OPERACION { get; set; }
+
 }
 
 }

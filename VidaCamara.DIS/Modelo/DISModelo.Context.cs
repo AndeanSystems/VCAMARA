@@ -55,6 +55,8 @@ public partial class DISEntities : DbContext
 
     public virtual DbSet<EXACTUS_DETALLE> EXACTUS_DETALLEs { get; set; }
 
+    public virtual DbSet<EXACTUS_DETALLE_SIS> EXACTUS_DETALLE_SISs { get; set; }
+
     public virtual DbSet<GENERAL> GENERALs { get; set; }
 
     public virtual DbSet<LogOperacion> LogOperacions { get; set; }
@@ -146,8 +148,6 @@ public partial class DISEntities : DbContext
     public virtual DbSet<EXACTUS_CABECERA> EXACTUS_CABECERAs { get; set; }
 
     public virtual DbSet<EXACTUS_DETALLE_EXPORT_SIS> EXACTUS_DETALLE_EXPORT_SISs { get; set; }
-
-    public virtual DbSet<EXACTUS_DETALLE_SIS> EXACTUS_DETALLE_SISs { get; set; }
 
     public virtual DbSet<USUARIO> USUARIOs { get; set; }
 
